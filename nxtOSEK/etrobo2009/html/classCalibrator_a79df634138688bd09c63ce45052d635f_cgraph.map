@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classCalibrator.html#a6bcbf07280e0d5baabcedc24a74421da" title="Calibrator::chooseParameter" alt="" coords="245,5,432,35"/>
+<area shape="rect" id="node5" href="$classCalibrator.html#aa3959346e344c2384ffe57ce4b84f276" title="Calibrator::displayParameter" alt="" coords="501,57,688,87"/>
+<area shape="rect" id="node7" href="$classCalibrator.html#a96af8092025f853616b54770f856069d" title="Calibrator::chooseParameterCoarse" alt="" coords="225,109,452,139"/>
+<area shape="rect" id="node11" href="$classCalibrator.html#a0334cb8b34feff562cfcebac87ae620f" title="Calibrator::displaySingleLine" alt="" coords="501,267,688,296"/>
+<area shape="rect" id="node13" href="$classPidController.html#a0b842165ec5af260a435ee17d128c505" title="PidController::setKd" alt="" coords="269,213,408,243"/>
+<area shape="rect" id="node15" href="$classPidController.html#aaad07239b8f221df934f04b3a5f3655c" title="PidController::setKi" alt="" coords="272,267,405,296"/>
+<area shape="rect" id="node17" href="$classPidController.html#aa9e0f0ed50b367b8319b072710898dda" title="PidController::setKp" alt="" coords="269,320,408,349"/>
+<area shape="rect" id="node19" href="$classCalibrator.html#abe2838eeba91c85e1624b7ffceac8c13" title="Calibrator::switchEdge" alt="" coords="263,373,415,403"/>
+</map>

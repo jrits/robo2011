@@ -1,0 +1,176 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: Gps.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+<h1>Gps.hpp</h1><a href="Gps_8hpp.html">説明を見る。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef _GPS_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define _GPS_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="SensorHistory_8hpp.html">SensorHistory.hpp</a>&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;<a class="code" href="Direction_8hpp.html">Direction.hpp</a>&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;<a class="code" href="parameters_8hpp.html">parameters.hpp</a>&quot;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;cmath&gt;</span>
+<a name="l00008"></a>00008 
+<a name="l00009"></a><a class="code" href="classGps.html">00009</a> <span class="keyword">class </span><a class="code" href="classGps.html">Gps</a>
+<a name="l00010"></a>00010 {
+<a name="l00011"></a>00011 <span class="keyword">private</span>:
+<a name="l00012"></a><a class="code" href="classGps.html#ab83480c4f5ccfb33cd71b0f0fd46ca76">00012</a>     <a class="code" href="classSensorHistory.html">SensorHistory</a> &amp;<a class="code" href="classGps.html#ab83480c4f5ccfb33cd71b0f0fd46ca76">sensorHistory</a>;
+<a name="l00013"></a><a class="code" href="classGps.html#a29ad40a60923b9859a62e762ac10e1e6">00013</a>     <a class="code" href="classDirection.html">Direction</a> &amp;<a class="code" href="classGps.html#a29ad40a60923b9859a62e762ac10e1e6">direction</a>;
+<a name="l00014"></a><a class="code" href="classGps.html#ae61a4763c96077d6b43007a7b4b1fe85">00014</a>     S16 <a class="code" href="classGps.html#a6a51f22c31683be5c9078034d4882c54">motorCountL</a>, <a class="code" href="classGps.html#ae61a4763c96077d6b43007a7b4b1fe85">motorCountR</a>;
+<a name="l00015"></a><a class="code" href="classGps.html#af9d2e6130c06526ff9419af544648b2d">00015</a>     S16 <a class="code" href="classGps.html#aee946b7113ffce4e560f7dac4a138573">previousMotorCountL</a>, <a class="code" href="classGps.html#af9d2e6130c06526ff9419af544648b2d">previousMotorCountR</a>;
+<a name="l00016"></a><a class="code" href="classGps.html#a8e5fb74821b9069f834b5189490478bc">00016</a>     F32 <a class="code" href="classGps.html#a8e5fb74821b9069f834b5189490478bc">previousDirection</a>, <a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a>;
+<a name="l00017"></a>00017     
+<a name="l00018"></a><a class="code" href="classGps.html#addd6089b1dd29d6fa8ed9af29a66b94e">00018</a>     Lcd <a class="code" href="classGps.html#addd6089b1dd29d6fa8ed9af29a66b94e">lcd</a>;
+<a name="l00019"></a><a class="code" href="classGps.html#ae5dca8f475e582cc2c5f6957dbce3757">00019</a>     VectorT&lt;double&gt; <a class="code" href="classGps.html#ae5dca8f475e582cc2c5f6957dbce3757">world</a>;
+<a name="l00020"></a>00020 <span class="keyword">public</span>:
+<a name="l00021"></a><a class="code" href="classGps.html#ac452433082a5a62a43b6949a31b70ebd">00021</a>     <a class="code" href="classGps.html#ac452433082a5a62a43b6949a31b70ebd">Gps</a>(<a class="code" href="classSensorHistory.html">SensorHistory</a> &amp;sh,
+<a name="l00022"></a>00022         <a class="code" href="classDirection.html">Direction</a> &amp;d):
+<a name="l00023"></a>00023         <a class="code" href="classGps.html#ab83480c4f5ccfb33cd71b0f0fd46ca76">sensorHistory</a>(sh),
+<a name="l00024"></a>00024         <a class="code" href="classGps.html#a29ad40a60923b9859a62e762ac10e1e6">direction</a>(d),
+<a name="l00025"></a>00025         <a class="code" href="classGps.html#a6a51f22c31683be5c9078034d4882c54">motorCountL</a>(0),
+<a name="l00026"></a>00026         <a class="code" href="classGps.html#ae61a4763c96077d6b43007a7b4b1fe85">motorCountR</a>(0),        
+<a name="l00027"></a>00027         <a class="code" href="classGps.html#aee946b7113ffce4e560f7dac4a138573">previousMotorCountL</a>(0),
+<a name="l00028"></a>00028         <a class="code" href="classGps.html#af9d2e6130c06526ff9419af544648b2d">previousMotorCountR</a>(0),
+<a name="l00029"></a>00029         <a class="code" href="classGps.html#a8e5fb74821b9069f834b5189490478bc">previousDirection</a>(0.0),
+<a name="l00030"></a>00030         <a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a>(0.0),
+<a name="l00031"></a>00031         <a class="code" href="classGps.html#ae5dca8f475e582cc2c5f6957dbce3757">world</a>(0.0, 0.0)
+<a name="l00032"></a>00032         {};
+<a name="l00033"></a>00033     
+<a name="l00034"></a><a class="code" href="classGps.html#a9f076d88f081ae5c010cf150cb957b66">00034</a>     <a class="code" href="classGps.html#a9f076d88f081ae5c010cf150cb957b66">~Gps</a>(){};
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 <span class="keyword">public</span>:
+<a name="l00037"></a><a class="code" href="classGps.html#ad462e0e13a5eabb93d56f32d47e5851f">00037</a>     VectorT&lt;double&gt; <a class="code" href="classGps.html#ad462e0e13a5eabb93d56f32d47e5851f">getCoordinates</a>() {
+<a name="l00038"></a>00038         <span class="keywordflow">return</span> <a class="code" href="classGps.html#ae5dca8f475e582cc2c5f6957dbce3757">world</a>;
+<a name="l00039"></a>00039     }
+<a name="l00040"></a><a class="code" href="classGps.html#a2cddda4a7acd596ef068d8b3290926db">00040</a>     <span class="keywordtype">void</span> <a class="code" href="classGps.html#a2cddda4a7acd596ef068d8b3290926db">calcCoordinates</a>() {
+<a name="l00041"></a>00041         <a class="code" href="classGps.html#a6a51f22c31683be5c9078034d4882c54">motorCountL</a> = <a class="code" href="classGps.html#ab83480c4f5ccfb33cd71b0f0fd46ca76">sensorHistory</a>.<a class="code" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f">getLeftMotorCountHistory</a>();        
+<a name="l00042"></a>00042         <a class="code" href="classGps.html#ae61a4763c96077d6b43007a7b4b1fe85">motorCountR</a> = <a class="code" href="classGps.html#ab83480c4f5ccfb33cd71b0f0fd46ca76">sensorHistory</a>.<a class="code" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78">getRightMotorCountHistory</a>();
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044         <span class="comment">//前回のエンコーダ値からの差分を計算する。</span>
+<a name="l00045"></a>00045         S16 dMCL = <a class="code" href="classGps.html#a6a51f22c31683be5c9078034d4882c54">motorCountL</a> - <a class="code" href="classGps.html#aee946b7113ffce4e560f7dac4a138573">previousMotorCountL</a>; <span class="comment">///&lt;左モータエンコーダ値の差分。</span>
+<a name="l00046"></a>00046 <span class="comment"></span>        S16 dMCR = <a class="code" href="classGps.html#ae61a4763c96077d6b43007a7b4b1fe85">motorCountR</a> - <a class="code" href="classGps.html#af9d2e6130c06526ff9419af544648b2d">previousMotorCountR</a>; <span class="comment">///&lt;右モータエンコーダ値の差分。</span>
+<a name="l00047"></a>00047 <span class="comment"></span>
+<a name="l00048"></a>00048         <span class="comment">//差分の計算のため、１ステップ前のエンコーダ値を保存。</span>
+<a name="l00049"></a>00049         previousMotorCountL = <a class="code" href="classGps.html#a6a51f22c31683be5c9078034d4882c54">motorCountL</a>;
+<a name="l00050"></a>00050         previousMotorCountR = <a class="code" href="classGps.html#ae61a4763c96077d6b43007a7b4b1fe85">motorCountR</a>;
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052         <span class="comment">//ローカル座標系から、グローバル座標系に変換するために走行体の現在の向きを計算。</span>
+<a name="l00053"></a>00053         <a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a> = <a class="code" href="classGps.html#a29ad40a60923b9859a62e762ac10e1e6">direction</a>.<a class="code" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得">getDirection</a>();
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055         <span class="comment">//ローカル座標系での、座標の変化を計算するために、前回からの進行方向の差を計算する。</span>
+<a name="l00056"></a>00056         F32 dD = <a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a> - <a class="code" href="classGps.html#a8e5fb74821b9069f834b5189490478bc">previousDirection</a>;
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058         <span class="comment">//差分計算</span>
+<a name="l00059"></a>00059         previousDirection = <a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a>;
+<a name="l00060"></a>00060         
+<a name="l00061"></a>00061         <span class="keyword">const</span> S16 STRAIGHT = 0;
+<a name="l00062"></a>00062         <span class="keyword">const</span> S16 <a class="code" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fcaec8379af7490bb9eaaf579cf17876f38">RIGHT</a>    = 1;
+<a name="l00063"></a>00063         <span class="keyword">const</span> S16 <a class="code" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fcadb45120aafd37a973140edee24708065">LEFT</a>     = 2;
+<a name="l00064"></a>00064         <span class="keyword">const</span> S16 TURN     = 3;
+<a name="l00065"></a>00065                 
+<a name="l00066"></a>00066         S16 advancement = -1;
+<a name="l00067"></a>00067         <span class="keywordflow">if</span>((dMCR * dMCL) &lt; 0){
+<a name="l00068"></a>00068             advancement = TURN;
+<a name="l00069"></a>00069         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(dMCR == dMCL){
+<a name="l00070"></a>00070             advancement = STRAIGHT;
+<a name="l00071"></a>00071         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(dMCR &lt; dMCL){
+<a name="l00072"></a>00072             advancement = RIGHT;
+<a name="l00073"></a>00073         } <span class="keywordflow">else</span> <span class="keywordflow">if</span>(dMCR &gt; dMCL){
+<a name="l00074"></a>00074             advancement = LEFT;
+<a name="l00075"></a>00075         } <span class="keywordflow">else</span> {
+<a name="l00076"></a>00076             <span class="comment">//ここにはこないはず</span>
+<a name="l00077"></a>00077             advancement = -1;
+<a name="l00078"></a>00078         }
+<a name="l00079"></a>00079                 
+<a name="l00080"></a>00080         <span class="keywordtype">double</span> RdX = 0.0;<span class="comment">//Relativity</span>
+<a name="l00081"></a>00081         <span class="keywordtype">double</span> RdY = 0.0;<span class="comment">//Relativity </span>
+<a name="l00082"></a>00082         <span class="keywordtype">double</span> AdX = 0.0;<span class="comment">//Absolutely</span>
+<a name="l00083"></a>00083         <span class="keywordtype">double</span> AdY = 0.0;<span class="comment">//Absolutely </span>
+<a name="l00084"></a>00084         <span class="keywordflow">switch</span> (advancement) {
+<a name="l00085"></a>00085         <span class="keywordflow">case</span> STRAIGHT:
+<a name="l00086"></a>00086             RdX = 0;
+<a name="l00087"></a>00087             RdY = (M_PI*dMCL*<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a>)/180.0;
+<a name="l00088"></a>00088             <span class="keywordflow">break</span>;
+<a name="l00089"></a>00089         <span class="keywordflow">case</span> RIGHT:
+<a name="l00090"></a>00090             RdX = (((<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a> * dMCL)/(2 * M_PI * (dMCL-dMCR))) + (<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a>/2.0))*(cos(dD)-1);
+<a name="l00091"></a>00091             RdY = (((<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a> * dMCL)/(2 * M_PI * (dMCL-dMCR))) + (<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a>/2.0))*(sin(dD));
+<a name="l00092"></a>00092             <span class="keywordflow">break</span>;
+<a name="l00093"></a>00093         <span class="keywordflow">case</span> LEFT:
+<a name="l00094"></a>00094             RdX = -((((<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a> * dMCR)/(2 * M_PI * (dMCR-dMCL))) + (<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a>/2.0))*(cos(dD)-1));
+<a name="l00095"></a>00095             RdY = -(((<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a> * dMCL)/(2 * M_PI * (dMCL-dMCR))) + (<a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a>/2.0))*(sin(dD));
+<a name="l00096"></a>00096             <span class="keywordflow">break</span>;
+<a name="l00097"></a>00097         <span class="keywordflow">case</span> TURN:
+<a name="l00098"></a>00098             <span class="comment">//計算式を追加してちょ</span>
+<a name="l00099"></a>00099             <span class="keywordflow">break</span>;      
+<a name="l00100"></a>00100         <span class="keywordflow">default</span>:
+<a name="l00101"></a>00101             <span class="comment">//ここにはこない</span>
+<a name="l00102"></a>00102             <span class="keywordflow">break</span>;
+<a name="l00103"></a>00103         }
+<a name="l00104"></a>00104 <span class="preprocessor">#if 0</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span>        AdX = RdX*cos(<a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a>)+RdY*sin(<a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a>);
+<a name="l00106"></a>00106         AdY = RdY*cos(<a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a>)+RdX*sin(<a class="code" href="classGps.html#abcfec33465706a3b059982919b1e03a4">currentDirection</a>);
+<a name="l00107"></a>00107 <span class="preprocessor">#endif</span>
+<a name="l00108"></a>00108 <span class="preprocessor"></span>        <a class="code" href="classGps.html#ae5dca8f475e582cc2c5f6957dbce3757">world</a> += VectorT&lt;double&gt;(AdX, AdY);
+<a name="l00109"></a>00109     }
+<a name="l00110"></a>00110 };
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 <span class="preprocessor">#endif </span><span class="comment">/* _GPS_H_ */</span>
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:06:19 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

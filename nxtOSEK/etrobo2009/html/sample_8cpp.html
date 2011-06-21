@@ -1,0 +1,852 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: sample.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>sample.cpp</h1><code>#include &lt;stddef.h&gt;</code><br/>
+<code>#include &quot;TouchSensor.h&quot;</code><br/>
+<code>#include &quot;GyroSensor.h&quot;</code><br/>
+<code>#include &quot;LightSensor.h&quot;</code><br/>
+<code>#include &quot;Motor.h&quot;</code><br/>
+<code>#include &quot;Nxt.h&quot;</code><br/>
+<code>#include &quot;Clock.h&quot;</code><br/>
+<code>#include &quot;Lcd.h&quot;</code><br/>
+<code>#include &quot;Bluetooth.h&quot;</code><br/>
+<code>#include &quot;Daq.h&quot;</code><br/>
+<code>#include &quot;Speaker.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="TouchStarter_8h_source.html">TouchStarter.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="NXTway__GS_8h_source.html">NXTway_GS.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Calibrator_8hpp_source.html">Calibrator.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="PidController_8hpp_source.html">PidController.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Color_8hpp_source.html">Color.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="SensorHistory_8hpp_source.html">SensorHistory.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="BalancingRun_8hpp_source.html">BalancingRun.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Balancer_8hpp_source.html">Balancer.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Time_8hpp_source.html">Time.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Distance_8hpp_source.html">Distance.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Course_8hpp_source.html">Course.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="InOutInCourse_8hpp_source.html">InOutInCourse.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="InDolphinCourse_8hpp_source.html">InDolphinCourse.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Direction_8hpp_source.html">Direction.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Gps_8hpp_source.html">Gps.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Driver_8hpp_source.html">Driver.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="LineTraceDriver_8hpp_source.html">LineTraceDriver.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="DirectionPidDriver_8hpp_source.html">DirectionPidDriver.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="CurvaturePidDriver_8hpp_source.html">CurvaturePidDriver.hpp</a>&quot;</code><br/>
+<code>#include &quot;kernel.h&quot;</code><br/>
+<code>#include &quot;kernel_id.h&quot;</code><br/>
+<code>#include &quot;ecrobot_interface.h&quot;</code><br/>
+<div class="dynheader">
+sample.cppのインクルード依存関係図</div>
+<div class="dynsection">
+<div class="center"><img src="sample_8cpp__incl.png" border="0" usemap="#sample_8cpp_map" alt=""/></div>
+<map name="sample_8cpp_map" id="sample_8cpp">
+<area shape="rect" id="node25" href="TouchStarter_8h.html" title="TouchStarter.h" alt="" coords="43,160,149,189"/><area shape="rect" id="node28" href="NXTway__GS_8h.html" title="NXTway_GS.h" alt="" coords="2907,547,3011,576"/><area shape="rect" id="node37" href="Calibrator_8hpp.html" title="Calibrator.hpp" alt="" coords="403,392,504,421"/><area shape="rect" id="node47" href="PidController_8hpp.html" title="PidController.hpp" alt="" coords="2325,469,2445,499"/><area shape="rect" id="node55" href="Color_8hpp.html" title="Color.hpp" alt="" coords="2111,547,2188,576"/><area shape="rect" id="node57" href="SensorHistory_8hpp.html" title="SensorHistory.hpp" alt="" coords="2043,624,2171,653"/><area shape="rect" id="node72" href="BalancingRun_8hpp.html" title="BalancingRun.hpp" alt="" coords="2733,469,2859,499"/><area shape="rect" id="node74" href="Balancer_8hpp.html" title="Balancer.hpp" alt="" coords="2733,547,2832,576"/><area shape="rect" id="node81" href="Time_8hpp.html" title="Time.hpp" alt="" coords="765,469,840,499"/><area shape="rect" id="node84" href="Distance_8hpp.html" title="Distance.hpp" alt="" coords="1748,469,1847,499"/><area shape="rect" id="node88" href="Course_8hpp.html" title="Course.hpp" alt="" coords="1417,160,1505,189"/><area shape="rect" id="node90" href="Direction_8hpp.html" title="Direction.hpp" alt="" coords="1368,469,1467,499"/><area shape="rect" id="node103" href="Driver_8hpp.html" title="Driver.hpp" alt="" coords="1959,392,2036,421"/><area shape="rect" id="node139" href="OutCourse_8hpp.html" title="OutCourse.hpp" alt="" coords="1908,83,2017,112"/><area shape="rect" id="node142" href="InCourse_8hpp.html" title="InCourse.hpp" alt="" coords="1247,83,1345,112"/><area shape="rect" id="node145" href="InOutInCourse_8hpp.html" title="InOutInCourse.hpp" alt="" coords="1369,83,1497,112"/><area shape="rect" id="node148" href="InDolphinCourse_8hpp.html" title="InDolphinCourse.hpp" alt="" coords="1521,83,1663,112"/><area shape="rect" id="node151" href="InTwinloopCourse_8hpp.html" title="InTwinloopCourse.hpp" alt="" coords="1687,83,1833,112"/><area shape="rect" id="node155" href="Gps_8hpp.html" title="Gps.hpp" alt="" coords="1133,392,1203,421"/><area shape="rect" id="node162" href="LineTraceDriver_8hpp.html" title="LineTraceDriver.hpp" alt="" coords="2173,315,2307,344"/><area shape="rect" id="node168" href="DirectionPidDriver_8hpp.html" title="DirectionPidDriver.hpp" alt="" coords="2507,315,2656,344"/><area shape="rect" id="node173" href="CurvaturePidDriver_8hpp.html" title="CurvaturePidDriver.hpp" alt="" coords="2331,315,2483,344"/><area shape="rect" id="node42" href="parameters_8hpp.html" title="parameters.hpp" alt="" coords="1589,624,1701,653"/><area shape="rect" id="node44" href="light__param_8h.html" title="light_param.h" alt="" coords="376,469,475,499"/><area shape="rect" id="node101" href="NormalLineSection_8hpp.html" title="NormalLineSection.hpp" alt="" coords="1589,315,1744,344"/><area shape="rect" id="node112" href="GoalStopSection_8hpp.html" title="GoalStopSection.hpp" alt="" coords="1679,237,1823,267"/><area shape="rect" id="node118" href="NewGoalStopSection_8hpp.html" title="NewGoalStopSection.hpp" alt="" coords="1847,237,2017,267"/><area shape="rect" id="node124" href="DashedLineSection_8hpp.html" title="DashedLineSection.hpp" alt="" coords="1188,237,1345,267"/><area shape="rect" id="node130" href="NewDashedLineSection_8hpp.html" title="NewDashedLineSection.hpp" alt="" coords="1369,237,1553,267"/><area shape="rect" id="node136" href="TreasureHuntSection_8hpp.html" title="TreasureHuntSection.hpp" alt="" coords="840,392,1008,421"/></map>
+</div>
+
+<p><a href="sample_8cpp_source.html">ソースコードを見る。</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>関数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">LightSensor&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ab22236b1805a36d21e0da9747ca7b8ab">light</a> (PORT_3)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">TouchSensor&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ad10dbdc2f51ef83ed44f042e6dccf6b2">touchL</a> (PORT_1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">TouchSensor&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#af2d6294e04f1ae4c1dc6f2523c066e2d">touchR</a> (PORT_4)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">GyroSensor&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a3c5cb86e9e036d066e34a4fc79ba0163">gyro</a> (PORT_2)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Motor&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a32d782155a37ce16f47f181f190401a1">motorL</a> (PORT_C)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Motor&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a4a4710e7d2db1f59037cff2a93ab8170">motorR</a> (PORT_B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a5ed320798edfd93d13f6cf1c7f36b3c5">DeclareCounter</a> (SysTimerCnt)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a142e672508a5f3b5795f0952e38c8dc1">DeclareTask</a> (TaskDrive)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#aec10d3c32c1e73280f088731e90b44b8">DeclareTask</a> (TaskMain)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ad8f0763e26b8f143476bed9f7abe0c41">DeclareAlarm</a> (Alarm4msec)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ae441d76ae3196bd1e6f02c2b67b4568d">DeclareEvent</a> (EventDrive)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a1a3fecba0774248495ab7a226e23b9fe">user_1ms_isr_type2</a> (void)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941">TASK</a> (TaskDrive)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ab622f1cc7f7d84bf5ccfb33ffbfe4693">TASK</a> (TaskMain)</td></tr>
+<tr><td colspan="2"><h2>変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Nxt&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">nxt</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Lcd&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Bluetooth&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Clock&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorHistory.html">SensorHistory</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a> (<a class="el" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">nxt</a>, light, touchL, touchR, <a class="el" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a>, <a class="el" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>, gyro, motorL, motorR)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classColor.html">Color</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a170912d3c99a2c48ebdab9cceb58ec45">color</a> (<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDistance.html">Distance</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a> (<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBalancer.html">Balancer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a80c2f6b96f0172b901451890dec71fe4">balancer</a> (<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBalancingRun.html">BalancingRun</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a> (<a class="el" href="sample_8cpp.html#a80c2f6b96f0172b901451890dec71fe4">balancer</a>, motorL, motorR)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTime.html">Time</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#abe319a51f06b6f59392ccf95ff9d42b5">time</a> (<a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a03d3917210b6ffa821dfc8c0249bb4da">defaultDirection</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDirection.html">Direction</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a> (<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>, <a class="el" href="sample_8cpp.html#a03d3917210b6ffa821dfc8c0249bb4da">defaultDirection</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGps.html">Gps</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#aaec2516324ebeabd35817c0a8973dde4">gps</a> (<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPidController.html">PidController</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a5c15d34f709be300b1e844e96da3f521">lightPid</a> (<a class="el" href="parameters_8hpp.html#ada069b55117a4cac2aecf10b5b685293">KP</a>, <a class="el" href="parameters_8hpp.html#a4a5e8aec9e1528d10b3d6036e56f0b6a">KI</a>, <a class="el" href="parameters_8hpp.html#afa2d905fb40ef67a430a76fd98c71931">KD</a>, 10)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPidController.html">PidController</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a43f1310778f4372b30b9799e909a19f8">anglePid</a> (DIRECTION_PID_KP, DIRECTION_PID_KI, DIRECTION_PID_KD, DIRECTION_PID_SIZE)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPidController.html">PidController</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ace1ae5407dea24ea1fae244195cfc937">curvPid</a> (CURVATURE_PID_KP, CURVATURE_PID_KI, CURVATURE_PID_KD, CURVATURE_PID_SIZE)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLineTraceDriver.html">LineTraceDriver</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="TestSection_8hpp.html#a3668f597e8ba7ff58d1cee6444ef7a04">lightPid</a>, <a class="el" href="TestSection_8hpp.html#aab0b917b4b4a8582bd9f14f6bfebb966">anglePid</a>, <a class="el" href="TestSection_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDirectionPidDriver.html">DirectionPidDriver</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="TestSection_8hpp.html#a3668f597e8ba7ff58d1cee6444ef7a04">lightPid</a>, <a class="el" href="TestSection_8hpp.html#aab0b917b4b4a8582bd9f14f6bfebb966">anglePid</a>, <a class="el" href="TestSection_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCurvaturePidDriver.html">CurvaturePidDriver</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="TestSection_8hpp.html#a3668f597e8ba7ff58d1cee6444ef7a04">lightPid</a>, <a class="el" href="TestSection_8hpp.html#aab0b917b4b4a8582bd9f14f6bfebb966">anglePid</a>, <a class="el" href="TestSection_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNormalLineSection.html">NormalLineSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a7ec0781311cdf9de649d08154161d8a8">normalLineSection</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGoalStopSection.html">GoalStopSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ada74e9eac4c1eb66aaf7eb7e7d66c413">goalStopSection</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDashedLineSection.html">DashedLineSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a5568c9d2b58bd84e1e74d40e15a69d0e">dashedLineSection</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTreasureHuntSection.html">TreasureHuntSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ae9d02626be9c8824c500ae9363dad532">treasureHuntSection</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNewDashedLineSection.html">NewDashedLineSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a8f1b686cf7d4c0a45b8377beb1d6f02a">newDashedLineSection</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNewTreasureHuntSection.html">NewTreasureHuntSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ad7becf4faa55e6dce6c81e5e34bbf6dd">newTreasureHuntSection</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNewGoalStopSection.html">NewGoalStopSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a03c18464aa5256d0a6030046836fb9c4">newGoalStopSection</a> (<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classInOutInCourse.html">InOutInCourse</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#ac8dd23e886582c0be5e6950f1e26dbc1">course</a> (<a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#abe319a51f06b6f59392ccf95ff9d42b5">time</a>, InOutInCourse::START)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">S8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a5239a449a17c2f22d81a01cf4156263f">DEBUG_DATA1</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">S8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a556d1e6e533f0e0d1d321e89f7a35c2b">DEBUG_DATA2</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">S32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="sample_8cpp.html#a1cfc6dbb0a16d0a0eaec9e0dac62bae6">DEBUG_DATA_LONG</a> = 0</td></tr>
+</table>
+<hr/><h2>関数</h2>
+<a class="anchor" id="ad8f0763e26b8f143476bed9f7abe0c41"></a><!-- doxytag: member="sample.cpp::DeclareAlarm" ref="ad8f0763e26b8f143476bed9f7abe0c41" args="(Alarm4msec)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DeclareAlarm </td>
+          <td>(</td>
+          <td class="paramtype">Alarm4msec&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ed320798edfd93d13f6cf1c7f36b3c5"></a><!-- doxytag: member="sample.cpp::DeclareCounter" ref="a5ed320798edfd93d13f6cf1c7f36b3c5" args="(SysTimerCnt)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DeclareCounter </td>
+          <td>(</td>
+          <td class="paramtype">SysTimerCnt&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae441d76ae3196bd1e6f02c2b67b4568d"></a><!-- doxytag: member="sample.cpp::DeclareEvent" ref="ae441d76ae3196bd1e6f02c2b67b4568d" args="(EventDrive)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DeclareEvent </td>
+          <td>(</td>
+          <td class="paramtype">EventDrive&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aec10d3c32c1e73280f088731e90b44b8"></a><!-- doxytag: member="sample.cpp::DeclareTask" ref="aec10d3c32c1e73280f088731e90b44b8" args="(TaskMain)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DeclareTask </td>
+          <td>(</td>
+          <td class="paramtype">TaskMain&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a142e672508a5f3b5795f0952e38c8dc1"></a><!-- doxytag: member="sample.cpp::DeclareTask" ref="a142e672508a5f3b5795f0952e38c8dc1" args="(TaskDrive)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DeclareTask </td>
+          <td>(</td>
+          <td class="paramtype">TaskDrive&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3c5cb86e9e036d066e34a4fc79ba0163"></a><!-- doxytag: member="sample.cpp::gyro" ref="a3c5cb86e9e036d066e34a4fc79ba0163" args="(PORT_2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GyroSensor gyro </td>
+          <td>(</td>
+          <td class="paramtype">PORT_2&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab22236b1805a36d21e0da9747ca7b8ab"></a><!-- doxytag: member="sample.cpp::light" ref="ab22236b1805a36d21e0da9747ca7b8ab" args="(PORT_3)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightSensor light </td>
+          <td>(</td>
+          <td class="paramtype">PORT_3&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a32d782155a37ce16f47f181f190401a1"></a><!-- doxytag: member="sample.cpp::motorL" ref="a32d782155a37ce16f47f181f190401a1" args="(PORT_C)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Motor motorL </td>
+          <td>(</td>
+          <td class="paramtype">PORT_C&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4a4710e7d2db1f59037cff2a93ab8170"></a><!-- doxytag: member="sample.cpp::motorR" ref="a4a4710e7d2db1f59037cff2a93ab8170" args="(PORT_B)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Motor motorR </td>
+          <td>(</td>
+          <td class="paramtype">PORT_B&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab622f1cc7f7d84bf5ccfb33ffbfe4693"></a><!-- doxytag: member="sample.cpp::TASK" ref="ab622f1cc7f7d84bf5ccfb33ffbfe4693" args="(TaskMain)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TASK </td>
+          <td>(</td>
+          <td class="paramtype">TaskMain&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00169">169</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="sample_8cpp_ab622f1cc7f7d84bf5ccfb33ffbfe4693_cgraph.png" border="0" usemap="#sample_8cpp_ab622f1cc7f7d84bf5ccfb33ffbfe4693_cgraph_map" alt=""></div>
+<map name="sample_8cpp_ab622f1cc7f7d84bf5ccfb33ffbfe4693_cgraph_map" id="sample_8cpp_ab622f1cc7f7d84bf5ccfb33ffbfe4693_cgraph">
+<area shape="rect" id="node3" href="classGps.html#a2cddda4a7acd596ef068d8b3290926db" title="Gps::calcCoordinates" alt="" coords="109,59,256,88"/><area shape="rect" id="node13" href="sample_8cpp.html#ad10dbdc2f51ef83ed44f042e6dccf6b2" title="touchL" alt="" coords="152,112,213,141"/><area shape="rect" id="node5" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="364,5,513,35"/><area shape="rect" id="node9" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="309,59,568,88"/><area shape="rect" id="node11" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="305,112,572,141"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="621,5,752,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a301f57a91a9cca32ecc4bcaecc158941"></a><!-- doxytag: member="sample.cpp::TASK" ref="a301f57a91a9cca32ecc4bcaecc158941" args="(TaskDrive)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TASK </td>
+          <td>(</td>
+          <td class="paramtype">TaskDrive&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00132">132</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="sample_8cpp_a301f57a91a9cca32ecc4bcaecc158941_cgraph.png" border="0" usemap="#sample_8cpp_a301f57a91a9cca32ecc4bcaecc158941_cgraph_map" alt=""></div>
+<map name="sample_8cpp_a301f57a91a9cca32ecc4bcaecc158941_cgraph_map" id="sample_8cpp_a301f57a91a9cca32ecc4bcaecc158941_cgraph">
+<area shape="rect" id="node3" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="111,477,257,507"/><area shape="rect" id="node29" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="356,56,521,85"/><area shape="rect" id="node66" href="classSection.html#a89147527764e17224e94bf2c3e8db073" title="Section::execute" alt="" coords="124,531,244,560"/><area shape="rect" id="node69" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="361,109,516,139"/><area shape="rect" id="node5" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="333,477,544,507"/><area shape="rect" id="node7" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="620,532,836,561"/><area shape="rect" id="node13" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="623,425,833,455"/><area shape="rect" id="node21" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="337,531,540,560"/><area shape="rect" id="node26" href="classCourse.html#af3a49052ae755ca76a8f33bfcac6b091" title="Course::countFlag" alt="" coords="375,741,503,771"/><area shape="rect" id="node35" href="classNewGoalStopSection.html#a9537ac48e2a7d40e0db661f64d82830e" title="NewGoalStopSection::initialize" alt="" coords="339,795,539,824"/><area shape="rect" id="node37" href="classTreasureHuntSection.html#a0a08b763f28dbc0818313235ffb950e5" title="TreasureHuntSection::initialize" alt="" coords="340,848,537,877"/><area shape="rect" id="node39" href="classNormalLineSection.html#a1bc0c120fd1795b00ee5de994bfcd147" title="NormalLineSection::initialize" alt="" coords="345,901,532,931"/><area shape="rect" id="node41" href="classNewDashedLineSection.html#a80b09a714d57c27456d762acfc991014" title="NewDashedLineSection::initialize" alt="" coords="332,955,545,984"/><area shape="rect" id="node43" href="classSection.html#a571cdc71da3898801225c3e14c822591" title="Section::isEnd" alt="" coords="385,163,492,192"/><area shape="rect" id="node45" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158" title="Distance::reset" alt="" coords="673,317,783,347"/><area shape="rect" id="node51" href="classNewGoalStopSection.html#a1fb163aa3b277273e0fbf09801b5f3e9" title="NewGoalStopSection::setDistanceToGoal" alt="" coords="308,216,569,245"/><area shape="rect" id="node53" href="classNewGoalStopSection.html#ab3494493a57f282c652cb9b245ace054" title="NewGoalStopSection::setEdge" alt="" coords="339,373,539,403"/><area shape="rect" id="node57" href="classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e" title="NormalLineSection::setEdge" alt="" coords="345,320,532,349"/><area shape="rect" id="node59" href="classNewGoalStopSection.html#acde28ae92cf4dfc96794ad109e8bf035" title="NewGoalStopSection::setSpeed" alt="" coords="335,688,543,717"/><area shape="rect" id="node63" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b" title="NormalLineSection::setSpeed" alt="" coords="341,635,536,664"/><area shape="rect" id="node18" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="625,479,831,508"/><area shape="rect" id="node9" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="1211,295,1381,324"/><area shape="rect" id="node11" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1437,111,1568,140"/><area shape="rect" id="node15" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="927,425,1113,455"/><area shape="rect" id="node31" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="653,5,803,35"/><area shape="rect" id="node47" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="891,264,1149,293"/><area shape="rect" id="node49" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="887,317,1153,347"/><area shape="rect" id="node55" href="classLineTraceDriver.html#a8c5dab59304956f56c6420c520530b55" title="LineTraceDriver::setEdge" alt="" coords="645,372,811,401"/><area shape="rect" id="node61" href="classDriver.html#a01132ddd008ad2e8ebfb552559e627bc" title="Driver::setSpeed" alt="" coords="669,661,787,691"/><area shape="rect" id="node71" href="classDirection.html#ab96a03b3be055655fd46a596243c0953" title="Estimate the absolute direction angle." alt="" coords="637,264,819,293"/><area shape="rect" id="node75" href="classDirection.html#aeaf8e651c00fb2d06da3f09639510dec" title="Forward the newest pointer." alt="" coords="652,59,804,88"/><area shape="rect" id="node79" href="classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b" title="左モータエンコーダ値の取得" alt="" coords="1203,111,1389,140"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad10dbdc2f51ef83ed44f042e6dccf6b2"></a><!-- doxytag: member="sample.cpp::touchL" ref="ad10dbdc2f51ef83ed44f042e6dccf6b2" args="(PORT_1)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TouchSensor touchL </td>
+          <td>(</td>
+          <td class="paramtype">PORT_1&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="sample_8cpp_ad10dbdc2f51ef83ed44f042e6dccf6b2_icgraph.png" border="0" usemap="#sample_8cpp_ad10dbdc2f51ef83ed44f042e6dccf6b2_icgraph_map" alt=""></div>
+<map name="sample_8cpp_ad10dbdc2f51ef83ed44f042e6dccf6b2_icgraph_map" id="sample_8cpp_ad10dbdc2f51ef83ed44f042e6dccf6b2_icgraph">
+<area shape="rect" id="node3" href="sample_8cpp.html#ab622f1cc7f7d84bf5ccfb33ffbfe4693" title="TASK" alt="" coords="115,5,171,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af2d6294e04f1ae4c1dc6f2523c066e2d"></a><!-- doxytag: member="sample.cpp::touchR" ref="af2d6294e04f1ae4c1dc6f2523c066e2d" args="(PORT_4)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TouchSensor touchR </td>
+          <td>(</td>
+          <td class="paramtype">PORT_4&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1a3fecba0774248495ab7a226e23b9fe"></a><!-- doxytag: member="sample.cpp::user_1ms_isr_type2" ref="a1a3fecba0774248495ab7a226e23b9fe" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void user_1ms_isr_type2 </td>
+          <td>(</td>
+          <td class="paramtype">void&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00118">118</a> 行で定義されています。</p>
+
+</div>
+</div>
+<hr/><h2>変数</h2>
+<a class="anchor" id="a43f1310778f4372b30b9799e909a19f8"></a><!-- doxytag: member="sample.cpp::anglePid" ref="a43f1310778f4372b30b9799e909a19f8" args="(DIRECTION_PID_KP, DIRECTION_PID_KI, DIRECTION_PID_KD, DIRECTION_PID_SIZE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPidController.html">PidController</a> <a class="el" href="TestSection_8hpp.html#aab0b917b4b4a8582bd9f14f6bfebb966">anglePid</a>(DIRECTION_PID_KP, DIRECTION_PID_KI, DIRECTION_PID_KD, DIRECTION_PID_SIZE)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a80c2f6b96f0172b901451890dec71fe4"></a><!-- doxytag: member="sample.cpp::balancer" ref="a80c2f6b96f0172b901451890dec71fe4" args="(history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBalancer.html">Balancer</a> <a class="el" href="sample_8cpp.html#a80c2f6b96f0172b901451890dec71fe4">balancer</a>(<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae6ef18772d345d63017b59486a1b5d1d"></a><!-- doxytag: member="sample.cpp::balancingRun" ref="ae6ef18772d345d63017b59486a1b5d1d" args="(balancer, motorL, motorR)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBalancingRun.html">BalancingRun</a> <a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>(<a class="el" href="sample_8cpp.html#a80c2f6b96f0172b901451890dec71fe4">balancer</a>, motorL, motorR)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a31246c5520c3eb1281c78f86aab9a4a6"></a><!-- doxytag: member="sample.cpp::bt" ref="a31246c5520c3eb1281c78f86aab9a4a6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Bluetooth <a class="el" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00050">50</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="ad81e30048cd2731dfc1fd15d25ccecab"></a><!-- doxytag: member="sample.cpp::clock" ref="ad81e30048cd2731dfc1fd15d25ccecab" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Clock <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00054">54</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a170912d3c99a2c48ebdab9cceb58ec45"></a><!-- doxytag: member="sample.cpp::color" ref="a170912d3c99a2c48ebdab9cceb58ec45" args="(history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classColor.html">Color</a> <a class="el" href="sample_8cpp.html#a170912d3c99a2c48ebdab9cceb58ec45">color</a>(<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac8dd23e886582c0be5e6950f1e26dbc1"></a><!-- doxytag: member="sample.cpp::course" ref="ac8dd23e886582c0be5e6950f1e26dbc1" args="(direction, distance, time, InOutInCourse::START)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classInOutInCourse.html">InOutInCourse</a> <a class="el" href="sample_8cpp.html#ac8dd23e886582c0be5e6950f1e26dbc1">course</a>(<a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#abe319a51f06b6f59392ccf95ff9d42b5">time</a>, InOutInCourse::START)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab69e81741c56082ba9c2a7e91072e574"></a><!-- doxytag: member="sample.cpp::curvaturePidDriver" ref="ab69e81741c56082ba9c2a7e91072e574" args="(balancingRun, distance, direction, lightPid, anglePid, curvPid, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCurvaturePidDriver.html">CurvaturePidDriver</a> <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="TestSection_8hpp.html#a3668f597e8ba7ff58d1cee6444ef7a04">lightPid</a>, <a class="el" href="TestSection_8hpp.html#aab0b917b4b4a8582bd9f14f6bfebb966">anglePid</a>, <a class="el" href="TestSection_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ace1ae5407dea24ea1fae244195cfc937"></a><!-- doxytag: member="sample.cpp::curvPid" ref="ace1ae5407dea24ea1fae244195cfc937" args="(CURVATURE_PID_KP, CURVATURE_PID_KI, CURVATURE_PID_KD, CURVATURE_PID_SIZE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPidController.html">PidController</a> <a class="el" href="TestSection_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>(CURVATURE_PID_KP, CURVATURE_PID_KI, CURVATURE_PID_KD, CURVATURE_PID_SIZE)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5568c9d2b58bd84e1e74d40e15a69d0e"></a><!-- doxytag: member="sample.cpp::dashedLineSection" ref="a5568c9d2b58bd84e1e74d40e15a69d0e" args="(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDashedLineSection.html">DashedLineSection</a> <a class="el" href="sample_8cpp.html#a5568c9d2b58bd84e1e74d40e15a69d0e">dashedLineSection</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5239a449a17c2f22d81a01cf4156263f"></a><!-- doxytag: member="sample.cpp::DEBUG_DATA1" ref="a5239a449a17c2f22d81a01cf4156263f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">S8 <a class="el" href="sample_8cpp.html#a5239a449a17c2f22d81a01cf4156263f">DEBUG_DATA1</a> = 0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00097">97</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a556d1e6e533f0e0d1d321e89f7a35c2b"></a><!-- doxytag: member="sample.cpp::DEBUG_DATA2" ref="a556d1e6e533f0e0d1d321e89f7a35c2b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">S8 <a class="el" href="sample_8cpp.html#a556d1e6e533f0e0d1d321e89f7a35c2b">DEBUG_DATA2</a> = 0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00097">97</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a1cfc6dbb0a16d0a0eaec9e0dac62bae6"></a><!-- doxytag: member="sample.cpp::DEBUG_DATA_LONG" ref="a1cfc6dbb0a16d0a0eaec9e0dac62bae6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">S32 <a class="el" href="sample_8cpp.html#a1cfc6dbb0a16d0a0eaec9e0dac62bae6">DEBUG_DATA_LONG</a> = 0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00098">98</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a03d3917210b6ffa821dfc8c0249bb4da"></a><!-- doxytag: member="sample.cpp::defaultDirection" ref="a03d3917210b6ffa821dfc8c0249bb4da" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">F32 <a class="el" href="sample_8cpp.html#a03d3917210b6ffa821dfc8c0249bb4da">defaultDirection</a> = 0</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00063">63</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a8fc6e5cd85b04e4f2860af483c1ca026"></a><!-- doxytag: member="sample.cpp::direction" ref="a8fc6e5cd85b04e4f2860af483c1ca026" args="(history, defaultDirection)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDirection.html">Direction</a> <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>(<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>, <a class="el" href="sample_8cpp.html#a03d3917210b6ffa821dfc8c0249bb4da">defaultDirection</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a219869e4e3b8678847deea7332c0ecc2"></a><!-- doxytag: member="sample.cpp::directionPidDriver" ref="a219869e4e3b8678847deea7332c0ecc2" args="(balancingRun, distance, direction, lightPid, anglePid, curvPid, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDirectionPidDriver.html">DirectionPidDriver</a> <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="TestSection_8hpp.html#a3668f597e8ba7ff58d1cee6444ef7a04">lightPid</a>, <a class="el" href="TestSection_8hpp.html#aab0b917b4b4a8582bd9f14f6bfebb966">anglePid</a>, <a class="el" href="TestSection_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1b2fc14c30b89707aeed72ba3903f28f"></a><!-- doxytag: member="sample.cpp::distance" ref="a1b2fc14c30b89707aeed72ba3903f28f" args="(history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDistance.html">Distance</a> <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>(<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ada74e9eac4c1eb66aaf7eb7e7d66c413"></a><!-- doxytag: member="sample.cpp::goalStopSection" ref="ada74e9eac4c1eb66aaf7eb7e7d66c413" args="(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGoalStopSection.html">GoalStopSection</a> <a class="el" href="sample_8cpp.html#ada74e9eac4c1eb66aaf7eb7e7d66c413">goalStopSection</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaec2516324ebeabd35817c0a8973dde4"></a><!-- doxytag: member="sample.cpp::gps" ref="aaec2516324ebeabd35817c0a8973dde4" args="(history, direction)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGps.html">Gps</a> <a class="el" href="sample_8cpp.html#aaec2516324ebeabd35817c0a8973dde4">gps</a>(<a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad0c2991fede17865df284ef2ae2376a0"></a><!-- doxytag: member="sample.cpp::history" ref="ad0c2991fede17865df284ef2ae2376a0" args="(nxt, light, touchL, touchR, lcd, bt, gyro, motorL, motorR)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSensorHistory.html">SensorHistory</a> <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>(<a class="el" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">nxt</a>, light, touchL, touchR, <a class="el" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a>, <a class="el" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>, gyro, motorL, motorR)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac9caaaba87d427b65ed01001deb774ba"></a><!-- doxytag: member="sample.cpp::lcd" ref="ac9caaaba87d427b65ed01001deb774ba" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Lcd <a class="el" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00049">49</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a5c15d34f709be300b1e844e96da3f521"></a><!-- doxytag: member="sample.cpp::lightPid" ref="a5c15d34f709be300b1e844e96da3f521" args="(KP, KI, KD, 10)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPidController.html">PidController</a> <a class="el" href="TestSection_8hpp.html#a3668f597e8ba7ff58d1cee6444ef7a04">lightPid</a>(<a class="el" href="parameters_8hpp.html#ada069b55117a4cac2aecf10b5b685293">KP</a>, <a class="el" href="parameters_8hpp.html#a4a5e8aec9e1528d10b3d6036e56f0b6a">KI</a>, <a class="el" href="parameters_8hpp.html#afa2d905fb40ef67a430a76fd98c71931">KD</a>, 10)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a470cfdbbc3ae01bb87daba6b021eb557"></a><!-- doxytag: member="sample.cpp::lineTraceDriver" ref="a470cfdbbc3ae01bb87daba6b021eb557" args="(balancingRun, distance, direction, lightPid, anglePid, curvPid, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classLineTraceDriver.html">LineTraceDriver</a> <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="TestSection_8hpp.html#a3668f597e8ba7ff58d1cee6444ef7a04">lightPid</a>, <a class="el" href="TestSection_8hpp.html#aab0b917b4b4a8582bd9f14f6bfebb966">anglePid</a>, <a class="el" href="TestSection_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8f1b686cf7d4c0a45b8377beb1d6f02a"></a><!-- doxytag: member="sample.cpp::newDashedLineSection" ref="a8f1b686cf7d4c0a45b8377beb1d6f02a" args="(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNewDashedLineSection.html">NewDashedLineSection</a> <a class="el" href="sample_8cpp.html#a8f1b686cf7d4c0a45b8377beb1d6f02a">newDashedLineSection</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a03c18464aa5256d0a6030046836fb9c4"></a><!-- doxytag: member="sample.cpp::newGoalStopSection" ref="a03c18464aa5256d0a6030046836fb9c4" args="(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNewGoalStopSection.html">NewGoalStopSection</a> <a class="el" href="sample_8cpp.html#a03c18464aa5256d0a6030046836fb9c4">newGoalStopSection</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad7becf4faa55e6dce6c81e5e34bbf6dd"></a><!-- doxytag: member="sample.cpp::newTreasureHuntSection" ref="ad7becf4faa55e6dce6c81e5e34bbf6dd" args="(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNewTreasureHuntSection.html">NewTreasureHuntSection</a> <a class="el" href="sample_8cpp.html#ad7becf4faa55e6dce6c81e5e34bbf6dd">newTreasureHuntSection</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7ec0781311cdf9de649d08154161d8a8"></a><!-- doxytag: member="sample.cpp::normalLineSection" ref="a7ec0781311cdf9de649d08154161d8a8" args="(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNormalLineSection.html">NormalLineSection</a> <a class="el" href="sample_8cpp.html#a7ec0781311cdf9de649d08154161d8a8">normalLineSection</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad23ac9d74d9349e580ae5fc55b7df8f0"></a><!-- doxytag: member="sample.cpp::nxt" ref="ad23ac9d74d9349e580ae5fc55b7df8f0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Nxt <a class="el" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">nxt</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="sample_8cpp_source.html">sample.cpp</a> の <a class="el" href="sample_8cpp_source.html#l00045">45</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="abe319a51f06b6f59392ccf95ff9d42b5"></a><!-- doxytag: member="sample.cpp::time" ref="abe319a51f06b6f59392ccf95ff9d42b5" args="(clock)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTime.html">Time</a> <a class="el" href="sample_8cpp.html#abe319a51f06b6f59392ccf95ff9d42b5">time</a>(<a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae9d02626be9c8824c500ae9363dad532"></a><!-- doxytag: member="sample.cpp::treasureHuntSection" ref="ae9d02626be9c8824c500ae9363dad532" args="(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTreasureHuntSection.html">TreasureHuntSection</a> <a class="el" href="sample_8cpp.html#ae9d02626be9c8824c500ae9363dad532">treasureHuntSection</a>(<a class="el" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="el" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="el" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="el" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="el" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="el" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, <a class="el" href="sample_8cpp.html#ad0c2991fede17865df284ef2ae2376a0">history</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:07:25 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

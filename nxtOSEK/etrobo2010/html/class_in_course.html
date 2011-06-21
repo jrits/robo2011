@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ET ROBOCON 2010 KACHIROBO!!: クラス InCourse</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス InCourse</h1><!-- doxytag: class="InCourse" --><!-- doxytag: inherits="Course" -->
+<p>インコース  
+<a href="#_details">[詳細]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_in_course_8h_source.html">InCourse.h</a>&gt;</code></p>
+<div class="dynheader">
+InCourseに対する継承グラフ</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="class_in_course.gif" usemap="#InCourse_map" alt=""/>
+  <map id="InCourse_map" name="InCourse_map">
+<area href="class_course.html" alt="Course" shape="rect" coords="0,0,63,24"/>
+</map>
+ </div>
+</div>
+
+<p><a href="class_in_course-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public 型</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95f">eSection</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95fa3e9eec6319f9ee1139795e209fea8510">TESTDRIVE</a>, 
+<a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95fa690107f41f0a2e9a6d12b374e4af79eb">START</a>, 
+<a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95faf27580e1ecf3ae4d88bd1abd1b9b7666">ENIGMA</a>, 
+<a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95fa4b8f9d434f8b3c22166c8f613cb016db">MYSTERY</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95fa7ad490142f113e539c4e526c9a3a53f4">GARAGEIN</a>
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>インコースの区間 </p>
+ <a href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95f">[詳細]</a><br/></td></tr>
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_course.html#ad330c576add5d0dc394dab7e14bff09f">InCourse</a> (<a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95f">InCourse::eSection</a> aSection=InCourse::START)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンストラクタ  <a href="#ad330c576add5d0dc394dab7e14bff09f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad55c72d24090356e7562bcece6de7d9f"></a><!-- doxytag: member="InCourse::drive" ref="ad55c72d24090356e7562bcece6de7d9f" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_in_course.html#ad55c72d24090356e7562bcece6de7d9f">drive</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">適切なドライバを選択し、運転させる <br/></td></tr>
+<tr><td colspan="2"><h2>Protected 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae35cc7d9add947d6c96c4a2b770f7e01"></a><!-- doxytag: member="InCourse::mState" ref="ae35cc7d9add947d6c96c4a2b770f7e01" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#ae35cc7d9add947d6c96c4a2b770f7e01">mState</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在状態 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ed886d3f5bd36d41f4e3cd706af4e89"></a><!-- doxytag: member="InCourse::mDriver" ref="a9ed886d3f5bd36d41f4e3cd706af4e89" args="" -->
+<a class="el" href="class_driver.html">Driver</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#a9ed886d3f5bd36d41f4e3cd706af4e89">mDriver</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在ドライバ <br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>インコース </p>
+<hr/><h2>列挙型</h2>
+<a class="anchor" id="a180b3a0b78763fd2e38b47b34c7ec95f"></a><!-- doxytag: member="InCourse::eSection" ref="a180b3a0b78763fd2e38b47b34c7ec95f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95f">InCourse::eSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>インコースの区間 </p>
+<dl><dt><b>列挙型の値: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a180b3a0b78763fd2e38b47b34c7ec95fa3e9eec6319f9ee1139795e209fea8510"></a><!-- doxytag: member="TESTDRIVE" ref="a180b3a0b78763fd2e38b47b34c7ec95fa3e9eec6319f9ee1139795e209fea8510" args="" -->TESTDRIVE</em>&nbsp;</td><td>
+<p>テストドライバ起動 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a180b3a0b78763fd2e38b47b34c7ec95fa690107f41f0a2e9a6d12b374e4af79eb"></a><!-- doxytag: member="START" ref="a180b3a0b78763fd2e38b47b34c7ec95fa690107f41f0a2e9a6d12b374e4af79eb" args="" -->START</em>&nbsp;</td><td>
+<p>スタート区間 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a180b3a0b78763fd2e38b47b34c7ec95faf27580e1ecf3ae4d88bd1abd1b9b7666"></a><!-- doxytag: member="ENIGMA" ref="a180b3a0b78763fd2e38b47b34c7ec95faf27580e1ecf3ae4d88bd1abd1b9b7666" args="" -->ENIGMA</em>&nbsp;</td><td>
+<p>エニグマ区間 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a180b3a0b78763fd2e38b47b34c7ec95fa4b8f9d434f8b3c22166c8f613cb016db"></a><!-- doxytag: member="MYSTERY" ref="a180b3a0b78763fd2e38b47b34c7ec95fa4b8f9d434f8b3c22166c8f613cb016db" args="" -->MYSTERY</em>&nbsp;</td><td>
+<p>ミステリーサークル区間 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a180b3a0b78763fd2e38b47b34c7ec95fa7ad490142f113e539c4e526c9a3a53f4"></a><!-- doxytag: member="GARAGEIN" ref="a180b3a0b78763fd2e38b47b34c7ec95fa7ad490142f113e539c4e526c9a3a53f4" args="" -->GARAGEIN</em>&nbsp;</td><td>
+<p>ガレージ・イン区間 </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="ad330c576add5d0dc394dab7e14bff09f"></a><!-- doxytag: member="InCourse::InCourse" ref="ad330c576add5d0dc394dab7e14bff09f" args="(InCourse::eSection aSection=InCourse::START)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InCourse::InCourse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_in_course.html#a180b3a0b78763fd2e38b47b34c7ec95f">InCourse::eSection</a>&nbsp;</td>
+          <td class="paramname"> <em>aSection</em> = <code>InCourse::START</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>コンストラクタ </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>aSection</em>&nbsp;</td><td>どのセクションから始めるか。デフォルトはスタート地点から。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="_in_course_8h_source.html">InCourse.h</a></li>
+<li>InCourse.cpp</li>
+</ul>
+</div>
+<hr size="1"/><address style="text-align: right;"><small>ET ROBOCON 2010 KACHIROBO!!に対してWed Dec 8 11:36:46 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

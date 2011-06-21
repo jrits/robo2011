@@ -1,0 +1,125 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: DirectionPidDriver.hpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+<h1>DirectionPidDriver.hpp</h1><a href="DirectionPidDriver_8hpp.html">説明を見る。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef DIRECTION_PID_DRIVER_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define DIRECTION_PID_DRIVER_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="Driver_8hpp.html">Driver.hpp</a>&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;<a class="code" href="PidController_8hpp.html">PidController.hpp</a>&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;<a class="code" href="parameters_8hpp.html">parameters.hpp</a>&quot;</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="keyword">extern</span> <span class="keywordtype">long</span> <a class="code" href="CurvaturePidDriver_8hpp.html#a288c962115001316ebaf3ff15a152d85">DEBUG_DATA_LONG</a>;
+<a name="l00009"></a>00009 
+<a name="l00010"></a><a class="code" href="classDirectionPidDriver.html">00010</a> <span class="keyword">class </span><a class="code" href="classDirectionPidDriver.html">DirectionPidDriver</a> : <span class="keyword">public</span> <a class="code" href="classDriver.html" title="各走行部品のインターフェースを定義するスーパークラス。...">Driver</a>
+<a name="l00011"></a>00011 {
+<a name="l00012"></a>00012 <span class="keyword">private</span>:
+<a name="l00013"></a>00013 <span class="keyword">public</span>:
+<a name="l00014"></a><a class="code" href="classDirectionPidDriver.html#a9d5ae952c98a7805fb2026fcb507fb6e">00014</a>     <a class="code" href="classDirectionPidDriver.html#a9d5ae952c98a7805fb2026fcb507fb6e">DirectionPidDriver</a>(<a class="code" href="classBalancingRun.html">BalancingRun</a> &amp;b, <a class="code" href="classDistance.html">Distance</a> &amp;d, <a class="code" href="classDirection.html">Direction</a> &amp;g, 
+<a name="l00015"></a>00015                        <a class="code" href="classPidController.html" title="PID制御。.">PidController</a> &amp;lp, <a class="code" href="classPidController.html" title="PID制御。.">PidController</a> &amp;ap, <a class="code" href="classPidController.html" title="PID制御。.">PidController</a> &amp;cp, 
+<a name="l00016"></a>00016                        Clock &amp;c, <a class="code" href="classSensorHistory.html">SensorHistory</a> &amp;sh):
+<a name="l00017"></a>00017         <a class="code" href="classDriver.html" title="各走行部品のインターフェースを定義するスーパークラス。...">Driver</a>(b,d,g,lp,ap,cp,c,sh)
+<a name="l00018"></a>00018         {
+<a name="l00019"></a>00019         };
+<a name="l00020"></a><a class="code" href="classDirectionPidDriver.html#a477b63cd36da9d546a1086313d78bb79">00020</a>     <a class="code" href="classDirectionPidDriver.html#a477b63cd36da9d546a1086313d78bb79">~DirectionPidDriver</a>(){};
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="keyword">public</span>:
+<a name="l00023"></a><a class="code" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3">00023</a>     VectorT&lt;S8&gt; <a class="code" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3">computeVelocity</a>(<span class="keywordtype">float</span> refDirection)
+<a name="l00024"></a>00024     {
+<a name="l00025"></a>00025         VectorT &lt;S8&gt; velocity;
+<a name="l00026"></a>00026         F32 curDirection = <a class="code" href="classDriver.html#a81e839165cc1326242bc852043d3f82c">direction</a>.<a class="code" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得">getDirectionOff</a>();
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028         <span class="comment">// Y ���̂��̃o�[�W����</span>
+<a name="l00029"></a>00029         <span class="keywordtype">float</span> Y = <a class="code" href="classDriver.html#add6402e818ca709050836d68b8afd639">anglePid</a>.<a class="code" href="classPidController.html#a1c400aa5e80284bdcad4999838ddf83f" title="PID制御.">control</a>(curDirection, refDirection);
+<a name="l00030"></a>00030         velocity = this-&gt;<a class="code" href="classDriver.html#a192b222cc14c5b44e38ae51895aa2dce">controlVelocity</a>(Y);
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032         <span class="comment">// dY �o�[�W����</span>
+<a name="l00033"></a>00033         <span class="comment">// (�S�R���߁B�ނ���ڕW�l�t�߂�Y�̒l���傫���Ȃ�)</span>
+<a name="l00034"></a>00034         <span class="comment">//anglePid.setKp(0.001);</span>
+<a name="l00035"></a>00035         <span class="comment">//anglePid.setKi(0.0);</span>
+<a name="l00036"></a>00036         <span class="comment">//anglePid.setKd(0.0);</span>
+<a name="l00037"></a>00037         <span class="comment">//static float Y = 0.0;</span>
+<a name="l00038"></a>00038         <span class="comment">//float dY = anglePid.control(curDirection, refDirection);</span>
+<a name="l00039"></a>00039         <span class="comment">//Y += dY;</span>
+<a name="l00040"></a>00040         <span class="comment">//velocity = this-&gt;controlVelocity(Y);</span>
+<a name="l00041"></a>00041         
+<a name="l00042"></a>00042 <span class="preprocessor">#if PRINT_DIRECTION_PID_DRIVER</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span>        <a class="code" href="CurvaturePidDriver_8hpp.html#a288c962115001316ebaf3ff15a152d85">DEBUG_DATA_LONG</a> = (long)curDirection;
+<a name="l00044"></a>00044         Lcd <a class="code" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a>;
+<a name="l00045"></a>00045         lcd.clear();
+<a name="l00046"></a>00046         lcd.putf(<span class="stringliteral">&quot;sn&quot;</span>,  <span class="stringliteral">&quot;DirectionPidDriver&quot;</span>);
+<a name="l00047"></a>00047         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;RDIR&quot;</span>, (<span class="keywordtype">int</span>)refDirection);
+<a name="l00048"></a>00048         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;CDIR&quot;</span>, (<span class="keywordtype">int</span>)curDirection);
+<a name="l00049"></a>00049         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;Raw &quot;</span>, (<span class="keywordtype">int</span>)<a class="code" href="classDriver.html#a81e839165cc1326242bc852043d3f82c">direction</a>.<a class="code" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得">getDirection</a>());
+<a name="l00050"></a>00050         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;RawO&quot;</span>, (<span class="keywordtype">int</span>)<a class="code" href="classDriver.html#a81e839165cc1326242bc852043d3f82c">direction</a>.<a class="code" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得">getDirectionOff</a>());
+<a name="l00051"></a>00051         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;Avg &quot;</span>, (<span class="keywordtype">int</span>)<a class="code" href="classDriver.html#a81e839165cc1326242bc852043d3f82c">direction</a>.<a class="code" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得">getAvgDirection</a>());
+<a name="l00052"></a>00052         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;AvgO&quot;</span>, (<span class="keywordtype">int</span>)<a class="code" href="classDriver.html#a81e839165cc1326242bc852043d3f82c">direction</a>.<a class="code" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得">getAvgDirectionOff</a>());
+<a name="l00053"></a>00053         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;OFF &quot;</span>, (<span class="keywordtype">int</span>)<a class="code" href="classDriver.html#a81e839165cc1326242bc852043d3f82c">direction</a>.<a class="code" href="classDirection.html#a2b8c3770f9f15127b1fbcffbe7b3cf78">getOffset</a>());
+<a name="l00054"></a>00054         lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;   Y&quot;</span>, (<span class="keywordtype">int</span>)Y);
+<a name="l00055"></a>00055         lcd.disp();
+<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span>        <span class="keywordflow">return</span> velocity;
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059 };
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="preprocessor">#endif </span><span class="comment">/* DIRECTION_PID_DRIVER_H_ */</span>
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:06:19 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

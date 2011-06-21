@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classCourse.html" title="Section (Marker Section) Detector." alt="" coords="115,197,176,227"/>
+<area shape="rect" id="node4" href="$classDirection.html" title="Direction" alt="" coords="5,101,77,131"/>
+<area shape="rect" id="node6" href="$classSensorHistory.html" title="SensorHistory" alt="" coords="41,5,145,35"/>
+<area shape="rect" id="node8" href="$classDistance.html" title="Distance" alt="" coords="109,101,181,131"/>
+<area shape="rect" id="node11" href="$classTime.html" title="Time" alt="" coords="205,101,256,131"/>
+</map>

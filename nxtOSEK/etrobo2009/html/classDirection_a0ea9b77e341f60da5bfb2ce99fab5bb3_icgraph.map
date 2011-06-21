@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="261,85,472,115"/>
+<area shape="rect" id="node17" href="$classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="265,139,468,168"/>
+<area shape="rect" id="node5" href="$classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="540,59,668,88"/>
+<area shape="rect" id="node7" href="$classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="521,112,687,141"/>
+<area shape="rect" id="node9" href="$classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="531,165,677,195"/>
+<area shape="rect" id="node13" href="$classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="524,219,684,248"/>
+<area shape="rect" id="node15" href="$classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="545,5,663,35"/>
+<area shape="rect" id="node11" href="$sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="736,165,792,195"/>
+</map>

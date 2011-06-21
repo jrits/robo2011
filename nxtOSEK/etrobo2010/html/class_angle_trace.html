@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ET ROBOCON 2010 KACHIROBO!!: クラス AngleTrace</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス AngleTrace</h1><!-- doxytag: class="AngleTrace" --><!-- doxytag: inherits="Skill" -->
+<p>角度トレーススキル  
+<a href="#_details">[詳細]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_angle_trace_8h_source.html">AngleTrace.h</a>&gt;</code></p>
+<div class="dynheader">
+AngleTraceに対する継承グラフ</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="class_angle_trace.gif" usemap="#AngleTrace_map" alt=""/>
+  <map id="AngleTrace_map" name="AngleTrace_map">
+<area href="class_skill.html" alt="Skill" shape="rect" coords="0,0,78,24"/>
+</map>
+ </div>
+</div>
+
+<p><a href="class_angle_trace-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd2cd4584493b00001624d5a012c84b7"></a><!-- doxytag: member="AngleTrace::AngleTrace" ref="acd2cd4584493b00001624d5a012c84b7" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_trace.html#acd2cd4584493b00001624d5a012c84b7">AngleTrace</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンストラクタ <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_trace.html#aef019a397ef6ffb219218ae48d3b7c14">setTargetAngle</a> (float targetAangle)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">目標角度を設定  <a href="#aef019a397ef6ffb219218ae48d3b7c14"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_trace.html#a58bbdb140d126aa127a3e9a10078b04f">setAllowableError</a> (float allowableError)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">方向転換の許容誤差を設定  <a href="#a58bbdb140d126aa127a3e9a10078b04f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">VectorT&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_trace.html#adcba042480617fd8d8f8fa908d929d0d">calcCommand</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">目標角度と現在の角度から、角度トレースを行うのに適切な走行ベクトルを計算する  <a href="#adcba042480617fd8d8f8fa908d929d0d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_trace.html#ad117d29184bf911f55053413a2472d27">isArrived</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">方向転換が完了したかどうかを判定する  <a href="#ad117d29184bf911f55053413a2472d27"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_skill.html#a3d3b74fabee187ea70d2916e28407128">setForward</a> (float forward)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">フォワード値をセットする  <a href="#a3d3b74fabee187ea70d2916e28407128"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_skill.html#ac81fd73b2b982ac1110f43c611087f29">execute</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">スキルを発揮してロボットを動かす。  <a href="#ac81fd73b2b982ac1110f43c611087f29"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Protected 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f7b891165f749159a5e4505d0f7f914"></a><!-- doxytag: member="AngleTrace::mForward" ref="a2f7b891165f749159a5e4505d0f7f914" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_skill.html#a2f7b891165f749159a5e4505d0f7f914">mForward</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">フォワード値 <br/></td></tr>
+<tr><td colspan="2"><h2>Private 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a490f4bbf5fb99cf1784f3048955eb56c"></a><!-- doxytag: member="AngleTrace::mTargetAngle" ref="a490f4bbf5fb99cf1784f3048955eb56c" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_trace.html#a490f4bbf5fb99cf1784f3048955eb56c">mTargetAngle</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">目標角度 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add9ab95932c7ea6e368ad7cf03a0ec29"></a><!-- doxytag: member="AngleTrace::mAllowableError" ref="add9ab95932c7ea6e368ad7cf03a0ec29" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_angle_trace.html#add9ab95932c7ea6e368ad7cf03a0ec29">mAllowableError</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">許容誤差角度。方向転換に使う。 [0, 180] <br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>角度トレーススキル </p>
+<hr/><h2>関数</h2>
+<a class="anchor" id="adcba042480617fd8d8f8fa908d929d0d"></a><!-- doxytag: member="AngleTrace::calcCommand" ref="adcba042480617fd8d8f8fa908d929d0d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VectorT&lt; float &gt; AngleTrace::calcCommand </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>目標角度と現在の角度から、角度トレースを行うのに適切な走行ベクトルを計算する </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>走行ベクトル </dd></dl>
+
+<p><a class="el" href="class_skill.html#afdc013a5b18ece062b5ff44f898b0b4c">Skill</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="ac81fd73b2b982ac1110f43c611087f29"></a><!-- doxytag: member="AngleTrace::execute" ref="ac81fd73b2b982ac1110f43c611087f29" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Skill::execute </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>スキルを発揮してロボットを動かす。 </p>
+<p>calcCommand を用いて走行ベクトルを決定し、制御機器(<a class="el" href="class_activator.html" title="制御機器(ハンドル、アクセル、ブレーキ)">Activator</a>)を操作する。 </p>
+
+</div>
+</div>
+<a class="anchor" id="ad117d29184bf911f55053413a2472d27"></a><!-- doxytag: member="AngleTrace::isArrived" ref="ad117d29184bf911f55053413a2472d27" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AngleTrace::isArrived </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>方向転換が完了したかどうかを判定する </p>
+<dl><dt><b>戻り値:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>true</em>&nbsp;</td><td>完了 </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>false</em>&nbsp;</td><td>未完了 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a58bbdb140d126aa127a3e9a10078b04f"></a><!-- doxytag: member="AngleTrace::setAllowableError" ref="a58bbdb140d126aa127a3e9a10078b04f" args="(float allowableError)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AngleTrace::setAllowableError </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>allowableError</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>方向転換の許容誤差を設定 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>allowableError</em>&nbsp;</td><td>許容誤差 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3d3b74fabee187ea70d2916e28407128"></a><!-- doxytag: member="AngleTrace::setForward" ref="a3d3b74fabee187ea70d2916e28407128" args="(float forward)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Skill::setForward </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>forward</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>フォワード値をセットする </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>forward</em>&nbsp;</td><td>フォワード値 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aef019a397ef6ffb219218ae48d3b7c14"></a><!-- doxytag: member="AngleTrace::setTargetAngle" ref="aef019a397ef6ffb219218ae48d3b7c14" args="(float targetAangle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AngleTrace::setTargetAngle </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>targetAngle</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>目標角度を設定 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>targetAngle</em>&nbsp;</td><td>目標角度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="_angle_trace_8h_source.html">AngleTrace.h</a></li>
+<li>AngleTrace.cpp</li>
+</ul>
+</div>
+<hr size="1"/><address style="text-align: right;"><small>ET ROBOCON 2010 KACHIROBO!!に対してWed Dec 8 11:36:46 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

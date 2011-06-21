@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="195,5,392,35"/>
+<area shape="rect" id="node5" href="$classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="221,59,365,88"/>
+<area shape="rect" id="node7" href="$classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="201,112,385,141"/>
+<area shape="rect" id="node9" href="$classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="183,165,404,195"/>
+<area shape="rect" id="node11" href="$classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="195,219,392,248"/>
+<area shape="rect" id="node13" href="$classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="187,272,400,301"/>
+<area shape="rect" id="node15" href="$classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="207,325,380,355"/>
+<area shape="rect" id="node17" href="$classDriver.html#a2788603bf657766e822aa072cbb4bc11" title="Driver::execute" alt="" coords="240,379,347,408"/>
+<area shape="rect" id="node19" href="$classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="212,432,375,461"/>
+<area shape="rect" id="node21" href="$classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="200,485,387,515"/>
+</map>

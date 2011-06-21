@@ -1,0 +1,179 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{34A6BA16-F234-4DF6-88B0-5A745FD0A9A6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GpsVisualizer</RootNamespace>
+    <AssemblyName>GpsVisualizer</AssemblyName>
+    <StartupObject>GpsVisualizer.Program</StartupObject>
+    <ManifestCertificateThumbprint>76C737F543B43BC6F6CD3F84C9BE14523A3BA1D1</ManifestCertificateThumbprint>
+    <ManifestKeyFile>GpsVisualizer_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <PublishUrl>E:\Documents\Visual Studio 2005\Projects\GpsVisualizer\RELEASE\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'test|AnyCPU' ">
+    <OutputPath>bin\test\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AngleEditorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AngleEditorControl.Designer.cs">
+      <DependentUpon>AngleEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AngleWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AngleWindow.designer.cs">
+      <DependentUpon>AngleWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnAssigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColumnAssigner.designer.cs">
+      <DependentUpon>ColumnAssigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPoint.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CourseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CourseView.designer.cs">
+      <DependentUpon>CourseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DebugOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugOut.Designer.cs">
+      <DependentUpon>DebugOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EtCourseScaler.cs" />
+    <Compile Include="InvalidNxtLogFileException.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NxtLogFileNotOpenedException.cs" />
+    <Compile Include="NxtTrackLog.cs" />
+    <Compile Include="PlayInfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AngleWindow.resx">
+      <DependentUpon>AngleWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColumnAssigner.resx">
+      <DependentUpon>ColumnAssigner.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CourseView.resx">
+      <DependentUpon>CourseView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="UserCanceledException.cs" />
+    <Compile Include="XYAngle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DebugOut.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DebugOut.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="image\finishPoint.png" />
+    <EmbeddedResource Include="image\startPoint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AngleEditorControl.resx">
+      <DependentUpon>AngleEditorControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="image\course.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

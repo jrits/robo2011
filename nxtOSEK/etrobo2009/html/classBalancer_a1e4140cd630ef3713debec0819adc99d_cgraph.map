@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classSensorHistory.html#afa6b666767a463b5c3bc21cc2059162e" title="SensorHistory::getBatteryVoltageHistory" alt="" coords="188,5,444,35"/>
+<area shape="rect" id="node5" href="$classSensorHistory.html#af5957b3893f9271f699b9ba02ba471a1" title="SensorHistory::getGyroSensorHistory" alt="" coords="196,59,436,88"/>
+<area shape="rect" id="node7" href="$classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="187,112,445,141"/>
+<area shape="rect" id="node9" href="$classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="183,165,449,195"/>
+</map>

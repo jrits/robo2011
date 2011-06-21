@@ -1,0 +1,200 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: Course.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Course.hpp</h1><code>#include &quot;<a class="el" href="Direction_8hpp_source.html">Direction.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Time_8hpp_source.html">Time.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Distance_8hpp_source.html">Distance.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="parameters_8hpp_source.html">parameters.hpp</a>&quot;</code><br/>
+<code>#include &lt;cmath&gt;</code><br/>
+<code>#include &quot;<a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="GoalStopSection_8hpp_source.html">GoalStopSection.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="NewGoalStopSection_8hpp_source.html">NewGoalStopSection.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="DashedLineSection_8hpp_source.html">DashedLineSection.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="NewDashedLineSection_8hpp_source.html">NewDashedLineSection.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="TreasureHuntSection_8hpp_source.html">TreasureHuntSection.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="NewTreasureHuntSection_8hpp_source.html">NewTreasureHuntSection.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="TestSection_8hpp_source.html">TestSection.hpp</a>&quot;</code><br/>
+<div class="dynheader">
+Course.hppのインクルード依存関係図</div>
+<div class="dynsection">
+<div class="center"><img src="Course_8hpp__incl.png" border="0" usemap="#Course_8hpp_map" alt=""/></div>
+<map name="Course_8hpp_map" id="Course_8hpp">
+<area shape="rect" id="node3" href="Direction_8hpp.html" title="Direction.hpp" alt="" coords="259,469,357,499"/><area shape="rect" id="node25" href="parameters_8hpp.html" title="parameters.hpp" alt="" coords="1219,624,1331,653"/><area shape="rect" id="node31" href="Time_8hpp.html" title="Time.hpp" alt="" coords="1861,469,1936,499"/><area shape="rect" id="node34" href="Distance_8hpp.html" title="Distance.hpp" alt="" coords="564,469,663,499"/><area shape="rect" id="node40" href="NormalLineSection_8hpp.html" title="NormalLineSection.hpp" alt="" coords="897,160,1052,189"/><area shape="rect" id="node95" href="GoalStopSection_8hpp.html" title="GoalStopSection.hpp" alt="" coords="229,83,373,112"/><area shape="rect" id="node101" href="NewGoalStopSection_8hpp.html" title="NewGoalStopSection.hpp" alt="" coords="448,83,619,112"/><area shape="rect" id="node107" href="DashedLineSection_8hpp.html" title="DashedLineSection.hpp" alt="" coords="901,83,1059,112"/><area shape="rect" id="node113" href="NewDashedLineSection_8hpp.html" title="NewDashedLineSection.hpp" alt="" coords="643,83,827,112"/><area shape="rect" id="node119" href="TreasureHuntSection_8hpp.html" title="TreasureHuntSection.hpp" alt="" coords="1768,160,1936,189"/><area shape="rect" id="node123" href="NewTreasureHuntSection_8hpp.html" title="NewTreasureHuntSection.hpp" alt="" coords="1552,160,1744,189"/><area shape="rect" id="node127" href="TestSection_8hpp.html" title="TestSection.hpp" alt="" coords="657,160,772,189"/><area shape="rect" id="node5" href="SensorHistory_8hpp.html" title="SensorHistory.hpp" alt="" coords="632,624,760,653"/><area shape="rect" id="node42" href="Section_8hpp.html" title="Section.hpp" alt="" coords="1056,237,1147,267"/><area shape="rect" id="node56" href="Driver_8hpp.html" title="Driver.hpp" alt="" coords="929,392,1007,421"/><area shape="rect" id="node44" href="BalancingRun_8hpp.html" title="BalancingRun.hpp" alt="" coords="905,469,1031,499"/><area shape="rect" id="node75" href="LineTraceDriver_8hpp.html" title="LineTraceDriver.hpp" alt="" coords="1208,315,1341,344"/><area shape="rect" id="node81" href="DirectionPidDriver_8hpp.html" title="DirectionPidDriver.hpp" alt="" coords="1541,315,1691,344"/><area shape="rect" id="node86" href="CurvaturePidDriver_8hpp.html" title="CurvaturePidDriver.hpp" alt="" coords="1365,315,1517,344"/><area shape="rect" id="node46" href="Balancer_8hpp.html" title="Balancer.hpp" alt="" coords="784,547,883,576"/><area shape="rect" id="node61" href="PidController_8hpp.html" title="PidController.hpp" alt="" coords="1381,469,1501,499"/><area shape="rect" id="node69" href="Color_8hpp.html" title="Color.hpp" alt="" coords="1160,547,1237,576"/></map>
+</div>
+<div class="dynheader">
+このグラフは、どのファイルから直接、間接的にインクルードされているかを示しています。</div>
+<div class="dynsection">
+<div class="center"><img src="Course_8hpp__dep__incl.png" border="0" usemap="#Course_8hppdep_map" alt=""/></div>
+<map name="Course_8hppdep_map" id="Course_8hppdep">
+<area shape="rect" id="node3" href="InCourse_8hpp.html" title="InCourse.hpp" alt="" coords="5,83,104,112"/><area shape="rect" id="node5" href="sample_8cpp.html" title="sample.cpp" alt="" coords="279,160,367,189"/><area shape="rect" id="node7" href="InDolphinCourse_8hpp.html" title="InDolphinCourse.hpp" alt="" coords="635,83,776,112"/><area shape="rect" id="node12" href="InOutInCourse_8hpp.html" title="InOutInCourse.hpp" alt="" coords="179,83,307,112"/><area shape="rect" id="node15" href="InTwinloopCourse_8hpp.html" title="InTwinloopCourse.hpp" alt="" coords="331,83,477,112"/><area shape="rect" id="node18" href="OutCourse_8hpp.html" title="OutCourse.hpp" alt="" coords="501,83,611,112"/><area shape="rect" id="node9" href="InDolphinCourse_8cpp.html" title="InDolphinCourse.cpp" alt="" coords="635,160,776,189"/></map>
+</div>
+
+<p><a href="Course_8hpp_source.html">ソースコードを見る。</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>構成</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCourse.html">Course</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classSection.html" title="各走行法クラスのインターフェースを定義するスーパークラス。...">Section</a> (Marker <a class="el" href="classSection.html" title="各走行法クラスのインターフェースを定義するスーパークラス。...">Section</a>) Detector.  <a href="classCourse.html#_details">[詳細]</a><br/></td></tr>
+<tr><td colspan="2"><h2>変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNormalLineSection.html">NormalLineSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGoalStopSection.html">GoalStopSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Course_8hpp.html#ae21d6227b795eb7968bca32096543842">goalStopSection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDashedLineSection.html">DashedLineSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Course_8hpp.html#a13f09872c8dab4fa5ebf32a36617d33e">dashedLineSection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTreasureHuntSection.html">TreasureHuntSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Course_8hpp.html#a1c8fdd6dbca1a20c6e02dc90c6dac67e">treasureHuntSection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNewDashedLineSection.html">NewDashedLineSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Course_8hpp.html#aecfcabe8d321223ff270a52e863d3cb7">newDashedLineSection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNewTreasureHuntSection.html">NewTreasureHuntSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Course_8hpp.html#ae3663871e100487847047534be859f27">newTreasureHuntSection</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNewGoalStopSection.html">NewGoalStopSection</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="Course_8hpp.html#affa364df02fb2eb2a2cf2b4f5fe2bdf9">newGoalStopSection</a></td></tr>
+</table>
+<hr/><h2>変数</h2>
+<a class="anchor" id="a13f09872c8dab4fa5ebf32a36617d33e"></a><!-- doxytag: member="Course.hpp::dashedLineSection" ref="a13f09872c8dab4fa5ebf32a36617d33e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDashedLineSection.html">DashedLineSection</a> <a class="el" href="sample_8cpp.html#a5568c9d2b58bd84e1e74d40e15a69d0e">dashedLineSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae21d6227b795eb7968bca32096543842"></a><!-- doxytag: member="Course.hpp::goalStopSection" ref="ae21d6227b795eb7968bca32096543842" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGoalStopSection.html">GoalStopSection</a> <a class="el" href="sample_8cpp.html#ada74e9eac4c1eb66aaf7eb7e7d66c413">goalStopSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aecfcabe8d321223ff270a52e863d3cb7"></a><!-- doxytag: member="Course.hpp::newDashedLineSection" ref="aecfcabe8d321223ff270a52e863d3cb7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNewDashedLineSection.html">NewDashedLineSection</a> <a class="el" href="sample_8cpp.html#a8f1b686cf7d4c0a45b8377beb1d6f02a">newDashedLineSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="affa364df02fb2eb2a2cf2b4f5fe2bdf9"></a><!-- doxytag: member="Course.hpp::newGoalStopSection" ref="affa364df02fb2eb2a2cf2b4f5fe2bdf9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNewGoalStopSection.html">NewGoalStopSection</a> <a class="el" href="sample_8cpp.html#a03c18464aa5256d0a6030046836fb9c4">newGoalStopSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae3663871e100487847047534be859f27"></a><!-- doxytag: member="Course.hpp::newTreasureHuntSection" ref="ae3663871e100487847047534be859f27" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNewTreasureHuntSection.html">NewTreasureHuntSection</a> <a class="el" href="sample_8cpp.html#ad7becf4faa55e6dce6c81e5e34bbf6dd">newTreasureHuntSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a92d2b3b06e8c1f203c8a53069383dae9"></a><!-- doxytag: member="Course.hpp::normalLineSection" ref="a92d2b3b06e8c1f203c8a53069383dae9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNormalLineSection.html">NormalLineSection</a> <a class="el" href="sample_8cpp.html#a7ec0781311cdf9de649d08154161d8a8">normalLineSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1c8fdd6dbca1a20c6e02dc90c6dac67e"></a><!-- doxytag: member="Course.hpp::treasureHuntSection" ref="a1c8fdd6dbca1a20c6e02dc90c6dac67e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTreasureHuntSection.html">TreasureHuntSection</a> <a class="el" href="sample_8cpp.html#ae9d02626be9c8824c500ae9363dad532">treasureHuntSection</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:06:30 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

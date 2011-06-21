@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GpsVisualizer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CONTROL_LINE_WIDTH" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="TRACK_LINE_WIDTH" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="CONTROL_LINE_COLOR" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Cyan</Value>
+    </Setting>
+    <Setting Name="TRACK_COUNT" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="GRID_PITCH" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1500</Value>
+    </Setting>
+    <Setting Name="GRID_LINE_COLOR" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="GRID_TEXT_COLOR" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="GRID_TEXT_SHADOW_COLOR" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="TRACK_LINE_COLOR" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

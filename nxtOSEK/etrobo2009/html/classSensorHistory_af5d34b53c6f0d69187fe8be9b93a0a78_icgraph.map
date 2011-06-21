@@ -1,0 +1,27 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classBalancer.html#a1e4140cd630ef3713debec0819adc99d" title="Balancer::balance" alt="" coords="352,327,477,356"/>
+<area shape="rect" id="node27" href="$classGps.html#a2cddda4a7acd596ef068d8b3290926db" title="Gps::calcCoordinates" alt="" coords="341,589,488,619"/>
+<area shape="rect" id="node31" href="$classDirection.html#ab96a03b3be055655fd46a596243c0953" title="Estimate the absolute direction angle." alt="" coords="324,536,505,565"/>
+<area shape="rect" id="node37" href="$classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d" title="Distance::computeDistance" alt="" coords="556,432,737,461"/>
+<area shape="rect" id="node52" href="$classDistance.html#a53661de88754833d8d2d26f7f0b4c158" title="Distance::reset" alt="" coords="592,485,701,515"/>
+<area shape="rect" id="node5" href="$classBalancingRun.html#aba38ad0f9be114680c3e9c119d4ded7c" title="BalancingRun::run" alt="" coords="583,272,711,301"/>
+<area shape="rect" id="node7" href="$classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="800,432,997,461"/>
+<area shape="rect" id="node9" href="$classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="827,59,971,88"/>
+<area shape="rect" id="node11" href="$classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="807,112,991,141"/>
+<area shape="rect" id="node13" href="$classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="788,485,1009,515"/>
+<area shape="rect" id="node15" href="$classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="800,165,997,195"/>
+<area shape="rect" id="node17" href="$classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="792,219,1005,248"/>
+<area shape="rect" id="node19" href="$classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="812,272,985,301"/>
+<area shape="rect" id="node21" href="$classDriver.html#a2788603bf657766e822aa072cbb4bc11" title="Driver::execute" alt="" coords="845,5,952,35"/>
+<area shape="rect" id="node23" href="$classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="817,325,980,355"/>
+<area shape="rect" id="node25" href="$classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="805,379,992,408"/>
+<area shape="rect" id="node29" href="$sample_8cpp.html#ab622f1cc7f7d84bf5ccfb33ffbfe4693" title="TASK" alt="" coords="619,589,675,619"/>
+<area shape="rect" id="node33" href="$classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="821,859,976,888"/>
+<area shape="rect" id="node35" href="$sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="1059,832,1115,861"/>
+<area shape="rect" id="node39" href="$classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="816,645,981,675"/>
+<area shape="rect" id="node41" href="$classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="819,539,979,568"/>
+<area shape="rect" id="node43" href="$classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="813,592,984,621"/>
+<area shape="rect" id="node54" href="$classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="835,752,963,781"/>
+<area shape="rect" id="node57" href="$classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="825,805,972,835"/>
+<area shape="rect" id="node61" href="$classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="840,699,957,728"/>
+</map>

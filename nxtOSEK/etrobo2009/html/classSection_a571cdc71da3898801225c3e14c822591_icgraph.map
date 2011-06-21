@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="208,5,336,35"/>
+<area shape="rect" id="node5" href="$classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="189,59,355,88"/>
+<area shape="rect" id="node7" href="$classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="199,112,345,141"/>
+<area shape="rect" id="node11" href="$classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="192,165,352,195"/>
+<area shape="rect" id="node13" href="$classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="173,219,371,248"/>
+<area shape="rect" id="node15" href="$classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="161,272,383,301"/>
+<area shape="rect" id="node17" href="$classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="165,325,379,355"/>
+<area shape="rect" id="node19" href="$classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="191,379,353,408"/>
+<area shape="rect" id="node21" href="$classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="179,432,365,461"/>
+<area shape="rect" id="node9" href="$sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="432,112,488,141"/>
+</map>

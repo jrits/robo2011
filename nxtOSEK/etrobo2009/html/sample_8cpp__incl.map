@@ -1,0 +1,32 @@
+<map id="G" name="G">
+<area shape="rect" id="node25" href="$TouchStarter_8h.html" title="TouchStarter.h" alt="" coords="43,160,149,189"/>
+<area shape="rect" id="node28" href="$NXTway__GS_8h.html" title="NXTway_GS.h" alt="" coords="2907,547,3011,576"/>
+<area shape="rect" id="node37" href="$Calibrator_8hpp.html" title="Calibrator.hpp" alt="" coords="403,392,504,421"/>
+<area shape="rect" id="node47" href="$PidController_8hpp.html" title="PidController.hpp" alt="" coords="2325,469,2445,499"/>
+<area shape="rect" id="node55" href="$Color_8hpp.html" title="Color.hpp" alt="" coords="2111,547,2188,576"/>
+<area shape="rect" id="node57" href="$SensorHistory_8hpp.html" title="SensorHistory.hpp" alt="" coords="2043,624,2171,653"/>
+<area shape="rect" id="node72" href="$BalancingRun_8hpp.html" title="BalancingRun.hpp" alt="" coords="2733,469,2859,499"/>
+<area shape="rect" id="node74" href="$Balancer_8hpp.html" title="Balancer.hpp" alt="" coords="2733,547,2832,576"/>
+<area shape="rect" id="node81" href="$Time_8hpp.html" title="Time.hpp" alt="" coords="765,469,840,499"/>
+<area shape="rect" id="node84" href="$Distance_8hpp.html" title="Distance.hpp" alt="" coords="1748,469,1847,499"/>
+<area shape="rect" id="node88" href="$Course_8hpp.html" title="Course.hpp" alt="" coords="1417,160,1505,189"/>
+<area shape="rect" id="node90" href="$Direction_8hpp.html" title="Direction.hpp" alt="" coords="1368,469,1467,499"/>
+<area shape="rect" id="node103" href="$Driver_8hpp.html" title="Driver.hpp" alt="" coords="1959,392,2036,421"/>
+<area shape="rect" id="node139" href="$OutCourse_8hpp.html" title="OutCourse.hpp" alt="" coords="1908,83,2017,112"/>
+<area shape="rect" id="node142" href="$InCourse_8hpp.html" title="InCourse.hpp" alt="" coords="1247,83,1345,112"/>
+<area shape="rect" id="node145" href="$InOutInCourse_8hpp.html" title="InOutInCourse.hpp" alt="" coords="1369,83,1497,112"/>
+<area shape="rect" id="node148" href="$InDolphinCourse_8hpp.html" title="InDolphinCourse.hpp" alt="" coords="1521,83,1663,112"/>
+<area shape="rect" id="node151" href="$InTwinloopCourse_8hpp.html" title="InTwinloopCourse.hpp" alt="" coords="1687,83,1833,112"/>
+<area shape="rect" id="node155" href="$Gps_8hpp.html" title="Gps.hpp" alt="" coords="1133,392,1203,421"/>
+<area shape="rect" id="node162" href="$LineTraceDriver_8hpp.html" title="LineTraceDriver.hpp" alt="" coords="2173,315,2307,344"/>
+<area shape="rect" id="node168" href="$DirectionPidDriver_8hpp.html" title="DirectionPidDriver.hpp" alt="" coords="2507,315,2656,344"/>
+<area shape="rect" id="node173" href="$CurvaturePidDriver_8hpp.html" title="CurvaturePidDriver.hpp" alt="" coords="2331,315,2483,344"/>
+<area shape="rect" id="node42" href="$parameters_8hpp.html" title="parameters.hpp" alt="" coords="1589,624,1701,653"/>
+<area shape="rect" id="node44" href="$light__param_8h.html" title="light_param.h" alt="" coords="376,469,475,499"/>
+<area shape="rect" id="node101" href="$NormalLineSection_8hpp.html" title="NormalLineSection.hpp" alt="" coords="1589,315,1744,344"/>
+<area shape="rect" id="node112" href="$GoalStopSection_8hpp.html" title="GoalStopSection.hpp" alt="" coords="1679,237,1823,267"/>
+<area shape="rect" id="node118" href="$NewGoalStopSection_8hpp.html" title="NewGoalStopSection.hpp" alt="" coords="1847,237,2017,267"/>
+<area shape="rect" id="node124" href="$DashedLineSection_8hpp.html" title="DashedLineSection.hpp" alt="" coords="1188,237,1345,267"/>
+<area shape="rect" id="node130" href="$NewDashedLineSection_8hpp.html" title="NewDashedLineSection.hpp" alt="" coords="1369,237,1553,267"/>
+<area shape="rect" id="node136" href="$TreasureHuntSection_8hpp.html" title="TreasureHuntSection.hpp" alt="" coords="840,392,1008,421"/>
+</map>

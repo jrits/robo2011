@@ -1,0 +1,221 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: クラス Balancer</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス Balancer</h1><!-- doxytag: class="Balancer" -->
+<p><code>#include &lt;<a class="el" href="Balancer_8hpp_source.html">Balancer.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Balancerのコラボレーション図</div>
+<div class="dynsection">
+<div class="center"><img src="classBalancer__coll__graph.png" border="0" usemap="#Balancer_coll__map" alt="Collaboration graph"/></div>
+<map name="Balancer_coll__map" id="Balancer_coll__map">
+<area shape="rect" id="node2" href="classSensorHistory.html" title="SensorHistory" alt="" coords="5,5,109,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+
+<p><a href="classBalancer-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBalancer.html#a613bbc4fba3d58f44727cfa869b1b9cd">Balancer</a> (<a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;sh)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBalancer.html#a03029db5eb5a398ba302b1a58f058d6e">~Balancer</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBalancer.html#a53db8b58e6d51aca3cbdb55079745841">initialize</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBalancer.html#a1e4140cd630ef3713debec0819adc99d">balance</a> (VectorT&lt; S8 &gt; &amp;<a class="el" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, S8 &amp;pwmL, S8 &amp;pwmR)</td></tr>
+<tr><td colspan="2"><h2>Private 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBalancer.html#a5105f3e1f8fc80c8bf14c021ce962e08">history</a></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+
+<p> <a class="el" href="Balancer_8hpp_source.html">Balancer.hpp</a> の <a class="el" href="Balancer_8hpp_source.html#l00013">13</a> 行で定義されています。</p>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="a613bbc4fba3d58f44727cfa869b1b9cd"></a><!-- doxytag: member="Balancer::Balancer" ref="a613bbc4fba3d58f44727cfa869b1b9cd" args="(SensorHistory &amp;sh)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Balancer::Balancer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>sh</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="Balancer_8hpp_source.html">Balancer.hpp</a> の <a class="el" href="Balancer_8hpp_source.html#l00019">19</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a03029db5eb5a398ba302b1a58f058d6e"></a><!-- doxytag: member="Balancer::~Balancer" ref="a03029db5eb5a398ba302b1a58f058d6e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Balancer::~Balancer </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="Balancer_8hpp_source.html">Balancer.hpp</a> の <a class="el" href="Balancer_8hpp_source.html#l00022">22</a> 行で定義されています。</p>
+
+</div>
+</div>
+<hr/><h2>関数</h2>
+<a class="anchor" id="a1e4140cd630ef3713debec0819adc99d"></a><!-- doxytag: member="Balancer::balance" ref="a1e4140cd630ef3713debec0819adc99d" args="(VectorT&lt; S8 &gt; &amp;direction, S8 &amp;pwmL, S8 &amp;pwmR)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Balancer::balance </td>
+          <td>(</td>
+          <td class="paramtype">VectorT&lt; S8 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S8 &amp;&nbsp;</td>
+          <td class="paramname"> <em>pwmL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">S8 &amp;&nbsp;</td>
+          <td class="paramname"> <em>pwmR</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="Balancer_8cpp_source.html">Balancer.cpp</a> の <a class="el" href="Balancer_8cpp_source.html#l00003">3</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classBalancer_a1e4140cd630ef3713debec0819adc99d_cgraph.png" border="0" usemap="#classBalancer_a1e4140cd630ef3713debec0819adc99d_cgraph_map" alt=""></div>
+<map name="classBalancer_a1e4140cd630ef3713debec0819adc99d_cgraph_map" id="classBalancer_a1e4140cd630ef3713debec0819adc99d_cgraph">
+<area shape="rect" id="node3" href="classSensorHistory.html#afa6b666767a463b5c3bc21cc2059162e" title="SensorHistory::getBatteryVoltageHistory" alt="" coords="188,5,444,35"/><area shape="rect" id="node5" href="classSensorHistory.html#af5957b3893f9271f699b9ba02ba471a1" title="SensorHistory::getGyroSensorHistory" alt="" coords="196,59,436,88"/><area shape="rect" id="node7" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="187,112,445,141"/><area shape="rect" id="node9" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="183,165,449,195"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classBalancer_a1e4140cd630ef3713debec0819adc99d_icgraph.png" border="0" usemap="#classBalancer_a1e4140cd630ef3713debec0819adc99d_icgraph_map" alt=""></div>
+<map name="classBalancer_a1e4140cd630ef3713debec0819adc99d_icgraph_map" id="classBalancer_a1e4140cd630ef3713debec0819adc99d_icgraph">
+<area shape="rect" id="node3" href="classBalancingRun.html#aba38ad0f9be114680c3e9c119d4ded7c" title="BalancingRun::run" alt="" coords="181,245,309,275"/><area shape="rect" id="node5" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="371,5,568,35"/><area shape="rect" id="node7" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="397,59,541,88"/><area shape="rect" id="node9" href="classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="377,112,561,141"/><area shape="rect" id="node11" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="359,165,580,195"/><area shape="rect" id="node13" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="371,219,568,248"/><area shape="rect" id="node15" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="363,272,576,301"/><area shape="rect" id="node17" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="383,325,556,355"/><area shape="rect" id="node19" href="classDriver.html#a2788603bf657766e822aa072cbb4bc11" title="Driver::execute" alt="" coords="416,379,523,408"/><area shape="rect" id="node21" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="388,432,551,461"/><area shape="rect" id="node23" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="376,485,563,515"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a53db8b58e6d51aca3cbdb55079745841"></a><!-- doxytag: member="Balancer::initialize" ref="a53db8b58e6d51aca3cbdb55079745841" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Balancer::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>変数</h2>
+<a class="anchor" id="a5105f3e1f8fc80c8bf14c021ce962e08"></a><!-- doxytag: member="Balancer::history" ref="a5105f3e1f8fc80c8bf14c021ce962e08" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSensorHistory.html">SensorHistory</a>&amp; <a class="el" href="classBalancer.html#a5105f3e1f8fc80c8bf14c021ce962e08">Balancer::history</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="Balancer_8hpp_source.html">Balancer.hpp</a> の <a class="el" href="Balancer_8hpp_source.html#l00016">16</a> 行で定義されています。</p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="Balancer_8hpp_source.html">Balancer.hpp</a></li>
+<li><a class="el" href="Balancer_8cpp_source.html">Balancer.cpp</a></li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:07:39 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

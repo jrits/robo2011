@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ET ROBOCON 2010 KACHIROBO!!: CoordinateTrace.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>CoordinateTrace.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
+<a name="l00002"></a>00002 <span class="comment">// CoordinateTrace.h</span>
+<a name="l00003"></a>00003 <span class="comment">//</span>
+<a name="l00004"></a>00004 
+<a name="l00005"></a>00005 <span class="preprocessor">#ifndef COORDINATETRACE_H_</span>
+<a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define COORDINATETRACE_H_</span>
+<a name="l00007"></a>00007 <span class="preprocessor"></span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;Skill.h&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;struct.h&quot;</span>
+<a name="l00010"></a>00010 
+<a name="l00014"></a><a class="code" href="class_coordinate_trace.html">00014</a> <span class="keyword">class </span><a class="code" href="class_coordinate_trace.html" title="座標指定走行スキル">CoordinateTrace</a> : <span class="keyword">public</span> <a class="code" href="class_skill.html" title="スキル抽象クラス">Skill</a>
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016 <span class="keyword">private</span>:
+<a name="l00017"></a><a class="code" href="class_coordinate_trace.html#a669aceb36fa8652c738606a09f9e9002">00017</a>         <a class="code" href="struct___t_a_g_p_o_i_n_t.html" title="点">Point</a> <a class="code" href="class_coordinate_trace.html#a669aceb36fa8652c738606a09f9e9002" title="目標座標">mTargetCoordinate</a>; 
+<a name="l00018"></a><a class="code" href="class_coordinate_trace.html#a51d6df95fc50ae6e15253fa0fd11a34d">00018</a>     <span class="keywordtype">float</span> <a class="code" href="class_coordinate_trace.html#a51d6df95fc50ae6e15253fa0fd11a34d" title="許容エラー値(mm)">mAllowableError</a>;   
+<a name="l00019"></a>00019 <span class="keyword">public</span>:
+<a name="l00020"></a>00020         <a class="code" href="class_coordinate_trace.html#a938a10303f184ce11126b87f9702f722" title="コンストラクタ">CoordinateTrace</a>();
+<a name="l00021"></a>00021         ~<a class="code" href="class_coordinate_trace.html" title="座標指定走行スキル">CoordinateTrace</a>(){}
+<a name="l00022"></a>00022         <span class="keywordtype">void</span> <a class="code" href="class_coordinate_trace.html#af79655a57df691764a36cbd04a9433e2" title="目標位置を設定する。">setTargetCoordinate</a>(<a class="code" href="struct___t_a_g_p_o_i_n_t.html" title="点">Point</a> targetCoordinate);
+<a name="l00023"></a>00023         <span class="keywordtype">void</span> <a class="code" href="class_coordinate_trace.html#a66b6061b44ba28ddeb97684b87cc4ee5" title="許容エラー値を設定する。">setAllowableError</a>(<span class="keywordtype">float</span> allowableError);
+<a name="l00024"></a>00024 <span class="keyword">public</span>:
+<a name="l00025"></a>00025         VectorT&lt;float&gt; <a class="code" href="class_coordinate_trace.html#a029133e724a26b313ba38f37f797bcb0" title="目標座標と現在座標から、座標指定走行を行うのに適切な走行ベクトルを�...">calcCommand</a>();
+<a name="l00026"></a>00026 <span class="keyword">public</span>:
+<a name="l00027"></a>00027     <span class="keywordtype">bool</span> <a class="code" href="class_coordinate_trace.html#a2c83c6c13db26e26b13c927c960d4413" title="目標位置に到着したか">isArrived</a>();
+<a name="l00028"></a>00028 };
+<a name="l00029"></a>00029 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>ET ROBOCON 2010 KACHIROBO!!に対してWed Dec 8 11:36:44 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

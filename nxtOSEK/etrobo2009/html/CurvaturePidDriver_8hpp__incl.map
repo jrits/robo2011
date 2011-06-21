@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$Driver_8hpp.html" title="Driver.hpp" alt="" coords="433,83,511,112"/>
+<area shape="rect" id="node31" href="$parameters_8hpp.html" title="parameters.hpp" alt="" coords="505,315,617,344"/>
+<area shape="rect" id="node47" href="$PidController_8hpp.html" title="PidController.hpp" alt="" coords="609,160,729,189"/>
+<area shape="rect" id="node5" href="$BalancingRun_8hpp.html" title="BalancingRun.hpp" alt="" coords="409,160,535,189"/>
+<area shape="rect" id="node11" href="$SensorHistory_8hpp.html" title="SensorHistory.hpp" alt="" coords="332,315,460,344"/>
+<area shape="rect" id="node35" href="$Distance_8hpp.html" title="Distance.hpp" alt="" coords="335,237,433,267"/>
+<area shape="rect" id="node39" href="$Direction_8hpp.html" title="Direction.hpp" alt="" coords="161,237,260,267"/>
+<area shape="rect" id="node59" href="$Time_8hpp.html" title="Time.hpp" alt="" coords="904,160,979,189"/>
+<area shape="rect" id="node7" href="$Balancer_8hpp.html" title="Balancer.hpp" alt="" coords="660,237,759,267"/>
+<area shape="rect" id="node55" href="$Color_8hpp.html" title="Color.hpp" alt="" coords="457,237,535,267"/>
+</map>

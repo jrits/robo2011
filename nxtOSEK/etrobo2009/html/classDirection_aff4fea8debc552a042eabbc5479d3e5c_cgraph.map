@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="527,5,743,35"/>
+<area shape="rect" id="node9" href="$classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="265,57,476,87"/>
+<area shape="rect" id="node14" href="$classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="268,111,473,140"/>
+<area shape="rect" id="node5" href="$classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="792,32,963,61"/>
+<area shape="rect" id="node7" href="$classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1011,32,1141,61"/>
+<area shape="rect" id="node11" href="$classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="541,59,728,88"/>
+</map>

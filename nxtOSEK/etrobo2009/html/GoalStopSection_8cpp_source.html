@@ -1,0 +1,164 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: GoalStopSection.cpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+<h1>GoalStopSection.cpp</h1><a href="GoalStopSection_8cpp.html">説明を見る。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="GoalStopSection_8hpp.html">GoalStopSection.hpp</a>&quot;</span>
+<a name="l00002"></a>00002 
+<a name="l00003"></a><a class="code" href="classGoalStopSection.html#a475b15a3d6db5805d863d0104762c19b">00003</a> VectorT&lt;S8&gt; <a class="code" href="classGoalStopSection.html#a475b15a3d6db5805d863d0104762c19b">GoalStopSection::computeRunningVelocity</a>()
+<a name="l00004"></a>00004 {
+<a name="l00005"></a>00005     VectorT&lt;S8&gt; velocity;
+<a name="l00006"></a>00006     velocity = <a class="code" href="classSection.html#a5a5adc620c36a7102af29c64a1ed91d2">lineTraceDriver</a>.<a class="code" href="classLineTraceDriver.html#a40a0538508b9adf2dbd28a13e679c1e2">computeVelocity</a>();
+<a name="l00007"></a>00007     <span class="keywordflow">return</span> velocity;
+<a name="l00008"></a>00008 }
+<a name="l00009"></a>00009 
+<a name="l00010"></a><a class="code" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8">00010</a> VectorT&lt;S8&gt; <a class="code" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8">GoalStopSection::computeStopVelocity</a>(F32 refDirection)
+<a name="l00011"></a>00011 {
+<a name="l00012"></a>00012     VectorT&lt;S8&gt; velocity;
+<a name="l00013"></a>00013     velocity = <a class="code" href="classSection.html#aec5b1671cc4a0d7af87e67eb2c8f97ec">directionPidDriver</a>.<a class="code" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3">computeVelocity</a>(refDirection);
+<a name="l00014"></a>00014     velocity.mX = <a class="code" href="parameters_8hpp.html#acc890c6dac884616c50204841a08fcc1">GOAL_STOP_STRATEGY_STOP_VELOCITY_X</a>;
+<a name="l00015"></a>00015     <span class="comment">//velocity.mY = GOAL_STOP_STRATEGY_STOP_VELOCITY_Y;</span>
+<a name="l00016"></a>00016     <span class="keywordflow">return</span> velocity;
+<a name="l00017"></a>00017 }
+<a name="l00018"></a>00018 
+<a name="l00019"></a><a class="code" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01">00019</a> VectorT&lt;S8&gt; <a class="code" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01">GoalStopSection::computeRebootVelocity</a>(F32 refDirection)
+<a name="l00020"></a>00020 {
+<a name="l00021"></a>00021     VectorT&lt;S8&gt; velocity;
+<a name="l00022"></a>00022     velocity = <a class="code" href="classSection.html#aec5b1671cc4a0d7af87e67eb2c8f97ec">directionPidDriver</a>.<a class="code" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3">computeVelocity</a>(refDirection);
+<a name="l00023"></a>00023     velocity.mX = 30;
+<a name="l00024"></a>00024     <span class="keywordflow">return</span> velocity;
+<a name="l00025"></a>00025 }
+<a name="l00026"></a>00026 
+<a name="l00027"></a><a class="code" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66">00027</a> <span class="keywordtype">bool</span> <a class="code" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66">GoalStopSection::execute</a>()
+<a name="l00028"></a>00028 {
+<a name="l00029"></a>00029     Lcd <a class="code" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a>;
+<a name="l00030"></a>00030     <span class="keyword">static</span> <span class="keywordtype">int</span> state = -1;
+<a name="l00031"></a>00031     VectorT&lt;S8&gt; velocity;
+<a name="l00032"></a>00032     <span class="keyword">static</span> F32 refDirection;
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034     lcd.putf(<span class="stringliteral">&quot;n&quot;</span>);
+<a name="l00035"></a>00035     lcd.putf(<span class="stringliteral">&quot;sn&quot;</span>, <span class="stringliteral">&quot;GoalState &quot;</span>);
+<a name="l00036"></a>00036     lcd.putf(<span class="stringliteral">&quot;dn&quot;</span>, state);
+<a name="l00037"></a>00037     lcd.disp();
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039     <span class="keywordflow">if</span> (state == -1) { <span class="comment">// initialization state</span>
+<a name="l00040"></a>00040         this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00041"></a>00041         state = 0;
+<a name="l00042"></a>00042     }
+<a name="l00043"></a>00043     <span class="keywordflow">if</span> (state == 0) {
+<a name="l00044"></a>00044         velocity = this-&gt;<a class="code" href="classGoalStopSection.html#a475b15a3d6db5805d863d0104762c19b">computeRunningVelocity</a>();
+<a name="l00045"></a>00045         
+<a name="l00046"></a>00046         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d">computeDistance</a>() &gt; <a class="code" href="classGoalStopSection.html#ae766dc3f0591d62c3f3d39208c08427c" title="最後のマーカからゴールまでの走行距離。">distanceToGoal</a>){
+<a name="l00047"></a>00047             state = 1;
+<a name="l00048"></a>00048             this-&gt;<a class="code" href="classSection.html#a4a529ed57231ab77015d3fd60ba87b66" title="このメンバは参照型ではないことに注意！！">time</a>.<a class="code" href="classTime.html#afe661f7ba15818a24bf76e83da2889a0">reset</a>();
+<a name="l00049"></a>00049             this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00050"></a>00050             refDirection = <a class="code" href="classSection.html#a31fd8226bdce62928edc0261f033f753">direction</a>.<a class="code" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得">getAvgDirectionOff</a>();
+<a name="l00051"></a>00051         }
+<a name="l00052"></a>00052     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 1) { <span class="comment">// ��~���</span>
+<a name="l00053"></a>00053         velocity = this-&gt;<a class="code" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8">computeStopVelocity</a>(refDirection);
+<a name="l00054"></a>00054         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classSection.html#a4a529ed57231ab77015d3fd60ba87b66" title="このメンバは参照型ではないことに注意！！">time</a>.<a class="code" href="classTime.html#a957fead9cd4f06a5c1fb66c7255e1637">elapsedTime</a>() &gt; <a class="code" href="parameters_8hpp.html#abf04720feff4a545fd69db7735a9ed57">GOAL_STOP_STRATEGY_FIRST_STOP_TIME</a>) {
+<a name="l00055"></a>00055             state = 2;
+<a name="l00056"></a>00056             this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00057"></a>00057         }
+<a name="l00058"></a>00058     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 2) { <span class="comment">// ���C���g���[�X</span>
+<a name="l00059"></a>00059         velocity = this-&gt;<a class="code" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01">computeRebootVelocity</a>(refDirection);
+<a name="l00060"></a>00060         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d">computeDistance</a>() &gt; <a class="code" href="parameters_8hpp.html#a99742cdb8548a83d6eb2637e2a10ec25">GOAL_STOP_STRATEGY_REPEATED_DISTANCE</a>){
+<a name="l00061"></a>00061             state = 3;
+<a name="l00062"></a>00062             this-&gt;<a class="code" href="classSection.html#a4a529ed57231ab77015d3fd60ba87b66" title="このメンバは参照型ではないことに注意！！">time</a>.<a class="code" href="classTime.html#afe661f7ba15818a24bf76e83da2889a0">reset</a>();
+<a name="l00063"></a>00063             this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00064"></a>00064         }
+<a name="l00065"></a>00065     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 3) { <span class="comment">// ��~���</span>
+<a name="l00066"></a>00066         velocity = this-&gt;<a class="code" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8">computeStopVelocity</a>(refDirection);
+<a name="l00067"></a>00067         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classSection.html#a4a529ed57231ab77015d3fd60ba87b66" title="このメンバは参照型ではないことに注意！！">time</a>.<a class="code" href="classTime.html#a957fead9cd4f06a5c1fb66c7255e1637">elapsedTime</a>() &gt; <a class="code" href="parameters_8hpp.html#a6cba585a17f7f1a1caf83be7520e35f4">GOAL_STOP_STRATEGY_SECOND_STOP_TIME</a>) {
+<a name="l00068"></a>00068             state = 4;
+<a name="l00069"></a>00069             this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00070"></a>00070         }
+<a name="l00071"></a>00071     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 4) { <span class="comment">// ���C���g���[�X</span>
+<a name="l00072"></a>00072         velocity = this-&gt;<a class="code" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01">computeRebootVelocity</a>(refDirection);
+<a name="l00073"></a>00073         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d">computeDistance</a>() &gt; <a class="code" href="parameters_8hpp.html#a99742cdb8548a83d6eb2637e2a10ec25">GOAL_STOP_STRATEGY_REPEATED_DISTANCE</a>){
+<a name="l00074"></a>00074             state = 5;
+<a name="l00075"></a>00075             this-&gt;<a class="code" href="classSection.html#a4a529ed57231ab77015d3fd60ba87b66" title="このメンバは参照型ではないことに注意！！">time</a>.<a class="code" href="classTime.html#afe661f7ba15818a24bf76e83da2889a0">reset</a>();
+<a name="l00076"></a>00076             this-&gt;<a class="code" href="classSection.html#a78e8cdfc47bb01fc693c9b0134105880">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00077"></a>00077         }
+<a name="l00078"></a>00078     } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 5) { <span class="comment">// ��~���</span>
+<a name="l00079"></a>00079         velocity = this-&gt;<a class="code" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8">computeStopVelocity</a>(refDirection);
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081 <span class="preprocessor">#if TORQUE_MOTOR</span>
+<a name="l00082"></a>00082 <span class="preprocessor"></span>    <a class="code" href="classSection.html#a90f54adf525af7fd74ca64c2f3681f10">bRun</a>.<a class="code" href="classBalancingRun.html#aba38ad0f9be114680c3e9c119d4ded7c">run</a>(velocity);
+<a name="l00083"></a>00083 <span class="preprocessor">#endif</span>
+<a name="l00084"></a>00084 <span class="preprocessor"></span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00085"></a>00085 }
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:06:19 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

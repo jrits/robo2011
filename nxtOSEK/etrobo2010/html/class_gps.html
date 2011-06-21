@@ -1,0 +1,1020 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ET ROBOCON 2010 KACHIROBO!!: クラス Gps</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス Gps</h1><!-- doxytag: class="Gps" -->
+<p>GPS(自己位置推定)クラス.  
+<a href="#_details">[詳細]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_gps_8h_source.html">Gps.h</a>&gt;</code></p>
+
+<p><a href="class_gps-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public 型</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a033ddec722ed249aad3014470e17acb4">eCourse</a> { <a class="el" href="class_gps.html#a033ddec722ed249aad3014470e17acb4ab4ef01fbec3657adc8d9e8cf18099a35">IN</a>, 
+<a class="el" href="class_gps.html#a033ddec722ed249aad3014470e17acb4a3952aae451b81c3460aba7fb7905217a">OUT</a>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>コース識別子 </p>
+ <a href="class_gps.html#a033ddec722ed249aad3014470e17acb4">[詳細]</a><br/></td></tr>
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ac7acbd1ff0a1cca96c685bc4eb4724e9">Gps</a> (Motor &amp;aMotorL, Motor &amp;aMotorR, <a class="el" href="class_gps.html#a033ddec722ed249aad3014470e17acb4">Gps::eCourse</a> aCourse)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンストラクタ  <a href="#ac7acbd1ff0a1cca96c685bc4eb4724e9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a100b65ecd07444cc0e5aa8c5bb164d2a">update</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gps情報の更新.  <a href="#a100b65ecd07444cc0e5aa8c5bb164d2a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a7a23e69bc30bda806b574f1be50c841b">getXCoordinate</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X座標を取得する.  <a href="#a7a23e69bc30bda806b574f1be50c841b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ae38d00e13404190884b42dde4b26a36f">getYCoordinate</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Y座標を取得する.  <a href="#ae38d00e13404190884b42dde4b26a36f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ab2bd83d1b51cf802d37fb2d20b7ef9aa">getDirection</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">車体向きを取得する  <a href="#ab2bd83d1b51cf802d37fb2d20b7ef9aa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ab4b066ac25974b5b1fd27875b95a2da8">getDistance</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">距離を取得する  <a href="#ab4b066ac25974b5b1fd27875b95a2da8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ae06caf764ab3a4785994ab781f3f572f">adjustXCoordinate</a> (float trueValue)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X座標を補正する.  <a href="#ae06caf764ab3a4785994ab781f3f572f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a836b48eb8543efd29e24c166e83023e6">adjustYCoordinate</a> (float trueValue)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Y座標を補正する.  <a href="#a836b48eb8543efd29e24c166e83023e6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#afa0c52d9cab471a6a4fe5e7498e306d8">adjustDirection</a> (float trueValue)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">向きを補正する  <a href="#afa0c52d9cab471a6a4fe5e7498e306d8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#af9e2fea4918689c4a703c2a506eac9a9">adjustDistance</a> (float trueValue)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">距離を補正する  <a href="#af9e2fea4918689c4a703c2a506eac9a9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a12c27f95f51537624a8dcb5527f1613c">calcAngle</a> (float el, float er)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">走行体の曲がった角度を計算  <a href="#a12c27f95f51537624a8dcb5527f1613c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ab3b1657821f2a50553fd6fd32da2be7b">calcRadius</a> (float encoderLeft, float angle)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">走行体の描く円の半径を計算  <a href="#ab3b1657821f2a50553fd6fd32da2be7b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a331764f6c9c78e4b111b78316a69ed4a">calcDirection</a> (float angle)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">走行体の向き(絶対角度、方角)を計算  <a href="#a331764f6c9c78e4b111b78316a69ed4a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ce2632d52660a5788d928778704a4d8"></a><!-- doxytag: member="Gps::calcDistance" ref="a2ce2632d52660a5788d928778704a4d8" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a2ce2632d52660a5788d928778704a4d8">calcDistance</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">走行体の移動した距離を計算 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a8d55d53c1d8a30d3446252bec5960481">calcCenterCoordinates</a> (float angle, float radius, float *circleX, float *circleY)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">走行体の描く円の中心の座標を求める  <a href="#a8d55d53c1d8a30d3446252bec5960481"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a5f421b60ab141e7cb4a751f3d18f0b10">calcCoordinates</a> (float angle, float distance, float encoderL, float encoderR)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">x座標、y座標を計算  <a href="#a5f421b60ab141e7cb4a751f3d18f0b10"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a57711da41d490a01f61fe10c8f7e2d3f">calcDistanceTo</a> (<a class="el" href="struct___t_a_g_p_o_i_n_t.html">Point</a> targetCoordinate)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">現在座標と指定座標間の距離を計算する  <a href="#a57711da41d490a01f61fe10c8f7e2d3f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ae4800b312e49c25d0569f667b8972d46">setYCoordinate</a> (float yCo)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">y座標セッタ  <a href="#ae4800b312e49c25d0569f667b8972d46"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#aa859a4864df88bdbb1b454d4e7a4051a">setXCoordinate</a> (float xCo)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">x座標セッタ  <a href="#aa859a4864df88bdbb1b454d4e7a4051a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#addc60702118a36b2bcf85f0d7c7ad090">setDirection</a> (float direction)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">directionセッタ  <a href="#addc60702118a36b2bcf85f0d7c7ad090"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#aef55b2e181e69cb2f0093c32cae876dc">setDistance</a> (float distance)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">距離セッタ  <a href="#aef55b2e181e69cb2f0093c32cae876dc"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#abd4f61eb0813d22b6db2e542e6fb4fc8">marge360</a> (float margeTarget)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ユーティリティ関数:角度を [0, 360] または [0, -360]に抑える  <a href="#abd4f61eb0813d22b6db2e542e6fb4fc8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a2cf421475b9eb2dfdcd7f51897ecd5ea">marge180</a> (float margeTarget)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ユーティリティ関数:角度を [-180, 180] に抑える  <a href="#a2cf421475b9eb2dfdcd7f51897ecd5ea"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ad9eb222942c1a89d8662adac4d5255d1">radianToDegree</a> (float radian)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ユーティリティ関数:ラジアン(radian)を角度(degree)に変換  <a href="#ad9eb222942c1a89d8662adac4d5255d1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#aeeaebff3aed730ca61cda16026a63ae5">degreeToRadian</a> (float degree)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ユーティリティ関数:角度(degree) をラジアン(radian)に変換  <a href="#aeeaebff3aed730ca61cda16026a63ae5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ae3f49872f1d2b2dd961ca327166532c7">atan2</a> (double y, double x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ユーティリティ関数:atan を使った自作 atan2 関数  <a href="#ae3f49872f1d2b2dd961ca327166532c7"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Private メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a07821a7e728c3b7cdd469b968cfe6e08">adjustPositionOut</a> (float avgX, float avgY, float avgD)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">アウトコース自動補正関数  <a href="#a07821a7e728c3b7cdd469b968cfe6e08"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a5fffa41a86c3935ac08d07f695ab4704">adjustPositionIn</a> (float avgX, float avgY, float avgD)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">インコース自動補正関数  <a href="#a5fffa41a86c3935ac08d07f695ab4704"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Private 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44870477e7f405eab47fbb8b1e06c6d6"></a><!-- doxytag: member="Gps::mWheelRadius" ref="a44870477e7f405eab47fbb8b1e06c6d6" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a44870477e7f405eab47fbb8b1e06c6d6">mWheelRadius</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">車輪半径(mm) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2011c5f19b945d961281f585fc2fe7e"></a><!-- doxytag: member="Gps::mWheelDistance" ref="ad2011c5f19b945d961281f585fc2fe7e" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ad2011c5f19b945d961281f585fc2fe7e">mWheelDistance</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">車輪間隔(mm) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57e1a3af4d7b46a336162a397ed11d9f"></a><!-- doxytag: member="Gps::motorL" ref="a57e1a3af4d7b46a336162a397ed11d9f" args="" -->
+Motor &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a57e1a3af4d7b46a336162a397ed11d9f">motorL</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">左モータ <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7d1778c0401c4c8cb2975403096e1b8"></a><!-- doxytag: member="Gps::motorR" ref="ab7d1778c0401c4c8cb2975403096e1b8" args="" -->
+Motor &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ab7d1778c0401c4c8cb2975403096e1b8">motorR</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">右モータ <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbc5b987420bded654baeb70b9ec8f71"></a><!-- doxytag: member="Gps::mCourse" ref="acbc5b987420bded654baeb70b9ec8f71" args="" -->
+<a class="el" href="class_gps.html#a033ddec722ed249aad3014470e17acb4">Gps::eCourse</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#acbc5b987420bded654baeb70b9ec8f71">mCourse</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コース識別子 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d621cd7c96b11ce721d1148cf80eda3"></a><!-- doxytag: member="Gps::mXCoordinate" ref="a8d621cd7c96b11ce721d1148cf80eda3" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a8d621cd7c96b11ce721d1148cf80eda3">mXCoordinate</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X座標. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04b821465e7a4f1a8be2300cc4cfafec"></a><!-- doxytag: member="Gps::mYCoordinate" ref="a04b821465e7a4f1a8be2300cc4cfafec" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a04b821465e7a4f1a8be2300cc4cfafec">mYCoordinate</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Y座標. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef7c294993c1c86a1ee973cf022ff0c2"></a><!-- doxytag: member="Gps::mDirection" ref="aef7c294993c1c86a1ee973cf022ff0c2" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#aef7c294993c1c86a1ee973cf022ff0c2">mDirection</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">向き <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab981002a81f31c81a0b4ebe27d3410cb"></a><!-- doxytag: member="Gps::mDistance" ref="ab981002a81f31c81a0b4ebe27d3410cb" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ab981002a81f31c81a0b4ebe27d3410cb">mDistance</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">距離 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02b6ba32b6819dbef1e94dea76947642"></a><!-- doxytag: member="Gps::mXOffset" ref="a02b6ba32b6819dbef1e94dea76947642" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a02b6ba32b6819dbef1e94dea76947642">mXOffset</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X座標補正値. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98b3b2fcd5d6a428c5059ed387b3a08c"></a><!-- doxytag: member="Gps::mYOffset" ref="a98b3b2fcd5d6a428c5059ed387b3a08c" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a98b3b2fcd5d6a428c5059ed387b3a08c">mYOffset</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Y座標補正値. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05653a7f901148222cbb221df798d7d4"></a><!-- doxytag: member="Gps::mDirectionOffset" ref="a05653a7f901148222cbb221df798d7d4" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a05653a7f901148222cbb221df798d7d4">mDirectionOffset</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">向き補正値 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2abb312cf33aa7a3a35bf595333bc5e6"></a><!-- doxytag: member="Gps::mDistanceOffset" ref="a2abb312cf33aa7a3a35bf595333bc5e6" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a2abb312cf33aa7a3a35bf595333bc5e6">mDistanceOffset</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">距離補正値 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81f51930592969abd53745ebbb7d1d12"></a><!-- doxytag: member="Gps::mXAverage" ref="a81f51930592969abd53745ebbb7d1d12" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a81f51930592969abd53745ebbb7d1d12">mXAverage</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X座標平均. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81f4decb730dc0129ab70501a0f4064b"></a><!-- doxytag: member="Gps::mYAverage" ref="a81f4decb730dc0129ab70501a0f4064b" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a81f4decb730dc0129ab70501a0f4064b">mYAverage</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Y座標平均. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7db6ce0074ee7c276f482d7456bbf92"></a><!-- doxytag: member="Gps::mDirectionAverage" ref="ab7db6ce0074ee7c276f482d7456bbf92" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#ab7db6ce0074ee7c276f482d7456bbf92">mDirectionAverage</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">向き平均 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15bf17ab292f06f6a6a291c1349f23cb"></a><!-- doxytag: member="Gps::mTimeCounter" ref="a15bf17ab292f06f6a6a291c1349f23cb" args="" -->
+int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gps.html#a15bf17ab292f06f6a6a291c1349f23cb">mTimeCounter</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">時間カウンタ <br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>GPS(自己位置推定)クラス. </p>
+<hr/><h2>列挙型</h2>
+<a class="anchor" id="a033ddec722ed249aad3014470e17acb4"></a><!-- doxytag: member="Gps::eCourse" ref="a033ddec722ed249aad3014470e17acb4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_gps.html#a033ddec722ed249aad3014470e17acb4">Gps::eCourse</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>コース識別子 </p>
+<p>自動補正対象コースの識別に利用 </p>
+<dl><dt><b>列挙型の値: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a033ddec722ed249aad3014470e17acb4ab4ef01fbec3657adc8d9e8cf18099a35"></a><!-- doxytag: member="IN" ref="a033ddec722ed249aad3014470e17acb4ab4ef01fbec3657adc8d9e8cf18099a35" args="" -->IN</em>&nbsp;</td><td>
+<p>インコース </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a033ddec722ed249aad3014470e17acb4a3952aae451b81c3460aba7fb7905217a"></a><!-- doxytag: member="OUT" ref="a033ddec722ed249aad3014470e17acb4a3952aae451b81c3460aba7fb7905217a" args="" -->OUT</em>&nbsp;</td><td>
+<p>アウトコース </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="ac7acbd1ff0a1cca96c685bc4eb4724e9"></a><!-- doxytag: member="Gps::Gps" ref="ac7acbd1ff0a1cca96c685bc4eb4724e9" args="(Motor &amp;aMotorL, Motor &amp;aMotorR, Gps::eCourse aCourse)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Gps::Gps </td>
+          <td>(</td>
+          <td class="paramtype">Motor &amp;&nbsp;</td>
+          <td class="paramname"> <em>aMotorL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Motor &amp;&nbsp;</td>
+          <td class="paramname"> <em>aMotorR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_gps.html#a033ddec722ed249aad3014470e17acb4">Gps::eCourse</a>&nbsp;</td>
+          <td class="paramname"> <em>aCourse</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>コンストラクタ </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>aMotorL</em>&nbsp;</td><td>左モータ </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>aMotorR</em>&nbsp;</td><td>右モータ </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>aCourse</em>&nbsp;</td><td>コース識別子 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>関数</h2>
+<a class="anchor" id="afa0c52d9cab471a6a4fe5e7498e306d8"></a><!-- doxytag: member="Gps::adjustDirection" ref="afa0c52d9cab471a6a4fe5e7498e306d8" args="(float trueValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::adjustDirection </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>trueValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>向きを補正する </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>trueValue</em>&nbsp;</td><td>真値 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af9e2fea4918689c4a703c2a506eac9a9"></a><!-- doxytag: member="Gps::adjustDistance" ref="af9e2fea4918689c4a703c2a506eac9a9" args="(float trueValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::adjustDistance </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>trueValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>距離を補正する </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>trueValue</em>&nbsp;</td><td>真値 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5fffa41a86c3935ac08d07f695ab4704"></a><!-- doxytag: member="Gps::adjustPositionIn" ref="a5fffa41a86c3935ac08d07f695ab4704" args="(float avgX, float avgY, float avgD)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::adjustPositionIn </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>avgX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>avgY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>avgD</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>インコース自動補正関数 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>avgX</em>&nbsp;</td><td>x座標一定時間平均値 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>avgY</em>&nbsp;</td><td>y座標一定時間平均値 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>avgD</em>&nbsp;</td><td>向き一転時間平均値 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="author"><dt><b>作者:</b></dt><dd>tatsuno </dd></dl>
+
+<p><p>直線上を走行中かつGPSの座標から、走行位置、向きを補正 GPSVisualizerの座標を利用してマッピングを行う 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難-&gt;区間を座標で指定するため、判定がシビアになる</p>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a07821a7e728c3b7cdd469b968cfe6e08"></a><!-- doxytag: member="Gps::adjustPositionOut" ref="a07821a7e728c3b7cdd469b968cfe6e08" args="(float avgX, float avgY, float avgD)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::adjustPositionOut </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>avgX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>avgY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>avgD</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>アウトコース自動補正関数 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>avgX</em>&nbsp;</td><td>x座標一定時間平均値 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>avgY</em>&nbsp;</td><td>y座標一定時間平均値 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>avgD</em>&nbsp;</td><td>向き一転時間平均値 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="author"><dt><b>作者:</b></dt><dd>tatsuno </dd></dl>
+
+<p><p>直線上を走行中かつGPSの座標から、走行位置、向きを補正 GPSVisualizerの座標を利用してマッピングを行う 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難-&gt;区間を座標で指定するため、判定がシビアになる</p>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae06caf764ab3a4785994ab781f3f572f"></a><!-- doxytag: member="Gps::adjustXCoordinate" ref="ae06caf764ab3a4785994ab781f3f572f" args="(float trueValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::adjustXCoordinate </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>trueValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>X座標を補正する. </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>trueValue</em>&nbsp;</td><td>真値 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a836b48eb8543efd29e24c166e83023e6"></a><!-- doxytag: member="Gps::adjustYCoordinate" ref="a836b48eb8543efd29e24c166e83023e6" args="(float trueValue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::adjustYCoordinate </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>trueValue</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Y座標を補正する. </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>trueValue</em>&nbsp;</td><td>真値 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae3f49872f1d2b2dd961ca327166532c7"></a><!-- doxytag: member="Gps::atan2" ref="ae3f49872f1d2b2dd961ca327166532c7" args="(double y, double x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Gps::atan2 </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>x</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>ユーティリティ関数:atan を使った自作 atan2 関数 </p>
+<p>atan2 を使用すると固まることがあるため</p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>y</em>&nbsp;</td><td></td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>x</em>&nbsp;</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>ラジアン </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a12c27f95f51537624a8dcb5527f1613c"></a><!-- doxytag: member="Gps::calcAngle" ref="a12c27f95f51537624a8dcb5527f1613c" args="(float el, float er)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::calcAngle </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>el</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>er</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>走行体の曲がった角度を計算 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>el</em>&nbsp;</td><td>単位時間あたりの左モータエンコーダ値変化量 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>er</em>&nbsp;</td><td>単位時間あたりの右モータエンコーダ値変化量 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8d55d53c1d8a30d3446252bec5960481"></a><!-- doxytag: member="Gps::calcCenterCoordinates" ref="a8d55d53c1d8a30d3446252bec5960481" args="(float angle, float radius, float *circleX, float *circleY)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Gps::calcCenterCoordinates </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>circleX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>circleY</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>走行体の描く円の中心の座標を求める </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>angle</em>&nbsp;</td><td>単位時間あたりの走行体の曲がった角度 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>radius</em>&nbsp;</td><td>車輪半径 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>circleX</em>&nbsp;</td><td>中心のX座標 </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>circleY</em>&nbsp;</td><td>中心のX座標 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>戻り値:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>false</em>&nbsp;</td><td>非対応の動き </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5f421b60ab141e7cb4a751f3d18f0b10"></a><!-- doxytag: member="Gps::calcCoordinates" ref="a5f421b60ab141e7cb4a751f3d18f0b10" args="(float angle, float distance, float encoderL, float encoderR)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::calcCoordinates </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>encoderL</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>encoderR</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>x座標、y座標を計算 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>angle</em>&nbsp;</td><td>単位時間あたりの走行体の曲がった角度 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>radius</em>&nbsp;</td><td>車輪半径 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>encoderL</em>&nbsp;</td><td>単位時間あたりの左モータエンコーダ値変化量 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>encoderR</em>&nbsp;</td><td>単位時間あたりの右モータエンコーダ値変化量 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a331764f6c9c78e4b111b78316a69ed4a"></a><!-- doxytag: member="Gps::calcDirection" ref="a331764f6c9c78e4b111b78316a69ed4a" args="(float angle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::calcDirection </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>angle</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>走行体の向き(絶対角度、方角)を計算 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>angle</em>&nbsp;</td><td>単位時間あたりの走行体の曲がった角度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a57711da41d490a01f61fe10c8f7e2d3f"></a><!-- doxytag: member="Gps::calcDistanceTo" ref="a57711da41d490a01f61fe10c8f7e2d3f" args="(Point targetCoordinate)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::calcDistanceTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct___t_a_g_p_o_i_n_t.html">Point</a>&nbsp;</td>
+          <td class="paramname"> <em>targetCoordinate</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>現在座標と指定座標間の距離を計算する </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>targetCoordinate</em>&nbsp;</td><td>指定座標</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>距離 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab3b1657821f2a50553fd6fd32da2be7b"></a><!-- doxytag: member="Gps::calcRadius" ref="ab3b1657821f2a50553fd6fd32da2be7b" args="(float encoderLeft, float angle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::calcRadius </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>encoderLeft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>angle</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>走行体の描く円の半径を計算 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>encoderLeft</em>&nbsp;</td><td>単位時間あたりの左モータエンコーダ値変化量 </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>angle</em>&nbsp;</td><td>単位時間あたりの走行体の曲がった角度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeeaebff3aed730ca61cda16026a63ae5"></a><!-- doxytag: member="Gps::degreeToRadian" ref="aeeaebff3aed730ca61cda16026a63ae5" args="(float degree)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::degreeToRadian </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>degree</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>ユーティリティ関数:角度(degree) をラジアン(radian)に変換 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>degree</em>&nbsp;</td><td>角度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>ラジアン </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab2bd83d1b51cf802d37fb2d20b7ef9aa"></a><!-- doxytag: member="Gps::getDirection" ref="ab2bd83d1b51cf802d37fb2d20b7ef9aa" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::getDirection </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>車体向きを取得する </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>車体向き </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab4b066ac25974b5b1fd27875b95a2da8"></a><!-- doxytag: member="Gps::getDistance" ref="ab4b066ac25974b5b1fd27875b95a2da8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::getDistance </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>距離を取得する </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>距離 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7a23e69bc30bda806b574f1be50c841b"></a><!-- doxytag: member="Gps::getXCoordinate" ref="a7a23e69bc30bda806b574f1be50c841b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::getXCoordinate </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>X座標を取得する. </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>X座標 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae38d00e13404190884b42dde4b26a36f"></a><!-- doxytag: member="Gps::getYCoordinate" ref="ae38d00e13404190884b42dde4b26a36f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::getYCoordinate </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Y座標を取得する. </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>Y座標 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2cf421475b9eb2dfdcd7f51897ecd5ea"></a><!-- doxytag: member="Gps::marge180" ref="a2cf421475b9eb2dfdcd7f51897ecd5ea" args="(float margeTarget)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::marge180 </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>margeTarget</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>ユーティリティ関数:角度を [-180, 180] に抑える </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>margeTarget</em>&nbsp;</td><td>角度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>[-180, 180] の対応する角度 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abd4f61eb0813d22b6db2e542e6fb4fc8"></a><!-- doxytag: member="Gps::marge360" ref="abd4f61eb0813d22b6db2e542e6fb4fc8" args="(float margeTarget)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::marge360 </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>margeTarget</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>ユーティリティ関数:角度を [0, 360] または [0, -360]に抑える </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>margeTarget</em>&nbsp;</td><td>角度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>[0, 360] または [0, -360] の対応する角度 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad9eb222942c1a89d8662adac4d5255d1"></a><!-- doxytag: member="Gps::radianToDegree" ref="ad9eb222942c1a89d8662adac4d5255d1" args="(float radian)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gps::radianToDegree </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>radian</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>ユーティリティ関数:ラジアン(radian)を角度(degree)に変換 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>radian</em>&nbsp;</td><td>ラジアン </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>角度 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="addc60702118a36b2bcf85f0d7c7ad090"></a><!-- doxytag: member="Gps::setDirection" ref="addc60702118a36b2bcf85f0d7c7ad090" args="(float direction)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::setDirection </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>direction</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>directionセッタ </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>direction</em>&nbsp;</td><td>指定向き </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aef55b2e181e69cb2f0093c32cae876dc"></a><!-- doxytag: member="Gps::setDistance" ref="aef55b2e181e69cb2f0093c32cae876dc" args="(float distance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::setDistance </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>distance</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>距離セッタ </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>distance</em>&nbsp;</td><td>指定距離 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa859a4864df88bdbb1b454d4e7a4051a"></a><!-- doxytag: member="Gps::setXCoordinate" ref="aa859a4864df88bdbb1b454d4e7a4051a" args="(float xCo)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::setXCoordinate </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>xCo</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>x座標セッタ </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>xCo</em>&nbsp;</td><td>指定x座標 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae4800b312e49c25d0569f667b8972d46"></a><!-- doxytag: member="Gps::setYCoordinate" ref="ae4800b312e49c25d0569f667b8972d46" args="(float yCo)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::setYCoordinate </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>yCo</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>y座標セッタ </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>yCo</em>&nbsp;</td><td>指定y座標 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a100b65ecd07444cc0e5aa8c5bb164d2a"></a><!-- doxytag: member="Gps::update" ref="a100b65ecd07444cc0e5aa8c5bb164d2a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gps::update </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gps情報の更新. </p>
+
+<p><p>座標、向き補正関数呼び出し。呼び出す周期は適当なものに変更するべし。</p>
+</p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="_gps_8h_source.html">Gps.h</a></li>
+<li>Gps.cpp</li>
+</ul>
+</div>
+<hr size="1"/><address style="text-align: right;"><small>ET ROBOCON 2010 KACHIROBO!!に対してWed Dec 8 11:36:46 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: クラス InTwinloopCourse</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス InTwinloopCourse</h1><!-- doxytag: class="InTwinloopCourse" --><!-- doxytag: inherits="Course" -->
+<p><a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> Manager.  
+<a href="#_details">[詳細]</a></p>
+
+<p><code>#include &lt;<a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a>&gt;</code></p>
+<div class="dynheader">
+InTwinloopCourseに対する継承グラフ</div>
+<div class="dynsection">
+<div class="center"><img src="classInTwinloopCourse__inherit__graph.png" border="0" usemap="#InTwinloopCourse_inherit__map" alt="Inheritance graph"/></div>
+<map name="InTwinloopCourse_inherit__map" id="InTwinloopCourse_inherit__map">
+<area shape="rect" id="node2" href="classCourse.html" title="Section (Marker Section) Detector." alt="" coords="36,5,97,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+InTwinloopCourseのコラボレーション図</div>
+<div class="dynsection">
+<div class="center"><img src="classInTwinloopCourse__coll__graph.png" border="0" usemap="#InTwinloopCourse_coll__map" alt="Collaboration graph"/></div>
+<map name="InTwinloopCourse_coll__map" id="InTwinloopCourse_coll__map">
+<area shape="rect" id="node2" href="classCourse.html" title="Section (Marker Section) Detector." alt="" coords="115,197,176,227"/><area shape="rect" id="node4" href="classDirection.html" title="Direction" alt="" coords="5,101,77,131"/><area shape="rect" id="node6" href="classSensorHistory.html" title="SensorHistory" alt="" coords="41,5,145,35"/><area shape="rect" id="node8" href="classDistance.html" title="Distance" alt="" coords="109,101,181,131"/><area shape="rect" id="node11" href="classTime.html" title="Time" alt="" coords="205,101,256,131"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+
+<p><a href="classInTwinloopCourse-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public 型</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51">SectionId</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef">START</a>, 
+<a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51af149d95c6721f52d279ce10ce61e4492">BEFORE_TWINLOOP</a>, 
+<a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a7a1218505aa041cd303675e06ae8725b">TWINLOOP</a>, 
+<a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51af0edc23b1107beaffac31a0dce62b26d">AFTER_TWINLOOP</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a8c2bbea175a200bfba9185bff3eb4615">AFTER_FIRST360</a>, 
+<a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51ae233d21dbb6e31d1c1ca332bbae7bf76">END</a>
+<br/>
+ }</td></tr>
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInTwinloopCourse.html#ad5b09d2144085bfdd5ffe3b70006fbd7">InTwinloopCourse</a> (<a class="el" href="classDirection.html">Direction</a> &amp;g, <a class="el" href="classDistance.html">Distance</a> &amp;d, <a class="el" href="classTime.html">Time</a> &amp;t, <a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51">SectionId</a> si=InTwinloopCourse::START, <a class="el" href="classCourse.html#adb55ea022443351c9195b3688b59108e">CourseId</a> ci=Course::IN)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInTwinloopCourse.html#ad23d2e1c60e9855c27591c9773e15435">~InTwinloopCourse</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSection.html">Section</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3">detect</a> ()</td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p><a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> Manager. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">TODO:</a></b></dt><dd>In <a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> would be an object of a course. </dd></dl>
+
+<p> <a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a> の <a class="el" href="InTwinloopCourse_8hpp_source.html#l00013">13</a> 行で定義されています。</p>
+<hr/><h2>列挙型</h2>
+<a class="anchor" id="a84b6dfb0e3ac58c32d345f9e69913f51"></a><!-- doxytag: member="InTwinloopCourse::SectionId" ref="a84b6dfb0e3ac58c32d345f9e69913f51" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51">InTwinloopCourse::SectionId</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>列挙型の値: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef"></a><!-- doxytag: member="START" ref="a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef" args="" -->START</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a84b6dfb0e3ac58c32d345f9e69913f51af149d95c6721f52d279ce10ce61e4492"></a><!-- doxytag: member="BEFORE_TWINLOOP" ref="a84b6dfb0e3ac58c32d345f9e69913f51af149d95c6721f52d279ce10ce61e4492" args="" -->BEFORE_TWINLOOP</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a84b6dfb0e3ac58c32d345f9e69913f51a7a1218505aa041cd303675e06ae8725b"></a><!-- doxytag: member="TWINLOOP" ref="a84b6dfb0e3ac58c32d345f9e69913f51a7a1218505aa041cd303675e06ae8725b" args="" -->TWINLOOP</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a84b6dfb0e3ac58c32d345f9e69913f51af0edc23b1107beaffac31a0dce62b26d"></a><!-- doxytag: member="AFTER_TWINLOOP" ref="a84b6dfb0e3ac58c32d345f9e69913f51af0edc23b1107beaffac31a0dce62b26d" args="" -->AFTER_TWINLOOP</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a84b6dfb0e3ac58c32d345f9e69913f51a8c2bbea175a200bfba9185bff3eb4615"></a><!-- doxytag: member="AFTER_FIRST360" ref="a84b6dfb0e3ac58c32d345f9e69913f51a8c2bbea175a200bfba9185bff3eb4615" args="" -->AFTER_FIRST360</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a84b6dfb0e3ac58c32d345f9e69913f51ae233d21dbb6e31d1c1ca332bbae7bf76"></a><!-- doxytag: member="END" ref="a84b6dfb0e3ac58c32d345f9e69913f51ae233d21dbb6e31d1c1ca332bbae7bf76" args="" -->END</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p> <a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a> の <a class="el" href="InTwinloopCourse_8hpp_source.html#l00016">16</a> 行で定義されています。</p>
+
+</div>
+</div>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="ad5b09d2144085bfdd5ffe3b70006fbd7"></a><!-- doxytag: member="InTwinloopCourse::InTwinloopCourse" ref="ad5b09d2144085bfdd5ffe3b70006fbd7" args="(Direction &amp;g, Distance &amp;d, Time &amp;t, SectionId si=InTwinloopCourse::START, CourseId ci=Course::IN)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InTwinloopCourse::InTwinloopCourse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDirection.html">Direction</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classDistance.html">Distance</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTime.html">Time</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51">SectionId</a>&nbsp;</td>
+          <td class="paramname"> <em>si</em> = <code>InTwinloopCourse::START</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCourse.html#adb55ea022443351c9195b3688b59108e">CourseId</a>&nbsp;</td>
+          <td class="paramname"> <em>ci</em> = <code>Course::IN</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a> の <a class="el" href="InTwinloopCourse_8hpp_source.html#l00026">26</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="ad23d2e1c60e9855c27591c9773e15435"></a><!-- doxytag: member="InTwinloopCourse::~InTwinloopCourse" ref="ad23d2e1c60e9855c27591c9773e15435" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">InTwinloopCourse::~InTwinloopCourse </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a> の <a class="el" href="InTwinloopCourse_8hpp_source.html#l00032">32</a> 行で定義されています。</p>
+
+</div>
+</div>
+<hr/><h2>関数</h2>
+<a class="anchor" id="aedfa60de16c69e8a950a7667beed10b3"></a><!-- doxytag: member="InTwinloopCourse::detect" ref="aedfa60de16c69e8a950a7667beed10b3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSection.html">Section</a>* InTwinloopCourse::detect </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><p>&lt;���񌈒肷���ԁB�Ƃ肠�����O��Ɠ�����Ԃ�</p>
+<p>�ԑ̌����F���̒��� </p>
+</p>
+
+<p><a class="el" href="classCourse.html#ac7ce1c8a6445201bbdabcc41e13f3481">Course</a>を再定義しています。</p>
+
+<p> <a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a> の <a class="el" href="InTwinloopCourse_8hpp_source.html#l00035">35</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classInTwinloopCourse_aedfa60de16c69e8a950a7667beed10b3_cgraph.png" border="0" usemap="#classInTwinloopCourse_aedfa60de16c69e8a950a7667beed10b3_cgraph_map" alt=""></div>
+<map name="classInTwinloopCourse_aedfa60de16c69e8a950a7667beed10b3_cgraph_map" id="classInTwinloopCourse_aedfa60de16c69e8a950a7667beed10b3_cgraph">
+<area shape="rect" id="node3" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="236,117,447,146"/><area shape="rect" id="node5" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="536,165,752,194"/><area shape="rect" id="node11" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="539,58,749,87"/><area shape="rect" id="node19" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="240,63,443,93"/><area shape="rect" id="node24" href="classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d" title="Distance::computeDistance" alt="" coords="251,271,432,301"/><area shape="rect" id="node30" href="classCourse.html#af3a49052ae755ca76a8f33bfcac6b091" title="Course::countFlag" alt="" coords="277,378,405,407"/><area shape="rect" id="node33" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="561,218,727,247"/><area shape="rect" id="node39" href="classGoalStopSection.html#a9d974a254d3bd363ea4cc45ee82fef1b" title="GoalStopSection::initialize" alt="" coords="255,431,428,461"/><area shape="rect" id="node41" href="classNormalLineSection.html#a1bc0c120fd1795b00ee5de994bfcd147" title="NormalLineSection::initialize" alt="" coords="248,485,435,514"/><area shape="rect" id="node43" href="classTwinloopSection.html#a8e637e25f4f9fd2ac05dffacf4bec1ed" title="TwinloopSection::initialize" alt="" coords="256,538,427,567"/><area shape="rect" id="node45" href="classSection.html#a571cdc71da3898801225c3e14c822591" title="Section::isEnd" alt="" coords="288,591,395,621"/><area shape="rect" id="node47" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158" title="Distance::reset" alt="" coords="287,325,396,354"/><area shape="rect" id="node51" href="classNormalLineSection.html#a390dacb252b73c11e2a4f2c88701eebc" title="NormalLineSection::setBootEdge" alt="" coords="235,645,448,674"/><area shape="rect" id="node53" href="classNormalLineSection.html#accd10c9338aaebcb9d3ecc65d390088d" title="NormalLineSection::setBootSpeed" alt="" coords="231,698,452,727"/><area shape="rect" id="node55" href="classNormalLineSection.html#a5ab6cc58f1ffee635bc5ca218838f8fb" title="NormalLineSection::setBootTime" alt="" coords="236,751,447,781"/><area shape="rect" id="node57" href="classGoalStopSection.html#af07b9279e35ce1c42fe0e7e4730cb9a0" title="GoalStopSection::setDistanceToGoal" alt="" coords="223,805,460,834"/><area shape="rect" id="node59" href="classGoalStopSection.html#af59a205968f930593113faaa6e6e0c2f" title="GoalStopSection::setEdge" alt="" coords="253,858,429,887"/><area shape="rect" id="node63" href="classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e" title="NormalLineSection::setEdge" alt="" coords="248,911,435,941"/><area shape="rect" id="node65" href="classGoalStopSection.html#a633b45d22162fedc66189b522d5b5ed4" title="GoalStopSection::setSpeed" alt="" coords="251,965,432,994"/><area shape="rect" id="node69" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b" title="NormalLineSection::setSpeed" alt="" coords="244,1018,439,1047"/><area shape="rect" id="node16" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="541,111,747,141"/><area shape="rect" id="node7" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="1061,165,1232,194"/><area shape="rect" id="node9" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1280,191,1411,221"/><area shape="rect" id="node13" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="827,111,1013,141"/><area shape="rect" id="node26" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="515,271,773,301"/><area shape="rect" id="node28" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="511,325,777,354"/><area shape="rect" id="node35" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="845,217,995,246"/><area shape="rect" id="node61" href="classLineTraceDriver.html#a8c5dab59304956f56c6420c520530b55" title="LineTraceDriver::setEdge" alt="" coords="561,858,727,887"/><area shape="rect" id="node67" href="classDriver.html#a01132ddd008ad2e8ebfb552559e627bc" title="Driver::setSpeed" alt="" coords="585,991,703,1021"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="InTwinloopCourse_8hpp_source.html">InTwinloopCourse.hpp</a></li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:08:38 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

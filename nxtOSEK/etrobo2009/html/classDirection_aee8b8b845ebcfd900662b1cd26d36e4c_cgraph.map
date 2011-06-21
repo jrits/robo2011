@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classDirection.html#ab96a03b3be055655fd46a596243c0953" title="Estimate the absolute direction angle." alt="" coords="213,57,395,87"/>
+<area shape="rect" id="node5" href="$classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="451,5,709,35"/>
+<area shape="rect" id="node9" href="$classDirection.html#aeaf8e651c00fb2d06da3f09639510dec" title="Forward the newest pointer." alt="" coords="228,111,380,140"/>
+<area shape="rect" id="node11" href="$classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="219,164,389,193"/>
+<area shape="rect" id="node15" href="$classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="229,217,379,247"/>
+<area shape="rect" id="node18" href="$classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b" title="左モータエンコーダ値の取得" alt="" coords="211,271,397,300"/>
+<area shape="rect" id="node7" href="$classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="447,59,713,88"/>
+<area shape="rect" id="node13" href="$classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="515,217,645,247"/>
+</map>

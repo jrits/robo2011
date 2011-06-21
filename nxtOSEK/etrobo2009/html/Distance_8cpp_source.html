@@ -1,0 +1,86 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: Distance.cpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+<h1>Distance.cpp</h1><a href="Distance_8cpp.html">説明を見る。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="Distance_8hpp.html">Distance.hpp</a>&quot;</span>
+<a name="l00002"></a>00002 <span class="preprocessor">#include &lt;cmath&gt;</span>
+<a name="l00003"></a>00003 
+<a name="l00004"></a><a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">00004</a> <span class="keywordtype">void</span> <a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">Distance::reset</a>()
+<a name="l00005"></a>00005 {
+<a name="l00006"></a>00006     S32 currentCountL = <a class="code" href="classDistance.html#a4d404d51e34950e5a307c35f7c88dec2">history</a>.<a class="code" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f">getLeftMotorCountHistory</a>();
+<a name="l00007"></a>00007     S32 currentCountR = <a class="code" href="classDistance.html#a4d404d51e34950e5a307c35f7c88dec2">history</a>.<a class="code" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78">getRightMotorCountHistory</a>();
+<a name="l00008"></a>00008     this-&gt;<a class="code" href="classDistance.html#a11752a6e51ea9d343c2644af0266db0e" title="リセット時測定した際のモータカウントの値。モータカウント値は左と右�...">resetCount</a> = (currentCountL + currentCountR) / 2.0;
+<a name="l00009"></a>00009 }
+<a name="l00010"></a>00010 
+<a name="l00011"></a><a class="code" href="classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d">00011</a> F32 <a class="code" href="classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d">Distance::computeDistance</a>()
+<a name="l00012"></a>00012 {
+<a name="l00013"></a>00013     S32 currentCountL = <a class="code" href="classDistance.html#a4d404d51e34950e5a307c35f7c88dec2">history</a>.<a class="code" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f">getLeftMotorCountHistory</a>();
+<a name="l00014"></a>00014     S32 currentCountR = <a class="code" href="classDistance.html#a4d404d51e34950e5a307c35f7c88dec2">history</a>.<a class="code" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78">getRightMotorCountHistory</a>();
+<a name="l00015"></a>00015     F32 currentCount;
+<a name="l00016"></a>00016     F32 <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>;
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018     currentCount = (currentCountL + currentCountR) / 2.0;
+<a name="l00019"></a>00019     distance = (currentCount - this-&gt;<a class="code" href="classDistance.html#a11752a6e51ea9d343c2644af0266db0e" title="リセット時測定した際のモータカウントの値。モータカウント値は左と右�...">resetCount</a>) * <a class="code" href="parameters_8hpp.html#aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</a> * M_PI / 180.0;
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021     <span class="keywordflow">return</span> distance;
+<a name="l00022"></a>00022 }
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:06:19 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

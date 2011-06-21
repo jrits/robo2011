@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classLineTraceDriver.html#ac22990b7ba387e7c81784408aeb2a4aa" title="LineTraceDriver::computeVelocityByLight" alt="" coords="235,139,493,168"/>
+<area shape="rect" id="node22" href="$classColor.html#a2234883c720dcb573f9eecc221e51685" title="Color::getDeviation" alt="" coords="299,192,429,221"/>
+<area shape="rect" id="node5" href="$classLineTraceDriver.html#a40a0538508b9adf2dbd28a13e679c1e2" title="LineTraceDriver::computeVelocity" alt="" coords="568,112,781,141"/>
+<area shape="rect" id="node19" href="$classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="541,165,808,195"/>
+<area shape="rect" id="node7" href="$classNewGoalStopSection.html#adb81722c153aaa8065aac9fe0fe871b4" title="NewGoalStopSection::computeRunningVelocity" alt="" coords="857,5,1153,35"/>
+<area shape="rect" id="node11" href="$classGoalStopSection.html#a475b15a3d6db5805d863d0104762c19b" title="GoalStopSection::computeRunningVelocity" alt="" coords="869,59,1141,88"/>
+<area shape="rect" id="node15" href="$classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="933,112,1077,141"/>
+<area shape="rect" id="node17" href="$classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="913,165,1097,195"/>
+<area shape="rect" id="node9" href="$classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="1204,5,1401,35"/>
+<area shape="rect" id="node13" href="$classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="1216,59,1389,88"/>
+</map>

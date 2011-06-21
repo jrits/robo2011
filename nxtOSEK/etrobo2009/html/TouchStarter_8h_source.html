@@ -1,0 +1,91 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: TouchStarter.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+<h1>TouchStarter.h</h1><a href="TouchStarter_8h.html">説明を見る。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
+<a name="l00002"></a>00002 <span class="comment">// TouchStarter.h</span>
+<a name="l00003"></a>00003 <span class="comment">//</span>
+<a name="l00004"></a>00004 
+<a name="l00005"></a>00005 <span class="preprocessor">#ifndef TOUCHSTARTER_H_</span>
+<a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define TOUCHSTARTER_H_</span>
+<a name="l00007"></a>00007 <span class="preprocessor"></span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;TouchSensor.h&quot;</span>
+<a name="l00009"></a>00009 <span class="keyword">using namespace </span>ecrobot;
+<a name="l00010"></a>00010 
+<a name="l00011"></a><a class="code" href="classTouchStarter.html">00011</a> <span class="keyword">class </span><a class="code" href="classTouchStarter.html">TouchStarter</a>
+<a name="l00012"></a>00012 {
+<a name="l00013"></a>00013 <span class="keyword">private</span>:
+<a name="l00014"></a><a class="code" href="classTouchStarter.html#a80cfb32ebd509ae0aecec20dfd9879de">00014</a>         <span class="keyword">const</span> TouchSensor&amp; <a class="code" href="classTouchStarter.html#a80cfb32ebd509ae0aecec20dfd9879de">mrTouch</a>;
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 <span class="keyword">public</span>:
+<a name="l00017"></a><a class="code" href="classTouchStarter.html#a4debc980f82796b5af0f3bd2938aeb4a">00017</a>         <a class="code" href="classTouchStarter.html#a4debc980f82796b5af0f3bd2938aeb4a">TouchStarter</a>(<span class="keyword">const</span> TouchSensor&amp; touch)
+<a name="l00018"></a>00018         :
+<a name="l00019"></a>00019         <a class="code" href="classTouchStarter.html#a80cfb32ebd509ae0aecec20dfd9879de">mrTouch</a>(touch)
+<a name="l00020"></a>00020         {}
+<a name="l00021"></a>00021 
+<a name="l00022"></a><a class="code" href="classTouchStarter.html#a30813e548fe872747e340577cb179111">00022</a>         <a class="code" href="classTouchStarter.html#a30813e548fe872747e340577cb179111">~TouchStarter</a>(){}
+<a name="l00023"></a>00023         
+<a name="l00024"></a><a class="code" href="classTouchStarter.html#a5bbc2e89630be3dcddecac66a5410447">00024</a>         <span class="keywordtype">void</span> <a class="code" href="classTouchStarter.html#a5bbc2e89630be3dcddecac66a5410447">waitForReadyGo</a>(){ <span class="keywordflow">while</span>(!<a class="code" href="classTouchStarter.html#a80cfb32ebd509ae0aecec20dfd9879de">mrTouch</a>.isPressed()); }
+<a name="l00025"></a>00025 };
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="preprocessor">#endif </span><span class="comment">/*TOUCHSTARTER_H_*/</span>
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:06:20 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

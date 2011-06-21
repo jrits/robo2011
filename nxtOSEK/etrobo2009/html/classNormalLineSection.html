@@ -1,0 +1,538 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: クラス NormalLineSection</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス NormalLineSection</h1><!-- doxytag: class="NormalLineSection" --><!-- doxytag: inherits="Section" -->
+<p><code>#include &lt;<a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a>&gt;</code></p>
+<div class="dynheader">
+NormalLineSectionに対する継承グラフ</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection__inherit__graph.png" border="0" usemap="#NormalLineSection_inherit__map" alt="Inheritance graph"/></div>
+<map name="NormalLineSection_inherit__map" id="NormalLineSection_inherit__map">
+<area shape="rect" id="node2" href="classSection.html" title="各走行法クラスのインターフェースを定義するスーパークラス。..." alt="" coords="37,5,104,35"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+NormalLineSectionのコラボレーション図</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection__coll__graph.png" border="0" usemap="#NormalLineSection_coll__map" alt="Collaboration graph"/></div>
+<map name="NormalLineSection_coll__map" id="NormalLineSection_coll__map">
+<area shape="rect" id="node2" href="classSection.html" title="各走行法クラスのインターフェースを定義するスーパークラス。..." alt="" coords="1016,239,1083,268"/><area shape="rect" id="node4" href="classCurvaturePidDriver.html" title="CurvaturePidDriver" alt="" coords="737,104,863,133"/><area shape="rect" id="node6" href="classDriver.html" title="各走行部品のインターフェースを定義するスーパークラス。..." alt="" coords="583,171,636,200"/><area shape="rect" id="node26" href="classDirectionPidDriver.html" title="DirectionPidDriver" alt="" coords="739,211,861,240"/><area shape="rect" id="node30" href="classLineTraceDriver.html" title="LineTraceDriver" alt="" coords="745,157,855,187"/><area shape="rect" id="node8" href="classBalancingRun.html" title="BalancingRun" alt="" coords="380,47,481,76"/><area shape="rect" id="node10" href="classBalancer.html" title="Balancer" alt="" coords="203,47,275,76"/><area shape="rect" id="node12" href="classSensorHistory.html" title="SensorHistory" alt="" coords="5,227,109,256"/><area shape="rect" id="node16" href="classDirection.html" title="Direction" alt="" coords="395,227,467,256"/><area shape="rect" id="node20" href="classDistance.html" title="Distance" alt="" coords="395,300,467,329"/><area shape="rect" id="node14" href="classPidController.html" title="PID制御。." alt="" coords="383,171,479,200"/><area shape="rect" id="node23" href="classTime.html" title="Time" alt="" coords="405,403,456,432"/></map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+
+<p><a href="classNormalLineSection-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#ae7f18bf50ceccb9be9e1e48fa5689ac3">NormalLineSection</a> (<a class="el" href="classBalancingRun.html">BalancingRun</a> &amp;b, <a class="el" href="classDistance.html">Distance</a> &amp;d, <a class="el" href="classDirection.html">Direction</a> &amp;g, <a class="el" href="classLineTraceDriver.html">LineTraceDriver</a> &amp;lp, <a class="el" href="classDirectionPidDriver.html">DirectionPidDriver</a> &amp;ap, <a class="el" href="classCurvaturePidDriver.html">CurvaturePidDriver</a> &amp;dap, Clock &amp;c, <a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;sh)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#abfec01ae7ac1eeefa3f1294f4d3da5e9">~NormalLineSection</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a1bc0c120fd1795b00ee5de994bfcd147">initialize</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef">execute</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a390dacb252b73c11e2a4f2c88701eebc">setBootEdge</a> (<a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a> <a class="el" href="classNormalLineSection.html#aa553eeb3ad99a1e2497cf1bad74267c8">edge</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e">setEdge</a> (<a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a> <a class="el" href="classNormalLineSection.html#aa553eeb3ad99a1e2497cf1bad74267c8">edge</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#accd10c9338aaebcb9d3ecc65d390088d">setBootSpeed</a> (S8 <a class="el" href="classNormalLineSection.html#a13714e723f5473993d894b55a7525985">bootSpeed</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a5ab6cc58f1ffee635bc5ca218838f8fb">setBootTime</a> (S32 <a class="el" href="classNormalLineSection.html#a73df7550c7f677c8b78e510d47a6de56">bootTime</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b">setSpeed</a> (S8 <a class="el" href="classNormalLineSection.html#a167f9fa73c5a344e54834a02cd4e780d">speed</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#ae7994ead218ed55fa1eb814445083e62">switchEdge</a> ()</td></tr>
+<tr><td colspan="2"><h2>Private 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a50413823e73ece6c6dabccb757e8b051">state</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">S8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a13714e723f5473993d894b55a7525985">bootSpeed</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">S32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a73df7550c7f677c8b78e510d47a6de56">bootTime</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#ae438dc881121106fd0e35b6d0be12468">bootEdge</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">S8&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#a167f9fa73c5a344e54834a02cd4e780d">speed</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNormalLineSection.html#aa553eeb3ad99a1e2497cf1bad74267c8">edge</a></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00008">8</a> 行で定義されています。</p>
+<hr/><h2>コンストラクタとデストラクタ</h2>
+<a class="anchor" id="ae7f18bf50ceccb9be9e1e48fa5689ac3"></a><!-- doxytag: member="NormalLineSection::NormalLineSection" ref="ae7f18bf50ceccb9be9e1e48fa5689ac3" args="(BalancingRun &amp;b, Distance &amp;d, Direction &amp;g, LineTraceDriver &amp;lp, DirectionPidDriver &amp;ap, CurvaturePidDriver &amp;dap, Clock &amp;c, SensorHistory &amp;sh)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NormalLineSection::NormalLineSection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBalancingRun.html">BalancingRun</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classDistance.html">Distance</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classDirection.html">Direction</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classLineTraceDriver.html">LineTraceDriver</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>lp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classDirectionPidDriver.html">DirectionPidDriver</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>ap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCurvaturePidDriver.html">CurvaturePidDriver</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>dap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Clock &amp;&nbsp;</td>
+          <td class="paramname"> <em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>sh</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00018">18</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_ae7f18bf50ceccb9be9e1e48fa5689ac3_cgraph.png" border="0" usemap="#classNormalLineSection_ae7f18bf50ceccb9be9e1e48fa5689ac3_cgraph_map" alt=""></div>
+<map name="classNormalLineSection_ae7f18bf50ceccb9be9e1e48fa5689ac3_cgraph_map" id="classNormalLineSection_ae7f18bf50ceccb9be9e1e48fa5689ac3_cgraph">
+<area shape="rect" id="node3" href="classNormalLineSection.html#a1bc0c120fd1795b00ee5de994bfcd147" title="NormalLineSection::initialize" alt="" coords="301,5,488,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="abfec01ae7ac1eeefa3f1294f4d3da5e9"></a><!-- doxytag: member="NormalLineSection::~NormalLineSection" ref="abfec01ae7ac1eeefa3f1294f4d3da5e9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NormalLineSection::~NormalLineSection </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00022">22</a> 行で定義されています。</p>
+
+</div>
+</div>
+<hr/><h2>関数</h2>
+<a class="anchor" id="a4dbd9d58add838fe6b65f06c59a0dcef"></a><!-- doxytag: member="NormalLineSection::execute" ref="a4dbd9d58add838fe6b65f06c59a0dcef" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool NormalLineSection::execute </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><a class="el" href="classSection.html#a89147527764e17224e94bf2c3e8db073">Section</a>を再定義しています。</p>
+
+<p> <a class="el" href="NormalLineSection_8cpp_source.html">NormalLineSection.cpp</a> の <a class="el" href="NormalLineSection_8cpp_source.html#l00004">4</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_a4dbd9d58add838fe6b65f06c59a0dcef_cgraph.png" border="0" usemap="#classNormalLineSection_a4dbd9d58add838fe6b65f06c59a0dcef_cgraph_map" alt=""></div>
+<map name="classNormalLineSection_a4dbd9d58add838fe6b65f06c59a0dcef_cgraph_map" id="classNormalLineSection_a4dbd9d58add838fe6b65f06c59a0dcef_cgraph">
+<area shape="rect" id="node3" href="classLineTraceDriver.html#a40a0538508b9adf2dbd28a13e679c1e2" title="LineTraceDriver::computeVelocity" alt="" coords="267,56,480,85"/><area shape="rect" id="node15" href="classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="240,109,507,139"/><area shape="rect" id="node33" href="classTime.html#a957fead9cd4f06a5c1fb66c7255e1637" title="Time::elapsedTime" alt="" coords="957,188,1088,217"/><area shape="rect" id="node35" href="classTime.html#afe661f7ba15818a24bf76e83da2889a0" title="Time::reset" alt="" coords="980,241,1065,271"/><area shape="rect" id="node40" href="classLineTraceDriver.html#a6640c0d53f7914a84fd6731ddfe507f6" title="LineTraceDriver::initialize" alt="" coords="291,163,456,192"/><area shape="rect" id="node44" href="classBalancingRun.html#aba38ad0f9be114680c3e9c119d4ded7c" title="BalancingRun::run" alt="" coords="309,332,437,361"/><area shape="rect" id="node5" href="classLineTraceDriver.html#ac22990b7ba387e7c81784408aeb2a4aa" title="LineTraceDriver::computeVelocityByLight" alt="" coords="568,59,827,88"/><area shape="rect" id="node13" href="classDriver.html#a192b222cc14c5b44e38ae51895aa2dce" title="Driver::controlVelocity" alt="" coords="624,5,771,35"/><area shape="rect" id="node7" href="classPidController.html#a1c400aa5e80284bdcad4999838ddf83f" title="PID制御." alt="" coords="952,81,1093,111"/><area shape="rect" id="node9" href="classColor.html#ab7d5dcae43ab980349b90cb396d91aa8" title="Color::getLightSensorValue" alt="" coords="933,28,1112,57"/><area shape="rect" id="node11" href="classSensorHistory.html#a0253284517f931447fb5e9c66dfaf9d2" title="SensorHistory::getLightSensorHistory" alt="" coords="1223,28,1463,57"/><area shape="rect" id="node17" href="classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="555,112,840,141"/><area shape="rect" id="node19" href="classDirection.html#a9ba6b453c8089b8978809ed791bf4bc0" title="Estimate the moving averaged curvature (1/radius) of running curve." alt="" coords="920,135,1125,164"/><area shape="rect" id="node21" href="classDirection.html#a347f11d523d1a9662ac9e9e61f2452ef" title="移動平均向きの微分値の計算。" alt="" coords="1224,108,1461,137"/><area shape="rect" id="node27" href="classDirection.html#a415bd566b52d22cafec8afa3c78e7f36" title="移動平均左モータエンコーダ値の微分値の計算。" alt="" coords="1205,161,1480,191"/><area shape="rect" id="node23" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="1547,108,1717,137"/><area shape="rect" id="node25" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1784,135,1915,164"/><area shape="rect" id="node29" href="classDirection.html#ae8c954f2b4908119a93a7482e6d13b38" title="移動平均左モータエンコーダ値の取得" alt="" coords="1528,161,1736,191"/><area shape="rect" id="node46" href="classBalancer.html#a1e4140cd630ef3713debec0819adc99d" title="Balancer::balance" alt="" coords="635,348,760,377"/><area shape="rect" id="node48" href="classSensorHistory.html#afa6b666767a463b5c3bc21cc2059162e" title="SensorHistory::getBatteryVoltageHistory" alt="" coords="895,455,1151,484"/><area shape="rect" id="node50" href="classSensorHistory.html#af5957b3893f9271f699b9ba02ba471a1" title="SensorHistory::getGyroSensorHistory" alt="" coords="903,295,1143,324"/><area shape="rect" id="node52" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="893,348,1152,377"/><area shape="rect" id="node54" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="889,401,1156,431"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a1bc0c120fd1795b00ee5de994bfcd147"></a><!-- doxytag: member="NormalLineSection::initialize" ref="a1bc0c120fd1795b00ee5de994bfcd147" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NormalLineSection::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00023">23</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_a1bc0c120fd1795b00ee5de994bfcd147_icgraph.png" border="0" usemap="#classNormalLineSection_a1bc0c120fd1795b00ee5de994bfcd147_icgraph_map" alt=""></div>
+<map name="classNormalLineSection_a1bc0c120fd1795b00ee5de994bfcd147_icgraph_map" id="classNormalLineSection_a1bc0c120fd1795b00ee5de994bfcd147_icgraph">
+<area shape="rect" id="node3" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="300,5,428,35"/><area shape="rect" id="node5" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="281,59,447,88"/><area shape="rect" id="node7" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="291,112,437,141"/><area shape="rect" id="node11" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="284,165,444,195"/><area shape="rect" id="node13" href="classNormalLineSection.html#ae7f18bf50ceccb9be9e1e48fa5689ac3" title="NormalLineSection::NormalLineSection" alt="" coords="240,219,488,248"/><area shape="rect" id="node9" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="536,112,592,141"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a390dacb252b73c11e2a4f2c88701eebc"></a><!-- doxytag: member="NormalLineSection::setBootEdge" ref="a390dacb252b73c11e2a4f2c88701eebc" args="(EDGE edge)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NormalLineSection::setBootEdge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a>&nbsp;</td>
+          <td class="paramname"> <em>edge</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00033">33</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_a390dacb252b73c11e2a4f2c88701eebc_icgraph.png" border="0" usemap="#classNormalLineSection_a390dacb252b73c11e2a4f2c88701eebc_icgraph_map" alt=""></div>
+<map name="classNormalLineSection_a390dacb252b73c11e2a4f2c88701eebc_icgraph_map" id="classNormalLineSection_a390dacb252b73c11e2a4f2c88701eebc_icgraph">
+<area shape="rect" id="node3" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="271,5,436,35"/><area shape="rect" id="node5" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="273,59,433,88"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="accd10c9338aaebcb9d3ecc65d390088d"></a><!-- doxytag: member="NormalLineSection::setBootSpeed" ref="accd10c9338aaebcb9d3ecc65d390088d" args="(S8 bootSpeed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NormalLineSection::setBootSpeed </td>
+          <td>(</td>
+          <td class="paramtype">S8&nbsp;</td>
+          <td class="paramname"> <em>bootSpeed</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00039">39</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_accd10c9338aaebcb9d3ecc65d390088d_icgraph.png" border="0" usemap="#classNormalLineSection_accd10c9338aaebcb9d3ecc65d390088d_icgraph_map" alt=""></div>
+<map name="classNormalLineSection_accd10c9338aaebcb9d3ecc65d390088d_icgraph_map" id="classNormalLineSection_accd10c9338aaebcb9d3ecc65d390088d_icgraph">
+<area shape="rect" id="node3" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="276,5,441,35"/><area shape="rect" id="node5" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="279,59,439,88"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ab6cc58f1ffee635bc5ca218838f8fb"></a><!-- doxytag: member="NormalLineSection::setBootTime" ref="a5ab6cc58f1ffee635bc5ca218838f8fb" args="(S32 bootTime)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NormalLineSection::setBootTime </td>
+          <td>(</td>
+          <td class="paramtype">S32&nbsp;</td>
+          <td class="paramname"> <em>bootTime</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00042">42</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_a5ab6cc58f1ffee635bc5ca218838f8fb_icgraph.png" border="0" usemap="#classNormalLineSection_a5ab6cc58f1ffee635bc5ca218838f8fb_icgraph_map" alt=""></div>
+<map name="classNormalLineSection_a5ab6cc58f1ffee635bc5ca218838f8fb_icgraph_map" id="classNormalLineSection_a5ab6cc58f1ffee635bc5ca218838f8fb_icgraph">
+<area shape="rect" id="node3" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="268,5,433,35"/><area shape="rect" id="node5" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="271,59,431,88"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a9fd9e06073651cffb1c18d94da17431e"></a><!-- doxytag: member="NormalLineSection::setEdge" ref="a9fd9e06073651cffb1c18d94da17431e" args="(EDGE edge)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NormalLineSection::setEdge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a>&nbsp;</td>
+          <td class="paramname"> <em>edge</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00036">36</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_a9fd9e06073651cffb1c18d94da17431e_icgraph.png" border="0" usemap="#classNormalLineSection_a9fd9e06073651cffb1c18d94da17431e_icgraph_map" alt=""></div>
+<map name="classNormalLineSection_a9fd9e06073651cffb1c18d94da17431e_icgraph_map" id="classNormalLineSection_a9fd9e06073651cffb1c18d94da17431e_icgraph">
+<area shape="rect" id="node3" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="260,5,388,35"/><area shape="rect" id="node5" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="241,59,407,88"/><area shape="rect" id="node7" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="251,112,397,141"/><area shape="rect" id="node11" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="244,165,404,195"/><area shape="rect" id="node13" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="265,219,383,248"/><area shape="rect" id="node9" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="456,112,512,141"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a64e13aa7101cebd9f3aee539047f8f4b"></a><!-- doxytag: member="NormalLineSection::setSpeed" ref="a64e13aa7101cebd9f3aee539047f8f4b" args="(S8 speed)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NormalLineSection::setSpeed </td>
+          <td>(</td>
+          <td class="paramtype">S8&nbsp;</td>
+          <td class="paramname"> <em>speed</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00045">45</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_cgraph.png" border="0" usemap="#classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_cgraph_map" alt=""></div>
+<map name="classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_cgraph_map" id="classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_cgraph">
+<area shape="rect" id="node3" href="classDriver.html#a01132ddd008ad2e8ebfb552559e627bc" title="Driver::setSpeed" alt="" coords="248,5,365,35"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+呼出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_icgraph.png" border="0" usemap="#classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_icgraph_map" alt=""></div>
+<map name="classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_icgraph_map" id="classNormalLineSection_a64e13aa7101cebd9f3aee539047f8f4b_icgraph">
+<area shape="rect" id="node3" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="268,5,396,35"/><area shape="rect" id="node5" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="249,59,415,88"/><area shape="rect" id="node7" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="259,112,405,141"/><area shape="rect" id="node11" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="252,165,412,195"/><area shape="rect" id="node13" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="273,219,391,248"/><area shape="rect" id="node9" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="464,112,520,141"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae7994ead218ed55fa1eb814445083e62"></a><!-- doxytag: member="NormalLineSection::switchEdge" ref="ae7994ead218ed55fa1eb814445083e62" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NormalLineSection::switchEdge </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00049">49</a> 行で定義されています。</p>
+
+<p><div class="dynheader">
+関数の呼び出しグラフ:</div>
+<div class="dynsection">
+<div class="center"><img src="classNormalLineSection_ae7994ead218ed55fa1eb814445083e62_cgraph.png" border="0" usemap="#classNormalLineSection_ae7994ead218ed55fa1eb814445083e62_cgraph_map" alt=""></div>
+<map name="classNormalLineSection_ae7994ead218ed55fa1eb814445083e62_cgraph_map" id="classNormalLineSection_ae7994ead218ed55fa1eb814445083e62_cgraph">
+<area shape="rect" id="node3" href="classLineTraceDriver.html#a3a7420a7638e3b534ec10a8c237d7552" title="LineTraceDriver::switchEdge" alt="" coords="263,5,447,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<hr/><h2>変数</h2>
+<a class="anchor" id="ae438dc881121106fd0e35b6d0be12468"></a><!-- doxytag: member="NormalLineSection::bootEdge" ref="ae438dc881121106fd0e35b6d0be12468" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a> <a class="el" href="classNormalLineSection.html#ae438dc881121106fd0e35b6d0be12468">NormalLineSection::bootEdge</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00014">14</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a13714e723f5473993d894b55a7525985"></a><!-- doxytag: member="NormalLineSection::bootSpeed" ref="a13714e723f5473993d894b55a7525985" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">S8 <a class="el" href="classNormalLineSection.html#a13714e723f5473993d894b55a7525985">NormalLineSection::bootSpeed</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00012">12</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a73df7550c7f677c8b78e510d47a6de56"></a><!-- doxytag: member="NormalLineSection::bootTime" ref="a73df7550c7f677c8b78e510d47a6de56" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">S32 <a class="el" href="classNormalLineSection.html#a73df7550c7f677c8b78e510d47a6de56">NormalLineSection::bootTime</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00013">13</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="aa553eeb3ad99a1e2497cf1bad74267c8"></a><!-- doxytag: member="NormalLineSection::edge" ref="aa553eeb3ad99a1e2497cf1bad74267c8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fc">EDGE</a> <a class="el" href="classNormalLineSection.html#aa553eeb3ad99a1e2497cf1bad74267c8">NormalLineSection::edge</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00016">16</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a167f9fa73c5a344e54834a02cd4e780d"></a><!-- doxytag: member="NormalLineSection::speed" ref="a167f9fa73c5a344e54834a02cd4e780d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">S8 <a class="el" href="classNormalLineSection.html#a167f9fa73c5a344e54834a02cd4e780d">NormalLineSection::speed</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00015">15</a> 行で定義されています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a50413823e73ece6c6dabccb757e8b051"></a><!-- doxytag: member="NormalLineSection::state" ref="a50413823e73ece6c6dabccb757e8b051" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classNormalLineSection.html#a50413823e73ece6c6dabccb757e8b051">NormalLineSection::state</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p> <a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a> の <a class="el" href="NormalLineSection_8hpp_source.html#l00011">11</a> 行で定義されています。</p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="NormalLineSection_8hpp_source.html">NormalLineSection.hpp</a></li>
+<li><a class="el" href="NormalLineSection_8cpp_source.html">NormalLineSection.cpp</a></li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:08:57 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

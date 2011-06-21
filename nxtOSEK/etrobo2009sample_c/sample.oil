@@ -1,0 +1,44 @@
+/**
+ ******************************************************************************
+ **	ファイル名 : sample.oil
+ **
+ **	概要       : サンプル用OSEK OIL(OSEK Implementation Language)ファイル
+ **
+ ** ※OSEK OIL記述方法詳細については
+ **   nxtOSEK\toppers_osek\doc\TOPPERS_OSEKカーネルSG取扱説書.pdfを参照してください。
+ ** 
+ ******************************************************************************
+ **/
+#include "implementation.oil"
+
+CPU ATMEL_AT91SAM7S256
+{
+  OS LEJOS_OSEK /* nxtOSEKの旧名 */
+  {
+    STATUS = EXTENDED;
+    STARTUPHOOK = FALSE;
+    ERRORHOOK = FALSE;
+    SHUTDOWNHOOK = FALSE;
+    PRETASKHOOK = FALSE;
+    POSTTASKHOOK = FALSE;
+    USEGETSERVICEID = FALSE;
+    USEPARAMETERACCESS = FALSE;
+    USERESSCHEDULER = FALSE;
+  };
+
+  APPMODE appmode1{}; 
+
+  /* メインタスク設定 */
+  TASK TaskMain
+  {
+    AUTOSTART = TRUE /* StartOSで自動的にREADY */
+    {
+      APPMODE = appmode1;
+    };
+    PRIORITY = 1;    /* 最低優先度 */
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    STACKSIZE = 512; /* bytes */
+  };
+};
+

@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d" title="Distance::computeDistance" alt="" coords="253,32,435,61"/>
+<area shape="rect" id="node9" href="$classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="229,243,459,272"/>
+<area shape="rect" id="node19" href="$classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="553,427,740,456"/>
+<area shape="rect" id="node30" href="$classSection.html#aaa54c5b78a36f80b29e973533d2a8059" title="Section::countFlag" alt="" coords="279,347,409,376"/>
+<area shape="rect" id="node33" href="$classSensorHistory.html#a0253284517f931447fb5e9c66dfaf9d2" title="SensorHistory::getLightSensorHistory" alt="" coords="224,400,464,429"/>
+<area shape="rect" id="node35" href="$classDistance.html#a53661de88754833d8d2d26f7f0b4c158" title="Distance::reset" alt="" coords="289,85,399,115"/>
+<area shape="rect" id="node5" href="$classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="517,59,776,88"/>
+<area shape="rect" id="node7" href="$classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="513,5,780,35"/>
+<area shape="rect" id="node11" href="$classPidController.html#a1c400aa5e80284bdcad4999838ddf83f" title="PID制御." alt="" coords="576,269,717,299"/>
+<area shape="rect" id="node13" href="$classDriver.html#a192b222cc14c5b44e38ae51895aa2dce" title="Driver::controlVelocity" alt="" coords="573,323,720,352"/>
+<area shape="rect" id="node15" href="$classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="829,375,1000,404"/>
+<area shape="rect" id="node22" href="$classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="840,216,989,245"/>
+<area shape="rect" id="node25" href="$classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="564,216,729,245"/>
+<area shape="rect" id="node28" href="$classDirection.html#a2b8c3770f9f15127b1fbcffbe7b3cf78" title="Direction::getOffset" alt="" coords="580,163,713,192"/>
+<area shape="rect" id="node17" href="$classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1048,296,1179,325"/>
+</map>

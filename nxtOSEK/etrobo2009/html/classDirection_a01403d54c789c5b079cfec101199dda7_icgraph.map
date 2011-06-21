@@ -1,0 +1,26 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="240,364,469,393"/>
+<area shape="rect" id="node7" href="$classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="857,126,1055,156"/>
+<area shape="rect" id="node11" href="$classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="869,310,1043,340"/>
+<area shape="rect" id="node19" href="$classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="577,46,748,76"/>
+<area shape="rect" id="node21" href="$classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="564,577,761,606"/>
+<area shape="rect" id="node25" href="$classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="552,630,773,660"/>
+<area shape="rect" id="node39" href="$classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="249,889,460,918"/>
+<area shape="rect" id="node67" href="$classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="252,836,457,865"/>
+<area shape="rect" id="node5" href="$classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="517,153,808,182"/>
+<area shape="rect" id="node9" href="$classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="529,257,796,286"/>
+<area shape="rect" id="node13" href="$classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="524,100,801,129"/>
+<area shape="rect" id="node16" href="$classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="537,310,788,340"/>
+<area shape="rect" id="node23" href="$classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="591,364,735,393"/>
+<area shape="rect" id="node28" href="$classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="556,417,769,446"/>
+<area shape="rect" id="node30" href="$classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="581,470,744,500"/>
+<area shape="rect" id="node32" href="$classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="569,524,756,553"/>
+<area shape="rect" id="node41" href="$classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="557,836,768,865"/>
+<area shape="rect" id="node43" href="$classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="892,942,1020,972"/>
+<area shape="rect" id="node45" href="$classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="873,836,1039,865"/>
+<area shape="rect" id="node47" href="$classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="883,996,1029,1025"/>
+<area shape="rect" id="node51" href="$classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="876,782,1036,812"/>
+<area shape="rect" id="node53" href="$classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="897,889,1015,918"/>
+<area shape="rect" id="node55" href="$classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="561,889,764,918"/>
+<area shape="rect" id="node49" href="$sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="1104,996,1160,1025"/>
+</map>

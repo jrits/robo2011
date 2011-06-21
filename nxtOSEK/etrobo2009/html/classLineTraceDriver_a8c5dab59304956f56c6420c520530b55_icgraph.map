@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classNewGoalStopSection.html#ab3494493a57f282c652cb9b245ace054" title="NewGoalStopSection::setEdge" alt="" coords="223,32,423,61"/>
+<area shape="rect" id="node9" href="$classGoalStopSection.html#af59a205968f930593113faaa6e6e0c2f" title="GoalStopSection::setEdge" alt="" coords="235,112,411,141"/>
+<area shape="rect" id="node5" href="$classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="483,5,629,35"/>
+<area shape="rect" id="node7" href="$sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="688,5,744,35"/>
+<area shape="rect" id="node11" href="$classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="492,59,620,88"/>
+<area shape="rect" id="node13" href="$classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="473,112,639,141"/>
+<area shape="rect" id="node15" href="$classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="476,165,636,195"/>
+<area shape="rect" id="node17" href="$classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="497,219,615,248"/>
+</map>

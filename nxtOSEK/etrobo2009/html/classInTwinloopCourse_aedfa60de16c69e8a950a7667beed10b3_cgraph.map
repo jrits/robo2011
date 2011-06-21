@@ -1,0 +1,31 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="236,117,447,146"/>
+<area shape="rect" id="node5" href="$classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="536,165,752,194"/>
+<area shape="rect" id="node11" href="$classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="539,58,749,87"/>
+<area shape="rect" id="node19" href="$classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="240,63,443,93"/>
+<area shape="rect" id="node24" href="$classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d" title="Distance::computeDistance" alt="" coords="251,271,432,301"/>
+<area shape="rect" id="node30" href="$classCourse.html#af3a49052ae755ca76a8f33bfcac6b091" title="Course::countFlag" alt="" coords="277,378,405,407"/>
+<area shape="rect" id="node33" href="$classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="561,218,727,247"/>
+<area shape="rect" id="node39" href="$classGoalStopSection.html#a9d974a254d3bd363ea4cc45ee82fef1b" title="GoalStopSection::initialize" alt="" coords="255,431,428,461"/>
+<area shape="rect" id="node41" href="$classNormalLineSection.html#a1bc0c120fd1795b00ee5de994bfcd147" title="NormalLineSection::initialize" alt="" coords="248,485,435,514"/>
+<area shape="rect" id="node43" href="$classTwinloopSection.html#a8e637e25f4f9fd2ac05dffacf4bec1ed" title="TwinloopSection::initialize" alt="" coords="256,538,427,567"/>
+<area shape="rect" id="node45" href="$classSection.html#a571cdc71da3898801225c3e14c822591" title="Section::isEnd" alt="" coords="288,591,395,621"/>
+<area shape="rect" id="node47" href="$classDistance.html#a53661de88754833d8d2d26f7f0b4c158" title="Distance::reset" alt="" coords="287,325,396,354"/>
+<area shape="rect" id="node51" href="$classNormalLineSection.html#a390dacb252b73c11e2a4f2c88701eebc" title="NormalLineSection::setBootEdge" alt="" coords="235,645,448,674"/>
+<area shape="rect" id="node53" href="$classNormalLineSection.html#accd10c9338aaebcb9d3ecc65d390088d" title="NormalLineSection::setBootSpeed" alt="" coords="231,698,452,727"/>
+<area shape="rect" id="node55" href="$classNormalLineSection.html#a5ab6cc58f1ffee635bc5ca218838f8fb" title="NormalLineSection::setBootTime" alt="" coords="236,751,447,781"/>
+<area shape="rect" id="node57" href="$classGoalStopSection.html#af07b9279e35ce1c42fe0e7e4730cb9a0" title="GoalStopSection::setDistanceToGoal" alt="" coords="223,805,460,834"/>
+<area shape="rect" id="node59" href="$classGoalStopSection.html#af59a205968f930593113faaa6e6e0c2f" title="GoalStopSection::setEdge" alt="" coords="253,858,429,887"/>
+<area shape="rect" id="node63" href="$classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e" title="NormalLineSection::setEdge" alt="" coords="248,911,435,941"/>
+<area shape="rect" id="node65" href="$classGoalStopSection.html#a633b45d22162fedc66189b522d5b5ed4" title="GoalStopSection::setSpeed" alt="" coords="251,965,432,994"/>
+<area shape="rect" id="node69" href="$classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b" title="NormalLineSection::setSpeed" alt="" coords="244,1018,439,1047"/>
+<area shape="rect" id="node16" href="$classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="541,111,747,141"/>
+<area shape="rect" id="node7" href="$classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="1061,165,1232,194"/>
+<area shape="rect" id="node9" href="$classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1280,191,1411,221"/>
+<area shape="rect" id="node13" href="$classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="827,111,1013,141"/>
+<area shape="rect" id="node26" href="$classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="515,271,773,301"/>
+<area shape="rect" id="node28" href="$classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="511,325,777,354"/>
+<area shape="rect" id="node35" href="$classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="845,217,995,246"/>
+<area shape="rect" id="node61" href="$classLineTraceDriver.html#a8c5dab59304956f56c6420c520530b55" title="LineTraceDriver::setEdge" alt="" coords="561,858,727,887"/>
+<area shape="rect" id="node67" href="$classDriver.html#a01132ddd008ad2e8ebfb552559e627bc" title="Driver::setSpeed" alt="" coords="585,991,703,1021"/>
+</map>

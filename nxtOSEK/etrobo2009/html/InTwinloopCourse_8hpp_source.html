@@ -1,0 +1,220 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: InTwinloopCourse.hpp „ÇΩ„Éº„Çπ„Éï„Ç°„Ç§„É´</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- ‰ΩúÊàêÔºö Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'Ê§úÁ¥¢');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>„É°„Ç§„É≥„Éö„Éº„Ç∏</span></a></li>
+      <li><a href="pages.html"><span>Èñ¢ÈÄ£„Éö„Éº„Ç∏</span></a></li>
+      <li><a href="annotated.html"><span>„ÇØ„É©„Çπ</span></a></li>
+      <li class="current"><a href="files.html"><span>„Éï„Ç°„Ç§„É´</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="Ê§úÁ¥¢" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>„Éï„Ç°„Ç§„É´‰∏ÄË¶ß</span></a></li>
+      <li><a href="globals.html"><span>„Éï„Ç°„Ç§„É´„É°„É≥„Éê</span></a></li>
+    </ul>
+  </div>
+<h1>InTwinloopCourse.hpp</h1><a href="InTwinloopCourse_8hpp.html">Ë™¨Êòé„ÇíË¶ã„Çã„ÄÇ</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef IN_TWINLOOP_COURSE_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define IN_TWINLOOP_COURSE_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="Course_8hpp.html">Course.hpp</a>&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;<a class="code" href="TwinloopSection_8hpp.html">TwinloopSection.hpp</a>&quot;</span>
+<a name="l00006"></a>00006 <span class="keyword">extern</span> <a class="code" href="classTwinloopSection.html">TwinloopSection</a> <a class="code" href="InDolphinCourse_8hpp.html#a135de613a084bcc5de82b9552b76d313">twinloopSection</a>;
+<a name="l00007"></a>00007 <span class="comment"></span>
+<a name="l00008"></a>00008 <span class="comment">/**</span>
+<a name="l00009"></a>00009 <span class="comment"> * Course Manager</span>
+<a name="l00010"></a>00010 <span class="comment"> *</span>
+<a name="l00011"></a>00011 <span class="comment"> * @todo In Course would be an object of a course. </span>
+<a name="l00012"></a>00012 <span class="comment"> */</span>
+<a name="l00013"></a><a class="code" href="classInTwinloopCourse.html">00013</a> <span class="keyword">class </span><a class="code" href="classInTwinloopCourse.html" title="Course Manager.">InTwinloopCourse</a> : <span class="keyword">public</span> <a class="code" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a>
+<a name="l00014"></a>00014 {
+<a name="l00015"></a>00015 <span class="keyword">public</span>:
+<a name="l00016"></a><a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51">00016</a>     <span class="keyword">enum</span> <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51">SectionId</a> {
+<a name="l00017"></a><a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef">00017</a>         <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef">START</a>,
+<a name="l00018"></a><a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51af149d95c6721f52d279ce10ce61e4492">00018</a>         <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51af149d95c6721f52d279ce10ce61e4492">BEFORE_TWINLOOP</a>,
+<a name="l00019"></a><a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a7a1218505aa041cd303675e06ae8725b">00019</a>         <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a7a1218505aa041cd303675e06ae8725b">TWINLOOP</a>,
+<a name="l00020"></a><a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51af0edc23b1107beaffac31a0dce62b26d">00020</a>         <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51af0edc23b1107beaffac31a0dce62b26d">AFTER_TWINLOOP</a>,
+<a name="l00021"></a><a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a8c2bbea175a200bfba9185bff3eb4615">00021</a>         <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a8c2bbea175a200bfba9185bff3eb4615">AFTER_FIRST360</a>,
+<a name="l00022"></a><a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51ae233d21dbb6e31d1c1ca332bbae7bf76">00022</a>         <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51ae233d21dbb6e31d1c1ca332bbae7bf76">END</a>
+<a name="l00023"></a>00023     };
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="keyword">public</span>:
+<a name="l00026"></a><a class="code" href="classInTwinloopCourse.html#ad5b09d2144085bfdd5ffe3b70006fbd7">00026</a>     <a class="code" href="classInTwinloopCourse.html#ad5b09d2144085bfdd5ffe3b70006fbd7">InTwinloopCourse</a>(<a class="code" href="classDirection.html">Direction</a> &amp;g, <a class="code" href="classDistance.html">Distance</a> &amp;d, <a class="code" href="classTime.html">Time</a> &amp;t,
+<a name="l00027"></a>00027               <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51">SectionId</a> si = <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef">InTwinloopCourse::START</a>,
+<a name="l00028"></a>00028               <a class="code" href="classCourse.html#adb55ea022443351c9195b3688b59108e">CourseId</a> ci = <a class="code" href="classCourse.html#adb55ea022443351c9195b3688b59108ea41056e9227d1cea9da85e996bcfcca92">Course::IN</a>
+<a name="l00029"></a>00029         ) : <a class="code" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a>(g, d, t, ci) {
+<a name="l00030"></a>00030         this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> = si;
+<a name="l00031"></a>00031     };
+<a name="l00032"></a><a class="code" href="classInTwinloopCourse.html#ad23d2e1c60e9855c27591c9773e15435">00032</a>     <a class="code" href="classInTwinloopCourse.html#ad23d2e1c60e9855c27591c9773e15435">~InTwinloopCourse</a>() {};
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="keyword">public</span>:
+<a name="l00035"></a><a class="code" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3">00035</a>     <a class="code" href="classSection.html" title="ÂêÑËµ∞Ë°åÊ≥ï„ÇØ„É©„Çπ„ÅÆ„Ç§„É≥„Çø„Éº„Éï„Çß„Éº„Çπ„ÇíÂÆöÁæ©„Åô„Çã„Çπ„Éº„Éë„Éº„ÇØ„É©„Çπ„ÄÇ...">Section</a>* <a class="code" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3">detect</a>()
+<a name="l00036"></a>00036     {
+<a name="l00037"></a>00037         <span class="keywordtype">int</span> nextSectionId = this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a>; <span class="comment">///&lt;ç°âÒåàíËÇ∑ÇÈèÛë‘ÅBÇ∆ÇËÇ†Ç¶Ç∏ëOâÒÇ∆ìØÇ∂èÛë‘Ç…</span>
+<a name="l00038"></a>00038 <span class="comment"></span>        <a class="code" href="classSection.html" title="ÂêÑËµ∞Ë°åÊ≥ï„ÇØ„É©„Çπ„ÅÆ„Ç§„É≥„Çø„Éº„Éï„Çß„Éº„Çπ„ÇíÂÆöÁæ©„Åô„Çã„Çπ„Éº„Éë„Éº„ÇØ„É©„Çπ„ÄÇ...">Section</a>* nextSection = 0;
+<a name="l00039"></a>00039         <span class="keyword">static</span> <span class="keywordtype">int</span> flagCount = 0;
+<a name="l00040"></a>00040         <span class="keyword">static</span> <span class="keywordtype">int</span> globalInit = <span class="keyword">false</span>;
+<a name="l00041"></a>00041         <span class="keywordtype">bool</span> doneOffset180 = <span class="keyword">false</span>;
+<a name="l00042"></a>00042 <span class="comment"></span>
+<a name="l00043"></a>00043 <span class="comment">        /// é‘ëÃå¸Ç´îFéØÇÃí≤êÆ</span>
+<a name="l00044"></a>00044 <span class="comment"></span>        <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef">InTwinloopCourse::START</a>) {
+<a name="l00045"></a>00045             <a class="code" href="classCourse.html#a33a6cb96bd9a228c598c01f4570a7405">direction</a>.<a class="code" href="classDirection.html#a863085b55412cc1cc27e955001e042a8">calcDirectionOffset90</a>();
+<a name="l00046"></a>00046         }
+<a name="l00047"></a>00047         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef">InTwinloopCourse::START</a>) {
+<a name="l00048"></a>00048             doneOffset180 = <a class="code" href="classCourse.html#a33a6cb96bd9a228c598c01f4570a7405">direction</a>.<a class="code" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c">calcDirectionOffset180</a>();
+<a name="l00049"></a>00049         }
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         F32 newAvgDirectionOff = <a class="code" href="classCourse.html#a33a6cb96bd9a228c598c01f4570a7405">direction</a>.<a class="code" href="classDirection.html#ab654088e2992bda18393b0fe86842a18">getNewAvgDirectionOff</a>();
+<a name="l00052"></a>00052         F32 derivativeOfDirection = <a class="code" href="classCourse.html#a33a6cb96bd9a228c598c01f4570a7405">direction</a>.<a class="code" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction.">getDerivativeOfDirection</a>();
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="preprocessor">#if PRINT_STATE</span>
+<a name="l00055"></a>00055 <span class="preprocessor"></span>        F32 directionOff = <a class="code" href="classCourse.html#a33a6cb96bd9a228c598c01f4570a7405">direction</a>.<a class="code" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="„Ç™„Éï„Çª„ÉÉ„ÉàÂÄ§„ÇíËÄÉÊÖÆ„Åó„ÅüÂêë„Åç„ÅÆÂèñÂæó">getDirectionOff</a>();
+<a name="l00056"></a>00056         <a class="code" href="classCourse.html#a88df88b9b55cc33c53e694e7ebc9930a">lcd</a>.clear();
+<a name="l00057"></a>00057         <a class="code" href="classCourse.html#a88df88b9b55cc33c53e694e7ebc9930a">lcd</a>.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;Raw&quot;</span>, (S32)directionOff);
+<a name="l00058"></a>00058         <a class="code" href="classCourse.html#a88df88b9b55cc33c53e694e7ebc9930a">lcd</a>.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;Avg&quot;</span>, (S32)newAvgDirectionOff);
+<a name="l00059"></a>00059         <a class="code" href="classCourse.html#a88df88b9b55cc33c53e694e7ebc9930a">lcd</a>.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;SID&quot;</span>, this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a>);
+<a name="l00060"></a>00060         <a class="code" href="classCourse.html#a88df88b9b55cc33c53e694e7ebc9930a">lcd</a>.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;Cnt&quot;</span>, flagCount);
+<a name="l00061"></a>00061         <a class="code" href="classCourse.html#a88df88b9b55cc33c53e694e7ebc9930a">lcd</a>.disp();
+<a name="l00062"></a>00062 <span class="preprocessor">#endif</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span>
+<a name="l00064"></a>00064         <span class="keywordflow">if</span> (globalInit) {
+<a name="l00065"></a>00065             <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e">setEdge</a>(<a class="code" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fcaec8379af7490bb9eaaf579cf17876f38">RIGHT</a>);
+<a name="l00066"></a>00066             <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b">setSpeed</a>(<a class="code" href="parameters_8hpp.html#a226e8c40d88ea901cf15266ac1d001ee" title="Line Trace.">SPEED</a>);
+<a name="l00067"></a>00067             globalInit = <span class="keyword">false</span>;
+<a name="l00068"></a>00068         }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070         <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInTwinloopCourse.html#a84b6dfb0e3ac58c32d345f9e69913f51a9d4e208aa74d2400245e89f5000834ef">InTwinloopCourse::START</a>) {
+<a name="l00071"></a>00071             nextSection = &amp;<a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>;
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073             <span class="comment">// ÉhÉãÉtÉBÉìëñçsÇî≤ÇØÇΩå„ÅAíºê¸180ìxåüèoÇ≈ÉcÉCÉìÉãÅ[ÉvëñçsÇ÷</span>
+<a name="l00074"></a>00074             <span class="keywordflow">if</span> (doneOffset180) {
+<a name="l00075"></a>00075 <span class="preprocessor">#ifdef BEEP_AT_TRIGER</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span>                <a class="code" href="parameters_8hpp.html#afb18a040145c97df5956c1bba0cbb6bc">beep</a>();
+<a name="l00077"></a>00077 <span class="preprocessor">#endif</span>
+<a name="l00078"></a>00078 <span class="preprocessor"></span>                nextSectionId = <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30eafadcd156300ed16aca6ebd937b6049e3">InDolphinCourse::BEFORE_TWINLOOP</a>;
+<a name="l00079"></a>00079                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b">setSpeed</a>(60);
+<a name="l00080"></a>00080                 <span class="comment">//normalLineSection.initialize(); // DO NOT</span>
+<a name="l00081"></a>00081                 <a class="code" href="classCourse.html#a408573b54d4560bc9e39494abcea2a40">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00082"></a>00082                 flagCount = 0;
+<a name="l00083"></a>00083             }
+<a name="l00084"></a>00084         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30eafadcd156300ed16aca6ebd937b6049e3">InDolphinCourse::BEFORE_TWINLOOP</a>) {
+<a name="l00085"></a>00085             nextSection = &amp;<a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>;
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087             <span class="keywordflow">if</span> (<a class="code" href="classCourse.html#a408573b54d4560bc9e39494abcea2a40">distance</a>.<a class="code" href="classDistance.html#a3eb6c3aefd8075a5af08cea771b8d80d">computeDistance</a>() &gt; <a class="code" href="parameters_8hpp.html#af1324fe8a38796f7ed73b9f72e180a56">TWINLOOP_STRATEGY_LINETRACE_DISTANCE</a>) {
+<a name="l00088"></a>00088 <span class="preprocessor">#ifdef BEEP_AT_TRIGER</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span>                <a class="code" href="parameters_8hpp.html#afb18a040145c97df5956c1bba0cbb6bc">beep</a>();
+<a name="l00090"></a>00090 <span class="preprocessor">#endif</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span>                nextSectionId = <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30eac3f095ab6a395f70088f158158ce9d72">InDolphinCourse::TWINLOOP</a>;
+<a name="l00092"></a>00092                 twinloopSection.<a class="code" href="classTwinloopSection.html#a8e637e25f4f9fd2ac05dffacf4bec1ed">initialize</a>();
+<a name="l00093"></a>00093                 <a class="code" href="classCourse.html#a408573b54d4560bc9e39494abcea2a40">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00094"></a>00094                 flagCount = 0;
+<a name="l00095"></a>00095             }
+<a name="l00096"></a>00096         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30eac3f095ab6a395f70088f158158ce9d72">InDolphinCourse::TWINLOOP</a>) {
+<a name="l00097"></a>00097             nextSection = &amp;twinloopSection;
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099             <span class="comment">// ÉcÉCÉìÉãÅ[ÉvëñçsÇî≤ÇØÇÈ</span>
+<a name="l00100"></a>00100             <span class="keywordflow">if</span> (twinloopSection.<a class="code" href="classSection.html#a571cdc71da3898801225c3e14c822591">isEnd</a>()) {
+<a name="l00101"></a>00101 <span class="preprocessor">#ifdef BEEP_AT_TRIGER</span>
+<a name="l00102"></a>00102 <span class="preprocessor"></span>                <a class="code" href="parameters_8hpp.html#afb18a040145c97df5956c1bba0cbb6bc">beep</a>();
+<a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
+<a name="l00104"></a>00104 <span class="preprocessor"></span>                nextSectionId = <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30ea122ade5799ff88f3ab12011e2e3eacae">InDolphinCourse::AFTER_TWINLOOP</a>;
+<a name="l00105"></a>00105                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a1bc0c120fd1795b00ee5de994bfcd147">initialize</a>();
+<a name="l00106"></a>00106                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#accd10c9338aaebcb9d3ecc65d390088d">setBootSpeed</a>(<a class="code" href="parameters_8hpp.html#a9bbf7aa514b6d487bb2095e80d225e90">TWINLOOP_STRATEGY_LANDING_BOOT_SPEED</a>);
+<a name="l00107"></a>00107                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a5ab6cc58f1ffee635bc5ca218838f8fb">setBootTime</a>(<a class="code" href="parameters_8hpp.html#ac1e4e7750b927381aa2fdade6a7aaaa8">TWINLOOP_STRATEGY_LANDING_BOOT_TIME</a>);
+<a name="l00108"></a>00108                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a390dacb252b73c11e2a4f2c88701eebc">setBootEdge</a>(<a class="code" href="parameters_8hpp.html#ad402e1cf0751a9d2c77d228f06859ca0">TWINLOOP_STRATEGY_LANDING_BOOT_EDGE</a>);
+<a name="l00109"></a>00109                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b">setSpeed</a>(<a class="code" href="parameters_8hpp.html#a1df5b0c7824412911ea6d3c5f86df148">TWINLOOP_STRATEGY_LANDING_SPEED</a>);
+<a name="l00110"></a>00110                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e">setEdge</a>(<a class="code" href="parameters_8hpp.html#a66efc551a0f280ef1069225ad682e29e">TWINLOOP_STRATEGY_LANDING_EDGE</a>);
+<a name="l00111"></a>00111                 <a class="code" href="classCourse.html#a408573b54d4560bc9e39494abcea2a40">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00112"></a>00112                 flagCount = 0;
+<a name="l00113"></a>00113             }
+<a name="l00114"></a>00114         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30ea122ade5799ff88f3ab12011e2e3eacae">InDolphinCourse::AFTER_TWINLOOP</a>) {
+<a name="l00115"></a>00115             nextSection = &amp;<a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>;
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117             <span class="comment">// àÍìxñ⁄ÇÃ360ìxèÛë‘Çî≤ÇØÇÈ</span>
+<a name="l00118"></a>00118             <a class="code" href="classCourse.html#af3a49052ae755ca76a8f33bfcac6b091">countFlag</a>(flagCount,newAvgDirectionOff &lt; 210);
+<a name="l00119"></a>00119             <span class="keywordflow">if</span> (flagCount &gt;= 20) {
+<a name="l00120"></a>00120 <span class="preprocessor">#ifdef BEEP_AT_TRIGER</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span>                <a class="code" href="parameters_8hpp.html#afb18a040145c97df5956c1bba0cbb6bc">beep</a>();
+<a name="l00122"></a>00122 <span class="preprocessor">#endif</span>
+<a name="l00123"></a>00123 <span class="preprocessor"></span>                nextSectionId = <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30eab6e4f48e1307d102fd21deb20eeb636f">InDolphinCourse::AFTER_FIRST360</a>;
+<a name="l00124"></a>00124                 <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>.<a class="code" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b">setSpeed</a>(<a class="code" href="parameters_8hpp.html#a226e8c40d88ea901cf15266ac1d001ee" title="Line Trace.">SPEED</a>); <span class="comment">// ë¨ìxÇñﬂÇ∑</span>
+<a name="l00125"></a>00125                 <a class="code" href="classCourse.html#a408573b54d4560bc9e39494abcea2a40">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00126"></a>00126                 flagCount = 0;
+<a name="l00127"></a>00127             }
+<a name="l00128"></a>00128         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30eab6e4f48e1307d102fd21deb20eeb636f">InDolphinCourse::AFTER_FIRST360</a>) {
+<a name="l00129"></a>00129             nextSection = &amp;<a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>;
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131             <span class="comment">// ÇQìxñ⁄ÇÃ360ìxíºê¸åüèoÇ≈ÉSÅ[ÉãëOíºê¸Ç÷</span>
+<a name="l00132"></a>00132             <a class="code" href="classCourse.html#af3a49052ae755ca76a8f33bfcac6b091">countFlag</a>(flagCount, newAvgDirectionOff &gt; <a class="code" href="parameters_8hpp.html#ac62c249f5b8c407be828acf63874d04a">GOAL_STOP_STRATEGY_TRIGER_DEGREE</a>
+<a name="l00133"></a>00133                       &amp;&amp; std::abs(derivativeOfDirection) &lt; <a class="code" href="parameters_8hpp.html#a3c920e157594a0a22f03ed3c807f2bee">GOAL_STOP_STRATEGY_TRIGER_DEGREE_DERIVATIVE_BOUNDS</a>);
+<a name="l00134"></a>00134             <span class="keywordflow">if</span> (flagCount &gt;= <a class="code" href="parameters_8hpp.html#a05adb47a219d14e0249e41324101e04e">GOAL_STOP_STRATEGY_TRIGER_FLAGCOUNT</a>) {
+<a name="l00135"></a>00135 <span class="preprocessor">#ifdef BEEP_AT_TRIGER</span>
+<a name="l00136"></a>00136 <span class="preprocessor"></span>                <a class="code" href="parameters_8hpp.html#afb18a040145c97df5956c1bba0cbb6bc">beep</a>();
+<a name="l00137"></a>00137 <span class="preprocessor">#endif</span>
+<a name="l00138"></a>00138 <span class="preprocessor"></span>                nextSectionId = <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30ea10ab9172fd84c25fccb96fd2e042bbc7">InDolphinCourse::END</a>;
+<a name="l00139"></a>00139                 <a class="code" href="Course_8hpp.html#ae21d6227b795eb7968bca32096543842">goalStopSection</a>.<a class="code" href="classGoalStopSection.html#a9d974a254d3bd363ea4cc45ee82fef1b">initialize</a>();
+<a name="l00140"></a>00140                 <a class="code" href="Course_8hpp.html#ae21d6227b795eb7968bca32096543842">goalStopSection</a>.<a class="code" href="classGoalStopSection.html#af59a205968f930593113faaa6e6e0c2f">setEdge</a>(<a class="code" href="parameters_8hpp.html#a10022cb0464f5126bbbb4ec92645f2fcaec8379af7490bb9eaaf579cf17876f38">RIGHT</a>);
+<a name="l00141"></a>00141                 <a class="code" href="Course_8hpp.html#ae21d6227b795eb7968bca32096543842">goalStopSection</a>.<a class="code" href="classGoalStopSection.html#af07b9279e35ce1c42fe0e7e4730cb9a0">setDistanceToGoal</a>(<a class="code" href="parameters_8hpp.html#a52c3824a91c30c95568c9d1a7227678f">IN_DISTANCE_TO_GOAL</a>);
+<a name="l00142"></a>00142                 <a class="code" href="Course_8hpp.html#ae21d6227b795eb7968bca32096543842">goalStopSection</a>.<a class="code" href="classGoalStopSection.html#a633b45d22162fedc66189b522d5b5ed4">setSpeed</a>(<a class="code" href="parameters_8hpp.html#aa509b9ed4f4c6f0544140ca76dd4245b">GOAL_STOP_STRATEGY_SPEED</a>);
+<a name="l00143"></a>00143                 <a class="code" href="classCourse.html#a408573b54d4560bc9e39494abcea2a40">distance</a>.<a class="code" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158">reset</a>();
+<a name="l00144"></a>00144                 flagCount = 0;
+<a name="l00145"></a>00145             }
+<a name="l00146"></a>00146         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> == <a class="code" href="classInDolphinCourse.html#a59f3132047318e69c1c1ba3e3ca2e30ea10ab9172fd84c25fccb96fd2e042bbc7">InDolphinCourse::END</a>) {
+<a name="l00147"></a>00147             nextSection = &amp;<a class="code" href="Course_8hpp.html#ae21d6227b795eb7968bca32096543842">goalStopSection</a>;
+<a name="l00148"></a>00148         }
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150         this-&gt;<a class="code" href="classCourse.html#a06b27b8a8bb3cee56ace58913cde335b">sectionId</a> = nextSectionId;
+<a name="l00151"></a>00151         <span class="keywordflow">return</span> nextSection;
+<a name="l00152"></a>00152     };
+<a name="l00153"></a>00153 };
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="preprocessor">#endif // IN_TWINLOOP_COURSE_H_</span>
+<a name="l00156"></a>00156 <span class="preprocessor"></span>
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>ÂÖ®„Å¶</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>„ÇØ„É©„Çπ</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>„Éï„Ç°„Ç§„É´</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Èñ¢Êï∞</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Â§âÊï∞</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>ÂàóÊåôÂûã</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>ÂàóÊåôÂûã„ÅÆÂÄ§</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>„Éû„ÇØ„É≠ÂÆöÁæ©</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009„Å´ÂØæ„Åó„Å¶Sat Jul 31 12:06:19 2010„Å´ÁîüÊàê„Åï„Çå„Åæ„Åó„Åü„ÄÇ&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

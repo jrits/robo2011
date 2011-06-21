@@ -1,0 +1,311 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: sample.cpp ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 作成： Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="pages.html"><span>関連ページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="検索" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+<h1>sample.cpp</h1><a href="sample_8cpp.html">説明を見る。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// NXTway-GS++ sample.cpp for TOPPERS/ATK(OSEK)</span>
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 <span class="preprocessor">#include &lt;stddef.h&gt;</span>
+<a name="l00004"></a>00004 
+<a name="l00005"></a>00005 <span class="comment">// ECRobot++ API</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;TouchSensor.h&quot;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;GyroSensor.h&quot;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;LightSensor.h&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;Motor.h&quot;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;Nxt.h&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;Clock.h&quot;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;Lcd.h&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;Bluetooth.h&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;Daq.h&quot;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;Speaker.h&quot;</span>
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 <span class="keyword">using namespace </span>ecrobot;
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="TouchStarter_8h.html">TouchStarter.h</a>&quot;</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include &quot;<a class="code" href="NXTway__GS_8h.html">NXTway_GS.h</a>&quot;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include &quot;<a class="code" href="Calibrator_8hpp.html">Calibrator.hpp</a>&quot;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;<a class="code" href="PidController_8hpp.html">PidController.hpp</a>&quot;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &quot;<a class="code" href="Color_8hpp.html">Color.hpp</a>&quot;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="SensorHistory_8hpp.html">SensorHistory.hpp</a>&quot;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;<a class="code" href="BalancingRun_8hpp.html">BalancingRun.hpp</a>&quot;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="Balancer_8hpp.html">Balancer.hpp</a>&quot;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="Time_8hpp.html">Time.hpp</a>&quot;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &quot;<a class="code" href="Distance_8hpp.html">Distance.hpp</a>&quot;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &quot;<a class="code" href="Course_8hpp.html">Course.hpp</a>&quot;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="OutCourse_8hpp.html">OutCourse.hpp</a>&quot;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="InCourse_8hpp.html">InCourse.hpp</a>&quot;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;<a class="code" href="InOutInCourse_8hpp.html">InOutInCourse.hpp</a>&quot;</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include &quot;<a class="code" href="InDolphinCourse_8hpp.html">InDolphinCourse.hpp</a>&quot;</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#include &quot;<a class="code" href="InTwinloopCourse_8hpp.html">InTwinloopCourse.hpp</a>&quot;</span>
+<a name="l00035"></a>00035 <span class="preprocessor">#include &quot;<a class="code" href="Direction_8hpp.html">Direction.hpp</a>&quot;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &quot;<a class="code" href="Gps_8hpp.html">Gps.hpp</a>&quot;</span>
+<a name="l00037"></a>00037 <span class="preprocessor">#include &quot;<a class="code" href="Driver_8hpp.html">Driver.hpp</a>&quot;</span>
+<a name="l00038"></a>00038 <span class="preprocessor">#include &quot;<a class="code" href="LineTraceDriver_8hpp.html">LineTraceDriver.hpp</a>&quot;</span>
+<a name="l00039"></a>00039 <span class="preprocessor">#include &quot;<a class="code" href="DirectionPidDriver_8hpp.html">DirectionPidDriver.hpp</a>&quot;</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#include &quot;<a class="code" href="CurvaturePidDriver_8hpp.html">CurvaturePidDriver.hpp</a>&quot;</span>
+<a name="l00041"></a>00041 <span class="comment">//#define DEBUG_LINETRACE</span>
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043 <span class="comment">//=============================================================================</span>
+<a name="l00044"></a>00044 <span class="comment">// Device objects</span>
+<a name="l00045"></a><a class="code" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">00045</a> Nxt         <a class="code" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">nxt</a>;
+<a name="l00046"></a>00046 LightSensor <a class="code" href="TestSection_8hpp.html#a8bb3e53d7f4e861d7d15f81d45cfe822">light</a>(PORT_3);
+<a name="l00047"></a>00047 TouchSensor <a class="code" href="sample_8cpp.html#ad10dbdc2f51ef83ed44f042e6dccf6b2">touchL</a>(PORT_1);
+<a name="l00048"></a>00048 TouchSensor <a class="code" href="sample_8cpp.html#af2d6294e04f1ae4c1dc6f2523c066e2d">touchR</a>(PORT_4);
+<a name="l00049"></a><a class="code" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">00049</a> Lcd         <a class="code" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a>;
+<a name="l00050"></a><a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">00050</a> Bluetooth   <a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>;
+<a name="l00051"></a>00051 GyroSensor  <a class="code" href="sample_8cpp.html#a3c5cb86e9e036d066e34a4fc79ba0163">gyro</a>(PORT_2);
+<a name="l00052"></a>00052 Motor       <a class="code" href="Direction_8hpp.html#a9c876b2f18e82c20b65a53332280126d">motorL</a>(PORT_C);
+<a name="l00053"></a>00053 Motor       <a class="code" href="Direction_8hpp.html#a3507f8ad75335daf82c74d0e9e5f304c">motorR</a>(PORT_B);
+<a name="l00054"></a><a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">00054</a> Clock       <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>;
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <a class="code" href="classSensorHistory.html">SensorHistory</a> <a class="code" href="InDolphinCourse_8cpp.html#ace2b3167d105e75341c5f1379f33177e">history</a>(<a class="code" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">nxt</a>,light,<a class="code" href="sample_8cpp.html#ad10dbdc2f51ef83ed44f042e6dccf6b2">touchL</a>,<a class="code" href="sample_8cpp.html#af2d6294e04f1ae4c1dc6f2523c066e2d">touchR</a>,<a class="code" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a>,<a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>,<a class="code" href="sample_8cpp.html#a3c5cb86e9e036d066e34a4fc79ba0163">gyro</a>,motorL,motorR);
+<a name="l00057"></a>00057 <a class="code" href="classColor.html">Color</a>         <a class="code" href="LineTraceDriver_8hpp.html#aa5f4d1eda21c196bd8401ff73f105073">color</a>(history);
+<a name="l00058"></a>00058 <a class="code" href="classDistance.html">Distance</a>      <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>(history);
+<a name="l00059"></a>00059 <a class="code" href="classBalancer.html">Balancer</a>      <a class="code" href="sample_8cpp.html#a80c2f6b96f0172b901451890dec71fe4">balancer</a>(history);
+<a name="l00060"></a>00060 <a class="code" href="classBalancingRun.html">BalancingRun</a>  <a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>(<a class="code" href="sample_8cpp.html#a80c2f6b96f0172b901451890dec71fe4">balancer</a>,motorL,motorR);
+<a name="l00061"></a>00061 <a class="code" href="classTime.html">Time</a>          <a class="code" href="sample_8cpp.html#abe319a51f06b6f59392ccf95ff9d42b5">time</a>(<a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>);
+<a name="l00062"></a>00062 <span class="comment">//F32 defaultDirection = 180;</span>
+<a name="l00063"></a><a class="code" href="sample_8cpp.html#a03d3917210b6ffa821dfc8c0249bb4da">00063</a> F32 <a class="code" href="sample_8cpp.html#a03d3917210b6ffa821dfc8c0249bb4da">defaultDirection</a> = 0;
+<a name="l00064"></a>00064 <a class="code" href="classDirection.html">Direction</a>     <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>(history, <a class="code" href="sample_8cpp.html#a03d3917210b6ffa821dfc8c0249bb4da">defaultDirection</a>);
+<a name="l00065"></a>00065 <a class="code" href="classGps.html">Gps</a> <a class="code" href="sample_8cpp.html#aaec2516324ebeabd35817c0a8973dde4">gps</a>(history,<a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>);
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <span class="comment">// ���s���i</span>
+<a name="l00068"></a>00068 <span class="comment">//LightPidController lightPid(color, KP, KI, KD);</span>
+<a name="l00069"></a>00069 <span class="comment">//LightLinePidController lightPid(color, direction, KP, KI, KD);</span>
+<a name="l00070"></a>00070 <a class="code" href="classPidController.html" title="PID制御。.">PidController</a> <a class="code" href="sample_8cpp.html#a5c15d34f709be300b1e844e96da3f521">lightPid</a>(<a class="code" href="parameters_8hpp.html#ada069b55117a4cac2aecf10b5b685293">KP</a>, <a class="code" href="parameters_8hpp.html#a4a5e8aec9e1528d10b3d6036e56f0b6a">KI</a>, <a class="code" href="parameters_8hpp.html#afa2d905fb40ef67a430a76fd98c71931">KD</a>, 10);
+<a name="l00071"></a>00071 <a class="code" href="classPidController.html" title="PID制御。.">PidController</a> <a class="code" href="sample_8cpp.html#a43f1310778f4372b30b9799e909a19f8">anglePid</a>(<a class="code" href="parameters_8hpp.html#a82fd160f6f3999bd68b4b57955dd5f78">DIRECTION_PID_KP</a>, <a class="code" href="parameters_8hpp.html#ab6fe0589e1bbb07414faf10cf5d84ea1">DIRECTION_PID_KI</a>, <a class="code" href="parameters_8hpp.html#a68aa282d2b5035e102a52ed8bfa190ee">DIRECTION_PID_KD</a>, <a class="code" href="parameters_8hpp.html#a89e23154593610950a290d0af045c270">DIRECTION_PID_SIZE</a>);
+<a name="l00072"></a>00072 <a class="code" href="classPidController.html" title="PID制御。.">PidController</a> <a class="code" href="CurvaturePidDriver_8hpp.html#a39a495661f5946d5913ad6fd5fc122cd">curvPid</a>(<a class="code" href="parameters_8hpp.html#a7581e310ac303d1035524824896ef458">CURVATURE_PID_KP</a>, <a class="code" href="parameters_8hpp.html#ac8709d87d86e5ea4a547475b91ec86c5">CURVATURE_PID_KI</a>, <a class="code" href="parameters_8hpp.html#a34c5d113f938e3da113b688cf261b0b9">CURVATURE_PID_KD</a>, <a class="code" href="parameters_8hpp.html#a2423c713bfd81f599a6d54ce605e3c2d">CURVATURE_PID_SIZE</a>);
+<a name="l00073"></a>00073 <a class="code" href="classLineTraceDriver.html">LineTraceDriver</a> <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a5c15d34f709be300b1e844e96da3f521">lightPid</a>, <a class="code" href="sample_8cpp.html#a43f1310778f4372b30b9799e909a19f8">anglePid</a>, curvPid, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00074"></a>00074 <a class="code" href="classDirectionPidDriver.html">DirectionPidDriver</a> <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a5c15d34f709be300b1e844e96da3f521">lightPid</a>, <a class="code" href="sample_8cpp.html#a43f1310778f4372b30b9799e909a19f8">anglePid</a>, curvPid, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00075"></a>00075 <a class="code" href="classCurvaturePidDriver.html">CurvaturePidDriver</a> <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a5c15d34f709be300b1e844e96da3f521">lightPid</a>, <a class="code" href="sample_8cpp.html#a43f1310778f4372b30b9799e909a19f8">anglePid</a>, curvPid, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="comment">// ���s�@�N���X�B</span>
+<a name="l00078"></a>00078 <span class="comment">// �O���[�o���I�u�W�F�N�g�Ƃ��Đ錾���Ȃ��ƁA�������[�j��̉\�������邽�߁A�����Ő錾�B</span>
+<a name="l00079"></a>00079 <a class="code" href="classNormalLineSection.html">NormalLineSection</a>   <a class="code" href="Course_8hpp.html#a92d2b3b06e8c1f203c8a53069383dae9">normalLineSection</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00080"></a>00080 <a class="code" href="classGoalStopSection.html">GoalStopSection</a>     <a class="code" href="Course_8hpp.html#ae21d6227b795eb7968bca32096543842">goalStopSection</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00081"></a>00081 <a class="code" href="classDashedLineSection.html">DashedLineSection</a>   <a class="code" href="Course_8hpp.html#a13f09872c8dab4fa5ebf32a36617d33e">dashedLineSection</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00082"></a>00082 <a class="code" href="classTreasureHuntSection.html">TreasureHuntSection</a> <a class="code" href="Course_8hpp.html#a1c8fdd6dbca1a20c6e02dc90c6dac67e">treasureHuntSection</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00083"></a>00083 <span class="comment">//DolphinSection      dolphinSection(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history);</span>
+<a name="l00084"></a>00084 <span class="comment">//TwinloopSection     twinloopSection(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history);</span>
+<a name="l00085"></a>00085 <span class="comment">//TestSection         testSection(balancingRun, distance, direction, lineTraceDriver, directionPidDriver, curvaturePidDriver, clock, history);</span>
+<a name="l00086"></a>00086 <a class="code" href="classNewDashedLineSection.html">NewDashedLineSection</a> <a class="code" href="Course_8hpp.html#aecfcabe8d321223ff270a52e863d3cb7">newDashedLineSection</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00087"></a>00087 <a class="code" href="classNewTreasureHuntSection.html">NewTreasureHuntSection</a> <a class="code" href="Course_8hpp.html#ae3663871e100487847047534be859f27">newTreasureHuntSection</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00088"></a>00088 <a class="code" href="classNewGoalStopSection.html">NewGoalStopSection</a> <a class="code" href="Course_8hpp.html#affa364df02fb2eb2a2cf2b4f5fe2bdf9">newGoalStopSection</a>(<a class="code" href="sample_8cpp.html#ae6ef18772d345d63017b59486a1b5d1d">balancingRun</a>, <a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>, <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>, <a class="code" href="sample_8cpp.html#a470cfdbbc3ae01bb87daba6b021eb557">lineTraceDriver</a>, <a class="code" href="sample_8cpp.html#a219869e4e3b8678847deea7332c0ecc2">directionPidDriver</a>, <a class="code" href="sample_8cpp.html#ab69e81741c56082ba9c2a7e91072e574">curvaturePidDriver</a>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>, history);
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="comment">// �R�[�X�B���s�@����B</span>
+<a name="l00091"></a>00091 <span class="comment">//InCourse        course(direction,distance,time,InCourse::START);</span>
+<a name="l00092"></a>00092 <span class="comment">//OutCourse       course(direction,distance,time,OutCourse::START); // dashed and treasurehunt</span>
+<a name="l00093"></a>00093 <a class="code" href="classInOutInCourse.html" title="Course Manager.">InOutInCourse</a> <a class="code" href="sample_8cpp.html#ac8dd23e886582c0be5e6950f1e26dbc1">course</a>(<a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>,<a class="code" href="sample_8cpp.html#a1b2fc14c30b89707aeed72ba3903f28f">distance</a>,<a class="code" href="sample_8cpp.html#abe319a51f06b6f59392ccf95ff9d42b5">time</a>,<a class="code" href="classInOutInCourse.html#a8fca31f2c8183afbabf7b331f41830caa1f60997c1a50b8f67de3e28ff48b187a">InOutInCourse::START</a>);
+<a name="l00094"></a>00094 <span class="comment">//InDolphinCourse        course(direction,distance,time, InDolphinCourse::START);</span>
+<a name="l00095"></a>00095 <span class="comment">//InTwinloopCourse        course(direction,distance,time, InTwinloopCourse::START);</span>
+<a name="l00096"></a>00096 
+<a name="l00097"></a><a class="code" href="sample_8cpp.html#a556d1e6e533f0e0d1d321e89f7a35c2b">00097</a> S8 <a class="code" href="sample_8cpp.html#a5239a449a17c2f22d81a01cf4156263f">DEBUG_DATA1</a> = 0, <a class="code" href="CurvaturePidDriver_8hpp.html#a556d1e6e533f0e0d1d321e89f7a35c2b">DEBUG_DATA2</a> = 0;
+<a name="l00098"></a><a class="code" href="sample_8cpp.html#a1cfc6dbb0a16d0a0eaec9e0dac62bae6">00098</a> S32 <a class="code" href="CurvaturePidDriver_8hpp.html#a288c962115001316ebaf3ff15a152d85">DEBUG_DATA_LONG</a> = 0;
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span>
+<a name="l00101"></a>00101 {
+<a name="l00102"></a>00102 <span class="preprocessor">#include &quot;kernel.h&quot;</span>
+<a name="l00103"></a>00103 <span class="preprocessor">#include &quot;kernel_id.h&quot;</span>
+<a name="l00104"></a>00104 <span class="preprocessor">#include &quot;ecrobot_interface.h&quot;</span>
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106     <span class="keyword">static</span> <span class="keywordtype">void</span> connect_bt(Lcd &amp;<a class="code" href="sample_8cpp.html#ac9caaaba87d427b65ed01001deb774ba">lcd</a>);
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108     <span class="comment">//=============================================================================</span>
+<a name="l00109"></a>00109     <span class="comment">// TOPPERS/ATK declarations</span>
+<a name="l00110"></a>00110     <a class="code" href="sample_8cpp.html#a5ed320798edfd93d13f6cf1c7f36b3c5">DeclareCounter</a>(SysTimerCnt);
+<a name="l00111"></a>00111     <a class="code" href="sample_8cpp.html#a142e672508a5f3b5795f0952e38c8dc1">DeclareTask</a>(TaskDrive);
+<a name="l00112"></a>00112     <a class="code" href="sample_8cpp.html#a142e672508a5f3b5795f0952e38c8dc1">DeclareTask</a>(TaskMain);
+<a name="l00113"></a>00113     <a class="code" href="sample_8cpp.html#ad8f0763e26b8f143476bed9f7abe0c41">DeclareAlarm</a>(Alarm4msec);
+<a name="l00114"></a>00114     <a class="code" href="sample_8cpp.html#ae441d76ae3196bd1e6f02c2b67b4568d">DeclareEvent</a>(EventDrive);
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116     <span class="comment">//=============================================================================</span>
+<a name="l00117"></a>00117     <span class="comment">// 1msec timer interrupt hook</span>
+<a name="l00118"></a><a class="code" href="sample_8cpp.html#a1a3fecba0774248495ab7a226e23b9fe">00118</a>     <span class="keywordtype">void</span> <a class="code" href="sample_8cpp.html#a1a3fecba0774248495ab7a226e23b9fe">user_1ms_isr_type2</a>(<span class="keywordtype">void</span>)
+<a name="l00119"></a>00119     {
+<a name="l00120"></a>00120         (void)SignalCounter(SysTimerCnt); <span class="comment">// Alarm counter</span>
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122         SleeperMonitor(); <span class="comment">// Need for Nxt and I2C device classes</span>
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124         <span class="keywordflow">if</span> (<a class="code" href="sample_8cpp.html#ad23ac9d74d9349e580ae5fc55b7df8f0">nxt</a>.getButtons() == Nxt::ENTR_ON &amp;&amp; !<a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>.isConnected())
+<a name="l00125"></a>00125         {
+<a name="l00126"></a>00126             <a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>.cancelWaitForConnection(); <span class="comment">// Cancel Bluetooth connection process</span>
+<a name="l00127"></a>00127         }
+<a name="l00128"></a>00128     }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130     <span class="comment">//=============================================================================</span>
+<a name="l00131"></a>00131     <span class="comment">// Drive Task</span>
+<a name="l00132"></a><a class="code" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941">00132</a>     <a class="code" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941">TASK</a>(TaskDrive)
+<a name="l00133"></a>00133     {
+<a name="l00134"></a>00134         <a class="code" href="classSection.html" title="各走行法クラスのインターフェースを定義するスーパークラス。...">Section</a> *st;
+<a name="l00135"></a>00135         WaitEvent(EventDrive); <span class="comment">// waiting for &quot;Ready Go&quot;</span>
+<a name="l00136"></a>00136         
+<a name="l00137"></a>00137         <span class="keywordflow">while</span>(1)
+<a name="l00138"></a>00138         {
+<a name="l00139"></a>00139 <span class="preprocessor">#if PRINT_THREAD_TIME</span>
+<a name="l00140"></a>00140 <span class="preprocessor"></span>            U32 now = <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>.now();
+<a name="l00141"></a>00141 <span class="preprocessor">#endif</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span>            <span class="comment">// �q�X�g���X�V</span>
+<a name="l00143"></a>00143             <a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>.<a class="code" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新">renewHistory</a>();
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145             st = <a class="code" href="sample_8cpp.html#ac8dd23e886582c0be5e6950f1e26dbc1">course</a>.<a class="code" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4">detect</a>();
+<a name="l00146"></a>00146             <span class="comment">//st = &amp;normalLineSection;</span>
+<a name="l00147"></a>00147             <span class="comment">//st = &amp;testSection;</span>
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149             <span class="comment">//PID���䑖�s</span>
+<a name="l00150"></a>00150             st-&gt;<a class="code" href="classSection.html#a89147527764e17224e94bf2c3e8db073">execute</a>();
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 <span class="preprocessor">#if PRINT_THREAD_TIME</span>
+<a name="l00153"></a>00153 <span class="preprocessor"></span>            lcd.clear();
+<a name="l00154"></a>00154             lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;CLK&quot;</span>, <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>.now() - now);
+<a name="l00155"></a>00155             lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;MTL&quot;</span>, <a class="code" href="Direction_8hpp.html#a9c876b2f18e82c20b65a53332280126d">motorL</a>.getCount());
+<a name="l00156"></a>00156             lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;MTR&quot;</span>, <a class="code" href="Direction_8hpp.html#a3507f8ad75335daf82c74d0e9e5f304c">motorR</a>.getCount());
+<a name="l00157"></a>00157             lcd.putf(<span class="stringliteral">&quot;sdn&quot;</span>, <span class="stringliteral">&quot;DIR&quot;</span>, (S32)<a class="code" href="sample_8cpp.html#a8fc6e5cd85b04e4f2860af483c1ca026">direction</a>.<a class="code" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得">getDirectionOff</a>());
+<a name="l00158"></a>00158             lcd.disp();
+<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
+<a name="l00160"></a>00160 <span class="preprocessor"></span>
+<a name="l00161"></a>00161             ClearEvent(EventDrive); <span class="comment">// Clear the drive event</span>
+<a name="l00162"></a>00162             WaitEvent(EventDrive);  <span class="comment">// Wait for drive event</span>
+<a name="l00163"></a>00163         }
+<a name="l00164"></a>00164     }
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167     <span class="comment">//=============================================================================</span>
+<a name="l00168"></a>00168     <span class="comment">// Main Task</span>
+<a name="l00169"></a><a class="code" href="sample_8cpp.html#ab622f1cc7f7d84bf5ccfb33ffbfe4693">00169</a>     <a class="code" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941">TASK</a>(TaskMain)
+<a name="l00170"></a>00170     {
+<a name="l00171"></a>00171         Daq daq(<a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>);
+<a name="l00172"></a>00172         <span class="comment">//Calibrator cal(lcd,touchL,touchR,light,color);</span>
+<a name="l00173"></a>00173 
+<a name="l00174"></a>00174         <span class="comment">//connect_bt(lcd); // Set up Blutooth connection with data logger.</span>
+<a name="l00175"></a>00175 
+<a name="l00176"></a>00176 <span class="comment">//      cal.calibration(pid);</span>
+<a name="l00177"></a>00177         
+<a name="l00178"></a>00178 <span class="comment">//         lcd.clear();</span>
+<a name="l00179"></a>00179 <span class="comment">//         lcd.putf(&quot;sn&quot;, &quot;OUT == 3&quot;);</span>
+<a name="l00180"></a>00180 <span class="comment">//         lcd.putf(&quot;sn&quot;, &quot;and SPEED == 50?&quot;);</span>
+<a name="l00181"></a>00181 <span class="comment">//         lcd.putf(&quot;sn&quot;, &quot;IN == 0&quot;);</span>
+<a name="l00182"></a>00182 <span class="comment">//         lcd.putf(&quot;sn&quot;, &quot;and SPEED == 60?&quot;);</span>
+<a name="l00183"></a>00183 <span class="comment">//         lcd.putf(&quot;sn&quot;, &quot;CourseId&quot;);</span>
+<a name="l00184"></a>00184 <span class="comment">//         lcd.putf(&quot;dn&quot;, course.getCourseId());</span>
+<a name="l00185"></a>00185 <span class="comment">//         lcd.putf(&quot;sn&quot;, &quot;SPEED&quot;);</span>
+<a name="l00186"></a>00186 <span class="comment">//         lcd.putf(&quot;dn&quot;, SPEED);</span>
+<a name="l00187"></a>00187 <span class="comment">//         lcd.disp();</span>
+<a name="l00188"></a>00188         <a class="code" href="classTouchStarter.html">TouchStarter</a>(<a class="code" href="sample_8cpp.html#ad10dbdc2f51ef83ed44f042e6dccf6b2">touchL</a>).waitForReadyGo();  <span class="comment">// Touch sensor is used to start driving</span>
+<a name="l00189"></a>00189         lcd.clear(<span class="keyword">true</span>);
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191         SetRelAlarm(Alarm4msec, 1, 4); <span class="comment">// Set 4msec periodical Alarm for the drive event</span>
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193         <span class="keywordflow">while</span>(1)
+<a name="l00194"></a>00194         {
+<a name="l00195"></a>00195             S8 data[2];
+<a name="l00196"></a>00196             S32 longData;
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198             data[0] = <a class="code" href="sample_8cpp.html#a5239a449a17c2f22d81a01cf4156263f">DEBUG_DATA1</a>;
+<a name="l00199"></a>00199             data[1] = <a class="code" href="CurvaturePidDriver_8hpp.html#a556d1e6e533f0e0d1d321e89f7a35c2b">DEBUG_DATA2</a>;
+<a name="l00200"></a>00200             longData = <a class="code" href="CurvaturePidDriver_8hpp.html#a288c962115001316ebaf3ff15a152d85">DEBUG_DATA_LONG</a>;
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202             daq.send(data,longData);
+<a name="l00203"></a>00203             <a class="code" href="sample_8cpp.html#aaec2516324ebeabd35817c0a8973dde4">gps</a>.<a class="code" href="classGps.html#a2cddda4a7acd596ef068d8b3290926db">calcCoordinates</a>();
+<a name="l00204"></a>00204 
+<a name="l00205"></a>00205             <a class="code" href="sample_8cpp.html#ad81e30048cd2731dfc1fd15d25ccecab">clock</a>.sleep(5); <span class="comment">// Sleep this Task for 5msec</span>
+<a name="l00206"></a>00206         }
+<a name="l00207"></a>00207     }
+<a name="l00208"></a>00208 
+<a name="l00209"></a>00209     <span class="comment">//=============================================================================</span>
+<a name="l00210"></a>00210     <span class="comment">// Sub functions</span>
+<a name="l00211"></a>00211     <span class="keyword">static</span> <span class="keywordtype">void</span> connect_bt(Lcd &amp;lcd)
+<a name="l00212"></a>00212     {
+<a name="l00213"></a>00213         CHAR  name[16] = <span class="stringliteral">&quot;Kachi&quot;</span>;
+<a name="l00214"></a>00214         U8 address[7];
+<a name="l00215"></a>00215 
+<a name="l00216"></a>00216         lcd.clear();
+<a name="l00217"></a>00217 
+<a name="l00218"></a>00218         <span class="keywordflow">if</span> (<a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>.getDeviceAddress(address)) <span class="comment">// get the device address</span>
+<a name="l00219"></a>00219         {
+<a name="l00220"></a>00220             lcd.putf(<span class="stringliteral">&quot;sn&quot;</span>, <span class="stringliteral">&quot;BD_ADDR:&quot;</span>);
+<a name="l00221"></a>00221             <span class="keywordflow">for</span> (SINT i=0; i&lt;7; i++) lcd.putf(<span class="stringliteral">&quot;x&quot;</span>, address[i],2);
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223             <a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>.setFriendlyName(name); <span class="comment">// set the friendly device name</span>
+<a name="l00224"></a>00224             <span class="keywordflow">if</span> (<a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>.getFriendlyName(name)) <span class="comment">// display the friendly device name</span>
+<a name="l00225"></a>00225             {
+<a name="l00226"></a>00226                 lcd.putf(<span class="stringliteral">&quot;nssn&quot;</span>, <span class="stringliteral">&quot;BD_NAME: &quot;</span>, name);
+<a name="l00227"></a>00227             }
+<a name="l00228"></a>00228 
+<a name="l00229"></a>00229             lcd.putf(<span class="stringliteral">&quot;nsn&quot;</span>, <span class="stringliteral">&quot;Connecting BT...&quot;</span>);
+<a name="l00230"></a>00230             lcd.putf(<span class="stringliteral">&quot;sn&quot;</span>,  <span class="stringliteral">&quot;ENTR to cancel.&quot;</span>);
+<a name="l00231"></a>00231             lcd.disp();
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233             <span class="keywordflow">if</span> (<a class="code" href="sample_8cpp.html#a31246c5520c3eb1281c78f86aab9a4a6">bt</a>.waitForConnection(<span class="stringliteral">&quot;1234&quot;</span>, 0)) <span class="comment">// wait forever</span>
+<a name="l00234"></a>00234             {
+<a name="l00235"></a>00235                 lcd.putf(<span class="stringliteral">&quot;s&quot;</span>, <span class="stringliteral">&quot;Connected.&quot;</span>);
+<a name="l00236"></a>00236             }
+<a name="l00237"></a>00237         }
+<a name="l00238"></a>00238         <span class="keywordflow">else</span>
+<a name="l00239"></a>00239         {
+<a name="l00240"></a>00240             lcd.putf(<span class="stringliteral">&quot;s&quot;</span>, <span class="stringliteral">&quot;BT Failed.&quot;</span>);
+<a name="l00241"></a>00241         }
+<a name="l00242"></a>00242 
+<a name="l00243"></a>00243         lcd.putf(<span class="stringliteral">&quot;ns&quot;</span>, <span class="stringliteral">&quot;Press Touch.&quot;</span>);
+<a name="l00244"></a>00244         lcd.disp();
+<a name="l00245"></a>00245     }
+<a name="l00246"></a>00246 
+<a name="l00247"></a>00247 };
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:06:20 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>robo2009: balancer_param.c „ÇΩ„Éº„Çπ„Éï„Ç°„Ç§„É´</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javaScript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- ‰ΩúÊàêÔºö Doxygen 1.6.1 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'Ê§úÁ¥¢');
+--></script>
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>„É°„Ç§„É≥„Éö„Éº„Ç∏</span></a></li>
+      <li><a href="pages.html"><span>Èñ¢ÈÄ£„Éö„Éº„Ç∏</span></a></li>
+      <li><a href="annotated.html"><span>„ÇØ„É©„Çπ</span></a></li>
+      <li class="current"><a href="files.html"><span>„Éï„Ç°„Ç§„É´</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <img id="MSearchSelect" src="search/search.png"
+             onmouseover="return searchBox.OnSearchSelectShow()"
+             onmouseout="return searchBox.OnSearchSelectHide()"
+             alt=""/>
+        <input type="text" id="MSearchField" value="Ê§úÁ¥¢" accesskey="S"
+             onfocus="searchBox.OnSearchFieldFocus(true)" 
+             onblur="searchBox.OnSearchFieldFocus(false)" 
+             onkeyup="searchBox.OnSearchFieldChange(event)"/>
+        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>„Éï„Ç°„Ç§„É´‰∏ÄË¶ß</span></a></li>
+      <li><a href="globals.html"><span>„Éï„Ç°„Ç§„É´„É°„É≥„Éê</span></a></li>
+    </ul>
+  </div>
+<h1>balancer_param.c</h1><a href="balancer__param_8c.html">Ë™¨Êòé„ÇíË¶ã„Çã„ÄÇ</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/**</span>
+<a name="l00002"></a>00002 <span class="comment"> *******************************************************************************</span>
+<a name="l00003"></a>00003 <span class="comment"> **     FILE NAME : balancer_param.c</span>
+<a name="l00004"></a>00004 <span class="comment"> **</span>
+<a name="l00005"></a>00005 <span class="comment"> **     ABSTRUCT  : NXTway-GS balance control parameters</span>
+<a name="l00006"></a>00006 <span class="comment"> **</span>
+<a name="l00007"></a>00007 <span class="comment"> ** NOTE: These parameters definitely affect the balance control of NXTway-GS.</span>
+<a name="l00008"></a>00008 <span class="comment"> *******************************************************************************</span>
+<a name="l00009"></a>00009 <span class="comment"> **/</span>
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;ecrobot_interface.h&quot;</span>
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="comment">/*============================================================================</span>
+<a name="l00014"></a>00014 <span class="comment"> * DATA DEFINITIONS</span>
+<a name="l00015"></a>00015 <span class="comment"> *===========================================================================*/</span>
+<a name="l00016"></a>00016 <span class="comment">/* low pass filter gain for motors average count */</span>
+<a name="l00017"></a><a class="code" href="balancer__param_8c.html#a3ca0aaea8cc149136325b3312737e6e4">00017</a> F32 <a class="code" href="balancer__param_8c.html#a3ca0aaea8cc149136325b3312737e6e4" title="FILE NAME : balancer_param.c.">A_D</a> = 0.8F; <span class="comment">//0.8F</span>
+<a name="l00018"></a>00018 <span class="comment">/* low pass filter gain for motors target count */</span>
+<a name="l00019"></a><a class="code" href="balancer__param_8c.html#a46ff9d1fbcc414a3074333e5e53853f2">00019</a> F32 <a class="code" href="balancer__param_8c.html#a46ff9d1fbcc414a3074333e5e53853f2">A_R</a> = 0.996F;      
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="comment">/* </span>
+<a name="l00022"></a>00022 <span class="comment"> * NOTE: When NXT standard tires are used for NXTway-GS, a compiler macro (NXT_STD_TIRE)</span>
+<a name="l00023"></a>00023 <span class="comment"> *       has to be added to USER_DEF macro definition in user Makefile</span>
+<a name="l00024"></a>00024 <span class="comment"> *       E.g. USER_DEF = NXT_STD_TIRE</span>
+<a name="l00025"></a>00025 <span class="comment"> */</span>
+<a name="l00026"></a>00026 <span class="comment">/* #ifdef NXT_STD_TIRE */</span>
+<a name="l00027"></a>00027 <span class="comment">/*      /\* servo control state feedback gain for NXT standard tire *\/ */</span>
+<a name="l00028"></a>00028 <span class="comment">/*      /\* F32 K_F[4] = {-0.834434F, -38.1749F, -1.0985F, -3.55477F}; *\/ */</span>
+<a name="l00029"></a>00029 <span class="comment">/*         F32 K_F[4] = {   -0.843338F, -39.3947F, -1.1126F, -4.11782F}; */</span>
+<a name="l00030"></a>00030 <span class="comment">/* #else */</span>
+<a name="l00031"></a>00031 <span class="comment">/*      /\* servo control state feedback gain for RCX Motorcycle tire *\/ */</span>
+<a name="l00032"></a>00032 <span class="comment">/*      F32 K_F[4] = {-0.870303F, -31.9978F, -1.1566F, -2.78873F}; */</span>
+<a name="l00033"></a>00033 <span class="comment">/* #endif */</span>
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment">/* </span>
+<a name="l00036"></a>00036 <span class="comment"> * ëºÇÃÉpÉâÉÅÅ[É^ÇÕnxtway_gs/param_plantì‡Ç≈íËã`Ç≥ÇÍÇƒÇ¢ÇÈÅB</span>
+<a name="l00037"></a>00037 <span class="comment"> * RRÇÕÉtÉ@ÉCÉãnxtway_gs/param_controller.mÇÃíÜÇ≈íËã`Ç≥ÇÍÇƒÇ¢ÇÈÅB</span>
+<a name="l00038"></a>00038 <span class="comment"> */</span>
+<a name="l00039"></a>00039 <span class="comment">/* m = 0.03;                        % wheel weight [kg]     */</span>
+<a name="l00040"></a>00040 <span class="comment">/* R = 0.0408;                      % wheel radius [m] 0.04 */</span>
+<a name="l00041"></a>00041 <span class="comment">/* M = 0.67;                        % body weight [kg] 0.6  */</span>
+<a name="l00042"></a>00042 <span class="comment">/* W = 0.065;                       % body width [m] 0.14   */</span>
+<a name="l00043"></a>00043 <span class="comment">/* D = 0.047;                       % body depth [m] 0.04   */</span>
+<a name="l00044"></a>00044 <span class="comment">/* H = 0.18;                        % body height [m] 0.144 */</span>
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="comment">/* RR = 1.5e2*eye(2);                                       */</span>
+<a name="l00047"></a>00047 <span class="comment">/* F32 K_F[4] = {-1.6704, -62.2796, -1.4630, -4.7635};      */</span>
+<a name="l00048"></a>00048 <span class="comment">/* F32 K_I = -1.1547;                                       */</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">/* RR = 1e2*eye(2);                                         */</span>
+<a name="l00051"></a>00051 <span class="comment">/* F32 K_F[4] = {-1.9816, -72.5038, -1.6158, -5.2759};      */</span>
+<a name="l00052"></a>00052 <span class="comment">/* F32 K_I = -1.4142;                                       */</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="comment">/* RR = 1e3*eye(2);                                         */</span>
+<a name="l00055"></a>00055 <span class="comment">/* F32 K_F[4] = {-0.83830, -37.59739, -1.10463, -3.55765};  */</span>
+<a name="l00056"></a>00056 <span class="comment">/* F32 K_I = -0.44721;                                      */</span>
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="comment">/* RR = 1e4*eye(2);                                         */</span>
+<a name="l00059"></a>00059 <span class="comment">/* F32 KF[4] = {-0.42564, -30.48672, -0.98157, -3.15133};   */</span>
+<a name="l00060"></a>00060 <span class="comment">/* F32 K_I = -0.14142;                                      */</span>
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="comment">/* RR = 1e5*eye(2);                                         */</span>
+<a name="l00063"></a>00063 <span class="comment">/* F32 KF = {-0.22825F, -28.78509F, -0.93233F, -2.99480F};  */</span>
+<a name="l00064"></a>00064 <span class="comment">/* F32 K_I = -0.44721;                                      */</span>
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="comment">/* ìdíróp M = 0.7                                           */</span>
+<a name="l00067"></a>00067 <span class="comment">/* RR = 1e3*eye(2);                                         */</span>
+<a name="l00068"></a><a class="code" href="balancer__param_8c.html#ad5ec4536c6d56b8218f5bc548f3807c3">00068</a> F32 <a class="code" href="balancer__param_8c.html#ad5ec4536c6d56b8218f5bc548f3807c3">K_F</a>[4] ={-0.83830,  -37.74796,   -1.10463,   -3.56874};
+<a name="l00069"></a><a class="code" href="balancer__param_8c.html#a69e50c032023507c4bb7b328aadeee78">00069</a> F32 <a class="code" href="balancer__param_8c.html#a69e50c032023507c4bb7b328aadeee78">K_I</a> = -0.44721;
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="comment">/* è[ìdÉoÉbÉeÉäÅ[óp                                         */</span>
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="comment">//{-0.83986F, -39.15738F, -1.10712F, -3.96924F};</span>
+<a name="l00074"></a>00074 <span class="comment">/* m = 0.03;                        % wheel weight [kg]     */</span>
+<a name="l00075"></a>00075 <span class="comment">/* R = 0.0408;                      % wheel radius [m] 0.04 */</span>
+<a name="l00076"></a>00076 <span class="comment">/* M = 0.6;                        % body weight [kg] 0.6   */</span>
+<a name="l00077"></a>00077 <span class="comment">/* W = 0.065;                       % body width [m] 0.14   */</span>
+<a name="l00078"></a>00078 <span class="comment">/* D = 0.047;                       % body depth [m] 0.04   */</span>
+<a name="l00079"></a>00079 <span class="comment">/* H = 0.18;                        % body height [m] 0.144 */</span>
+<a name="l00080"></a>00080 
+<a name="l00081"></a><a class="code" href="balancer__param_8c.html#a18ed8863441750800768c290ce16adcd">00081</a> F32 <a class="code" href="balancer__param_8c.html#a18ed8863441750800768c290ce16adcd">K_PHIDOT</a> = 30.0F;<span class="comment">//30.0  /* turn target speed gain */</span>
+<a name="l00082"></a><a class="code" href="balancer__param_8c.html#ad8d1f2b745ff8722909d384cc01985dd">00082</a> F32 <a class="code" href="balancer__param_8c.html#ad8d1f2b745ff8722909d384cc01985dd">K_THETADOT</a> = 9.0F;<span class="comment">//7.5F /* forward target speed gain */</span>
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="balancer__param_8c.html#a7adde0b5b7aa0dcf6d30b1e8c5db1689">00084</a> <span class="keyword">const</span> F32 <a class="code" href="balancer__param_8c.html#a7adde0b5b7aa0dcf6d30b1e8c5db1689">BATTERY_GAIN</a> = 0.001089F;     <span class="comment">/* battery voltage gain for motor PWM outputs */</span>
+<a name="l00085"></a><a class="code" href="balancer__param_8c.html#a24c8e5e2395fa13896f09a93697d05d4">00085</a> <span class="keyword">const</span> F32 <a class="code" href="balancer__param_8c.html#a24c8e5e2395fa13896f09a93697d05d4">BATTERY_OFFSET</a> = 0.625F;      <span class="comment">/* battery voltage offset for motor PWM outputs */</span>
+<a name="l00086"></a>00086 <span class="comment">/******************************** END OF FILE ********************************/</span>
+</pre></div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>ÂÖ®„Å¶</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>„ÇØ„É©„Çπ</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>„Éï„Ç°„Ç§„É´</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Èñ¢Êï∞</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Â§âÊï∞</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>ÂàóÊåôÂûã</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>ÂàóÊåôÂûã„ÅÆÂÄ§</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>„Éû„ÇØ„É≠ÂÆöÁæ©</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr size="1"/><address style="text-align: right;"><small>robo2009„Å´ÂØæ„Åó„Å¶Sat Jul 31 12:06:18 2010„Å´ÁîüÊàê„Åï„Çå„Åæ„Åó„Åü„ÄÇ&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>
