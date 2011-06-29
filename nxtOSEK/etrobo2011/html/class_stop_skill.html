@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ET ROBOCON 2010 KACHIROBO!!: クラス StopSkill</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>クラス StopSkill</h1><!-- doxytag: class="StopSkill" --><!-- doxytag: inherits="Skill" -->
+<p>急停止スキル。目標地点で速度を急に0に落とす。  
+<a href="#_details">[詳細]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_stop_skill_8h_source.html">StopSkill.h</a>&gt;</code></p>
+<div class="dynheader">
+StopSkillに対する継承グラフ</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="class_stop_skill.gif" usemap="#StopSkill_map" alt=""/>
+  <map id="StopSkill_map" name="StopSkill_map">
+<area href="class_skill.html" alt="Skill" shape="rect" coords="0,0,60,24"/>
+</map>
+ </div>
+</div>
+
+<p><a href="class_stop_skill-members.html">すべてのメンバ一覧</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47ce8ca9b2eb0b8f870d2ed672511a23"></a><!-- doxytag: member="StopSkill::StopSkill" ref="a47ce8ca9b2eb0b8f870d2ed672511a23" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a47ce8ca9b2eb0b8f870d2ed672511a23">StopSkill</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">コンストラクタ <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a04d69bf600e3fdffbbb175edccce0f7d">setSkill</a> (<a class="el" href="class_skill.html">Skill</a> *skill)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">急停止機構を追加するスキルを設定する  <a href="#a04d69bf600e3fdffbbb175edccce0f7d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a439c1ef62cd6e15a6ce2d60e8a2e5f05">setTargetDistance</a> (float targetDistance)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">停止目標距離を設定する。  <a href="#a439c1ef62cd6e15a6ce2d60e8a2e5f05"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a387b726195eafc7981ae6a693185a8e7">setAllowableError</a> (float allowableError)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">許容エラー値を設定する。  <a href="#a387b726195eafc7981ae6a693185a8e7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a0aaca03267cc0ef89477c5c7aef6de7e">isArrived</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">目標距離に到着したか  <a href="#a0aaca03267cc0ef89477c5c7aef6de7e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">VectorT&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a8a10e568795aa178da4b939611785324">calcCommand</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">目標距離と現在距離から、急停止動作を行うのに適切な走行ベクトルを計算する  <a href="#a8a10e568795aa178da4b939611785324"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_skill.html#a3d3b74fabee187ea70d2916e28407128">setForward</a> (float forward)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">フォワード値をセットする  <a href="#a3d3b74fabee187ea70d2916e28407128"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_skill.html#ac81fd73b2b982ac1110f43c611087f29">execute</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">スキルを発揮してロボットを動かす。  <a href="#ac81fd73b2b982ac1110f43c611087f29"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Protected 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f7b891165f749159a5e4505d0f7f914"></a><!-- doxytag: member="StopSkill::mForward" ref="a2f7b891165f749159a5e4505d0f7f914" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_skill.html#a2f7b891165f749159a5e4505d0f7f914">mForward</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">フォワード値 <br/></td></tr>
+<tr><td colspan="2"><h2>Private 変数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83d2c5348d8977e87cfe632d79cff254"></a><!-- doxytag: member="StopSkill::mSkill" ref="a83d2c5348d8977e87cfe632d79cff254" args="" -->
+<a class="el" href="class_skill.html">Skill</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a83d2c5348d8977e87cfe632d79cff254">mSkill</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">急停止機構を追加するスキル。 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a887b431e7abca93423f59c4655ddbf22"></a><!-- doxytag: member="StopSkill::mTargetDistance" ref="a887b431e7abca93423f59c4655ddbf22" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a887b431e7abca93423f59c4655ddbf22">mTargetDistance</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">停止目標距離(mm) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a258140efce191b4fb1377718c3740134"></a><!-- doxytag: member="StopSkill::mAllowableError" ref="a258140efce191b4fb1377718c3740134" args="" -->
+float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_skill.html#a258140efce191b4fb1377718c3740134">mAllowableError</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">許容エラー値(mm)。何mm手前で速度を0に落とすか。 <br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>説明</h2>
+<p>急停止スキル。目標地点で速度を急に0に落とす。 </p>
+<p>スキルに急停止機構を追加する Decorator クラス。 </p>
+<hr/><h2>関数</h2>
+<a class="anchor" id="a8a10e568795aa178da4b939611785324"></a><!-- doxytag: member="StopSkill::calcCommand" ref="a8a10e568795aa178da4b939611785324" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VectorT&lt; float &gt; StopSkill::calcCommand </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>目標距離と現在距離から、急停止動作を行うのに適切な走行ベクトルを計算する </p>
+<dl class="return"><dt><b>戻り値:</b></dt><dd>走行ベクトル </dd></dl>
+
+<p><a class="el" href="class_skill.html#afdc013a5b18ece062b5ff44f898b0b4c">Skill</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="ac81fd73b2b982ac1110f43c611087f29"></a><!-- doxytag: member="StopSkill::execute" ref="ac81fd73b2b982ac1110f43c611087f29" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Skill::execute </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>スキルを発揮してロボットを動かす。 </p>
+<p>calcCommand を用いて走行ベクトルを決定し、制御機器(<a class="el" href="class_activator.html" title="制御機器(ハンドル、アクセル、ブレーキ)">Activator</a>)を操作する。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a0aaca03267cc0ef89477c5c7aef6de7e"></a><!-- doxytag: member="StopSkill::isArrived" ref="a0aaca03267cc0ef89477c5c7aef6de7e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool StopSkill::isArrived </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>目標距離に到着したか </p>
+<dl><dt><b>戻り値:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>true</em>&nbsp;</td><td>到着した </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>false</em>&nbsp;</td><td>まだ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a387b726195eafc7981ae6a693185a8e7"></a><!-- doxytag: member="StopSkill::setAllowableError" ref="a387b726195eafc7981ae6a693185a8e7" args="(float allowableError)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StopSkill::setAllowableError </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>allowableError</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>許容エラー値を設定する。 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>allowableError</em>&nbsp;</td><td>許容エラー値 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3d3b74fabee187ea70d2916e28407128"></a><!-- doxytag: member="StopSkill::setForward" ref="a3d3b74fabee187ea70d2916e28407128" args="(float forward)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Skill::setForward </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>forward</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>フォワード値をセットする </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>forward</em>&nbsp;</td><td>フォワード値 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a04d69bf600e3fdffbbb175edccce0f7d"></a><!-- doxytag: member="StopSkill::setSkill" ref="a04d69bf600e3fdffbbb175edccce0f7d" args="(Skill *skill)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StopSkill::setSkill </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_skill.html">Skill</a> *&nbsp;</td>
+          <td class="paramname"> <em>skill</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>急停止機構を追加するスキルを設定する </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>skill</em>&nbsp;</td><td>急停止機構を追加されるスキル </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a439c1ef62cd6e15a6ce2d60e8a2e5f05"></a><!-- doxytag: member="StopSkill::setTargetDistance" ref="a439c1ef62cd6e15a6ce2d60e8a2e5f05" args="(float targetDistance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StopSkill::setTargetDistance </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>targetDistance</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>停止目標距離を設定する。 </p>
+<dl><dt><b>引数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>targetDistance</em>&nbsp;</td><td>停止目標距離(現在の位置からの相対距離) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="_stop_skill_8h_source.html">StopSkill.h</a></li>
+<li>StopSkill.cpp</li>
+</ul>
+</div>
+<hr size="1"/><address style="text-align: right;"><small>ET ROBOCON 2010 KACHIROBO!!に対してWed Dec 8 11:36:47 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

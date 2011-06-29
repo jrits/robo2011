@@ -1,0 +1,35 @@
+//
+// Course.h
+//
+#ifndef COURSE_H_
+#define COURSE_H_
+
+#include "constants.h"
+#include "Driver.h"
+
+/**
+ * 抽象コース(ナビゲータ)クラス
+ */
+class Course
+{
+protected:
+    int mState; //!< 現在状態
+    Driver *mDriver; //!< 現在ドライバ
+public:
+    /**
+     * コンストラクタ
+     */
+	Course(){}
+    /**
+     * デストラクタ
+     */
+	virtual ~Course(){}
+    /**
+     * 現在の状況に適切なドライバを選択し、ドライバに運転させる
+     *
+     * Override Me!
+     */
+	virtual void drive(){}
+};
+	
+#endif /*COURSE_H_*/
