@@ -3,10 +3,11 @@
 #include "macro.h"
 
 // デバイスオブジェクトの生成
-TouchSensor mTouchSensor(PORT_1);
+GyroSensor mGyroSensor(PORT_1);
+TouchSensor mTouchSensor(PORT_4);
 SonarSensor mSonarSensor(PORT_2);
 LightSensor mLightSensor(PORT_3);
-GyroSensor mGyroSensor(PORT_4);
+Motor mTailMotor(PORT_A);
 Motor mLeftMotor(PORT_B);
 Motor mRightMotor(PORT_C);
 Lcd mLcd;
