@@ -40,10 +40,17 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 #define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
+/* sample_c4マクロ */
+#define DEVICE_NAME       "ET0"  /* Bluetooth通信用デバイス名 */
+#define PASS_KEY          "1234" /* Bluetooth通信用パスキー */
+#define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
+/* Bluetooth通信用データ受信バッファ */
+char rx_buf[BT_MAX_RX_BUF_SIZE];
 
 /* 関数プロトタイプ宣言 */
 static int sonar_alert(void);
 static void tail_control(signed int angle);
+static int remote_start(void);
 
 //=============================================================================
 // TOPPERS/ATK declarations
@@ -84,16 +91,18 @@ void user_1ms_isr_type2(void)
 // ECRobot C API デバイスの初期化
 void ecrobot_device_initialize(void)
 {
-	ecrobot_set_light_sensor_active(NXT_PORT_S3); /* 光センサ赤色LEDをON */
-	ecrobot_init_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を初期化 */
-	nxt_motor_set_count(NXT_PORT_A, 0); /* 完全停止用モータエンコーダリセット */
+  ecrobot_set_light_sensor_active(NXT_PORT_S3); /* 光センサ赤色LEDをON */
+  ecrobot_init_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を初期化 */
+  nxt_motor_set_count(NXT_PORT_A, 0); /* 完全停止用モータエンコーダリセット */
+  ecrobot_init_bt_slave(PASS_KEY);
 }
 
 // ECRobot C API デバイスの終了
 void ecrobot_device_terminate(void)
 {
-	ecrobot_set_light_sensor_inactive(NXT_PORT_S3); /* 光センサ赤色LEDをOFF */
-	ecrobot_term_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を終了 */
+  ecrobot_set_light_sensor_inactive(NXT_PORT_S3); /* 光センサ赤色LEDをOFF */
+  ecrobot_term_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を終了 */
+  ecrobot_term_bt_connection(); /* Bluetooth通信を終了 */
 }
 
 // タスク間共有メモリ
@@ -182,7 +191,7 @@ TASK(TaskDrive)
 	{
 		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
 
-		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1)
+		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
 		{
 			break; /* タッチセンサが押された */
 		}
@@ -395,6 +404,38 @@ static void tail_control(signed int angle)
 	}
 
 	nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
+}
+
+//*****************************************************************************
+// 関数名 : remote_start
+// 引数 : 無し
+// 返り値 : 1(スタート)/0(待機)
+// 概要 : Bluetooth通信によるリモートスタート。 Tera Termなどのターミナルソフトから、
+//       ASCIIコードで1を送信すると、リモートスタートする。
+//*****************************************************************************
+static int remote_start(void)
+{
+	int i;
+	unsigned int rx_len;
+	unsigned char start = 0;
+
+	for (i=0; i<BT_MAX_RX_BUF_SIZE; i++)
+	{
+		rx_buf[i] = 0; /* 受信バッファをクリア */
+	}
+
+	rx_len = ecrobot_read_bt(rx_buf, 0, BT_MAX_RX_BUF_SIZE);
+	if (rx_len > 0)
+	{
+		/* 受信データあり */
+		if (rx_buf[0] == CMD_START)
+		{
+			start = 1; /* 走行開始 */
+		}
+		ecrobot_send_bt(rx_buf, 0, rx_len); /* 受信データをエコーバック */
+	}
+
+	return start;
 }
 
 };
