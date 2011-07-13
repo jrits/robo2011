@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ET ROBOCON 2010 KACHIROBO!!: LineTrace.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>LineTrace.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
+<a name="l00002"></a>00002 <span class="comment">// LineTrace.h</span>
+<a name="l00003"></a>00003 <span class="comment">//</span>
+<a name="l00004"></a>00004 
+<a name="l00005"></a>00005 <span class="preprocessor">#ifndef LINETRACE_H_</span>
+<a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define LINETRACE_H_</span>
+<a name="l00007"></a>00007 <span class="preprocessor"></span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;Skill.h&quot;</span>
+<a name="l00009"></a>00009 
+<a name="l00013"></a><a class="code" href="class_line_trace.html">00013</a> <span class="keyword">class </span><a class="code" href="class_line_trace.html" title="ライントレーススキル">LineTrace</a> : <span class="keyword">public</span> <a class="code" href="class_skill.html" title="スキル抽象クラス">Skill</a>
+<a name="l00014"></a>00014 {
+<a name="l00015"></a>00015 <span class="keyword">private</span>:
+<a name="l00016"></a><a class="code" href="class_line_trace.html#a25995b66bb820d311f8c7202e7b8736b">00016</a>         <span class="keywordtype">float</span> <a class="code" href="class_line_trace.html#a25995b66bb820d311f8c7202e7b8736b" title="黒">mBlack</a>;         
+<a name="l00017"></a><a class="code" href="class_line_trace.html#ad7ed45ea79b1f9e63489acc6970e69dc">00017</a>         <span class="keywordtype">float</span> <a class="code" href="class_line_trace.html#ad7ed45ea79b1f9e63489acc6970e69dc" title="白">mWhite</a>;         
+<a name="l00018"></a><a class="code" href="class_line_trace.html#a39185554d8ca99069d675a48e1d2b59c">00018</a>         <span class="keywordtype">float</span> <a class="code" href="class_line_trace.html#a39185554d8ca99069d675a48e1d2b59c" title="白黒閾値">mLineThreshold</a>; 
+<a name="l00019"></a><a class="code" href="class_line_trace.html#af5e7eafd992e0414b4b517fa17207abc">00019</a>     <span class="keywordtype">int</span> <a class="code" href="class_line_trace.html#af5e7eafd992e0414b4b517fa17207abc" title="初期フォワード値">mInitForward</a>;     
+<a name="l00020"></a><a class="code" href="class_line_trace.html#a1b1368fba5f8ce9a3bdaff9d5e727f08">00020</a>     <span class="keywordtype">int</span> <a class="code" href="class_line_trace.html#a1b1368fba5f8ce9a3bdaff9d5e727f08" title="初期フォワード値継続カウンタ期間">mInitDuration</a>;    
+<a name="l00021"></a><a class="code" href="class_line_trace.html#aeb0165c7338947b26e23a9b58e892118">00021</a>     <span class="keywordtype">int</span> <a class="code" href="class_line_trace.html#aeb0165c7338947b26e23a9b58e892118" title="時間カウンタ">mTimeCounter</a>;     
+<a name="l00022"></a><a class="code" href="class_line_trace.html#a6bdcdc8af636264dbcee3eb4fe910425">00022</a>     <span class="keywordtype">bool</span> <a class="code" href="class_line_trace.html#a6bdcdc8af636264dbcee3eb4fe910425" title="ON/OFF制御(true) or PID制御(false)フラグ.">mUseOnoff</a>;       
+<a name="l00023"></a>00023     <span class="comment">//Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD);</span>
+<a name="l00024"></a>00024     <span class="comment">//float LIGHT_ONOFF_K;</span>
+<a name="l00025"></a>00025 <span class="keyword">public</span>:
+<a name="l00026"></a>00026         <a class="code" href="class_line_trace.html#ab90d989a72927ff357280900af5bf84a" title="コンストラクタ">LineTrace</a>(<span class="keywordtype">float</span> black, <span class="keywordtype">float</span> white, <span class="keywordtype">float</span> threshold);
+<a name="l00027"></a>00027         ~<a class="code" href="class_line_trace.html" title="ライントレーススキル">LineTrace</a>(){}
+<a name="l00028"></a>00028     <span class="keywordtype">void</span> <a class="code" href="class_line_trace.html#a062f505ebebdb6d0c9bc974c22afefa8" title="状態のリセット">reset</a>();
+<a name="l00029"></a>00029     <span class="keywordtype">void</span> <a class="code" href="class_line_trace.html#a523622baf2ba933304a822bc87cbbf5a" title="初速の設定">setInitForward</a>(<span class="keywordtype">int</span> initForward);
+<a name="l00030"></a>00030     <span class="keywordtype">void</span> <a class="code" href="class_line_trace.html#a2921327372135e2ed7e2c8fbd430128f" title="初速継続カウンタ期間の設定">setInitDuration</a>(<span class="keywordtype">int</span> initDuration);
+<a name="l00031"></a>00031     <span class="keywordtype">void</span> <a class="code" href="class_line_trace.html#abfe4bebc16821ec843d6019bcb23107e" title="ON/OFF制御(true) or PID制御(false)フラグの設定.">setUseOnoff</a>(<span class="keywordtype">bool</span> useOnoff);
+<a name="l00032"></a>00032 <span class="keyword">public</span>:
+<a name="l00033"></a>00033     VectorT&lt;float&gt; <a class="code" href="class_line_trace.html#ae459a7983493d2cab3c93e429b350f8d" title="現在の光値から、ライントレースをするのに適切な走行ベクトルを計算す�...">calcCommand</a>();
+<a name="l00034"></a>00034 <span class="keyword">private</span>:
+<a name="l00035"></a>00035     <span class="keywordtype">float</span> <a class="code" href="class_line_trace.html#ab86a4e450d1b9465de2523d34b8bb3f2" title="(ONOFF制御)現在の光値から、ライントレースをするのに適切なターン値を計...">calcCommandTurnByOnOff</a>();
+<a name="l00036"></a>00036     <span class="keywordtype">float</span> <a class="code" href="class_line_trace.html#a1deb4770f3a86dcc6c80da7348927f95" title="(PID制御)現在の光値から、ライントレースをするのに適切なターン値を計�...">calcCommandTurn</a>();
+<a name="l00037"></a>00037         <span class="keywordtype">float</span> <a class="code" href="class_line_trace.html#ae402fbee6ed19e2b4921987af09ea9da" title="正規化した光センサの値を取得する">lightValueNormalization</a>();
+<a name="l00038"></a>00038 };
+<a name="l00039"></a>00039 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>ET ROBOCON 2010 KACHIROBO!!に対してWed Dec 8 11:36:44 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

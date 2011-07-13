@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ET ROBOCON 2010 KACHIROBO!!: SlowdownSkill.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 作成： Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="main.html"><span>メインページ</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<h1>SlowdownSkill.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//</span>
+<a name="l00002"></a>00002 <span class="comment">// SlowdownSkill.h</span>
+<a name="l00003"></a>00003 <span class="comment">//</span>
+<a name="l00004"></a>00004 
+<a name="l00005"></a>00005 <span class="preprocessor">#ifndef SlowdownSkill_H_</span>
+<a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define SlowdownSkill_H_</span>
+<a name="l00007"></a>00007 <span class="preprocessor"></span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;Skill.h&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;struct.h&quot;</span>
+<a name="l00010"></a>00010 
+<a name="l00016"></a><a class="code" href="class_slowdown_skill.html">00016</a> <span class="keyword">class </span><a class="code" href="class_slowdown_skill.html" title="減速スキル">SlowdownSkill</a> : <span class="keyword">public</span> <a class="code" href="class_skill.html" title="スキル抽象クラス">Skill</a>
+<a name="l00017"></a>00017 {
+<a name="l00018"></a><a class="code" href="class_slowdown_skill.html#a55fce931fe2fd305d14163ef24dd5c0a">00018</a>     <a class="code" href="class_skill.html" title="スキル抽象クラス">Skill</a> *<a class="code" href="class_slowdown_skill.html#a55fce931fe2fd305d14163ef24dd5c0a" title="減速機構を追加するスキル。">mSkill</a>;         
+<a name="l00019"></a><a class="code" href="class_slowdown_skill.html#a708c67732daf8f38f7d4856340c63691">00019</a>     <span class="keywordtype">float</span> <a class="code" href="class_slowdown_skill.html#a708c67732daf8f38f7d4856340c63691" title="減速最低速度(デフォルト10)">mMinimumForward</a>; 
+<a name="l00020"></a><a class="code" href="class_slowdown_skill.html#a3050a3eff127f614a4be68b3ff771a5b">00020</a>     <span class="keywordtype">float</span> <a class="code" href="class_slowdown_skill.html#a3050a3eff127f614a4be68b3ff771a5b" title="停止目標距離(mm)">mTargetDistance</a>; 
+<a name="l00021"></a><a class="code" href="class_slowdown_skill.html#a4788386b78c10c30b40fd0a4d6297023">00021</a>     <span class="keywordtype">float</span> <a class="code" href="class_slowdown_skill.html#a4788386b78c10c30b40fd0a4d6297023" title="許容エラー値(mm)">mAllowableError</a>; 
+<a name="l00022"></a>00022 <span class="keyword">public</span>:
+<a name="l00023"></a>00023         <a class="code" href="class_slowdown_skill.html#ad107698ea0eafc762026aacfd182b826" title="コンストラクタ">SlowdownSkill</a>();
+<a name="l00024"></a>00024         ~<a class="code" href="class_slowdown_skill.html" title="減速スキル">SlowdownSkill</a>(){}
+<a name="l00025"></a>00025 <span class="keyword">public</span>:
+<a name="l00026"></a>00026     <span class="keywordtype">void</span> <a class="code" href="class_slowdown_skill.html#a1e2c87fb352ad40a34b5c71e79c1595a" title="減速機構を追加するスキルを設定する">setSkill</a>(<a class="code" href="class_skill.html" title="スキル抽象クラス">Skill</a> *skill);
+<a name="l00027"></a>00027     <span class="keywordtype">void</span> <a class="code" href="class_slowdown_skill.html#a078c069dbe3ab91c08e988e41bceccb8" title="停止目標距離を設定する。">setTargetDistance</a>(<span class="keywordtype">float</span> targetDistance);
+<a name="l00028"></a>00028     <span class="keywordtype">void</span> <a class="code" href="class_slowdown_skill.html#aa2246adf16f3d83875b4b52d2d17e966" title="減速最低速度を設定する。">setMinimumForward</a>(<span class="keywordtype">float</span> minimumForward);
+<a name="l00029"></a>00029         <span class="keywordtype">void</span> <a class="code" href="class_slowdown_skill.html#a970d67a688122b8d61db83ee71fb58d5" title="許容エラー値を設定する。">setAllowableError</a>(<span class="keywordtype">float</span> allowableError);
+<a name="l00030"></a>00030     <span class="keywordtype">bool</span> <a class="code" href="class_slowdown_skill.html#a5d5d32243f3d662ce24a6c669232609c" title="目標距離に到着したか">isArrived</a>();
+<a name="l00031"></a>00031     <span class="keywordtype">bool</span> <a class="code" href="class_slowdown_skill.html#ad0bd139586730f136dd404f90c706efb" title="目標地点を通り過ぎたかの判定を返す。">isPassed</a>();
+<a name="l00032"></a>00032 <span class="keyword">public</span>:
+<a name="l00033"></a>00033         VectorT&lt;float&gt; <a class="code" href="class_slowdown_skill.html#a18a469d2cd5c7ae7d2412228710e93eb" title="目標距離と現在距離から、減速動作を行うのに適切な走行ベクトルを計算�...">calcCommand</a>();
+<a name="l00034"></a>00034 };
+<a name="l00035"></a>00035 <span class="preprocessor">#endif</span>
+</pre></div></div>
+<hr size="1"/><address style="text-align: right;"><small>ET ROBOCON 2010 KACHIROBO!!に対してWed Dec 8 11:36:45 2010に生成されました。&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# for emacs:
+*~
+\#*
+.\#*
+
+# for vi:
+*.swp
+
+# for etrobo
+*.o
+*.oram
+appflash.sh
+biosflash.sh
+ramboot.sh
+rxeflash.sh
+*_rom.bin
+*_ram.bin
+*.rxe
+build
+implementation.oil
+kernel_cfg.c
+kernel_id.h
+*.elf
+*.map
+
+
