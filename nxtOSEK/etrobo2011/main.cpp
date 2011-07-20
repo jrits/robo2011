@@ -208,7 +208,8 @@ TASK(TaskDrive)
 
 		if (sonar_alert() == 1) /* áŠQ•¨ŒŸ’m */
 		{
-			forward = turn = 0; /* áŠQ•¨‚ğŒŸ’m‚µ‚½‚ç’â~ */
+                  forward = turn = 0; /* áŠQ•¨‚ğŒŸ’m‚µ‚½‚ç’â~ */
+                  mPosture.inclineBackward(20); /* Œã‚ë‚É“|‚ê‚é */
 		}
 		else
 		{
