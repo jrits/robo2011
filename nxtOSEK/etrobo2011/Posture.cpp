@@ -21,9 +21,6 @@ void Posture::inclineBackward(int angle){
   float P_GAIN = 2.5F;
   /* PWMo—Í–O˜aˆ— */
   float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* ”ä—á§Œä */
-  if(pwm < 0.1){
-    break;
-  }
   if (pwm > PWM_ABS_MAX) {
     pwm = 100;
   } else if (pwm < -PWM_ABS_MAX) {
