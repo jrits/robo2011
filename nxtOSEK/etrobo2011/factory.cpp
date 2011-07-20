@@ -61,3 +61,6 @@ EnigmaDriver mEnigmaDriver;
 MysteryDriver mMysteryDriver;
 InGarageDriver mInGarageDriver;
 TestDriver mTestDriver;
+
+// Posture
+Posture mPosture(mLeftMotor,mRightMotor,mTailMotor);

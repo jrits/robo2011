@@ -48,7 +48,8 @@ TARGET_CPP_SOURCES = \
 	VirtualLineTrace.cpp \
 	CoordinateStop.cpp \
 	SlowdownSkill.cpp \
-	StopSkill.cpp
+	StopSkill.cpp \
+        Posture.cpp
 
 # TOPPERS/ATK(OSEK)ê›íËÉtÉ@ÉCÉã
 TOPPERS_OSEK_OIL_SOURCE = main.oil

@@ -86,7 +86,7 @@ void ecrobot_device_initialize(void)
 {
 	ecrobot_set_light_sensor_active(NXT_PORT_S3); /* 光センサ赤色LEDをON */
 	ecrobot_init_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を初期化 */
-	nxt_motor_set_count(NXT_PORT_A, 0); /* 完全停止用モータエンコーダリセット */
+        // nxt_motor_set_count(NXT_PORT_A, 0); /* 完全停止用モータエンコーダリセット */
 }
 
 // ECRobot C API デバイスの終了
@@ -180,8 +180,7 @@ TASK(TaskDrive)
 
 	while(1)
 	{
-		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
-
+          tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
 		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1)
 		{
 			break; /* タッチセンサが押された */
@@ -199,7 +198,8 @@ TASK(TaskDrive)
 
 		if (sonar_alert() == 1) /* 障害物検知 */
 		{
-			forward = turn = 0; /* 障害物を検知したら停止 */
+                  forward = turn = 0; /* 障害物を検知したら停止 */
+                  mPosture.inclineBackward(20); /* 後ろに倒れる */
 		}
 		else
 		{

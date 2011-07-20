@@ -50,6 +50,9 @@
 #include "Activator.h"
 #include "Pid.h"
 #include "struct.h"
+// Posture
+#include "Posture.h"
+
 // デバイスオブジェクト
 extern TouchSensor mTouchSensor;
 extern SonarSensor mSonarSensor;
@@ -106,4 +109,7 @@ extern TestDriver mTestDriver;
 extern Course *mCourse;
 extern InCourse mInCourse;
 extern OutCourse mOutCourse;
+
+// Posture
+extern Posture mPosture;
 #endif
