@@ -80,12 +80,12 @@ DeclareAlarm(AlarmLogger);
 //
 void user_1ms_isr_type2(void)
 {
-    (void)SignalCounter(SysTimerCnt); // Increment System Timer Count
-    SleeperMonitor(); // ClockクラスまたはI2Cデバイスクラス使用時に必要
-    // ENTER ボタンで bluetooth 接続をキャンセル
-    if (mNxt.getButtons() == Nxt::ENTR_ON && !mBluetooth.isConnected()) {
-        mBluetooth.cancelWaitForConnection();
-    }
+  (void)SignalCounter(SysTimerCnt); // Increment System Timer Count
+  SleeperMonitor(); // ClockクラスまたはI2Cデバイスクラス使用時に必要
+  // ENTER ボタンで bluetooth 接続をキャンセル
+  if (mNxt.getButtons() == Nxt::ENTR_ON && !mBluetooth.isConnected()) {
+    mBluetooth.cancelWaitForConnection();
+  }
 }
 
 // ECRobot C API デバイスの初期化
@@ -116,45 +116,45 @@ bool gTouchStarter = false; //!< タッチセンサ押下フラグ
  */
 TASK(TaskSonar)
 {
-//     // 48msec 毎にイベント通知する設定
-//     SetRelAlarm(AlarmSonar, 1, 48); 
-//     WaitEvent(EventSonar);
+  //     // 48msec 毎にイベント通知する設定
+  //     SetRelAlarm(AlarmSonar, 1, 48); 
+  //     WaitEvent(EventSonar);
 
-//     int gSonarDetectCount = 0;
-//     int gSonarTotalCount = 0;
-//     float gSonarDetectRatio = 0.0;
-//     while (1) {
-//         if (! gDoSonar) {
-//             gSonarDetectCount = 0;
-//             gSonarTotalCount = 0;
-//         }
-//     	if (gDoSonar) {
-//             gSonarDistance = mSonarSensor.getDistance();
-//             gSonarDetectCount += (gSonarDistance < 60);
-//             gSonarTotalCount++;
-//             gSonarDetectRatio = (gSonarDetectCount / (float)gSonarTotalCount);
-//             gSonarIsDetected = (gSonarDetectRatio > 0.1);
-//         }
+  //     int gSonarDetectCount = 0;
+  //     int gSonarTotalCount = 0;
+  //     float gSonarDetectRatio = 0.0;
+  //     while (1) {
+  //         if (! gDoSonar) {
+  //             gSonarDetectCount = 0;
+  //             gSonarTotalCount = 0;
+  //         }
+  //     	if (gDoSonar) {
+  //             gSonarDistance = mSonarSensor.getDistance();
+  //             gSonarDetectCount += (gSonarDistance < 60);
+  //             gSonarTotalCount++;
+  //             gSonarDetectRatio = (gSonarDetectCount / (float)gSonarTotalCount);
+  //             gSonarIsDetected = (gSonarDetectRatio > 0.1);
+  //         }
 
-// #if 0 // DEBUG
-//         gDoSonar = true;
-//         static int count = 0;
-//         if (count++ > 5) {
-//             Lcd lcd;
-//             lcd.clear();
-//             lcd.putf("sn", "TaskSonar");
-//             lcd.putf("dn", gDoSonar);
-//             lcd.putf("dn", gSonarDistance);
-//             lcd.putf("dn", gSonarDetectCount);
-//             lcd.putf("dn", gSonarTotalCount);
-//             lcd.putf("dn", gSonarIsDetected);
-//             lcd.disp();
-//         }
-// #endif
-//         // イベント通知を待つ
-//         ClearEvent(EventSonar);
-//         WaitEvent(EventSonar);
-//    }
+  // #if 0 // DEBUG
+  //         gDoSonar = true;
+  //         static int count = 0;
+  //         if (count++ > 5) {
+  //             Lcd lcd;
+  //             lcd.clear();
+  //             lcd.putf("sn", "TaskSonar");
+  //             lcd.putf("dn", gDoSonar);
+  //             lcd.putf("dn", gSonarDistance);
+  //             lcd.putf("dn", gSonarDetectCount);
+  //             lcd.putf("dn", gSonarTotalCount);
+  //             lcd.putf("dn", gSonarIsDetected);
+  //             lcd.disp();
+  //         }
+  // #endif
+  //         // イベント通知を待つ
+  //         ClearEvent(EventSonar);
+  //         WaitEvent(EventSonar);
+  //    }
 }
 
 /**
@@ -162,24 +162,24 @@ TASK(TaskSonar)
  */
 TASK(TaskDrive)
 {
-//     // 4msec 毎にイベント通知する設定
-//     SetRelAlarm(AlarmDrive, 1, 4); 
-//     WaitEvent(EventDrive);
-// //     K_THETADOT = 10.5F;
+  //     // 4msec 毎にイベント通知する設定
+  //     SetRelAlarm(AlarmDrive, 1, 4); 
+  //     WaitEvent(EventDrive);
+  // //     K_THETADOT = 10.5F;
 
-//     //connect_bt(mLcd, BT_NAME); // bluetooth接続
-//     mActivator.reset(USER_GYRO_OFFSET);
+  //     //connect_bt(mLcd, BT_NAME); // bluetooth接続
+  //     mActivator.reset(USER_GYRO_OFFSET);
 
-//     while(!(gTouchStarter = mTouchSensor.isPressed()));
-//     bool doDrive = true;
-//     while (1) {
-//         if (mFailDetector.detect()) doDrive = false;
-//         if (doDrive) mCourse->drive();
-//     	else mActivator.stop();
+  //     while(!(gTouchStarter = mTouchSensor.isPressed()));
+  //     bool doDrive = true;
+  //     while (1) {
+  //         if (mFailDetector.detect()) doDrive = false;
+  //         if (doDrive) mCourse->drive();
+  //     	else mActivator.stop();
 
-//         // イベント通知を待つ
-//         ClearEvent(EventDrive);
-//         WaitEvent(EventDrive);
+  //         // イベント通知を待つ
+  //         ClearEvent(EventDrive);
+  //         WaitEvent(EventDrive);
         
 //     }
 //     TerminateTask();
@@ -247,16 +247,16 @@ TASK(TaskDrive)
  */
 TASK(TaskGps)
 {
-    // 4msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmGps, 1, 4); 
-    WaitEvent(EventGps);
+  // 4msec 毎にイベント通知する設定
+  SetRelAlarm(AlarmGps, 1, 4); 
+  WaitEvent(EventGps);
 
-    while (1) {
-        mGps.update();
-        // イベント通知を待つ
-        ClearEvent(EventGps);
-        WaitEvent(EventGps);
-    }
+  while (1) {
+    mGps.update();
+    // イベント通知を待つ
+    ClearEvent(EventGps);
+    WaitEvent(EventGps);
+  }
 }
 
 /*
@@ -264,23 +264,23 @@ TASK(TaskGps)
  */
 TASK(TaskHistory)
 {
-    // 4msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmHistory, 1, 4); 
-    WaitEvent(EventHistory);
+  // 4msec 毎にイベント通知する設定
+  SetRelAlarm(AlarmHistory, 1, 4); 
+  WaitEvent(EventHistory);
 
-    while (1) {
-        mLightHistory.update(mLightSensor.get());
-        mRightMotorHistory.update(mRightMotor.getCount());
-        mLeftMotorHistory.update(mLeftMotor.getCount());
-        mRightMotorSpeedHistory.update(mRightMotorHistory.calcDifference());
-        mLeftMotorSpeedHistory.update(mLeftMotorHistory.calcDifference());
-        mDirectionHistory.update(mGps.getDirection());
-        mDirectionAverageHistory.update(mDirectionHistory.calcAverage());
-        mGyroHistory.update(mGyroSensor.get());
-        // イベント通知を待つ
-        ClearEvent(EventHistory);
-        WaitEvent(EventHistory);
-    }
+  while (1) {
+    mLightHistory.update(mLightSensor.get());
+    mRightMotorHistory.update(mRightMotor.getCount());
+    mLeftMotorHistory.update(mLeftMotor.getCount());
+    mRightMotorSpeedHistory.update(mRightMotorHistory.calcDifference());
+    mLeftMotorSpeedHistory.update(mLeftMotorHistory.calcDifference());
+    mDirectionHistory.update(mGps.getDirection());
+    mDirectionAverageHistory.update(mDirectionHistory.calcAverage());
+    mGyroHistory.update(mGyroSensor.get());
+    // イベント通知を待つ
+    ClearEvent(EventHistory);
+    WaitEvent(EventHistory);
+  }
 }
 
 /*
@@ -288,23 +288,23 @@ TASK(TaskHistory)
  */
 TASK(TaskLogger)
 {
-    // 100msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmLogger, 1, 100); 
-    WaitEvent(EventLogger);
+  // 100msec 毎にイベント通知する設定
+  SetRelAlarm(AlarmLogger, 1, 100); 
+  WaitEvent(EventLogger);
 
-    while(!gTouchStarter);
-    while (1) {
-        if (LOGGER_SEND == 1) {
-            mDaq.send(LOGGER_DATAS08, LOGGER_DATAS32[0]);
-        } 
-        else if (LOGGER_SEND == 2) {
-            mDaq.send(LOGGER_DATAS08, LOGGER_DATAU16, LOGGER_DATAS16, LOGGER_DATAS32);
-        }
-
-        // イベント通知を待つ
-        ClearEvent(EventLogger);
-        WaitEvent(EventLogger);
+  while(!gTouchStarter);
+  while (1) {
+    if (LOGGER_SEND == 1) {
+      mDaq.send(LOGGER_DATAS08, LOGGER_DATAS32[0]);
+    } 
+    else if (LOGGER_SEND == 2) {
+      mDaq.send(LOGGER_DATAS08, LOGGER_DATAU16, LOGGER_DATAS16, LOGGER_DATAS32);
     }
+
+    // イベント通知を待つ
+    ClearEvent(EventLogger);
+    WaitEvent(EventLogger);
+  }
 }
 
 /**
@@ -317,38 +317,38 @@ TASK(TaskLogger)
  */
 static void connect_bt(Lcd &lcd, char bt_name[16])
 {
-    //CHAR  name[16]; 
-    U8 address[7];
+  //CHAR  name[16]; 
+  U8 address[7];
 
-    lcd.clear();
+  lcd.clear();
 
-    if (mBluetooth.getDeviceAddress(address)) // get the device address
+  if (mBluetooth.getDeviceAddress(address)) // get the device address
+  {
+    lcd.putf("sn", "BD_ADDR:");
+    for (SINT i=0; i<7; i++) lcd.putf("x", address[i],2);
+
+    mBluetooth.setFriendlyName(bt_name); // set the friendly device name
+    if (mBluetooth.getFriendlyName(bt_name)) // display the friendly device name
     {
-        lcd.putf("sn", "BD_ADDR:");
-        for (SINT i=0; i<7; i++) lcd.putf("x", address[i],2);
-
-        mBluetooth.setFriendlyName(bt_name); // set the friendly device name
-        if (mBluetooth.getFriendlyName(bt_name)) // display the friendly device name
-        {
-            lcd.putf("nssn", "BT_NAME: ", bt_name);
-        }
-
-        lcd.putf("nsn", "Connecting BT...");
-        lcd.putf("sn",  "ENTR to cancel.");
-        lcd.disp();
-
-        if (mBluetooth.waitForConnection("1234", 0)) // wait forever
-        {
-            lcd.putf("s", "Connected.");
-        }
-    }
-    else
-    {
-        lcd.putf("s", "BT Failed.");
+      lcd.putf("nssn", "BT_NAME: ", bt_name);
     }
 
-    lcd.putf("ns", "Press Touch.");
+    lcd.putf("nsn", "Connecting BT...");
+    lcd.putf("sn",  "ENTR to cancel.");
     lcd.disp();
+
+    if (mBluetooth.waitForConnection("1234", 0)) // wait forever
+    {
+      lcd.putf("s", "Connected.");
+    }
+  }
+  else
+  {
+    lcd.putf("s", "BT Failed.");
+  }
+
+  lcd.putf("ns", "Press Touch.");
+  lcd.disp();
 }
 
 //*****************************************************************************
@@ -359,30 +359,30 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
 //*****************************************************************************
 static int sonar_alert(void)
 {
-	static unsigned int counter = 0;
-	static int alert = 0;
+  static unsigned int counter = 0;
+  static int alert = 0;
 
-	signed int distance;
+  signed int distance;
 
-	if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
-	{
-		/*
-		 * 超音波センサによる距離測定周期は、超音波の減衰特性に依存します。
-		 * NXTの場合は、40msec周期程度が経験上の最短測定周期です。
-		 */
-		distance = ecrobot_get_sonar_sensor(NXT_PORT_S2);
-		if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
-		{
-			alert = 1; /* 障害物を検知 */
-		}
-		else
-		{
-			alert = 0; /* 障害物無し */
-		}
-		counter = 0;
-	}
+  if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
+  {
+    /*
+     * 超音波センサによる距離測定周期は、超音波の減衰特性に依存します。
+     * NXTの場合は、40msec周期程度が経験上の最短測定周期です。
+     */
+    distance = ecrobot_get_sonar_sensor(NXT_PORT_S2);
+    if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
+    {
+      alert = 1; /* 障害物を検知 */
+    }
+    else
+    {
+      alert = 0; /* 障害物無し */
+    }
+    counter = 0;
+  }
 
-	return alert;
+  return alert;
 }
 
 //*****************************************************************************
@@ -393,18 +393,18 @@ static int sonar_alert(void)
 //*****************************************************************************
 static void tail_control(signed int angle)
 {
-	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
-	/* PWM出力飽和処理 */
-	if (pwm > PWM_ABS_MAX)
-	{
-		pwm = PWM_ABS_MAX;
-	}
-	else if (pwm < -PWM_ABS_MAX)
-	{
-		pwm = -PWM_ABS_MAX;
-	}
+  float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
+  /* PWM出力飽和処理 */
+  if (pwm > PWM_ABS_MAX)
+  {
+    pwm = PWM_ABS_MAX;
+  }
+  else if (pwm < -PWM_ABS_MAX)
+  {
+    pwm = -PWM_ABS_MAX;
+  }
 
-	nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
+  nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
 }
 
 //*****************************************************************************
