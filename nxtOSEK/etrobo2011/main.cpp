@@ -36,7 +36,7 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 /* sample_c2マクロ */
 #define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
 /* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
+#define TAIL_ANGLE_STAND_UP 95 /* 完全停止時の角度[度] */
 #define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
@@ -189,17 +189,19 @@ TASK(TaskDrive)
     systick_wait_ms(10); /* 10msecウェイト */
   }
 
-  balance_init();						/* 倒立振子制御初期化 */
+  balance_init(); /* 倒立振子制御初期化 */
   nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
   nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
+  static bool found_something = false;
   while(1)
   {
     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 
-    if (sonar_alert() == 1) /* 障害物検知 */
+    if (sonar_alert() == 1 || found_something) /* 障害物検知 */
     {
       // forward = turn = 0; /* 障害物を検知したら停止 */
       mPosture.inclineBackward(70); /* 後ろに倒れる */
+      found_something = true;
     }
     else
     {
