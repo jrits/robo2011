@@ -28,6 +28,15 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
         mGps.adjustYCoordinate(GPS_STAIRWAY_START_Y);
         mGps.adjustDirection(GPS_STAIRWAY_START_DIRECTION);
         break;
+    case OutCourse::ETSUMO:
+        /* ETロボコン2011 追記*/
+    	// ET相撲からテスト
+        // ET相撲スタート地点
+        mGps.adjustXCoordinate(GPS_ETSUMO_START_X);
+        mGps.adjustYCoordinate(GPS_ETSUMO_START_Y);
+        mGps.adjustDirection(GPS_ETSUMO_START_DIRECTION);
+        break;
+        /* ETロボコン2011 追記ここまで */
     case OutCourse::GARAGEIN:
         // ガレージインからテスト
         // インコース坂道前マーカー終わり地点
@@ -42,6 +51,7 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
         mGps.adjustYCoordinate(GPS_COURSE_START_Y);
         mGps.adjustDirection(GPS_COURSE_START_DIRECTION);
         break;
+    	
     }
 }
 
@@ -108,6 +118,17 @@ void OutCourse::drive()
             }
         }
     }
+	/* ETロボコン2011 追記*/
+    else if (mState == OutCourse::ETSUMO) { // ET相撲区間
+        if (mETsumoDriver.drive()) {
+            float X = mGps.getXCoordinate();
+            float Y = mGps.getYCoordinate();
+            if (inRegion(GPS_GARAGEIN_START, MakePoint(X, Y))) { // 区間をガレージ区間に更新
+                //mState = OutCourse::GARAGEIN;
+            }
+        }
+    }
+	/* ETロボコン2011 追記ここまで */
     else if (mState == OutCourse::GARAGEIN) { // ガレージ・イン区間
         mOutGarageDriver.drive();
     }

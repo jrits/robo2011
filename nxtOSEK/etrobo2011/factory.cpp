@@ -3,18 +3,19 @@
 #include "macro.h"
 
 // デバイスオブジェクトの生成
-GyroSensor mGyroSensor(PORT_1);
 TouchSensor mTouchSensor(PORT_4);
 SonarSensor mSonarSensor(PORT_2);
 LightSensor mLightSensor(PORT_3);
 Motor mTailMotor(PORT_A);
 Motor mRightMotor(PORT_B);
 Motor mLeftMotor(PORT_C);
+GyroSensor mGyroSensor(PORT_1);
 Lcd mLcd;
 Clock mClock;
 Nxt mNxt;
 Bluetooth mBluetooth;
 Daq mDaq(mBluetooth);
+Speaker mSpeaker;
 // History
 float mLightBuffer[25]; // % 25
 History mLightHistory(mLightBuffer, COUNTOF(mLightBuffer));
@@ -61,3 +62,5 @@ EnigmaDriver mEnigmaDriver;
 MysteryDriver mMysteryDriver;
 InGarageDriver mInGarageDriver;
 TestDriver mTestDriver;
+ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
+

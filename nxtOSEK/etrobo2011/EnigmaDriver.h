@@ -28,11 +28,7 @@ private:
         AFTERLINETRACE
     };
     eSubSection mState;    //!< 状態
-    bool mInitState;       //!< 状態初期化フラグ
-    int  mTimeCounter;     //!< タイムカウンタ
-    bool mIsArrived;       //!< isArrived保存バッファ
-    bool mObstacleFlag[2]; //!< 衝立検知フラグ。２本しかみない
-    float mOrigK_PHIDOT;   //!< 変更前のK_PHIDOTを保存しておくバッファ
+
 public:
 	EnigmaDriver();
 	~EnigmaDriver(){}

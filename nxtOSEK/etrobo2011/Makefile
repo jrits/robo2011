@@ -30,6 +30,7 @@ TARGET_CPP_SOURCES = \
 	TestDriver.cpp \
 	SeesawDriver.cpp \
 	StairwayDriver.cpp \
+	ETsumoDriver.cpp \
 	OutGarageDriver.cpp \
 	EnigmaDriver.cpp \
 	MysteryDriver.cpp \
