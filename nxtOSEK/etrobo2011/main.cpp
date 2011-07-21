@@ -18,6 +18,7 @@ extern "C"
 #include "kernel_id.h"
 #include "ecrobot_interface.h"
 
+
 /**
  * Bluetooth 接続
  *
@@ -27,30 +28,6 @@ extern "C"
  * @param[in] bt_name Bluetoothデバイス名
  */
 static void connect_bt(Lcd &lcd, char BT_NAME[16]);
-
-/* 下記のマクロは個体/環境に合わせて変更する必要があります */
-/* sample_c1マクロ */
-#define GYRO_OFFSET  605 /* ジャイロセンサオフセット値(角速度0[deg/sec]時) */
-#define LIGHT_WHITE	 500 /* 白色の光センサ値 */
-#define LIGHT_BLACK	 700 /* 黒色の光センサ値 */
-/* sample_c2マクロ */
-#define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
-/* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
-#define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
-#define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
-/* sample_c4マクロ */
-#define DEVICE_NAME       "ET0"  /* Bluetooth通信用デバイス名 */
-#define PASS_KEY          "1234" /* Bluetooth通信用パスキー */
-#define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
-/* Bluetooth通信用データ受信バッファ */
-char rx_buf[BT_MAX_RX_BUF_SIZE];
-
-/* 関数プロトタイプ宣言 */
-static int sonar_alert(void);
-static void tail_control(signed int angle);
-static int remote_start(void);
 
 //=============================================================================
 // TOPPERS/ATK declarations
@@ -91,154 +68,162 @@ void user_1ms_isr_type2(void)
 // ECRobot C API デバイスの初期化
 void ecrobot_device_initialize(void)
 {
-  ecrobot_set_light_sensor_active(NXT_PORT_S3); /* 光センサ赤色LEDをON */
-  ecrobot_init_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を初期化 */
-  nxt_motor_set_count(NXT_PORT_A, 0); /* 完全停止用モータエンコーダリセット */
-  ecrobot_init_bt_slave(PASS_KEY);
+	// ecrobot_init_sonar_sensor(NXT_PORT_S2);
 }
 
 // ECRobot C API デバイスの終了
 void ecrobot_device_terminate(void)
 {
-  ecrobot_set_light_sensor_inactive(NXT_PORT_S3); /* 光センサ赤色LEDをOFF */
-  ecrobot_term_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を終了 */
-  ecrobot_term_bt_connection(); /* Bluetooth通信を終了 */
+	// ecrobot_term_sonar_sensor(NXT_PORT_S2);
 }
 
 // タスク間共有メモリ
 bool gDoSonar = false; //!< ソナーセンサ発動フラグ
-int gSonarDistance = 255; //!< ソナーセンサの結果
 bool gSonarIsDetected = false; //!< 衝立検知の結果
+int  gSonarTagetDistance = 0;
+float gSonarTagetAngle = 0;
+
 bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 
 /*
  * Sonarタスク
  */
+/* ETロボコン2011 追記*/
+// 外部タスクによりgDoSonarがtrueに設定された際、以下の3つの共有メモリの値を更新する
+//
+// bool  gSonarIsDetected		ターゲット検知フラグ、見つけたらtrueが入る ※5cm～60cmのみを検知するよう設定している
+// float gSonarTagetDistance	検知したターゲットとロボの距離（単位はGPSにあわせてミリメートル単位とした）
+// float gSonarTagetAngle		検知したターゲットのロボから見た角度（-180～180度）
+//
+// 課題＠todo
+// サンプリング周期(80msec毎)及び、検知エリア(5cm～60cm)の妥当性の検証
+//  →☆注意☆ 停止状態の検証は意味がない。超信地旋回中の検証が必要
+//   →ロボがブレながら旋回している際、どの程度ターゲットを検知してくれるか？これがET相撲の肝（ブレずに旋回出来ればなおよい）
 TASK(TaskSonar)
 {
-//     // 48msec 毎にイベント通知する設定
-//     SetRelAlarm(AlarmSonar, 1, 48); 
-//     WaitEvent(EventSonar);
+    // 4msec 毎にイベント通知する設定
+    SetRelAlarm(AlarmSonar, 1, 4); 
+    WaitEvent(EventSonar);
 
-//     int gSonarDetectCount = 0;
-//     int gSonarTotalCount = 0;
-//     float gSonarDetectRatio = 0.0;
-//     while (1) {
-//         if (! gDoSonar) {
-//             gSonarDetectCount = 0;
-//             gSonarTotalCount = 0;
-//         }
-//     	if (gDoSonar) {
-//             gSonarDistance = mSonarSensor.getDistance();
-//             gSonarDetectCount += (gSonarDistance < 60);
-//             gSonarTotalCount++;
-//             gSonarDetectRatio = (gSonarDetectCount / (float)gSonarTotalCount);
-//             gSonarIsDetected = (gSonarDetectRatio > 0.1);
-//         }
-
-// #if 0 // DEBUG
-//         gDoSonar = true;
-//         static int count = 0;
-//         if (count++ > 5) {
-//             Lcd lcd;
-//             lcd.clear();
-//             lcd.putf("sn", "TaskSonar");
-//             lcd.putf("dn", gDoSonar);
-//             lcd.putf("dn", gSonarDistance);
-//             lcd.putf("dn", gSonarDetectCount);
-//             lcd.putf("dn", gSonarTotalCount);
-//             lcd.putf("dn", gSonarIsDetected);
-//             lcd.disp();
-//         }
-// #endif
-//         // イベント通知を待つ
-//         ClearEvent(EventSonar);
-//         WaitEvent(EventSonar);
-//    }
+	int distance = 0;
+	int timecounter = 0;
+	
+    while (1) {
+    	if(!gDoSonar){
+    		gSonarIsDetected = false;
+    	}
+    	
+    	if(gDoSonar){
+    		
+    		if(timecounter % (80/4) == 0) //80msec毎
+    		{
+		    	distance = mSonarSensor.getDistance();
+		    	
+		    	if((5 < distance) && (distance < 60)){
+		    		gSonarIsDetected = true;
+		    		gSonarTagetDistance = distance * 10;//ソナーのdistanceはcm単位なので、GPSにあわせて修正
+		    		gSonarTagetAngle = Gps::marge180(mGps.getDirection());
+		    	}
+	    		else{
+	    			gSonarIsDetected = false;
+	    		}
+    		}
+    		timecounter++;
+    	}
+#if 0 // DEBUG
+        gDoSonar = true;
+        static int count = 0;
+        if (count++ > 5) {
+            Lcd lcd;
+            lcd.clear();
+            lcd.putf("sn", "TaskSonar");
+            lcd.putf("dn", gDoSonar);
+            lcd.putf("dn", gSonarDistance);
+            lcd.putf("dn", gSonarDetectCount);
+            lcd.putf("dn", gSonarTotalCount);
+            lcd.putf("dn", gSonarIsDetected);
+            lcd.disp();
+        }
+#endif
+        // イベント通知を待つ
+        ClearEvent(EventSonar);
+        WaitEvent(EventSonar);
+    }
 }
+/* ETロボコン2011 追記ここまで */
+
+/*ETロボコン2011 コメントアウト
+TASK(TaskSonar)
+{
+    // 48msec 毎にイベント通知する設定
+    SetRelAlarm(AlarmSonar, 1, 48); 
+    WaitEvent(EventSonar);
+
+    int gSonarDetectCount = 0;
+    int gSonarTotalCount = 0;
+    float gSonarDetectRatio = 0.0;
+    while (1) {
+        if (! gDoSonar) {
+            gSonarDetectCount = 0;
+            gSonarTotalCount = 0;
+        }
+    	if (gDoSonar) {
+            gSonarDistance = mSonarSensor.getDistance();
+            gSonarDetectCount += (gSonarDistance < 60);
+            gSonarTotalCount++;
+            gSonarDetectRatio = (gSonarDetectCount / (float)gSonarTotalCount);
+            gSonarIsDetected = (gSonarDetectRatio > 0.1);
+        }
+
+#if 0 // DEBUG
+        gDoSonar = true;
+        static int count = 0;
+        if (count++ > 5) {
+            Lcd lcd;
+            lcd.clear();
+            lcd.putf("sn", "TaskSonar");
+            lcd.putf("dn", gDoSonar);
+            lcd.putf("dn", gSonarDistance);
+            lcd.putf("dn", gSonarDetectCount);
+            lcd.putf("dn", gSonarTotalCount);
+            lcd.putf("dn", gSonarIsDetected);
+            lcd.disp();
+        }
+#endif
+        // イベント通知を待つ
+        ClearEvent(EventSonar);
+        WaitEvent(EventSonar);
+    }
+}
+ETロボコン2011 コメントアウトここまで
+*/
 
 /**
  * 走行タスク
  */
 TASK(TaskDrive)
 {
-//     // 4msec 毎にイベント通知する設定
-//     SetRelAlarm(AlarmDrive, 1, 4); 
-//     WaitEvent(EventDrive);
-// //     K_THETADOT = 10.5F;
+    // 4msec 毎にイベント通知する設定
+    SetRelAlarm(AlarmDrive, 1, 4); 
+    WaitEvent(EventDrive);
+//     K_THETADOT = 10.5F;
 
-//     //connect_bt(mLcd, BT_NAME); // bluetooth接続
-//     mActivator.reset(USER_GYRO_OFFSET);
+    //connect_bt(mLcd, BT_NAME); // bluetooth接続
+    mActivator.reset(USER_GYRO_OFFSET);
 
-//     while(!(gTouchStarter = mTouchSensor.isPressed()));
-//     bool doDrive = true;
-//     while (1) {
-//         if (mFailDetector.detect()) doDrive = false;
-//         if (doDrive) mCourse->drive();
-//     	else mActivator.stop();
+    while(!(gTouchStarter = mTouchSensor.isPressed()));
+    bool doDrive = true;
+    while (1) {
+        if (mFailDetector.detect()) doDrive = false;
+        if (doDrive) mCourse->drive();
+    	else mActivator.stop();
 
-//         // イベント通知を待つ
-//         ClearEvent(EventDrive);
-//         WaitEvent(EventDrive);
+        // イベント通知を待つ
+        ClearEvent(EventDrive);
+        WaitEvent(EventDrive);
         
-//     }
-//     TerminateTask();
-	signed char forward;      /* 前後進命令 */
-	signed char turn;         /* 旋回命令 */
-	signed char pwm_L, pwm_R; /* 左右モータPWM出力 */
-
-	while(1)
-	{
-		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
-
-		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
-		{
-			break; /* タッチセンサが押された */
-		}
-
-		systick_wait_ms(10); /* 10msecウェイト */
-	}
-
-	balance_init();						/* 倒立振子制御初期化 */
-	nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
-	nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
-	while(1)
-	{
-		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-
-		if (sonar_alert() == 1) /* 障害物検知 */
-		{
-			forward = turn = 0; /* 障害物を検知したら停止 */
-		}
-		else
-		{
-			forward = 50; /* 前進命令 */
-			if (ecrobot_get_light_sensor(NXT_PORT_S3) <= (LIGHT_WHITE + LIGHT_BLACK)/2)
-			{
-				turn = 50;  /* 右旋回命令 */
-			}
-			else
-			{
-				turn = -50; /* 左旋回命令 */
-			}
-		}
-
-		/* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
-		balance_control(
-			(float)forward,								 /* 前後進命令(+:前進, -:後進) */
-			(float)turn,								 /* 旋回命令(+:右旋回, -:左旋回) */
-			(float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
-			(float)GYRO_OFFSET,							 /* ジャイロセンサオフセット値 */
-			(float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
-			(float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
-			(float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
-			&pwm_L,										 /* 左モータPWM出力値 */
-			&pwm_R);									 /* 右モータPWM出力値 */
-		nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
-		nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
-
-		systick_wait_ms(4); /* 4msecウェイト */
-	}
+    }
+    TerminateTask();
 }
 
 /*
@@ -348,94 +333,6 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
 
     lcd.putf("ns", "Press Touch.");
     lcd.disp();
-}
-
-//*****************************************************************************
-// 関数名 : sonar_alert
-// 引数 : 無し
-// 返り値 : 1(障害物あり)/0(障害物無し)
-// 概要 : 超音波センサによる障害物検知
-//*****************************************************************************
-static int sonar_alert(void)
-{
-	static unsigned int counter = 0;
-	static int alert = 0;
-
-	signed int distance;
-
-	if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
-	{
-		/*
-		 * 超音波センサによる距離測定周期は、超音波の減衰特性に依存します。
-		 * NXTの場合は、40msec周期程度が経験上の最短測定周期です。
-		 */
-		distance = ecrobot_get_sonar_sensor(NXT_PORT_S2);
-		if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
-		{
-			alert = 1; /* 障害物を検知 */
-		}
-		else
-		{
-			alert = 0; /* 障害物無し */
-		}
-		counter = 0;
-	}
-
-	return alert;
-}
-
-//*****************************************************************************
-// 関数名 : tail_control
-// 引数  : angle (モータ目標角度[度])
-// 返り値 : 無し
-// 概要 : 走行体完全停止用モータの角度制御
-//*****************************************************************************
-static void tail_control(signed int angle)
-{
-	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
-	/* PWM出力飽和処理 */
-	if (pwm > PWM_ABS_MAX)
-	{
-		pwm = PWM_ABS_MAX;
-	}
-	else if (pwm < -PWM_ABS_MAX)
-	{
-		pwm = -PWM_ABS_MAX;
-	}
-
-	nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
-}
-
-//*****************************************************************************
-// 関数名 : remote_start
-// 引数 : 無し
-// 返り値 : 1(スタート)/0(待機)
-// 概要 : Bluetooth通信によるリモートスタート。 Tera Termなどのターミナルソフトから、
-//       ASCIIコードで1を送信すると、リモートスタートする。
-//*****************************************************************************
-static int remote_start(void)
-{
-	int i;
-	unsigned int rx_len;
-	unsigned char start = 0;
-
-	for (i=0; i<BT_MAX_RX_BUF_SIZE; i++)
-	{
-		rx_buf[i] = 0; /* 受信バッファをクリア */
-	}
-
-	rx_len = ecrobot_read_bt(rx_buf, 0, BT_MAX_RX_BUF_SIZE);
-	if (rx_len > 0)
-	{
-		/* 受信データあり */
-		if (rx_buf[0] == CMD_START)
-		{
-			start = 1; /* 走行開始 */
-		}
-		ecrobot_send_bt(rx_buf, 0, rx_len); /* 受信データをエコーバック */
-	}
-
-	return start;
 }
 
 };
