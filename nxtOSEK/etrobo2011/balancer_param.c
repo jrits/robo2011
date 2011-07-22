@@ -25,7 +25,7 @@ float K_F[4] = {-0.870303F, -31.9978F, -1.1566F, -2.78873F};
 float K_I = -0.44721F;   /* サーボ制御用積分フィードバック係数 */
 
 //float K_PHIDOT = 25.0F; /* 車体目標旋回角速度係数 */
-float K_PHIDOT = 25.0F*2.5F; /* 車体目標旋回角速度係数 */
+float K_PHIDOT = 25.0F; /* 車体目標旋回角速度係数 */
 float K_THETADOT = 7.5F; /* モータ目標回転角速度係数 */
 
 const float BATTERY_GAIN = 0.001089F;	/* PWM出力算出用バッテリ電圧補正係数 */

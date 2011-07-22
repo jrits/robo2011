@@ -38,11 +38,12 @@ int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
 
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
-int USER_GYRO_OFFSET = 585; // この値は適宜調整すること
+//int USER_GYRO_OFFSET = 585; // この値は適宜調整すること
+int USER_GYRO_OFFSET = 582; // この値は適宜調整すること
 //3F居室
 int WHITE = 540; // 白色の光センサ値
-int BLACK = 730; // 黒色の光センサ値
-int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
+int BLACK = 745; // 黒色の光センサ値
+int LINE_THRESHOLD = 640; // ライン端の色を示す閾値。白と灰色の間の値
 #endif
 
 #ifdef KACHINEW
@@ -61,9 +62,9 @@ float WHEEL_RADIUS = 40.5; // 車輪半径(mm)
 float WHEEL_DISTANCE = 162.0; // 車輪間隔(mm)
 
 // LineTrace
-int INIT_FORWARD = 50;    // 初期前進速度
-int INIT_SAMPLECOUNT = 200;  // 初期前進継続カウンタ期間
-int FORWARD = 100;        // 前進速度
+int INIT_FORWARD = 10;    // 初期前進速度
+int INIT_SAMPLECOUNT = 500;  // 初期前進継続カウンタ期間
+int FORWARD = 10;        // 前進速度
 float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
 float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F

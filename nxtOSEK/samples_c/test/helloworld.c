@@ -8,9 +8,12 @@ void user_1ms_isr_type2(void){ /* do nothing */ }
 
 TASK(OSEK_Task_Background)
 {
-	SINT vars[16] = {-100000, 0, 12345, 40, 1, -5, -300000, 40, 76, 50000000, 1, 2, 3, 4, 100, -1};
+	SINT vars[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0, 0};
 	while(1)
 	{
+		ecrobot_set_light_sensor_active(NXT_PORT_S3);
+		vars[0] = (SINT)ecrobot_get_light_sensor(NXT_PORT_S3);
+		vars[1] = (SINT)ecrobot_get_gyro_sensor(NXT_PORT_S1);
   		ecrobot_sint_var_monitor(vars);
 		systick_wait_ms(50); /* 50msec wait */
 	}
