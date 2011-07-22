@@ -28,7 +28,7 @@ bool TestDriver::drive()
 	LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
 	LOGGER_DATAS32[0] = (S32)(mLightHistory.calcDifference());
 #endif
-#if 1 // DEBUG
+#if 0 // DEBUG
     //DESK_DEBUG = true; // モータを回さないデバグ
     static int count = 0; // staticは原則禁止だが今だけ
     if (count++ % 25 == 0) {

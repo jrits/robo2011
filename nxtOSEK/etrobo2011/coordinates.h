@@ -28,6 +28,9 @@ extern float GPS_STAIRWAY_START_DIRECTION;
 extern float GPS_ETSUMO_START_X; // ＠todo要再設定
 extern float GPS_ETSUMO_START_Y; // ＠todo要再設定
 extern float GPS_ETSUMO_START_DIRECTION; // ＠todo要再設定
+extern float GPS_ETSUMO_SEARCH_X; // ＠todo要再設定
+extern float GPS_ETSUMO_SEARCH_Y; // ＠todo要再設定
+extern float GPS_ETSUMO_SEARCH_DIRECTION; // ＠todo要再設定
 /* ETロボコン2011 追記ここまで */
 
 extern float GPS_GARAGEIN_START_X;

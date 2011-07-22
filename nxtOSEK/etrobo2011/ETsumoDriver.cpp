@@ -65,7 +65,7 @@ bool ETsumoDriver::drive()
 		//状態遷移
         mInitState = true;
         //mState = ETsumoDriver::BEFORELINETRACE;
-		mState = ETsumoDriver::SPOTSEARCH;//
+		mState = ETsumoDriver::PREPARE_SPOTSEARCH;//
 		gDoSonar = false;
 		//mRescanFlag = false;
 		
@@ -93,14 +93,14 @@ bool ETsumoDriver::drive()
         }
         mLineTrace.execute();
     }
-    	
+    */
     if (mState == ETsumoDriver::PREPARE_SPOTSEARCH) {
         if (mInitState) {
 			gDoSonar = false;
-        	K_THETADOT = 10.5F;
+        	K_THETADOT = 6.5F;
 			K_PHIDOT = 62.5F;
 	        mTimeCounter = 0;
-			mCoordinateTrace.setTargetCoordinate(MakePoint(0, 0));
+			mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X, GPS_ETSUMO_SEARCH_Y));// ＠todo要再設定
 			mCoordinateTrace.setForward(30);
 			mCoordinateTrace.setAllowableError(30);
 	        mInitState = false;
@@ -113,7 +113,7 @@ bool ETsumoDriver::drive()
         }
 		mCoordinateTrace.execute();
     }
-    	*/
+    
 	
 	if (mState == ETsumoDriver::SPOTSEARCH) {
 		if (mInitState) {
@@ -121,7 +121,7 @@ bool ETsumoDriver::drive()
 	        K_PHIDOT = 62.5F;
 	        mTimeCounter = 0;
 	        mAngleTrace.setForward(0);
-	        mAngleTrace.setTargetAngle(0.0);
+	        mAngleTrace.setTargetAngle(360.0);
 	        mAngleTrace.setAllowableError(2.0); // 2度
 	        mInitState = false;
 	        mIsArrived = false;
@@ -143,7 +143,7 @@ bool ETsumoDriver::drive()
 				if(SUMO_DEBUG) {mSpeaker.playTone(1000, 1, 10);}
 			}
 			else if(mTimeCounter % 100 == 0){
-				float setangle = mGps.getDirection() + 10;
+				float setangle = mGps.getDirection() - 10;//数値は調整不要のはず
 				mAngleTrace.setTargetAngle(setangle);
 			}
 		}
@@ -156,7 +156,7 @@ bool ETsumoDriver::drive()
 			mState = ETsumoDriver::DOHYO_IN;
 		}
 		//スポットサーチ範囲内にペットボトルが無いことを確認、スイングサーチへ移行
-		else if((Gps::marge180(mGps.getDirection()) >= 90.0) && mIsArrived){
+		else if((Gps::marge180(mGps.getDirection()) <= -90.0) && mIsArrived){
 			mInitState = true;
 			mState = ETsumoDriver::SPOTSEARCH_to_SWINGSEARCH;
 		}
@@ -169,7 +169,7 @@ bool ETsumoDriver::drive()
 			gDoSonar = false;
 			K_PHIDOT = 62.5F;
 	        mTimeCounter = 0;
-			mCoordinateTrace.setTargetCoordinate(MakePoint(200, 200));
+			mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X + 200.0, GPS_ETSUMO_SEARCH_Y - 200.0));// ＠todo要再設定
 			mCoordinateTrace.setForward(30);
 			mCoordinateTrace.setAllowableError(30);
 	        mInitState = false;
@@ -190,7 +190,7 @@ bool ETsumoDriver::drive()
 	        mTimeCounter = 0;
 			mSonarDetectCount = 0;
 	        mAngleTrace.setForward(0);
-	        mAngleTrace.setTargetAngle(-90);
+	        mAngleTrace.setTargetAngle(90);
 	        mAngleTrace.setAllowableError(2.0); // 2度
 	        mInitState = false;
 	        mIsArrived = false;
@@ -214,7 +214,7 @@ bool ETsumoDriver::drive()
 				updateTargetCoordinates();
 			}
 			else if(mTimeCounter % 100 == 0){
-				float setangle = mGps.getDirection() + 10;
+				float setangle = mGps.getDirection() - 10;
 				mAngleTrace.setTargetAngle(setangle);
 			}
 		}
@@ -274,11 +274,11 @@ bool ETsumoDriver::drive()
 			}
 			
 			if((mTimeCounter % 100 == 0) && (mScanState == SWINGRIGHT)){
-				float setangle = mGps.getDirection() + 10;
+				float setangle = mGps.getDirection() - 10;
 				mAngleTrace.setTargetAngle(setangle);
 			}
 			else if((mTimeCounter % 100 == 0) && (mScanState == SWINGLEFT)){
-				float setangle = mGps.getDirection() - 10;
+				float setangle = mGps.getDirection() + 10;
 				mAngleTrace.setTargetAngle(setangle);
 			}
 		}
@@ -295,7 +295,7 @@ bool ETsumoDriver::drive()
 				gDoSonar = false;
 				//mTargetDistance = (float)mSonarTotalDistance / mSonarDetectCount;
 				//mTargetAngle = mSonarTotalAngle / mSonarDetectCount;
-				mScanState = CALC;
+				//mScanState = CALC;
 				//calcTargetCoordinates();
 				if(SUMO_DEBUG) {mSpeaker.playTone(1000, 1, 10);}
 				mTimeCounter = 0;
@@ -338,12 +338,12 @@ bool ETsumoDriver::drive()
 		if (mInitState) {
 	        mTimeCounter = 0;
 			K_PHIDOT = 62.5F;
-			mTargetAngle = calcTargetAngle(mTargetX, mTargetY);
-			if( mTargetAngle < 45){
+			mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ターゲットのアングルを-180～180で返す
+			if((mTargetAngle > -45) && (mTargetAngle > 135)){
 				mCoordinateTrace.setTargetCoordinate(MakePoint(mTargetX - 300, mTargetY));
 			}
 			else{
-				mCoordinateTrace.setTargetCoordinate(MakePoint(mTargetX, mTargetY - 300));
+				mCoordinateTrace.setTargetCoordinate(MakePoint(mTargetX, mTargetY + 300));
 			}
 			mCoordinateTrace.setForward(10);
 			mCoordinateTrace.setAllowableError(30);
@@ -367,11 +367,11 @@ bool ETsumoDriver::drive()
 			mSonarTotalDistance = 0;
 	        mAngleTrace.setForward(0);
 			K_PHIDOT = K_PHIDOT_FOR_SEARCH;
-			if( mTargetAngle < 45){
-				mAngleTrace.setTargetAngle(-45);
+			if((mTargetAngle > -45) && (mTargetAngle > 225)){
+				mAngleTrace.setTargetAngle(45);
 			}
 			else{
-				mAngleTrace.setTargetAngle(45);
+				mAngleTrace.setTargetAngle(-45);
 			}			
 	        mAngleTrace.setAllowableError(2.0); // 2度
 	        mInitState = false;
@@ -398,7 +398,7 @@ bool ETsumoDriver::drive()
 	        mTimeCounter = 0;
 			mSonarTotalDistance = 0;
 	        mAngleTrace.setForward(0);
-			mTargetAngle = calcTargetAngle(mTargetX, mTargetY);
+			mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ターゲットのアングルを-180～180で返す
 	        mAngleTrace.setTargetAngle(mTargetAngle + 0);//左右視力の違い?補正 ＠todo機体依存か要調査
 	        mAngleTrace.setAllowableError(1.0); // 1度
 	        mInitState = false;
@@ -418,18 +418,20 @@ bool ETsumoDriver::drive()
 		if(!mOshidashiFlag && mIsArrived && (mTimeCounter > 100)){
 			mAngleTrace.setForward(10);
 		}
-		if((mGps.getXCoordinate() > 800) || (mGps.getYCoordinate() > 800)){
+		//押し出し判定
+		if((mGps.getXCoordinate() > (GPS_ETSUMO_SEARCH_X + 800)) || (mGps.getYCoordinate() < (GPS_ETSUMO_SEARCH_Y - 800))){
 			mAngleTrace.setForward(-10);
 			mTimeCounter = 0;
 			mOshidashiFlag = true;
 		}
+		//そっと4秒ほど後退
 		if(mOshidashiFlag && (mTimeCounter > 1000)){	
-			mState = ETsumoDriver::KACHI_NANORI;
-			mInitState = true;
+			//mState = ETsumoDriver::KACHI_NANORI;
+			//mInitState = true;
 		}
 		mAngleTrace.execute();
     }
-    
+    /*
     if (mState == ETsumoDriver::KACHI_NANORI) {
 		if (mInitState) {
 			gDoSonar = false;
@@ -448,7 +450,7 @@ bool ETsumoDriver::drive()
         }
 		mCoordinateTrace.execute();
 	}
-	
+	*/
 	mTimeCounter++;
 	return 0;
 }
@@ -472,7 +474,7 @@ void ETsumoDriver::calcTargetCoordinates()
 void ETsumoDriver::updateTargetCoordinates()
 {
 	//mTargetAngle = Gps::marge180(mTargetAngle);
-	float rad  = gSonarTagetAngle * 3.14 / 180.0;
+	float rad  = gSonarTagetAngle * 3.1416 / 180.0;
 	
 	float x = mGps.getXCoordinate() + gSonarTagetDistance * cosf(rad);
 	float y = mGps.getYCoordinate() + gSonarTagetDistance * sinf(rad);
@@ -507,6 +509,7 @@ bool ETsumoDriver::searchTimer(float time_intervalTime)
 */
 
 //CoordinateTraceより借用、アングルのみを計算させる
+//ターゲットのアングルを-180～180で返す
 float ETsumoDriver::calcTargetAngle(float targetX, float targetY)
 {
 		
@@ -528,6 +531,7 @@ float ETsumoDriver::calcTargetAngle(float targetX, float targetY)
         if (isinf(radian)) targetDirection = mGps.getDirection();
         else targetDirection = Gps::radianToDegree(radian);
     }
+	Gps::marge180(targetDirection);
 	
 	return targetDirection;
 }

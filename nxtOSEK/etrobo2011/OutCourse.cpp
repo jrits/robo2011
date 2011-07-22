@@ -60,7 +60,7 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
  */
 void OutCourse::drive()
 {
-#if 1 // ログ送信(0：解除、1：実施)
+#if 0 // ログ送信(0：解除、1：実施)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
 	LOGGER_DATAS08[1] = (S8)(mLineDetector.detect()); // 一瞬だけなのでログに残らない可能性あり

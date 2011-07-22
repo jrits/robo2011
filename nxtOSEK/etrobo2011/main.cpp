@@ -18,6 +18,15 @@ extern "C"
 #include "kernel_id.h"
 #include "ecrobot_interface.h"
 
+/* sample_c3マクロ */
+#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
+#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
+#define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
+#define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
+/* sample_c4マクロ */
+//#define DEVICE_NAME       "ET0"  /* Bluetooth通信用デバイス名 */
+//#define PASS_KEY          "1234" /* Bluetooth通信用パスキー */
+#define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
 
 /**
  * Bluetooth 接続
@@ -28,6 +37,11 @@ extern "C"
  * @param[in] bt_name Bluetoothデバイス名
  */
 static void connect_bt(Lcd &lcd, char BT_NAME[16]);
+static void tail_control(signed int angle);
+static int remote_start(void);
+
+/* Bluetooth通信用データ受信バッファ */
+char rx_buf[BT_MAX_RX_BUF_SIZE];
 
 //=============================================================================
 // TOPPERS/ATK declarations
@@ -92,7 +106,7 @@ bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 // 外部タスクによりgDoSonarがtrueに設定された際、以下の3つの共有メモリの値を更新する
 //
 // bool  gSonarIsDetected		ターゲット検知フラグ、見つけたらtrueが入る ※5cm～60cmのみを検知するよう設定している
-// float gSonarTagetDistance	検知したターゲットとロボの距離（単位はGPSにあわせてミリメートル単位とした）
+// float gSonarTagetDistance	検知したターゲットとロボの距離（単位はGPSにあわせてミリメートルとした）
 // float gSonarTagetAngle		検知したターゲットのロボから見た角度（-180～180度）
 //
 // 課題＠todo
@@ -130,20 +144,19 @@ TASK(TaskSonar)
     		}
     		timecounter++;
     	}
-#if 0 // DEBUG
-        gDoSonar = true;
-        static int count = 0;
-        if (count++ > 5) {
-            Lcd lcd;
-            lcd.clear();
-            lcd.putf("sn", "TaskSonar");
-            lcd.putf("dn", gDoSonar);
-            lcd.putf("dn", gSonarDistance);
-            lcd.putf("dn", gSonarDetectCount);
-            lcd.putf("dn", gSonarTotalCount);
-            lcd.putf("dn", gSonarIsDetected);
-            lcd.disp();
-        }
+#if 1 // ログ送信(0：解除、1：実施)
+		LOGGER_SEND = 2;
+	    LOGGER_DATAS08[0] = (S8)(gDoSonar); 
+		LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+		LOGGER_DATAU16    = (U16)(distance);
+		LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+		LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+		LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+		LOGGER_DATAS16[3] = (S16)(distance);
+		LOGGER_DATAS32[0] = (S32)(distance);
+		LOGGER_DATAS32[1] = (S32)(distance);
+		LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
+		LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
 #endif
         // イベント通知を待つ
         ClearEvent(EventSonar);
@@ -208,12 +221,30 @@ TASK(TaskDrive)
     WaitEvent(EventDrive);
 //     K_THETADOT = 10.5F;
 
-    //connect_bt(mLcd, BT_NAME); // bluetooth接続
+
+    connect_bt(mLcd, BT_NAME); // bluetooth接続
     mActivator.reset(USER_GYRO_OFFSET);
 
-    while(!(gTouchStarter = mTouchSensor.isPressed()));
+	while(1){
+		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
+
+		
+		if (remote_start() == 1)
+		{
+			break; // リモートスタート
+		}
+		
+
+		if (gTouchStarter = mTouchSensor.isPressed())
+		{
+			break; /* タッチセンサが押された */
+		}
+
+		systick_wait_ms(10); /* 10msecウェイト */
+	}
     bool doDrive = true;
     while (1) {
+    	tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
         if (mFailDetector.detect()) doDrive = false;
         if (doDrive) mCourse->drive();
     	else mActivator.stop();
@@ -333,6 +364,61 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
 
     lcd.putf("ns", "Press Touch.");
     lcd.disp();
+}
+
+
+//*****************************************************************************
+// 関数名 : tail_control
+// 引数 : angle (モータ目標角度[度])
+// 返り値 : 無し
+// 概要 : 走行体完全停止用モータの角度制御
+//*****************************************************************************
+static void tail_control(signed int angle)
+{
+	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
+	/* PWM出力飽和処理 */
+	if (pwm > PWM_ABS_MAX)
+	{
+		pwm = PWM_ABS_MAX;
+	}
+	else if (pwm < -PWM_ABS_MAX)
+	{
+		pwm = -PWM_ABS_MAX;
+	}
+
+	nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
+}
+
+//*****************************************************************************
+// 関数名 : remote_start
+// 引数 : 無し
+// 返り値 : 1(スタート)/0(待機)
+// 概要 : Bluetooth通信によるリモートスタート。 Tera Termなどのターミナルソフトから、
+//       ASCIIコードで1を送信すると、リモートスタートする。
+//*****************************************************************************
+static int remote_start(void)
+{
+	int i;
+	unsigned int rx_len;
+	unsigned char start = 0;
+
+	for (i=0; i<BT_MAX_RX_BUF_SIZE; i++)
+	{
+		rx_buf[i] = 0; /* 受信バッファをクリア */
+	}
+
+	rx_len = mBluetooth.receive(rx_buf, 0, BT_MAX_RX_BUF_SIZE);
+	if (rx_len > 0)
+	{
+		/* 受信データあり */
+		if (rx_buf[0] == CMD_START)
+		{
+			start = 1; /* 走行開始 */
+		}
+		//mBluetooth.send(rx_buf, 0, rx_len); //受信データをエコーバック ロガーにゴミが入りそうなのでコメントアウト
+	}
+
+	return start;
 }
 
 };

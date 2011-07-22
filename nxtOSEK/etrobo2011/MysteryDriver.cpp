@@ -7,10 +7,10 @@
 #include "constants.h"
 
 //ミステリーサークルのルート(4パターン)
-#include "MysteryLineLL.h"
-#include "MysteryLineLR.h"
-#include "MysteryLineRL.h"
-#include "MysteryLineRR.h"
+//#include "MysteryLineLL.h"
+//#include "MysteryLineLR.h"
+//#include "MysteryLineRL.h"
+//#include "MysteryLineRR.h"
 
 /**
  * コンストラクタ
@@ -31,5 +31,5 @@ MysteryDriver::MysteryDriver()
  */
 bool MysteryDriver::drive()
 {
-    return mState == MysteryDriver::INIT; // 終了しました
+    return 0;
 }

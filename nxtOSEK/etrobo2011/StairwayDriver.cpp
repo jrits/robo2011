@@ -38,7 +38,7 @@ bool StairwayDriver::drive()
 	LOGGER_DATAS32[2] = (S32)(mGps.getDirection());
 	LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
 #endif
-#if 1 // DEBUG
+#if 0 // DEBUG
     //DESK_DEBUG = true; // モータを回さないデバグ
     if (mTimeCounter % 25 == 0) {
         Lcd lcd;

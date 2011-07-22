@@ -90,9 +90,13 @@ float GPS_STAIRWAY_START_DIRECTION = 360.0;
 
 /* ETロボコン2011 追記*/
 // ET相撲開始座標
-float GPS_ETSUMO_START_X = 0.0; // ＠todo要再設定
-float GPS_ETSUMO_START_Y = 0.0; // ＠todo要再設定
-float GPS_ETSUMO_START_DIRECTION = 0.0; // ＠todo要再設定
+float GPS_ETSUMO_START_X = 4500.0; // ＠todo要再設定
+float GPS_ETSUMO_START_Y = -3400.0; // ＠todo要再設定
+float GPS_ETSUMO_START_DIRECTION = 360.0; // ＠todo要再設定
+//ET相撲サーチ開始座標
+float GPS_ETSUMO_SEARCH_X = 4500.0; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_Y = -3400.0 + 800.0; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_DIRECTION = 360.0; // ＠todo要再設定
 /* ETロボコン2011 追記ここまで */
 
 // アウトコースガレージ・イン開始座標

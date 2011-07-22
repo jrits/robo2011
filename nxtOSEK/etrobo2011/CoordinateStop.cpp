@@ -134,7 +134,7 @@ VectorT<float> CoordinateStop::calcCommand()
     }
     
 //SORA [log]    
-#if 2
+#if 0
     // ÉçÉOëóêM
     LOGGER_SEND = 2;
 //	LOGGER_DATAS08[0] = (S8)(linePattern);
