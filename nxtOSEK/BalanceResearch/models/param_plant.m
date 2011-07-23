@@ -4,18 +4,37 @@
 g = 9.81;						% gravity acceleration [m/sec^2]
 
 % NXTway-GS Parameters
-m = 0.03;						% wheel weight [kg]
-R = 0.04;						% wheel radius [m]
-Jw = m * R^2 / 2;				% wheel inertia moment [kgm^2]
-M = 0.6;						% body weight [kg]
-W = 0.14;						% body width [m]
-D = 0.04;						% body depth [m]
-H = 0.144;						% body height [m]
-L = H / 2;						% distance of the center of mass from the wheel axle [m]
-Jpsi = M * L^2 / 3;				% body pitch inertia moment [kgm^2]
-Jphi = M * (W^2 + D^2) / 12;	% body yaw inertia moment [kgm^2]
-fm = 0.0022;					% friction coefficient between body & DC motor
-fw = 0;							% friction coefficient between wheel & floor
+%(Default)
+%m = 0.03;                                              % wheel weight [kg]
+%R = 0.04;                                              % wheel radius [m]
+%Jw = m * R^2 / 2;                              % wheel inertia moment [kgm^2]
+%M = 0.6;                                               % body weight [kg]
+%W = 0.14;                                              % body width [m]
+%D = 0.04;                                              % body depth [m]
+%H = 0.144;                                             % body height [m]
+%L = H / 2;                                             % distance of the center of mass from the wheel axle [m]
+%(robo2010)
+%m = 0.025;                                              % wheel weight [kg]
+%R = 0.0405;                                             % wheel radius [m]
+%Jw = m * R^2 / 2;                               % wheel inertia moment [kgm^2]
+%M = 0.721;                                              % body weight [kg]
+%W = 0.163;                                              % body width [m]
+%D = 0.04;                                               % body depth [m]
+%L = 0.087;                                              % distance of the center of mass from the wheel axle [m]
+%H = L * 2.0;                                    % body height [m]
+%(robo2011)
+m = 0.025;                                              % wheel weight [kg]
+R = 0.0405;                                             % wheel radius [m]
+Jw = m * R^2 / 2;                               % wheel inertia moment [kgm^2]
+M = 0.861;                                              % body weight [kg]
+W = 0.163;                                              % body width [m]
+D = 0.04;                                               % body depth [m]
+L = 0.087;                                              % distance of the center of mass from the wheel axle [m]
+H = L * 2.0;                                    % body height [m]
+Jpsi = M * L^2 / 3;                             % body pitch inertia moment [kgm^2]
+Jphi = M * (W^2 + D^2) / 12;    % body yaw inertia moment [kgm^2]
+fm = 0.0022;                                    % friction coefficient between body & DC motor
+fw = 0;                                                 % friction coefficient between wheel & floor
 
 % DC Motor Parameters			
 Jm = 1e-5;						% DC motor inertia moment [kgm^2]
