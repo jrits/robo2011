@@ -11,7 +11,7 @@ AngleTrace::AngleTrace()
 {
     mTargetAngle = 0;
 }
-	
+    
 /**
  * 目標角度を設定
  *
@@ -19,7 +19,7 @@ AngleTrace::AngleTrace()
  */
 void AngleTrace::setTargetAngle(float targetAngle)
 {
-	mTargetAngle = targetAngle;
+    mTargetAngle = targetAngle;
 }
 
 /**
@@ -29,7 +29,7 @@ void AngleTrace::setTargetAngle(float targetAngle)
  */
 void AngleTrace::setAllowableError(float allowableError)
 {
-	mAllowableError = allowableError;
+    mAllowableError = allowableError;
 }
 
 /**
@@ -39,28 +39,28 @@ void AngleTrace::setAllowableError(float allowableError)
  */
 VectorT<float> AngleTrace::calcCommand()
 {
-	gLineTrace = false;
-	float direction = 0;
-	direction = mGps.getDirection(); //現在の角度
+    gLineTrace = false;
+    float direction = 0;
+    direction = mGps.getDirection(); //現在の角度
 
-	float P = -(mTargetAngle - direction);
-	
-	//目標角度と現在角度の差分Pを -180 < P <= 180 の範囲内に再設定
+    float P = -(mTargetAngle - direction);
+    
+    //目標角度と現在角度の差分Pを -180 < P <= 180 の範囲内に再設定
     P = Gps::marge180(P);
-	
-	//Yは-値で右、+値で左を目指す←モータの接続ポート確認
-	float Y = mAnglePid.control(P); //Pid制御後モータ出力補正する
-	//Y += OFFSET_Y; //勝ロボのOFFSET_Yは8だったはず
-	
-	//Pid制御値が大きすぎる場合、ここで修正する
-	//→現状だとP(現在角度と目標角度の差分)が2.5度以上か-2.5度以下でこのif分に入る 2010/09/27
-	if(Y > 100) Y = 100;
-	if(Y < -100) Y = -100;
-	
+    
+    //Yは-値で右、+値で左を目指す←モータの接続ポート確認
+    float Y = mAnglePid.control(P); //Pid制御後モータ出力補正する
+    //Y += OFFSET_Y; //勝ロボのOFFSET_Yは8だったはず
+    
+    //Pid制御値が大きすぎる場合、ここで修正する
+    //→現状だとP(現在角度と目標角度の差分)が2.5度以上か-2.5度以下でこのif分に入る 2010/09/27
+    if(Y > 100) Y = 100;
+    if(Y < -100) Y = -100;
+    
     VectorT<float> command;
     command.mX = mForward;
     command.mY = Y;
-	return command;
+    return command;
 }
 
 /**
@@ -72,7 +72,7 @@ VectorT<float> AngleTrace::calcCommand()
 bool AngleTrace::isArrived()
 {
     // 目標角度と現在角度の差
-	float diffDirection = mTargetAngle - mGps.getDirection();
+    float diffDirection = mTargetAngle - mGps.getDirection();
     // [-180, 180] の範囲内に再設定
     diffDirection = Gps::marge180(diffDirection); 
 

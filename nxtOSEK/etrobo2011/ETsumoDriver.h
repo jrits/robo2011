@@ -27,58 +27,57 @@ private:
      */
     enum eSubSection {
         INIT = -1,
-    	TEST,
-    	BEFORELINETRACE,
-    	PREPARE_SPOTSEARCH,
+        TEST,
+        BEFORELINETRACE,
+        PREPARE_SPOTSEARCH,
         SPOTSEARCH,
-    	SPOTSEARCH_to_SWINGSEARCH,
+        SPOTSEARCH_to_SWINGSEARCH,
         SWINGSEARCH,
-    	SCAN,
-    	REVERSE,
-    	DOHYO_IN,
+        SCAN,
+        REVERSE,
+        DOHYO_IN,
         HAKKE_READY,
-    	NOKOTTA_GO,
+        NOKOTTA_GO,
         KACHI_NANORI,
         AFTERLINETRACE
     };
     eSubSection mState;    //!< 状態
-	 /**
+     /**
      * ターゲットとの位置関係
      */
     enum eScanState {
         UNKNOWN = -1,
-    	DETECT,
+        DETECT,
         SWINGRIGHT,
-    	SWINGLEFT,
-    	CALC,
-    	LOCKON,
+        SWINGLEFT,
+        CALC,
+        LOCKON,
     };
-	eScanState mScanState; 
-	
+    eScanState mScanState; 
+    
     bool mInitState;       //!< 状態初期化フラグ
     int  mTimeCounter;     //!< タイムカウンタ
     bool mIsArrived;       //!< isArrived保存バッファ
-    int  mSonarTotalDistance;
-	float mSonarTotalAngle;
+    bool mOshidashiFlag;   //!< 押し出し判定フラグ
+    float mOrigK_THETADOT; //!< 変更前のTHETADOTを保存しておくバッファ
     float mOrigK_PHIDOT;   //!< 変更前のK_PHIDOTを保存しておくバッファ
-	int  mSonarDetectCount;
-	float mTargetX;
-	float mTargetY;
-	float mTargetAngle;
-	float mTargetDistance;
-	int mFailScanCounter;
-	float mTargetTotalX;
-	float mTargetTotalY;
-	int mPrevSonarDetectCount;
-	bool mOshidashiFlag;
+    int  mSonarDetectCount;
+    int  mPrevSonarDetectCount;
+    int  mFailScanCounter;
+    float mTargetX;
+    float mTargetY;
+    float mTargetTotalX;
+    float mTargetTotalY;
+    float mTargetAngle;
+
 public:
-	ETsumoDriver();
-	~ETsumoDriver();
+    ETsumoDriver();
+    ~ETsumoDriver();
     bool drive();
 private:
-	//void calcTargetCoordinates();
-	void updateTargetCoordinates();
-	//void swingTimer(int time_interval, float direction_interval);
-	float calcTargetAngle(float targetX, float targetY);
+    //void calcTargetCoordinates();
+    void updateTargetCoordinates();
+    //void swingTimer(int time_interval, float direction_interval);
+    float calcTargetAngle(float targetX, float targetY);
 };
 #endif // !ETSUMODRIVER_H

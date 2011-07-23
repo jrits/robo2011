@@ -1,7 +1,7 @@
 //
 // ファイル名 : main.cpp
 //
-//	概要       : 2輪倒立振子ライントレースロボットのTOPPERS/ATK(OSEK)用メインプログラム
+//    概要       : 2輪倒立振子ライントレースロボットのTOPPERS/ATK(OSEK)用メインプログラム
 //
 
 #include "constants.h"
@@ -64,10 +64,10 @@ DeclareAlarm(AlarmLogger);
 
 
 //=============================================================================
-// 関数名	: user_1ms_isr_type2
-// 引数		: なし
-// 戻り値	: なし
-// 概要		: 1msec周期割り込みフック関数(OSEK ISR type2カテゴリ)
+// 関数名    : user_1ms_isr_type2
+// 引数        : なし
+// 戻り値    : なし
+// 概要        : 1msec周期割り込みフック関数(OSEK ISR type2カテゴリ)
 //
 void user_1ms_isr_type2(void)
 {
@@ -82,13 +82,13 @@ void user_1ms_isr_type2(void)
 // ECRobot C API デバイスの初期化
 void ecrobot_device_initialize(void)
 {
-	// ecrobot_init_sonar_sensor(NXT_PORT_S2);
+    // ecrobot_init_sonar_sensor(NXT_PORT_S2);
 }
 
 // ECRobot C API デバイスの終了
 void ecrobot_device_terminate(void)
 {
-	// ecrobot_term_sonar_sensor(NXT_PORT_S2);
+    // ecrobot_term_sonar_sensor(NXT_PORT_S2);
 }
 
 // タスク間共有メモリ
@@ -105,9 +105,9 @@ bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 /* ETロボコン2011 追記*/
 // 外部タスクによりgDoSonarがtrueに設定された際、以下の3つの共有メモリの値を更新する
 //
-// bool  gSonarIsDetected		ターゲット検知フラグ、見つけたらtrueが入る ※5cm～60cmのみを検知するよう設定している
-// float gSonarTagetDistance	検知したターゲットとロボの距離（単位はGPSにあわせてミリメートルとした）
-// float gSonarTagetAngle		検知したターゲットのロボから見た角度（-180～180度）
+// bool  gSonarIsDetected        ターゲット検知フラグ、見つけたらtrueが入る ※5cm～60cmのみを検知するよう設定している
+// float gSonarTagetDistance    検知したターゲットとロボの距離（単位はGPSにあわせてミリメートルとした）
+// float gSonarTagetAngle        検知したターゲットのロボから見た角度（-180～180度）
 //
 // 課題＠todo
 // サンプリング周期(80msec毎)及び、検知エリア(5cm～60cm)の妥当性の検証
@@ -119,98 +119,50 @@ TASK(TaskSonar)
     SetRelAlarm(AlarmSonar, 1, 4); 
     WaitEvent(EventSonar);
 
-	int distance = 0;
-	int timecounter = 0;
-	
+    int distance = 0;
+    int timecounter = 0;
+    
     while (1) {
-    	if(!gDoSonar){
-    		gSonarIsDetected = false;
-    	}
-    	
-    	if(gDoSonar){
-    		
-    		if(timecounter % (80/4) == 0) //80msec毎
-    		{
-		    	distance = mSonarSensor.getDistance();
-		    	
-		    	if((5 < distance) && (distance < 60)){
-		    		gSonarIsDetected = true;
-		    		gSonarTagetDistance = distance * 10;//ソナーのdistanceはcm単位なので、GPSにあわせて修正
-		    		gSonarTagetAngle = Gps::marge180(mGps.getDirection());
-		    	}
-	    		else{
-	    			gSonarIsDetected = false;
-	    		}
-    		}
-    		timecounter++;
-    	}
+        if(!gDoSonar){
+            gSonarIsDetected = false;
+        }
+        
+        if(gDoSonar){
+            
+            if(timecounter % (80/4) == 0) //80msec毎
+            {
+                distance = mSonarSensor.getDistance();
+                
+                if((5 < distance) && (distance < 60)){
+                    gSonarIsDetected = true;
+                    gSonarTagetDistance = distance * 10;//ソナーのdistanceはcm単位なので、GPSにあわせて修正
+                    gSonarTagetAngle = Gps::marge180(mGps.getDirection());
+                }
+                else{
+                    gSonarIsDetected = false;
+                }
+            }
+            timecounter++;
+        }
 #if 1 // ログ送信(0：解除、1：実施)
-		LOGGER_SEND = 2;
-	    LOGGER_DATAS08[0] = (S8)(gDoSonar); 
-		LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-		LOGGER_DATAU16    = (U16)(distance);
-		LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
-		LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
-		LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-		LOGGER_DATAS16[3] = (S16)(distance);
-		LOGGER_DATAS32[0] = (S32)(distance);
-		LOGGER_DATAS32[1] = (S32)(distance);
-		LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
-		LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
+        LOGGER_SEND = 2;
+        LOGGER_DATAS08[0] = (S8)(gDoSonar); 
+        LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+        LOGGER_DATAU16    = (U16)(distance);
+        LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+        LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+        LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+        LOGGER_DATAS16[3] = (S16)(distance);
+        LOGGER_DATAS32[0] = (S32)(distance);
+        LOGGER_DATAS32[1] = (S32)(distance);
+        LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
+        LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
 #endif
         // イベント通知を待つ
         ClearEvent(EventSonar);
         WaitEvent(EventSonar);
     }
 }
-/* ETロボコン2011 追記ここまで */
-
-/*ETロボコン2011 コメントアウト
-TASK(TaskSonar)
-{
-    // 48msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmSonar, 1, 48); 
-    WaitEvent(EventSonar);
-
-    int gSonarDetectCount = 0;
-    int gSonarTotalCount = 0;
-    float gSonarDetectRatio = 0.0;
-    while (1) {
-        if (! gDoSonar) {
-            gSonarDetectCount = 0;
-            gSonarTotalCount = 0;
-        }
-    	if (gDoSonar) {
-            gSonarDistance = mSonarSensor.getDistance();
-            gSonarDetectCount += (gSonarDistance < 60);
-            gSonarTotalCount++;
-            gSonarDetectRatio = (gSonarDetectCount / (float)gSonarTotalCount);
-            gSonarIsDetected = (gSonarDetectRatio > 0.1);
-        }
-
-#if 0 // DEBUG
-        gDoSonar = true;
-        static int count = 0;
-        if (count++ > 5) {
-            Lcd lcd;
-            lcd.clear();
-            lcd.putf("sn", "TaskSonar");
-            lcd.putf("dn", gDoSonar);
-            lcd.putf("dn", gSonarDistance);
-            lcd.putf("dn", gSonarDetectCount);
-            lcd.putf("dn", gSonarTotalCount);
-            lcd.putf("dn", gSonarIsDetected);
-            lcd.disp();
-        }
-#endif
-        // イベント通知を待つ
-        ClearEvent(EventSonar);
-        WaitEvent(EventSonar);
-    }
-}
-ETロボコン2011 コメントアウトここまで
-*/
-
 /**
  * 走行タスク
  */
@@ -222,32 +174,27 @@ TASK(TaskDrive)
 //     K_THETADOT = 10.5F;
 
 
-    connect_bt(mLcd, BT_NAME); // bluetooth接続
+    //connect_bt(mLcd, BT_NAME); // bluetooth接続
     mActivator.reset(USER_GYRO_OFFSET);
 
-	while(1){
-		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
-
-		
-		if (remote_start() == 1)
-		{
-			break; // リモートスタート
-		}
-		
-
-		if (gTouchStarter = mTouchSensor.isPressed())
-		{
-			break; /* タッチセンサが押された */
-		}
-
-		systick_wait_ms(10); /* 10msecウェイト */
-	}
+    while(1){
+        tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
+        if (remote_start() == 1)
+        {
+            break; // リモートスタート
+        }
+        if (gTouchStarter = mTouchSensor.isPressed())
+        {
+            break; /* タッチセンサが押された */
+        }
+        systick_wait_ms(10); /* 10msecウェイト */
+    }
     bool doDrive = true;
     while (1) {
-    	tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+        tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
         if (mFailDetector.detect()) doDrive = false;
         if (doDrive) mCourse->drive();
-    	else mActivator.stop();
+        else mActivator.stop();
 
         // イベント通知を待つ
         ClearEvent(EventDrive);
@@ -375,18 +322,18 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
 //*****************************************************************************
 static void tail_control(signed int angle)
 {
-	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
-	/* PWM出力飽和処理 */
-	if (pwm > PWM_ABS_MAX)
-	{
-		pwm = PWM_ABS_MAX;
-	}
-	else if (pwm < -PWM_ABS_MAX)
-	{
-		pwm = -PWM_ABS_MAX;
-	}
+    float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
+    /* PWM出力飽和処理 */
+    if (pwm > PWM_ABS_MAX)
+    {
+        pwm = PWM_ABS_MAX;
+    }
+    else if (pwm < -PWM_ABS_MAX)
+    {
+        pwm = -PWM_ABS_MAX;
+    }
 
-	nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
+    nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
 }
 
 //*****************************************************************************
@@ -398,27 +345,27 @@ static void tail_control(signed int angle)
 //*****************************************************************************
 static int remote_start(void)
 {
-	int i;
-	unsigned int rx_len;
-	unsigned char start = 0;
+    int i;
+    unsigned int rx_len;
+    unsigned char start = 0;
 
-	for (i=0; i<BT_MAX_RX_BUF_SIZE; i++)
-	{
-		rx_buf[i] = 0; /* 受信バッファをクリア */
-	}
+    for (i=0; i<BT_MAX_RX_BUF_SIZE; i++)
+    {
+        rx_buf[i] = 0; /* 受信バッファをクリア */
+    }
 
-	rx_len = mBluetooth.receive(rx_buf, 0, BT_MAX_RX_BUF_SIZE);
-	if (rx_len > 0)
-	{
-		/* 受信データあり */
-		if (rx_buf[0] == CMD_START)
-		{
-			start = 1; /* 走行開始 */
-		}
-		//mBluetooth.send(rx_buf, 0, rx_len); //受信データをエコーバック ロガーにゴミが入りそうなのでコメントアウト
-	}
+    rx_len = mBluetooth.receive(rx_buf, 0, BT_MAX_RX_BUF_SIZE);
+    if (rx_len > 0)
+    {
+        /* 受信データあり */
+        if (rx_buf[0] == CMD_START)
+        {
+            start = 1; /* 走行開始 */
+        }
+        //mBluetooth.send(rx_buf, 0, rx_len); //受信データをエコーバック ロガーにゴミが入りそうなのでコメントアウト
+    }
 
-	return start;
+    return start;
 }
 
 };

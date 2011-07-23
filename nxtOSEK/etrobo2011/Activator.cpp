@@ -20,7 +20,7 @@ Activator::Activator(Motor &leftMotor,
     mGyroSensor(gyroSensor), 
     mNxt(nxt)
 {
-	mGyroOffset = USER_GYRO_OFFSET; //オフセット値を初期化
+    mGyroOffset = USER_GYRO_OFFSET; //オフセット値を初期化
 }
 
 /**
@@ -41,9 +41,9 @@ void Activator::reset(int gyroOffset)
  */
 void Activator::run(VectorT<F32> command)
 {
-	S8 pwmL, pwmR;
-	
-	balance_control(
+    S8 pwmL, pwmR;
+    
+    balance_control(
         (F32)command.mX, // 前後進命令
         (F32)command.mY, // 旋回命令
         (F32)mGyroSensor.get(),
@@ -54,9 +54,9 @@ void Activator::run(VectorT<F32> command)
         &pwmL,
         &pwmR);
 
-	PWMR = pwmR;
-	PWML = pwmL;
-	
+    PWMR = pwmR;
+    PWML = pwmL;
+    
     if (! DESK_DEBUG) {
         mLeftMotor.setPWM(pwmL);
         mRightMotor.setPWM(pwmR);
@@ -72,10 +72,10 @@ void Activator::run(VectorT<F32> command)
  */
 void Activator::stop()
 {
-	mLeftMotor.setPWM(0);
-	mRightMotor.setPWM(0);
-	mLeftMotor.setBrake(true);
-	mRightMotor.setBrake(true);
+    mLeftMotor.setPWM(0);
+    mRightMotor.setPWM(0);
+    mLeftMotor.setBrake(true);
+    mRightMotor.setBrake(true);
 }
 
 /**
@@ -87,7 +87,7 @@ void Activator::stop()
  */
 void Activator::slow()
 {
-	mLeftMotor.setPWM((S8)(PWML));
-	mRightMotor.setPWM((S8)(PWMR));
+    mLeftMotor.setPWM((S8)(PWML));
+    mRightMotor.setPWM((S8)(PWMR));
 }
 
