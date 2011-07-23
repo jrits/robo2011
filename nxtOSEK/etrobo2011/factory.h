@@ -34,6 +34,8 @@
 #include "VirtualLineTrace.h"
 #include "SlowdownSkill.h"
 #include "StopSkill.h"
+#include "StandUpSkill.h"
+
 // ƒhƒ‰ƒCƒo
 #include "Driver.h"
 #include "NormalDriver.h"
@@ -99,6 +101,7 @@ extern CoordinateTrace mCoordinateTrace;
 extern VirtualLineTrace mVirtualLineTrace;
 extern SlowdownSkill mSlowdownSkill;
 extern StopSkill mStopSkill;
+extern StandUpSkill mStandUpSkill;
 extern CoordinateStop mCoordinateStop;
 // Driver
 extern NormalDriver mNormalDriver;

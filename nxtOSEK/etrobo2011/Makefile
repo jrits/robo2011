@@ -51,7 +51,8 @@ TARGET_CPP_SOURCES = \
 	CoordinateStop.cpp \
 	SlowdownSkill.cpp \
 	StopSkill.cpp \
-        Posture.cpp
+        Posture.cpp \
+	StandUpSkill.cpp
 
 # TOPPERS/ATK(OSEK)ê›íËÉtÉ@ÉCÉã
 TOPPERS_OSEK_OIL_SOURCE = main.oil
