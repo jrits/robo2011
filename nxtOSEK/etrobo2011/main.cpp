@@ -201,47 +201,28 @@ TASK(TaskDrive)
   balance_init(); /* 倒立振子制御初期化 */
   nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
   nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
-  static bool found_something = false;
   while(1)
   {
       tail_control(70); /* バランス走行用角度に制御 */
-      //mPosture.inclineBackward(70); /* 後ろに倒れる */
-      forward = 100;
-      turn = mLineTrace.calcCommandTurn();
-      pwm_L = 100 + (turn/(float)forward) * 40;
-      pwm_R = 100 + (-turn/(float)forward) * 40;
-      Lcd lcd;
-      lcd.clear();
-      lcd.putf("dn", (int)mLightSensor.get());
-      lcd.putf("dn", (int)turn);
-      lcd.putf("dn", (int)pwm_L);
-      lcd.putf("dn", (int)pwm_R);
-      lcd.disp();
-
-      
-      nxt_motor_set_speed(NXT_PORT_C, MAX(pwm_L, 100), 1); /* 左モータPWM出力セット(-100～100) */
-      nxt_motor_set_speed(NXT_PORT_B, MAX(pwm_R, 100), 1); /* 右モータPWM出力セット(-100～100) */
+      mTripodLineTrace.setForward(50);
+      mTripodLineTrace.execute();
 
 //     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 
-//     if (sonar_alert() == 1 || found_something) /* 障害物検知 */
+//     if (sonar_alert() == 1) /* 障害物検知 */
 //     {
-//       // forward = turn = 0; /* 障害物を検知したら停止 */
-//       mPosture.inclineBackward(70); /* 後ろに倒れる */
-//       found_something = true;
+//       forward = turn = 0; /* 障害物を検知したら停止 */
 //     }
 //     else
 //     {
-//       forward = 50; /* 前進命令 */
-//       turn = 0;
-//       // if (ecrobot_get_light_sensor(NXT_PORT_S3) <= (LIGHT_WHITE + LIGHT_BLACK)/2)
-//       // {
-//       // 	turn = 50;  /* 右旋回命令 */
-//       // }
-//       // else
-//       // {
-//       // 	turn = -50; /* 左旋回命令 */
-//       // }
+//       if (ecrobot_get_light_sensor(NXT_PORT_S3) <= (LIGHT_WHITE + LIGHT_BLACK)/2)
+//       {
+//       	 turn = 50;  /* 右旋回命令 */
+//       }
+//       else
+//       {
+//        	turn = -50; /* 左旋回命令 */
+//       }
 //       /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
 //       balance_control(
 //           (float)forward,								 /* 前後進命令(+:前進, -:後進) */

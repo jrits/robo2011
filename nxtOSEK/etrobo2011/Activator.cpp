@@ -54,9 +54,6 @@ void Activator::run(VectorT<F32> command)
         &pwmL,
         &pwmR);
 
-	PWMR = pwmR;
-	PWML = pwmL;
-	
     if (! DESK_DEBUG) {
         mLeftMotor.setPWM(pwmL);
         mRightMotor.setPWM(pwmR);
@@ -76,18 +73,5 @@ void Activator::stop()
 	mRightMotor.setPWM(0);
 	mLeftMotor.setBrake(true);
 	mRightMotor.setBrake(true);
-}
-
-/**
- * ブレーキ走行(実験中)。
- *
- * 
- *
- * @return -
- */
-void Activator::slow()
-{
-	mLeftMotor.setPWM((S8)(PWML));
-	mRightMotor.setPWM((S8)(PWMR));
 }
 

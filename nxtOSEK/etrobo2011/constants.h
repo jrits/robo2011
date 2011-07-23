@@ -78,10 +78,6 @@ extern bool DESK_DEBUG;
 extern bool gLineTrace;
 extern bool gTripodLineTrace;
 
-//ブレーキ走行(実験中)
-extern int PWMR;
-extern int PWML;
-
 //#include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}
 

@@ -39,7 +39,6 @@ public:
     void reset(int gyroOffset);
 	void run(VectorT<F32> command);
 	void stop();
-	void slow();
 private:
     // Vector<S8> balanceControl(VectorT<F32> command); // balancer_control ‚ð’¼‚ÉŒÄ‚Ô‚±‚Æ‚É
 };
