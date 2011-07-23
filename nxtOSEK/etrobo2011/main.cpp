@@ -116,7 +116,7 @@ bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 TASK(TaskSonar)
 {
     // 4msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmSonar, 1, 4); 
+    SetRelAlarm(AlarmSonar, 1, 80); 
     WaitEvent(EventSonar);
 
     int distance = 0;
@@ -128,15 +128,16 @@ TASK(TaskSonar)
         }
         
         if(gDoSonar){
-            
-            if(timecounter % (80/4) == 0) //80msec毎
+            if(timecounter % (4/4) == 0) //80msec毎
             {
                 distance = mSonarSensor.getDistance();
                 
-                if((5 < distance) && (distance < 60)){
+                //if((5 < distance) && (distance < 60)){
+                if((5 < distance) && (distance < 80)){
                     gSonarIsDetected = true;
                     gSonarTagetDistance = distance * 10;//ソナーのdistanceはcm単位なので、GPSにあわせて修正
                     gSonarTagetAngle = Gps::marge180(mGps.getDirection());
+                    mSpeaker.playTone(1000, 1, 10);
                 }
                 else{
                     gSonarIsDetected = false;
@@ -157,6 +158,13 @@ TASK(TaskSonar)
         LOGGER_DATAS32[1] = (S32)(distance);
         LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
         LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
+        
+        mLcd.clear();
+        //mLcd.putf("nsnn", "Get Ready?");
+        //mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
+        //mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
+        mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
+        mLcd.disp();
 #endif
         // イベント通知を待つ
         ClearEvent(EventSonar);
@@ -187,8 +195,22 @@ TASK(TaskDrive)
         {
             break; /* タッチセンサが押された */
         }
+#if 1 // キャリブレーション用ディスプレ表示(0：解除、1：実施)
+        //gDoSonar = true;//うまくいかないのでコメントアウト
+        mLcd.clear();
+        mLcd.putf("nsnn", "Get Ready?");
+        mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
+        mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
+        //mLcd.putf("sd" ,  "Sonar = ",  gSonarTagetDistance, 5);//うまくいかないのでコメントアウト
+        mLcd.disp();
+#endif
+        
         systick_wait_ms(10); /* 10msecウェイト */
     }
+#if 1 // キャリブレーション用ディスプレ表示(0：解除、1：実施)
+        mLcd.clear();
+        //gDoSonar = true;//キャリブレーション
+#endif
     bool doDrive = true;
     while (1) {
         tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */

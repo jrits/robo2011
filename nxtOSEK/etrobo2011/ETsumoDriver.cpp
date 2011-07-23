@@ -10,8 +10,8 @@
 #include "constants.h"
 #include "Speaker.h"
 
-#define K_PHIDOT_FOR_SEARCH 15.0F
-#define RIKISHI_FORWARD 10.0
+#define K_PHIDOT_FOR_SEARCH 30.0F
+#define RIKISHI_FORWARD 30.0
 
 #define SUMO_DEBUG 1
 
@@ -45,7 +45,22 @@ ETsumoDriver::~ETsumoDriver(){}
  
 
 bool ETsumoDriver::drive()
-{        
+{
+    
+    //試走会用ライントレース
+    /*
+    if (mState == ETsumoDriver::INIT) { // 初期化状態
+        if (mInitState) {
+            gDoSonar = false;
+            K_THETADOT = 7.5F;
+            K_PHIDOT = 25.0F;
+            mLineTrace.setForward(100);
+            mInitState = false;
+        }
+        mLineTrace.execute();
+    }
+    */
+    
     if (mState == ETsumoDriver::INIT) { // 初期化状態
         gDoSonar = false;
         mTimeCounter = 0;
@@ -76,6 +91,7 @@ bool ETsumoDriver::drive()
         // 移動完了
         if (mCoordinateTrace.isArrived()) {
             mInitState = true;
+            //mState = ETsumoDriver::SWINGSEARCH;
             mState = ETsumoDriver::SPOTSEARCH;
         }
         mCoordinateTrace.execute();
@@ -157,6 +173,7 @@ bool ETsumoDriver::drive()
             mSonarDetectCount = 0;
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(480);
+            //mAngleTrace.setTargetAngle(415);
             mAngleTrace.setAllowableError(2.0); // 2度
             mInitState = false;
             mIsArrived = false;
@@ -175,7 +192,7 @@ bool ETsumoDriver::drive()
             if(gSonarIsDetected){
                 mSonarDetectCount++;
                 updateTargetCoordinates();
-                if(SUMO_DEBUG) {mSpeaker.playTone(1000, 1, 10);}
+                if(SUMO_DEBUG) {mSpeaker.playTone(500, 1, 20);}
             }
             else if((mTimeCounter % 100 == 0) && (mTimeCounter > 500)){
                 float setangle = mGps.getDirection() - 10;
@@ -224,7 +241,7 @@ bool ETsumoDriver::drive()
             gDoSonar = false; 
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
-            K_PHIDOT = 10.0;
+            K_PHIDOT = K_PHIDOT_FOR_SEARCH;
             mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ターゲットのアングルを-180～180で返す
             if((mTargetAngle > -45) && (mTargetAngle < 135)){
                 mAngleTrace.setTargetAngle(45);
