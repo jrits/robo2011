@@ -46,6 +46,7 @@ StraightDetector mStraightDetector;
 FailDetector mFailDetector;
 // Skill
 LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD);
+TripodLineTrace mTripodLineTrace(BLACK, WHITE, LINE_THRESHOLD);
 AngleTrace mAngleTrace;
 CoordinateTrace mCoordinateTrace;
 VirtualLineTrace mVirtualLineTrace;

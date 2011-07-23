@@ -26,6 +26,7 @@
 // ÉXÉLÉã
 #include "Skill.h"
 #include "LineTrace.h"
+#include "TripodLineTrace.h"
 #include "AngleTrace.h"
 #include "CoordinateStop.h"
 #include "CoordinateTrace.h"
@@ -90,6 +91,7 @@ extern StraightDetector mStraightDetector;
 extern FailDetector mFailDetector;
 // Skill
 extern LineTrace mLineTrace;
+extern TripodLineTrace mTripodLineTrace;
 extern AngleTrace mAngleTrace;
 extern CoordinateTrace mCoordinateTrace;
 extern VirtualLineTrace mVirtualLineTrace;

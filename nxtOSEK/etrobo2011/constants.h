@@ -76,6 +76,7 @@ extern bool DESK_DEBUG;
 
 //LineTraceフラグ
 extern bool gLineTrace;
+extern bool gTripodLineTrace;
 
 //ブレーキ走行(実験中)
 extern int PWMR;

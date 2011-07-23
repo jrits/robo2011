@@ -121,6 +121,7 @@ bool DESK_DEBUG = false; // モータを回さない
 
 //LineTraceフラグ
 bool gLineTrace = false;
+bool gTripodLineTrace = false;
 //ブレーキ走行(実験中)
 int PWMR = 0;
 int PWML = 0;
