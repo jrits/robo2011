@@ -40,8 +40,12 @@ int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
 char BT_NAME[16] = "KACHIICHI";
 int USER_GYRO_OFFSET = 585; // この値は適宜調整すること
 //3F居室
-int WHITE = 540; // 白色の光センサ値
-int BLACK = 730; // 黒色の光センサ値
+//int WHITE = 540; // 白色の光センサ値
+//int BLACK = 730; // 黒色の光センサ値
+//int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
+//W:570 B:670
+int WHITE = 560; // 白色の光センサ値 //小さめにしてね
+int BLACK = 680; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
 #endif
 

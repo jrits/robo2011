@@ -28,6 +28,6 @@ void Posture::inclineBackward(int angle){
   }
   mTailMotor.setPWM((S8)pwm);
   mTailMotor.setBrake(true);
-  mLeftMotor.setPWM(10);
-  mRightMotor.setPWM(10);    
+  //mLeftMotor.setPWM(10);
+  //mRightMotor.setPWM(10);    
 }
