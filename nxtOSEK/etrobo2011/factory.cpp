@@ -34,6 +34,7 @@ float mGyroBuffer[25];
 History mGyroHistory(mGyroBuffer, COUNTOF(mGyroBuffer));
 // ‚»‚Ì‘¼
 Activator mActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
+TripodActivator mTripodActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD); // LineTrace—p
 Pid mAnglePid(ANGLE_PID_KP, ANGLE_PID_KI, ANGLE_PID_KD); // AngleTrace—p
 Pid mSlowdownPid(SLOWDOWN_PID_KP, SLOWDOWN_PID_KI, SLOWDOWN_PID_KD); // SlowdownSkill—p

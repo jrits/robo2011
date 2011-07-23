@@ -25,6 +25,7 @@
 #include "FailDetector.h"
 // ƒXƒLƒ‹
 #include "Skill.h"
+#include "TripodSkill.h"
 #include "LineTrace.h"
 #include "TripodLineTrace.h"
 #include "AngleTrace.h"
@@ -49,6 +50,7 @@
 #include "OutCourse.h"
 // ‚»‚Ì‘¼
 #include "Activator.h"
+#include "TripodActivator.h"
 #include "Pid.h"
 #include "struct.h"
 // Posture

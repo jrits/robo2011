@@ -5,12 +5,12 @@
 #ifndef TripodLineTrace_H_
 #define TripodLineTrace_H_
 
-#include "Skill.h"
+#include "TripodSkill.h"
 
 /**
  * ライントレーススキル
  */
-class TripodLineTrace : public Skill
+class TripodLineTrace : public TripodSkill
 {
 private:
   float mBlack;         //!< 黒

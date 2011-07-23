@@ -24,6 +24,7 @@ TARGET_CPP_SOURCES = \
 	factory.cpp \
 	main.cpp \
 	Activator.cpp \
+	TripodActivator.cpp \
 	Pid.cpp \
 	Gps.cpp \
 	NormalDriver.cpp \
