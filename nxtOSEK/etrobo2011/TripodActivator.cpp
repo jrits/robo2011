@@ -57,8 +57,8 @@ void TripodActivator::run(VectorT<F32> command)
 //     &pwmR);
 
   // @todo: balance_control ‚Æ“¯‚¶“ü—Í’l‚È‚ç“¯‚¶‚®‚ç‚¢‚Ìo—Í’l‚É‚È‚é‚æ‚¤‚É‚µ‚½‚¢
-  pwmL = command.mX + (command.mY > 0 ? command.mY : 0) * 0.3;
-  pwmR = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.3;
+  pwmL = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
+  pwmR = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
 
   if (! DESK_DEBUG) {
     mLeftMotor.setPWM((S8)(MIN(MAX(pwmL, -128), 127)));

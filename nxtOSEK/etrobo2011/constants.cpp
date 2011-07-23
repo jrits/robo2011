@@ -9,11 +9,13 @@
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
 int USER_GYRO_OFFSET = 605; // この値は適宜調整すること
-//CS大会本コース
-//W:525 G:617 B:675
-int WHITE = 520; // 白色の光センサ値 //小さめにしてね
-int BLACK = 675; // 黒色の光センサ値 //大きめにしてね
-int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
+//竹田家 W:550 G:617 B:720
+int WHITE = 550; // 白色の光センサ値 //小さめにしてね
+int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
+int LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK -  TRIPOD_WHITE)/4;
+int TRIPOD_WHITE = 607; // 白色の光センサ値 //小さめにしてね
+int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #endif
 
 #ifdef KACHIICHI
