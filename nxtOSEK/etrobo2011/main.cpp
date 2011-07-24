@@ -186,7 +186,7 @@ TASK(TaskDrive)
 	signed char forward;      /* 前後進命令 */
 	signed char turn;         /* 旋回命令 */
 	signed char pwm_L, pwm_R; /* 左右モータPWM出力 */
-
+  
 	while(1)
 	{
 		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
