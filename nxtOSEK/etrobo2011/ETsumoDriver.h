@@ -69,6 +69,9 @@ private:
     float mTargetTotalX;
     float mTargetTotalY;
     float mTargetAngle;
+    //Point mPoint;
+    //int mSearchPoint;
+    //float mMyAngle;
 
 public:
     ETsumoDriver();

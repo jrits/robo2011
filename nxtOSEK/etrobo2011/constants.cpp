@@ -44,16 +44,17 @@ int USER_GYRO_OFFSET = 612; // この値は適宜調整すること
 //int BLACK = 730; // 黒色の光センサ値
 //int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
 //高橋家
-//int WHITE = 523; // 白色の光センサ値
-//int BLACK = 693; // 黒色の光センサ値
-//int LINE_THRESHOLD = 580; // ライン端の色を示す閾値。白と灰色の間の値
-#endif
-
+int WHITE = 523; // 白色の光センサ値
+int BLACK = 693; // 黒色の光センサ値
+int LINE_THRESHOLD = 580; // ライン端の色を示す閾値。白と灰色の間の値
 //試走会
 //W:510 G:615 B:697
-int WHITE = 513; // 白色の光センサ値 //小さめにしてね
-int BLACK = 666; // 黒色の光センサ値 //大きめにしてね
-int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
+//int WHITE = 513; // 白色の光センサ値 //小さめにしてね
+//int BLACK = 666; // 黒色の光センサ値 //大きめにしてね
+//int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
+#endif
+
+
 #ifdef KACHINEW
 char BT_NAME[16] = "KACHINEW";
 int USER_GYRO_OFFSET = 608; // この値は適宜調整すること

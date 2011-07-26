@@ -115,8 +115,8 @@ bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 //   →ロボがブレながら旋回している際、どの程度ターゲットを検知してくれるか？これがET相撲の肝（ブレずに旋回出来ればなおよい）
 TASK(TaskSonar)
 {
-    // 4msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmSonar, 1, 80); 
+    // 80msec 毎にイベント通知する設定
+    SetRelAlarm(AlarmSonar, 1, 60); 
     WaitEvent(EventSonar);
 
     int distance = 0;
@@ -128,24 +128,19 @@ TASK(TaskSonar)
         }
         
         if(gDoSonar){
-            if(timecounter % (4/4) == 0) //80msec毎
-            {
-                distance = mSonarSensor.getDistance();
-                
-                //if((5 < distance) && (distance < 60)){
-                if((5 < distance) && (distance < 80)){
-                    gSonarIsDetected = true;
-                    gSonarTagetDistance = distance * 10;//ソナーのdistanceはcm単位なので、GPSにあわせて修正
-                    gSonarTagetAngle = Gps::marge180(mGps.getDirection());
-                    mSpeaker.playTone(1000, 1, 10);
-                }
-                else{
-                    gSonarIsDetected = false;
-                }
+            distance = mSonarSensor.getDistance();
+            if((5 < distance) && (distance < 60)){
+                gSonarIsDetected = true;
+                gSonarTagetDistance = distance * 10;//ソナーのdistanceはcm単位なので、GPSにあわせて修正
+                gSonarTagetAngle = Gps::marge180(mGps.getDirection());
+                mSpeaker.playTone(1000, 1, 10);
+            }
+            else{
+                gSonarIsDetected = false;
             }
             timecounter++;
         }
-#if 1 // ログ送信(0：解除、1：実施)
+#if 0 // ログ送信(0：解除、1：実施)
         LOGGER_SEND = 2;
         LOGGER_DATAS08[0] = (S8)(gDoSonar); 
         LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
@@ -204,7 +199,6 @@ TASK(TaskDrive)
         //mLcd.putf("sd" ,  "Sonar = ",  gSonarTagetDistance, 5);//うまくいかないのでコメントアウト
         mLcd.disp();
 #endif
-        
         systick_wait_ms(10); /* 10msecウェイト */
     }
 #if 1 // キャリブレーション用ディスプレ表示(0：解除、1：実施)

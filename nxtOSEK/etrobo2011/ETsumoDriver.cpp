@@ -10,8 +10,10 @@
 #include "constants.h"
 #include "Speaker.h"
 
-#define K_PHIDOT_FOR_SEARCH 30.0F
-#define RIKISHI_FORWARD 30.0
+#define K_PHIDOT_FOR_MOVE 25.0F
+#define K_PHIDOT_FOR_SEARCH 15.0F
+#define RIKISHI_FORWARD 30.0F
+#define OSHIDASHI_FORWARD 30.0F
 
 #define SUMO_DEBUG 1
 
@@ -29,6 +31,7 @@ ETsumoDriver::ETsumoDriver()    //初期値の設定
     mTimeCounter = 0;
     mInitState = false;             
     mState = ETsumoDriver::INIT;  //ステート
+    //mSearchPoint = 1;
 }
 
 /**
@@ -46,7 +49,74 @@ ETsumoDriver::~ETsumoDriver(){}
 
 bool ETsumoDriver::drive()
 {
+#if 0 //超信地旋回調査用
+    gDoSonar = true;
+    K_THETADOT = 6.5F;
+    K_PHIDOT = 25.0F;
+    if(mTimeCounter < 100000){
+        VectorT<float> command(50, 0);//第一要素：進行速度、第二要素：旋回速度
+        mActivator.run(command);//制御機器にセット
+    }
+    else{
+        VectorT<float> command2(0, 100);//第一要素：進行速度、第二要素：旋回速度
+        mActivator.run(command2);//制御機器にセット
+    }
+    mTimeCounter++;
+    return 0;
+#endif
     
+#if 0 //超信地旋回調査用
+    if (mState == ETsumoDriver::INIT) { // 初期化状態
+        gDoSonar = true;
+        if(gSonarIsDetected){
+            mInitState = true;
+            mState = ETsumoDriver::DOHYO_IN;
+            updateTargetCoordinates();
+            //mTargetX = mTargetTotalX;
+            //mTargetY = mTargetTotalY;
+            return 0;
+        }
+        K_THETADOT = 6.5F;
+        K_PHIDOT = 20.0F;
+        mTimeCounter++;
+        
+        if (!mInitState) {
+            if(mSearchPoint == 1){mPoint.X = GPS_ETSUMO_SEARCH_X; mPoint.Y = GPS_ETSUMO_SEARCH_Y;}
+            if(mSearchPoint == 2){mPoint.X = GPS_ETSUMO_SEARCH_X + 200; mPoint.Y = GPS_ETSUMO_SEARCH_Y -200;}
+            if(mSearchPoint == 3){mPoint.X = GPS_ETSUMO_SEARCH_X + 400; mPoint.Y = GPS_ETSUMO_SEARCH_Y -400;}
+            if(mSearchPoint == 4){mPoint.X = GPS_ETSUMO_SEARCH_X + 600; mPoint.Y = GPS_ETSUMO_SEARCH_Y -600;}
+            mCoordinateTrace.setTargetCoordinate(mPoint);//
+            mInitState = true;
+            mIsArrived = false;
+            mCoordinateTrace.setAllowableError(30);
+            mCoordinateTrace.setForward(50);
+            mTimeCounter = 0;
+        }
+        if (mCoordinateTrace.isArrived()) {mIsArrived = true; mTimeCounter = 0; mMyAngle = mGps.getDirection();}
+        if(mIsArrived){
+            if((mGps.getDirection() <= mMyAngle - 720) || (mGps.getDirection() >= mMyAngle +720)){
+                mInitState = false;
+                mTimeCounter = 0;
+                mSearchPoint++;
+                return 0;
+            }
+            else{
+                if((mSearchPoint % 2) == 0 ){
+                    VectorT<float> command1(0, 100);//第一要素：進行速度、第二要素：旋回速度
+                    mActivator.run(command1);//制御機器にセット
+                }
+                else{
+                    VectorT<float> command2(0, -100);//第一要素：進行速度、第二要素：旋回速度
+                    mActivator.run(command2);//制御機器にセット
+                }
+            }
+            return 0;
+        }
+        mCoordinateTrace.execute();
+        return 0;
+    }
+#endif
+
     //試走会用ライントレース
     /*
     if (mState == ETsumoDriver::INIT) { // 初期化状態
@@ -67,7 +137,7 @@ bool ETsumoDriver::drive()
         mOrigK_THETADOT =  K_THETADOT; // 後で戻すために保存
         mOrigK_PHIDOT = K_PHIDOT; // 後で戻すために保存
         K_THETADOT = 6.5F;
-        K_PHIDOT = 25.0F;
+        K_PHIDOT = 20.0F;
         mScanState = UNKNOWN;
         mLightSensor.setLamp(0);//試しにライトセンサOFF
         
@@ -83,7 +153,7 @@ bool ETsumoDriver::drive()
             K_PHIDOT = 60.0F;
             mTimeCounter = 0;
             mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X, GPS_ETSUMO_SEARCH_Y));// ＠todo要再設定
-            mCoordinateTrace.setForward(30.0);
+            mCoordinateTrace.setForward(50.0);
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
             mIsArrived = false;
@@ -101,7 +171,7 @@ bool ETsumoDriver::drive()
     if (mState == ETsumoDriver::SPOTSEARCH) {
         if (mInitState) {
             gDoSonar = false; // 
-            K_PHIDOT = 60.0F;
+            K_PHIDOT = K_PHIDOT_FOR_MOVE;
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(360.0);
@@ -119,14 +189,14 @@ bool ETsumoDriver::drive()
             mIsArrived = true;
         }
         // 方向転換完了してからスポットサーチ開始
-        if(mIsArrived && (mTimeCounter % 20 == 0) && (mTimeCounter >= 1000)){
+        if(mIsArrived && (mTimeCounter % 20 == 0) && (mTimeCounter >= 100)){
             if(gSonarIsDetected){
                 mSonarDetectCount++;
                 updateTargetCoordinates();
                 if(SUMO_DEBUG) {mSpeaker.playTone(1000, 1, 10);}
             }
             else if(mTimeCounter % 100 == 0){
-                float setangle = mGps.getDirection() - 10;//この数値は十分大きいため、調整不要のはず
+                float setangle = mGps.getDirection() - 100;//この数値は十分大きいため、調整不要のはず
                 mAngleTrace.setTargetAngle(setangle);
             }
         }
@@ -168,7 +238,7 @@ bool ETsumoDriver::drive()
     if (mState == ETsumoDriver::SWINGSEARCH) {
         if (mInitState) {
             gDoSonar = false;
-            K_PHIDOT = 60.0F;
+            K_PHIDOT = K_PHIDOT_FOR_MOVE;
             mTimeCounter = 0;
             mSonarDetectCount = 0;
             mAngleTrace.setForward(0);
@@ -194,8 +264,8 @@ bool ETsumoDriver::drive()
                 updateTargetCoordinates();
                 if(SUMO_DEBUG) {mSpeaker.playTone(500, 1, 20);}
             }
-            else if((mTimeCounter % 100 == 0) && (mTimeCounter > 500)){
-                float setangle = mGps.getDirection() - 10;
+            else if((mTimeCounter % 100 == 0) && (mTimeCounter > 100)){
+                float setangle = mGps.getDirection() - 100;
                 mAngleTrace.setTargetAngle(setangle);
             }
         }
@@ -241,7 +311,7 @@ bool ETsumoDriver::drive()
             gDoSonar = false; 
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
-            K_PHIDOT = K_PHIDOT_FOR_SEARCH;
+            K_PHIDOT = K_PHIDOT_FOR_MOVE;
             mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ターゲットのアングルを-180～180で返す
             if((mTargetAngle > -45) && (mTargetAngle < 135)){
                 mAngleTrace.setTargetAngle(45);
@@ -257,9 +327,10 @@ bool ETsumoDriver::drive()
         if (! mIsArrived && mAngleTrace.isArrived()) {
             mIsArrived = true;
             mTimeCounter = 0;
+            K_PHIDOT = K_PHIDOT_FOR_SEARCH;
         }
         // 方向転換完了してから落ち着くまで待機
-        if(mIsArrived && (mTimeCounter > 1000)){
+        if(mIsArrived && (mTimeCounter > 100)){
             mInitState = true;
             mState = ETsumoDriver::SCAN;
         }
@@ -296,12 +367,12 @@ bool ETsumoDriver::drive()
             }
             //右回りにスキャン
             if((mTimeCounter % 100 == 0) && (mScanState == SWINGRIGHT)){
-                float setangle = mGps.getDirection() - 10;
+                float setangle = mGps.getDirection() - 100;
                 mAngleTrace.setTargetAngle(setangle);
             }
             //左回りにスキャン
             else if((mTimeCounter % 100 == 0) && (mScanState == SWINGLEFT)){
-                float setangle = mGps.getDirection() + 10;
+                float setangle = mGps.getDirection() + 100;
                 mAngleTrace.setTargetAngle(setangle);
             }
         }
@@ -353,7 +424,7 @@ bool ETsumoDriver::drive()
         }
         //ゆっくり押し出し、時々張り手
         if(!mOshidashiFlag && mIsArrived && (mTimeCounter > 100)){
-            mAngleTrace.setForward(10);//＠todoベストな値を要検証
+            mAngleTrace.setForward(OSHIDASHI_FORWARD);//＠todoベストな値を要検証
         }
         //押し出し判定
         if((mGps.getXCoordinate() > (GPS_ETSUMO_SEARCH_X + 800)) || (mGps.getYCoordinate() < (GPS_ETSUMO_SEARCH_Y - 800))){//＠todoベストな値を要検証
