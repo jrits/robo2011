@@ -6,6 +6,7 @@
 
 #include "constants.h"
 #include "factory.h"
+#include "Vector.h"
 using namespace ecrobot;
 
 extern "C"
@@ -182,15 +183,18 @@ TASK(TaskDrive)
   nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
 
   static int count = 0;
+  static VectorT<F32> command(50,0);
   while(1)
   {
     count++;
-    if(count < 100){
-      tail_control(70); /* バランス走行用角度に制御 */
-      mTripodLineTrace.setForward(50);
-      mTripodLineTrace.execute();
+    if(count < 1000){
+      tail_control(3); /* バランス走行用角度に制御 */
+      // mTripodLineTrace.setForward(50);
+      // mTripodLineTrace.execute();
+      mActivator.run(command);
     } else {
-      mStandUpSkill.execute();
+      //      mStandUpSkill.execute();
+      mSitDownSkill.execute();
     }
     
     systick_wait_ms(4); /* 4msecウェイト */

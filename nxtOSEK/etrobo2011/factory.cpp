@@ -55,6 +55,8 @@ SlowdownSkill mSlowdownSkill;
 StopSkill mStopSkill;
 CoordinateStop mCoordinateStop; // @obsolete
 StandUpSkill mStandUpSkill(mActivator,mTripodActivator,mLeftMotor,mRightMotor,mTailMotor);
+SitDownSkill mSitDownSkill;
+
 // Driver
 NormalDriver mNormalDriver;
 SeesawDriver mSeesawDriver;
