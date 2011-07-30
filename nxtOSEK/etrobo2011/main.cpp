@@ -202,40 +202,42 @@ TASK(TaskDrive)
 	balance_init();						/* 倒立振子制御初期化 */
 	nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
 	nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
+    VectorT<float> command(50, 0);
 	while(1)
 	{
 		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+        mActivator.run(command);
 
-		if (sonar_alert() == 1) /* 障害物検知 */
-		{
-			forward = turn = 0; /* 障害物を検知したら停止 */
-		}
-		else
-		{
-			forward = 50; /* 前進命令 */
-			if (ecrobot_get_light_sensor(NXT_PORT_S3) <= (LIGHT_WHITE + LIGHT_BLACK)/2)
-			{
-				turn = 50;  /* 右旋回命令 */
-			}
-			else
-			{
-				turn = -50; /* 左旋回命令 */
-			}
-		}
+		// if (sonar_alert() == 1) /* 障害物検知 */
+		// {
+		// 	forward = turn = 0; /* 障害物を検知したら停止 */
+		// }
+		// else
+		// {
+		// 	forward = 50; /* 前進命令 */
+		// 	if (ecrobot_get_light_sensor(NXT_PORT_S3) <= (LIGHT_WHITE + LIGHT_BLACK)/2)
+		// 	{
+		// 		turn = 50;  /* 右旋回命令 */
+		// 	}
+		// 	else
+		// 	{
+		// 		turn = -50; /* 左旋回命令 */
+		// 	}
+		// }
 
-		/* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
-		balance_control(
-			(float)forward,								 /* 前後進命令(+:前進, -:後進) */
-			(float)turn,								 /* 旋回命令(+:右旋回, -:左旋回) */
-			(float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
-			(float)GYRO_OFFSET,							 /* ジャイロセンサオフセット値 */
-			(float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
-			(float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
-			(float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
-			&pwm_L,										 /* 左モータPWM出力値 */
-			&pwm_R);									 /* 右モータPWM出力値 */
-		nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
-		nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
+		// /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
+		// balance_control(
+		// 	(float)forward,								 /* 前後進命令(+:前進, -:後進) */
+		// 	(float)turn,								 /* 旋回命令(+:右旋回, -:左旋回) */
+		// 	(float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
+		// 	(float)GYRO_OFFSET,							 /* ジャイロセンサオフセット値 */
+		// 	(float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
+		// 	(float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
+		// 	(float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
+		// 	&pwm_L,										 /* 左モータPWM出力値 */
+		// 	&pwm_R);									 /* 右モータPWM出力値 */
+		// nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
+		// nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
 
 		systick_wait_ms(4); /* 4msecウェイト */
 	}

@@ -42,5 +42,6 @@ public:
 	void slow();
 private:
     // Vector<S8> balanceControl(VectorT<F32> command); // balancer_control ‚ð’¼‚ÉŒÄ‚Ô‚±‚Æ‚É
+    float forwardPid(float speed);
 };
 #endif
