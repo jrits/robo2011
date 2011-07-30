@@ -1,247 +1,0 @@
-<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>robo2009: クラス OutCourse</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
-<link href="doxygen.css" rel="stylesheet" type="text/css"/>
-</head>
-<body onload='searchBox.OnSelectItem(0);'>
-<!-- 作成： Doxygen 1.6.1 -->
-<script type="text/javascript"><!--
-var searchBox = new SearchBox("searchBox", "search",false,'検索');
---></script>
-<div class="navigation" id="top">
-  <div class="tabs">
-    <ul>
-      <li><a href="index.html"><span>メインページ</span></a></li>
-      <li><a href="pages.html"><span>関連ページ</span></a></li>
-      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
-      <li><a href="files.html"><span>ファイル</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <img id="MSearchSelect" src="search/search.png"
-             onmouseover="return searchBox.OnSearchSelectShow()"
-             onmouseout="return searchBox.OnSearchSelectHide()"
-             alt=""/>
-        <input type="text" id="MSearchField" value="検索" accesskey="S"
-             onfocus="searchBox.OnSearchFieldFocus(true)" 
-             onblur="searchBox.OnSearchFieldFocus(false)" 
-             onkeyup="searchBox.OnSearchFieldChange(event)"/>
-        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>構成</span></a></li>
-      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
-      <li><a href="functions.html"><span>構成メンバ</span></a></li>
-    </ul>
-  </div>
-</div>
-<div class="contents">
-<h1>クラス OutCourse</h1><!-- doxytag: class="OutCourse" --><!-- doxytag: inherits="Course" -->
-<p><a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> Manager.  
-<a href="#_details">[詳細]</a></p>
-
-<p><code>#include &lt;<a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a>&gt;</code></p>
-<div class="dynheader">
-OutCourseに対する継承グラフ</div>
-<div class="dynsection">
-<div class="center"><img src="classOutCourse__inherit__graph.png" border="0" usemap="#OutCourse_inherit__map" alt="Inheritance graph"/></div>
-<map name="OutCourse_inherit__map" id="OutCourse_inherit__map">
-<area shape="rect" id="node2" href="classCourse.html" title="Section (Marker Section) Detector." alt="" coords="16,5,77,35"/></map>
-<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
-<div class="dynheader">
-OutCourseのコラボレーション図</div>
-<div class="dynsection">
-<div class="center"><img src="classOutCourse__coll__graph.png" border="0" usemap="#OutCourse_coll__map" alt="Collaboration graph"/></div>
-<map name="OutCourse_coll__map" id="OutCourse_coll__map">
-<area shape="rect" id="node2" href="classCourse.html" title="Section (Marker Section) Detector." alt="" coords="115,197,176,227"/><area shape="rect" id="node4" href="classDirection.html" title="Direction" alt="" coords="5,101,77,131"/><area shape="rect" id="node6" href="classSensorHistory.html" title="SensorHistory" alt="" coords="41,5,145,35"/><area shape="rect" id="node8" href="classDistance.html" title="Distance" alt="" coords="109,101,181,131"/><area shape="rect" id="node11" href="classTime.html" title="Time" alt="" coords="205,101,256,131"/></map>
-<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
-
-<p><a href="classOutCourse-members.html">すべてのメンバ一覧</a></p>
-<table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public 型</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131">SectionId</a> { <br/>
-&nbsp;&nbsp;<a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131acdda05e8b1275f356cfd638d4974b0fb">START</a>, 
-<a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131acce939c34c21bd711482ddeae3651961">DASHED</a>, 
-<a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131acb8c692ac7523c47d6cc4379fad74580">AFTER_DASHED</a>, 
-<a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131a8d5c16200e837e13c1df5183cfa111e2">TREASURE</a>, 
-<br/>
-&nbsp;&nbsp;<a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131a154d2c6a7787a401ba2ef210efbf452f">AFTER_TREASURE</a>, 
-<a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131a578901f1e1bb13a3d8b4b6b3e068f1dc">END</a>
-<br/>
- }</td></tr>
-<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutCourse.html#a51aa3f2d07b06e066c083625c411f809">OutCourse</a> (<a class="el" href="classDirection.html">Direction</a> &amp;g, <a class="el" href="classDistance.html">Distance</a> &amp;d, <a class="el" href="classTime.html">Time</a> &amp;t, <a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131">SectionId</a> si=OutCourse::START, <a class="el" href="classCourse.html#adb55ea022443351c9195b3688b59108e">CourseId</a> ci=Course::OUT)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutCourse.html#ab94be5003e36baf6c55235f010da66ea">~OutCourse</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSection.html">Section</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12">detect</a> ()</td></tr>
-</table>
-<hr/><a name="_details"></a><h2>説明</h2>
-<p><a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> Manager. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">TODO:</a></b></dt><dd>Out <a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> would be an object of a course. </dd></dl>
-
-<p> <a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a> の <a class="el" href="OutCourse_8hpp_source.html#l00011">11</a> 行で定義されています。</p>
-<hr/><h2>列挙型</h2>
-<a class="anchor" id="a2d066404fbf0c7f91f746dfe95f79131"></a><!-- doxytag: member="OutCourse::SectionId" ref="a2d066404fbf0c7f91f746dfe95f79131" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131">OutCourse::SectionId</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl><dt><b>列挙型の値: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a2d066404fbf0c7f91f746dfe95f79131acdda05e8b1275f356cfd638d4974b0fb"></a><!-- doxytag: member="START" ref="a2d066404fbf0c7f91f746dfe95f79131acdda05e8b1275f356cfd638d4974b0fb" args="" -->START</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a2d066404fbf0c7f91f746dfe95f79131acce939c34c21bd711482ddeae3651961"></a><!-- doxytag: member="DASHED" ref="a2d066404fbf0c7f91f746dfe95f79131acce939c34c21bd711482ddeae3651961" args="" -->DASHED</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a2d066404fbf0c7f91f746dfe95f79131acb8c692ac7523c47d6cc4379fad74580"></a><!-- doxytag: member="AFTER_DASHED" ref="a2d066404fbf0c7f91f746dfe95f79131acb8c692ac7523c47d6cc4379fad74580" args="" -->AFTER_DASHED</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a2d066404fbf0c7f91f746dfe95f79131a8d5c16200e837e13c1df5183cfa111e2"></a><!-- doxytag: member="TREASURE" ref="a2d066404fbf0c7f91f746dfe95f79131a8d5c16200e837e13c1df5183cfa111e2" args="" -->TREASURE</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a2d066404fbf0c7f91f746dfe95f79131a154d2c6a7787a401ba2ef210efbf452f"></a><!-- doxytag: member="AFTER_TREASURE" ref="a2d066404fbf0c7f91f746dfe95f79131a154d2c6a7787a401ba2ef210efbf452f" args="" -->AFTER_TREASURE</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a2d066404fbf0c7f91f746dfe95f79131a578901f1e1bb13a3d8b4b6b3e068f1dc"></a><!-- doxytag: member="END" ref="a2d066404fbf0c7f91f746dfe95f79131a578901f1e1bb13a3d8b4b6b3e068f1dc" args="" -->END</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-<p> <a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a> の <a class="el" href="OutCourse_8hpp_source.html#l00014">14</a> 行で定義されています。</p>
-
-</div>
-</div>
-<hr/><h2>コンストラクタとデストラクタ</h2>
-<a class="anchor" id="a51aa3f2d07b06e066c083625c411f809"></a><!-- doxytag: member="OutCourse::OutCourse" ref="a51aa3f2d07b06e066c083625c411f809" args="(Direction &amp;g, Distance &amp;d, Time &amp;t, SectionId si=OutCourse::START, CourseId ci=Course::OUT)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">OutCourse::OutCourse </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classDirection.html">Direction</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>g</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classDistance.html">Distance</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classTime.html">Time</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>t</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classOutCourse.html#a2d066404fbf0c7f91f746dfe95f79131">SectionId</a>&nbsp;</td>
-          <td class="paramname"> <em>si</em> = <code>OutCourse::START</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classCourse.html#adb55ea022443351c9195b3688b59108e">CourseId</a>&nbsp;</td>
-          <td class="paramname"> <em>ci</em> = <code>Course::OUT</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a> の <a class="el" href="OutCourse_8hpp_source.html#l00024">24</a> 行で定義されています。</p>
-
-</div>
-</div>
-<a class="anchor" id="ab94be5003e36baf6c55235f010da66ea"></a><!-- doxytag: member="OutCourse::~OutCourse" ref="ab94be5003e36baf6c55235f010da66ea" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">OutCourse::~OutCourse </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a> の <a class="el" href="OutCourse_8hpp_source.html#l00030">30</a> 行で定義されています。</p>
-
-</div>
-</div>
-<hr/><h2>関数</h2>
-<a class="anchor" id="a999cd663a2a6433f1db52c53ea4f6f12"></a><!-- doxytag: member="OutCourse::detect" ref="a999cd663a2a6433f1db52c53ea4f6f12" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classSection.html">Section</a>* OutCourse::detect </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p><p>&lt;���񌈒肷���ԁB�Ƃ肠�����O��Ɠ�����Ԃ�</p>
-<p>�ԑ̌����F���̒��� </p>
-</p>
-
-<p><a class="el" href="classCourse.html#ac7ce1c8a6445201bbdabcc41e13f3481">Course</a>を再定義しています。</p>
-
-<p> <a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a> の <a class="el" href="OutCourse_8hpp_source.html#l00033">33</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classOutCourse_a999cd663a2a6433f1db52c53ea4f6f12_cgraph.png" border="0" usemap="#classOutCourse_a999cd663a2a6433f1db52c53ea4f6f12_cgraph_map" alt=""></div>
-<map name="classOutCourse_a999cd663a2a6433f1db52c53ea4f6f12_cgraph_map" id="classOutCourse_a999cd663a2a6433f1db52c53ea4f6f12_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="196,63,407,92"/><area shape="rect" id="node5" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="496,165,712,195"/><area shape="rect" id="node11" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="499,59,709,88"/><area shape="rect" id="node19" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="200,116,403,145"/><area shape="rect" id="node24" href="classCourse.html#af3a49052ae755ca76a8f33bfcac6b091" title="Course::countFlag" alt="" coords="237,271,365,300"/><area shape="rect" id="node27" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="521,219,687,248"/><area shape="rect" id="node33" href="classGoalStopSection.html#a9d974a254d3bd363ea4cc45ee82fef1b" title="GoalStopSection::initialize" alt="" coords="215,324,388,353"/><area shape="rect" id="node35" href="classTreasureHuntSection.html#a0a08b763f28dbc0818313235ffb950e5" title="TreasureHuntSection::initialize" alt="" coords="203,377,400,407"/><area shape="rect" id="node37" href="classNormalLineSection.html#a1bc0c120fd1795b00ee5de994bfcd147" title="NormalLineSection::initialize" alt="" coords="208,431,395,460"/><area shape="rect" id="node39" href="classDashedLineSection.html#abaf3566ed7093d8468128ecb9ff9e43b" title="DashedLineSection::initialize" alt="" coords="207,484,396,513"/><area shape="rect" id="node41" href="classSection.html#a571cdc71da3898801225c3e14c822591" title="Section::isEnd" alt="" coords="248,537,355,567"/><area shape="rect" id="node43" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158" title="Distance::reset" alt="" coords="247,591,356,620"/><area shape="rect" id="node49" href="classGoalStopSection.html#af07b9279e35ce1c42fe0e7e4730cb9a0" title="GoalStopSection::setDistanceToGoal" alt="" coords="183,644,420,673"/><area shape="rect" id="node51" href="classGoalStopSection.html#af59a205968f930593113faaa6e6e0c2f" title="GoalStopSection::setEdge" alt="" coords="213,697,389,727"/><area shape="rect" id="node55" href="classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e" title="NormalLineSection::setEdge" alt="" coords="208,751,395,780"/><area shape="rect" id="node57" href="classGoalStopSection.html#a633b45d22162fedc66189b522d5b5ed4" title="GoalStopSection::setSpeed" alt="" coords="211,857,392,887"/><area shape="rect" id="node61" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b" title="NormalLineSection::setSpeed" alt="" coords="204,804,399,833"/><area shape="rect" id="node16" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="501,112,707,141"/><area shape="rect" id="node7" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="1021,165,1192,195"/><area shape="rect" id="node9" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1240,192,1371,221"/><area shape="rect" id="node13" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="787,112,973,141"/><area shape="rect" id="node29" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="805,217,955,247"/><area shape="rect" id="node45" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="475,564,733,593"/><area shape="rect" id="node47" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="471,617,737,647"/><area shape="rect" id="node53" href="classLineTraceDriver.html#a8c5dab59304956f56c6420c520530b55" title="LineTraceDriver::setEdge" alt="" coords="521,697,687,727"/><area shape="rect" id="node59" href="classDriver.html#a01132ddd008ad2e8ebfb552559e627bc" title="Driver::setSpeed" alt="" coords="545,831,663,860"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<hr/>このクラスの説明は次のファイルから生成されました:<ul>
-<li><a class="el" href="OutCourse_8hpp_source.html">OutCourse.hpp</a></li>
-</ul>
-</div>
-<!--- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:09:00 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
-</body>
-</html>

@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="184,5,469,35"/>
-<area shape="rect" id="node7" href="$classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="833,32,1017,61"/>
-<area shape="rect" id="node10" href="$classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="228,109,425,139"/>
-<area shape="rect" id="node12" href="$classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="240,163,413,192"/>
-<area shape="rect" id="node5" href="$classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="517,5,784,35"/>
-</map>

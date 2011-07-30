@@ -1,223 +1,0 @@
-<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>robo2009: クラス DirectionPidDriver</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
-<link href="doxygen.css" rel="stylesheet" type="text/css"/>
-</head>
-<body onload='searchBox.OnSelectItem(0);'>
-<!-- 作成： Doxygen 1.6.1 -->
-<script type="text/javascript"><!--
-var searchBox = new SearchBox("searchBox", "search",false,'検索');
---></script>
-<div class="navigation" id="top">
-  <div class="tabs">
-    <ul>
-      <li><a href="index.html"><span>メインページ</span></a></li>
-      <li><a href="pages.html"><span>関連ページ</span></a></li>
-      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
-      <li><a href="files.html"><span>ファイル</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <img id="MSearchSelect" src="search/search.png"
-             onmouseover="return searchBox.OnSearchSelectShow()"
-             onmouseout="return searchBox.OnSearchSelectHide()"
-             alt=""/>
-        <input type="text" id="MSearchField" value="検索" accesskey="S"
-             onfocus="searchBox.OnSearchFieldFocus(true)" 
-             onblur="searchBox.OnSearchFieldFocus(false)" 
-             onkeyup="searchBox.OnSearchFieldChange(event)"/>
-        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>構成</span></a></li>
-      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
-      <li><a href="functions.html"><span>構成メンバ</span></a></li>
-    </ul>
-  </div>
-</div>
-<div class="contents">
-<h1>クラス DirectionPidDriver</h1><!-- doxytag: class="DirectionPidDriver" --><!-- doxytag: inherits="Driver" -->
-<p><code>#include &lt;<a class="el" href="DirectionPidDriver_8hpp_source.html">DirectionPidDriver.hpp</a>&gt;</code></p>
-<div class="dynheader">
-DirectionPidDriverに対する継承グラフ</div>
-<div class="dynsection">
-<div class="center"><img src="classDirectionPidDriver__inherit__graph.png" border="0" usemap="#DirectionPidDriver_inherit__map" alt="Inheritance graph"/></div>
-<map name="DirectionPidDriver_inherit__map" id="DirectionPidDriver_inherit__map">
-<area shape="rect" id="node2" href="classDriver.html" title="各走行部品のインターフェースを定義するスーパークラス。..." alt="" coords="40,5,93,35"/></map>
-<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
-<div class="dynheader">
-DirectionPidDriverのコラボレーション図</div>
-<div class="dynsection">
-<div class="center"><img src="classDirectionPidDriver__coll__graph.png" border="0" usemap="#DirectionPidDriver_coll__map" alt="Collaboration graph"/></div>
-<map name="DirectionPidDriver_coll__map" id="DirectionPidDriver_coll__map">
-<area shape="rect" id="node2" href="classDriver.html" title="各走行部品のインターフェースを定義するスーパークラス。..." alt="" coords="199,339,253,368"/><area shape="rect" id="node4" href="classBalancingRun.html" title="BalancingRun" alt="" coords="29,208,130,237"/><area shape="rect" id="node6" href="classBalancer.html" title="Balancer" alt="" coords="51,101,123,131"/><area shape="rect" id="node8" href="classSensorHistory.html" title="SensorHistory" alt="" coords="73,5,177,35"/><area shape="rect" id="node12" href="classDirection.html" title="Direction" alt="" coords="141,155,213,184"/><area shape="rect" id="node16" href="classDistance.html" title="Distance" alt="" coords="238,155,310,184"/><area shape="rect" id="node10" href="classPidController.html" title="PID制御。." alt="" coords="349,208,445,237"/><area shape="rect" id="node19" href="classTime.html" title="Time" alt="" coords="469,208,519,237"/></map>
-<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
-
-<p><a href="classDirectionPidDriver-members.html">すべてのメンバ一覧</a></p>
-<table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirectionPidDriver.html#a9d5ae952c98a7805fb2026fcb507fb6e">DirectionPidDriver</a> (<a class="el" href="classBalancingRun.html">BalancingRun</a> &amp;b, <a class="el" href="classDistance.html">Distance</a> &amp;d, <a class="el" href="classDirection.html">Direction</a> &amp;g, <a class="el" href="classPidController.html">PidController</a> &amp;lp, <a class="el" href="classPidController.html">PidController</a> &amp;ap, <a class="el" href="classPidController.html">PidController</a> &amp;cp, Clock &amp;c, <a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;sh)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirectionPidDriver.html#a477b63cd36da9d546a1086313d78bb79">~DirectionPidDriver</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">VectorT&lt; S8 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3">computeVelocity</a> (float refDirection)</td></tr>
-</table>
-<hr/><a name="_details"></a><h2>説明</h2>
-
-<p> <a class="el" href="DirectionPidDriver_8hpp_source.html">DirectionPidDriver.hpp</a> の <a class="el" href="DirectionPidDriver_8hpp_source.html#l00010">10</a> 行で定義されています。</p>
-<hr/><h2>コンストラクタとデストラクタ</h2>
-<a class="anchor" id="a9d5ae952c98a7805fb2026fcb507fb6e"></a><!-- doxytag: member="DirectionPidDriver::DirectionPidDriver" ref="a9d5ae952c98a7805fb2026fcb507fb6e" args="(BalancingRun &amp;b, Distance &amp;d, Direction &amp;g, PidController &amp;lp, PidController &amp;ap, PidController &amp;cp, Clock &amp;c, SensorHistory &amp;sh)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">DirectionPidDriver::DirectionPidDriver </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classBalancingRun.html">BalancingRun</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classDistance.html">Distance</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classDirection.html">Direction</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>g</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPidController.html">PidController</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>lp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPidController.html">PidController</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>ap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPidController.html">PidController</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>cp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Clock &amp;&nbsp;</td>
-          <td class="paramname"> <em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>sh</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="DirectionPidDriver_8hpp_source.html">DirectionPidDriver.hpp</a> の <a class="el" href="DirectionPidDriver_8hpp_source.html#l00014">14</a> 行で定義されています。</p>
-
-</div>
-</div>
-<a class="anchor" id="a477b63cd36da9d546a1086313d78bb79"></a><!-- doxytag: member="DirectionPidDriver::~DirectionPidDriver" ref="a477b63cd36da9d546a1086313d78bb79" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">DirectionPidDriver::~DirectionPidDriver </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="DirectionPidDriver_8hpp_source.html">DirectionPidDriver.hpp</a> の <a class="el" href="DirectionPidDriver_8hpp_source.html#l00020">20</a> 行で定義されています。</p>
-
-</div>
-</div>
-<hr/><h2>関数</h2>
-<a class="anchor" id="a8395f2fc6160438d1060f89b2c3715d3"></a><!-- doxytag: member="DirectionPidDriver::computeVelocity" ref="a8395f2fc6160438d1060f89b2c3715d3" args="(float refDirection)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">VectorT&lt;S8&gt; DirectionPidDriver::computeVelocity </td>
-          <td>(</td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>refDirection</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p><a class="el" href="classDriver.html#ad997358e55bbfe5c9071d1c101adfb43">Driver</a>を再定義しています。</p>
-
-<p> <a class="el" href="DirectionPidDriver_8hpp_source.html">DirectionPidDriver.hpp</a> の <a class="el" href="DirectionPidDriver_8hpp_source.html#l00023">23</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_cgraph.png" border="0" usemap="#classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_cgraph_map" alt=""></div>
-<map name="classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_cgraph_map" id="classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_cgraph">
-<area shape="rect" id="node3" href="classPidController.html#a1c400aa5e80284bdcad4999838ddf83f" title="PID制御." alt="" coords="305,5,447,35"/><area shape="rect" id="node5" href="classDriver.html#a192b222cc14c5b44e38ae51895aa2dce" title="Driver::controlVelocity" alt="" coords="303,59,449,88"/><area shape="rect" id="node7" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="517,163,688,192"/><area shape="rect" id="node11" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="283,163,469,192"/><area shape="rect" id="node14" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="528,216,677,245"/><area shape="rect" id="node17" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="293,267,459,296"/><area shape="rect" id="node20" href="classDirection.html#a2b8c3770f9f15127b1fbcffbe7b3cf78" title="Direction::getOffset" alt="" coords="309,320,443,349"/><area shape="rect" id="node9" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="736,189,867,219"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_icgraph.png" border="0" usemap="#classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_icgraph_map" alt=""></div>
-<map name="classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_icgraph_map" id="classDirectionPidDriver_a8395f2fc6160438d1060f89b2c3715d3_icgraph">
-<area shape="rect" id="node3" href="classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="283,5,573,35"/><area shape="rect" id="node5" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="623,57,820,87"/><area shape="rect" id="node7" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="295,163,561,192"/><area shape="rect" id="node11" href="classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="289,109,567,139"/><area shape="rect" id="node14" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="303,216,553,245"/><area shape="rect" id="node17" href="classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="343,269,513,299"/><area shape="rect" id="node19" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="329,323,527,352"/><area shape="rect" id="node21" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="356,376,500,405"/><area shape="rect" id="node23" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="317,429,539,459"/><area shape="rect" id="node26" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="321,483,535,512"/><area shape="rect" id="node28" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="347,536,509,565"/><area shape="rect" id="node30" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="335,589,521,619"/><area shape="rect" id="node9" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="635,189,808,219"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<hr/>このクラスの説明は次のファイルから生成されました:<ul>
-<li><a class="el" href="DirectionPidDriver_8hpp_source.html">DirectionPidDriver.hpp</a></li>
-</ul>
-</div>
-<!--- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:08:19 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
-</body>
-</html>
