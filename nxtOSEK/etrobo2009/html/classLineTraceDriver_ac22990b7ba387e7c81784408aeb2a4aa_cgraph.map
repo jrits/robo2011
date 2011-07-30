@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classPidController.html#a1c400aa5e80284bdcad4999838ddf83f" title="PID制御." alt="" coords="332,5,473,35"/>
-<area shape="rect" id="node5" href="$classColor.html#ab7d5dcae43ab980349b90cb396d91aa8" title="Color::getLightSensorValue" alt="" coords="313,59,492,88"/>
-<area shape="rect" id="node7" href="$classSensorHistory.html#a0253284517f931447fb5e9c66dfaf9d2" title="SensorHistory::getLightSensorHistory" alt="" coords="541,59,781,88"/>
-</map>

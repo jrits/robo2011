@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classDriver.html#ad997358e55bbfe5c9071d1c101adfb43" title="Driver::computeVelocity" alt="" coords="164,32,321,61"/>
-<area shape="rect" id="node5" href="$classBalancingRun.html#aba38ad0f9be114680c3e9c119d4ded7c" title="BalancingRun::run" alt="" coords="179,85,307,115"/>
-<area shape="rect" id="node7" href="$classBalancer.html#a1e4140cd630ef3713debec0819adc99d" title="Balancer::balance" alt="" coords="372,85,497,115"/>
-<area shape="rect" id="node9" href="$classSensorHistory.html#afa6b666767a463b5c3bc21cc2059162e" title="SensorHistory::getBatteryVoltageHistory" alt="" coords="553,5,809,35"/>
-<area shape="rect" id="node11" href="$classSensorHistory.html#af5957b3893f9271f699b9ba02ba471a1" title="SensorHistory::getGyroSensorHistory" alt="" coords="561,59,801,88"/>
-<area shape="rect" id="node13" href="$classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="552,112,811,141"/>
-<area shape="rect" id="node15" href="$classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="548,165,815,195"/>
-</map>

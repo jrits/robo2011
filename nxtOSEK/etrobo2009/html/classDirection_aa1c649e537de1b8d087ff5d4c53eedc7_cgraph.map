@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classDirection.html#a9b4beb83a88cb05154badd45f863ec4a" title="向きの微分値の計算。" alt="" coords="283,5,525,35"/>
-<area shape="rect" id="node9" href="$classDirection.html#ae6132bc04d19db5bec330d8b2785e4d5" title="左モータエンコーダ値の微分値の計算。" alt="" coords="265,59,543,88"/>
-<area shape="rect" id="node5" href="$classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="611,5,760,35"/>
-<area shape="rect" id="node7" href="$classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="827,32,957,61"/>
-<area shape="rect" id="node11" href="$classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b" title="左モータエンコーダ値の取得" alt="" coords="592,59,779,88"/>
-</map>

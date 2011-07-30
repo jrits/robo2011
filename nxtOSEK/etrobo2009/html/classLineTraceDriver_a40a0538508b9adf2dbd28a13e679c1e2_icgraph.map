@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classNewGoalStopSection.html#adb81722c153aaa8065aac9fe0fe871b4" title="NewGoalStopSection::computeRunningVelocity" alt="" coords="271,5,567,35"/>
-<area shape="rect" id="node7" href="$classGoalStopSection.html#a475b15a3d6db5805d863d0104762c19b" title="GoalStopSection::computeRunningVelocity" alt="" coords="283,59,555,88"/>
-<area shape="rect" id="node11" href="$classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="347,112,491,141"/>
-<area shape="rect" id="node13" href="$classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="327,165,511,195"/>
-<area shape="rect" id="node5" href="$classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="617,5,815,35"/>
-<area shape="rect" id="node9" href="$classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="629,59,803,88"/>
-</map>

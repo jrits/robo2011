@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classLineTraceDriver.html#ac22990b7ba387e7c81784408aeb2a4aa" title="LineTraceDriver::computeVelocityByLight" alt="" coords="269,32,528,61"/>
-<area shape="rect" id="node11" href="$classDriver.html#a192b222cc14c5b44e38ae51895aa2dce" title="Driver::controlVelocity" alt="" coords="325,85,472,115"/>
-<area shape="rect" id="node5" href="$classPidController.html#a1c400aa5e80284bdcad4999838ddf83f" title="PID制御." alt="" coords="596,5,737,35"/>
-<area shape="rect" id="node7" href="$classColor.html#ab7d5dcae43ab980349b90cb396d91aa8" title="Color::getLightSensorValue" alt="" coords="577,59,756,88"/>
-<area shape="rect" id="node9" href="$classSensorHistory.html#a0253284517f931447fb5e9c66dfaf9d2" title="SensorHistory::getLightSensorHistory" alt="" coords="805,59,1045,88"/>
-</map>

@@ -1,238 +1,0 @@
-<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>robo2009: クラス InCourse</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
-<link href="doxygen.css" rel="stylesheet" type="text/css"/>
-</head>
-<body onload='searchBox.OnSelectItem(0);'>
-<!-- 作成： Doxygen 1.6.1 -->
-<script type="text/javascript"><!--
-var searchBox = new SearchBox("searchBox", "search",false,'検索');
---></script>
-<div class="navigation" id="top">
-  <div class="tabs">
-    <ul>
-      <li><a href="index.html"><span>メインページ</span></a></li>
-      <li><a href="pages.html"><span>関連ページ</span></a></li>
-      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
-      <li><a href="files.html"><span>ファイル</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <img id="MSearchSelect" src="search/search.png"
-             onmouseover="return searchBox.OnSearchSelectShow()"
-             onmouseout="return searchBox.OnSearchSelectHide()"
-             alt=""/>
-        <input type="text" id="MSearchField" value="検索" accesskey="S"
-             onfocus="searchBox.OnSearchFieldFocus(true)" 
-             onblur="searchBox.OnSearchFieldFocus(false)" 
-             onkeyup="searchBox.OnSearchFieldChange(event)"/>
-        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>構成</span></a></li>
-      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
-      <li><a href="functions.html"><span>構成メンバ</span></a></li>
-    </ul>
-  </div>
-</div>
-<div class="contents">
-<h1>クラス InCourse</h1><!-- doxytag: class="InCourse" --><!-- doxytag: inherits="Course" -->
-<p><a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> Manager.  
-<a href="#_details">[詳細]</a></p>
-
-<p><code>#include &lt;<a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a>&gt;</code></p>
-<div class="dynheader">
-InCourseに対する継承グラフ</div>
-<div class="dynsection">
-<div class="center"><img src="classInCourse__inherit__graph.png" border="0" usemap="#InCourse_inherit__map" alt="Inheritance graph"/></div>
-<map name="InCourse_inherit__map" id="InCourse_inherit__map">
-<area shape="rect" id="node2" href="classCourse.html" title="Section (Marker Section) Detector." alt="" coords="11,5,72,35"/></map>
-<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
-<div class="dynheader">
-InCourseのコラボレーション図</div>
-<div class="dynsection">
-<div class="center"><img src="classInCourse__coll__graph.png" border="0" usemap="#InCourse_coll__map" alt="Collaboration graph"/></div>
-<map name="InCourse_coll__map" id="InCourse_coll__map">
-<area shape="rect" id="node2" href="classCourse.html" title="Section (Marker Section) Detector." alt="" coords="115,197,176,227"/><area shape="rect" id="node4" href="classDirection.html" title="Direction" alt="" coords="5,101,77,131"/><area shape="rect" id="node6" href="classSensorHistory.html" title="SensorHistory" alt="" coords="41,5,145,35"/><area shape="rect" id="node8" href="classDistance.html" title="Distance" alt="" coords="109,101,181,131"/><area shape="rect" id="node11" href="classTime.html" title="Time" alt="" coords="205,101,256,131"/></map>
-<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
-
-<p><a href="classInCourse-members.html">すべてのメンバ一覧</a></p>
-<table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public 型</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3">SectionId</a> { <a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3a690107f41f0a2e9a6d12b374e4af79eb">START</a>, 
-<a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3aa5b339903b12a5cc86d0de3f74e7182b">FIRST360</a>, 
-<a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3ad0893f397e0ba71b4baf74018bf89538">AFTER_FIRST360</a>, 
-<a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3a8d7a3bb6e1c89d8f267a521516689b96">END</a>
- }</td></tr>
-<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInCourse.html#ad5f379c90313ec39a0653baeeb814f9d">InCourse</a> (<a class="el" href="classDirection.html">Direction</a> &amp;g, <a class="el" href="classDistance.html">Distance</a> &amp;d, <a class="el" href="classTime.html">Time</a> &amp;t, <a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3">SectionId</a> si=InCourse::START, <a class="el" href="classCourse.html#adb55ea022443351c9195b3688b59108e">CourseId</a> ci=Course::IN)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInCourse.html#a0db576eb98b1411278233ea7075fa5db">~InCourse</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSection.html">Section</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7">detect</a> ()</td></tr>
-</table>
-<hr/><a name="_details"></a><h2>説明</h2>
-<p><a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> Manager. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">TODO:</a></b></dt><dd>In <a class="el" href="classCourse.html" title="Section (Marker Section) Detector.">Course</a> would be an object of a course. </dd></dl>
-
-<p> <a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a> の <a class="el" href="InCourse_8hpp_source.html#l00011">11</a> 行で定義されています。</p>
-<hr/><h2>列挙型</h2>
-<a class="anchor" id="a04131d92d76d8ed2378d1a4308ff05e3"></a><!-- doxytag: member="InCourse::SectionId" ref="a04131d92d76d8ed2378d1a4308ff05e3" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3">InCourse::SectionId</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl><dt><b>列挙型の値: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a04131d92d76d8ed2378d1a4308ff05e3a690107f41f0a2e9a6d12b374e4af79eb"></a><!-- doxytag: member="START" ref="a04131d92d76d8ed2378d1a4308ff05e3a690107f41f0a2e9a6d12b374e4af79eb" args="" -->START</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a04131d92d76d8ed2378d1a4308ff05e3aa5b339903b12a5cc86d0de3f74e7182b"></a><!-- doxytag: member="FIRST360" ref="a04131d92d76d8ed2378d1a4308ff05e3aa5b339903b12a5cc86d0de3f74e7182b" args="" -->FIRST360</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a04131d92d76d8ed2378d1a4308ff05e3ad0893f397e0ba71b4baf74018bf89538"></a><!-- doxytag: member="AFTER_FIRST360" ref="a04131d92d76d8ed2378d1a4308ff05e3ad0893f397e0ba71b4baf74018bf89538" args="" -->AFTER_FIRST360</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a04131d92d76d8ed2378d1a4308ff05e3a8d7a3bb6e1c89d8f267a521516689b96"></a><!-- doxytag: member="END" ref="a04131d92d76d8ed2378d1a4308ff05e3a8d7a3bb6e1c89d8f267a521516689b96" args="" -->END</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-<p> <a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a> の <a class="el" href="InCourse_8hpp_source.html#l00014">14</a> 行で定義されています。</p>
-
-</div>
-</div>
-<hr/><h2>コンストラクタとデストラクタ</h2>
-<a class="anchor" id="ad5f379c90313ec39a0653baeeb814f9d"></a><!-- doxytag: member="InCourse::InCourse" ref="ad5f379c90313ec39a0653baeeb814f9d" args="(Direction &amp;g, Distance &amp;d, Time &amp;t, SectionId si=InCourse::START, CourseId ci=Course::IN)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">InCourse::InCourse </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classDirection.html">Direction</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>g</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classDistance.html">Distance</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classTime.html">Time</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>t</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classInCourse.html#a04131d92d76d8ed2378d1a4308ff05e3">SectionId</a>&nbsp;</td>
-          <td class="paramname"> <em>si</em> = <code>InCourse::START</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classCourse.html#adb55ea022443351c9195b3688b59108e">CourseId</a>&nbsp;</td>
-          <td class="paramname"> <em>ci</em> = <code>Course::IN</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a> の <a class="el" href="InCourse_8hpp_source.html#l00022">22</a> 行で定義されています。</p>
-
-</div>
-</div>
-<a class="anchor" id="a0db576eb98b1411278233ea7075fa5db"></a><!-- doxytag: member="InCourse::~InCourse" ref="a0db576eb98b1411278233ea7075fa5db" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">InCourse::~InCourse </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a> の <a class="el" href="InCourse_8hpp_source.html#l00028">28</a> 行で定義されています。</p>
-
-</div>
-</div>
-<hr/><h2>関数</h2>
-<a class="anchor" id="a709c12ebab990282da794ae84a42c8a7"></a><!-- doxytag: member="InCourse::detect" ref="a709c12ebab990282da794ae84a42c8a7" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classSection.html">Section</a>* InCourse::detect </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p><p>&lt;���񌈒肷���ԁB�Ƃ肠�����O��Ɠ�����Ԃ�</p>
-<p>�ԑ̌����F���̒��� </p>
-</p>
-
-<p><a class="el" href="classCourse.html#ac7ce1c8a6445201bbdabcc41e13f3481">Course</a>を再定義しています。</p>
-
-<p> <a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a> の <a class="el" href="InCourse_8hpp_source.html#l00031">31</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classInCourse_a709c12ebab990282da794ae84a42c8a7_cgraph.png" border="0" usemap="#classInCourse_a709c12ebab990282da794ae84a42c8a7_cgraph_map" alt=""></div>
-<map name="classInCourse_a709c12ebab990282da794ae84a42c8a7_cgraph_map" id="classInCourse_a709c12ebab990282da794ae84a42c8a7_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="185,60,396,89"/><area shape="rect" id="node5" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="485,163,701,192"/><area shape="rect" id="node11" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="488,56,699,85"/><area shape="rect" id="node19" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="189,113,392,143"/><area shape="rect" id="node24" href="classCourse.html#af3a49052ae755ca76a8f33bfcac6b091" title="Course::countFlag" alt="" coords="227,268,355,297"/><area shape="rect" id="node27" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="511,216,676,245"/><area shape="rect" id="node33" href="classGoalStopSection.html#a9d974a254d3bd363ea4cc45ee82fef1b" title="GoalStopSection::initialize" alt="" coords="204,321,377,351"/><area shape="rect" id="node35" href="classDistance.html#a53661de88754833d8d2d26f7f0b4c158" title="Distance::reset" alt="" coords="236,375,345,404"/><area shape="rect" id="node41" href="classGoalStopSection.html#af07b9279e35ce1c42fe0e7e4730cb9a0" title="GoalStopSection::setDistanceToGoal" alt="" coords="172,428,409,457"/><area shape="rect" id="node43" href="classGoalStopSection.html#af59a205968f930593113faaa6e6e0c2f" title="GoalStopSection::setEdge" alt="" coords="203,481,379,511"/><area shape="rect" id="node47" href="classNormalLineSection.html#a9fd9e06073651cffb1c18d94da17431e" title="NormalLineSection::setEdge" alt="" coords="197,535,384,564"/><area shape="rect" id="node49" href="classGoalStopSection.html#a633b45d22162fedc66189b522d5b5ed4" title="GoalStopSection::setSpeed" alt="" coords="200,641,381,671"/><area shape="rect" id="node53" href="classNormalLineSection.html#a64e13aa7101cebd9f3aee539047f8f4b" title="NormalLineSection::setSpeed" alt="" coords="193,588,388,617"/><area shape="rect" id="node16" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="491,109,696,139"/><area shape="rect" id="node7" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="1011,163,1181,192"/><area shape="rect" id="node9" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1229,189,1360,219"/><area shape="rect" id="node13" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="776,109,963,139"/><area shape="rect" id="node29" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="795,215,944,244"/><area shape="rect" id="node37" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="464,348,723,377"/><area shape="rect" id="node39" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="460,401,727,431"/><area shape="rect" id="node45" href="classLineTraceDriver.html#a8c5dab59304956f56c6420c520530b55" title="LineTraceDriver::setEdge" alt="" coords="511,481,676,511"/><area shape="rect" id="node51" href="classDriver.html#a01132ddd008ad2e8ebfb552559e627bc" title="Driver::setSpeed" alt="" coords="535,615,652,644"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<hr/>このクラスの説明は次のファイルから生成されました:<ul>
-<li><a class="el" href="InCourse_8hpp_source.html">InCourse.hpp</a></li>
-</ul>
-</div>
-<!--- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:08:33 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
-</body>
-</html>
