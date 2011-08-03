@@ -45,6 +45,7 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 /* 関数プロトタイプ宣言 */
 static int sonar_alert(void);
 static void tail_control(signed int angle);
+static int sonar_alert(void);
 
 //=============================================================================
 // TOPPERS/ATK declarations
@@ -183,6 +184,8 @@ TASK(TaskDrive)
   bool sp = true;
   int timeCounter = 0;
   int directionFlag = 0;
+  bool hogeFlag = false;
+  
 
 	while(1)
   {
@@ -199,13 +202,15 @@ TASK(TaskDrive)
   nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
   nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
   static bool found_something = false;
+  float hogeBefore = 0.0;
+  bool oneflag = false;
   while(1)
   {
     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 
       /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
   	bool balanceFlag = false;
-  	if(balanceFlag){
+ 	if(balanceFlag){
       balance_control(
           (float)forward,								 /* 前後進命令(+:前進, -:後進) */
           (float)turn,								 /* 旋回命令(+:右旋回, -:左旋回) */
@@ -218,37 +223,28 @@ TASK(TaskDrive)
           &pwm_R);									 /* 右モータPWM出力値 */
       nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
       nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
-  		
   	}
-  	else if(directionFlag == 0){
-//  		if(mGps.getDirection() <= 100 && mGps.getDirection() >= 70){
-	if(timeCounter >= 1000){
-  			directionFlag = 1;
-  		}
-  		mLineTrace.setForward(50);
-  		mLineTrace.execute();
-  	}else if(directionFlag == 1){
-		{	
-			if(sp == true){
-				Speaker s;
-				s.playTone(1976, 10, 100);
-				sp = false;
-			}
-		}
-  		mAngleTrace.setTargetAngle(120);
-  		mAngleTrace.setForward(70);
-  		mAngleTrace.execute();
-  	}else {
-  		mAngleTrace.setTargetAngle(270);
-  		mAngleTrace.setForward(70);
-  		mAngleTrace.execute();
+	mAngleTrace.setTargetAngle(180.0);
+	mAngleTrace.setForward(100);
+	mAngleTrace.execute();
+	mWallDetector.setThreshold(75);
+  	
+  	if(mWallDetector.detect() && oneflag == false){
+  		Speaker s;
+		s.playTone(1976, 10, 100);
+  		hogeFlag = true;
+  		hogeBefore = mRightMotorHistory.get(0);
+  		oneflag = true;
   	}
-  		timeCounter++;	
-
-    systick_wait_ms(4); /* 4msecウェイト */
+  	if(hogeFlag == true &&  ((mRightMotorHistory.get(0) - hogeBefore) > 450) ){
+  		mAngleTrace.setForward(10);
+		tail_control(100);
+  	}
+  	
+  	
+   systick_wait_ms(4); /* 4msecウェイト */
   }
 }
-
 /*
  * GPS更新タスク
  */
@@ -272,7 +268,7 @@ TASK(TaskGps)
 TASK(TaskHistory)
 {
   // 4msec 毎にイベント通知する設定
-  SetRelAlarm(AlarmHistory, 1, 4); 
+  SetRelAlarm(AlarmHistory, 1, 4);
   WaitEvent(EventHistory);
 
   while (1) {
