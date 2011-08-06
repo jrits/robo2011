@@ -16,11 +16,11 @@ TripodLineTrace::TripodLineTrace(float black, float white, float threshold)
 	mBlack = black;
 	mWhite = white;
 	mLineThreshold = threshold;
-  mInitForward = INIT_FORWARD;
-  mInitDuration = INIT_SAMPLECOUNT;
-  mUseOnoff = false;
-  setForward(FORWARD);
-  reset();
+    mInitForward = INIT_FORWARD;
+    mInitDuration = INIT_SAMPLECOUNT;
+    mUseOnoff = false;
+    setForward(FORWARD);
+    reset();
 }
 
 /**
@@ -30,7 +30,7 @@ TripodLineTrace::TripodLineTrace(float black, float white, float threshold)
  */
 void TripodLineTrace::reset()
 {
-  mTimeCounter = 0;
+    mTimeCounter = 0;
 }
 
 /**
@@ -40,7 +40,7 @@ void TripodLineTrace::reset()
  */
 void TripodLineTrace::setInitForward(int initForward)
 {
-  mInitForward = initForward;
+    mInitForward = initForward;
 }
 
 /**
@@ -50,7 +50,7 @@ void TripodLineTrace::setInitForward(int initForward)
  */
 void TripodLineTrace::setInitDuration(int initDuration)
 {
-  mInitDuration = initDuration;
+    mInitDuration = initDuration;
 }
 
 /**
@@ -60,7 +60,7 @@ void TripodLineTrace::setInitDuration(int initDuration)
  */
 void TripodLineTrace::setUseOnoff(bool useOnoff)
 {
-  mUseOnoff = useOnoff;
+    mUseOnoff = useOnoff;
 }
 
 /**
@@ -71,39 +71,39 @@ void TripodLineTrace::setUseOnoff(bool useOnoff)
 VectorT<float> TripodLineTrace::calcCommand()
 {
 	gTripodLineTrace = true;  //走行スキルフラグ。ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
-  // 起動時急ダッシュするため、最初のみスピードをゆるめる
-  float X;
-  if (mTimeCounter < mInitDuration) {
-    mTimeCounter++;
-    X = mInitForward;
-  }
-  else { // 通常スピード
-    X = mForward;
-  }
+    // 起動時急ダッシュするため、最初のみスピードをゆるめる
+    float X;
+    if (mTimeCounter < mInitDuration) {
+        mTimeCounter++;
+        X = mInitForward;
+    }
+    else { // 通常スピード
+        X = mForward;
+    }
 
 #if 0 // DEBUG
-  {
-    static int count = 0;
-    if (count++ % 25 == 0)
     {
-      Lcd lcd;
-      lcd.clear();
-      lcd.putf("sn", "TripodLineTrace");
-      lcd.putf("dn", mState);
-      lcd.putf("dn", mTimeCounter);
-      lcd.putf("dn", (int)X);
-      lcd.disp();
+        static int count = 0;
+        if (count++ % 25 == 0)
+        {
+            Lcd lcd;
+            lcd.clear();
+            lcd.putf("sn", "TripodLineTrace");
+            lcd.putf("dn", mState);
+            lcd.putf("dn", mTimeCounter);
+            lcd.putf("dn", (int)X);
+            lcd.disp();
+        }
     }
-  }
 #endif
-  float Y;
-  if (mUseOnoff) { 
-    Y = calcCommandTurnByOnOff();
-  }
-  else {
-    Y = calcCommandTurn();
-  }
-  return VectorT<F32>(X,Y);
+    float Y;
+    if (mUseOnoff) { 
+        Y = calcCommandTurnByOnOff();
+    }
+    else {
+        Y = calcCommandTurn();
+    }
+    return VectorT<F32>(X,Y);
 }
 
 /**
@@ -113,22 +113,22 @@ VectorT<float> TripodLineTrace::calcCommand()
  */
 float TripodLineTrace::calcCommandTurnByOnOff()
 {
-  float P = (mLightSensor.get() - mLineThreshold); // 偏差
+    float P = (mLightSensor.get() - mLineThreshold); // 偏差
 
 	//ONOFF制御
-  float Y;
-  if (P < 0) { // 白
-    Y = -LIGHT_ONOFF_K;
-  }
-  else { // 黒
-    Y = LIGHT_ONOFF_K;
-  }
+    float Y;
+    if (P < 0) { // 白
+        Y = -LIGHT_ONOFF_K;
+    }
+    else { // 黒
+        Y = LIGHT_ONOFF_K;
+    }
 	
 	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
 	if(TRACE_EDGE == LEFT ) Y *= -1;
 	if(TRACE_EDGE == RIGHT) Y *=  1;
     
-  return Y;
+    return Y;
 }
 
 /**
@@ -141,13 +141,13 @@ float TripodLineTrace::calcCommandTurn()
 	//正規化した光センサ値をPに格納する
 	float P = this->lightValueNormalization();
 	//Pid制御
-  float Y = mLightPid.control(P);
+    float Y = mLightPid.control(P);
 	
 	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
 	if(TRACE_EDGE == LEFT ) Y *= -1;
 	if(TRACE_EDGE == RIGHT) Y *=  1;
     
-  return Y;
+    return Y;
 }
 
 /**
@@ -157,19 +157,19 @@ float TripodLineTrace::calcCommandTurn()
  */
 float TripodLineTrace::lightValueNormalization()
 {
-  float L = 0;
+    float L = 0;
 	L = mLightSensor.get();
 	
-  float P = (L - mLineThreshold); // 偏差
-  if(L < mLineThreshold){ // 白
-    P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
-  }
-  else{ // 黒
-    P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
-  }
+    float P = (L - mLineThreshold); // 偏差
+    if(L < mLineThreshold){ // 白
+        P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
+    }
+    else{ // 黒
+        P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
+    }
 	
 	if(P > 1) P = 1;
 	if(P < -1) P = -1;
 	
-  return P;
+    return P;
 }
