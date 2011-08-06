@@ -13,14 +13,14 @@
 #define PREVIOUS -1
 
 /**
- * HistoryƒNƒ‰ƒX
+ * Historyã‚¯ãƒ©ã‚¹
  */
 class History
 {
 private :
-    float *mBuffer; //!< ƒoƒbƒtƒ@‚Æ‚µ‚ÄŽg‚¤”z—ñ‚ðŽw‚·ƒ|ƒCƒ“ƒ^
-    int mSize; //!< ƒoƒbƒtƒ@ƒTƒCƒY
-    int mIndex; //!< ƒoƒbƒtƒ@‚ÌŒ»ÝƒCƒ“ƒfƒbƒNƒX
+    float *mBuffer; //!< ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦ä½¿ã†é…åˆ—ã‚’æŒ‡ã™ãƒã‚¤ãƒ³ã‚¿
+    int mSize; //!< ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+    int mIndex; //!< ãƒãƒƒãƒ•ã‚¡ã®ç¾åœ¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 public :
     History(float* buffer, int size);
     virtual ~History();

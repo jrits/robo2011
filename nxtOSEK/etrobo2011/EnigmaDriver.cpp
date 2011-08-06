@@ -9,13 +9,13 @@
 
 #define DETECT_THRESH (25)
 #define MAX_DISTANCE (255)
-#define DETECT_RANGE (20) // ŒŸ’m‚ÉáŠ±—]—T‚ğ‚à‚½‚¹‚é
+#define DETECT_RANGE (20) // æ¤œçŸ¥ã«è‹¥å¹²ä½™è£•ã‚’ã‚‚ãŸã›ã‚‹
 #define ENIGMA_SAMPLECOUNT 100 // *4ms
-extern bool gDoSonar; //!< ƒ\ƒi[ƒZƒ“ƒT”­“®ƒtƒ‰ƒO
-extern bool gSonarIsDetected; //!< Õ—§ŒŸ’m‚ÌŒ‹‰Ê
+extern bool gDoSonar; //!< ã‚½ãƒŠãƒ¼ã‚»ãƒ³ã‚µç™ºå‹•ãƒ•ãƒ©ã‚°
+extern bool gSonarIsDetected; //!< è¡ç«‹æ¤œçŸ¥ã®çµæœ
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 EnigmaDriver::EnigmaDriver()
 {
@@ -25,16 +25,16 @@ EnigmaDriver::EnigmaDriver()
 }
 
 /**
- * ƒGƒjƒOƒ}EƒfƒR[ƒfƒBƒ“ƒO‹æŠÔ‚ğU—ª‚·‚é
+ * ã‚¨ãƒ‹ã‚°ãƒãƒ»ãƒ‡ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°åŒºé–“ã‚’æ”»ç•¥ã™ã‚‹
  *
- * ƒXƒ^[ƒg’¼üƒ‰ƒCƒ“ƒgƒŒ[ƒX‚©‚çAƒ‰ƒCƒ“•œ‹AŒãƒ‰ƒCƒ“ƒgƒŒ[ƒX‚Ü‚Å‚ğ’S“–‚·‚éB
+ * ã‚¹ã‚¿ãƒ¼ãƒˆç›´ç·šãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‹ã‚‰ã€ãƒ©ã‚¤ãƒ³å¾©å¸°å¾Œãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã¾ã§ã‚’æ‹…å½“ã™ã‚‹ã€‚
  *
- * @retval true ÅIó‘ÔB‚±‚êˆÈ~‚Ìó‘Ô‘JˆÚ‚È‚µB
- * @retval false ‚Ü‚¾–ğ–Ú‚ªŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * @retval true æœ€çµ‚çŠ¶æ…‹ã€‚ã“ã‚Œä»¥é™ã®çŠ¶æ…‹é·ç§»ãªã—ã€‚
+ * @retval false ã¾ã å½¹ç›®ãŒå®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
 bool EnigmaDriver::drive()
 {
-#if 0 // ƒƒO‘—M
+#if 0 // ãƒ­ã‚°é€ä¿¡
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
 	LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());
@@ -43,7 +43,7 @@ bool EnigmaDriver::drive()
 	LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
 #endif
 #if 1 // DEBUG
-    //DESK_DEBUG = true; // ƒ‚[ƒ^‚ğ‰ñ‚³‚È‚¢ƒfƒoƒO
+    //DESK_DEBUG = true; // ãƒ¢ãƒ¼ã‚¿ã‚’å›ã•ãªã„ãƒ‡ãƒã‚°
     if (mTimeCounter % 25 == 0) {
         Lcd lcd;
         lcd.clear();
@@ -56,22 +56,22 @@ bool EnigmaDriver::drive()
         lcd.disp();
     }
 #endif
-    if (mState == EnigmaDriver::INIT) { // ‰Šú‰»ó‘Ô
+    if (mState == EnigmaDriver::INIT) { // åˆæœŸåŒ–çŠ¶æ…‹
     	gDoSonar = true;
         mTimeCounter = 0;
         mInitState = true;
         mState = EnigmaDriver::BEFORELINETRACE;
-        // ©‘îƒeƒXƒg—pB‚¿‚å‚Á‚Æ‚¾‚¯ƒ‰ƒCƒ“ƒgƒŒ[ƒX‚µ‚Ä‚©‚çENTERPET
+        // è‡ªå®…ãƒ†ã‚¹ãƒˆç”¨ã€‚ã¡ã‚‡ã£ã¨ã ã‘ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã—ã¦ã‹ã‚‰ENTERPET
         // mGps.adjustXCoordinate(430);
         // mGps.adjustYCoordinate(-1200);
         // mGps.adjustDirection(270);
-        // ©‘îƒeƒXƒg—pBENTERPET ‚©‚ç
+        // è‡ªå®…ãƒ†ã‚¹ãƒˆç”¨ã€‚ENTERPET ã‹ã‚‰
         // mState = EnigmaDriver::ENTERPET;
         // mGps.adjustXCoordinate(430);
         // mGps.adjustYCoordinate(-1500);
         // mGps.adjustDirection(360);
     }
-    // ‚Ü‚¸ƒXƒ^[ƒg’¼üƒ‰ƒCƒ“ƒgƒŒ[ƒX(ƒCƒ“ƒR[ƒXƒKƒŒ[ƒWEƒCƒ“è‘O’¼ü•Ó‚è‚©‚ç‚â‚é‚Æ—Ç‚¢)
+    // ã¾ãšã‚¹ã‚¿ãƒ¼ãƒˆç›´ç·šãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹(ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³æ‰‹å‰ç›´ç·šè¾ºã‚Šã‹ã‚‰ã‚„ã‚‹ã¨è‰¯ã„)
     if (mState == EnigmaDriver::BEFORELINETRACE) {
         if (mInitState) {
             mTimeCounter = 0;
@@ -80,38 +80,38 @@ bool EnigmaDriver::drive()
             //mSlowdownSkill.setAllowableError(10); // 1cm
             mInitState = false;
         }
-        mSlowdownSkill.setTargetDistance(mGps.calcDistanceTo(MakePoint(460,-1515+200)));  // @todo: â–­‚ÈyÀ•W‚ğw’è
+        mSlowdownSkill.setTargetDistance(mGps.calcDistanceTo(MakePoint(460,-1515+200)));  // @todo: çµ¶å¦™ãªyåº§æ¨™ã‚’æŒ‡å®š
         mSlowdownSkill.execute();
-        // ƒ‰ƒCƒ“‚µ‚©‘–‚ê‚È‚¢‚½‚ß‰i‰“‚É’H‚è‚Â‚©‚È‚¢ê‡‚ª‚ ‚é
+        // ãƒ©ã‚¤ãƒ³ã—ã‹èµ°ã‚Œãªã„ãŸã‚æ°¸é ã«è¾¿ã‚Šã¤ã‹ãªã„å ´åˆãŒã‚ã‚‹
         // if (mSlowdownSkill.isArrived()) { 
-        if (mGps.getYCoordinate() < -1515+200) { // ‹ğ’¼‚ÉÀ•W‚Å // @todo: â–­‚ÈyÀ•W‚ğw’è
+        if (mGps.getYCoordinate() < -1515+200) { // æ„šç›´ã«åº§æ¨™ã§ // @todo: çµ¶å¦™ãªyåº§æ¨™ã‚’æŒ‡å®š
             mState = EnigmaDriver::PREPAREENTERPET;
             mInitState = true;
         }
     }
-    // N“ü€”õ‚Æ‚µ‚Ä0“x•ûŒü‚ğŒü‚­
+    // ä¾µå…¥æº–å‚™ã¨ã—ã¦0åº¦æ–¹å‘ã‚’å‘ã
     else if (mState == EnigmaDriver::PREPAREENTERPET) {
         if (mInitState) {
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(0);
-            mAngleTrace.setAllowableError(2.0); // 2“x
+            mAngleTrace.setAllowableError(2.0); // 2åº¦
             mInitState = false;
         }
         mAngleTrace.execute();
         if (mAngleTrace.isArrived()) {
-            //–Ú•WÀ•W‚É“’…‚µ‚½‚çŸ‚Ìó‘Ô‚Ö‘JˆÚ
+            //ç›®æ¨™åº§æ¨™ã«åˆ°ç€ã—ãŸã‚‰æ¬¡ã®çŠ¶æ…‹ã¸é·ç§»
             mState = EnigmaDriver::ENTERPET;
             mInitState = true;
         }
     }
-    // ƒyƒbƒgƒ{ƒgƒ‹‚ÌŠÔ‚ÉN“ü
+    // ãƒšãƒƒãƒˆãƒœãƒˆãƒ«ã®é–“ã«ä¾µå…¥
     else if (mState == EnigmaDriver::ENTERPET) {
         if (mInitState) {
             mTimeCounter = 0;
             mCoordinateTrace.setForward(30);
             mSlowdownSkill.setSkill(&mCoordinateTrace);
-            // @todo: â–­‚ÈyÀ•W‚ğw’è
+            // @todo: çµ¶å¦™ãªyåº§æ¨™ã‚’æŒ‡å®š
             mCoordinateTrace.setTargetCoordinate(MakePoint(600, -1515+50)); 
             mSlowdownSkill.setTargetDistance(mGps.calcDistanceTo(MakePoint(600, -1515+50)));
             mSlowdownSkill.setAllowableError(10); // 1cm
@@ -123,79 +123,79 @@ bool EnigmaDriver::drive()
             mInitState = true;
         }
     }
-    //1–{–Ú”»’è
+    //1æœ¬ç›®åˆ¤å®š
     else if (mState == EnigmaDriver::LEFTPET) {
         if (mInitState) {
-            gDoSonar = true; // ƒ\ƒi[‹N“®
-            mOrigK_PHIDOT = K_PHIDOT; // Œã‚Å–ß‚·‚½‚ß‚É•Û‘¶
+            gDoSonar = true; // ã‚½ãƒŠãƒ¼èµ·å‹•
+            mOrigK_PHIDOT = K_PHIDOT; // å¾Œã§æˆ»ã™ãŸã‚ã«ä¿å­˜
             K_PHIDOT = 62.5F;
 
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(90);
-            mAngleTrace.setAllowableError(2.0); // 2“x
+            mAngleTrace.setAllowableError(2.0); // 2åº¦
             mInitState = false;
             mIsArrived = false;
-            gDoSonar = false; // ƒ\ƒi[‹N“®‘O‚Íˆê’UƒŠƒZƒbƒg
+            gDoSonar = false; // ã‚½ãƒŠãƒ¼èµ·å‹•å‰ã¯ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆ
         }
         mAngleTrace.execute();
-        // •ûŒü“]Š·Š®—¹
+        // æ–¹å‘è»¢æ›å®Œäº†
         if (! mIsArrived && mAngleTrace.isArrived()) {
             mIsArrived = true;
             mTimeCounter = 0;
         }
-        // •ûŒü“]Š·Š®—¹‚µ‚Ä‚©‚çÕ—§ŒŸ’mB
+        // æ–¹å‘è»¢æ›å®Œäº†ã—ã¦ã‹ã‚‰è¡ç«‹æ¤œçŸ¥ã€‚
         if (mIsArrived) {
-            gDoSonar = true; // ƒ\ƒi[‹N“®
+            gDoSonar = true; // ã‚½ãƒŠãƒ¼èµ·å‹•
         }
-        // •ûŒü“]Š·‚µ‚Ä‚©‚çŠÔŒo‰ß‚ÅI—¹
+        // æ–¹å‘è»¢æ›ã—ã¦ã‹ã‚‰æ™‚é–“çµŒéã§çµ‚äº†
         if (mIsArrived && mTimeCounter >= ENIGMA_SAMPLECOUNT) {
             mState = EnigmaDriver::RIGHTPET;
             mInitState = true;
             mTimeCounter = 0;
             mObstacleFlag[0] =  gSonarIsDetected;
-            gDoSonar = false; // ƒ\ƒi[’â~      
+            gDoSonar = false; // ã‚½ãƒŠãƒ¼åœæ­¢      
             if (mObstacleFlag[0]) { Speaker s; s.playTone(1000, 1, 100); }
         }
     }
-    //2–{–Ú”»’è
+    //2æœ¬ç›®åˆ¤å®š
     else if(mState == EnigmaDriver::RIGHTPET) {
         if (mInitState) {
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(270);
-            mAngleTrace.setAllowableError(2.0); // 2“x
+            mAngleTrace.setAllowableError(2.0); // 2åº¦
             mInitState = false;
             mIsArrived = false;
-        	gDoSonar = true; // ƒ\ƒi[‹N“®
+        	gDoSonar = true; // ã‚½ãƒŠãƒ¼èµ·å‹•
         }
         mAngleTrace.execute();
-        // •ûŒü“]Š·Š®—¹
+        // æ–¹å‘è»¢æ›å®Œäº†
         if (! mIsArrived && mAngleTrace.isArrived()) {
             mIsArrived = true;
             mTimeCounter = 0;
         }
-        // •ûŒü“]Š·Š®—¹‚µ‚Ä‚©‚çÕ—§ŒŸ’mB
+        // æ–¹å‘è»¢æ›å®Œäº†ã—ã¦ã‹ã‚‰è¡ç«‹æ¤œçŸ¥ã€‚
         if (mIsArrived) {
-            gDoSonar = true; // ƒ\ƒi[‹N“®
+            gDoSonar = true; // ã‚½ãƒŠãƒ¼èµ·å‹•
         }
-        // •ûŒü“]Š·‚µ‚Ä‚©‚çŠÔŒo‰ß‚ÅI—¹
+        // æ–¹å‘è»¢æ›ã—ã¦ã‹ã‚‰æ™‚é–“çµŒéã§çµ‚äº†
         if (mIsArrived && mTimeCounter >= ENIGMA_SAMPLECOUNT) {
             mState = EnigmaDriver::EXITPET;
             mInitState = true;
             mTimeCounter = 0;
             mObstacleFlag[1] =  gSonarIsDetected;
-            gDoSonar = false; // ƒ\ƒi[’â~      
+            gDoSonar = false; // ã‚½ãƒŠãƒ¼åœæ­¢      
             if (mObstacleFlag[1]) { Speaker s; s.playTone(1000, 1, 100); }
         }
     }
-    // ’Eo‚Ì‚½‚ß20“x‚ğŒü‚­
+    // è„±å‡ºã®ãŸã‚20åº¦ã‚’å‘ã
     else if (mState == EnigmaDriver::EXITPET) { 
         if (mInitState) {
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(20);
-            mAngleTrace.setAllowableError(2.0); // 2“x
+            mAngleTrace.setAllowableError(2.0); // 2åº¦
             mInitState = false;
         }
         mAngleTrace.execute();
@@ -206,7 +206,7 @@ bool EnigmaDriver::drive()
             mInitState = true;
         }
     }
-    //ƒ‰ƒCƒ“‚ÉŒü‚©‚Á‚ÄÎ‚ß‚É“ËiBƒ‰ƒCƒ“•œ‹A‚Å‚«‚é‚©IH
+    //ãƒ©ã‚¤ãƒ³ã«å‘ã‹ã£ã¦æ–œã‚ã«çªé€²ã€‚ãƒ©ã‚¤ãƒ³å¾©å¸°ã§ãã‚‹ã‹ï¼ï¼Ÿ
     else if (mState == EnigmaDriver::LINERETURN) { 
         if (mInitState) {
             mTimeCounter = 0;
@@ -216,13 +216,13 @@ bool EnigmaDriver::drive()
             mInitState = false;
         }
         mCoordinateTrace.execute();
-        if (mLineDetector.detect() != LineDetector::ON_WHITE) { // ƒ‰ƒCƒ“ŒŸ’m
+        if (mLineDetector.detect() != LineDetector::ON_WHITE) { // ãƒ©ã‚¤ãƒ³æ¤œçŸ¥
             mState = EnigmaDriver::AFTERLINETRACE;
             mInitState = true;
         }
         // else if (mCoordinateTrace.isArrived()) {
-        //     // ƒ‰ƒCƒ“‚ğŒŸo‚µ‚Ä‚¢‚È‚¢‚Ì‚É’H‚è‚Â‚¢‚Ä‚µ‚Ü‚Á‚½ê‡B
-        //     // ‚à‚¤­‚µ‚³‚Ü‚æ‚¤‚Æ‚©H
+        //     // ãƒ©ã‚¤ãƒ³ã‚’æ¤œå‡ºã—ã¦ã„ãªã„ã®ã«è¾¿ã‚Šã¤ã„ã¦ã—ã¾ã£ãŸå ´åˆã€‚
+        //     // ã‚‚ã†å°‘ã—ã•ã¾ã‚ˆã†ã¨ã‹ï¼Ÿ
         //     mState = EnigmaDriver::LINERETURN2;
         // }
     }
@@ -241,14 +241,14 @@ bool EnigmaDriver::drive()
         }
     }
     mTimeCounter++;
-    return mState == EnigmaDriver::AFTERLINETRACE; // I—¹‚µ‚Ü‚µ‚½
+    return mState == EnigmaDriver::AFTERLINETRACE; // çµ‚äº†ã—ã¾ã—ãŸ
 }
 
 /**
- * Õ—§‚ğŒŸ’m‚·‚é
+ * è¡ç«‹ã‚’æ¤œçŸ¥ã™ã‚‹
  *
- * @retval true ŒŸ’m‚µ‚½
- * @retval false ŒŸ’m‚µ‚È‚©‚Á‚½
+ * @retval true æ¤œçŸ¥ã—ãŸ
+ * @retval false æ¤œçŸ¥ã—ãªã‹ã£ãŸ
  */
 bool EnigmaDriver::detect()
 {
@@ -257,28 +257,28 @@ bool EnigmaDriver::detect()
 }
 
 /**
- * ƒGƒjƒOƒ}EƒfƒRƒfƒBƒ“ƒO‚ğ‚·‚é
+ * ã‚¨ãƒ‹ã‚°ãƒãƒ»ãƒ‡ã‚³ï¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’ã™ã‚‹
  *
- * MysteryDriver ‚ªŒ©‚É—ˆ‚éB
+ * MysteryDriver ãŒè¦‹ã«æ¥ã‚‹ã€‚
  *
- * @return ƒ‹[ƒgID
+ * @return ãƒ«ãƒ¼ãƒˆID
  */
 int EnigmaDriver::decode()
 {
     if(mObstacleFlag[0] == false && mObstacleFlag[1] == false) {
-        //‰EA‰E
+        //å³ã€å³
         return 0;
     }
     else if(mObstacleFlag[0] == false && mObstacleFlag[1] == true) {
-        //‰EA¶
+        //å³ã€å·¦
         return 1;
     }
     else if(mObstacleFlag[0] == true && mObstacleFlag[1] == false) {
-        //¶A‰E
+        //å·¦ã€å³
         return 2;
     }
     else if(mObstacleFlag[0] == true && mObstacleFlag[1] == true) {
-        //¶A¶
+        //å·¦ã€å·¦
         return 3;
     }
     return -1;

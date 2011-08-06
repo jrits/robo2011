@@ -3,7 +3,7 @@
 #include <math.h>
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CoordinateTrace::CoordinateTrace() :
     Skill()
@@ -14,9 +14,9 @@ CoordinateTrace::CoordinateTrace() :
 }
 
 /**
- * –Ú•WˆÊ’u‚ğİ’è‚·‚éB
+ * ç›®æ¨™ä½ç½®ã‚’è¨­å®šã™ã‚‹ã€‚
  *
- * @param[in] targetCoordinate –Ú•WÀ•W
+ * @param[in] targetCoordinate ç›®æ¨™åº§æ¨™
  */
 void CoordinateTrace::setTargetCoordinate(Point targetCoordinate)
 {
@@ -25,9 +25,9 @@ void CoordinateTrace::setTargetCoordinate(Point targetCoordinate)
 
 
 /**
- * ‹–—eƒGƒ‰[’l‚ğİ’è‚·‚éB
+ * è¨±å®¹ã‚¨ãƒ©ãƒ¼å€¤ã‚’è¨­å®šã™ã‚‹ã€‚
  *
- * @param[in] allowableError ‹–—eƒGƒ‰[’l
+ * @param[in] allowableError è¨±å®¹ã‚¨ãƒ©ãƒ¼å€¤
  */
 void CoordinateTrace::setAllowableError(float allowableError)
 {
@@ -35,24 +35,24 @@ void CoordinateTrace::setAllowableError(float allowableError)
 };
 
 /**
- * –Ú•WÀ•W‚ÆŒ»İÀ•W‚©‚çAÀ•Ww’è‘–s‚ğs‚¤‚Ì‚É“KØ‚È‘–sƒxƒNƒgƒ‹‚ğŒvZ‚·‚é
+ * ç›®æ¨™åº§æ¨™ã¨ç¾åœ¨åº§æ¨™ã‹ã‚‰ã€åº§æ¨™æŒ‡å®šèµ°è¡Œã‚’è¡Œã†ã®ã«é©åˆ‡ãªèµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã™ã‚‹
  *
- * @return ‘–sƒxƒNƒgƒ‹
+ * @return èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«
  */
 VectorT<float> CoordinateTrace::calcCommand()
 {
-    // Œ»İÀ•Wæ“¾
+    // ç¾åœ¨åº§æ¨™å–å¾—
     Point current;
     current.X = mGps.getXCoordinate();
     current.Y = mGps.getYCoordinate();
 
-    // Œ»İÀ•W‚Æ–Ú•WÀ•W‚Æ‚Ì·
+    // ç¾åœ¨åº§æ¨™ã¨ç›®æ¨™åº§æ¨™ã¨ã®å·®
     float diffX = mTargetCoordinate.X - current.X;
     float diffY = mTargetCoordinate.Y - current.Y;
  
 #if 0
-    //DESK_DEBUG = true; // ƒ‚[ƒ^‚ğ‰ñ‚³‚È‚¢ƒfƒoƒO
-    static int count = 0; // ¡‚¾‚¯ static
+    //DESK_DEBUG = true; // ãƒ¢ãƒ¼ã‚¿ã‚’å›ã•ãªã„ãƒ‡ãƒã‚°
+    static int count = 0; // ä»Šã ã‘ static
     if (count++ % 25 == 0) {
         Lcd lcd;
         lcd.clear();
@@ -65,7 +65,7 @@ VectorT<float> CoordinateTrace::calcCommand()
     }
 #endif
     
-    // –Ú•W‚Ö‚ÌŠp“x‚ğZo
+    // ç›®æ¨™ã¸ã®è§’åº¦ã‚’ç®—å‡º
     float targetDirection;
     if (diffX == 0.0 && diffY == 0.0) {
         targetDirection = mGps.getDirection();
@@ -76,32 +76,32 @@ VectorT<float> CoordinateTrace::calcCommand()
         else targetDirection = Gps::radianToDegree(radian);
     }
 
-    // ƒAƒ“ƒOƒ‹ƒgƒŒ[ƒX‚Ì—˜—p
+    // ã‚¢ãƒ³ã‚°ãƒ«ãƒˆãƒ¬ãƒ¼ã‚¹ã®åˆ©ç”¨
     mAngleTrace.setTargetAngle(targetDirection);
     VectorT<float> command = mAngleTrace.calcCommand();
-    command.mX = mForward; // ƒtƒHƒ[ƒh’lã‘‚«
+    command.mX = mForward; // ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤ä¸Šæ›¸ã
 
     return command;
 };
 
 /**
- * –Ú•WˆÊ’u‚É“’…‚µ‚½‚©
+ * ç›®æ¨™ä½ç½®ã«åˆ°ç€ã—ãŸã‹
  *
- * @retval true “’…‚µ‚½
- * @retval false ‚Ü‚¾
+ * @retval true åˆ°ç€ã—ãŸ
+ * @retval false ã¾ã 
  */
 bool CoordinateTrace::isArrived()
 {
-    // Œ»İÀ•Wæ“¾
+    // ç¾åœ¨åº§æ¨™å–å¾—
     Point current;
     current.X = mGps.getXCoordinate();
     current.Y = mGps.getYCoordinate();
 
-    // Œ»İÀ•W‚Æ–Ú•WÀ•W‚Æ‚Ì‹——£
+    // ç¾åœ¨åº§æ¨™ã¨ç›®æ¨™åº§æ¨™ã¨ã®è·é›¢
     double diffX = mTargetCoordinate.X - current.X;
     double diffY = mTargetCoordinate.Y - current.Y;
     double distance = sqrt(pow(diffX, 2) + pow(diffY, 2));
 
-    // ‹–—e”ÍˆÍ“à‚©‚ğ‚ğè‡’l‚É‚Ä”»’è
+    // è¨±å®¹ç¯„å›²å†…ã‹ã‚’ã‚’é–¾å€¤ã«ã¦åˆ¤å®š
     return (distance < mAllowableError);
 }

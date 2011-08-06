@@ -8,7 +8,7 @@
 #include "Detector.h"
 
 /**
- * ’¼üŒŸ’m
+ * ç›´ç·šæ¤œçŸ¥
  */
 class StraightDetector : public Detector
 {

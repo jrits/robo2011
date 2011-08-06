@@ -8,18 +8,18 @@
 #include "macro.h"
 
 /**
- * ’¼ü‚ğŒŸ’m‚·‚é
+ * ç›´ç·šã‚’æ¤œçŸ¥ã™ã‚‹
  *
- * @return ’¼üŒŸ’m‚ÌŒ‹‰Ê
+ * @return ç›´ç·šæ¤œçŸ¥ã®çµæœ
  */
 bool StraightDetector::detect()
 {
-    // ˆÚ“®•½‹ÏŒü‚«‚Ì•Ï‰»—Ê‚ª3“xˆÈ‰º‚È‚ç’¼ü
+    // ç§»å‹•å¹³å‡å‘ãã®å¤‰åŒ–é‡ãŒ3åº¦ä»¥ä¸‹ãªã‚‰ç›´ç·š
     float diffDirection = mDirectionAverageHistory.calcDifference();
     bool isStraight = (ABS(diffDirection) < 3.0);
 
 #if 0
-    // ƒƒO‘—M
+    // ãƒ­ã‚°é€ä¿¡
     LOGGER_SEND = 1;
     LOGGER_DATAS08[0] = (S8)(isStraight);
 	LOGGER_DATAS32[0] = (S32)(diffDirection);

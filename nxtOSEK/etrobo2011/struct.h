@@ -4,61 +4,61 @@
 #include <math.h>
 
 /**
- * “_
+ * ç‚¹
  */
 typedef struct _TAGPOINT{
-	float X; //!< XÀ•W ’PˆÊmm Œ´“_‚ÍƒR[ƒX¶’[ ‰E‚És‚­‚É‚Â‚ê‚Ä+
-	float Y; //!< YÀ•W ’PˆÊmm Œ´“_‚ÍƒR[ƒXã’[ ‰º‚És‚­‚É‚Â‚ê‚Ä-
+	float X; //!< Xåº§æ¨™ å˜ä½mm åŽŸç‚¹ã¯ã‚³ãƒ¼ã‚¹å·¦ç«¯ å³ã«è¡Œãã«ã¤ã‚Œã¦+
+	float Y; //!< Yåº§æ¨™ å˜ä½mm åŽŸç‚¹ã¯ã‚³ãƒ¼ã‚¹ä¸Šç«¯ ä¸‹ã«è¡Œãã«ã¤ã‚Œã¦-
 } Point;
 
 /**
- * GpsVisualizer§Œä“_
+ * GpsVisualizeråˆ¶å¾¡ç‚¹
  */
 typedef struct _TAGCONTROLPOINT {
-    float X;              //!< –Ú•WXÀ•W(mm)BÀ•WŽw’è‘–s‚µ‚È‚¢ê‡‚ÍFP_NAN‚ðŽw’èB
-    float Y;              //!< –Ú•WYÀ•W(mm)BÀ•WŽw’è‘–s‚µ‚È‚¢ê‡‚ÍFP_NAN‚ðŽw’èB
-    float direction;      //!< –Ú•WŒü‚«B•ûŒü“]Š·‚µ‚È‚¢ê‡‚ÍFP_NAN‚ðŽw’èB
-    float forward;        //!< À•WŽw’è‘–s—pBƒtƒHƒ[ƒh’lB
-    float allowableError; //!< ‹¤—pB‹–—eŒë·(mm)B
-    bool  slowdown;       //!< À•WŽw’è‘–s—pBSlowdownSkill ‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©B
+    float X;              //!< ç›®æ¨™Xåº§æ¨™(mm)ã€‚åº§æ¨™æŒ‡å®šèµ°è¡Œã—ãªã„å ´åˆã¯FP_NANã‚’æŒ‡å®šã€‚
+    float Y;              //!< ç›®æ¨™Yåº§æ¨™(mm)ã€‚åº§æ¨™æŒ‡å®šèµ°è¡Œã—ãªã„å ´åˆã¯FP_NANã‚’æŒ‡å®šã€‚
+    float direction;      //!< ç›®æ¨™å‘ãã€‚æ–¹å‘è»¢æ›ã—ãªã„å ´åˆã¯FP_NANã‚’æŒ‡å®šã€‚
+    float forward;        //!< åº§æ¨™æŒ‡å®šèµ°è¡Œç”¨ã€‚ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤ã€‚
+    float allowableError; //!< å…±ç”¨ã€‚è¨±å®¹èª¤å·®(mm)ã€‚
+    bool  slowdown;       //!< åº§æ¨™æŒ‡å®šèµ°è¡Œç”¨ã€‚SlowdownSkill ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã€‚
 } ControlPoint;
 
 /**
- * —Ìˆæ
+ * é ˜åŸŸ
  */
 typedef struct _TAGREGION {
-    float startX; //!< Žn“_X(¶ã)
-    float startY; //!< Žn“_Y(¶ã)
-    float endX;   //!< I“_X(‰E‰º)
-    float endY;   //!< I“_Y(‰E‰º)
+    float startX; //!< å§‹ç‚¹X(å·¦ä¸Š)
+    float startY; //!< å§‹ç‚¹Y(å·¦ä¸Š)
+    float endX;   //!< çµ‚ç‚¹X(å³ä¸‹)
+    float endY;   //!< çµ‚ç‚¹Y(å³ä¸‹)
 } Region;
 
 /**
- * GPS’l
+ * GPSå€¤
  */
 typedef struct _TAGGPSVALUE {
-    float X;         //!< xÀ•W
-    float Y;         //!< yÀ•W
-    float direction; //!< ŽÔ‘ÌŒü‚«
-    float distance;  //!< ‹——£
+    float X;         //!< xåº§æ¨™
+    float Y;         //!< yåº§æ¨™
+    float direction; //!< è»Šä½“å‘ã
+    float distance;  //!< è·é›¢
 } GpsInfo;
 
 /**
- * Ž©“®•â³î•ñ\‘¢‘Ì
+ * è‡ªå‹•è£œæ­£æƒ…å ±æ§‹é€ ä½“
  */
 typedef struct _TAGGPSOFFSET {
-    Region region;   //!< ‚±‚Ì—Ìˆæ‚É“ü‚Á‚½‚ç•â³‚ðs‚¤
-    GpsInfo gpsInfo; //!< NaN‚Ìƒf[ƒ^‚Í•â³‘ÎÛŠO
+    Region region;   //!< ã“ã®é ˜åŸŸã«å…¥ã£ãŸã‚‰è£œæ­£ã‚’è¡Œã†
+    GpsInfo gpsInfo; //!< NaNã®ãƒ‡ãƒ¼ã‚¿ã¯è£œæ­£å¯¾è±¡å¤–
 } GpsOffset;
 
-//=============== Utility ŠÖ”(«—ˆ“I‚Éƒtƒ@ƒCƒ‹‚ð•ª‚¯‚é‰Â”\«‚ ‚è) ==========
+//=============== Utility é–¢æ•°(å°†æ¥çš„ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†ã‘ã‚‹å¯èƒ½æ€§ã‚ã‚Š) ==========
 
 /**
- * Point ‚ðì¬‚·‚é
+ * Point ã‚’ä½œæˆã™ã‚‹
  *
- * @param[in] X xÀ•W(mm)BŒ´“_‚ÍƒR[ƒX¶’[B‰E‚És‚­‚É‚Â‚ê‚Ä+
- * @param[in] Y yÀ•W(mm)BŒ´“_‚ÍƒR[ƒXã’[B‰º‚És‚­‚É‚Â‚ê‚Ä-
- * @return point “_
+ * @param[in] X xåº§æ¨™(mm)ã€‚åŽŸç‚¹ã¯ã‚³ãƒ¼ã‚¹å·¦ç«¯ã€‚å³ã«è¡Œãã«ã¤ã‚Œã¦+
+ * @param[in] Y yåº§æ¨™(mm)ã€‚åŽŸç‚¹ã¯ã‚³ãƒ¼ã‚¹ä¸Šç«¯ã€‚ä¸‹ã«è¡Œãã«ã¤ã‚Œã¦-
+ * @return point ç‚¹
  */
 Point MakePoint(float X, float Y)
 {
@@ -67,13 +67,13 @@ Point MakePoint(float X, float Y)
 }
 
 /**
- * Region ‚ðì¬‚·‚é
+ * Region ã‚’ä½œæˆã™ã‚‹
  *
- * @param[in] startX Žn“_X(¶ã)
- * @param[in] startY Žn“_Y(¶ã)
- * @param[in] endX I“_X(¶ã)
- * @param[in] endY I“_Y(¶ã)
- * @return —Ìˆæ
+ * @param[in] startX å§‹ç‚¹X(å·¦ä¸Š)
+ * @param[in] startY å§‹ç‚¹Y(å·¦ä¸Š)
+ * @param[in] endX çµ‚ç‚¹X(å·¦ä¸Š)
+ * @param[in] endY çµ‚ç‚¹Y(å·¦ä¸Š)
+ * @return é ˜åŸŸ
  */
 Region MakeRegion(float startX, float startY, float endX, float endY)
 {
@@ -82,12 +82,12 @@ Region MakeRegion(float startX, float startY, float endX, float endY)
 }
 
 /**
- * GpsInfo ‚ðì¬‚·‚é
+ * GpsInfo ã‚’ä½œæˆã™ã‚‹
  *
- * @param[in] X xÀ•W
- * @param[in] Y yÀ•W
- * @param[in] direction ŽÔ‘ÌŒü‚«
- * @param[in] distance ‹——£
+ * @param[in] X xåº§æ¨™
+ * @param[in] Y yåº§æ¨™
+ * @param[in] direction è»Šä½“å‘ã
+ * @param[in] distance è·é›¢
  * @return GpsInfo
  */
 GpsInfo MakeGpsInfo(float X, float Y, float direction, float distance)
@@ -97,13 +97,13 @@ GpsInfo MakeGpsInfo(float X, float Y, float direction, float distance)
 }
 
 /**
- * Žw’è‚µ‚½“_‚ª—Ìˆæ“à‚É‘¶Ý‚·‚é‚©”»’è‚·‚é
+ * æŒ‡å®šã—ãŸç‚¹ãŒé ˜åŸŸå†…ã«å­˜åœ¨ã™ã‚‹ã‹åˆ¤å®šã™ã‚‹
  *
- * @param[in] aRegion —Ìˆæ
- * @param[in] aPoint  “_
+ * @param[in] aRegion é ˜åŸŸ
+ * @param[in] aPoint  ç‚¹
  *
- * @retval true —Ìˆæ“à
- * @retval false —ÌˆæŠO
+ * @retval true é ˜åŸŸå†…
+ * @retval false é ˜åŸŸå¤–
  */
 bool inRegion(Region aRegion, Point aPoint)
 {
@@ -112,12 +112,12 @@ bool inRegion(Region aRegion, Point aPoint)
 }
 
 /**
- * ‚Q“_ŠÔ‚Ì‹——£‚ðŒvŽZ‚·‚é
+ * ï¼’ç‚¹é–“ã®è·é›¢ã‚’è¨ˆç®—ã™ã‚‹
  *
- * @param[in] a “_A
- * @param[in] b “_B
+ * @param[in] a ç‚¹A
+ * @param[in] b ç‚¹B
  *
- * @return ‹——£
+ * @return è·é›¢
  */
 double calcDistance(Point a, Point b)
 {

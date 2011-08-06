@@ -5,9 +5,9 @@
 #include "factory.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] aSection ‚Ç‚ÌƒZƒNƒVƒ‡ƒ“‚©‚çn‚ß‚é‚©BƒfƒtƒHƒ‹ƒg‚ÍƒXƒ^[ƒg’n“_‚©‚çB
+ * @param[in] aSection ã©ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å§‹ã‚ã‚‹ã‹ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ã‹ã‚‰ã€‚
  */
 OutCourse::OutCourse(OutCourse::eSection aSection)
     : Course()
@@ -15,29 +15,29 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
     mState = aSection;
     switch (mState) {
     case OutCourse::SEESAW:
-        // ƒV[ƒ\[‚©‚çƒeƒXƒg
-        // ƒCƒ“ƒR[ƒXƒKƒŒ[ƒWEƒCƒ“è‘Oü
+        // ã‚·ãƒ¼ã‚½ãƒ¼ã‹ã‚‰ãƒ†ã‚¹ãƒˆ
+        // ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³æ‰‹å‰ç·š
         mGps.adjustXCoordinate(GPS_SEESAW_START_X);
         mGps.adjustYCoordinate(GPS_SEESAW_START_Y);
         mGps.adjustDirection(GPS_SEESAW_START_DIRECTION);
         break;
     case OutCourse::STAIRWAY:
-        // ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‚©‚çƒeƒXƒg
-        // ƒCƒ“ƒR[ƒXAƒAƒEƒgƒR[ƒXƒV[ƒ\[Œãƒ}[ƒJ[I‚í‚è’n“_
+        // ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«ã‹ã‚‰ãƒ†ã‚¹ãƒˆ
+        // ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã€ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ã‚¹ã‚·ãƒ¼ã‚½ãƒ¼å¾Œãƒãƒ¼ã‚«ãƒ¼çµ‚ã‚ã‚Šåœ°ç‚¹
         mGps.adjustXCoordinate(GPS_STAIRWAY_START_X);
         mGps.adjustYCoordinate(GPS_STAIRWAY_START_Y);
         mGps.adjustDirection(GPS_STAIRWAY_START_DIRECTION);
         break;
     case OutCourse::GARAGEIN:
-        // ƒKƒŒ[ƒWƒCƒ“‚©‚çƒeƒXƒg
-        // ƒCƒ“ƒR[ƒXâ“¹‘Oƒ}[ƒJ[I‚í‚è’n“_
+        // ã‚¬ãƒ¬ãƒ¼ã‚¸ã‚¤ãƒ³ã‹ã‚‰ãƒ†ã‚¹ãƒˆ
+        // ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹å‚é“å‰ãƒãƒ¼ã‚«ãƒ¼çµ‚ã‚ã‚Šåœ°ç‚¹
         mGps.adjustXCoordinate(GPS_GARAGEIN_START_X);
         mGps.adjustYCoordinate(GPS_GARAGEIN_START_Y);
         mGps.adjustDirection(GPS_GARAGEIN_START_DIRECTION);
         break;
     case OutCourse::START:
     default:
-        // ƒXƒ^[ƒgˆÊ’u‚©‚çƒeƒXƒg
+        // ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã‹ã‚‰ãƒ†ã‚¹ãƒˆ
         mGps.adjustXCoordinate(GPS_COURSE_START_X);
         mGps.adjustYCoordinate(GPS_COURSE_START_Y);
         mGps.adjustDirection(GPS_COURSE_START_DIRECTION);
@@ -46,14 +46,14 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
 }
 
 /**
- * “KØ‚Èƒhƒ‰ƒCƒo‚ğ‘I‘ğ‚µA‰^“]‚³‚¹‚é
+ * é©åˆ‡ãªãƒ‰ãƒ©ã‚¤ãƒã‚’é¸æŠã—ã€é‹è»¢ã•ã›ã‚‹
  */
 void OutCourse::drive()
 {
-#if 1 // ƒƒO‘—M(0F‰ğœA1FÀ{)
+#if 1 // ãƒ­ã‚°é€ä¿¡(0ï¼šè§£é™¤ã€1ï¼šå®Ÿæ–½)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
-	LOGGER_DATAS08[1] = (S8)(mLineDetector.detect()); // ˆêu‚¾‚¯‚È‚Ì‚ÅƒƒO‚Éc‚ç‚È‚¢‰Â”\«‚ ‚è
+	LOGGER_DATAS08[1] = (S8)(mLineDetector.detect()); // ä¸€ç¬ã ã‘ãªã®ã§ãƒ­ã‚°ã«æ®‹ã‚‰ãªã„å¯èƒ½æ€§ã‚ã‚Š
 	LOGGER_DATAU16    = (U16)(mWallDetector.detect());
 	LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
 	LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
@@ -64,7 +64,7 @@ void OutCourse::drive()
 	LOGGER_DATAS32[2] = (S32)(mLightSensor.get());
 	LOGGER_DATAS32[3] = (S32)(mGyroSensor.get());
 #endif
-#if 0 // ƒfƒoƒbƒO(0F‰ğœA1FÀ{)
+#if 0 // ãƒ‡ãƒãƒƒã‚°(0ï¼šè§£é™¤ã€1ï¼šå®Ÿæ–½)
     {
     	//DESK_DEBUG = true;
         static int count = 0;
@@ -81,37 +81,37 @@ void OutCourse::drive()
         }
     }
 #endif
-    if (mState == OutCourse::START) { // ƒXƒ^[ƒgŒã’Êí‹æŠÔ
+    if (mState == OutCourse::START) { // ã‚¹ã‚¿ãƒ¼ãƒˆå¾Œé€šå¸¸åŒºé–“
         if (mNormalDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_SEESAW_START, MakePoint(X, Y))) { // ‹æŠÔ‚ğƒV[ƒ\[‹æŠÔ‚ÉXV
+            if (inRegion(GPS_SEESAW_START, MakePoint(X, Y))) { // åŒºé–“ã‚’ã‚·ãƒ¼ã‚½ãƒ¼åŒºé–“ã«æ›´æ–°
                 mState = OutCourse::SEESAW;
             }
         }
     }
-    else if (mState == OutCourse::SEESAW) { // ƒV[ƒ\[‹æŠÔ
+    else if (mState == OutCourse::SEESAW) { // ã‚·ãƒ¼ã‚½ãƒ¼åŒºé–“
         if (mSeesawDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_STAIRWAY_START, MakePoint(X, Y))) { // ‹æŠÔ‚ğŠK’i‹æŠÔ‚ÉXV
+            if (inRegion(GPS_STAIRWAY_START, MakePoint(X, Y))) { // åŒºé–“ã‚’éšæ®µåŒºé–“ã«æ›´æ–°
                 mState = OutCourse::STAIRWAY;
             }
         }
     }
-    else if (mState == OutCourse::STAIRWAY) { // ŠK’i‹æŠÔ
+    else if (mState == OutCourse::STAIRWAY) { // éšæ®µåŒºé–“
         if (mStairwayDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_GARAGEIN_START, MakePoint(X, Y))) { // ‹æŠÔ‚ğƒKƒŒ[ƒW‹æŠÔ‚ÉXV
+            if (inRegion(GPS_GARAGEIN_START, MakePoint(X, Y))) { // åŒºé–“ã‚’ã‚¬ãƒ¬ãƒ¼ã‚¸åŒºé–“ã«æ›´æ–°
                 mState = OutCourse::GARAGEIN;
             }
         }
     }
-    else if (mState == OutCourse::GARAGEIN) { // ƒKƒŒ[ƒWEƒCƒ“‹æŠÔ
+    else if (mState == OutCourse::GARAGEIN) { // ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³åŒºé–“
         mOutGarageDriver.drive();
     }
-    // ƒeƒXƒgƒhƒ‰ƒCƒo‹N“®
+    // ãƒ†ã‚¹ãƒˆãƒ‰ãƒ©ã‚¤ãƒèµ·å‹•
     else {
         mTestDriver.drive();
     }

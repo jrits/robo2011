@@ -12,7 +12,7 @@
 #include "History.h"
 
 /**
- * ‰º‚èâŒŸ’m
+ * ä¸‹ã‚Šå‚æ¤œçŸ¥
  */
 class DownSlopeDetector : public Detector
 {
