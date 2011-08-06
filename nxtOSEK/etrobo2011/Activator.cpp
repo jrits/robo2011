@@ -122,15 +122,16 @@ void Activator::stop()
 	mRightMotor.setBrake(true);
 }
 
-// 調節方法: 実際に走らせて調節。
-Pid mForwardPid(0.0001, 0.0, 0.0);
+Pid mForwardPid(0.003, 0.0, 0.0); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
+#define FORWARD2ENCODE(F) (F * 3.6) // 大体 forward 100 で 360(1回転)/sec@平地っぽい
+#define ENCODE2FORWARD(E) (E / 3.6) // 大体 forward 100 で 360(1回転)/sec@平地っぽい
 
 /**
  * フォワードPID
  *
  * 走行スピードをPID制御する。
  *
- * @param speed 期待するスピード(encode/sec)。大体720(２回転)でマックススピード？
+ * @param speed 期待するスピード。※平地でのforward値(にしたいがモータにより係数が異なるためあくまで≒)
  * @return フォワード値
  * @todo スピードの単位をcm/secにする
  */
@@ -138,17 +139,17 @@ float Activator::forwardPid(float targetSpeed)
 {
     // 初期化(初期化関数を作るのが面倒だったのでここで)
     if (targetSpeed != mTargetSpeed) {
-        mTargetSpeed = targetSpeed;
-        // この基準値からPIDで微調整する。係数は forward 100 で 720(２回転)/sec ぐらいと予想して決めうち。
-        mCurrentForward = (1/7.2) * mTargetSpeed;
+        mTargetSpeed    = targetSpeed;
+        mCurrentForward = targetSpeed; // この基準値からPIDで微調整する。
     }
     
     // 変化量(encode/sec)。直前だとスピード0の可能性もあるため、ある程度時間間隔(5count)をもたせている。
-    float leftSpeed    = (mLeftMotorHistory.get()  - mLeftMotorHistory.get(-5))  / (0.004 * 5);
-    float rightSpeed   = (mRightMotorHistory.get() - mRightMotorHistory.get(-5)) / (0.004 * 5);
-    float currentSpeed = (leftSpeed + rightSpeed)/2.0;
+    float leftEncodeSpeed    = (mLeftMotorHistory.get()  - mLeftMotorHistory.get(-5))  / (0.004 * 6);
+    float rightEncodeSpeed   = (mRightMotorHistory.get() - mRightMotorHistory.get(-5)) / (0.004 * 6);
+    float currentEncodeSpeed = (leftEncodeSpeed + rightEncodeSpeed)/2.0;
+    float currentSpeed = ENCODE2FORWARD(currentEncodeSpeed);
 
-    // PID制御
+    // PID制御(forward)
     float P = targetSpeed - currentSpeed;
     mCurrentForward += mForwardPid.control(P);
     mCurrentForward = MAX(MIN(100, mCurrentForward), -100);
@@ -161,7 +162,6 @@ float Activator::forwardPid(float targetSpeed)
         lcd.putf("dn", (int)targetSpeed);
         lcd.putf("dn", (int)currentSpeed);
         lcd.putf("dn", (int)mCurrentForward);
-        lcd.putf("dn", (int)((1/7.2) * mTargetSpeed));
         lcd.disp();
     }
 #endif

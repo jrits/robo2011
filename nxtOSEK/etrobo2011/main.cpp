@@ -202,11 +202,12 @@ TASK(TaskDrive)
 	balance_init();						/* 倒立振子制御初期化 */
 	nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
 	nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
-    VectorT<float> command(300, 0);
+    VectorT<float> command(50, 0);
 	while(1)
 	{
 		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
         mActivator.runWithPid(command);
+        // mActivator.run(command);
 
 		// if (sonar_alert() == 1) /* 障害物検知 */
 		// {
