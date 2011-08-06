@@ -8,13 +8,13 @@
 #include "Driver.h"
 
 /**
- * ƒAƒEƒgƒR[ƒXƒKƒŒ[ƒWEƒCƒ“ƒhƒ‰ƒCƒo
+ * ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ã‚¹ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³ãƒ‰ãƒ©ã‚¤ãƒ
  */
 class OutGarageDriver : public Driver
 {
 private:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
     enum eSubSection {
         INIT = -1,
@@ -26,9 +26,9 @@ private:
     	ENTERGARAGE,
         FIN_GARAGEIN,
     };
-    eSubSection mState; //!< ó‘Ô
-    int mTimeCounter;   //!< ƒ^ƒCƒ€ƒJƒEƒ“ƒ^
-    bool mGrayThroughFlag; //!< ‘å‰ï’²®BŠDF‹æŠÔƒWƒƒƒ“ƒv
+    eSubSection mState; //!< çŠ¶æ…‹
+    int mTimeCounter;   //!< ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
+    bool mGrayThroughFlag; //!< å¤§ä¼šèª¿æ•´ã€‚ç°è‰²åŒºé–“ã‚¸ãƒ£ãƒ³ãƒ—
 public:
 	OutGarageDriver();
 	~OutGarageDriver(){}

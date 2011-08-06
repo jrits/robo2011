@@ -2,32 +2,32 @@
 #include "factory.h"
 
 /**
- * ѓRѓ“ѓXѓgѓ‰ѓNѓ^
+ * г‚ігѓіг‚№гѓ€гѓ©г‚Їг‚ї
  */
 SlowdownSkill::SlowdownSkill() :
     Skill()
 {
     mTargetDistance = 0.0; // mm
-    mSkill = &mLineTrace; // ‚Ж‚и‚ ‚¦‚ё
+    mSkill = &mLineTrace; // гЃЁг‚ЉгЃ‚гЃ€гЃљ
     mMinimumForward = 10.0;
     mAllowableError = 0.0;
 }
 
 /**
- * Њё‘¬‹@Ќ\‚р’З‰Б‚·‚йѓXѓLѓ‹‚рђЭ’и‚·‚й
+ * жё›йЂџж©џж§‹г‚’иїЅеЉ гЃ™г‚‹г‚№г‚­гѓ«г‚’иЁ­е®љгЃ™г‚‹
  *
- * @param[in] skill Њё‘¬‹@Ќ\‚р’З‰Б‚і‚к‚йѓXѓLѓ‹
+ * @param[in] skill жё›йЂџж©џж§‹г‚’иїЅеЉ гЃ•г‚Њг‚‹г‚№г‚­гѓ«
  */
 void SlowdownSkill::setSkill(Skill *skill)
 {
-    if (skill == 0) skill = &mLineTrace; // ‚Ж‚и‚ ‚¦‚ё
+    if (skill == 0) skill = &mLineTrace; // гЃЁг‚ЉгЃ‚гЃ€гЃљ
     mSkill = skill;
 }
 
 /**
- * ’вЋ~–Ъ•W‹——Ј‚рђЭ’и‚·‚йЃB
+ * еЃњж­ўз›®жЁ™и·ќй›ўг‚’иЁ­е®љгЃ™г‚‹гЂ‚
  *
- * @param[in] targetDistance ’вЋ~–Ъ•W‹——Ј(Њ»ЌЭ‚М€К’u‚©‚з‚М‘Љ‘О‹——Ј)
+ * @param[in] targetDistance еЃњж­ўз›®жЁ™и·ќй›ў(зЏѕењЁгЃ®дЅЌзЅ®гЃ‹г‚‰гЃ®з›ёеЇѕи·ќй›ў)
  */
 void SlowdownSkill::setTargetDistance(float targetDistance)
 {
@@ -35,9 +35,9 @@ void SlowdownSkill::setTargetDistance(float targetDistance)
 };
 
 /**
- * Њё‘¬ЌЕ’б‘¬“x‚рђЭ’и‚·‚йЃB
+ * жё›йЂџжњЂдЅЋйЂџеє¦г‚’иЁ­е®љгЃ™г‚‹гЂ‚
  *
- * @param[in] minimumForward Њё‘¬ЌЕ’б‘¬“x
+ * @param[in] minimumForward жё›йЂџжњЂдЅЋйЂџеє¦
  */
 void SlowdownSkill::setMinimumForward(float minimumForward)
 {
@@ -45,9 +45,9 @@ void SlowdownSkill::setMinimumForward(float minimumForward)
 };
 
 /**
- * ‹–—eѓGѓ‰Ѓ[’l‚рђЭ’и‚·‚йЃB
+ * иЁ±е®№г‚Ёгѓ©гѓјеЂ¤г‚’иЁ­е®љгЃ™г‚‹гЂ‚
  *
- * @param[in] allowableError ‹–—eѓGѓ‰Ѓ[’l
+ * @param[in] allowableError иЁ±е®№г‚Ёгѓ©гѓјеЂ¤
  */
 void SlowdownSkill::setAllowableError(float allowableError)
 {
@@ -55,16 +55,16 @@ void SlowdownSkill::setAllowableError(float allowableError)
 };
 
 /**
- * –Ъ•W‹——Ј‚ЖЊ»ЌЭ‹——Ј‚©‚зЃAЊё‘¬“®Ќм‚рЌs‚¤‚М‚Й“KђШ‚И‘–ЌsѓxѓNѓgѓ‹‚рЊvЋZ‚·‚й
+ * з›®жЁ™и·ќй›ўгЃЁзЏѕењЁи·ќй›ўгЃ‹г‚‰гЂЃжё›йЂџе‹•дЅњг‚’иЎЊгЃ†гЃ®гЃ«йЃ©е€‡гЃЄиµ°иЎЊгѓ™г‚Їгѓ€гѓ«г‚’иЁ€з®—гЃ™г‚‹
  *
- * @return ‘–ЌsѓxѓNѓgѓ‹
+ * @return иµ°иЎЊгѓ™г‚Їгѓ€гѓ«
  */
 VectorT<float> SlowdownSkill::calcCommand()
 {
-    // ѓXѓLѓ‹‚М——pЃBѓtѓHѓЏЃ[ѓh’l‚р(•K—v‚Є‚ ‚к‚О)ЏгЏ‘‚«‚·‚йЃB
+    // г‚№г‚­гѓ«гЃ®е€©з”ЁгЂ‚гѓ•г‚©гѓЇгѓјгѓ‰еЂ¤г‚’(еї…и¦ЃгЃЊгЃ‚г‚ЊгЃ°)дёЉж›ёгЃЌгЃ™г‚‹гЂ‚
     VectorT<float> command = mSkill->calcCommand();
 
-    // ѓtѓHѓЏЃ[ѓh’l‚МPIDђ§Њд
+    // гѓ•г‚©гѓЇгѓјгѓ‰еЂ¤гЃ®PIDе€¶еѕЎ
     float P = mTargetDistance -  mGps.getDistance();
     float X = mSlowdownPid.control(P);
     if (X > command.mX) X = command.mX;
@@ -72,8 +72,8 @@ VectorT<float> SlowdownSkill::calcCommand()
     command.mX = X;
 
 #if 0
-    //DESK_DEBUG = true; // ѓ‚Ѓ[ѓ^‚р‰с‚і‚И‚ўѓfѓoѓO
-    static int count = 0; // ЌЎ‚ѕ‚Ї static
+    //DESK_DEBUG = true; // гѓўгѓјг‚їг‚’е›ћгЃ•гЃЄгЃ„гѓ‡гѓђг‚°
+    static int count = 0; // д»ЉгЃ гЃ‘ static
     if (count++ % 25 == 0) {
         Lcd lcd;
         lcd.clear();
@@ -91,22 +91,22 @@ VectorT<float> SlowdownSkill::calcCommand()
 }
 
 /**
- * –Ъ•W‹——Ј‚Й“ћ’…‚µ‚Ѕ‚©
+ * з›®жЁ™и·ќй›ўгЃ«е€°зќЂгЃ—гЃџгЃ‹
  *
- * @retval true “ћ’…‚µ‚Ѕ
- * @retval false ‚Ь‚ѕ
+ * @retval true е€°зќЂгЃ—гЃџ
+ * @retval false гЃѕгЃ 
  */
 bool SlowdownSkill::isArrived()
 {
-    // –Ъ•W‹——Ј‚ЖЊ»ЌЭ‹——Ј‚Ж‚МЌ·
+    // з›®жЁ™и·ќй›ўгЃЁзЏѕењЁи·ќй›ўгЃЁгЃ®е·®
     float diff = mTargetDistance - mGps.getDistance();
 
-    // ‹–—e”Н€Н“а‚©‚р‚ри‡’l‚Й‚Д”»’и
+    // иЁ±е®№зЇ„е›Іе†…гЃ‹г‚’г‚’й–ѕеЂ¤гЃ«гЃ¦е€¤е®љ
     return (diff < mAllowableError);
 }
 
 /**
- * –Ъ•W’n“_‚р’К‚и‰Я‚¬‚Ѕ‚©‚М”»’и‚р•Ф‚·ЃB
+ * з›®жЁ™ењ°з‚№г‚’йЂљг‚ЉйЃЋгЃЋгЃџгЃ‹гЃ®е€¤е®љг‚’иї”гЃ™гЂ‚
  *
  * @return
  */

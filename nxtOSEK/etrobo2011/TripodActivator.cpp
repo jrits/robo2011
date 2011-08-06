@@ -6,12 +6,12 @@
 #include "factory.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] leftMotor ¶ƒ‚[ƒ^
- * @param[in] rightMotor ‰Eƒ‚[ƒ^
- * @param[in] gyroSensor ƒWƒƒƒCƒƒZƒ“ƒT
- * @param[in] nxt NXTƒIƒuƒWƒFƒNƒg
+ * @param[in] leftMotor å·¦ãƒ¢ãƒ¼ã‚¿
+ * @param[in] rightMotor å³ãƒ¢ãƒ¼ã‚¿
+ * @param[in] gyroSensor ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µ
+ * @param[in] nxt NXTã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 TripodActivator::TripodActivator(Motor &leftMotor, 
                                  Motor &rightMotor, 
@@ -22,32 +22,32 @@ TripodActivator::TripodActivator(Motor &leftMotor,
   mGyroSensor(gyroSensor), 
   mNxt(nxt)
 {
-  mGyroOffset = USER_GYRO_OFFSET; //ƒIƒtƒZƒbƒg’l‚ğ‰Šú‰»
+  mGyroOffset = USER_GYRO_OFFSET; //ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’åˆæœŸåŒ–
 }
 
 /**
- * ƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  *
- * @param[in] gyroOffset ƒWƒƒƒCƒƒIƒtƒZƒbƒg
+ * @param[in] gyroOffset ã‚¸ãƒ£ã‚¤ãƒ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 void TripodActivator::reset(int gyroOffset)
 {
   mGyroOffset = gyroOffset;
 }
 /**
- * ƒnƒ“ƒhƒ‹AƒAƒNƒZƒ‹‚Ì‘€ìB
+ * ãƒãƒ³ãƒ‰ãƒ«ã€ã‚¢ã‚¯ã‚»ãƒ«ã®æ“ä½œã€‚
  *
- * ƒoƒ‰ƒ“ƒX§Œä‚Í§Œä‹@Ší(TripodActivator)‚ª©“®“I‚És‚Á‚Ä‚­‚ê‚éB
+ * ãƒãƒ©ãƒ³ã‚¹åˆ¶å¾¡ã¯åˆ¶å¾¡æ©Ÿå™¨(TripodActivator)ãŒè‡ªå‹•çš„ã«è¡Œã£ã¦ãã‚Œã‚‹ã€‚
  *
- * @param[in] command ‘–sƒxƒNƒgƒ‹
+ * @param[in] command èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«
  */
 void TripodActivator::run(VectorT<F32> command)
 {
   float pwmL, pwmR;
 
 //   balance_control(
-//     (F32)command.mX, // ‘OŒãi–½—ß
-//     (F32)command.mY, // ù‰ñ–½—ß
+//     (F32)command.mX, // å‰å¾Œé€²å‘½ä»¤
+//     (F32)command.mY, // æ—‹å›å‘½ä»¤
 //     (F32)mGyroSensor.get(),
 //     (F32)mGyroOffset,
 //     (F32)mLeftMotor.getCount(),
@@ -56,7 +56,7 @@ void TripodActivator::run(VectorT<F32> command)
 //     &pwmL,
 //     &pwmR);
 
-  // @todo: balance_control ‚Æ“¯‚¶“ü—Í’l‚È‚ç“¯‚¶‚®‚ç‚¢‚Ìo—Í’l‚É‚È‚é‚æ‚¤‚É‚µ‚½‚¢
+  // @todo: balance_control ã¨åŒã˜å…¥åŠ›å€¤ãªã‚‰åŒã˜ãã‚‰ã„ã®å‡ºåŠ›å€¤ã«ãªã‚‹ã‚ˆã†ã«ã—ãŸã„
   pwmL = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
   pwmR = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
 
@@ -81,9 +81,9 @@ void TripodActivator::run(VectorT<F32> command)
 }
 
 /**
- * ƒuƒŒ[ƒL‚Ì‘€ìB
+ * ãƒ–ãƒ¬ãƒ¼ã‚­ã®æ“ä½œã€‚
  *
- * ƒoƒ‰ƒ“ƒX‚ğ§Œä‚Ís‚í‚È‚¢Bƒ‚[ƒ^‚ğ~‚ß‚é‚¾‚¯B
+ * ãƒãƒ©ãƒ³ã‚¹ã‚’åˆ¶å¾¡ã¯è¡Œã‚ãªã„ã€‚ãƒ¢ãƒ¼ã‚¿ã‚’æ­¢ã‚ã‚‹ã ã‘ã€‚
  *
  * @return -
  */

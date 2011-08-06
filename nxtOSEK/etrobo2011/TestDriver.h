@@ -9,7 +9,7 @@
 #include "Driver.h"
 
 /**
- * ƒeƒXƒgƒhƒ‰ƒCƒo
+ * ãƒ†ã‚¹ãƒˆãƒ‰ãƒ©ã‚¤ãƒ
  */
 class TestDriver : public Driver
 {

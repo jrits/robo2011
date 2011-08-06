@@ -55,11 +55,11 @@ extern float STOP_PID_KP;
 extern float STOP_PID_KI;
 extern float STOP_PID_KD;
 
-//転倒検出
+//霆｢蛟呈､懷�ｺ
 extern int FAILSAFE_SAMPLECOUNT;
 extern int FAILSAFE_THRESHOLD;
 
-//検知系
+//讀懃衍邉ｻ
 extern float WALL_THRESHOLD;
 extern float DOWNSLOPE_THRESHOLD;
 
@@ -67,7 +67,7 @@ extern float DOWNSLOPE_THRESHOLD;
 extern float K_THETADOT;
 extern float K_PHIDOT;
 
-//Bluetoothログ送信
+//Bluetooth繝ｭ繧ｰ騾∽ｿ｡
 extern int LOGGER_SEND;
 extern S8  LOGGER_DATAS08[2];
 extern U16 LOGGER_DATAU16;
@@ -77,7 +77,7 @@ extern S32 LOGGER_DATAS32[4];
 //Activator
 extern bool DESK_DEBUG;
 
-//LineTraceフラグ
+//LineTrace繝輔Λ繧ｰ
 extern bool gLineTrace;
 extern bool gTripodLineTrace;
 

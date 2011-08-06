@@ -30,7 +30,7 @@ class SitDownSkill {
     S8 pwmL = 0, pwmR=0;
 
     VectorT<float> command(0.0,0.0);
-    balance_control((F32)command.mX, // ‘OŒãi–½—ß
+    balance_control((F32)command.mX, // å‰å¾Œé€²å‘½ä»¤
 		    (F32)command.mY,
 		    (F32)mGyroSensor.get(),
 		    (F32)USER_GYRO_OFFSET,
@@ -47,10 +47,10 @@ class SitDownSkill {
  private:
   void tail_control(signed int angle) const{
     static const float P_GAIN = 2.5F;
-    static const float PWM_ABS_MAX = 60; /* Š®‘S’âŽ~—pƒ‚[ƒ^§ŒäPWMâ‘ÎÅ‘å’l */        
-    float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* ”ä—á§Œä */
+    static const float PWM_ABS_MAX = 60; /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡PWMçµ¶å¯¾æœ€å¤§å€¤ */        
+    float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* æ¯”ä¾‹åˆ¶å¾¡ */
 
-    /* PWMo—Í–O˜aˆ— */
+    /* PWMå‡ºåŠ›é£½å’Œå‡¦ç† */
     if (pwm > PWM_ABS_MAX)
     {
       pwm = PWM_ABS_MAX;

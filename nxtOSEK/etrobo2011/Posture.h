@@ -13,11 +13,11 @@ class Posture {
 
   ~Posture();
 
-  /*! ���s�̂�➑̂����Ɏw�肵���p�x�X����B
+  /*! 走行体の筐体を後ろに指定した角度傾ける。
 
-    ���s�̂����ɌX���A�w�肵���p�x�ɑ̐���ۂB
+    走行体を後ろに傾け、指定した角度に体制を保つ。
     
-    @param angle ����➑̂��X����p�x�B
+    @param angle 後ろに筐体を傾ける角度。
   */
   void inclineBackward(int angle);
 

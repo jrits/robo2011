@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "macro.h"
 
-// ÉfÉoÉCÉXÉIÉuÉWÉFÉNÉgÇÃê∂ê¨
+// „Éá„Éê„Ç§„Çπ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÁîüÊàê
 GyroSensor mGyroSensor(PORT_1);
 TouchSensor mTouchSensor(PORT_4);
 SonarSensor mSonarSensor(PORT_2);
@@ -32,14 +32,14 @@ float mDirectionAverageBuffer[25];
 History mDirectionAverageHistory(mDirectionAverageBuffer, COUNTOF(mDirectionAverageBuffer));
 float mGyroBuffer[25];
 History mGyroHistory(mGyroBuffer, COUNTOF(mGyroBuffer));
-// ÇªÇÃëº
+// „Åù„ÅÆ‰ªñ
 Activator mActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 TripodActivator mTripodActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
-Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD); // LineTraceóp
-Pid mAnglePid(ANGLE_PID_KP, ANGLE_PID_KI, ANGLE_PID_KD); // AngleTraceóp
-Pid mSlowdownPid(SLOWDOWN_PID_KP, SLOWDOWN_PID_KI, SLOWDOWN_PID_KD); // SlowdownSkillóp
-Pid mStopPid(STOP_PID_KP, STOP_PID_KI, STOP_PID_KD); // CoordinateStopóp @obsolete
-// åüèo
+Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD); // LineTraceÁî®
+Pid mAnglePid(ANGLE_PID_KP, ANGLE_PID_KI, ANGLE_PID_KD); // AngleTraceÁî®
+Pid mSlowdownPid(SLOWDOWN_PID_KP, SLOWDOWN_PID_KI, SLOWDOWN_PID_KD); // SlowdownSkillÁî®
+Pid mStopPid(STOP_PID_KP, STOP_PID_KI, STOP_PID_KD); // CoordinateStopÁî® @obsolete
+// Ê§úÂá∫
 WallDetector mWallDetector;
 DownSlopeDetector mDownSlopeDetector;
 LineDetector mLineDetector;
