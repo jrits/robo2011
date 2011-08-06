@@ -9,28 +9,7 @@
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
 int USER_GYRO_OFFSET = 605; // この値は適宜調整すること
-//試走会場
-//W:510 G:615 B:697
-// int WHITE = 518; // 白色の光センサ値 //小さめにしてね
-// int BLACK = 698; // 黒色の光センサ値 //大きめにしてね
-// int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
-//3F居室
-//W:520 G:610 B:700
-//int WHITE = 510; // 白色の光センサ値 //小さめにしてね
-//int BLACK = 700; // 黒色の光センサ値 //大きめにしてね
-//int LINE_THRESHOLD = 560; // ライン端の色を示す閾値。白と灰色の間の値
-//瀬尾家
-//W:540 G:625 B:720
-//int WHITE = 540; // 白色の光センサ値 //小さめにしてね
-//int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
-//int LINE_THRESHOLD = 580; // ライン端の色を示す閾値。白と灰色の間の値
-//CS大会ミニ布コース
-//W:540 G:632 B:714
-//int WHITE = 540; // 白色の光センサ値 //小さめにしてね
-//int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
-//int LINE_THRESHOLD = 586; // ライン端の色を示す閾値。白と灰色の間の値
-//CS大会本コース
-//W:525 G:617 B:675
+//CS大会本コース W:525 G:617 B:675
 int WHITE = 520; // 白色の光センサ値 //小さめにしてね
 int BLACK = 675; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
@@ -38,7 +17,7 @@ int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
 
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
-int USER_GYRO_OFFSET = 585; // この値は適宜調整すること
+int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
 //3F居室
 int WHITE = 540; // 白色の光センサ値
 int BLACK = 730; // 黒色の光センサ値
