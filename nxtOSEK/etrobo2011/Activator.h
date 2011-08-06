@@ -18,13 +18,13 @@ extern "C"
 };
 
 /**
- * 制御機器(ハンドル、アクセル、ブレーキ)
+ * 倒立振子制御機器(ハンドル、アクセル、ブレーキ)
  *
  * Skill によって操作される。
  */
 class Activator
 {
-private:
+protected:
 	Motor &mLeftMotor; //!< 左モータ
 	Motor &mRightMotor; //!< 右モータ
 	GyroSensor &mGyroSensor; //!< ジャイロセンサ
@@ -36,12 +36,17 @@ public:
               GyroSensor &gyroSensor, 
               Nxt &nxt);
 	~Activator(){}
+    // パラメターの初期化
     void reset(int gyroOffset);
+    // 走行。ハンドル、アクセスの操作。
 	void run(VectorT<F32> command);
+    // フォワードPID、ターンPID(@todo)を利用した走行
+	void runWithPid(VectorT<F32> speed);
+    // 停止
 	void stop();
-	void slow();
-private:
-    // Vector<S8> balanceControl(VectorT<F32> command); // balancer_control を直に呼ぶことに
-    float forwardPid(float speed);
+protected:
+    float mTargetSpeed;
+    float mCurrentForward;
+    float forwardPid(float targetSpeed);
 };
 #endif

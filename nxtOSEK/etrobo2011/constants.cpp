@@ -17,7 +17,7 @@ int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
 
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
-int USER_GYRO_OFFSET = 605; // この値は適宜調整すること
+int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
 //3F居室
 int WHITE = 540; // 白色の光センサ値
 int BLACK = 730; // 黒色の光センサ値
