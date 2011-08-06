@@ -19,7 +19,6 @@ TripodActivator::TripodActivator(Motor &leftMotor,
                                  Nxt &nxt) :
     Activator(leftMotor, rightMotor, gyroSensor, nxt)
 {
-    mGyroOffset = USER_GYRO_OFFSET; //オフセット値を初期化
 }
 
 /**

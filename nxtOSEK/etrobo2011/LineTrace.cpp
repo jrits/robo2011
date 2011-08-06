@@ -61,8 +61,8 @@ void LineTrace::setInitDuration(int initDuration)
 void LineTrace::execute()
 {
     VectorT<float> command = calcCommand();
-    mTripodActivator.run(command);//制御機器にセット
-    //mTripodActivator.runWithPid(command); //フォワードPID越しに運転
+    mActivator.run(command);//制御機器にセット
+    //mActivator.runWithPid(command); //フォワードPID越しに運転
 }
 
 /**

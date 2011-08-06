@@ -42,6 +42,11 @@ int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
 float WHEEL_RADIUS = 40.5; // 車輪半径(mm)
 float WHEEL_DISTANCE = 162.0; // 車輪間隔(mm)
 
+// Maimai
+float MAIMAI_WHITE = 1.0F;
+float MAIMAI_BLACK = 0.3F;
+float MAIMAI_LINE_THRESHOLD = 0.7F;
+
 // LineTrace
 int INIT_FORWARD = 50;    // 初期前進速度
 int INIT_SAMPLECOUNT = 200;  // 初期前進継続カウンタ期間

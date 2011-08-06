@@ -48,8 +48,6 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 char rx_buf[BT_MAX_RX_BUF_SIZE]; /* Bluetooth通信用データ受信バッファ */
 /* MAIMAI(改) */
 #define MAIMAI_PERIOD        10         /* まいまい式ライントレースの実行周期。8msでもイケる？*/
-#define MAIMAI_THRESHOLD    .7F         /* ラインエッジ閾値 */
-float gMaimaiValue = 0.0;               /* コース明度 */
 
 /* 関数プロトタイプ宣言 */
 static int sonar_alert(void);
@@ -57,6 +55,12 @@ static void tail_control(signed int angle);
 static int remote_start(void);
 static float calc_maimai(U16 light_off_value, U16 light_on_value);
 
+// タスク間共有メモリ
+bool gDoSonar = false; //!< ソナーセンサ発動フラグ
+int gSonarDistance = 255; //!< ソナーセンサの結果
+bool gSonarIsDetected = false; //!< 衝立検知の結果
+bool gTouchStarter = false; //!< タッチセンサ押下フラグ
+float gMaimaiValue = 0.0;  //!< コース明度
 //=============================================================================
 // TOPPERS/ATK declarations
 DeclareCounter(SysTimerCnt);
@@ -109,12 +113,6 @@ void ecrobot_device_terminate(void)
   ecrobot_term_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を終了 */
   ecrobot_term_bt_connection(); /* Bluetooth通信を終了 */
 }
-
-// タスク間共有メモリ
-bool gDoSonar = false; //!< ソナーセンサ発動フラグ
-int gSonarDistance = 255; //!< ソナーセンサの結果
-bool gSonarIsDetected = false; //!< 衝立検知の結果
-bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 
 /*
  * Sonarタスク

@@ -25,7 +25,6 @@
 #include "FailDetector.h"
 // スキル
 #include "Skill.h"
-#include "TripodSkill.h"
 #include "LineTrace.h"
 #include "TripodLineTrace.h"
 #include "AngleTrace.h"
