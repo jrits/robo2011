@@ -33,6 +33,7 @@ public:
     VectorT<float> calcCommand();
     float calcCommandTurn();
 	float lightValueNormalization();
+	float maimaiValueNormalization();
 public:
     void setUseOnoff(bool useOnoff);
     float calcCommandTurnByOnOff();

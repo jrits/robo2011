@@ -3,6 +3,7 @@
 //
 #include "LineTrace.h"
 #include "factory.h"
+extern float gMaimaiValue;
 
 /**
  * コンストラクタ
@@ -66,6 +67,27 @@ void LineTrace::execute()
 }
 
 /**
+ * (PID制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
+ *
+ * @return ターン値
+ */
+float LineTrace::calcCommandTurn()
+{
+	//正規化した光センサ値をPに格納する
+	float P = this->lightValueNormalization(); // 通常
+    //float P = this->maimaiValueNormalization(); // まいまい式
+
+	//Pid制御
+    float Y = mLightPid.control(P);
+	
+	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+	if(TRACE_EDGE == LEFT ) Y *= -1;
+	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    return Y;
+}
+
+/**
  * 現在の光値から、ライントレースをするのに適切な走行ベクトルを計算する。
  *
  * @return 走行ベクトル
@@ -109,25 +131,6 @@ VectorT<float> LineTrace::calcCommand()
 }
 
 /**
- * (PID制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
- *
- * @return ターン値
- */
-float LineTrace::calcCommandTurn()
-{
-	//正規化した光センサ値をPに格納する
-	float P = this->lightValueNormalization();
-	//Pid制御
-    float Y = mLightPid.control(P);
-	
-	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-    return Y;
-}
-
-/**
  * 正規化した光センサの値を取得する
  *
  * @return 正規化した光センサの値
@@ -143,6 +146,30 @@ float LineTrace::lightValueNormalization()
     }
     else{ // 黒
         P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
+    }
+	
+	if(P > 1) P = 1;
+	if(P < -1) P = -1;
+	
+    return P;
+}
+
+/**
+ * 正規化した光センサの値を取得する(MAIMAI)
+ *
+ * @return 正規化した光センサの値(MAIMAI)
+ */
+float LineTrace::maimaiValueNormalization()
+{
+    float L = 0;
+	L = gMaimaiValue;
+	
+    float P = (L - MAIMAI_LINE_THRESHOLD); // 偏差
+    if(L < MAIMAI_LINE_THRESHOLD){ // 白
+        P = P / (MAIMAI_LINE_THRESHOLD - MAIMAI_WHITE); // [-1.0, 1.0] の値に正規化
+    }
+    else{ // 黒
+        P = P / (MAIMAI_BLACK - MAIMAI_LINE_THRESHOLD); // [-1.0, 1.0] の値に正規化
     }
 	
 	if(P > 1) P = 1;

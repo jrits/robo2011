@@ -233,11 +233,11 @@ TASK(TaskMaimai)
         {
             Lcd lcd;
             lcd.clear();
+            lcd.putf("sn"  "MAIMAI*100");
+            lcd.putf("dn", (int)(gMaimaiValue*100));
             lcd.putf("dn", (int)is_light_on);
             lcd.putf("dn", (int)light_value[0]);
             lcd.putf("dn", (int)light_value[1]);
-            lcd.putf("dn", (int)(gMaimaiValue*100));
-            lcd.putf("dn", (int)(MAIMAI_THRESHOLD*100));
             lcd.disp();
         }
 #endif
