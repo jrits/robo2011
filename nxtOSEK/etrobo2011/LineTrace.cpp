@@ -3,6 +3,7 @@
 //
 #include "LineTrace.h"
 #include "factory.h"
+extern bool  gDoMaimai;
 extern float gMaimaiValue;
 
 /**
@@ -74,8 +75,12 @@ void LineTrace::execute()
 float LineTrace::calcCommandTurn()
 {
 	//正規化した光センサ値をPに格納する
-	float P = this->lightValueNormalization(); // 通常
-    //float P = this->maimaiValueNormalization(); // まいまい式
+    float P;
+    if (gDoMaimai) {
+        P = this->maimaiValueNormalization(); // まいまい式
+    } else {
+        P = this->lightValueNormalization(); // 通常
+    }
 
 	//Pid制御
     float Y = mLightPid.control(P);
@@ -94,7 +99,9 @@ float LineTrace::calcCommandTurn()
  */
 VectorT<float> LineTrace::calcCommand()
 {
-	gLineTrace = true;  //走行スキルフラグ。ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
+    //ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
+	gLineTrace = true;
+
     // 起動時急ダッシュするため、最初のみスピードをゆるめる
     float X;
     if (mTimeCounter < mInitDuration) {
@@ -105,6 +112,14 @@ VectorT<float> LineTrace::calcCommand()
         X = mForward;
     }
 
+    float Y;
+    if (mUseOnoff) { 
+        Y = calcCommandTurnByOnOff();
+    }
+    else {
+        Y = calcCommandTurn();
+    }
+    
 #if 0 // DEBUG
     {
         static int count = 0;
@@ -113,20 +128,12 @@ VectorT<float> LineTrace::calcCommand()
             Lcd lcd;
             lcd.clear();
             lcd.putf("sn", "LineTrace");
-            lcd.putf("dn", mState);
-            lcd.putf("dn", mTimeCounter);
             lcd.putf("dn", (int)X);
+            lcd.putf("dn", (int)Y);
             lcd.disp();
         }
     }
 #endif
-    float Y;
-    if (mUseOnoff) { 
-        Y = calcCommandTurnByOnOff();
-    }
-    else {
-        Y = calcCommandTurn();
-    }
     return VectorT<F32>(X,Y);
 }
 

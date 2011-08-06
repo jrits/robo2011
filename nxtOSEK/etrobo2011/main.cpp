@@ -37,7 +37,8 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 /* sample_c2マクロ */
 #define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
 /* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 95 /* 完全停止時の角度[度] */
+#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
+#define TAIL_ANGLE_TRIPOD_DRIVE 95 /* ３点走行時の角度[度] */
 #define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
@@ -60,7 +61,8 @@ bool gDoSonar = false; //!< ソナーセンサ発動フラグ
 int gSonarDistance = 255; //!< ソナーセンサの結果
 bool gSonarIsDetected = false; //!< 衝立検知の結果
 bool gTouchStarter = false; //!< タッチセンサ押下フラグ
-float gMaimaiValue = 0.0;  //!< コース明度
+bool gDoMaimai = false; //!< まいまい式発動フラグ
+float gMaimaiValue = 0.0;  //!< まいまい式の結果
 //=============================================================================
 // TOPPERS/ATK declarations
 DeclareCounter(SysTimerCnt);
@@ -189,24 +191,72 @@ TASK(TaskDrive)
 	signed char forward;      /* 前後進命令 */
 	signed char turn;         /* 旋回命令 */
 	signed char pwm_L, pwm_R; /* 左右モータPWM出力 */
-    
-    static int count = 0;
-    static VectorT<F32> command(50,0);
-    while(1)
-    {
-        count++;
-        if(count < 1000){
-            tail_control(3); /* バランス走行用角度に制御 */
-            // mTripodLineTrace.setForward(50);
-            // mTripodLineTrace.execute();
+  
+	while(1)
+	{
+		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
+
+		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
+		{
+			break; /* タッチセンサが押された */
+		}
+		systick_wait_ms(10); /* 10msecウェイト */
+	}
+
+	balance_init();						/* 倒立振子制御初期化 */
+	nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
+	nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
+
+    VectorT<float> command(50, 0);
+	while(1)
+	{
+		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+        gDoMaimai = false; /* まいまい式は使わない */
+        // テスト 通常走行
+        if (0) {
             mActivator.run(command);
-        } else {
-            //      mStandUpSkill.execute();
-            mSitDownSkill.execute();
         }
-        
-        systick_wait_ms(4); /* 4msecウェイト */
-    }
+        // テスト フォーワードPID
+        if (0) {
+            mActivator.runWithPid(command);
+        }
+        // テスト ３点走行
+        if (1) {
+            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
+            mTripodActivator.run(command);
+        }
+        // テスト ３点走行 with フォワードPID
+        if (0) {
+            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
+            mTripodActivator.runWithPid(command);
+        }
+        // テスト ライントレース. 
+        if (0) {
+            mLineTrace.setForward(50);
+            mLineTrace.execute();
+        }
+        // テスト まいまい式ライントレース
+        if (0) {
+            gDoMaimai = true;
+            mLineTrace.setForward(50);
+            mLineTrace.execute();
+        }
+        // テスト ３点走行ライントレース
+        if (0) {
+            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
+            mTripodLineTrace.setForward(50);
+            mTripodLineTrace.execute();
+        }
+        // テスト まいまい式３点走行ライントレース
+        if (0) {
+            gDoMaimai = true;
+            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
+            mTripodLineTrace.setForward(50);
+            mTripodLineTrace.execute();
+        }
+        // mSitDownSkill.execute();
+		systick_wait_ms(4); /* 4msecウェイト */
+	}
 }
 
 /**
@@ -223,6 +273,13 @@ TASK(TaskMaimai)
 
 	while(1)
 	{
+        if (! gDoMaimai) {
+            ecrobot_set_light_sensor_active(NXT_PORT_S3);
+            ClearEvent(EventMaimai);
+            WaitEvent(EventMaimai);
+            continue;
+        }
+
 		// MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
 		light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
 

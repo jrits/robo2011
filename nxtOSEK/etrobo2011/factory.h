@@ -83,6 +83,7 @@ extern History mDirectionAverageHistory;
 extern History mGyroHistory;
 // その他
 extern Activator mActivator;
+extern TripodActivator mTripodActivator;
 extern Pid mLightPid;
 extern Pid mAnglePid;
 extern Pid mSlowdownPid;

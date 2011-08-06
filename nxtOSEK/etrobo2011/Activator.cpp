@@ -141,7 +141,7 @@ float Activator::forwardPid(float targetSpeed)
     mCurrentForward += mForwardPid.control(P);
     mCurrentForward = MAX(MIN(100, mCurrentForward), -100);
 
-#if 0 // DEBUG
+#if 1 // DEBUG
     {
         Lcd lcd;
         lcd.clear();
