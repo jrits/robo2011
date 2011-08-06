@@ -31,6 +31,9 @@ extern int FORWARD;
 extern int WHITE;
 extern int BLACK;
 extern int LINE_THRESHOLD;
+extern int TRIPOD_WHITE;
+extern int TRIPOD_BLACK;
+extern int TRIPOD_LINE_THRESHOLD;
 extern int TRACE_EDGE;
 extern float LIGHT_PID_KP;
 extern float LIGHT_PID_KI;
@@ -52,11 +55,11 @@ extern float STOP_PID_KP;
 extern float STOP_PID_KI;
 extern float STOP_PID_KD;
 
-//Ëª¢ÂÄíÊ§úÂá∫
+//ì]ì|åüèo
 extern int FAILSAFE_SAMPLECOUNT;
 extern int FAILSAFE_THRESHOLD;
 
-//Ê§úÁü•Á≥ª
+//åüímån
 extern float WALL_THRESHOLD;
 extern float DOWNSLOPE_THRESHOLD;
 
@@ -64,7 +67,7 @@ extern float DOWNSLOPE_THRESHOLD;
 extern float K_THETADOT;
 extern float K_PHIDOT;
 
-//Bluetooth„É≠„Ç∞ÈÄÅ‰ø°
+//BluetoothÉçÉOëóêM
 extern int LOGGER_SEND;
 extern S8  LOGGER_DATAS08[2];
 extern U16 LOGGER_DATAU16;
@@ -74,12 +77,9 @@ extern S32 LOGGER_DATAS32[4];
 //Activator
 extern bool DESK_DEBUG;
 
-//LineTrace„Éï„É©„Ç∞
+//LineTraceÉtÉâÉO
 extern bool gLineTrace;
-
-//„Éñ„É¨„Éº„Ç≠Ëµ∞Ë°å(ÂÆüÈ®ì‰∏≠)
-extern int PWMR;
-extern int PWML;
+extern bool gTripodLineTrace;
 
 //#include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}

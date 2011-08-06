@@ -31,7 +31,7 @@ public:
     void setUseOnoff(bool useOnoff);
 public:
     VectorT<float> calcCommand();
-private:
+public:
     float calcCommandTurnByOnOff();
     float calcCommandTurn();
 	float lightValueNormalization();

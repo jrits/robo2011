@@ -18,31 +18,31 @@ extern "C"
 };
 
 /**
- * å€’ç«‹æŒ¯å­åˆ¶å¾¡æ©Ÿå™¨(ãƒãƒ³ãƒ‰ãƒ«ã€ã‚¢ã‚¯ã‚»ãƒ«ã€ãƒ–ãƒ¬ãƒ¼ã‚­)
+ * “|—§UŽq§Œä‹@Ší(ƒnƒ“ƒhƒ‹AƒAƒNƒZƒ‹AƒuƒŒ[ƒL)
  *
- * Skill ã«ã‚ˆã£ã¦æ“ä½œã•ã‚Œã‚‹ã€‚
+ * Skill ‚É‚æ‚Á‚Ä‘€ì‚³‚ê‚éB
  */
 class Activator
 {
 protected:
-	Motor &mLeftMotor; //!< å·¦ãƒ¢ãƒ¼ã‚¿
-	Motor &mRightMotor; //!< å³ãƒ¢ãƒ¼ã‚¿
-	GyroSensor &mGyroSensor; //!< ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µ
-	Nxt &mNxt; //!< NXTã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
-    int mGyroOffset; //!< ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
+	Motor &mLeftMotor; //!< ¶ƒ‚[ƒ^
+	Motor &mRightMotor; //!< ‰Eƒ‚[ƒ^
+	GyroSensor &mGyroSensor; //!< ƒWƒƒƒCƒƒZƒ“ƒT
+	Nxt &mNxt; //!< NXTƒIƒuƒWƒFƒNƒg
+    int mGyroOffset; //!< ƒWƒƒƒCƒƒZƒ“ƒTƒIƒtƒZƒbƒg’l
 public:
 	Activator(Motor &leftMotor, 
               Motor &rightMotor, 
               GyroSensor &gyroSensor, 
               Nxt &nxt);
 	~Activator(){}
-    // ãƒ‘ãƒ©ãƒ¡ã‚¿ãƒ¼ã®åˆæœŸåŒ–
+    // ƒpƒ‰ƒƒ^[‚Ì‰Šú‰»
     void reset(int gyroOffset);
-    // èµ°è¡Œã€‚ãƒãƒ³ãƒ‰ãƒ«ã€ã‚¢ã‚¯ã‚»ã‚¹ã®æ“ä½œã€‚
+    // ‘–sBƒnƒ“ƒhƒ‹AƒAƒNƒZƒX‚Ì‘€ìB
 	void run(VectorT<F32> command);
-    // ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰PIDã€ã‚¿ãƒ¼ãƒ³PID(@todo)ã‚’åˆ©ç”¨ã—ãŸèµ°è¡Œ
+    // ƒtƒHƒ[ƒhPIDAƒ^[ƒ“PID(@todo)‚ð—˜—p‚µ‚½‘–s
 	void runWithPid(VectorT<F32> speed);
-    // åœæ­¢
+    // ’âŽ~
 	void stop();
 protected:
     float mTargetSpeed;

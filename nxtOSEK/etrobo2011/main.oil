@@ -1,11 +1,11 @@
 /**
  ******************************************************************************
- **	ファイル名 : main.oil
+ **	�t�@�C���� : main.oil
  **
- **	概要       : サンプル用OSEK OIL(OSEK Implementation Language)ファイル
+ **	�T�v       : �T���v���pOSEK OIL(OSEK Implementation Language)�t�@�C��
  **
- ** ※OSEK OIL記述方法詳細については
- **   nxtOSEK\toppers_osek\doc\TOPPERS_OSEKカーネルSG取扱説書.pdfを参照してください。
+ ** ��OSEK OIL�L�q���@�ڍׂɂ��Ă�
+ **   nxtOSEK\toppers_osek\doc\TOPPERS_OSEK�J�[�l��SG�戵����.pdf���Q�Ƃ��Ă��������B
  ** 
  ******************************************************************************
  **/
@@ -13,7 +13,7 @@
 
 CPU ATMEL_AT91SAM7S256
 {
-  OS LEJOS_OSEK /* nxtOSEKの旧名 */
+  OS LEJOS_OSEK /* nxtOSEK�̋��� */
   {
     STATUS = EXTENDED;
     STARTUPHOOK = FALSE;
@@ -28,26 +28,26 @@ CPU ATMEL_AT91SAM7S256
 
   APPMODE appmode1{}; 
 
-  /* Clock 使用に必要 */
+  /* Clock �g�p�ɕK�v */
   EVENT EventSleepI2C
   {
 	MASK = AUTO;
   };
 
-  /* Clock 使用に必要 */
+  /* Clock �g�p�ɕK�v */
   EVENT EventSleep
   {
 	MASK = AUTO;
   };
 
-  /* Driveタスク設定 */
+  /* Drive�^�X�N�ݒ� */
   TASK TaskDrive
   {
-    AUTOSTART = TRUE /* StartOSで自動的にREADY */
+    AUTOSTART = TRUE /* StartOS�Ŏ����I��READY */
     {
       APPMODE = appmode1;
     };
-    PRIORITY = 1; /* 最低優先度 */
+    PRIORITY = 1; /* �Œ�D��x */
     ACTIVATION = 1;
     SCHEDULE = FULL;
     STACKSIZE = 512; /* bytes */
@@ -69,13 +69,13 @@ CPU ATMEL_AT91SAM7S256
          TASK = TaskDrive;
          EVENT = EventDrive;
     };
-    AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
+    AUTOSTART = FALSE; /* �^�X�N�����ݒ�̓\�[�X�R�[�h�ŁB*/
   };
 
-  /* Maimaiタスク設定 */
+  /* Maimai�^�X�N�ݒ� */
   TASK TaskMaimai
   {
-    AUTOSTART = TRUE /* StartOSで自動的にREADY */
+    AUTOSTART = TRUE /* StartOS�Ŏ����I��READY */
     {
       APPMODE = appmode1;
     };
@@ -99,13 +99,13 @@ CPU ATMEL_AT91SAM7S256
          TASK = TaskMaimai;
          EVENT = EventMaimai;
     };
-    AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
+    AUTOSTART = FALSE; /* �^�X�N�����ݒ�̓\�[�X�R�[�h�ŁB*/
   };
 
-  /* GPS/History更新タスク設定 */
+  /* GPS/History�X�V�^�X�N�ݒ� */
   TASK TaskGps
   {
-    AUTOSTART = TRUE /* StartOSで自動的にREADY */
+    AUTOSTART = TRUE /* StartOS�Ŏ����I��READY */
     {
       APPMODE = appmode1;
     };
@@ -129,17 +129,17 @@ CPU ATMEL_AT91SAM7S256
          TASK = TaskGps;
          EVENT = EventGps;
     };
-    AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
+    AUTOSTART = FALSE; /* �^�X�N�����ݒ�̓\�[�X�R�[�h�ŁB*/
   };
 
-  /* Sonarタスク設定 */
+  /* Sonar�^�X�N�ݒ� */
   TASK TaskSonar
   {
-    AUTOSTART = TRUE /* StartOSで自動的にREADY */
+    AUTOSTART = TRUE /* StartOS�Ŏ����I��READY */
     {
       APPMODE = appmode1;
     };
-    PRIORITY = 1; /* 最低優先度 */
+    PRIORITY = 1; /* �Œ�D��x */
     ACTIVATION = 1;
     SCHEDULE = FULL;
     STACKSIZE = 512; /* bytes */
@@ -161,17 +161,17 @@ CPU ATMEL_AT91SAM7S256
          TASK = TaskSonar;
          EVENT = EventSonar;
     };
-    AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
+    AUTOSTART = FALSE; /* �^�X�N�����ݒ�̓\�[�X�R�[�h�ŁB*/
   };
 
-  /* Logger(Bluetooth)タスク設定 */
+  /* Logger(Bluetooth)�^�X�N�ݒ� */
   TASK TaskLogger
   {
-    AUTOSTART = TRUE /* StartOSで自動的にREADY */
+    AUTOSTART = TRUE /* StartOS�Ŏ����I��READY */
     {
       APPMODE = appmode1;
     };
-    PRIORITY = 1; /* 最低優先度 */
+    PRIORITY = 1; /* �Œ�D��x */
     ACTIVATION = 1;
     SCHEDULE = FULL;
     STACKSIZE = 512; /* bytes */
@@ -191,10 +191,10 @@ CPU ATMEL_AT91SAM7S256
          TASK = TaskLogger;
          EVENT = EventLogger;
     };
-    AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
+    AUTOSTART = FALSE; /* �^�X�N�����ݒ�̓\�[�X�R�[�h�ŁB*/
   };
 
-  /* 周期タスク起動用カウンタ */
+  /* �����^�X�N�N���p�J�E���^ */
   COUNTER SysTimerCnt
   {
     MINCYCLE = 1;

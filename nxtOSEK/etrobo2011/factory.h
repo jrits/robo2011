@@ -25,13 +25,18 @@
 #include "FailDetector.h"
 // スキル
 #include "Skill.h"
+#include "TripodSkill.h"
 #include "LineTrace.h"
+#include "TripodLineTrace.h"
 #include "AngleTrace.h"
 #include "CoordinateStop.h"
 #include "CoordinateTrace.h"
 #include "VirtualLineTrace.h"
 #include "SlowdownSkill.h"
 #include "StopSkill.h"
+#include "StandUpSkill.h"
+#include "SitDownSkill.h"
+
 // ドライバ
 #include "Driver.h"
 #include "NormalDriver.h"
@@ -48,8 +53,12 @@
 #include "OutCourse.h"
 // その他
 #include "Activator.h"
+#include "TripodActivator.h"
 #include "Pid.h"
 #include "struct.h"
+// Posture
+#include "Posture.h"
+
 // デバイスオブジェクト
 extern TouchSensor mTouchSensor;
 extern SonarSensor mSonarSensor;
@@ -87,11 +96,14 @@ extern StraightDetector mStraightDetector;
 extern FailDetector mFailDetector;
 // Skill
 extern LineTrace mLineTrace;
+extern TripodLineTrace mTripodLineTrace;
 extern AngleTrace mAngleTrace;
 extern CoordinateTrace mCoordinateTrace;
 extern VirtualLineTrace mVirtualLineTrace;
 extern SlowdownSkill mSlowdownSkill;
 extern StopSkill mStopSkill;
+extern StandUpSkill mStandUpSkill;
+extern SitDownSkill mSitDownSkill;
 extern CoordinateStop mCoordinateStop;
 // Driver
 extern NormalDriver mNormalDriver;
@@ -106,4 +118,7 @@ extern TestDriver mTestDriver;
 extern Course *mCourse;
 extern InCourse mInCourse;
 extern OutCourse mOutCourse;
+
+// Posture
+extern Posture mPosture;
 #endif

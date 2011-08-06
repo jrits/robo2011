@@ -6,12 +6,12 @@
 #include "factory.h"
 
 /**
- * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+ * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
  *
- * @param[in] leftMotor å·¦ãƒ¢ãƒ¼ã‚¿
- * @param[in] rightMotor å³ãƒ¢ãƒ¼ã‚¿
- * @param[in] gyroSensor ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µ
- * @param[in] nxt NXTã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param[in] leftMotor ¶ƒ‚[ƒ^
+ * @param[in] rightMotor ‰Eƒ‚[ƒ^
+ * @param[in] gyroSensor ƒWƒƒƒCƒƒZƒ“ƒT
+ * @param[in] nxt NXTƒIƒuƒWƒFƒNƒg
  */
 Activator::Activator(Motor &leftMotor, 
                      Motor &rightMotor, 
@@ -22,15 +22,15 @@ Activator::Activator(Motor &leftMotor,
     mGyroSensor(gyroSensor), 
     mNxt(nxt)
 {
-	mGyroOffset = USER_GYRO_OFFSET; //ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’åˆæœŸåŒ–
+	mGyroOffset = USER_GYRO_OFFSET; //ƒIƒtƒZƒbƒg’l‚ğ‰Šú‰»
     mTargetSpeed = 0.0;
     mCurrentForward = 0.0;
 }
 
 /**
- * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * ƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»
  *
- * @param[in] gyroOffset ã‚¸ãƒ£ã‚¤ãƒ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in] gyroOffset ƒWƒƒƒCƒƒIƒtƒZƒbƒg
  */
 void Activator::reset(int gyroOffset)
 {
@@ -38,34 +38,35 @@ void Activator::reset(int gyroOffset)
 }
 
 /**
- * èµ°è¡Œã€‚ãƒãƒ³ãƒ‰ãƒ«ã€ã‚¢ã‚¯ã‚»ãƒ«ã®æ“ä½œã€‚
+ * ‘–sBƒnƒ“ƒhƒ‹AƒAƒNƒZƒ‹‚Ì‘€ìB
  *
- * @param[in] command èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«(forward, turn)
+ * @param[in] command ‘–sƒxƒNƒgƒ‹(forward, turn)
+
  */
 void Activator::run(VectorT<F32> command)
 {
 	S8 pwm_L, pwm_R;
 
-    // C++ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã ã¨ãªãœã‹ mActivator.run() ã§å‹•ã‹ãªã„ã®ã§ã¨ã‚Šã‚ãˆãšã€‚
-     balance_control(
-         (float)command.mX,							 /* å‰å¾Œé€²å‘½ä»¤(+:å‰é€², -:å¾Œé€²) */
-         (float)command.mY,							 /* æ—‹å›å‘½ä»¤(+:å³æ—‹å›, -:å·¦æ—‹å›) */
-         (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µå€¤ */
-         (float)USER_GYRO_OFFSET,                     /* ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ */
-         (float)nxt_motor_get_count(NXT_PORT_C),		 /* å·¦ãƒ¢ãƒ¼ã‚¿å›è»¢è§’åº¦[deg] */
-         (float)nxt_motor_get_count(NXT_PORT_B),		 /* å³ãƒ¢ãƒ¼ã‚¿å›è»¢è§’åº¦[deg] */
-         (float)ecrobot_get_battery_voltage(),		 /* ãƒãƒƒãƒ†ãƒªé›»åœ§[mV] */
-         &pwm_L,										 /* å·¦ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›å€¤ */
-         &pwm_R);									 /* å³ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›å€¤ */
-
-     if (! DESK_DEBUG) {
-         nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* å·¦ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›ã‚»ãƒƒãƒˆ(-100ã€œ100) */
-         nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* å³ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›ã‚»ãƒƒãƒˆ(-100ã€œ100) */
-     }
+    // C++ ƒo[ƒWƒ‡ƒ“‚¾‚Æ‚È‚º‚© mActivator.run() ‚Å“®‚©‚È‚¢‚Ì‚Å‚Æ‚è‚ ‚¦‚¸B
+    balance_control(
+        (float)command.mX,							 /* ‘OŒãi–½—ß(+:‘Oi, -:Œãi) */
+        (float)command.mY,							 /* ù‰ñ–½—ß(+:‰Eù‰ñ, -:¶ù‰ñ) */
+        (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ƒWƒƒƒCƒƒZƒ“ƒT’l */
+        (float)USER_GYRO_OFFSET,                     /* ƒWƒƒƒCƒƒZƒ“ƒTƒIƒtƒZƒbƒg’l */
+        (float)nxt_motor_get_count(NXT_PORT_C),		 /* ¶ƒ‚[ƒ^‰ñ“]Šp“x[deg] */
+        (float)nxt_motor_get_count(NXT_PORT_B),		 /* ‰Eƒ‚[ƒ^‰ñ“]Šp“x[deg] */
+        (float)ecrobot_get_battery_voltage(),		 /* ƒoƒbƒeƒŠ“dˆ³[mV] */
+        &pwm_L,										 /* ¶ƒ‚[ƒ^PWMo—Í’l */
+        &pwm_R);									 /* ‰Eƒ‚[ƒ^PWMo—Í’l */
+    
+    if (! DESK_DEBUG) {
+        nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* ¶ƒ‚[ƒ^PWMo—ÍƒZƒbƒg(-100?100) */
+        nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* ‰Eƒ‚[ƒ^PWMo—ÍƒZƒbƒg(-100?100) */
+    }
 
 	// balance_control(
-    //     (F32)command.mY, // å‰å¾Œé€²å‘½ä»¤
-    //     (F32)command.mY, // æ—‹å›å‘½ä»¤
+    //     (F32)command.mY, // ‘OŒãi–½—ß
+    //     (F32)command.mY, // ù‰ñ–½—ß
     //     (F32)mGyroSensor.get(),
     //     (F32)mGyroOffset,
     //     (F32)mLeftMotor.getCount(),
@@ -78,26 +79,12 @@ void Activator::run(VectorT<F32> command)
     //     mLeftMotor.setPWM(pwm_L);
     //     mRightMotor.setPWM(pwm_R);
     // }
-
-#if 0// DEBUG
-    {
-        Lcd lcd;
-        lcd.clear();
-        lcd.putf("sn", "Activator::run");
-        lcd.putf("dn", (int)command.mX);
-        lcd.putf("dn", (int)command.mY);
-        lcd.putf("dn", (int)pwm_L);
-        lcd.putf("dn", (int)pwm_R);
-        lcd.disp();
-    }
-#endif
-
 }
 
 /**
- * ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰PIDã€ã‚¿ãƒ¼ãƒ³PID(@todo)ã‚’åˆ©ç”¨ã—ãŸèµ°è¡Œ
+ * ƒtƒHƒ[ƒhPIDAƒ^[ƒ“PID(@todo)‚ğ—˜—p‚µ‚½‘–s
  *
- * @param[in] speed ç›®æ¨™èµ°è¡Œã‚¹ãƒ”ãƒ¼ãƒ‰(encode/sec)
+ * @param[in] speed –Ú•W‘–sƒXƒs[ƒh(encode/sec)
  */
 void Activator::runWithPid(VectorT<F32> speed)
 {
@@ -108,9 +95,9 @@ void Activator::runWithPid(VectorT<F32> speed)
 }
 
 /**
- * ãƒ–ãƒ¬ãƒ¼ã‚­ã®æ“ä½œã€‚
+ * ƒuƒŒ[ƒL‚Ì‘€ìB
  *
- * ãƒãƒ©ãƒ³ã‚¹ã‚’åˆ¶å¾¡ã¯è¡Œã‚ãªã„ã€‚ãƒ¢ãƒ¼ã‚¿ã‚’æ­¢ã‚ã‚‹ã ã‘ã€‚
+ * ƒoƒ‰ƒ“ƒX‚ğ§Œä‚Ís‚í‚È‚¢Bƒ‚[ƒ^‚ğ~‚ß‚é‚¾‚¯B
  *
  * @return -
  */
@@ -122,34 +109,35 @@ void Activator::stop()
 	mRightMotor.setBrake(true);
 }
 
-Pid mForwardPid(0.003, 0.0, 0.0); // èª¿ç¯€æ–¹æ³•: å®Ÿéš›ã«èµ°ã‚‰ã›ã¦èª¿ç¯€ã€‚PIDã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿æ¬²ã—ã„
-#define FORWARD2ENCODE(F) (F * 3.6) // å¤§ä½“ forward 100 ã§ 360(1å›è»¢)/sec@å¹³åœ°ã£ã½ã„
-#define ENCODE2FORWARD(E) (E / 3.6) // å¤§ä½“ forward 100 ã§ 360(1å›è»¢)/sec@å¹³åœ°ã£ã½ã„
+Pid mForwardPid(0.003, 0.0, 0.0); // ’²ß•û–@: ÀÛ‚É‘–‚ç‚¹‚Ä’²ßBPIDƒVƒ~ƒ…ƒŒ[ƒ^—~‚µ‚¢
+#define FORWARD2ENCODE(F) (F * 3.6) // ‘å‘Ì forward 100 ‚Å 360(1‰ñ“])/sec@•½’n‚Á‚Û‚¢
+#define ENCODE2FORWARD(E) (E / 3.6) // ‘å‘Ì forward 100 ‚Å 360(1‰ñ“])/sec@•½’n‚Á‚Û‚¢
 
 /**
- * ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰PID
+ * ƒtƒHƒ[ƒhPID
  *
- * èµ°è¡Œã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’PIDåˆ¶å¾¡ã™ã‚‹ã€‚
+ * ‘–sƒXƒs[ƒh‚ğPID§Œä‚·‚éB
  *
- * @param speed æœŸå¾…ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰ã€‚â€»å¹³åœ°ã§ã®forwardå€¤(ã«ã—ãŸã„ãŒãƒ¢ãƒ¼ã‚¿ã«ã‚ˆã‚Šä¿‚æ•°ãŒç•°ãªã‚‹ãŸã‚ã‚ãã¾ã§â‰’)
- * @return ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤
- * @todo ã‚¹ãƒ”ãƒ¼ãƒ‰ã®å˜ä½ã‚’cm/secã«ã™ã‚‹
+ * @param speed Šú‘Ò‚·‚éƒXƒs[ƒhB¦•½’n‚Å‚Ìforward’l(‚É‚µ‚½‚¢‚ªƒ‚[ƒ^‚É‚æ‚èŒW”‚ªˆÙ‚È‚é‚½‚ß‚ ‚­‚Ü‚Åà)
+ * @return ƒtƒHƒ[ƒh’l
+ * @todo ƒXƒs[ƒh‚Ì’PˆÊ‚ğcm/sec‚É‚·‚é
  */
 float Activator::forwardPid(float targetSpeed)
 {
-    // åˆæœŸåŒ–(åˆæœŸåŒ–é–¢æ•°ã‚’ä½œã‚‹ã®ãŒé¢å€’ã ã£ãŸã®ã§ã“ã“ã§)
+    // ‰Šú‰»(‰Šú‰»ŠÖ”‚ğì‚é‚Ì‚ª–Ê“|‚¾‚Á‚½‚Ì‚Å‚±‚±‚Å)
     if (targetSpeed != mTargetSpeed) {
         mTargetSpeed    = targetSpeed;
-        mCurrentForward = targetSpeed; // ã“ã®åŸºæº–å€¤ã‹ã‚‰PIDã§å¾®èª¿æ•´ã™ã‚‹ã€‚
+        mCurrentForward = targetSpeed; // ‚±‚ÌŠî€’l‚©‚çPID‚Å”÷’²®‚·‚éB
     }
     
-    // å¤‰åŒ–é‡(encode/sec)ã€‚ç›´å‰ã ã¨ã‚¹ãƒ”ãƒ¼ãƒ‰0ã®å¯èƒ½æ€§ã‚‚ã‚ã‚‹ãŸã‚ã€ã‚ã‚‹ç¨‹åº¦æ™‚é–“é–“éš”(5count)ã‚’ã‚‚ãŸã›ã¦ã„ã‚‹ã€‚
-    float leftEncodeSpeed    = (mLeftMotorHistory.get()  - mLeftMotorHistory.get(-5))  / (0.004 * 6);
-    float rightEncodeSpeed   = (mRightMotorHistory.get() - mRightMotorHistory.get(-5)) / (0.004 * 6);
-    float currentEncodeSpeed = (leftEncodeSpeed + rightEncodeSpeed)/2.0;
-    float currentSpeed = ENCODE2FORWARD(currentEncodeSpeed);
+    // •Ï‰»—Ê(encode/sec)B’¼‘O‚¾‚ÆƒXƒs[ƒh0‚Ì‰Â”\«‚à‚ ‚é‚½‚ßA‚ ‚é’ö“xŠÔŠÔŠu(5count)‚ğ‚à‚½‚¹‚Ä‚¢‚éB
+    float leftEncodeDiff     = mLeftMotorHistory.get()  - mLeftMotorHistory.get(-4);
+    float rightEncodeDiff    = mRightMotorHistory.get() - mRightMotorHistory.get(-4);
+    float currentEncodeDiff  = (leftEncodeDiff + rightEncodeDiff) / 2.0;
+    float currentEncodeSpeed = currentEncodeDiff / (0.004 * 5); // 4ms x 5count
+    float currentSpeed       = ENCODE2FORWARD(currentEncodeSpeed);
 
-    // PIDåˆ¶å¾¡(forward)
+    // PID§Œä(forward)
     float P = targetSpeed - currentSpeed;
     mCurrentForward += mForwardPid.control(P);
     mCurrentForward = MAX(MIN(100, mCurrentForward), -100);
@@ -168,6 +156,4 @@ float Activator::forwardPid(float targetSpeed)
 
     return mCurrentForward;
 }
-
-
 

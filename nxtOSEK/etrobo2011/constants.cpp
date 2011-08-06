@@ -2,47 +2,50 @@
 #include "macro.h"
 #include <math.h>
 
-//#define KACHIROBO
-#define KACHIICHI
+#define KACHIROBO
+//#define KACHIICHI
 //#define KACHINEW
 
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
-int USER_GYRO_OFFSET = 605; // この値は適宜調整すること
-//CS大会本コース W:525 G:617 B:675
-int WHITE = 520; // 白色の光センサ値 //小さめにしてね
-int BLACK = 675; // 黒色の光センサ値 //大きめにしてね
-int LINE_THRESHOLD = 570; // ライン端の色を示す閾値。白と灰色の間の値
+int USER_GYRO_OFFSET = 611; // ���̒l�͓K�X�������邱��
+//�|�c�� W:550 G:617 B:720
+int WHITE = 550; // ���F�̌��Z���T�l //�����߂ɂ��Ă�
+int BLACK = 720; // ���F�̌��Z���T�l //�傫�߂ɂ��Ă�
+int LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK -  TRIPOD_WHITE)/4;
+int TRIPOD_WHITE = 607; // ���F�̌��Z���T�l //�����߂ɂ��Ă�
+int TRIPOD_BLACK = 710; // ���F�̌��Z���T�l //�傫�߂ɂ��Ă�
+int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #endif
 
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
-int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
-//3F居室
-int WHITE = 540; // 白色の光センサ値
-int BLACK = 730; // 黒色の光センサ値
-int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
+int USER_GYRO_OFFSET = 611; // ���̒l�͓K�X�������邱��
+//3F����
+int WHITE = 540; // ���F�̌��Z���T�l
+int BLACK = 730; // ���F�̌��Z���T�l
+int LINE_THRESHOLD = 600; // ���C���[�̐F������臒l�B���ƊD�F�̊Ԃ̒l
 #endif
 
 #ifdef KACHINEW
 char BT_NAME[16] = "KACHINEW";
-int USER_GYRO_OFFSET = 608; // この値は適宜調整すること
-//3F居室
-int WHITE = 540; // 白色の光センサ値
-int BLACK = 730; // 黒色の光センサ値
-int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
+int USER_GYRO_OFFSET = 608; // ���̒l�͓K�X�������邱��
+//3F����
+int WHITE = 540; // ���F�̌��Z���T�l
+int BLACK = 730; // ���F�̌��Z���T�l
+int LINE_THRESHOLD = 600; // ���C���[�̐F������臒l�B���ƊD�F�̊Ԃ̒l
 #endif
 
 // GPS
-// float WHEEL_RADIUS = 38.5; // 車輪半径(mm)
-// float WHEEL_DISTANCE = 168.0; // 車輪間隔(mm)
-float WHEEL_RADIUS = 40.5; // 車輪半径(mm)
-float WHEEL_DISTANCE = 162.0; // 車輪間隔(mm)
+// float WHEEL_RADIUS = 38.5; // �ԗ֔��a(mm)
+// float WHEEL_DISTANCE = 168.0; // �ԗ֊Ԋu(mm)
+float WHEEL_RADIUS = 40.5; // �ԗ֔��a(mm)
+float WHEEL_DISTANCE = 162.0; // �ԗ֊Ԋu(mm)
 
 // LineTrace
-int INIT_FORWARD = 50;    // 初期前進速度
-int INIT_SAMPLECOUNT = 200;  // 初期前進継続カウンタ期間
-int FORWARD = 100;        // 前進速度
+int INIT_FORWARD = 50;    // �����O�i���x
+int INIT_SAMPLECOUNT = 200;  // �����O�i�p���J�E���^����
+int FORWARD = 100;        // �O�i���x
 float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
 float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
@@ -52,7 +55,7 @@ float LIGHT_ONOFF_K = 40; // K_PHIDOT = 25.0F
 // float LIGHT_PID_KD = 120; // K_PHIDOT = 25.0F*2.5F
 
 //AngleTrace
-int TARGETANGLE = 180;//(360*2);  //目標角度
+int TARGETANGLE = 180;//(360*2);  //�ڕW�p�x
 float ANGLE_PID_KP = 10.0; // K_PHIDOT = 25.0F
 float ANGLE_PID_KI = 0.0;  // K_PHIDOT = 25.0F
 float ANGLE_PID_KD = 30.0; // K_PHIDOT = 25.0F
@@ -61,7 +64,7 @@ float ANGLE_PID_KD = 30.0; // K_PHIDOT = 25.0F
 // float ANGLE_PID_KD = 12.0; // K_PHIDOT = 25.0F*2.5F
 
 //SlowdownSkill
-float SLOWDOWN_PID_KP = 1.0; // 100mm手前でフォワード値100
+float SLOWDOWN_PID_KP = 1.0; // 100mm��O�Ńt�H���[�h�l100
 float SLOWDOWN_PID_KI = 0;
 float SLOWDOWN_PID_KD = 0;
 
@@ -73,17 +76,17 @@ float STOP_PID_KD = 0.001;
 //float STOP_PID_KI = 0.001;
 //float STOP_PID_KD = 0.015;
 
-//転倒検出
-int FAILSAFE_SAMPLECOUNT = 200; // 転倒検出のサンプル数とする(*4ms)
-int FAILSAFE_THRESHOLD = 600; //FAILSAFE_SAMPLECOUNT当たり両輪がこれ以上回転したら転倒とみなす
+//�]�|���o
+int FAILSAFE_SAMPLECOUNT = 200; // �]�|���o�̃T���v�����Ƃ���(*4ms)
+int FAILSAFE_THRESHOLD = 600; //FAILSAFE_SAMPLECOUNT�����藼�ւ�����ȏ��]������]�|�Ƃ݂Ȃ�
 
-//検知系
+//���m�n
 float WALL_THRESHOLD = -10;
 float DOWNSLOPE_THRESHOLD = 5;
 
-//Bluetoothログ送信
+//Bluetooth���O���M
 int LOGGER_SEND = 0;
-//0: 送らない
+//0: ����Ȃ�
 //1: void send(S8 dataS08[2], S32 dataS32)
 //2: void send(S8 dataS08[2], U16 dataU16, S16 dataS16[4], S32 dataS32[4])
 S8  LOGGER_DATAS08[2] = {0, 0};
@@ -92,10 +95,9 @@ S16 LOGGER_DATAS16[4] = {0,0,0,0};
 S32 LOGGER_DATAS32[4] = {0,0,0,0};
 
 //Activator
-bool DESK_DEBUG = false; // モータを回さない
+bool DESK_DEBUG = false; // ���[�^���񂳂Ȃ�
 
-//LineTraceフラグ
+//LineTrace�t���O
 bool gLineTrace = false;
-//ブレーキ走行(実験中)
-int PWMR = 0;
-int PWML = 0;
+bool gTripodLineTrace = false;
+
