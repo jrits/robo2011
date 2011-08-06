@@ -12,7 +12,7 @@
  */
 class LineTrace : public Skill
 {
-private:
+protected:
 	float mBlack;         //!< 黒
 	float mWhite;         //!< 白
 	float mLineThreshold; //!< 白黒閾値
@@ -28,12 +28,14 @@ public:
     void reset();
     void setInitForward(int initForward);
     void setInitDuration(int initDuration);
-    void setUseOnoff(bool useOnoff);
+    void execute();
 public:
     VectorT<float> calcCommand();
-public:
-    float calcCommandTurnByOnOff();
     float calcCommandTurn();
 	float lightValueNormalization();
+	float maimaiValueNormalization();
+public:
+    void setUseOnoff(bool useOnoff);
+    float calcCommandTurnByOnOff();
 };
 #endif

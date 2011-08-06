@@ -25,7 +25,6 @@
 #include "FailDetector.h"
 // スキル
 #include "Skill.h"
-#include "TripodSkill.h"
 #include "LineTrace.h"
 #include "TripodLineTrace.h"
 #include "AngleTrace.h"
@@ -84,6 +83,7 @@ extern History mDirectionAverageHistory;
 extern History mGyroHistory;
 // その他
 extern Activator mActivator;
+extern TripodActivator mTripodActivator;
 extern Pid mLightPid;
 extern Pid mAnglePid;
 extern Pid mSlowdownPid;
