@@ -231,7 +231,7 @@ TASK(TaskMaimai)
 		// MAIMAI(‰ü): ‚Ü‚¢‚Ü‚¢®·•ªŒvZ
 		gMaimaiValue = calc_maimai(light_value[0], light_value[1]);
 
-#if 1 // DEBUG
+#if 0 // DEBUG
         {
             Lcd lcd;
             lcd.clear();

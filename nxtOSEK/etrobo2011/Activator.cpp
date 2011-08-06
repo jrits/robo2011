@@ -41,7 +41,6 @@ void Activator::reset(int gyroOffset)
  * 走行。ハンドル、アクセルの操作。
  *
  * @param[in] command 走行ベクトル(forward, turn)
-
  */
 void Activator::run(VectorT<F32> command)
 {
@@ -142,7 +141,7 @@ float Activator::forwardPid(float targetSpeed)
     mCurrentForward += mForwardPid.control(P);
     mCurrentForward = MAX(MIN(100, mCurrentForward), -100);
 
-#if 1 // DEBUG
+#if 0 // DEBUG
     {
         Lcd lcd;
         lcd.clear();

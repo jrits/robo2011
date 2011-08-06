@@ -99,5 +99,4 @@ bool DESK_DEBUG = false; // モータを回さない
 
 //LineTraceフラグ
 bool gLineTrace = false;
-bool gTripodLineTrace = false;
 

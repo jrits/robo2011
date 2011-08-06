@@ -54,13 +54,14 @@ void TripodLineTrace::setInitDuration(int initDuration)
 }
 
 /**
- * ON/OFF制御(true) or PID制御(false)フラグの設定
+ * スキルを発揮してロボットを動かす。
  *
- * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
+ * calcCommand を用いて走行ベクトルを決定し、制御機器(TripodActivator)を操作する。
  */
-void TripodLineTrace::setUseOnoff(bool useOnoff)
+void TripodLineTrace::execute()
 {
-    mUseOnoff = useOnoff;
+    VectorT<float> command = calcCommand();
+    mTripodActivator.run(command);//制御機器にセット
 }
 
 /**
@@ -70,7 +71,6 @@ void TripodLineTrace::setUseOnoff(bool useOnoff)
  */
 VectorT<float> TripodLineTrace::calcCommand()
 {
-	gTripodLineTrace = true;  //走行スキルフラグ。ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
     // 起動時急ダッシュするため、最初のみスピードをゆるめる
     float X;
     if (mTimeCounter < mInitDuration) {
@@ -104,31 +104,6 @@ VectorT<float> TripodLineTrace::calcCommand()
         Y = calcCommandTurn();
     }
     return VectorT<F32>(X,Y);
-}
-
-/**
- * (ONOFF制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
- *
- * @return ターン値
- */
-float TripodLineTrace::calcCommandTurnByOnOff()
-{
-    float P = (mLightSensor.get() - mLineThreshold); // 偏差
-
-	//ONOFF制御
-    float Y;
-    if (P < 0) { // 白
-        Y = -LIGHT_ONOFF_K;
-    }
-    else { // 黒
-        Y = LIGHT_ONOFF_K;
-    }
-	
-	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-    return Y;
 }
 
 /**
@@ -172,4 +147,39 @@ float TripodLineTrace::lightValueNormalization()
 	if(P < -1) P = -1;
 	
     return P;
+}
+
+/**
+ * ON/OFF制御(true) or PID制御(false)フラグの設定
+ *
+ * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
+ */
+void TripodLineTrace::setUseOnoff(bool useOnoff)
+{
+    mUseOnoff = useOnoff;
+}
+
+/**
+ * (ONOFF制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
+ *
+ * @return ターン値
+ */
+float TripodLineTrace::calcCommandTurnByOnOff()
+{
+    float P = (mLightSensor.get() - mLineThreshold); // 偏差
+
+	//ONOFF制御
+    float Y;
+    if (P < 0) { // 白
+        Y = -LIGHT_ONOFF_K;
+    }
+    else { // 黒
+        Y = LIGHT_ONOFF_K;
+    }
+	
+	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+	if(TRACE_EDGE == LEFT ) Y *= -1;
+	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    return Y;
 }

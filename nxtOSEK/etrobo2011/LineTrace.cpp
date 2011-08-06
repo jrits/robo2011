@@ -54,13 +54,14 @@ void LineTrace::setInitDuration(int initDuration)
 }
 
 /**
- * ON/OFF制御(true) or PID制御(false)フラグの設定
+ * スキルを発揮してロボットを動かす。
  *
- * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
+ * calcCommand を用いて走行ベクトルを決定し、制御機器(Activator)を操作する。
  */
-void LineTrace::setUseOnoff(bool useOnoff)
+void LineTrace::execute()
 {
-    mUseOnoff = useOnoff;
+    VectorT<float> command = calcCommand();
+    mActivator.run(command);//制御機器にセット
 }
 
 /**
@@ -107,31 +108,6 @@ VectorT<float> LineTrace::calcCommand()
 }
 
 /**
- * (ONOFF制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
- *
- * @return ターン値
- */
-float LineTrace::calcCommandTurnByOnOff()
-{
-    float P = (mLightSensor.get() - mLineThreshold); // 偏差
-
-	//ONOFF制御
-    float Y;
-    if (P < 0) { // 白
-        Y = -LIGHT_ONOFF_K;
-    }
-    else { // 黒
-        Y = LIGHT_ONOFF_K;
-    }
-	
-	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-    return Y;
-}
-
-/**
  * (PID制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
  *
  * @return ターン値
@@ -172,4 +148,39 @@ float LineTrace::lightValueNormalization()
 	if(P < -1) P = -1;
 	
     return P;
+}
+
+/**
+ * ON/OFF制御(true) or PID制御(false)フラグの設定
+ *
+ * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
+ */
+void LineTrace::setUseOnoff(bool useOnoff)
+{
+    mUseOnoff = useOnoff;
+}
+
+/**
+ * (ONOFF制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
+ *
+ * @return ターン値
+ */
+float LineTrace::calcCommandTurnByOnOff()
+{
+    float P = (mLightSensor.get() - mLineThreshold); // 偏差
+
+	//ONOFF制御
+    float Y;
+    if (P < 0) { // 白
+        Y = -LIGHT_ONOFF_K;
+    }
+    else { // 黒
+        Y = LIGHT_ONOFF_K;
+    }
+	
+	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+	if(TRACE_EDGE == LEFT ) Y *= -1;
+	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    return Y;
 }

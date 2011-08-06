@@ -28,12 +28,13 @@ public:
     void reset();
     void setInitForward(int initForward);
     void setInitDuration(int initDuration);
-    void setUseOnoff(bool useOnoff);
 public:
+    void execute();
     VectorT<float> calcCommand();
-public:
-    float calcCommandTurnByOnOff();
     float calcCommandTurn();
 	float lightValueNormalization();
+public:
+    void setUseOnoff(bool useOnoff);
+    float calcCommandTurnByOnOff();
 };
 #endif

@@ -79,7 +79,6 @@ extern bool DESK_DEBUG;
 
 //LineTraceƒtƒ‰ƒO
 extern bool gLineTrace;
-extern bool gTripodLineTrace;
 
 //#include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}
