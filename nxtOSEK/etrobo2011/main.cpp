@@ -46,12 +46,10 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 #define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
 /* Bluetooth通信用データ受信バッファ */
 char rx_buf[BT_MAX_RX_BUF_SIZE];
-/* MAIMAI(改) */ /* @todo:まいまい式ライントレースの時だけ10ms周期で、AngleTraceなどの時は4msにする */
-#define MAIMAI_PERIOD        10         /* まいまい式ライントレースの実行周期。MAIMAIなら20msのところ、MAIMAI(改)だと10ms*/
+/* MAIMAI(改) */
+#define MAIMAI_PERIOD        10         /* まいまい式ライントレースの実行周期。8msでもイケる？*/
 #define MAIMAI_THRESHOLD    .7F         /* ラインエッジ閾値 */
-static float maimai = 0.0;	            /* コース明度			*/
-static bool  is_light_on = 1;           /* 光センサの点灯/消灯状態   */
-static U16   light_value[2] = {0, 0};	/* 0:消灯時、1:点灯時の光センサー値	*/
+float gMaimaiValue = 0.0;               /* コース明度 */
 
 /* 関数プロトタイプ宣言 */
 static int sonar_alert(void);
@@ -65,6 +63,9 @@ DeclareCounter(SysTimerCnt);
 DeclareTask(TaskDrive);
 DeclareEvent(EventDrive);
 DeclareAlarm(AlarmDrive);
+DeclareTask(TaskMaimai);
+DeclareEvent(EventMaimai);
+DeclareAlarm(AlarmMaimai);
 DeclareTask(TaskGps);
 DeclareEvent(EventGps);
 DeclareAlarm(AlarmGps);
@@ -202,7 +203,6 @@ TASK(TaskDrive)
 		{
 			break; /* タッチセンサが押された */
 		}
-
 		systick_wait_ms(10); /* 10msecウェイト */
 	}
 
@@ -212,16 +212,9 @@ TASK(TaskDrive)
 
 	while(1)
 	{
-		// MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
-		light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
-
-		// MAIMAI(改): まいまい式差分計算
-		maimai = calc_maimai(light_value[0], light_value[1]);
-
-		// MAIMAI(改): 普通に走行
 		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 
-		if (sonar_alert() == 1) /* 障害物検知 */
+		if (0) // sonar_alert() == 1) /* 障害物検知 */
 		{
 			forward = turn = 0; /* 障害物を検知したら停止 */
 		}
@@ -229,7 +222,7 @@ TASK(TaskDrive)
 		{
 			forward = 50; /* 前進命令 */
 			//if (ecrobot_get_light_sensor(NXT_PORT_S3) <= (LIGHT_WHITE + LIGHT_BLACK)/2)
-			if (maimai < MAIMAI_THRESHOLD)
+			if (gMaimaiValue < MAIMAI_THRESHOLD)
 			{
 				turn = 50;  /* 右旋回命令 */
 			}
@@ -253,6 +246,43 @@ TASK(TaskDrive)
 		nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
 		nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
 
+		systick_wait_ms(4); /* 4msecウェイト */
+	}
+}
+
+/**
+ * Maimaiタスク
+ */
+TASK(TaskMaimai)
+{
+    // MAIMAI_PERIOD msec 毎にイベント通知する
+    SetRelAlarm(AlarmMaimai, 1, MAIMAI_PERIOD); 
+    WaitEvent(EventMaimai);
+
+    bool  is_light_on = 1;          /* 光センサの点灯/消灯状態   */
+    U16   light_value[2] = {0, 0};	/* 0:消灯時、1:点灯時の光センサー値	*/
+
+	while(1)
+	{
+		// MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
+		light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
+
+		// MAIMAI(改): まいまい式差分計算
+		gMaimaiValue = calc_maimai(light_value[0], light_value[1]);
+
+#if 1 // DEBUG
+        {
+            Lcd lcd;
+            lcd.clear();
+            lcd.putf("dn", (int)is_light_on);
+            lcd.putf("dn", (int)light_value[0]);
+            lcd.putf("dn", (int)light_value[1]);
+            lcd.putf("dn", (int)(gMaimaiValue*100));
+            lcd.putf("dn", (int)(MAIMAI_THRESHOLD*100));
+            lcd.disp();
+        }
+#endif
+
 		// MAIMAI(改): 光センサ明滅
 		if (is_light_on) {
 			ecrobot_set_light_sensor_inactive(NXT_PORT_S3);
@@ -262,9 +292,9 @@ TASK(TaskDrive)
 			is_light_on = 1;
 		}
 
-		//systick_wait_ms(4); /* 4msecウェイト */
-		systick_wait_ms(MAIMAI_PERIOD); /* 8msecウェイト */
-	}
+        ClearEvent(EventMaimai);
+        WaitEvent(EventMaimai);
+    }
 }
 
 /*
@@ -473,8 +503,8 @@ static int remote_start(void)
 static float calc_maimai(U16 light_off_value, U16 light_on_value)
 {
 	float luminance;  /* コース明度 */
-	U16 light_diff;		/* 点灯時と消灯時の変化量	*/
-	float k;					/* 光センサー非線形補正値	*/
+	U16 light_diff;	  /* 点灯時と消灯時の変化量	*/
+	float k;		  /* 光センサー非線形補正値	*/
 	
 	/* 光センサーの変化量を計算 */
 	if (light_off_value - light_on_value > 0) {
