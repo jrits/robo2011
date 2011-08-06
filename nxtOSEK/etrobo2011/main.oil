@@ -102,7 +102,7 @@ CPU ATMEL_AT91SAM7S256
     AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
   };
 
-  /* GPS更新タスク設定 */
+  /* GPS/History更新タスク設定 */
   TASK TaskGps
   {
     AUTOSTART = TRUE /* StartOSで自動的にREADY */
@@ -128,36 +128,6 @@ CPU ATMEL_AT91SAM7S256
     {
          TASK = TaskGps;
          EVENT = EventGps;
-    };
-    AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
-  };
-
-  /* History更新タスク設定 */
-  TASK TaskHistory
-  {
-    AUTOSTART = TRUE /* StartOSで自動的にREADY */
-    {
-      APPMODE = appmode1;
-    };
-    PRIORITY = 2;
-    ACTIVATION = 1;
-    SCHEDULE = FULL;
-    STACKSIZE = 512; /* bytes */
-    EVENT = EventHistory;
-  };
-
-  EVENT EventHistory
-  {
-	MASK = AUTO;
-  };
-
-  ALARM AlarmHistory
-  {
-    COUNTER = SysTimerCnt;
-    ACTION = SETEVENT
-    {
-         TASK = TaskHistory;
-         EVENT = EventHistory;
     };
     AUTOSTART = FALSE; /* タスク周期設定はソースコードで。*/
   };

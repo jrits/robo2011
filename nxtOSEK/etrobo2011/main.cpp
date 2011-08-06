@@ -69,9 +69,6 @@ DeclareAlarm(AlarmMaimai);
 DeclareTask(TaskGps);
 DeclareEvent(EventGps);
 DeclareAlarm(AlarmGps);
-DeclareTask(TaskHistory);
-DeclareEvent(EventHistory);
-DeclareAlarm(AlarmHistory);
 DeclareTask(TaskSonar);
 DeclareEvent(EventSonar);
 DeclareAlarm(AlarmSonar);
@@ -298,30 +295,13 @@ TASK(TaskMaimai)
 }
 
 /*
- * GPS更新タスク
+ * GPS/History更新タスク
  */
 TASK(TaskGps)
 {
     // 4msec 毎にイベント通知する設定
     SetRelAlarm(AlarmGps, 1, 4); 
     WaitEvent(EventGps);
-
-    while (1) {
-        mGps.update();
-        // イベント通知を待つ
-        ClearEvent(EventGps);
-        WaitEvent(EventGps);
-    }
-}
-
-/*
- * History更新タスク
- */
-TASK(TaskHistory)
-{
-    // 4msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmHistory, 1, 4); 
-    WaitEvent(EventHistory);
 
     while (1) {
         mLightHistory.update(mLightSensor.get());
@@ -332,9 +312,10 @@ TASK(TaskHistory)
         mDirectionHistory.update(mGps.getDirection());
         mDirectionAverageHistory.update(mDirectionHistory.calcAverage());
         mGyroHistory.update(mGyroSensor.get());
+        mGps.update();
         // イベント通知を待つ
-        ClearEvent(EventHistory);
-        WaitEvent(EventHistory);
+        ClearEvent(EventGps);
+        WaitEvent(EventGps);
     }
 }
 
