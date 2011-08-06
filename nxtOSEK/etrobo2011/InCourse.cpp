@@ -6,9 +6,9 @@
 extern int gSonarDistance;
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] aSection ‚Ç‚ÌƒZƒNƒVƒ‡ƒ“‚©‚çn‚ß‚é‚©BƒfƒtƒHƒ‹ƒg‚ÍƒXƒ^[ƒg’n“_‚©‚çB
+ * @param[in] aSection ã©ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰å§‹ã‚ã‚‹ã‹ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ã‹ã‚‰ã€‚
  */
 InCourse::InCourse(InCourse::eSection aSection)
     : Course()
@@ -16,29 +16,29 @@ InCourse::InCourse(InCourse::eSection aSection)
     mState = aSection;
     switch (mState) {
     case InCourse::ENIGMA:
-        // ƒGƒjƒOƒ}‚©‚çƒeƒXƒg
-        // ƒCƒ“ƒR[ƒXƒKƒŒ[ƒWEƒCƒ“è‘Oü
+        // ã‚¨ãƒ‹ã‚°ãƒã‹ã‚‰ãƒ†ã‚¹ãƒˆ
+        // ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³æ‰‹å‰ç·š
         mGps.adjustXCoordinate(GPS_ENIGMA_START_X);
         mGps.adjustYCoordinate(GPS_ENIGMA_START_Y);
         mGps.adjustDirection(GPS_ENIGMA_START_DIRECTION);
         break;
     case InCourse::MYSTERY:
-        // ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‚©‚çƒeƒXƒg
-        // ƒCƒ“ƒR[ƒXAƒAƒEƒgƒR[ƒXƒV[ƒ\[Œãƒ}[ƒJ[I‚í‚è’n“_
+        // ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«ã‹ã‚‰ãƒ†ã‚¹ãƒˆ
+        // ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã€ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ã‚¹ã‚·ãƒ¼ã‚½ãƒ¼å¾Œãƒãƒ¼ã‚«ãƒ¼çµ‚ã‚ã‚Šåœ°ç‚¹
         mGps.adjustXCoordinate(GPS_MYSTERY_START_X);
         mGps.adjustYCoordinate(GPS_MYSTERY_START_Y);
         mGps.adjustDirection(GPS_MYSTERY_START_DIRECTION);
         break;
     case InCourse::GARAGEIN:
-        // ƒKƒŒ[ƒWƒCƒ“‚©‚çƒeƒXƒg
-        // ƒCƒ“ƒR[ƒXâè‘OƒJ[ƒu‚Ìˆê”Ôo‚Á’£‚Á‚Ä‚¢‚é‚Æ‚±‚ë
+        // ã‚¬ãƒ¬ãƒ¼ã‚¸ã‚¤ãƒ³ã‹ã‚‰ãƒ†ã‚¹ãƒˆ
+        // ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹å‚æ‰‹å‰ã‚«ãƒ¼ãƒ–ã®ä¸€ç•ªå‡ºã£å¼µã£ã¦ã„ã‚‹ã¨ã“ã‚
         mGps.adjustXCoordinate(GPS_GARAGEIN_START_X);
         mGps.adjustYCoordinate(GPS_GARAGEIN_START_Y);
         mGps.adjustDirection(GPS_GARAGEIN_START_DIRECTION);
         break;
     case InCourse::START:
     default:
-        // ƒXƒ^[ƒgˆÊ’u‚©‚çƒeƒXƒg
+        // ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã‹ã‚‰ãƒ†ã‚¹ãƒˆ
         mGps.adjustXCoordinate(GPS_COURSE_START_X);
         mGps.adjustYCoordinate(GPS_COURSE_START_Y);
         mGps.adjustDirection(GPS_COURSE_START_DIRECTION);
@@ -47,14 +47,14 @@ InCourse::InCourse(InCourse::eSection aSection)
 }
 
 /**
- * “KØ‚Èƒhƒ‰ƒCƒo‚ğ‘I‘ğ‚µA‰^“]‚³‚¹‚é
+ * é©åˆ‡ãªãƒ‰ãƒ©ã‚¤ãƒã‚’é¸æŠã—ã€é‹è»¢ã•ã›ã‚‹
  */
 void InCourse::drive()
 {
-#if 1 // ƒƒO‘—M(0F‰ğœA1FÀ{)
+#if 1 // ãƒ­ã‚°é€ä¿¡(0ï¼šè§£é™¤ã€1ï¼šå®Ÿæ–½)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
-	LOGGER_DATAS08[1] = (S8)(mEnigmaDriver.detect()); // ˆêu‚¾‚¯‚È‚Ì‚ÅƒƒO‚Éc‚ç‚È‚¢‰Â”\«‚ ‚è
+	LOGGER_DATAS08[1] = (S8)(mEnigmaDriver.detect()); // ä¸€ç¬ã ã‘ãªã®ã§ãƒ­ã‚°ã«æ®‹ã‚‰ãªã„å¯èƒ½æ€§ã‚ã‚Š
 	LOGGER_DATAU16    = (U16)(mStraightDetector.detect());
 	LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
 	LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
@@ -66,7 +66,7 @@ void InCourse::drive()
 	LOGGER_DATAS32[3] = (S32)(gSonarDistance);
 #endif
     
-#if 0 // ƒfƒoƒbƒO(0F‰ğœA1FÀ{)
+#if 0 // ãƒ‡ãƒãƒƒã‚°(0ï¼šè§£é™¤ã€1ï¼šå®Ÿæ–½)
     {
         static int count = 0;
         if (count++ % 25 == 0) {
@@ -79,7 +79,7 @@ void InCourse::drive()
     }
 #endif
     
-    if (mState == InCourse::START) { // ƒXƒ^[ƒgŒã’Êí‹æŠÔ
+    if (mState == InCourse::START) { // ã‚¹ã‚¿ãƒ¼ãƒˆå¾Œé€šå¸¸åŒºé–“
         if (mNormalDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
@@ -91,7 +91,7 @@ void InCourse::drive()
             }
         }
     }
-    else if (mState == InCourse::ENIGMA) { // ƒGƒjƒOƒ}‹æŠÔ
+    else if (mState == InCourse::ENIGMA) { // ã‚¨ãƒ‹ã‚°ãƒåŒºé–“
         if (mEnigmaDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
@@ -100,7 +100,7 @@ void InCourse::drive()
             }
         }
     }
-    else if (mState == InCourse::MYSTERY) { // ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‹æŠÔ
+    else if (mState == InCourse::MYSTERY) { // ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«åŒºé–“
         if (mMysteryDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
@@ -109,10 +109,10 @@ void InCourse::drive()
             }
         }
     }
-    else if (mState == InCourse::GARAGEIN) { // ƒKƒŒ[ƒWEƒCƒ“‹æŠÔ
+    else if (mState == InCourse::GARAGEIN) { // ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³åŒºé–“
         mInGarageDriver.drive();
     }
-    // ƒeƒXƒgƒhƒ‰ƒCƒo‹N“®
+    // ãƒ†ã‚¹ãƒˆãƒ‰ãƒ©ã‚¤ãƒèµ·å‹•
     else { 
         mTestDriver.drive();
     }     

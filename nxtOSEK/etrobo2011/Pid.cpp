@@ -4,11 +4,11 @@
 #include"Pid.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] kp ”ä—áŒW”
- * @param[in] ki Ï•ªŒW”
- * @param[in] kd ”÷•ªŒW”
+ * @param[in] kp æ¯”ä¾‹ä¿‚æ•°
+ * @param[in] ki ç©åˆ†ä¿‚æ•°
+ * @param[in] kd å¾®åˆ†ä¿‚æ•°
  */
 Pid::Pid(float kp, float ki, float kd) : 
     mKp(kp), mKi(ki), mKd(kd)
@@ -21,17 +21,17 @@ Pid::Pid(float kp, float ki, float kd) :
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 Pid::~Pid()
 {
 }
 
 /**
- * PID§Œä‚É‚æ‚é‘€ì—Ê‚ÌŒvZ
+ * PIDåˆ¶å¾¡ã«ã‚ˆã‚‹æ“ä½œé‡ã®è¨ˆç®—
  *
- * @param[in] P ”ä—á¬•ª
- * @return ‘€ì—Ê
+ * @param[in] P æ¯”ä¾‹æˆåˆ†
+ * @return æ“ä½œé‡
  */
 float Pid::control(float P)
 {

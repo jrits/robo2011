@@ -3,7 +3,7 @@
 //
 
 #include "Gps.h"
-//ƒƒOæ“¾—p
+//ãƒ­ã‚°å–å¾—ç”¨
 #include "Bluetooth.h"
 #include "Daq.h"
 #include "Gps.h"
@@ -11,20 +11,20 @@
 extern Bluetooth bt;
 extern Daq mDaq;
 //--------------------
-//HistoryƒNƒ‰ƒXŠ®¬Œã‚ÍAŠeƒƒ\ƒbƒh“à‚ÅéŒ¾
+//Historyã‚¯ãƒ©ã‚¹å®Œæˆå¾Œã¯ã€å„ãƒ¡ã‚½ãƒƒãƒ‰å†…ã§å®£è¨€
 float prevXCoordinate = 0.0;
 float prevYCoordinate = 0.0;
 float prevEl = 0.0;
 float prevEr = 0.0;
 
-// compile ƒGƒ‰[‰ñ”ğ
+// compile ã‚¨ãƒ©ãƒ¼å›é¿
 bool gAngleTraceFlag; 
 
-//	•â³ŠÖŒW’è”
+//	è£œæ­£é–¢ä¿‚å®šæ•°
 #define DIRECTION_THRESHOLD 25
 #define COURSE_WIDTH 500
 
-//outcourse—p
+//outcourseç”¨
 #define X_CASE_0_4_START (1500)
 #define X_CASE_0_4_END (4500)
 #define Y_CASE_0_4 (-3400)
@@ -37,7 +37,7 @@ bool gAngleTraceFlag;
 #define Y_CASE_3_7_START (-1311)
 #define Y_CASE_3_7_END (-2181)
 #define X_CASE_3_7 (170)
-//incourse—p
+//incourseç”¨
 #define X_IN_2_6_START (1500)
 #define X_IN_2_6_END (-4080)
 #define Y_IN_2_6 (-525)
@@ -48,13 +48,13 @@ bool gAngleTraceFlag;
 #define X_IN_4_END (3690)
 #define Y_IN_4 (-3111)
 
-//================== ƒƒ“ƒoƒƒ\ƒbƒh ===================
+//================== ãƒ¡ãƒ³ãƒãƒ¡ã‚½ãƒƒãƒ‰ ===================
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] aMotorL ¶ƒ‚[ƒ^
- * @param[in] aMotorR ‰Eƒ‚[ƒ^
- * @param[in] aCourse ƒR[ƒX¯•Êq
+ * @param[in] aMotorL å·¦ãƒ¢ãƒ¼ã‚¿
+ * @param[in] aMotorR å³ãƒ¢ãƒ¼ã‚¿
+ * @param[in] aCourse ã‚³ãƒ¼ã‚¹è­˜åˆ¥å­
  */
 Gps::Gps(Motor &aMotorL, Motor &aMotorR, Gps::eCourse aCourse) :
 	mWheelRadius(WHEEL_RADIUS),
@@ -70,7 +70,7 @@ Gps::Gps(Motor &aMotorL, Motor &aMotorR, Gps::eCourse aCourse) :
 	mYOffset(0.0),
 	mDirectionOffset(0.0),
 	mDistanceOffset(0.0),
-	//ˆÈ‰º•â³ŠÖŒW•Ï”
+	//ä»¥ä¸‹è£œæ­£é–¢ä¿‚å¤‰æ•°
     mXAverage(0.0),
     mYAverage(0.0),
     mDirectionAverage(0.0),
@@ -80,47 +80,47 @@ Gps::Gps(Motor &aMotorL, Motor &aMotorR, Gps::eCourse aCourse) :
 }
 
 /**
- * Gpsî•ñ‚ÌXV
+ * Gpsæƒ…å ±ã®æ›´æ–°
  */
 void Gps::update()
 {
-	float angle = 0.0;  /* 4msec‚²‚Æ‚ÌÔ‘ÌŠp“x‚Ì•Ï‰»—Ê (“x) */
-	float radius = 0.0; /* 4msec‚²‚Æ‚ÌÔ‘Ì‚Ì•`‚­‰~‚Ì”¼Œa */
-	float el = 0.0; /* 4msecŠÔ‚ÌƒGƒ“ƒR[ƒ_[’l‚Ì•Ï‰»—Ê(left) */
-	float er = 0.0; /* 4msecŠÔ‚ÌƒGƒ“ƒR[ƒ_[’l‚Ì•Ï‰»—Ê(right) */
-	float currEl = 0.0; /* Œ»İ‚ÌƒGƒ“ƒR[ƒ_[’l(left) */
-	float currEr = 0.0; /* Œ»İ‚ÌƒGƒ“ƒR[ƒ_[’l(right) */
+	float angle = 0.0;  /* 4msecã”ã¨ã®è»Šä½“è§’åº¦ã®å¤‰åŒ–é‡ (åº¦) */
+	float radius = 0.0; /* 4msecã”ã¨ã®è»Šä½“ã®æãå††ã®åŠå¾„ */
+	float el = 0.0; /* 4msecé–“ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¼å€¤ã®å¤‰åŒ–é‡(left) */
+	float er = 0.0; /* 4msecé–“ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¼å€¤ã®å¤‰åŒ–é‡(right) */
+	float currEl = 0.0; /* ç¾åœ¨ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¼å€¤(left) */
+	float currEr = 0.0; /* ç¾åœ¨ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¼å€¤(right) */
 		
- /*********   ’læ“¾   *********/
-	/* ƒGƒ“ƒR[ƒ_[’l‚ğæ“¾ */
+ /*********   å€¤å–å¾—   *********/
+	/* ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¼å€¤ã‚’å–å¾— */
 	currEl = motorL.getCount();
 	currEr = motorR.getCount();
 	
-	/* 4msecŠÔ‚ÌƒGƒ“ƒR[ƒ_[’l‚Ì•Ï‰»—Ê‚ğŒvZ */
+	/* 4msecé–“ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒ¼å€¤ã®å¤‰åŒ–é‡ã‚’è¨ˆç®— */
 	el = currEl - prevEl;
 	er = currEr - prevEr;
-/********* ’læ“¾I—¹ *********/
+/********* å€¤å–å¾—çµ‚äº† *********/
 	
-/********* À•WŒvZ ***********/
-	angle = calcAngle(el, er); /* ‹È‚ª‚Á‚½Šp“x‚ğŒvZ */
+/********* åº§æ¨™è¨ˆç®— ***********/
+	angle = calcAngle(el, er); /* æ›²ãŒã£ãŸè§’åº¦ã‚’è¨ˆç®— */
 	
-	radius = calcRadius(el, angle); /* ‘–s‘Ì‚Ì•`‚­‰~‚Ì”¼Œa‚ğŒvZ */
+	radius = calcRadius(el, angle); /* èµ°è¡Œä½“ã®æãå††ã®åŠå¾„ã‚’è¨ˆç®— */
 	
-	calcCoordinates(angle, radius, el, er); /* À•W‚ÌXV */
+	calcCoordinates(angle, radius, el, er); /* åº§æ¨™ã®æ›´æ–° */
 	calcDistance();
 	
-	calcDirection(angle); /* Œ»İŒü‚¢‚Ä‚¢‚é•ûŒü‚ÌXV */
+	calcDirection(angle); /* ç¾åœ¨å‘ã„ã¦ã„ã‚‹æ–¹å‘ã®æ›´æ–° */
 
 
-/********* À•WŒvZI—¹ *******/
+/********* åº§æ¨™è¨ˆç®—çµ‚äº† *******/
 
-/************ À•W©“®•â³ *****************/
+/************ åº§æ¨™è‡ªå‹•è£œæ­£ *****************/
 
     mXAverage += getXCoordinate();
     mYAverage += getYCoordinate();
     mDirectionAverage += getDirection();
     /**
-     * À•WAŒü‚«•â³ŠÖ”ŒÄ‚Ño‚µBŒÄ‚Ño‚·üŠú‚Í“K“–‚È‚à‚Ì‚É•ÏX‚·‚é‚×‚µB
+     * åº§æ¨™ã€å‘ãè£œæ­£é–¢æ•°å‘¼ã³å‡ºã—ã€‚å‘¼ã³å‡ºã™å‘¨æœŸã¯é©å½“ãªã‚‚ã®ã«å¤‰æ›´ã™ã‚‹ã¹ã—ã€‚
      */
     if (mTimeCounter % 50 == 0) {
         mXAverage /= 50.0;
@@ -141,19 +141,19 @@ void Gps::update()
     }
 	mTimeCounter++;
 
-/************ À•W©“®•â³I—¹ *****************/
+/************ åº§æ¨™è‡ªå‹•è£œæ­£çµ‚äº† *****************/
 
-/******* prevEl,Er‚ÌXV ******/
+/******* prevEl,Erã®æ›´æ–° ******/
 	prevEl = currEl;
 	prevEr = currEr;
-/**** prevEl,Er‚ÌXV‚ÌI—¹****/
+/**** prevEl,Erã®æ›´æ–°ã®çµ‚äº†****/
 
 }
 
 /**
- * ‘–s‘Ì‚ÌŒü‚«(â‘ÎŠp“xA•ûŠp)‚ğŒvZ
+ * èµ°è¡Œä½“ã®å‘ã(çµ¶å¯¾è§’åº¦ã€æ–¹è§’)ã‚’è¨ˆç®—
  *
- * @param[in] angle ’PˆÊŠÔ‚ ‚½‚è‚Ì‘–s‘Ì‚Ì‹È‚ª‚Á‚½Šp“x
+ * @param[in] angle å˜ä½æ™‚é–“ã‚ãŸã‚Šã®èµ°è¡Œä½“ã®æ›²ãŒã£ãŸè§’åº¦
  */
 void Gps::calcDirection(float angle)
 {
@@ -161,16 +161,16 @@ void Gps::calcDirection(float angle)
 }
 
 /**
- * ‘–s‘Ì‚Ì‹È‚ª‚Á‚½Šp“x‚ğŒvZ
+ * èµ°è¡Œä½“ã®æ›²ãŒã£ãŸè§’åº¦ã‚’è¨ˆç®—
  *
- * @param[in] el ’PˆÊŠÔ‚ ‚½‚è‚Ì¶ƒ‚[ƒ^ƒGƒ“ƒR[ƒ_’l•Ï‰»—Ê
- * @param[in] er ’PˆÊŠÔ‚ ‚½‚è‚Ì‰Eƒ‚[ƒ^ƒGƒ“ƒR[ƒ_’l•Ï‰»—Ê
+ * @param[in] el å˜ä½æ™‚é–“ã‚ãŸã‚Šã®å·¦ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤å¤‰åŒ–é‡
+ * @param[in] er å˜ä½æ™‚é–“ã‚ãŸã‚Šã®å³ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤å¤‰åŒ–é‡
  */
 float Gps::calcAngle(float el, float er)
 {
-	/* ƒXƒ^[ƒg‚Ì³–Ê‚ğ0“x‚Æ‚µ‚ÄAã‚©‚çŒ©‚Ä”½Œv‰ñ‚è‚·‚é‚½‚Ñ‚É’l‚ª‘‰Á */
-	/* Œv‰ñ‚è‚ÅŒ¸­ */
-	/* ˆêü360“x */
+	/* ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚ã®æ­£é¢ã‚’0åº¦ã¨ã—ã¦ã€ä¸Šã‹ã‚‰è¦‹ã¦åæ™‚è¨ˆå›ã‚Šã™ã‚‹ãŸã³ã«å€¤ãŒå¢—åŠ  */
+	/* æ™‚è¨ˆå›ã‚Šã§æ¸›å°‘ */
+	/* ä¸€å‘¨360åº¦ */
 
 	float angle = (mWheelRadius * (er - el)) / mWheelDistance;
 	if(isinf(angle))
@@ -182,14 +182,14 @@ float Gps::calcAngle(float el, float er)
 }
 
 /**
- * ‘–s‘Ì‚Ì•`‚­‰~‚Ì”¼Œa‚ğŒvZ
+ * èµ°è¡Œä½“ã®æãå††ã®åŠå¾„ã‚’è¨ˆç®—
  *
- * @param[in] encoderLeft ’PˆÊŠÔ‚ ‚½‚è‚Ì¶ƒ‚[ƒ^ƒGƒ“ƒR[ƒ_’l•Ï‰»—Ê
- * @param[in] angle ’PˆÊŠÔ‚ ‚½‚è‚Ì‘–s‘Ì‚Ì‹È‚ª‚Á‚½Šp“x
+ * @param[in] encoderLeft å˜ä½æ™‚é–“ã‚ãŸã‚Šã®å·¦ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤å¤‰åŒ–é‡
+ * @param[in] angle å˜ä½æ™‚é–“ã‚ãŸã‚Šã®èµ°è¡Œä½“ã®æ›²ãŒã£ãŸè§’åº¦
  */
 float Gps::calcRadius(float encoderLeft, float angle)
 {
-	/* ‚ ‚é“_‚©‚ç‚ ‚é“_‚ÖˆÚ“®‚·‚éÛ‚É•`‚­‰~‚Ì”¼Œa‚ğŒvZ */
+	/* ã‚ã‚‹ç‚¹ã‹ã‚‰ã‚ã‚‹ç‚¹ã¸ç§»å‹•ã™ã‚‹éš›ã«æãå††ã®åŠå¾„ã‚’è¨ˆç®— */
 	
 	float gpsRadius = 0.0;
 	
@@ -207,7 +207,7 @@ float Gps::calcRadius(float encoderLeft, float angle)
 	}
 	if(isinf(gpsRadius))
 	{
-		//ƒGƒ‰[ˆ—B«—ˆ“I‚É‚ÍƒqƒXƒgƒŠƒNƒ‰ƒX‚©‚ç’¼‹ß‚Ì’l‚ğQÆ‚µ‚Ä‘}“ü‚·‚é‚Ì‚ª—Ç‚¢‚©H
+		//ã‚¨ãƒ©ãƒ¼å‡¦ç†ã€‚å°†æ¥çš„ã«ã¯ãƒ’ã‚¹ãƒˆãƒªã‚¯ãƒ©ã‚¹ã‹ã‚‰ç›´è¿‘ã®å€¤ã‚’å‚ç…§ã—ã¦æŒ¿å…¥ã™ã‚‹ã®ãŒè‰¯ã„ã‹ï¼Ÿ
 		gpsRadius = 0;
 	}
 	
@@ -215,16 +215,16 @@ float Gps::calcRadius(float encoderLeft, float angle)
 }
 
 /**
- * ‘–s‘Ì‚ÌˆÚ“®‚µ‚½‹——£‚ğŒvZ
+ * èµ°è¡Œä½“ã®ç§»å‹•ã—ãŸè·é›¢ã‚’è¨ˆç®—
  */
 void Gps::calcDistance()
 {
-    //// ƒGƒ“ƒR[ƒ_’lƒx[ƒX
+    //// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤ãƒ™ãƒ¼ã‚¹
 	float el = motorL.getCount();
     float er = motorR.getCount();
-    float e  = (el + er)/2.0; // •½‹Ï
+    float e  = (el + er)/2.0; // å¹³å‡
     mDistance = (e / 360.0) * 2.0 * mWheelRadius * M_PI;
-    //// À•Wƒx[ƒX(ƒoƒbƒN‚µ‚Ä‚à‰ÁZ‚³‚ê‚Ä‚µ‚Ü‚¤BBB)
+    //// åº§æ¨™ãƒ™ãƒ¼ã‚¹(ãƒãƒƒã‚¯ã—ã¦ã‚‚åŠ ç®—ã•ã‚Œã¦ã—ã¾ã†ã€‚ã€‚ã€‚)
 	// float distance;
 	// float x = mXCoordinate - prevXCoordinate;
 	// float y = mYCoordinate - prevYCoordinate;
@@ -233,12 +233,12 @@ void Gps::calcDistance()
 }
 
 /**
- * xÀ•WAyÀ•W‚ğŒvZ
+ * xåº§æ¨™ã€yåº§æ¨™ã‚’è¨ˆç®—
  *
- * @param[in] angle ’PˆÊŠÔ‚ ‚½‚è‚Ì‘–s‘Ì‚Ì‹È‚ª‚Á‚½Šp“x
- * @param[in] radius Ô—Ö”¼Œa
- * @param[in] encoderL ’PˆÊŠÔ‚ ‚½‚è‚Ì¶ƒ‚[ƒ^ƒGƒ“ƒR[ƒ_’l•Ï‰»—Ê
- * @param[in] encoderR ’PˆÊŠÔ‚ ‚½‚è‚Ì‰Eƒ‚[ƒ^ƒGƒ“ƒR[ƒ_’l•Ï‰»—Ê
+ * @param[in] angle å˜ä½æ™‚é–“ã‚ãŸã‚Šã®èµ°è¡Œä½“ã®æ›²ãŒã£ãŸè§’åº¦
+ * @param[in] radius è»Šè¼ªåŠå¾„
+ * @param[in] encoderL å˜ä½æ™‚é–“ã‚ãŸã‚Šã®å·¦ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤å¤‰åŒ–é‡
+ * @param[in] encoderR å˜ä½æ™‚é–“ã‚ãŸã‚Šã®å³ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤å¤‰åŒ–é‡
  */
 void Gps::calcCoordinates(float angle, float radius, float encoderL, float encoderR)
 {	
@@ -248,7 +248,7 @@ void Gps::calcCoordinates(float angle, float radius, float encoderL, float encod
     
     if(encoderL*encoderR >= 0)
     {  
-        /* ‘–s‘Ì‚Ì•`‚­‰~‚Ì’†S‚ÌÀ•W‚ğ‹‚ß‚é */
+        /* èµ°è¡Œä½“ã®æãå††ã®ä¸­å¿ƒã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹ */
         if(angle < 0)
         {
             circleX = mXCoordinate - radius * cos(degreeToRadian(marge360(mDirection) + 90.0));
@@ -260,13 +260,13 @@ void Gps::calcCoordinates(float angle, float radius, float encoderL, float encod
             circleY = mYCoordinate - radius * sin(degreeToRadian(marge360(mDirection) - 90.0));
         }
         
-        /* À•W‚ÌŒvZ */
-        if(angle == 0)/* ’¼i‚Ìê‡ */
+        /* åº§æ¨™ã®è¨ˆç®— */
+        if(angle == 0)/* ç›´é€²ã®å ´åˆ */
         {
             mXCoordinate = mXCoordinate + (encoderL / 360.0) * 2.0 * mWheelRadius * M_PI * (cos(degreeToRadian(((int)mDirection)%360)));
             mYCoordinate = mYCoordinate + (encoderL / 360.0) * 2.0 * mWheelRadius * M_PI * (sin(degreeToRadian(((int)mDirection)%360)));
         }
-        else/* ‰~‚ğ•`‚­ê‡ */ 
+        else/* å††ã‚’æãå ´åˆ */ 
         {
             mXCoordinate = (cos(degreeToRadian(angle))*(prevXCoordinate - circleX)) - (sin(degreeToRadian(angle))*(mYCoordinate - circleY)) + circleX;
             mYCoordinate = (sin(degreeToRadian(angle))*(prevXCoordinate - circleX)) + (cos(degreeToRadian(angle))*(mYCoordinate - circleY)) + circleY;
@@ -277,24 +277,24 @@ void Gps::calcCoordinates(float angle, float radius, float encoderL, float encod
         float rightWheelYCoordinate = 0.0;
         float leftWheelXCoordinate = 0.0;
         float leftWheelYCoordinate = 0.0;
-        /* ‰EÔ—ÖˆÊ’uÀ•W‚ğ‹‚ß‚é */
+        /* å³è»Šè¼ªä½ç½®åº§æ¨™ã‚’æ±‚ã‚ã‚‹ */
         rightWheelXCoordinate = mXCoordinate + (mWheelDistance/2.0) * cos(degreeToRadian(marge360(getDirection() - 90.0)));
         rightWheelYCoordinate = mYCoordinate + (mWheelDistance/2.0) * sin(degreeToRadian(marge360(getDirection() - 90.0)));
        	
-        /* ¶Ô—ÖˆÊ’uÀ•W‚ğ‹‚ß‚é */
+        /* å·¦è»Šè¼ªä½ç½®åº§æ¨™ã‚’æ±‚ã‚ã‚‹ */
         leftWheelXCoordinate = mXCoordinate - (mWheelDistance/2.0)*cos(degreeToRadian(marge360(getDirection() - 90.0)));
         leftWheelYCoordinate = mYCoordinate - (mWheelDistance/2.0)*sin(degreeToRadian(marge360(getDirection() - 90.0)));
-        /* ‰ñ“]’†SÀ•W‚ğ‹‚ß‚éB */
+        /* å›è»¢ä¸­å¿ƒåº§æ¨™ã‚’æ±‚ã‚ã‚‹ã€‚ */
         circleX = (float)(leftWheelXCoordinate + (fabs(encoderL)/(fabs(encoderL)+fabs(encoderR)))*(rightWheelXCoordinate - leftWheelXCoordinate));
         circleY = (float)(leftWheelYCoordinate + (fabs(encoderL)/(fabs(encoderL)+fabs(encoderR)))*(rightWheelYCoordinate - leftWheelYCoordinate));
-        /* ˆÚ“®Œã‚Ìƒƒ{ƒbƒg‚ÌˆÊ’uÀ•W‚ğ‹‚ß‚éB */
+        /* ç§»å‹•å¾Œã®ãƒ­ãƒœãƒƒãƒˆã®ä½ç½®åº§æ¨™ã‚’æ±‚ã‚ã‚‹ã€‚ */
         mXCoordinate = (cos(degreeToRadian(angle))*(prevXCoordinate - circleX)) - (sin(degreeToRadian(angle))*(mYCoordinate - circleY)) + circleX;
     	mYCoordinate = (sin(degreeToRadian(angle))*(prevXCoordinate - circleX)) + (cos(degreeToRadian(angle))*(mYCoordinate - circleY)) + circleY;
     }
 	if(circleX == -1.0 || circleY  == 1)
 	{
-		/*’†SÀ•W‚ªinf‚Ìê‡AŒvZ‚³‚ê‚éÀ•W‚à‚¨‚©‚µ‚È’l‚É‚È‚é‚½‚ßA“K“–‚È’l‚Å•â‘« */
-		/*ƒqƒXƒgƒŠƒNƒ‰ƒX‚©‚ç’¼‹ß‚Ì’l‚ğQÆ‚·‚éŒ`‚ª—Ç‚¢‚©H */
+		/*ä¸­å¿ƒåº§æ¨™ãŒinfã®å ´åˆã€è¨ˆç®—ã•ã‚Œã‚‹åº§æ¨™ã‚‚ãŠã‹ã—ãªå€¤ã«ãªã‚‹ãŸã‚ã€é©å½“ãªå€¤ã§è£œè¶³ */
+		/*ãƒ’ã‚¹ãƒˆãƒªã‚¯ãƒ©ã‚¹ã‹ã‚‰ç›´è¿‘ã®å€¤ã‚’å‚ç…§ã™ã‚‹å½¢ãŒè‰¯ã„ã‹ï¼Ÿ */
 		mXCoordinate = -1.0;
 		mYCoordinate = 1.0;
 	}
@@ -319,9 +319,9 @@ void Gps::calcCoordinates(float angle, float radius, float encoderL, float encod
 }
 
 /**
- * XÀ•W‚ğæ“¾‚·‚é
+ * Xåº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- * @return XÀ•W
+ * @return Xåº§æ¨™
  */
 float Gps::getXCoordinate()
 {
@@ -331,9 +331,9 @@ float Gps::getXCoordinate()
 }
 
 /**
- * YÀ•W‚ğæ“¾‚·‚é
+ * Yåº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- * @return YÀ•W
+ * @return Yåº§æ¨™
  */
 float Gps::getYCoordinate()
 {
@@ -341,9 +341,9 @@ float Gps::getYCoordinate()
 }
 
 /**
- * Ô‘ÌŒü‚«‚ğæ“¾‚·‚é
+ * è»Šä½“å‘ãã‚’å–å¾—ã™ã‚‹
  *
- * @return Ô‘ÌŒü‚«
+ * @return è»Šä½“å‘ã
  */
 float Gps::getDirection()
 {
@@ -351,9 +351,9 @@ float Gps::getDirection()
 }
 
 /**
- * ‹——£‚ğæ“¾‚·‚é
+ * è·é›¢ã‚’å–å¾—ã™ã‚‹
  *
- * @return ‹——£
+ * @return è·é›¢
  */
 float Gps::getDistance()
 {
@@ -362,9 +362,9 @@ float Gps::getDistance()
 
 
 /**
- * XÀ•W‚ğ•â³‚·‚é
+ * Xåº§æ¨™ã‚’è£œæ­£ã™ã‚‹
  *
- * @param[in] trueValue ^’l
+ * @param[in] trueValue çœŸå€¤
  */
 void Gps::adjustXCoordinate(float trueValue)
 {
@@ -377,15 +377,15 @@ void Gps::adjustXCoordinate(float trueValue)
 		}
 	}
     mXCoordinate = trueValue;
-    // @todo: ŠeíŒvZ®‚ğƒIƒtƒZƒbƒg‘Î‰‚ÉC³
+    // @todo: å„ç¨®è¨ˆç®—å¼ã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆå¯¾å¿œã«ä¿®æ­£
     //mXOffset = trueValue - mXCoordinate;
 }
 
 
 /**
- * YÀ•W‚ğ•â³‚·‚é
+ * Yåº§æ¨™ã‚’è£œæ­£ã™ã‚‹
  *
- * @param[in] trueValue ^’l
+ * @param[in] trueValue çœŸå€¤
  */
 void Gps::adjustYCoordinate(float trueValue)
 {
@@ -398,14 +398,14 @@ void Gps::adjustYCoordinate(float trueValue)
 		}
 	}
     mYCoordinate = trueValue;
-    // @todo: ŠeíŒvZ®‚ğƒIƒtƒZƒbƒg‘Î‰‚ÉC³
+    // @todo: å„ç¨®è¨ˆç®—å¼ã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆå¯¾å¿œã«ä¿®æ­£
     //mYOffset = trueValue - mYCoordinate;
 }
 	
 /**
- * Œü‚«‚ğ•â³‚·‚é
+ * å‘ãã‚’è£œæ­£ã™ã‚‹
  *
- * @param[in] trueValue ^’l
+ * @param[in] trueValue çœŸå€¤
  */
 void Gps::adjustDirection(float trueValue)
 {
@@ -418,14 +418,14 @@ void Gps::adjustDirection(float trueValue)
 		}
 	}
     mDirection = trueValue;
-    // @todo: ŠeíŒvZ®‚ğƒIƒtƒZƒbƒg‘Î‰‚ÉC³
+    // @todo: å„ç¨®è¨ˆç®—å¼ã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆå¯¾å¿œã«ä¿®æ­£
     //mDirectionOffset = trueValue - mDirection;
 }
 
 /**
- * ‹——£‚ğ•â³‚·‚é
+ * è·é›¢ã‚’è£œæ­£ã™ã‚‹
  *
- * @param[in] trueValue ^’l
+ * @param[in] trueValue çœŸå€¤
  */
 void Gps::adjustDistance(float trueValue)
 {
@@ -438,22 +438,22 @@ void Gps::adjustDistance(float trueValue)
 		}
 	}
     mDistance = trueValue;
-    // @todo: ŠeíŒvZ®‚ğƒIƒtƒZƒbƒg‘Î‰‚ÉC³
+    // @todo: å„ç¨®è¨ˆç®—å¼ã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆå¯¾å¿œã«ä¿®æ­£
     //mDistanceOffset = trueValue - mDistance;
 }
 
 /**
- * ‘–s‘Ì‚Ì•`‚­‰~‚Ì’†S‚ÌÀ•W‚ğ‹‚ß‚é
+ * èµ°è¡Œä½“ã®æãå††ã®ä¸­å¿ƒã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  *
- * @param[in] angle ’PˆÊŠÔ‚ ‚½‚è‚Ì‘–s‘Ì‚Ì‹È‚ª‚Á‚½Šp“x
- * @param[in] radius Ô—Ö”¼Œa
- * @param[out] circleX ’†S‚ÌXÀ•W
- * @param[out] circleY ’†S‚ÌXÀ•W
- * @retval false ”ñ‘Î‰‚Ì“®‚«
+ * @param[in] angle å˜ä½æ™‚é–“ã‚ãŸã‚Šã®èµ°è¡Œä½“ã®æ›²ãŒã£ãŸè§’åº¦
+ * @param[in] radius è»Šè¼ªåŠå¾„
+ * @param[out] circleX ä¸­å¿ƒã®Xåº§æ¨™
+ * @param[out] circleY ä¸­å¿ƒã®Xåº§æ¨™
+ * @retval false éå¯¾å¿œã®å‹•ã
  */
 bool Gps::calcCenterCoordinates(float angle, float radius, float *circleX, float *circleY)
 {
-	/* ‘–s‘Ì‚Ì•`‚­‰~‚Ì’†S‚ÌÀ•W‚ğ‹‚ß‚é */
+	/* èµ°è¡Œä½“ã®æãå††ã®ä¸­å¿ƒã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹ */
 	float dirAngle = 0.0;
 	
 	if(angle < 0)
@@ -482,20 +482,20 @@ bool Gps::calcCenterCoordinates(float angle, float radius, float *circleX, float
 }
 
 /**
- * ƒAƒEƒgƒR[ƒX©“®•â³ŠÖ”
+ * ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ã‚¹è‡ªå‹•è£œæ­£é–¢æ•°
  *
- * @param[in] avgX xÀ•Wˆê’èŠÔ•½‹Ï’l
- * @param[in] avgY yÀ•Wˆê’èŠÔ•½‹Ï’l
- * @param[in] avgD Œü‚«ˆê“]ŠÔ•½‹Ï’l
+ * @param[in] avgX xåº§æ¨™ä¸€å®šæ™‚é–“å¹³å‡å€¤
+ * @param[in] avgY yåº§æ¨™ä¸€å®šæ™‚é–“å¹³å‡å€¤
+ * @param[in] avgD å‘ãä¸€è»¢æ™‚é–“å¹³å‡å€¤
  * @author tatsuno
  */
 void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 {
 	/**
-     * ’¼üã‚ğ‘–s’†‚©‚ÂGPS‚ÌÀ•W‚©‚çA‘–sˆÊ’uAŒü‚«‚ğ•â³
-	 * GPSVisualizer‚ÌÀ•W‚ğ—˜—p‚µ‚Äƒ}ƒbƒsƒ“ƒO‚ğs‚¤
-	 * À•Ww’è‘–sŠ®¬ŒãAÀ•W•â³‚ğs‚¦‚½Œã‚ÉAswitch•¶‚Ì’†g’Ç‰ÁB
-	 * Œ»“_‚Å‚ÍAŒü‚«A’¼ü‚©‚çA‚Ç‚ñ‚ÈêŠ‚Å‚àŒü‚«‚ğ•â³‚·‚é‚Ì‚Í¢“ï->‹æŠÔ‚ğÀ•W‚Åw’è‚·‚é‚½‚ßA”»’è‚ªƒVƒrƒA‚É‚È‚é
+     * ç›´ç·šä¸Šã‚’èµ°è¡Œä¸­ã‹ã¤GPSã®åº§æ¨™ã‹ã‚‰ã€èµ°è¡Œä½ç½®ã€å‘ãã‚’è£œæ­£
+	 * GPSVisualizerã®åº§æ¨™ã‚’åˆ©ç”¨ã—ã¦ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¡Œã†
+	 * åº§æ¨™æŒ‡å®šèµ°è¡Œå®Œæˆå¾Œã€åº§æ¨™è£œæ­£ã‚’è¡ŒãˆãŸå¾Œã«ã€switchæ–‡ã®ä¸­èº«è¿½åŠ ã€‚
+	 * ç¾æ™‚ç‚¹ã§ã¯ã€å‘ãã€ç›´ç·šã‹ã‚‰ã€ã©ã‚“ãªå ´æ‰€ã§ã‚‚å‘ãã‚’è£œæ­£ã™ã‚‹ã®ã¯å›°é›£->åŒºé–“ã‚’åº§æ¨™ã§æŒ‡å®šã™ã‚‹ãŸã‚ã€åˆ¤å®šãŒã‚·ãƒ“ã‚¢ã«ãªã‚‹
 	 */
     int direction = (int)marge360(avgD);
 	int mDirectionDiv = direction%90;
@@ -513,7 +513,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 	{
 		return;
 	}
-	/* ‹æŠÔ‚Ìc•+-ƒR[ƒX•A‹æŠÔ‚Ì‰¡•->’¼ü‹æŠÔ‹——£ */
+	/* åŒºé–“ã®ç¸¦å¹…+-ã‚³ãƒ¼ã‚¹å¹…ã€åŒºé–“ã®æ¨ªå¹…->ç›´ç·šåŒºé–“è·é›¢ */
 	switch(posFlag){
 		case 0:
 			if( (((avgY >= Y_CASE_0_4 -COURSE_WIDTH) && (avgY <= Y_CASE_0_4 + COURSE_WIDTH)))  && (((avgX>=X_CASE_0_4_START) && (avgX <= X_CASE_0_4_END )) && ((getXCoordinate()>=X_CASE_0_4_START) && (getXCoordinate() <= X_CASE_0_4_END))))
@@ -563,20 +563,20 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 }
 
 /**
- * ƒCƒ“ƒR[ƒX©“®•â³ŠÖ”
+ * ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹è‡ªå‹•è£œæ­£é–¢æ•°
  *
- * @param[in] avgX xÀ•Wˆê’èŠÔ•½‹Ï’l
- * @param[in] avgY yÀ•Wˆê’èŠÔ•½‹Ï’l
- * @param[in] avgD Œü‚«ˆê“]ŠÔ•½‹Ï’l
+ * @param[in] avgX xåº§æ¨™ä¸€å®šæ™‚é–“å¹³å‡å€¤
+ * @param[in] avgY yåº§æ¨™ä¸€å®šæ™‚é–“å¹³å‡å€¤
+ * @param[in] avgD å‘ãä¸€è»¢æ™‚é–“å¹³å‡å€¤
  * @author tatsuno
  */
 void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 {
 	/**
-     * ’¼üã‚ğ‘–s’†‚©‚ÂGPS‚ÌÀ•W‚©‚çA‘–sˆÊ’uAŒü‚«‚ğ•â³
-	 * GPSVisualizer‚ÌÀ•W‚ğ—˜—p‚µ‚Äƒ}ƒbƒsƒ“ƒO‚ğs‚¤
-	 * À•Ww’è‘–sŠ®¬ŒãAÀ•W•â³‚ğs‚¦‚½Œã‚ÉAswitch•¶‚Ì’†g’Ç‰ÁB
-	 * Œ»“_‚Å‚ÍAŒü‚«A’¼ü‚©‚çA‚Ç‚ñ‚ÈêŠ‚Å‚àŒü‚«‚ğ•â³‚·‚é‚Ì‚Í¢“ï->‹æŠÔ‚ğÀ•W‚Åw’è‚·‚é‚½‚ßA”»’è‚ªƒVƒrƒA‚É‚È‚é
+     * ç›´ç·šä¸Šã‚’èµ°è¡Œä¸­ã‹ã¤GPSã®åº§æ¨™ã‹ã‚‰ã€èµ°è¡Œä½ç½®ã€å‘ãã‚’è£œæ­£
+	 * GPSVisualizerã®åº§æ¨™ã‚’åˆ©ç”¨ã—ã¦ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¡Œã†
+	 * åº§æ¨™æŒ‡å®šèµ°è¡Œå®Œæˆå¾Œã€åº§æ¨™è£œæ­£ã‚’è¡ŒãˆãŸå¾Œã«ã€switchæ–‡ã®ä¸­èº«è¿½åŠ ã€‚
+	 * ç¾æ™‚ç‚¹ã§ã¯ã€å‘ãã€ç›´ç·šã‹ã‚‰ã€ã©ã‚“ãªå ´æ‰€ã§ã‚‚å‘ãã‚’è£œæ­£ã™ã‚‹ã®ã¯å›°é›£->åŒºé–“ã‚’åº§æ¨™ã§æŒ‡å®šã™ã‚‹ãŸã‚ã€åˆ¤å®šãŒã‚·ãƒ“ã‚¢ã«ãªã‚‹
 	 */
     int direction = (int)marge360(avgD);
 	int mDirectionDiv = direction%90;
@@ -594,7 +594,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 	{
 		return;
 	}
-	/* ‹æŠÔ‚Ìc•+-ƒR[ƒX•A‹æŠÔ‚Ì‰¡•->’¼ü‹æŠÔ‹——£ */
+	/* åŒºé–“ã®ç¸¦å¹…+-ã‚³ãƒ¼ã‚¹å¹…ã€åŒºé–“ã®æ¨ªå¹…->ç›´ç·šåŒºé–“è·é›¢ */
 	switch(posFlag){
 		case 0:
 			if( (((avgY >= Y_IN_4 -COURSE_WIDTH) && (avgY <= Y_IN_4 + COURSE_WIDTH)))  && (((avgX>= X_IN_4_START ) && (avgX <= X_IN_4_END )) && ((getXCoordinate()>=X_IN_4_START) && (getXCoordinate() <= X_IN_4_END))))
@@ -635,16 +635,16 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 	}
 }
 
-//================== ƒNƒ‰ƒXƒƒ\ƒbƒh ===================
+//================== ã‚¯ãƒ©ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰ ===================
 /**
- * ƒ†[ƒeƒBƒŠƒeƒBŠÖ”:Šp“x‚ğ [0, 360] ‚Ü‚½‚Í [0, -360]‚É—}‚¦‚é
+ * ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°:è§’åº¦ã‚’ [0, 360] ã¾ãŸã¯ [0, -360]ã«æŠ‘ãˆã‚‹
  *
- * @param[in] margeTarget Šp“x
- * @return [0, 360] ‚Ü‚½‚Í [0, -360] ‚Ì‘Î‰‚·‚éŠp“x
+ * @param[in] margeTarget è§’åº¦
+ * @return [0, 360] ã¾ãŸã¯ [0, -360] ã®å¯¾å¿œã™ã‚‹è§’åº¦
  */
 float Gps::marge360(float margeTarget)
 {
-    int sign = 1;//•„†”»•Ê•Ï” 0ˆÈã‚È‚ç1, 0–¢–‚È‚ç-1
+    int sign = 1;//ç¬¦å·åˆ¤åˆ¥å¤‰æ•° 0ä»¥ä¸Šãªã‚‰1, 0æœªæº€ãªã‚‰-1
 	float margeT = fabs(margeTarget);
 	if(margeTarget >= 0)
 	{
@@ -665,10 +665,10 @@ float Gps::marge360(float margeTarget)
 }
 
 /**
- * ƒ†[ƒeƒBƒŠƒeƒBŠÖ”:Šp“x‚ğ [-180, 180] ‚É—}‚¦‚é
+ * ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°:è§’åº¦ã‚’ [-180, 180] ã«æŠ‘ãˆã‚‹
  *
- * @param[in] margeTarget Šp“x
- * @return [-180, 180] ‚Ì‘Î‰‚·‚éŠp“x
+ * @param[in] margeTarget è§’åº¦
+ * @return [-180, 180] ã®å¯¾å¿œã™ã‚‹è§’åº¦
  */
 float Gps::marge180(float margeTarget)
 {
@@ -685,10 +685,10 @@ float Gps::marge180(float margeTarget)
 }
 
 /**
- * ƒ†[ƒeƒBƒŠƒeƒBŠÖ”:Šp“x(degree) ‚ğƒ‰ƒWƒAƒ“(radian)‚É•ÏŠ·
+ * ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°:è§’åº¦(degree) ã‚’ãƒ©ã‚¸ã‚¢ãƒ³(radian)ã«å¤‰æ›
  *
- * @param[in] degree Šp“x
- * @return ƒ‰ƒWƒAƒ“
+ * @param[in] degree è§’åº¦
+ * @return ãƒ©ã‚¸ã‚¢ãƒ³
  */
 float Gps::degreeToRadian(float degree)
 {
@@ -701,10 +701,10 @@ float Gps::degreeToRadian(float degree)
 }
 
 /**
- * ƒ†[ƒeƒBƒŠƒeƒBŠÖ”:ƒ‰ƒWƒAƒ“(radian)‚ğŠp“x(degree)‚É•ÏŠ·
+ * ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°:ãƒ©ã‚¸ã‚¢ãƒ³(radian)ã‚’è§’åº¦(degree)ã«å¤‰æ›
  *
- * @param[in] radian ƒ‰ƒWƒAƒ“
- * @return Šp“x
+ * @param[in] radian ãƒ©ã‚¸ã‚¢ãƒ³
+ * @return è§’åº¦
  */
 float Gps::radianToDegree(float radian)
 {
@@ -716,13 +716,13 @@ float Gps::radianToDegree(float radian)
 }
 
 /**
- * ƒ†[ƒeƒBƒŠƒeƒBŠÖ”:atan ‚ğg‚Á‚½©ì atan2 ŠÖ”
+ * ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°:atan ã‚’ä½¿ã£ãŸè‡ªä½œ atan2 é–¢æ•°
  *
- * atan2 ‚ğg—p‚·‚é‚ÆŒÅ‚Ü‚é‚±‚Æ‚ª‚ ‚é‚½‚ß
+ * atan2 ã‚’ä½¿ç”¨ã™ã‚‹ã¨å›ºã¾ã‚‹ã“ã¨ãŒã‚ã‚‹ãŸã‚
  *
  * @param[in] y
  * @param[in] x
- * @return ƒ‰ƒWƒAƒ“
+ * @return ãƒ©ã‚¸ã‚¢ãƒ³
  */
 double Gps::atan2(double y, double x)
 {
@@ -740,11 +740,11 @@ double Gps::atan2(double y, double x)
 }
 
 /**
- * Œ»İÀ•W‚Æw’èÀ•WŠÔ‚Ì‹——£‚ğŒvZ‚·‚é
+ * ç¾åœ¨åº§æ¨™ã¨æŒ‡å®šåº§æ¨™é–“ã®è·é›¢ã‚’è¨ˆç®—ã™ã‚‹
  *
- * @param[in] targetCoordinate w’èÀ•W
+ * @param[in] targetCoordinate æŒ‡å®šåº§æ¨™
  *
- * @return ‹——£
+ * @return è·é›¢
  */
 float Gps::calcDistanceTo(Point targetCoordinate)
 {
@@ -757,9 +757,9 @@ float Gps::calcDistanceTo(Point targetCoordinate)
 
 //============== Obsolete =============
 /**
- * xÀ•WƒZƒbƒ^
+ * xåº§æ¨™ã‚»ãƒƒã‚¿
  *
- * @param[in] xCo w’èxÀ•W
+ * @param[in] xCo æŒ‡å®šxåº§æ¨™
  *
  */
 void Gps::setXCoordinate(float xCo)
@@ -767,9 +767,9 @@ void Gps::setXCoordinate(float xCo)
     mXCoordinate = xCo;
 }
 /**
- * yÀ•WƒZƒbƒ^
+ * yåº§æ¨™ã‚»ãƒƒã‚¿
  *
- * @param[in] yCo w’èyÀ•W
+ * @param[in] yCo æŒ‡å®šyåº§æ¨™
  *
  */
 void Gps::setYCoordinate(float yCo)
@@ -777,9 +777,9 @@ void Gps::setYCoordinate(float yCo)
 	mYCoordinate = yCo;
 }
 /**
- * directionƒZƒbƒ^
+ * directionã‚»ãƒƒã‚¿
  *
- * @param[in] direction w’èŒü‚«
+ * @param[in] direction æŒ‡å®šå‘ã
  *
  */
 void Gps::setDirection(float direction)
@@ -787,9 +787,9 @@ void Gps::setDirection(float direction)
     mDirection = direction;
 }
 /**
- * ‹——£ƒZƒbƒ^
+ * è·é›¢ã‚»ãƒƒã‚¿
  *
- * @param[in] distance w’è‹——£
+ * @param[in] distance æŒ‡å®šè·é›¢
  *
  */
 void Gps::setDistance(float distance)

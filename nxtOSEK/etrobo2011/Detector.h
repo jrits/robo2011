@@ -9,24 +9,24 @@
 #define EA_3E87576D_66A3_4a67_87CD_9668CD4E1E41__INCLUDED_
 
 /**
- * ŒŸoŒnƒNƒ‰ƒXƒCƒ“ƒ^[ƒtƒF[ƒX
+ * æ¤œå‡ºç³»ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  */
 class Detector
 {
 public:
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      */
 	Detector(){}
     /**
-     * ƒfƒXƒgƒ‰ƒNƒ^
+     * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      */
 	~Detector(){}
     /**
-     * ŒŸo‚·‚é
+     * æ¤œå‡ºã™ã‚‹
      *
-     * @retval true ŒŸo
-     * @retval false –¢ŒŸo
+     * @retval true æ¤œå‡º
+     * @retval false æœªæ¤œå‡º
      */
 	bool detect();
 };

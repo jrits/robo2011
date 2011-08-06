@@ -6,14 +6,14 @@
 #include "factory.h"
 #include "constants.h"
 
-//ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‚Ìƒ‹[ƒg(4ƒpƒ^[ƒ“)
+//ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«ã®ãƒ«ãƒ¼ãƒˆ(4ãƒ‘ã‚¿ãƒ¼ãƒ³)
 #include "MysteryLineLL.h"
 #include "MysteryLineLR.h"
 #include "MysteryLineRL.h"
 #include "MysteryLineRR.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 MysteryDriver::MysteryDriver()
 {
@@ -22,16 +22,16 @@ MysteryDriver::MysteryDriver()
 }
 
 /**
- * ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‹æŠÔ‚ğU—ª‚·‚é
+ * ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«åŒºé–“ã‚’æ”»ç•¥ã™ã‚‹
  *
- * ƒT[ƒNƒ‹‘O’¼üƒ‰ƒCƒ“ƒgƒŒ[ƒX‚©‚çAƒ‰ƒCƒ“•œ‹AŒãƒ‰ƒCƒ“ƒgƒŒ[ƒX‚Ü‚Å‚ğ’S“–‚·‚éB
+ * ã‚µãƒ¼ã‚¯ãƒ«å‰ç›´ç·šãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‹ã‚‰ã€ãƒ©ã‚¤ãƒ³å¾©å¸°å¾Œãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã¾ã§ã‚’æ‹…å½“ã™ã‚‹ã€‚
  *
- * @retval true ÅIó‘ÔB‚±‚êˆÈ~‚Ìó‘Ô‘JˆÚ‚È‚µB
- * @retval false ‚Ü‚¾–ğ–Ú‚ªŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * @retval true æœ€çµ‚çŠ¶æ…‹ã€‚ã“ã‚Œä»¥é™ã®çŠ¶æ…‹é·ç§»ãªã—ã€‚
+ * @retval false ã¾ã å½¹ç›®ãŒå®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
 bool MysteryDriver::drive()
 {
-#if 0 // ƒƒO‘—M•”•ªi0F‰ğœA1FÀ{j
+#if 0 // ãƒ­ã‚°é€ä¿¡éƒ¨åˆ†ï¼ˆ0ï¼šè§£é™¤ã€1ï¼šå®Ÿæ–½ï¼‰
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
 	LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());
@@ -40,9 +40,9 @@ bool MysteryDriver::drive()
 	LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
 #endif
     
-#if 1 // ƒfƒoƒbƒO•”•ª
-    // DESK_DEBUG = true; // ƒ‚[ƒ^‚ğ‰ñ‚³‚È‚¢
-    static int count = 0; // static‚ÍŠî–{‹Ö~‚¾‚ªAƒfƒoƒbƒO‚¾‚©‚çg—p
+#if 1 // ãƒ‡ãƒãƒƒã‚°éƒ¨åˆ†
+    // DESK_DEBUG = true; // ãƒ¢ãƒ¼ã‚¿ã‚’å›ã•ãªã„æ™‚
+    static int count = 0; // staticã¯åŸºæœ¬ç¦æ­¢ã ãŒã€ãƒ‡ãƒãƒƒã‚°ã ã‹ã‚‰ä½¿ç”¨
     if (count++ % 25 == 0) {
         Lcd lcd;
         lcd.clear();
@@ -56,13 +56,13 @@ bool MysteryDriver::drive()
     }
 #endif
     
-    if (mState == MysteryDriver::INIT) { // ‰Šú‰»ó‘Ô
-        mRoute       = mEnigmaDriver.decode();  // ƒGƒjƒOƒ}ƒhƒ‰ƒCƒo‚©‚çAƒ‹[ƒgî•ñ‚ª‘—‚ç‚ê‚Ä‚­‚éB
+    if (mState == MysteryDriver::INIT) { // åˆæœŸåŒ–çŠ¶æ…‹
+        mRoute       = mEnigmaDriver.decode();  // ã‚¨ãƒ‹ã‚°ãƒãƒ‰ãƒ©ã‚¤ãƒã‹ã‚‰ã€ãƒ«ãƒ¼ãƒˆæƒ…å ±ãŒé€ã‚‰ã‚Œã¦ãã‚‹ã€‚
         mInitState   = true;
         
         mState = MysteryDriver::BEFORELINETRACE;
     }
-    // è‘O’¼üƒ‰ƒCƒ“ƒgƒŒ[ƒX(ƒCƒ“ƒR[ƒXAƒAƒEƒgƒR[ƒXƒV[ƒ\[Œãƒ}[ƒJ[I‚í‚è’n“_)
+    // æ‰‹å‰ç›´ç·šãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹(ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã€ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ã‚¹ã‚·ãƒ¼ã‚½ãƒ¼å¾Œãƒãƒ¼ã‚«ãƒ¼çµ‚ã‚ã‚Šåœ°ç‚¹)
     if (mState == MysteryDriver::BEFORELINETRACE) {
         if (mInitState) {
             mInitState = false;
@@ -73,42 +73,42 @@ bool MysteryDriver::drive()
             mInitState = true;
         }
     }
-    if (mState == MysteryDriver::MYSTERYROUTE) {    // c‰¡–³s‘–s
+    if (mState == MysteryDriver::MYSTERYROUTE) {    // ç¸¦æ¨ªç„¡å°½èµ°è¡Œ
         if (mInitState) {
             mInitState = false;
 
-        switch (mRoute) {//ƒ‹[ƒg•ª‚¯
-            case 0: //‰E-‰EƒR[ƒX
+        switch (mRoute) {//ãƒ«ãƒ¼ãƒˆåˆ†ã‘
+            case 0: //å³-å³ã‚³ãƒ¼ã‚¹
                 mVirtualLineTrace.setControlPoints(MYSTERY_LINE_RR, NUM_MYSTERY_LINE_RR);
                 break;
-            case 1: //‰E-¶ƒR[ƒX
+            case 1: //å³-å·¦ã‚³ãƒ¼ã‚¹
                 mVirtualLineTrace.setControlPoints(MYSTERY_LINE_RL, NUM_MYSTERY_LINE_RL);
                 break;
-            case 2: //¶-‰EƒR[ƒX
+            case 2: //å·¦-å³ã‚³ãƒ¼ã‚¹
                 mVirtualLineTrace.setControlPoints(MYSTERY_LINE_LR, NUM_MYSTERY_LINE_LR);
                 break;
-            case 3: //¶-¶ƒR[ƒX
+            case 3: //å·¦-å·¦ã‚³ãƒ¼ã‚¹
                 mVirtualLineTrace.setControlPoints(MYSTERY_LINE_LL, NUM_MYSTERY_LINE_LL);
                 break;
             }
             mVirtualLineTrace.reset();
         }
         mVirtualLineTrace.execute();
-        // i’ˆÓjƒ‰ƒCƒ“‚ÉŒü‚©‚Á‚ÄÎ‚ß‚É“Ëi‚·‚é‚Æ‚±‚ë‚Ü‚ÅŠÜ‚ß‚Ä‚¨‚­‚±‚ÆB
-        if (mVirtualLineTrace.isLast()) {   // ƒ‰ƒCƒ“•œ‹A‚Å‚«‚é‚©‚Ç‚¤‚©‚Ì”»’fB
+        // ï¼ˆæ³¨æ„ï¼‰ãƒ©ã‚¤ãƒ³ã«å‘ã‹ã£ã¦æ–œã‚ã«çªé€²ã™ã‚‹ã¨ã“ã‚ã¾ã§å«ã‚ã¦ãŠãã“ã¨ã€‚
+        if (mVirtualLineTrace.isLast()) {   // ãƒ©ã‚¤ãƒ³å¾©å¸°ã§ãã‚‹ã‹ã©ã†ã‹ã®åˆ¤æ–­ã€‚
             if (mLineDetector.detect() != LineDetector::ON_WHITE) {
                 mState = MysteryDriver::AFTERLINETRACE;
                 mInitState = true;
             }
         }
     }
-    else if (mState == MysteryDriver::AFTERLINETRACE) { //c‰¡–³s‘–sI—¹Œã
+    else if (mState == MysteryDriver::AFTERLINETRACE) { //ç¸¦æ¨ªç„¡å°½èµ°è¡Œçµ‚äº†å¾Œ
         if (mInitState) {
             mInitState = false;
-            mLineTrace.reset(); // INIT_FORWARD•œŠˆ
+            mLineTrace.reset(); // INIT_FORWARDå¾©æ´»
         }
-        mLineTrace.execute();   // ƒ‰ƒCƒ“ƒgƒŒ[ƒX‘–sÀs
+        mLineTrace.execute();   // ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹èµ°è¡Œå®Ÿè¡Œ
     }
     
-    return mState == MysteryDriver::AFTERLINETRACE; // I—¹‚µ‚Ü‚µ‚½
+    return mState == MysteryDriver::AFTERLINETRACE; // çµ‚äº†ã—ã¾ã—ãŸ
 }

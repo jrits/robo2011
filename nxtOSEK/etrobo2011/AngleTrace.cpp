@@ -5,7 +5,7 @@
 #include "factory.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 AngleTrace::AngleTrace()
 {
@@ -13,9 +13,9 @@ AngleTrace::AngleTrace()
 }
 	
 /**
- * –Ú•WŠp“x‚ğİ’è
+ * ç›®æ¨™è§’åº¦ã‚’è¨­å®š
  *
- * @param[in] targetAngle –Ú•WŠp“x
+ * @param[in] targetAngle ç›®æ¨™è§’åº¦
  */
 void AngleTrace::setTargetAngle(float targetAngle)
 {
@@ -23,9 +23,9 @@ void AngleTrace::setTargetAngle(float targetAngle)
 }
 
 /**
- * •ûŒü“]Š·‚Ì‹–—eŒë·‚ğİ’è
+ * æ–¹å‘è»¢æ›ã®è¨±å®¹èª¤å·®ã‚’è¨­å®š
  *
- * @param[in] allowableError ‹–—eŒë·
+ * @param[in] allowableError è¨±å®¹èª¤å·®
  */
 void AngleTrace::setAllowableError(float allowableError)
 {
@@ -33,27 +33,27 @@ void AngleTrace::setAllowableError(float allowableError)
 }
 
 /**
- * –Ú•WŠp“x‚ÆŒ»İ‚ÌŠp“x‚©‚çAŠp“xƒgƒŒ[ƒX‚ğs‚¤‚Ì‚É“KØ‚È‘–sƒxƒNƒgƒ‹‚ğŒvZ‚·‚é
+ * ç›®æ¨™è§’åº¦ã¨ç¾åœ¨ã®è§’åº¦ã‹ã‚‰ã€è§’åº¦ãƒˆãƒ¬ãƒ¼ã‚¹ã‚’è¡Œã†ã®ã«é©åˆ‡ãªèµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã™ã‚‹
  *
- * @return ‘–sƒxƒNƒgƒ‹
+ * @return èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«
  */
 VectorT<float> AngleTrace::calcCommand()
 {
 	gLineTrace = false;
 	float direction = 0;
-	direction = mGps.getDirection(); //Œ»İ‚ÌŠp“x
+	direction = mGps.getDirection(); //ç¾åœ¨ã®è§’åº¦
 
 	float P = -(mTargetAngle - direction);
 	
-	//–Ú•WŠp“x‚ÆŒ»İŠp“x‚Ì·•ªP‚ğ -180 < P <= 180 ‚Ì”ÍˆÍ“à‚ÉÄİ’è
+	//ç›®æ¨™è§’åº¦ã¨ç¾åœ¨è§’åº¦ã®å·®åˆ†Pã‚’ -180 < P <= 180 ã®ç¯„å›²å†…ã«å†è¨­å®š
     P = Gps::marge180(P);
 	
-	//Y‚Í-’l‚Å‰EA+’l‚Å¶‚ğ–Úw‚·©ƒ‚[ƒ^‚ÌÚ‘±ƒ|[ƒgŠm”F
-	float Y = mAnglePid.control(P); //Pid§ŒäŒãƒ‚[ƒ^o—Í•â³‚·‚é
-	//Y += OFFSET_Y; //Ÿƒƒ{‚ÌOFFSET_Y‚Í8‚¾‚Á‚½‚Í‚¸
+	//Yã¯-å€¤ã§å³ã€+å€¤ã§å·¦ã‚’ç›®æŒ‡ã™â†ãƒ¢ãƒ¼ã‚¿ã®æ¥ç¶šãƒãƒ¼ãƒˆç¢ºèª
+	float Y = mAnglePid.control(P); //Pidåˆ¶å¾¡å¾Œãƒ¢ãƒ¼ã‚¿å‡ºåŠ›è£œæ­£ã™ã‚‹
+	//Y += OFFSET_Y; //å‹ãƒ­ãƒœã®OFFSET_Yã¯8ã ã£ãŸã¯ãš
 	
-	//Pid§Œä’l‚ª‘å‚«‚·‚¬‚éê‡A‚±‚±‚ÅC³‚·‚é
-	//¨Œ»ó‚¾‚ÆP(Œ»İŠp“x‚Æ–Ú•WŠp“x‚Ì·•ª)‚ª2.5“xˆÈã‚©-2.5“xˆÈ‰º‚Å‚±‚Ìif•ª‚É“ü‚é 2010/09/27
+	//Pidåˆ¶å¾¡å€¤ãŒå¤§ãã™ãã‚‹å ´åˆã€ã“ã“ã§ä¿®æ­£ã™ã‚‹
+	//â†’ç¾çŠ¶ã ã¨P(ç¾åœ¨è§’åº¦ã¨ç›®æ¨™è§’åº¦ã®å·®åˆ†)ãŒ2.5åº¦ä»¥ä¸Šã‹-2.5åº¦ä»¥ä¸‹ã§ã“ã®ifåˆ†ã«å…¥ã‚‹ 2010/09/27
 	if(Y > 100) Y = 100;
 	if(Y < -100) Y = -100;
 	
@@ -64,19 +64,19 @@ VectorT<float> AngleTrace::calcCommand()
 }
 
 /**
- * •ûŒü“]Š·‚ªŠ®—¹‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+ * æ–¹å‘è»¢æ›ãŒå®Œäº†ã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
  *
- * @retval true Š®—¹
- * @retval false –¢Š®—¹
+ * @retval true å®Œäº†
+ * @retval false æœªå®Œäº†
  */
 bool AngleTrace::isArrived()
 {
-    // –Ú•WŠp“x‚ÆŒ»İŠp“x‚Ì·
+    // ç›®æ¨™è§’åº¦ã¨ç¾åœ¨è§’åº¦ã®å·®
 	float diffDirection = mTargetAngle - mGps.getDirection();
-    // [-180, 180] ‚Ì”ÍˆÍ“à‚ÉÄİ’è
+    // [-180, 180] ã®ç¯„å›²å†…ã«å†è¨­å®š
     diffDirection = Gps::marge180(diffDirection); 
 
-    // “’…”»’èB[-Error, Error] ‚Ì”ÍˆÍ“à‚É‚¢‚½ê‡‚Í“’…‚Æ‚İ‚È‚·B
+    // åˆ°ç€åˆ¤å®šã€‚[-Error, Error] ã®ç¯„å›²å†…ã«ã„ãŸå ´åˆã¯åˆ°ç€ã¨ã¿ãªã™ã€‚
     if (fabs(diffDirection) < mAllowableError) { 
         return true;
     }

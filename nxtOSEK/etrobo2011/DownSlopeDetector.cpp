@@ -9,10 +9,10 @@
 #include "factory.h"
 
 /**
- * ‰º‚èâŒŸ’m‚·‚é
+ * ä¸‹ã‚Šå‚æ¤œçŸ¥ã™ã‚‹
  *
- * @retval true ŒŸ’m‚µ‚½
- * @retval false ŒŸ’m‚µ‚È‚©‚Á‚½
+ * @retval true æ¤œçŸ¥ã—ãŸ
+ * @retval false æ¤œçŸ¥ã—ãªã‹ã£ãŸ
  */
 bool DownSlopeDetector::detect()
 {

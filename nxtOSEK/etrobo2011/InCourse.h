@@ -7,20 +7,20 @@
 #include "Course.h"
 
 /**
- * ƒCƒ“ƒR[ƒX
+ * ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹
  */
 class InCourse : public Course
 {
 public:
     /**
-     * ƒCƒ“ƒR[ƒX‚Ì‹æŠÔ
+     * ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã®åŒºé–“
      */
     enum eSection {
-        TESTDRIVE, //!< ƒeƒXƒgƒhƒ‰ƒCƒo‹N“®
-        START,     //!< ƒXƒ^[ƒg‹æŠÔ
-        ENIGMA,    //!< ƒGƒjƒOƒ}‹æŠÔ
-        MYSTERY,   //!< ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‹æŠÔ
-        GARAGEIN   //!< ƒKƒŒ[ƒWEƒCƒ“‹æŠÔ
+        TESTDRIVE, //!< ãƒ†ã‚¹ãƒˆãƒ‰ãƒ©ã‚¤ãƒèµ·å‹•
+        START,     //!< ã‚¹ã‚¿ãƒ¼ãƒˆåŒºé–“
+        ENIGMA,    //!< ã‚¨ãƒ‹ã‚°ãƒåŒºé–“
+        MYSTERY,   //!< ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«åŒºé–“
+        GARAGEIN   //!< ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³åŒºé–“
     };
 public:
  	InCourse(InCourse::eSection aSection = InCourse::START);

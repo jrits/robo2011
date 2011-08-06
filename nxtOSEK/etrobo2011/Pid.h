@@ -9,16 +9,16 @@
 #define MAX_BUF_SIZE 10
 
 /**
- * PID §ŒäƒNƒ‰ƒX
+ * PID åˆ¶å¾¡ã‚¯ãƒ©ã‚¹
  */
 class Pid
 {
 private:
-	float mKp; //!< ”ä—áŒW”
-	float mKi; //!< Ï•ªŒW”
-	float mKd; //!< ”÷•ªŒW”
-	int index; //!< ƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌŒ»ÝƒCƒ“ƒfƒbƒNƒX
-	float buf[MAX_BUF_SIZE]; //!< ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ìƒoƒbƒtƒ@
+	float mKp; //!< æ¯”ä¾‹ä¿‚æ•°
+	float mKi; //!< ç©åˆ†ä¿‚æ•°
+	float mKd; //!< å¾®åˆ†ä¿‚æ•°
+	int index; //!< ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ç¾åœ¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	float buf[MAX_BUF_SIZE]; //!< ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ãƒãƒƒãƒ•ã‚¡
 public:
 	Pid(float kp, float ki, float kd);
 	virtual ~Pid();
