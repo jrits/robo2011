@@ -28,7 +28,6 @@ public:
     void reset();
     void setInitForward(int initForward);
     void setInitDuration(int initDuration);
-    void execute();
 public:
     VectorT<float> calcCommand();
     float calcCommandTurn();

@@ -56,18 +56,6 @@ void LineTrace::setInitDuration(int initDuration)
 }
 
 /**
- * スキルを発揮してロボットを動かす。
- *
- * calcCommand を用いて走行ベクトルを決定し、制御機器(Activator)を操作する。
- */
-void LineTrace::execute()
-{
-    VectorT<float> command = calcCommand();
-    mActivator.run(command);//制御機器にセット
-    //mActivator.runWithPid(command); //フォワードPID越しに運転
-}
-
-/**
  * (PID制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
  *
  * @return ターン値

@@ -52,7 +52,7 @@ char rx_buf[BT_MAX_RX_BUF_SIZE]; /* Bluetooth通信用データ受信バッフ�
 
 /* 関数プロトタイプ宣言 */
 static int sonar_alert(void);
-static void tail_control(signed int angle);
+extern void tail_control(signed int angle);
 static int remote_start(void);
 static float calc_maimai(U16 light_off_value, U16 light_on_value);
 
@@ -63,6 +63,7 @@ bool gSonarIsDetected = false; //!< 衝立検知の結果
 bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 bool gDoMaimai = false; //!< まいまい式発動フラグ
 float gMaimaiValue = 0.0;  //!< まいまい式の結果
+bool gDoForwardPid = false; //!< フォワードPID発動フラグ(暫定)
 //=============================================================================
 // TOPPERS/ATK declarations
 DeclareCounter(SysTimerCnt);
@@ -207,54 +208,10 @@ TASK(TaskDrive)
 	nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
 	nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
 
-    VectorT<float> command(50, 0);
 	while(1)
 	{
-		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-        gDoMaimai = false; /* まいまい式は使わない */
-        // テスト 通常走行
-        if (0) {
-            mActivator.run(command);
-        }
-        // テスト フォーワードPID
-        if (0) {
-            mActivator.runWithPid(command);
-        }
-        // テスト ３点走行
-        if (1) {
-            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-            mTripodActivator.run(command);
-        }
-        // テスト ３点走行 with フォワードPID
-        if (0) {
-            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-            mTripodActivator.runWithPid(command);
-        }
-        // テスト ライントレース. 
-        if (0) {
-            mLineTrace.setForward(50);
-            mLineTrace.execute();
-        }
-        // テスト まいまい式ライントレース
-        if (0) {
-            gDoMaimai = true;
-            mLineTrace.setForward(50);
-            mLineTrace.execute();
-        }
-        // テスト ３点走行ライントレース
-        if (0) {
-            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-            mTripodLineTrace.setForward(50);
-            mTripodLineTrace.execute();
-        }
-        // テスト まいまい式３点走行ライントレース
-        if (0) {
-            gDoMaimai = true;
-            tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-            mTripodLineTrace.setForward(50);
-            mTripodLineTrace.execute();
-        }
-        // mSitDownSkill.execute();
+        mTestDriver.drive();
+
 		systick_wait_ms(4); /* 4msecウェイト */
 	}
 }
@@ -446,7 +403,7 @@ static int sonar_alert(void)
 // 返り値 : 無し
 // 概要 : 走行体完全停止用モータの角度制御
 //*****************************************************************************
-static void tail_control(signed int angle)
+extern void tail_control(signed int angle)
 {
 	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
 	/* PWM出力飽和処理 */

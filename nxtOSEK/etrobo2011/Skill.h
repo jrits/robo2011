@@ -7,6 +7,7 @@
 #include "constants.h"
 #include "Activator.h"
 extern Activator mActivator;
+extern bool gDoForwardPid;
 
 /**
  * スキル抽象クラス
@@ -40,10 +41,14 @@ public:
      *
      * calcCommand を用いて走行ベクトルを決定し、制御機器(Activator)を操作する。
      */
-    void execute()
+    virtual void execute()
     {
         VectorT<float> command = calcCommand();
-        mActivator.run(command);//制御機器にセット
+        if (gDoForwardPid) {
+            mActivator.runWithPid(command); //フォワードPID越しに運転
+        } else {
+            mActivator.run(command);//制御機器にセット
+        }
     }
     /**
      * 走行ベクトルを計算

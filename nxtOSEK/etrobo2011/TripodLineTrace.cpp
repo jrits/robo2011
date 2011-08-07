@@ -4,6 +4,7 @@
 #include "TripodLineTrace.h"
 #include "factory.h"
 extern TripodActivator mTripodActivator;
+extern bool gDoForwardPid;
 
 /**
  * コンストラクタ
@@ -25,6 +26,9 @@ TripodLineTrace::TripodLineTrace(float black, float white, float threshold) :
 void TripodLineTrace::execute()
 {
     VectorT<float> command = calcCommand();
-    mTripodActivator.run(command);//制御機器にセット
-    //mTripodActivator.runWithPid(command); //フォワードPID越しに運転
+    if (gDoForwardPid) {
+        mTripodActivator.runWithPid(command); //フォワードPID越しに運転
+    } else {
+        mTripodActivator.run(command);//制御機器にセット
+    }
 }
