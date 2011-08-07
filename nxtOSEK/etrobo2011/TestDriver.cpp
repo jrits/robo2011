@@ -7,14 +7,12 @@
 #include "TestDriver.h"
 #include "factory.h"
 #include "TestLine.h"
-extern bool gDoMaimai;
-extern bool gDoForwardPid;
-extern "C" extern void tail_control(signed int angle);
 
 /* sample_c3マクロ */
 #define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
 #define TAIL_ANGLE_TRIPOD_DRIVE 95 /* ３点走行時の角度[度] */
 #define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
+extern "C" extern void tail_control(signed int angle);
 
 /**
  * コンストラクタ
@@ -36,83 +34,66 @@ bool TestDriver::drive()
 	LOGGER_DATAS32[0] = (S32)(mLightHistory.calcDifference());
 #endif
 #if 1 // DEBUG
-    //DESK_DEBUG = true; // モータを回さないデバグ
+    DESK_DEBUG = true; // モータを回さないデバグ
     static int count = 0; // staticは原則禁止だが今だけ
     if (count++ % 25 == 0) {
         Lcd lcd;
         lcd.clear();
         lcd.putf("sn", "TestDriver");
-        lcd.putf("dn", (S32)(mGps.getXCoordinate()));
-        lcd.putf("dn", (S32)(mGps.getYCoordinate()));
-        lcd.putf("dn", (S32)(mGps.getDirection()));
-        lcd.putf("dn", (S32)(mGps.getDistance()));
-        //lcd.putf("dn", (S32)(mLeftMotor.getCount()));
-        //lcd.putf("dn", (S32)(mRightMotor.getCount()));
-        lcd.putf("dn", (S32)(mLineDetector.detect()));
-        lcd.putf("dn", (S32)(mLightHistory.calcDifference()));
+        //lcd.putf("dn", (S32)(mGps.getXCoordinate()));
+        //lcd.putf("dn", (S32)(mGps.getYCoordinate()));
+        //lcd.putf("dn", (S32)(mGps.getDirection()));
+        //lcd.putf("dn", (S32)(mGps.getDistance()));
+        lcd.putf("dn", (S32)(mLeftMotor.getCount()));
+        lcd.putf("dn", (S32)(mRightMotor.getCount()));
+        lcd.putf("dn", (S32)(mTailMotor.getCount()));
+        //lcd.putf("dn", (S32)(mLineDetector.detect()));
+        //lcd.putf("dn", (S32)(mLightHistory.calcDifference()));
         lcd.disp();
     }
 #endif
-    // デフォルト
-    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-    gDoMaimai = false; /* まいまい式は使わない */
-    gDoForwardPid = false; 
     VectorT<float> command(50, 0);
 
-    // テスト 通常走行
+    // テスト 走りながら起き上がり→ダメ(暴走する)
     if (0) {
-        mActivator.run(command);
-    }
-    // テスト フォーワードPID
-    if (0) {
-        mActivator.runWithPid(command);
-    }
-    // テスト ３点走行
-    if (0) {
+        static int count = 0;
+
         tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodActivator.run(command);
+        if (count < 300) {
+            // ３点走行
+            mTripodActivator.run(command);
+        } else if (count < 325) {
+            // 起き上がり
+            mActivator.reset(USER_GYRO_OFFSET + 15); // 大きくして前のめり
+            mActivator.run(command);
+        } else if (count < 10000) {
+            // ２点走行
+            mActivator.reset(USER_GYRO_OFFSET);
+            mActivator.run(command);
+        }
+        count++;
     }
-    // テスト ３点走行 with フォワードPID
-    if (0) {
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodActivator.runWithPid(command);
-    }
-    // テスト ライントレース.
-    if (0) {
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-    }
-    // テスト ライントレース with フォワードPID
-    if (0) {
-        gDoForwardPid = true;
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-    }
-    // テスト まいまい式ライントレース
-    if (0) {
-        gDoMaimai = true;
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-    }
-    // テスト ３点走行ライントレース
-    if (0) {
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
-    }
-    // テスト ３点走行ライントレース with フォワードPID
+    // テスト 止まってから起き上がり→まだダメ
     if (1) {
-        gDoForwardPid = true;
+        static int count = 0;
+
         tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
-    }
-    // テスト まいまい式３点走行ライントレース
-    if (0) {
-        gDoMaimai = true;
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
+        if (count < 300) {
+            // ３点走行
+            mTripodActivator.run(command);
+        } else if (count < 400) {
+            // 停止
+            mTripodActivator.stop();
+        } else if (count < 500) {
+            // 起き上がり
+            mActivator.reset(USER_GYRO_OFFSET + 15); // 大きくして前のめり
+            mActivator.run(command);
+        } else if (count < 10000) {
+            // ２点走行
+            mActivator.reset(USER_GYRO_OFFSET);
+            mActivator.run(command);
+        }
+        count++;
     }
 
     // mSitDownSkill.execute();
