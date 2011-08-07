@@ -55,6 +55,7 @@ static int sonar_alert(void);
 extern void tail_control(signed int angle);
 static int remote_start(void);
 static float calc_maimai(U16 light_off_value, U16 light_on_value);
+extern void motor_control(Motor &motor, signed int angle);
 
 // タスク間共有メモリ
 bool gDoSonar = false; //!< ソナーセンサ発動フラグ
@@ -405,7 +406,18 @@ static int sonar_alert(void)
 //*****************************************************************************
 extern void tail_control(signed int angle)
 {
-	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
+    motor_control(mTailMotor, angle);
+}
+
+//*****************************************************************************
+// 関数名 : motor_control
+// 引数  : motor (モータ) angle (モータ目標角度[度])
+// 返り値 : 無し
+// 概要 : 走行体完全停止用モータの角度制御
+//*****************************************************************************
+extern void motor_control(Motor &motor, signed int angle)
+{
+	float pwm = (float)(angle - motor.getCount())*P_GAIN; /* 比例制御 */
 	/* PWM出力飽和処理 */
 	if (pwm > PWM_ABS_MAX)
 	{
@@ -416,7 +428,7 @@ extern void tail_control(signed int angle)
 		pwm = -PWM_ABS_MAX;
 	}
 
-  nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
+    motor.setPWM(pwm);
 }
 
 //*****************************************************************************
