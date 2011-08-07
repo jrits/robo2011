@@ -47,21 +47,21 @@ void Activator::run(VectorT<F32> command)
 	S8 pwm_L, pwm_R;
 
     // C++ バージョンだとなぜか mActivator.run() で動かないのでとりあえず。
-     balance_control(
-         (float)command.mX,							 /* 前後進命令(+:前進, -:後進) */
-         (float)command.mY,							 /* 旋回命令(+:右旋回, -:左旋回) */
-         (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
-         (float)USER_GYRO_OFFSET,                     /* ジャイロセンサオフセット値 */
-         (float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
-         (float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
-         (float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
-         &pwm_L,										 /* 左モータPWM出力値 */
-         &pwm_R);									 /* 右モータPWM出力値 */
-
-     if (! DESK_DEBUG) {
-         nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100〜100) */
-         nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100〜100) */
-     }
+    balance_control(
+        (float)command.mX,							 /* 前後進命令(+:前進, -:後進) */
+        (float)command.mY,							 /* 旋回命令(+:右旋回, -:左旋回) */
+        (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
+        (float)USER_GYRO_OFFSET,                     /* ジャイロセンサオフセット値 */
+        (float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
+        (float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
+        (float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
+        &pwm_L,										 /* 左モータPWM出力値 */
+        &pwm_R);									 /* 右モータPWM出力値 */
+    
+    if (! DESK_DEBUG) {
+        nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100?100) */
+        nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100?100) */
+    }
 
 	// balance_control(
     //     (F32)command.mY, // 前後進命令
@@ -78,20 +78,6 @@ void Activator::run(VectorT<F32> command)
     //     mLeftMotor.setPWM(pwm_L);
     //     mRightMotor.setPWM(pwm_R);
     // }
-
-#if 0// DEBUG
-    {
-        Lcd lcd;
-        lcd.clear();
-        lcd.putf("sn", "Activator::run");
-        lcd.putf("dn", (int)command.mX);
-        lcd.putf("dn", (int)command.mY);
-        lcd.putf("dn", (int)pwm_L);
-        lcd.putf("dn", (int)pwm_R);
-        lcd.disp();
-    }
-#endif
-
 }
 
 /**
@@ -144,10 +130,11 @@ float Activator::forwardPid(float targetSpeed)
     }
     
     // 変化量(encode/sec)。直前だとスピード0の可能性もあるため、ある程度時間間隔(5count)をもたせている。
-    float leftEncodeSpeed    = (mLeftMotorHistory.get()  - mLeftMotorHistory.get(-5))  / (0.004 * 6);
-    float rightEncodeSpeed   = (mRightMotorHistory.get() - mRightMotorHistory.get(-5)) / (0.004 * 6);
-    float currentEncodeSpeed = (leftEncodeSpeed + rightEncodeSpeed)/2.0;
-    float currentSpeed = ENCODE2FORWARD(currentEncodeSpeed);
+    float leftEncodeDiff     = mLeftMotorHistory.get()  - mLeftMotorHistory.get(-4);
+    float rightEncodeDiff    = mRightMotorHistory.get() - mRightMotorHistory.get(-4);
+    float currentEncodeDiff  = (leftEncodeDiff + rightEncodeDiff) / 2.0;
+    float currentEncodeSpeed = currentEncodeDiff / (0.004 * 5); // 4ms x 5count
+    float currentSpeed       = ENCODE2FORWARD(currentEncodeSpeed);
 
     // PID制御(forward)
     float P = targetSpeed - currentSpeed;
@@ -168,6 +155,4 @@ float Activator::forwardPid(float targetSpeed)
 
     return mCurrentForward;
 }
-
-
 

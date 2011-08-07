@@ -6,6 +6,7 @@
 
 #include "constants.h"
 #include "factory.h"
+#include "Vector.h"
 using namespace ecrobot;
 
 extern "C"
@@ -37,6 +38,7 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 #define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
 /* sample_c3マクロ */
 #define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
+#define TAIL_ANGLE_TRIPOD_DRIVE 95 /* ３点走行時の角度[度] */
 #define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
@@ -44,26 +46,36 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 #define DEVICE_NAME       "ET0"  /* Bluetooth通信用デバイス名 */
 #define PASS_KEY          "1234" /* Bluetooth通信用パスキー */
 #define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
-/* Bluetooth通信用データ受信バッファ */
-char rx_buf[BT_MAX_RX_BUF_SIZE];
+char rx_buf[BT_MAX_RX_BUF_SIZE]; /* Bluetooth通信用データ受信バッファ */
+/* MAIMAI(改) */
+#define MAIMAI_PERIOD        10         /* まいまい式ライントレースの実行周期。8msでもイケる？*/
 
 /* 関数プロトタイプ宣言 */
 static int sonar_alert(void);
-static void tail_control(signed int angle);
+extern void tail_control(signed int angle);
 static int remote_start(void);
+static float calc_maimai(U16 light_off_value, U16 light_on_value);
 
+// タスク間共有メモリ
+bool gDoSonar = false; //!< ソナーセンサ発動フラグ
+int gSonarDistance = 255; //!< ソナーセンサの結果
+bool gSonarIsDetected = false; //!< 衝立検知の結果
+bool gTouchStarter = false; //!< タッチセンサ押下フラグ
+bool gDoMaimai = false; //!< まいまい式発動フラグ
+float gMaimaiValue = 0.0;  //!< まいまい式の結果
+bool gDoForwardPid = false; //!< フォワードPID発動フラグ(暫定)
 //=============================================================================
 // TOPPERS/ATK declarations
 DeclareCounter(SysTimerCnt);
 DeclareTask(TaskDrive);
 DeclareEvent(EventDrive);
 DeclareAlarm(AlarmDrive);
+DeclareTask(TaskMaimai);
+DeclareEvent(EventMaimai);
+DeclareAlarm(AlarmMaimai);
 DeclareTask(TaskGps);
 DeclareEvent(EventGps);
 DeclareAlarm(AlarmGps);
-DeclareTask(TaskHistory);
-DeclareEvent(EventHistory);
-DeclareAlarm(AlarmHistory);
 DeclareTask(TaskSonar);
 DeclareEvent(EventSonar);
 DeclareAlarm(AlarmSonar);
@@ -104,12 +116,6 @@ void ecrobot_device_terminate(void)
   ecrobot_term_sonar_sensor(NXT_PORT_S2); /* 超音波センサ(I2C通信)を終了 */
   ecrobot_term_bt_connection(); /* Bluetooth通信を終了 */
 }
-
-// タスク間共有メモリ
-bool gDoSonar = false; //!< ソナーセンサ発動フラグ
-int gSonarDistance = 255; //!< ソナーセンサの結果
-bool gSonarIsDetected = false; //!< 衝立検知の結果
-bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 
 /*
  * Sonarタスク
@@ -186,7 +192,7 @@ TASK(TaskDrive)
 	signed char forward;      /* 前後進命令 */
 	signed char turn;         /* 旋回命令 */
 	signed char pwm_L, pwm_R; /* 左右モータPWM出力 */
-
+  
 	while(1)
 	{
 		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
@@ -195,80 +201,83 @@ TASK(TaskDrive)
 		{
 			break; /* タッチセンサが押された */
 		}
-
 		systick_wait_ms(10); /* 10msecウェイト */
 	}
 
 	balance_init();						/* 倒立振子制御初期化 */
 	nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
 	nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
-    VectorT<float> command(50, 0);
+
 	while(1)
 	{
-		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-        mActivator.runWithPid(command);
-        // mActivator.run(command);
-
-		// if (sonar_alert() == 1) /* 障害物検知 */
-		// {
-		// 	forward = turn = 0; /* 障害物を検知したら停止 */
-		// }
-		// else
-		// {
-		// 	forward = 50; /* 前進命令 */
-		// 	if (ecrobot_get_light_sensor(NXT_PORT_S3) <= (LIGHT_WHITE + LIGHT_BLACK)/2)
-		// 	{
-		// 		turn = 50;  /* 右旋回命令 */
-		// 	}
-		// 	else
-		// 	{
-		// 		turn = -50; /* 左旋回命令 */
-		// 	}
-		// }
-
-		 /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
-		 // balance_control(
-		 // 	(float)forward,								 /* 前後進命令(+:前進, -:後進) */
-		 // 	(float)turn,								 /* 旋回命令(+:右旋回, -:左旋回) */
-		 // 	(float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
-		 // 	(float)GYRO_OFFSET,							 /* ジャイロセンサオフセット値 */
-		 // 	(float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
-		 // 	(float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
-		 // 	(float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
-		 // 	&pwm_L,										 /* 左モータPWM出力値 */
-		 // 	&pwm_R);									 /* 右モータPWM出力値 */
-		 // nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100〜100) */
-		 // nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100〜100) */
+        mTestDriver.drive();
 
 		systick_wait_ms(4); /* 4msecウェイト */
 	}
 }
 
+/**
+ * Maimaiタスク
+ */
+TASK(TaskMaimai)
+{
+    // MAIMAI_PERIOD msec 毎にイベント通知する
+    SetRelAlarm(AlarmMaimai, 1, MAIMAI_PERIOD); 
+    WaitEvent(EventMaimai);
+
+    bool  is_light_on = 1;          /* 光センサの点灯/消灯状態   */
+    U16   light_value[2] = {0, 0};	/* 0:消灯時、1:点灯時の光センサー値	*/
+
+	while(1)
+	{
+        if (! gDoMaimai) {
+            ecrobot_set_light_sensor_active(NXT_PORT_S3);
+            ClearEvent(EventMaimai);
+            WaitEvent(EventMaimai);
+            continue;
+        }
+
+		// MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
+		light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
+
+		// MAIMAI(改): まいまい式差分計算
+		gMaimaiValue = calc_maimai(light_value[0], light_value[1]);
+
+#if 0 // DEBUG
+        {
+            Lcd lcd;
+            lcd.clear();
+            lcd.putf("sn"  "MAIMAI*100");
+            lcd.putf("dn", (int)(gMaimaiValue*100));
+            lcd.putf("dn", (int)is_light_on);
+            lcd.putf("dn", (int)light_value[0]);
+            lcd.putf("dn", (int)light_value[1]);
+            lcd.disp();
+        }
+#endif
+
+		// MAIMAI(改): 光センサ明滅
+		if (is_light_on) {
+			ecrobot_set_light_sensor_inactive(NXT_PORT_S3);
+			is_light_on = 0;
+		} else {
+			ecrobot_set_light_sensor_active(NXT_PORT_S3);
+			is_light_on = 1;
+		}
+
+        ClearEvent(EventMaimai);
+        WaitEvent(EventMaimai);
+    }
+}
+
 /*
- * GPS更新タスク
+ * GPS/History更新タスク
  */
 TASK(TaskGps)
 {
     // 4msec 毎にイベント通知する設定
     SetRelAlarm(AlarmGps, 1, 4); 
     WaitEvent(EventGps);
-
-    while (1) {
-        mGps.update();
-        // イベント通知を待つ
-        ClearEvent(EventGps);
-        WaitEvent(EventGps);
-    }
-}
-
-/*
- * History更新タスク
- */
-TASK(TaskHistory)
-{
-    // 4msec 毎にイベント通知する設定
-    SetRelAlarm(AlarmHistory, 1, 4); 
-    WaitEvent(EventHistory);
 
     while (1) {
         mLightHistory.update(mLightSensor.get());
@@ -279,9 +288,10 @@ TASK(TaskHistory)
         mDirectionHistory.update(mGps.getDirection());
         mDirectionAverageHistory.update(mDirectionHistory.calcAverage());
         mGyroHistory.update(mGyroSensor.get());
+        mGps.update();
         // イベント通知を待つ
-        ClearEvent(EventHistory);
-        WaitEvent(EventHistory);
+        ClearEvent(EventGps);
+        WaitEvent(EventGps);
     }
 }
 
@@ -319,38 +329,38 @@ TASK(TaskLogger)
  */
 static void connect_bt(Lcd &lcd, char bt_name[16])
 {
-    //CHAR  name[16]; 
-    U8 address[7];
+  //CHAR  name[16]; 
+  U8 address[7];
 
-    lcd.clear();
+  lcd.clear();
 
-    if (mBluetooth.getDeviceAddress(address)) // get the device address
+  if (mBluetooth.getDeviceAddress(address)) // get the device address
+  {
+    lcd.putf("sn", "BD_ADDR:");
+    for (SINT i=0; i<7; i++) lcd.putf("x", address[i],2);
+
+    mBluetooth.setFriendlyName(bt_name); // set the friendly device name
+    if (mBluetooth.getFriendlyName(bt_name)) // display the friendly device name
     {
-        lcd.putf("sn", "BD_ADDR:");
-        for (SINT i=0; i<7; i++) lcd.putf("x", address[i],2);
-
-        mBluetooth.setFriendlyName(bt_name); // set the friendly device name
-        if (mBluetooth.getFriendlyName(bt_name)) // display the friendly device name
-        {
-            lcd.putf("nssn", "BT_NAME: ", bt_name);
-        }
-
-        lcd.putf("nsn", "Connecting BT...");
-        lcd.putf("sn",  "ENTR to cancel.");
-        lcd.disp();
-
-        if (mBluetooth.waitForConnection("1234", 0)) // wait forever
-        {
-            lcd.putf("s", "Connected.");
-        }
-    }
-    else
-    {
-        lcd.putf("s", "BT Failed.");
+      lcd.putf("nssn", "BT_NAME: ", bt_name);
     }
 
-    lcd.putf("ns", "Press Touch.");
+    lcd.putf("nsn", "Connecting BT...");
+    lcd.putf("sn",  "ENTR to cancel.");
     lcd.disp();
+
+    if (mBluetooth.waitForConnection("1234", 0)) // wait forever
+    {
+      lcd.putf("s", "Connected.");
+    }
+  }
+  else
+  {
+    lcd.putf("s", "BT Failed.");
+  }
+
+  lcd.putf("ns", "Press Touch.");
+  lcd.disp();
 }
 
 //*****************************************************************************
@@ -361,10 +371,10 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
 //*****************************************************************************
 static int sonar_alert(void)
 {
-	static unsigned int counter = 0;
-	static int alert = 0;
+  static unsigned int counter = 0;
+  static int alert = 0;
 
-	signed int distance;
+  signed int distance;
 
 	if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
 	{
@@ -384,7 +394,7 @@ static int sonar_alert(void)
 		counter = 0;
 	}
 
-	return alert;
+  return alert;
 }
 
 //*****************************************************************************
@@ -393,7 +403,7 @@ static int sonar_alert(void)
 // 返り値 : 無し
 // 概要 : 走行体完全停止用モータの角度制御
 //*****************************************************************************
-static void tail_control(signed int angle)
+extern void tail_control(signed int angle)
 {
 	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
 	/* PWM出力飽和処理 */
@@ -406,7 +416,7 @@ static void tail_control(signed int angle)
 		pwm = -PWM_ABS_MAX;
 	}
 
-	nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
+  nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
 }
 
 //*****************************************************************************
@@ -439,6 +449,33 @@ static int remote_start(void)
 	}
 
 	return start;
+}
+
+//*****************************************************************************
+// 関数名 : calc_maimai
+// 引数  : light_off_value (消灯時の光センサー値) light_on_value(点灯時の光センサー値)
+// 返り値 : コース明度 (差分計算などの結果)
+// 概要 : 明度計（ルミノメーター）
+//*****************************************************************************
+static float calc_maimai(U16 light_off_value, U16 light_on_value)
+{
+	float luminance;  /* コース明度 */
+	U16 light_diff;	  /* 点灯時と消灯時の変化量	*/
+	float k;		  /* 光センサー非線形補正値	*/
+	
+	/* 光センサーの変化量を計算 */
+	if (light_off_value - light_on_value > 0) {
+		light_diff = light_off_value - light_on_value;
+	} else {
+		light_diff = 0U;
+	}
+	
+	/* 光センサー非線形補正係数を計算 （実験データより） */
+	k = (1.0382E-3 * light_off_value - 6.3295E-1) * light_off_value + 1.1024E+2;
+	
+	/* コース明度を計算 */
+	luminance = (float) light_diff / k;
+	return luminance;
 }
 
 };

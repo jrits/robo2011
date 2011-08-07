@@ -24,6 +24,7 @@ TARGET_CPP_SOURCES = \
 	factory.cpp \
 	main.cpp \
 	Activator.cpp \
+	TripodActivator.cpp \
 	Pid.cpp \
 	Gps.cpp \
 	NormalDriver.cpp \
@@ -43,12 +44,16 @@ TARGET_CPP_SOURCES = \
 	StraightDetector.cpp \
 	FailDetector.cpp \
 	LineTrace.cpp \
+	TripodLineTrace.cpp \
 	AngleTrace.cpp \
 	CoordinateTrace.cpp \
 	VirtualLineTrace.cpp \
 	CoordinateStop.cpp \
 	SlowdownSkill.cpp \
-	StopSkill.cpp
+	StopSkill.cpp \
+        Posture.cpp \
+	StandUpSkill.cpp \
+        SitDownSkill.cpp
 
 # TOPPERS/ATK(OSEK)ê›íËÉtÉ@ÉCÉã
 TOPPERS_OSEK_OIL_SOURCE = main.oil

@@ -8,10 +8,10 @@ void user_1ms_isr_type2(void){ /* do nothing */ }
 
 TASK(OSEK_Task_Background)
 {
-    ecrobot_set_light_sensor_active(NXT_PORT_S3);
+  ecrobot_set_light_sensor_active(NXT_PORT_S3);
 	while(1)
 	{
-  		ecrobot_status_monitor("OSEK HelloWorld!");
+    ecrobot_status_monitor("OSEK HelloWorld!");
 		systick_wait_ms(500); /* 500msec wait */
 	}
 }

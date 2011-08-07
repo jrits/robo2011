@@ -34,6 +34,7 @@ float mGyroBuffer[25];
 History mGyroHistory(mGyroBuffer, COUNTOF(mGyroBuffer));
 // その他
 Activator mActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
+TripodActivator mTripodActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD); // LineTrace用
 Pid mAnglePid(ANGLE_PID_KP, ANGLE_PID_KI, ANGLE_PID_KD); // AngleTrace用
 Pid mSlowdownPid(SLOWDOWN_PID_KP, SLOWDOWN_PID_KI, SLOWDOWN_PID_KD); // SlowdownSkill用
@@ -46,12 +47,16 @@ StraightDetector mStraightDetector;
 FailDetector mFailDetector;
 // Skill
 LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD);
+TripodLineTrace mTripodLineTrace(TRIPOD_BLACK, TRIPOD_WHITE, TRIPOD_LINE_THRESHOLD);
 AngleTrace mAngleTrace;
 CoordinateTrace mCoordinateTrace;
 VirtualLineTrace mVirtualLineTrace;
 SlowdownSkill mSlowdownSkill;
 StopSkill mStopSkill;
 CoordinateStop mCoordinateStop; // @obsolete
+StandUpSkill mStandUpSkill(mActivator,mTripodActivator,mLeftMotor,mRightMotor,mTailMotor);
+SitDownSkill mSitDownSkill;
+
 // Driver
 NormalDriver mNormalDriver;
 SeesawDriver mSeesawDriver;
@@ -61,3 +66,6 @@ EnigmaDriver mEnigmaDriver;
 MysteryDriver mMysteryDriver;
 InGarageDriver mInGarageDriver;
 TestDriver mTestDriver;
+
+// Posture
+Posture mPosture(mLeftMotor,mRightMotor,mTailMotor);

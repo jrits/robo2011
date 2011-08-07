@@ -3,6 +3,8 @@
 //
 #include "LineTrace.h"
 #include "factory.h"
+extern bool  gDoMaimai;
+extern float gMaimaiValue;
 
 /**
  * コンストラクタ
@@ -54,13 +56,28 @@ void LineTrace::setInitDuration(int initDuration)
 }
 
 /**
- * ON/OFF制御(true) or PID制御(false)フラグの設定
+ * (PID制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
  *
- * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
+ * @return ターン値
  */
-void LineTrace::setUseOnoff(bool useOnoff)
+float LineTrace::calcCommandTurn()
 {
-    mUseOnoff = useOnoff;
+	//正規化した光センサ値をPに格納する
+    float P;
+    if (gDoMaimai) {
+        P = this->maimaiValueNormalization(); // まいまい式
+    } else {
+        P = this->lightValueNormalization(); // 通常
+    }
+
+	//Pid制御
+    float Y = mLightPid.control(P);
+	
+	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+	if(TRACE_EDGE == LEFT ) Y *= -1;
+	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    return Y;
 }
 
 /**
@@ -70,7 +87,9 @@ void LineTrace::setUseOnoff(bool useOnoff)
  */
 VectorT<float> LineTrace::calcCommand()
 {
-	gLineTrace = true;  //走行スキルフラグ。ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
+    //ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
+	gLineTrace = true;
+
     // 起動時急ダッシュするため、最初のみスピードをゆるめる
     float X;
     if (mTimeCounter < mInitDuration) {
@@ -81,6 +100,14 @@ VectorT<float> LineTrace::calcCommand()
         X = mForward;
     }
 
+    float Y;
+    if (mUseOnoff) { 
+        Y = calcCommandTurnByOnOff();
+    }
+    else {
+        Y = calcCommandTurn();
+    }
+    
 #if 0 // DEBUG
     {
         static int count = 0;
@@ -89,21 +116,71 @@ VectorT<float> LineTrace::calcCommand()
             Lcd lcd;
             lcd.clear();
             lcd.putf("sn", "LineTrace");
-            lcd.putf("dn", mState);
-            lcd.putf("dn", mTimeCounter);
             lcd.putf("dn", (int)X);
+            lcd.putf("dn", (int)Y);
             lcd.disp();
         }
     }
 #endif
-    float Y;
-    if (mUseOnoff) { 
-        Y = calcCommandTurnByOnOff();
-    }
-    else {
-        Y = calcCommandTurn();
-    }
     return VectorT<F32>(X,Y);
+}
+
+/**
+ * 正規化した光センサの値を取得する
+ *
+ * @return 正規化した光センサの値
+ */
+float LineTrace::lightValueNormalization()
+{
+    float L = 0;
+	L = mLightSensor.get();
+	
+    float P = (L - mLineThreshold); // 偏差
+    if(L < mLineThreshold){ // 白
+        P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
+    }
+    else{ // 黒
+        P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
+    }
+	
+	if(P > 1) P = 1;
+	if(P < -1) P = -1;
+	
+    return P;
+}
+
+/**
+ * 正規化した光センサの値を取得する(MAIMAI)
+ *
+ * @return 正規化した光センサの値(MAIMAI)
+ */
+float LineTrace::maimaiValueNormalization()
+{
+    float L = 0;
+	L = gMaimaiValue;
+	
+    float P = (L - MAIMAI_LINE_THRESHOLD); // 偏差
+    if(L < MAIMAI_LINE_THRESHOLD){ // 白
+        P = P / (MAIMAI_LINE_THRESHOLD - MAIMAI_WHITE); // [-1.0, 1.0] の値に正規化
+    }
+    else{ // 黒
+        P = P / (MAIMAI_BLACK - MAIMAI_LINE_THRESHOLD); // [-1.0, 1.0] の値に正規化
+    }
+	
+	if(P > 1) P = 1;
+	if(P < -1) P = -1;
+	
+    return P;
+}
+
+/**
+ * ON/OFF制御(true) or PID制御(false)フラグの設定
+ *
+ * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
+ */
+void LineTrace::setUseOnoff(bool useOnoff)
+{
+    mUseOnoff = useOnoff;
 }
 
 /**
@@ -129,47 +206,4 @@ float LineTrace::calcCommandTurnByOnOff()
 	if(TRACE_EDGE == RIGHT) Y *=  1;
     
     return Y;
-}
-
-/**
- * (PID制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
- *
- * @return ターン値
- */
-float LineTrace::calcCommandTurn()
-{
-	//正規化した光センサ値をPに格納する
-	float P = this->lightValueNormalization();
-	//Pid制御
-    float Y = mLightPid.control(P);
-	
-	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-    return Y;
-}
-
-/**
- * 正規化した光センサの値を取得する
- *
- * @return 正規化した光センサの値
- */
-float LineTrace::lightValueNormalization()
-{
-    float L = 0;
-	L = mLightSensor.get();
-	
-    float P = (L - mLineThreshold); // 偏差
-    if(L < mLineThreshold){ // 白
-        P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
-    }
-    else{ // 黒
-        P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
-    }
-	
-	if(P > 1) P = 1;
-	if(P < -1) P = -1;
-	
-    return P;
 }

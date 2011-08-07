@@ -31,6 +31,12 @@ extern int FORWARD;
 extern int WHITE;
 extern int BLACK;
 extern int LINE_THRESHOLD;
+extern int TRIPOD_WHITE;
+extern int TRIPOD_BLACK;
+extern int TRIPOD_LINE_THRESHOLD;
+extern float MAIMAI_WHITE;
+extern float MAIMAI_BLACK;
+extern float MAIMAI_LINE_THRESHOLD;
 extern int TRACE_EDGE;
 extern float LIGHT_PID_KP;
 extern float LIGHT_PID_KI;
@@ -76,10 +82,6 @@ extern bool DESK_DEBUG;
 
 //LineTraceフラグ
 extern bool gLineTrace;
-
-//ブレーキ走行(実験中)
-extern int PWMR;
-extern int PWML;
 
 //#include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}

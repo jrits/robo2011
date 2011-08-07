@@ -6,6 +6,9 @@
 # for vi:
 *.swp
 
+# for svn
+.svn
+
 # for etrobo
 *.o
 *.oram

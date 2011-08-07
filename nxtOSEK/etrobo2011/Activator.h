@@ -35,11 +35,11 @@ public:
               Motor &rightMotor, 
               GyroSensor &gyroSensor, 
               Nxt &nxt);
-	~Activator(){}
+	virtual ~Activator(){}
     // パラメターの初期化
     void reset(int gyroOffset);
     // 走行。ハンドル、アクセスの操作。
-	void run(VectorT<F32> command);
+	virtual void run(VectorT<F32> command);
     // フォワードPID、ターンPID(@todo)を利用した走行
 	void runWithPid(VectorT<F32> speed);
     // 停止
