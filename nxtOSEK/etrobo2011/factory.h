@@ -46,13 +46,9 @@
 #include "MysteryDriver.h"
 #include "InGarageDriver.h"
 #include "TestDriver.h"
-<<<<<<< HEAD
 #include "LookUpGateDriver.h"
 
-// ƒR[ƒX
-=======
 // ã‚³ãƒ¼ã‚¹
->>>>>>> 65e92d601805257b1fa53b85325675cf5aeb0c84
 #include "Course.h"
 #include "InCourse.h"
 #include "OutCourse.h"

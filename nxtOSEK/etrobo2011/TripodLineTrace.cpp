@@ -16,7 +16,6 @@ extern bool gDoForwardPid;
 TripodLineTrace::TripodLineTrace(float black, float white, float threshold) :
     LineTrace(black, white, threshold)
 {
-<<<<<<< HEAD
   mBlack = black;
   mWhite = white;
   mLineThreshold = threshold;
@@ -25,8 +24,6 @@ TripodLineTrace::TripodLineTrace(float black, float white, float threshold) :
   mUseOnoff = false;
   setForward(FORWARD);
   reset();
-=======
->>>>>>> 65e92d601805257b1fa53b85325675cf5aeb0c84
 }
 
 /**

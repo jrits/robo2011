@@ -230,18 +230,18 @@ TASK(TaskMaimai)
 
 	while(1)
 	{
-        if (! gDoMaimai) {
+          if (! gDoMaimai) {
             ecrobot_set_light_sensor_active(NXT_PORT_S3);
             ClearEvent(EventMaimai);
             WaitEvent(EventMaimai);
             continue;
-        }
+          }
 
-		// MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
-		light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
-
-		// MAIMAI(改): まいまい式差分計算
-		gMaimaiValue = calc_maimai(light_value[0], light_value[1]);
+          // MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
+          light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
+        
+          // MAIMAI(改): まいまい式差分計算
+          gMaimaiValue = calc_maimai(light_value[0], light_value[1]);
 
 #if 0 // DEBUG
         {
@@ -255,31 +255,17 @@ TASK(TaskMaimai)
             lcd.disp();
         }
 #endif
-
-<<<<<<< HEAD
-  static int count = 0;
-  static VectorT<F32> command(30,0);
-  while(1)
-  {
-    count++;
-    if(count < 1000){
-      tail_control(3); /* �o�����X���s�p�p�x�ɐ��� */
-      mActivator.run(command);
-    } else {
-      mLookUpGateDriver.drive();
-=======
-		// MAIMAI(改): 光センサ明滅
-		if (is_light_on) {
-			ecrobot_set_light_sensor_inactive(NXT_PORT_S3);
-			is_light_on = 0;
-		} else {
-			ecrobot_set_light_sensor_active(NXT_PORT_S3);
-			is_light_on = 1;
-		}
+        // MAIMAI(改): 光センサ明滅
+        if (is_light_on) {
+          ecrobot_set_light_sensor_inactive(NXT_PORT_S3);
+          is_light_on = 0;
+        } else {
+          ecrobot_set_light_sensor_active(NXT_PORT_S3);
+          is_light_on = 1;
+        }
 
         ClearEvent(EventMaimai);
         WaitEvent(EventMaimai);
->>>>>>> 65e92d601805257b1fa53b85325675cf5aeb0c84
     }
 }
 
