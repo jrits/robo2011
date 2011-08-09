@@ -47,6 +47,8 @@
 #include "MysteryDriver.h"
 #include "InGarageDriver.h"
 #include "TestDriver.h"
+#include "LookUpGateDriver.h"
+
 // ÉRÅ[ÉX
 #include "Course.h"
 #include "InCourse.h"
@@ -66,6 +68,7 @@ extern LightSensor mLightSensor;
 extern GyroSensor mGyroSensor;
 extern Motor mLeftMotor;
 extern Motor mRightMotor;
+extern Motor mTailMotor;
 extern Lcd mLcd;
 extern Clock mClock;
 extern Nxt mNxt;
@@ -114,6 +117,8 @@ extern EnigmaDriver mEnigmaDriver;
 extern MysteryDriver mMysteryDriver;
 extern InGarageDriver mInGarageDriver;
 extern TestDriver mTestDriver;
+extern LookUpGateDriver mLookUpGateDriver;
+
 // Course
 extern Course *mCourse;
 extern InCourse mInCourse;

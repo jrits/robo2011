@@ -13,9 +13,9 @@
  */
 TripodLineTrace::TripodLineTrace(float black, float white, float threshold)
 {
-	mBlack = black;
-	mWhite = white;
-	mLineThreshold = threshold;
+  mBlack = black;
+  mWhite = white;
+  mLineThreshold = threshold;
   mInitForward = INIT_FORWARD;
   mInitDuration = INIT_SAMPLECOUNT;
   mUseOnoff = false;
