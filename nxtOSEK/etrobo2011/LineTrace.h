@@ -8,18 +8,18 @@
 #include "Skill.h"
 
 /**
- * ƒ‰ƒCƒ“ƒgƒŒ[ƒXƒXƒLƒ‹
+ * ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‚¹ã‚­ãƒ«
  */
 class LineTrace : public Skill
 {
-private:
-	float mBlack;         //!< •
-	float mWhite;         //!< ”’
-	float mLineThreshold; //!< ”’•è‡’l
-    int mInitForward;     //!< ‰ŠúƒtƒHƒ[ƒh’l
-    int mInitDuration;    //!< ‰ŠúƒtƒHƒ[ƒh’lŒp‘±ƒJƒEƒ“ƒ^ŠúŠÔ
-    int mTimeCounter;     //!< ŠÔƒJƒEƒ“ƒ^
-    bool mUseOnoff;       //!< ON/OFF§Œä(true) or PID§Œä(false)ƒtƒ‰ƒO
+protected:
+	float mBlack;         //!< é»’
+	float mWhite;         //!< ç™½
+	float mLineThreshold; //!< ç™½é»’é–¾å€¤
+    int mInitForward;     //!< åˆæœŸãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤
+    int mInitDuration;    //!< åˆæœŸãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤ç¶™ç¶šã‚«ã‚¦ãƒ³ã‚¿æœŸé–“
+    int mTimeCounter;     //!< æ™‚é–“ã‚«ã‚¦ãƒ³ã‚¿
+    bool mUseOnoff;       //!< ON/OFFåˆ¶å¾¡(true) or PIDåˆ¶å¾¡(false)ãƒ•ãƒ©ã‚°
     //Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD);
     //float LIGHT_ONOFF_K;
 public:
@@ -28,12 +28,13 @@ public:
     void reset();
     void setInitForward(int initForward);
     void setInitDuration(int initDuration);
-    void setUseOnoff(bool useOnoff);
 public:
     VectorT<float> calcCommand();
-public:
-    float calcCommandTurnByOnOff();
     float calcCommandTurn();
 	float lightValueNormalization();
+	float maimaiValueNormalization();
+public:
+    void setUseOnoff(bool useOnoff);
+    float calcCommandTurnByOnOff();
 };
 #endif

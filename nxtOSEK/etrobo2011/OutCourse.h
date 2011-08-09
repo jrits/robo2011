@@ -7,20 +7,20 @@
 #include "Course.h"
 
 /**
- * ƒAƒEƒgƒR[ƒX
+ * ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ã‚¹
  */
 class OutCourse : public Course
 {
 public:
     /**
-     * ƒAƒEƒgƒR[ƒX‚Ì‹æŠÔ
+     * ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ã‚¹ã®åŒºé–“
      */
     enum eSection {
-        TESTDRIVE, //!< ƒeƒXƒgƒhƒ‰ƒCƒo‹N“®
-        START,     //!< ƒXƒ^[ƒg‹æŠÔ
-        SEESAW,    //!< ƒV[ƒ\[‹æŠÔ
-        STAIRWAY,  //!< ŠK’i‹æŠÔ
-        GARAGEIN   //!< ƒKƒŒ[ƒWEƒCƒ“‹æŠÔ
+        TESTDRIVE, //!< ãƒ†ã‚¹ãƒˆãƒ‰ãƒ©ã‚¤ãƒèµ·å‹•
+        START,     //!< ã‚¹ã‚¿ãƒ¼ãƒˆåŒºé–“
+        SEESAW,    //!< ã‚·ãƒ¼ã‚½ãƒ¼åŒºé–“
+        STAIRWAY,  //!< éšæ®µåŒºé–“
+        GARAGEIN   //!< ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³åŒºé–“
     };
 public:
  	OutCourse(OutCourse::eSection aState = OutCourse::START);

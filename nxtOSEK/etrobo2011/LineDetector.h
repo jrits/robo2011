@@ -8,21 +8,21 @@
 #include "Detector.h"
 
 /**
- * ƒ‰ƒCƒ“ŒŸ’m
+ * ãƒ©ã‚¤ãƒ³æ¤œçŸ¥
  *
- * ƒ‰ƒCƒ“•œ‹A‚ÉŽg‚¤
+ * ãƒ©ã‚¤ãƒ³å¾©å¸°ã«ä½¿ã†
  */
 class LineDetector : public Detector
 {
 public:
     /**
-     * ƒ‰ƒCƒ“ŒŸ’m‚Ìƒpƒ^[ƒ“‚ðŽ¦‚·
+     * ãƒ©ã‚¤ãƒ³æ¤œçŸ¥ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’ç¤ºã™
      */
     enum ePattern {
-        ON_WHITE,       //!< ”’=>”’(ƒ‰ƒCƒ“ŠO)
-        WHITE_TO_BLACK, //!< ”’=>•
-        BLACK_TO_WHITE, //!< •=>”’
-        ON_BLACK,       //!< •=>•
+        ON_WHITE,       //!< ç™½=>ç™½(ãƒ©ã‚¤ãƒ³å¤–)
+        WHITE_TO_BLACK, //!< ç™½=>é»’
+        BLACK_TO_WHITE, //!< é»’=>ç™½
+        ON_BLACK,       //!< é»’=>é»’
     };
 public:
 	LineDetector(){}

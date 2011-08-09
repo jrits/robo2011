@@ -8,13 +8,13 @@
 #include "Driver.h"
 
 /**
- * ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹ƒhƒ‰ƒCƒo
+ * ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«ãƒ‰ãƒ©ã‚¤ãƒ
  */
 class MysteryDriver : public Driver
 {
 private:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
     enum eSubSection {
         INIT = -1,
@@ -23,14 +23,14 @@ private:
         LINERETURN,
         AFTERLINETRACE
     };
-    eSubSection mState; //!< ó‘Ô
-    bool mInitState;    //!< ó‘Ô‰Šú‰»ƒtƒ‰ƒO
-    int mTimeCounter;   //!< ƒ^ƒCƒ€ƒJƒEƒ“ƒ^
-    int mRoute;         //!< 0-3. ‚Ç‚Ìƒ‹[ƒg‚ğ’H‚é‚©
+    eSubSection mState; //!< çŠ¶æ…‹
+    bool mInitState;    //!< çŠ¶æ…‹åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+    int mTimeCounter;   //!< ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
+    int mRoute;         //!< 0-3. ã©ã®ãƒ«ãƒ¼ãƒˆã‚’è¾¿ã‚‹ã‹
 public:
-	MysteryDriver();    //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~MysteryDriver(){}  //ƒfƒXƒgƒ‰ƒNƒ^
-    bool drive();       //!< ƒ~ƒXƒeƒŠ[ƒhƒ‰ƒCƒoÀsƒƒ\ƒbƒh
+	MysteryDriver();    //ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~MysteryDriver(){}  //ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+    bool drive();       //!< ãƒŸã‚¹ãƒ†ãƒªãƒ¼ãƒ‰ãƒ©ã‚¤ãƒå®Ÿè¡Œãƒ¡ã‚½ãƒƒãƒ‰
 };
 
 #endif

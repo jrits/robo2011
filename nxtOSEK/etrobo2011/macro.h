@@ -2,46 +2,46 @@
 #define __MACRO_H__
 
 /**
- *	”z—ñ—v‘f”æ“¾
+ *	é…åˆ—è¦ç´ æ•°å–å¾—
  *
- *	”z—ñ‚Ì—v‘f”‚ğæ“¾‚·‚éB
+ *	é…åˆ—ã®è¦ç´ æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
  *
- * @param[in] array ”z—ñ–¼Bƒ|ƒCƒ“ƒ^‚Å‚Í‚È‚¢‚±‚ÆB
- * @return ”z—ñ‚Ì—v‘f”
+ * @param[in] array é…åˆ—åã€‚ãƒã‚¤ãƒ³ã‚¿ã§ã¯ãªã„ã“ã¨ã€‚
+ * @return é…åˆ—ã®è¦ç´ æ•°
  */
 #define COUNTOF(array) (sizeof(array) / sizeof((array)[0]))
 
 /**
- * â‘Î’l‚ğæ“¾‚·‚éB
+ * çµ¶å¯¾å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
  *
- * @param[in] value ’l
- * @return â‘Î’l
+ * @param[in] value å€¤
+ * @return çµ¶å¯¾å€¤
  */
 #define ABS(value) ((value) < 0 ? -(value) : (value))
 
 /**
- * •„†‚ğæ“¾‚·‚éB
+ * ç¬¦å·ã‚’å–å¾—ã™ã‚‹ã€‚
  *
- * @param[in] value ’l
- * @return •„†
+ * @param[in] value å€¤
+ * @return ç¬¦å·
  */
 #define SIGN(value) ((value) > 0 ? 1 : -1)
 
 /**
- * ‘å‚«‚¢•û‚Ì’l‚ğæ“¾‚·‚éB
+ * å¤§ãã„æ–¹ã®å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
  *
- * @param[in] a ’l‚P
- * @param[in] b ’l‚Q
- * @return ‘å‚«‚¢•û‚Ì’l
+ * @param[in] a å€¤ï¼‘
+ * @param[in] b å€¤ï¼’
+ * @return å¤§ãã„æ–¹ã®å€¤
  */
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
 /**
- * ¬‚³‚¢•û‚Ì’l‚ğæ“¾‚·‚éB
+ * å°ã•ã„æ–¹ã®å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
  *
- * @param[in] a ’l‚P
- * @param[in] b ’l‚Q
- * @return ¬‚³‚¢•û‚Ì’l
+ * @param[in] a å€¤ï¼‘
+ * @param[in] b å€¤ï¼’
+ * @return å°ã•ã„æ–¹ã®å€¤
  */
 #define MIN(a,b) (((a)<(b))?(a):(b))
 

@@ -31,7 +31,7 @@ class StandUpSkill {
   void execute(){
     static const VectorT<F32> command(1.0F,1.0F);
     if(!mIsStandUp){
-      //�����オ��܂ł����ۂ̊p�x���グ������B
+      //立ち上がるまでしっぽの角度を上げ続ける。
       mIsStandUp = isStandUp();
       taiL_control(108);
       mTripodActivator.run(command);
@@ -55,10 +55,10 @@ class StandUpSkill {
  private:
   void taiL_control(signed int angle) const{
     static const float P_GAIN = 2.5F;
-    static const float PWM_ABS_MAX = 60; /* ���S��~�p���[�^����PWM��΍ő�l */        
-    float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* ��ᐧ�� */
+    static const float PWM_ABS_MAX = 60; /* 完全停止用モータ制御PWM絶対最大値 */        
+    float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* 比例制御 */
 
-    /* PWM�o�͖O�a���� */
+    /* PWM出力飽和処理 */
     if (pwm > PWM_ABS_MAX)
     {
       pwm = PWM_ABS_MAX;
@@ -72,7 +72,7 @@ class StandUpSkill {
   }
 
   bool isStandUp(){
-    // ���[�^�̊p�x�����ɒB�����痧���オ�����Ɣ��肷��B
+    // モータの角度が一定に達したら立ち上がったと判定する。
     return mTailMotor.getCount() > 100;
   }
 

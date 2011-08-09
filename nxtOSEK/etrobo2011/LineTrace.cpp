@@ -3,13 +3,15 @@
 //
 #include "LineTrace.h"
 #include "factory.h"
+extern bool  gDoMaimai;
+extern float gMaimaiValue;
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] black •
- * @param[in] white ”’
- * @param[in] threshold ”’•è‡’l
+ * @param[in] black é»’
+ * @param[in] white ç™½
+ * @param[in] threshold ç™½é»’é–¾å€¤
  */
 LineTrace::LineTrace(float black, float white, float threshold)
 {
@@ -24,9 +26,9 @@ LineTrace::LineTrace(float black, float white, float threshold)
 }
 
 /**
- * ó‘Ô‚ÌƒŠƒZƒbƒg
+ * çŠ¶æ…‹ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * ‰‘¬‚©‚çn‚ß‚é
+ * åˆé€Ÿã‹ã‚‰å§‹ã‚ã‚‹
  */
 void LineTrace::reset()
 {
@@ -34,9 +36,9 @@ void LineTrace::reset()
 }
 
 /**
- * ‰‘¬‚Ìİ’è
+ * åˆé€Ÿã®è¨­å®š
  *
- * @param[in] initForward ‰‘¬
+ * @param[in] initForward åˆé€Ÿ
  */
 void LineTrace::setInitForward(int initForward)
 {
@@ -44,9 +46,9 @@ void LineTrace::setInitForward(int initForward)
 }
 
 /**
- * ‰‘¬Œp‘±ƒJƒEƒ“ƒ^ŠúŠÔ‚Ìİ’è
+ * åˆé€Ÿç¶™ç¶šã‚«ã‚¦ãƒ³ã‚¿æœŸé–“ã®è¨­å®š
  *
- * @param[in] initDuration ‰‘¬Œp‘±ƒJƒEƒ“ƒ^ŠúŠÔ
+ * @param[in] initDuration åˆé€Ÿç¶™ç¶šã‚«ã‚¦ãƒ³ã‚¿æœŸé–“
  */
 void LineTrace::setInitDuration(int initDuration)
 {
@@ -54,33 +56,58 @@ void LineTrace::setInitDuration(int initDuration)
 }
 
 /**
- * ON/OFF§Œä(true) or PID§Œä(false)ƒtƒ‰ƒO‚Ìİ’è
+ * (PIDåˆ¶å¾¡)ç¾åœ¨ã®å…‰å€¤ã‹ã‚‰ã€ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‚’ã™ã‚‹ã®ã«é©åˆ‡ãªã‚¿ãƒ¼ãƒ³å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
  *
- * @param[in] useOnoff ON/OFF§Œä(true) or PID§Œä(false)ƒtƒ‰ƒO
+ * @return ã‚¿ãƒ¼ãƒ³å€¤
  */
-void LineTrace::setUseOnoff(bool useOnoff)
+float LineTrace::calcCommandTurn()
 {
-    mUseOnoff = useOnoff;
+	//æ­£è¦åŒ–ã—ãŸå…‰ã‚»ãƒ³ã‚µå€¤ã‚’Pã«æ ¼ç´ã™ã‚‹
+    float P;
+    if (gDoMaimai) {
+        P = this->maimaiValueNormalization(); // ã¾ã„ã¾ã„å¼
+    } else {
+        P = this->lightValueNormalization(); // é€šå¸¸
+    }
+
+	//Pidåˆ¶å¾¡
+    float Y = mLightPid.control(P);
+	
+	//ãƒ©ã‚¤ãƒ³ã®å³å´ã‚’ãƒˆãƒ¬ãƒ¼ã‚¹ã™ã‚‹ã‹å·¦å´ã‚’ãƒˆãƒ¬ãƒ¼ã‚¹ã™ã‚‹ã‹ã§æ—‹å›æ–¹å‘ãŒæ±ºã¾ã‚‹
+	if(TRACE_EDGE == LEFT ) Y *= -1;
+	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    return Y;
 }
 
 /**
- * Œ»İ‚ÌŒõ’l‚©‚çAƒ‰ƒCƒ“ƒgƒŒ[ƒX‚ğ‚·‚é‚Ì‚É“KØ‚È‘–sƒxƒNƒgƒ‹‚ğŒvZ‚·‚éB
+ * ç¾åœ¨ã®å…‰å€¤ã‹ã‚‰ã€ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‚’ã™ã‚‹ã®ã«é©åˆ‡ãªèµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã™ã‚‹ã€‚
  *
- * @return ‘–sƒxƒNƒgƒ‹
+ * @return èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«
  */
 VectorT<float> LineTrace::calcCommand()
 {
-	gLineTrace = true;  //‘–sƒXƒLƒ‹ƒtƒ‰ƒOBƒ‰ƒCƒ“ƒgƒŒ[ƒX‚Ì‚İtrue‚Æ‚È‚éB(Gps‚Ì•â³‚Ì‚½‚ß‚Ìƒtƒ‰ƒO)
-    // ‹N“®‹}ƒ_ƒbƒVƒ…‚·‚é‚½‚ßAÅ‰‚Ì‚İƒXƒs[ƒh‚ğ‚ä‚é‚ß‚é
+    //ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹æ™‚ã®ã¿trueã¨ãªã‚‹ã€‚(Gpsã®è£œæ­£ã®ãŸã‚ã®ãƒ•ãƒ©ã‚°)
+	gLineTrace = true;
+
+    // èµ·å‹•æ™‚æ€¥ãƒ€ãƒƒã‚·ãƒ¥ã™ã‚‹ãŸã‚ã€æœ€åˆã®ã¿ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ã‚†ã‚‹ã‚ã‚‹
     float X;
     if (mTimeCounter < mInitDuration) {
         mTimeCounter++;
         X = mInitForward;
     }
-    else { // ’ÊíƒXƒs[ƒh
+    else { // é€šå¸¸ã‚¹ãƒ”ãƒ¼ãƒ‰
         X = mForward;
     }
 
+    float Y;
+    if (mUseOnoff) { 
+        Y = calcCommandTurnByOnOff();
+    }
+    else {
+        Y = calcCommandTurn();
+    }
+    
 #if 0 // DEBUG
     {
         static int count = 0;
@@ -89,87 +116,94 @@ VectorT<float> LineTrace::calcCommand()
             Lcd lcd;
             lcd.clear();
             lcd.putf("sn", "LineTrace");
-            lcd.putf("dn", mState);
-            lcd.putf("dn", mTimeCounter);
             lcd.putf("dn", (int)X);
+            lcd.putf("dn", (int)Y);
             lcd.disp();
         }
     }
 #endif
-    float Y;
-    if (mUseOnoff) { 
-        Y = calcCommandTurnByOnOff();
-    }
-    else {
-        Y = calcCommandTurn();
-    }
     return VectorT<F32>(X,Y);
 }
 
 /**
- * (ONOFF§Œä)Œ»İ‚ÌŒõ’l‚©‚çAƒ‰ƒCƒ“ƒgƒŒ[ƒX‚ğ‚·‚é‚Ì‚É“KØ‚Èƒ^[ƒ“’l‚ğŒvZ‚·‚éB
+ * æ­£è¦åŒ–ã—ãŸå…‰ã‚»ãƒ³ã‚µã®å€¤ã‚’å–å¾—ã™ã‚‹
  *
- * @return ƒ^[ƒ“’l
- */
-float LineTrace::calcCommandTurnByOnOff()
-{
-    float P = (mLightSensor.get() - mLineThreshold); // •Î·
-
-	//ONOFF§Œä
-    float Y;
-    if (P < 0) { // ”’
-        Y = -LIGHT_ONOFF_K;
-    }
-    else { // •
-        Y = LIGHT_ONOFF_K;
-    }
-	
-	//ƒ‰ƒCƒ“‚Ì‰E‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©¶‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©‚Åù‰ñ•ûŒü‚ªŒˆ‚Ü‚é
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-    return Y;
-}
-
-/**
- * (PID§Œä)Œ»İ‚ÌŒõ’l‚©‚çAƒ‰ƒCƒ“ƒgƒŒ[ƒX‚ğ‚·‚é‚Ì‚É“KØ‚Èƒ^[ƒ“’l‚ğŒvZ‚·‚éB
- *
- * @return ƒ^[ƒ“’l
- */
-float LineTrace::calcCommandTurn()
-{
-	//³‹K‰»‚µ‚½ŒõƒZƒ“ƒT’l‚ğP‚ÉŠi”[‚·‚é
-	float P = this->lightValueNormalization();
-	//Pid§Œä
-    float Y = mLightPid.control(P);
-	
-	//ƒ‰ƒCƒ“‚Ì‰E‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©¶‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©‚Åù‰ñ•ûŒü‚ªŒˆ‚Ü‚é
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-    return Y;
-}
-
-/**
- * ³‹K‰»‚µ‚½ŒõƒZƒ“ƒT‚Ì’l‚ğæ“¾‚·‚é
- *
- * @return ³‹K‰»‚µ‚½ŒõƒZƒ“ƒT‚Ì’l
+ * @return æ­£è¦åŒ–ã—ãŸå…‰ã‚»ãƒ³ã‚µã®å€¤
  */
 float LineTrace::lightValueNormalization()
 {
     float L = 0;
 	L = mLightSensor.get();
 	
-    float P = (L - mLineThreshold); // •Î·
-    if(L < mLineThreshold){ // ”’
-        P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] ‚Ì’l‚É³‹K‰»
+    float P = (L - mLineThreshold); // åå·®
+    if(L < mLineThreshold){ // ç™½
+        P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] ã®å€¤ã«æ­£è¦åŒ–
     }
-    else{ // •
-        P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] ‚Ì’l‚É³‹K‰»
+    else{ // é»’
+        P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] ã®å€¤ã«æ­£è¦åŒ–
     }
 	
 	if(P > 1) P = 1;
 	if(P < -1) P = -1;
 	
     return P;
+}
+
+/**
+ * æ­£è¦åŒ–ã—ãŸå…‰ã‚»ãƒ³ã‚µã®å€¤ã‚’å–å¾—ã™ã‚‹(MAIMAI)
+ *
+ * @return æ­£è¦åŒ–ã—ãŸå…‰ã‚»ãƒ³ã‚µã®å€¤(MAIMAI)
+ */
+float LineTrace::maimaiValueNormalization()
+{
+    float L = 0;
+	L = gMaimaiValue;
+	
+    float P = (L - MAIMAI_LINE_THRESHOLD); // åå·®
+    if(L < MAIMAI_LINE_THRESHOLD){ // ç™½
+        P = P / (MAIMAI_LINE_THRESHOLD - MAIMAI_WHITE); // [-1.0, 1.0] ã®å€¤ã«æ­£è¦åŒ–
+    }
+    else{ // é»’
+        P = P / (MAIMAI_BLACK - MAIMAI_LINE_THRESHOLD); // [-1.0, 1.0] ã®å€¤ã«æ­£è¦åŒ–
+    }
+	
+	if(P > 1) P = 1;
+	if(P < -1) P = -1;
+	
+    return P;
+}
+
+/**
+ * ON/OFFåˆ¶å¾¡(true) or PIDåˆ¶å¾¡(false)ãƒ•ãƒ©ã‚°ã®è¨­å®š
+ *
+ * @param[in] useOnoff ON/OFFåˆ¶å¾¡(true) or PIDåˆ¶å¾¡(false)ãƒ•ãƒ©ã‚°
+ */
+void LineTrace::setUseOnoff(bool useOnoff)
+{
+    mUseOnoff = useOnoff;
+}
+
+/**
+ * (ONOFFåˆ¶å¾¡)ç¾åœ¨ã®å…‰å€¤ã‹ã‚‰ã€ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‚’ã™ã‚‹ã®ã«é©åˆ‡ãªã‚¿ãƒ¼ãƒ³å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+ *
+ * @return ã‚¿ãƒ¼ãƒ³å€¤
+ */
+float LineTrace::calcCommandTurnByOnOff()
+{
+    float P = (mLightSensor.get() - mLineThreshold); // åå·®
+
+	//ONOFFåˆ¶å¾¡
+    float Y;
+    if (P < 0) { // ç™½
+        Y = -LIGHT_ONOFF_K;
+    }
+    else { // é»’
+        Y = LIGHT_ONOFF_K;
+    }
+	
+	//ãƒ©ã‚¤ãƒ³ã®å³å´ã‚’ãƒˆãƒ¬ãƒ¼ã‚¹ã™ã‚‹ã‹å·¦å´ã‚’ãƒˆãƒ¬ãƒ¼ã‚¹ã™ã‚‹ã‹ã§æ—‹å›æ–¹å‘ãŒæ±ºã¾ã‚‹
+	if(TRACE_EDGE == LEFT ) Y *= -1;
+	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    return Y;
 }

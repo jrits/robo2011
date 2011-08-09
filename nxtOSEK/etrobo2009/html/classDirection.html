@@ -1,1364 +1,0 @@
-<!-- This comment will put IE 6, 7 and 8 in quirks mode -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>robo2009: クラス Direction</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
-<link href="doxygen.css" rel="stylesheet" type="text/css"/>
-</head>
-<body onload='searchBox.OnSelectItem(0);'>
-<!-- 作成： Doxygen 1.6.1 -->
-<script type="text/javascript"><!--
-var searchBox = new SearchBox("searchBox", "search",false,'検索');
---></script>
-<div class="navigation" id="top">
-  <div class="tabs">
-    <ul>
-      <li><a href="index.html"><span>メインページ</span></a></li>
-      <li><a href="pages.html"><span>関連ページ</span></a></li>
-      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
-      <li><a href="files.html"><span>ファイル</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <img id="MSearchSelect" src="search/search.png"
-             onmouseover="return searchBox.OnSearchSelectShow()"
-             onmouseout="return searchBox.OnSearchSelectHide()"
-             alt=""/>
-        <input type="text" id="MSearchField" value="検索" accesskey="S"
-             onfocus="searchBox.OnSearchFieldFocus(true)" 
-             onblur="searchBox.OnSearchFieldFocus(false)" 
-             onkeyup="searchBox.OnSearchFieldChange(event)"/>
-        <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>構成</span></a></li>
-      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
-      <li><a href="functions.html"><span>構成メンバ</span></a></li>
-    </ul>
-  </div>
-</div>
-<div class="contents">
-<h1>クラス Direction</h1><!-- doxytag: class="Direction" -->
-<p><code>#include &lt;<a class="el" href="Direction_8hpp_source.html">Direction.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Directionのコラボレーション図</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection__coll__graph.png" border="0" usemap="#Direction_coll__map" alt="Collaboration graph"/></div>
-<map name="Direction_coll__map" id="Direction_coll__map">
-<area shape="rect" id="node2" href="classSensorHistory.html" title="SensorHistory" alt="" coords="5,5,109,35"/></map>
-<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
-
-<p><a href="classDirection-members.html">すべてのメンバ一覧</a></p>
-<table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public メソッド</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a095bd430495639fa14721ca26cbb99cc">Direction</a> (<a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;sh, F32 sd=0.0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#ad3560f424d1002ae7ac3403c515dd7e5">~Direction</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a2b8c3770f9f15127b1fbcffbe7b3cf78">getOffset</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01">getDirection</a> (int t=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">向きの取得  <a href="#adc3753ddc9281032801fd69936dbdf01"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725">getAvgDirection</a> (int t=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">移動平均向きの取得  <a href="#ad1e268f5d91e90b6e2151c8e4a7a2725"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01">getDirectionOff</a> (int t=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オフセット値を考慮した向きの取得  <a href="#a30c805edf18486a75ba6919d6e4f8a01"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a01403d54c789c5b079cfec101199dda7">getAvgDirectionOff</a> (int t=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">オフセット値を考慮した移動平均向きの取得  <a href="#a01403d54c789c5b079cfec101199dda7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a9b4beb83a88cb05154badd45f863ec4a">getDerivativeOfRawDirection</a> (unsigned int i=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">向きの微分値の計算。  <a href="#a9b4beb83a88cb05154badd45f863ec4a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a347f11d523d1a9662ac9e9e61f2452ef">getDerivativeOfAvgDirection</a> (unsigned int i=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">移動平均向きの微分値の計算。  <a href="#a347f11d523d1a9662ac9e9e61f2452ef"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a768c0686c5c01af47b38df378dc590eb">getNewDirection</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a9c12eef09e17a323be9289d5c325e81f">getOldDirection</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#aa6c77b37ed9388d4e9e894f2df6f1318">getNewAvgDirection</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a8e4452b7437a0156cc5e3495aff4dc24">getOldAvgDirection</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a0ddf31eafb425c864aa4b6f4e898b142">getNewDirectionOff</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a7ab2f182ceeddf64320f2b1d2c3757e8">getOldDirectionOff</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#ab654088e2992bda18393b0fe86842a18">getNewAvgDirectionOff</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3">getOldAvgDirectionOff</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22">getDerivativeOfDirection</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the derivative of direction.  <a href="#a3425dd8de7f30d43dfbf2ba8fa81ea22"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b">getLeftMotorCount</a> (int t=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">左モータエンコーダ値の取得  <a href="#a7a7e3e443d03f4ab91214f834e22ac5b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#ae8c954f2b4908119a93a7482e6d13b38">getAvgLeftMotorCount</a> (int t=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">移動平均左モータエンコーダ値の取得  <a href="#ae8c954f2b4908119a93a7482e6d13b38"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#ae6132bc04d19db5bec330d8b2785e4d5">getDerivativeOfRawLeftMotorCount</a> (unsigned int i=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">左モータエンコーダ値の微分値の計算。  <a href="#ae6132bc04d19db5bec330d8b2785e4d5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a415bd566b52d22cafec8afa3c78e7f36">getDerivativeOfAvgLeftMotorCount</a> (unsigned int i=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">移動平均左モータエンコーダ値の微分値の計算。  <a href="#a415bd566b52d22cafec8afa3c78e7f36"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a">getIndex</a> (int i)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert the ring buffer index to the physical memory index.  <a href="#a6d387492ceac22d2c6389bf94af4422a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#aeaf8e651c00fb2d06da3f09639510dec">forwardIndex</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Forward the newest pointer.  <a href="#aeaf8e651c00fb2d06da3f09639510dec"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c">renewHistory</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">リングバッファ履歴の更新  <a href="#aee8b8b845ebcfd900662b1cd26d36e4c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#ab96a03b3be055655fd46a596243c0953">computeDirection</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Estimate the absolute direction angle.  <a href="#ab96a03b3be055655fd46a596243c0953"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#aa1c649e537de1b8d087ff5d4c53eedc7">computeRawCurvature</a> (int i=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Estimate the curvature (1/radius) of running curve.  <a href="#aa1c649e537de1b8d087ff5d4c53eedc7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a9ba6b453c8089b8978809ed791bf4bc0">computeAvgCurvature</a> (int i=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Estimate the moving averaged curvature (1/radius) of running curve.  <a href="#a9ba6b453c8089b8978809ed791bf4bc0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a863085b55412cc1cc27e955001e042a8">calcDirectionOffset90</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c">calcDirectionOffset180</a> ()</td></tr>
-<tr><td colspan="2"><h2>Private 変数</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#aa764a5383f274a9fe35fcfddc1779300">sensorHistory</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a4df28e3e99ed99b0aefda01428010c18">directionOffset</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const F32&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#a3d873799a10d35722421b798bbea6f72">startDirection</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">U16&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDirection.html#ad36661f57d9b987755485a5dffb85616">index</a></td></tr>
-</table>
-<hr/><a name="_details"></a><h2>説明</h2>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00024">24</a> 行で定義されています。</p>
-<hr/><h2>コンストラクタとデストラクタ</h2>
-<a class="anchor" id="a095bd430495639fa14721ca26cbb99cc"></a><!-- doxytag: member="Direction::Direction" ref="a095bd430495639fa14721ca26cbb99cc" args="(SensorHistory &amp;sh, F32 sd=0.0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Direction::Direction </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classSensorHistory.html">SensorHistory</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>sh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">F32&nbsp;</td>
-          <td class="paramname"> <em>sd</em> = <code>0.0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00033">33</a> 行で定義されています。</p>
-
-</div>
-</div>
-<a class="anchor" id="ad3560f424d1002ae7ac3403c515dd7e5"></a><!-- doxytag: member="Direction::~Direction" ref="ad3560f424d1002ae7ac3403c515dd7e5" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Direction::~Direction </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00045">45</a> 行で定義されています。</p>
-
-</div>
-</div>
-<hr/><h2>関数</h2>
-<a class="anchor" id="aff4fea8debc552a042eabbc5479d3e5c"></a><!-- doxytag: member="Direction::calcDirectionOffset180" ref="aff4fea8debc552a042eabbc5479d3e5c" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Direction::calcDirectionOffset180 </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00344">344</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aff4fea8debc552a042eabbc5479d3e5c_cgraph.png" border="0" usemap="#classDirection_aff4fea8debc552a042eabbc5479d3e5c_cgraph_map" alt=""></div>
-<map name="classDirection_aff4fea8debc552a042eabbc5479d3e5c_cgraph_map" id="classDirection_aff4fea8debc552a042eabbc5479d3e5c_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="527,5,743,35"/><area shape="rect" id="node9" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="265,57,476,87"/><area shape="rect" id="node14" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="268,111,473,140"/><area shape="rect" id="node5" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="792,32,963,61"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1011,32,1141,61"/><area shape="rect" id="node11" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="541,59,728,88"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aff4fea8debc552a042eabbc5479d3e5c_icgraph.png" border="0" usemap="#classDirection_aff4fea8debc552a042eabbc5479d3e5c_icgraph_map" alt=""></div>
-<map name="classDirection_aff4fea8debc552a042eabbc5479d3e5c_icgraph_map" id="classDirection_aff4fea8debc552a042eabbc5479d3e5c_icgraph">
-<area shape="rect" id="node3" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="284,5,412,35"/><area shape="rect" id="node5" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="265,59,431,88"/><area shape="rect" id="node7" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="275,112,421,141"/><area shape="rect" id="node11" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="268,165,428,195"/><area shape="rect" id="node13" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="289,219,407,248"/><area shape="rect" id="node9" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="480,112,536,141"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a863085b55412cc1cc27e955001e042a8"></a><!-- doxytag: member="Direction::calcDirectionOffset90" ref="a863085b55412cc1cc27e955001e042a8" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Direction::calcDirectionOffset90 </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00303">303</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a863085b55412cc1cc27e955001e042a8_cgraph.png" border="0" usemap="#classDirection_a863085b55412cc1cc27e955001e042a8_cgraph_map" alt=""></div>
-<map name="classDirection_a863085b55412cc1cc27e955001e042a8_cgraph_map" id="classDirection_a863085b55412cc1cc27e955001e042a8_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="521,5,737,35"/><area shape="rect" id="node9" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="260,57,471,87"/><area shape="rect" id="node14" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="263,111,468,140"/><area shape="rect" id="node5" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="787,32,957,61"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="1005,32,1136,61"/><area shape="rect" id="node11" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="536,59,723,88"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a863085b55412cc1cc27e955001e042a8_icgraph.png" border="0" usemap="#classDirection_a863085b55412cc1cc27e955001e042a8_icgraph_map" alt=""></div>
-<map name="classDirection_a863085b55412cc1cc27e955001e042a8_icgraph_map" id="classDirection_a863085b55412cc1cc27e955001e042a8_icgraph">
-<area shape="rect" id="node3" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="279,5,407,35"/><area shape="rect" id="node5" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="260,59,425,88"/><area shape="rect" id="node7" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="269,112,416,141"/><area shape="rect" id="node11" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="263,165,423,195"/><area shape="rect" id="node13" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="284,219,401,248"/><area shape="rect" id="node9" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="475,112,531,141"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a9ba6b453c8089b8978809ed791bf4bc0"></a><!-- doxytag: member="Direction::computeAvgCurvature" ref="a9ba6b453c8089b8978809ed791bf4bc0" args="(int i=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Direction::computeAvgCurvature </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>i</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Estimate the moving averaged curvature (1/radius) of running curve. </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>The sampling time interval to get derivative values. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>The curvature (1/radius). +: left curve. -: right curve. Be careful that you may receive Inf or -Inf. </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00287">287</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a9ba6b453c8089b8978809ed791bf4bc0_cgraph.png" border="0" usemap="#classDirection_a9ba6b453c8089b8978809ed791bf4bc0_cgraph_map" alt=""></div>
-<map name="classDirection_a9ba6b453c8089b8978809ed791bf4bc0_cgraph_map" id="classDirection_a9ba6b453c8089b8978809ed791bf4bc0_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a347f11d523d1a9662ac9e9e61f2452ef" title="移動平均向きの微分値の計算。" alt="" coords="280,5,517,35"/><area shape="rect" id="node9" href="classDirection.html#a415bd566b52d22cafec8afa3c78e7f36" title="移動平均左モータエンコーダ値の微分値の計算。" alt="" coords="261,59,536,88"/><area shape="rect" id="node5" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="603,5,773,35"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="840,32,971,61"/><area shape="rect" id="node11" href="classDirection.html#ae8c954f2b4908119a93a7482e6d13b38" title="移動平均左モータエンコーダ値の取得" alt="" coords="584,59,792,88"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a9ba6b453c8089b8978809ed791bf4bc0_icgraph.png" border="0" usemap="#classDirection_a9ba6b453c8089b8978809ed791bf4bc0_icgraph_map" alt=""></div>
-<map name="classDirection_a9ba6b453c8089b8978809ed791bf4bc0_icgraph_map" id="classDirection_a9ba6b453c8089b8978809ed791bf4bc0_icgraph">
-<area shape="rect" id="node3" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="288,5,520,35"/><area shape="rect" id="node7" href="classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="261,59,547,88"/><area shape="rect" id="node13" href="classLineTraceDriver.html#a6640c0d53f7914a84fd6731ddfe507f6" title="LineTraceDriver::initialize" alt="" coords="321,112,487,141"/><area shape="rect" id="node5" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="656,5,800,35"/><area shape="rect" id="node9" href="classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="595,59,861,88"/><area shape="rect" id="node11" href="classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="911,85,1095,115"/><area shape="rect" id="node16" href="classLineTraceDriver.html#a01acb479143cfbfb5e2753988d43d0df" title="LineTraceDriver::LineTraceDriver" alt="" coords="625,163,831,192"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ab96a03b3be055655fd46a596243c0953"></a><!-- doxytag: member="Direction::computeDirection" ref="ab96a03b3be055655fd46a596243c0953" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::computeDirection </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Estimate the absolute direction angle. </p>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>The direction angle (deg). </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00252">252</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ab96a03b3be055655fd46a596243c0953_cgraph.png" border="0" usemap="#classDirection_ab96a03b3be055655fd46a596243c0953_cgraph_map" alt=""></div>
-<map name="classDirection_ab96a03b3be055655fd46a596243c0953_cgraph_map" id="classDirection_ab96a03b3be055655fd46a596243c0953_cgraph">
-<area shape="rect" id="node3" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="243,5,501,35"/><area shape="rect" id="node5" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="239,59,505,88"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ab96a03b3be055655fd46a596243c0953_icgraph.png" border="0" usemap="#classDirection_ab96a03b3be055655fd46a596243c0953_icgraph_map" alt=""></div>
-<map name="classDirection_ab96a03b3be055655fd46a596243c0953_icgraph_map" id="classDirection_ab96a03b3be055655fd46a596243c0953_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="239,5,393,35"/><area shape="rect" id="node5" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="443,5,499,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aa1c649e537de1b8d087ff5d4c53eedc7"></a><!-- doxytag: member="Direction::computeRawCurvature" ref="aa1c649e537de1b8d087ff5d4c53eedc7" args="(int i=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Direction::computeRawCurvature </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>i</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Estimate the curvature (1/radius) of running curve. </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>The sampling time interval to get derivative values. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>The curvature (1/radius). +: left curve. -: right curve. Be careful that you may receive Inf or -Inf. </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00267">267</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_cgraph.png" border="0" usemap="#classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_cgraph_map" alt=""></div>
-<map name="classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_cgraph_map" id="classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a9b4beb83a88cb05154badd45f863ec4a" title="向きの微分値の計算。" alt="" coords="283,5,525,35"/><area shape="rect" id="node9" href="classDirection.html#ae6132bc04d19db5bec330d8b2785e4d5" title="左モータエンコーダ値の微分値の計算。" alt="" coords="265,59,543,88"/><area shape="rect" id="node5" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="611,5,760,35"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="827,32,957,61"/><area shape="rect" id="node11" href="classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b" title="左モータエンコーダ値の取得" alt="" coords="592,59,779,88"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_icgraph.png" border="0" usemap="#classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_icgraph_map" alt=""></div>
-<map name="classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_icgraph_map" id="classDirection_aa1c649e537de1b8d087ff5d4c53eedc7_icgraph">
-<area shape="rect" id="node3" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="264,5,496,35"/><area shape="rect" id="node5" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="545,5,689,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aeaf8e651c00fb2d06da3f09639510dec"></a><!-- doxytag: member="Direction::forwardIndex" ref="aeaf8e651c00fb2d06da3f09639510dec" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Direction::forwardIndex </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Forward the newest pointer. </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>-</em>&nbsp;</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>- </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00217">217</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aeaf8e651c00fb2d06da3f09639510dec_icgraph.png" border="0" usemap="#classDirection_aeaf8e651c00fb2d06da3f09639510dec_icgraph_map" alt=""></div>
-<map name="classDirection_aeaf8e651c00fb2d06da3f09639510dec_icgraph_map" id="classDirection_aeaf8e651c00fb2d06da3f09639510dec_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="209,5,364,35"/><area shape="rect" id="node5" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="413,5,469,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ad1e268f5d91e90b6e2151c8e4a7a2725"></a><!-- doxytag: member="Direction::getAvgDirection" ref="ad1e268f5d91e90b6e2151c8e4a7a2725" args="(int t=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getAvgDirection </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>t</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>移動平均向きの取得 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>サンプル時間添字。 t = 0 で最新値を、負数で過去の値を取得(例: t = -1　で直前値)。 また内部でリングバッファを用いているため t = 1 で１周して最古値を取得可能。 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>移動平均向き </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00070">70</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_cgraph.png" border="0" usemap="#classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_cgraph_map" alt=""></div>
-<map name="classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_cgraph_map" id="classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="224,5,355,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_icgraph.png" border="0" usemap="#classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_icgraph_map" alt=""></div>
-<map name="classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_icgraph_map" id="classDirection_ad1e268f5d91e90b6e2151c8e4a7a2725_icgraph">
-<area shape="rect" id="node3" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="512,397,741,427"/><area shape="rect" id="node34" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="251,633,437,663"/><area shape="rect" id="node74" href="classDirection.html#a347f11d523d1a9662ac9e9e61f2452ef" title="移動平均向きの微分値の計算。" alt="" coords="225,1253,463,1283"/><area shape="rect" id="node92" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="519,1148,735,1177"/><area shape="rect" id="node101" href="classDirection.html#aa6c77b37ed9388d4e9e894f2df6f1318" title="Direction::getNewAvgDirection" alt="" coords="247,1307,441,1336"/><area shape="rect" id="node103" href="classDirection.html#a8e4452b7437a0156cc5e3495aff4dc24" title="Direction::getOldAvgDirection" alt="" coords="249,1360,439,1389"/><area shape="rect" id="node105" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="267,1200,421,1229"/><area shape="rect" id="node5" href="classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="789,423,1080,452"/><area shape="rect" id="node7" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="1163,397,1360,427"/><area shape="rect" id="node9" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="801,105,1068,135"/><area shape="rect" id="node13" href="classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="796,159,1073,188"/><area shape="rect" id="node16" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="809,52,1060,81"/><area shape="rect" id="node19" href="classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="849,580,1020,609"/><area shape="rect" id="node21" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="836,633,1033,663"/><area shape="rect" id="node23" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="1189,657,1333,687"/><area shape="rect" id="node25" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="824,527,1045,556"/><area shape="rect" id="node28" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="828,212,1041,241"/><area shape="rect" id="node30" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="853,265,1016,295"/><area shape="rect" id="node32" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="841,319,1028,348"/><area shape="rect" id="node11" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="1175,52,1348,81"/><area shape="rect" id="node42" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="521,915,732,944"/><area shape="rect" id="node70" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="524,993,729,1023"/><area shape="rect" id="node44" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="829,1148,1040,1177"/><area shape="rect" id="node46" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="1197,1251,1325,1280"/><area shape="rect" id="node48" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="1179,964,1344,993"/><area shape="rect" id="node50" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="1188,1148,1335,1177"/><area shape="rect" id="node54" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="1181,1023,1341,1052"/><area shape="rect" id="node56" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="1203,1088,1320,1117"/><area shape="rect" id="node58" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="833,993,1036,1023"/><area shape="rect" id="node52" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="1508,1376,1564,1405"/><area shape="rect" id="node76" href="classDirection.html#a9ba6b453c8089b8978809ed791bf4bc0" title="Estimate the moving averaged curvature (1/radius) of running curve." alt="" coords="524,1455,729,1484"/><area shape="rect" id="node78" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="819,839,1051,868"/><area shape="rect" id="node81" href="classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="792,1455,1077,1484"/><area shape="rect" id="node87" href="classLineTraceDriver.html#a6640c0d53f7914a84fd6731ddfe507f6" title="LineTraceDriver::initialize" alt="" coords="852,1508,1017,1537"/><area shape="rect" id="node83" href="classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="1128,1455,1395,1484"/><area shape="rect" id="node85" href="classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="1444,1481,1628,1511"/><area shape="rect" id="node90" href="classLineTraceDriver.html#a01acb479143cfbfb5e2753988d43d0df" title="LineTraceDriver::LineTraceDriver" alt="" coords="1159,1508,1364,1537"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a01403d54c789c5b079cfec101199dda7"></a><!-- doxytag: member="Direction::getAvgDirectionOff" ref="a01403d54c789c5b079cfec101199dda7" args="(int t=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getAvgDirectionOff </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>t</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>オフセット値を考慮した移動平均向きの取得 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>サンプル時間添字。 t = 0 で最新値を、負数で過去の値を取得(例: t = -1　で直前値)。 また内部でリングバッファを用いているため t = 1 で１周して最古値を取得可能。 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>オフセット値を考慮した移動平均向き </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00092">92</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a01403d54c789c5b079cfec101199dda7_cgraph.png" border="0" usemap="#classDirection_a01403d54c789c5b079cfec101199dda7_cgraph_map" alt=""></div>
-<map name="classDirection_a01403d54c789c5b079cfec101199dda7_cgraph_map" id="classDirection_a01403d54c789c5b079cfec101199dda7_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="240,5,411,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="459,5,589,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a01403d54c789c5b079cfec101199dda7_icgraph.png" border="0" usemap="#classDirection_a01403d54c789c5b079cfec101199dda7_icgraph_map" alt=""></div>
-<map name="classDirection_a01403d54c789c5b079cfec101199dda7_icgraph_map" id="classDirection_a01403d54c789c5b079cfec101199dda7_icgraph">
-<area shape="rect" id="node3" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="240,364,469,393"/><area shape="rect" id="node7" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="857,126,1055,156"/><area shape="rect" id="node11" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="869,310,1043,340"/><area shape="rect" id="node19" href="classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="577,46,748,76"/><area shape="rect" id="node21" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="564,577,761,606"/><area shape="rect" id="node25" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="552,630,773,660"/><area shape="rect" id="node39" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="249,889,460,918"/><area shape="rect" id="node67" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="252,836,457,865"/><area shape="rect" id="node5" href="classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="517,153,808,182"/><area shape="rect" id="node9" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="529,257,796,286"/><area shape="rect" id="node13" href="classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="524,100,801,129"/><area shape="rect" id="node16" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="537,310,788,340"/><area shape="rect" id="node23" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="591,364,735,393"/><area shape="rect" id="node28" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="556,417,769,446"/><area shape="rect" id="node30" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="581,470,744,500"/><area shape="rect" id="node32" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="569,524,756,553"/><area shape="rect" id="node41" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="557,836,768,865"/><area shape="rect" id="node43" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="892,942,1020,972"/><area shape="rect" id="node45" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="873,836,1039,865"/><area shape="rect" id="node47" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="883,996,1029,1025"/><area shape="rect" id="node51" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="876,782,1036,812"/><area shape="rect" id="node53" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="897,889,1015,918"/><area shape="rect" id="node55" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="561,889,764,918"/><area shape="rect" id="node49" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="1104,996,1160,1025"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ae8c954f2b4908119a93a7482e6d13b38"></a><!-- doxytag: member="Direction::getAvgLeftMotorCount" ref="ae8c954f2b4908119a93a7482e6d13b38" args="(int t=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getAvgLeftMotorCount </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>t</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>移動平均左モータエンコーダ値の取得 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>サンプル時間添字。 t = 0 で最新値を、負数で過去の値を取得(例: t = -1　で直前値)。 また内部でリングバッファを用いているため t = 1 で１周して最古値を取得可能。 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>移動平均左モータエンコーダ値 </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00173">173</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ae8c954f2b4908119a93a7482e6d13b38_cgraph.png" border="0" usemap="#classDirection_ae8c954f2b4908119a93a7482e6d13b38_cgraph_map" alt=""></div>
-<map name="classDirection_ae8c954f2b4908119a93a7482e6d13b38_cgraph_map" id="classDirection_ae8c954f2b4908119a93a7482e6d13b38_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="261,5,392,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ae8c954f2b4908119a93a7482e6d13b38_icgraph.png" border="0" usemap="#classDirection_ae8c954f2b4908119a93a7482e6d13b38_icgraph_map" alt=""></div>
-<map name="classDirection_ae8c954f2b4908119a93a7482e6d13b38_icgraph_map" id="classDirection_ae8c954f2b4908119a93a7482e6d13b38_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#a415bd566b52d22cafec8afa3c78e7f36" title="移動平均左モータエンコーダ値の微分値の計算。" alt="" coords="261,59,536,88"/><area shape="rect" id="node5" href="classDirection.html#a9ba6b453c8089b8978809ed791bf4bc0" title="Estimate the moving averaged curvature (1/radius) of running curve." alt="" coords="585,59,791,88"/><area shape="rect" id="node7" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="867,5,1099,35"/><area shape="rect" id="node11" href="classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="840,59,1125,88"/><area shape="rect" id="node17" href="classLineTraceDriver.html#a6640c0d53f7914a84fd6731ddfe507f6" title="LineTraceDriver::initialize" alt="" coords="900,112,1065,141"/><area shape="rect" id="node9" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="1235,5,1379,35"/><area shape="rect" id="node13" href="classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="1173,59,1440,88"/><area shape="rect" id="node15" href="classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="1489,85,1673,115"/><area shape="rect" id="node20" href="classLineTraceDriver.html#a01acb479143cfbfb5e2753988d43d0df" title="LineTraceDriver::LineTraceDriver" alt="" coords="1204,163,1409,192"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a347f11d523d1a9662ac9e9e61f2452ef"></a><!-- doxytag: member="Direction::getDerivativeOfAvgDirection" ref="a347f11d523d1a9662ac9e9e61f2452ef" args="(unsigned int i=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getDerivativeOfAvgDirection </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&nbsp;</td>
-          <td class="paramname"> <em>i</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>移動平均向きの微分値の計算。 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>微分値の計算に用いるサンプル時間間隔 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>微分値 </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00111">111</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a347f11d523d1a9662ac9e9e61f2452ef_cgraph.png" border="0" usemap="#classDirection_a347f11d523d1a9662ac9e9e61f2452ef_cgraph_map" alt=""></div>
-<map name="classDirection_a347f11d523d1a9662ac9e9e61f2452ef_cgraph_map" id="classDirection_a347f11d523d1a9662ac9e9e61f2452ef_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="293,5,464,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="512,5,643,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a347f11d523d1a9662ac9e9e61f2452ef_icgraph.png" border="0" usemap="#classDirection_a347f11d523d1a9662ac9e9e61f2452ef_icgraph_map" alt=""></div>
-<map name="classDirection_a347f11d523d1a9662ac9e9e61f2452ef_icgraph_map" id="classDirection_a347f11d523d1a9662ac9e9e61f2452ef_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#a9ba6b453c8089b8978809ed791bf4bc0" title="Estimate the moving averaged curvature (1/radius) of running curve." alt="" coords="295,59,500,88"/><area shape="rect" id="node5" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="576,5,808,35"/><area shape="rect" id="node9" href="classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="549,59,835,88"/><area shape="rect" id="node15" href="classLineTraceDriver.html#a6640c0d53f7914a84fd6731ddfe507f6" title="LineTraceDriver::initialize" alt="" coords="609,112,775,141"/><area shape="rect" id="node7" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="944,5,1088,35"/><area shape="rect" id="node11" href="classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="883,59,1149,88"/><area shape="rect" id="node13" href="classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="1199,85,1383,115"/><area shape="rect" id="node18" href="classLineTraceDriver.html#a01acb479143cfbfb5e2753988d43d0df" title="LineTraceDriver::LineTraceDriver" alt="" coords="913,163,1119,192"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a415bd566b52d22cafec8afa3c78e7f36"></a><!-- doxytag: member="Direction::getDerivativeOfAvgLeftMotorCount" ref="a415bd566b52d22cafec8afa3c78e7f36" args="(unsigned int i=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getDerivativeOfAvgLeftMotorCount </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&nbsp;</td>
-          <td class="paramname"> <em>i</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>移動平均左モータエンコーダ値の微分値の計算。 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>微分値の計算に用いるサンプル時間間隔 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>微分値 </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00192">192</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a415bd566b52d22cafec8afa3c78e7f36_cgraph.png" border="0" usemap="#classDirection_a415bd566b52d22cafec8afa3c78e7f36_cgraph_map" alt=""></div>
-<map name="classDirection_a415bd566b52d22cafec8afa3c78e7f36_cgraph_map" id="classDirection_a415bd566b52d22cafec8afa3c78e7f36_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#ae8c954f2b4908119a93a7482e6d13b38" title="移動平均左モータエンコーダ値の取得" alt="" coords="328,5,536,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="584,5,715,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a415bd566b52d22cafec8afa3c78e7f36_icgraph.png" border="0" usemap="#classDirection_a415bd566b52d22cafec8afa3c78e7f36_icgraph_map" alt=""></div>
-<map name="classDirection_a415bd566b52d22cafec8afa3c78e7f36_icgraph_map" id="classDirection_a415bd566b52d22cafec8afa3c78e7f36_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#a9ba6b453c8089b8978809ed791bf4bc0" title="Estimate the moving averaged curvature (1/radius) of running curve." alt="" coords="329,59,535,88"/><area shape="rect" id="node5" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="611,5,843,35"/><area shape="rect" id="node9" href="classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="584,59,869,88"/><area shape="rect" id="node15" href="classLineTraceDriver.html#a6640c0d53f7914a84fd6731ddfe507f6" title="LineTraceDriver::initialize" alt="" coords="644,112,809,141"/><area shape="rect" id="node7" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="979,5,1123,35"/><area shape="rect" id="node11" href="classLineTraceDriver.html#ac990f54d9299475edec02a808e7d5d9b" title="LineTraceDriver::computeVelocityWithCurv" alt="" coords="917,59,1184,88"/><area shape="rect" id="node13" href="classNormalLineSection.html#a4dbd9d58add838fe6b65f06c59a0dcef" title="NormalLineSection::execute" alt="" coords="1233,85,1417,115"/><area shape="rect" id="node18" href="classLineTraceDriver.html#a01acb479143cfbfb5e2753988d43d0df" title="LineTraceDriver::LineTraceDriver" alt="" coords="948,163,1153,192"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a3425dd8de7f30d43dfbf2ba8fa81ea22"></a><!-- doxytag: member="Direction::getDerivativeOfDirection" ref="a3425dd8de7f30d43dfbf2ba8fa81ea22" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getDerivativeOfDirection </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get the derivative of direction. </p>
-<p>This deprecated function does not divide the derivative by the time length.</p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">非推奨:</a></b></dt><dd></dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00148">148</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_cgraph.png" border="0" usemap="#classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_cgraph_map" alt=""></div>
-<map name="classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_cgraph_map" id="classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="272,5,443,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="491,5,621,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_icgraph.png" border="0" usemap="#classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_icgraph_map" alt=""></div>
-<map name="classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_icgraph_map" id="classDirection_a3425dd8de7f30d43dfbf2ba8fa81ea22_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="272,62,483,91"/><area shape="rect" id="node5" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="551,62,679,91"/><area shape="rect" id="node7" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="532,9,697,38"/><area shape="rect" id="node9" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="541,169,688,198"/><area shape="rect" id="node13" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="535,115,695,145"/><area shape="rect" id="node15" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="556,222,673,251"/><area shape="rect" id="node17" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="276,115,479,145"/><area shape="rect" id="node11" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="747,169,803,198"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a9b4beb83a88cb05154badd45f863ec4a"></a><!-- doxytag: member="Direction::getDerivativeOfRawDirection" ref="a9b4beb83a88cb05154badd45f863ec4a" args="(unsigned int i=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getDerivativeOfRawDirection </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&nbsp;</td>
-          <td class="paramname"> <em>i</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>向きの微分値の計算。 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>微分値の計算に用いるサンプル時間間隔 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>微分値 </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00101">101</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a9b4beb83a88cb05154badd45f863ec4a_cgraph.png" border="0" usemap="#classDirection_a9b4beb83a88cb05154badd45f863ec4a_cgraph_map" alt=""></div>
-<map name="classDirection_a9b4beb83a88cb05154badd45f863ec4a_cgraph_map" id="classDirection_a9b4beb83a88cb05154badd45f863ec4a_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="297,5,447,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="496,5,627,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a9b4beb83a88cb05154badd45f863ec4a_icgraph.png" border="0" usemap="#classDirection_a9b4beb83a88cb05154badd45f863ec4a_icgraph_map" alt=""></div>
-<map name="classDirection_a9b4beb83a88cb05154badd45f863ec4a_icgraph_map" id="classDirection_a9b4beb83a88cb05154badd45f863ec4a_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#aa1c649e537de1b8d087ff5d4c53eedc7" title="Estimate the curvature (1/radius) of running curve." alt="" coords="296,5,507,35"/><area shape="rect" id="node5" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="555,5,787,35"/><area shape="rect" id="node7" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="836,5,980,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ae6132bc04d19db5bec330d8b2785e4d5"></a><!-- doxytag: member="Direction::getDerivativeOfRawLeftMotorCount" ref="ae6132bc04d19db5bec330d8b2785e4d5" args="(unsigned int i=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getDerivativeOfRawLeftMotorCount </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&nbsp;</td>
-          <td class="paramname"> <em>i</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>左モータエンコーダ値の微分値の計算。 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>微分値の計算に用いるサンプル時間間隔 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>微分値 </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00182">182</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ae6132bc04d19db5bec330d8b2785e4d5_cgraph.png" border="0" usemap="#classDirection_ae6132bc04d19db5bec330d8b2785e4d5_cgraph_map" alt=""></div>
-<map name="classDirection_ae6132bc04d19db5bec330d8b2785e4d5_cgraph_map" id="classDirection_ae6132bc04d19db5bec330d8b2785e4d5_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b" title="左モータエンコーダ値の取得" alt="" coords="333,5,520,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="568,5,699,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ae6132bc04d19db5bec330d8b2785e4d5_icgraph.png" border="0" usemap="#classDirection_ae6132bc04d19db5bec330d8b2785e4d5_icgraph_map" alt=""></div>
-<map name="classDirection_ae6132bc04d19db5bec330d8b2785e4d5_icgraph_map" id="classDirection_ae6132bc04d19db5bec330d8b2785e4d5_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#aa1c649e537de1b8d087ff5d4c53eedc7" title="Estimate the curvature (1/radius) of running curve." alt="" coords="333,5,544,35"/><area shape="rect" id="node5" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="592,5,824,35"/><area shape="rect" id="node7" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="873,5,1017,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="adc3753ddc9281032801fd69936dbdf01"></a><!-- doxytag: member="Direction::getDirection" ref="adc3753ddc9281032801fd69936dbdf01" args="(int t=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getDirection </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>t</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>向きの取得 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>サンプル時間添字。 t = 0 で最新値を、負数で過去の値を取得(例: t = -1　で直前値)。 また内部でリングバッファを用いているため t = 1 で１周して最古値を取得可能。 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>向き </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00059">59</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_adc3753ddc9281032801fd69936dbdf01_cgraph.png" border="0" usemap="#classDirection_adc3753ddc9281032801fd69936dbdf01_cgraph_map" alt=""></div>
-<map name="classDirection_adc3753ddc9281032801fd69936dbdf01_cgraph_map" id="classDirection_adc3753ddc9281032801fd69936dbdf01_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="205,5,336,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_adc3753ddc9281032801fd69936dbdf01_icgraph.png" border="0" usemap="#classDirection_adc3753ddc9281032801fd69936dbdf01_icgraph_map" alt=""></div>
-<map name="classDirection_adc3753ddc9281032801fd69936dbdf01_icgraph_map" id="classDirection_adc3753ddc9281032801fd69936dbdf01_icgraph">
-<area shape="rect" id="node3" href="classGps.html#a2cddda4a7acd596ef068d8b3290926db" title="Gps::calcCoordinates" alt="" coords="253,307,400,336"/><area shape="rect" id="node7" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="496,349,725,379"/><area shape="rect" id="node38" href="classDirection.html#a9b4beb83a88cb05154badd45f863ec4a" title="向きの微分値の計算。" alt="" coords="205,471,448,500"/><area shape="rect" id="node45" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="244,601,409,631"/><area shape="rect" id="node66" href="classDirection.html#a768c0686c5c01af47b38df378dc590eb" title="Direction::getNewDirection" alt="" coords="240,708,413,737"/><area shape="rect" id="node68" href="classDirection.html#a9c12eef09e17a323be9289d5c325e81f" title="Direction::getOldDirection" alt="" coords="241,761,412,791"/><area shape="rect" id="node70" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="249,655,404,684"/><area shape="rect" id="node5" href="sample_8cpp.html#ab622f1cc7f7d84bf5ccfb33ffbfe4693" title="TASK" alt="" coords="583,296,639,325"/><area shape="rect" id="node9" href="classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="773,219,1064,248"/><area shape="rect" id="node11" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="1113,272,1311,301"/><area shape="rect" id="node13" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="785,376,1052,405"/><area shape="rect" id="node17" href="classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="780,272,1057,301"/><area shape="rect" id="node20" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="793,429,1044,459"/><area shape="rect" id="node23" href="classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="833,483,1004,512"/><area shape="rect" id="node25" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="820,536,1017,565"/><area shape="rect" id="node27" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="1140,613,1284,643"/><area shape="rect" id="node29" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="808,5,1029,35"/><area shape="rect" id="node32" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="812,59,1025,88"/><area shape="rect" id="node34" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="837,112,1000,141"/><area shape="rect" id="node36" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="825,165,1012,195"/><area shape="rect" id="node15" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="1125,403,1299,432"/><area shape="rect" id="node40" href="classDirection.html#aa1c649e537de1b8d087ff5d4c53eedc7" title="Estimate the curvature (1/radius) of running curve." alt="" coords="505,403,716,432"/><area shape="rect" id="node42" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="803,640,1035,669"/><area shape="rect" id="node49" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="547,507,675,536"/><area shape="rect" id="node51" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="528,560,693,589"/><area shape="rect" id="node53" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="537,877,684,907"/><area shape="rect" id="node55" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="891,877,947,907"/><area shape="rect" id="node57" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="531,664,691,693"/><area shape="rect" id="node59" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="552,717,669,747"/><area shape="rect" id="node61" href="classDirection.html#a0ddf31eafb425c864aa4b6f4e898b142" title="Direction::getNewDirectionOff" alt="" coords="516,771,705,800"/><area shape="rect" id="node63" href="classDirection.html#a7ab2f182ceeddf64320f2b1d2c3757e8" title="Direction::getOldDirectionOff" alt="" coords="517,824,704,853"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a30c805edf18486a75ba6919d6e4f8a01"></a><!-- doxytag: member="Direction::getDirectionOff" ref="a30c805edf18486a75ba6919d6e4f8a01" args="(int t=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getDirectionOff </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>t</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>オフセット値を考慮した向きの取得 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>サンプル時間添字。 t = 0 で最新値を、負数で過去の値を取得(例: t = -1　で直前値)。 また内部でリングバッファを用いているため t = 1 で１周して最古値を取得可能。 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>オフセット値を考慮した向き </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00081">81</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a30c805edf18486a75ba6919d6e4f8a01_cgraph.png" border="0" usemap="#classDirection_a30c805edf18486a75ba6919d6e4f8a01_cgraph_map" alt=""></div>
-<map name="classDirection_a30c805edf18486a75ba6919d6e4f8a01_cgraph_map" id="classDirection_a30c805edf18486a75ba6919d6e4f8a01_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="223,5,372,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="421,5,552,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a30c805edf18486a75ba6919d6e4f8a01_icgraph.png" border="0" usemap="#classDirection_a30c805edf18486a75ba6919d6e4f8a01_icgraph_map" alt=""></div>
-<map name="classDirection_a30c805edf18486a75ba6919d6e4f8a01_icgraph_map" id="classDirection_a30c805edf18486a75ba6919d6e4f8a01_icgraph">
-<area shape="rect" id="node3" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="223,323,452,352"/><area shape="rect" id="node34" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="221,523,453,552"/><area shape="rect" id="node37" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="273,576,401,605"/><area shape="rect" id="node39" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="255,629,420,659"/><area shape="rect" id="node41" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="264,683,411,712"/><area shape="rect" id="node43" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="619,709,675,739"/><area shape="rect" id="node45" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="257,787,417,816"/><area shape="rect" id="node47" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="279,840,396,869"/><area shape="rect" id="node49" href="classDirection.html#a0ddf31eafb425c864aa4b6f4e898b142" title="Direction::getNewDirectionOff" alt="" coords="243,893,432,923"/><area shape="rect" id="node51" href="classDirection.html#a7ab2f182ceeddf64320f2b1d2c3757e8" title="Direction::getOldDirectionOff" alt="" coords="244,947,431,976"/><area shape="rect" id="node5" href="classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="501,5,792,35"/><area shape="rect" id="node7" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="841,57,1039,87"/><area shape="rect" id="node9" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="513,163,780,192"/><area shape="rect" id="node13" href="classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="508,109,785,139"/><area shape="rect" id="node16" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="521,216,772,245"/><area shape="rect" id="node19" href="classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="561,269,732,299"/><area shape="rect" id="node21" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="548,323,745,352"/><area shape="rect" id="node23" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="575,589,719,619"/><area shape="rect" id="node25" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="536,376,757,405"/><area shape="rect" id="node28" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="540,429,753,459"/><area shape="rect" id="node30" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="565,483,728,512"/><area shape="rect" id="node32" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="553,536,740,565"/><area shape="rect" id="node11" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="853,189,1027,219"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a6d387492ceac22d2c6389bf94af4422a"></a><!-- doxytag: member="Direction::getIndex" ref="a6d387492ceac22d2c6389bf94af4422a" args="(int i)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Direction::getIndex </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Convert the ring buffer index to the physical memory index. </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>i</em>&nbsp;</td><td>Ring buffer index. 0 denotes the newest value, and negatives denote the old values. You may use +1 to denote the oldest value. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>Physical memory index (index of buffer[] array) </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00208">208</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a6d387492ceac22d2c6389bf94af4422a_icgraph.png" border="0" usemap="#classDirection_a6d387492ceac22d2c6389bf94af4422a_icgraph_map" alt=""></div>
-<map name="classDirection_a6d387492ceac22d2c6389bf94af4422a_icgraph_map" id="classDirection_a6d387492ceac22d2c6389bf94af4422a_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="203,1034,373,1064"/><area shape="rect" id="node103" href="classDirection.html#ae8c954f2b4908119a93a7482e6d13b38" title="移動平均左モータエンコーダ値の取得" alt="" coords="184,1336,392,1365"/><area shape="rect" id="node108" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="213,1402,363,1432"/><area shape="rect" id="node139" href="classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b" title="左モータエンコーダ値の取得" alt="" coords="195,1576,381,1605"/><area shape="rect" id="node5" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="768,1082,997,1112"/><area shape="rect" id="node36" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="487,816,673,845"/><area shape="rect" id="node76" href="classDirection.html#a347f11d523d1a9662ac9e9e61f2452ef" title="移動平均向きの微分値の計算。" alt="" coords="461,1233,699,1262"/><area shape="rect" id="node87" href="classDirection.html#a3425dd8de7f30d43dfbf2ba8fa81ea22" title="Get the derivative of direction." alt="" coords="775,248,991,277"/><area shape="rect" id="node96" href="classDirection.html#aa6c77b37ed9388d4e9e894f2df6f1318" title="Direction::getNewAvgDirection" alt="" coords="483,1008,677,1037"/><area shape="rect" id="node98" href="classDirection.html#a8e4452b7437a0156cc5e3495aff4dc24" title="Direction::getOldAvgDirection" alt="" coords="485,712,675,741"/><area shape="rect" id="node100" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="503,1576,657,1605"/><area shape="rect" id="node7" href="classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="1045,1160,1336,1189"/><area shape="rect" id="node9" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="1385,1133,1583,1162"/><area shape="rect" id="node11" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="1057,1264,1324,1293"/><area shape="rect" id="node15" href="classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="1052,1106,1329,1136"/><area shape="rect" id="node18" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="1065,1317,1316,1346"/><area shape="rect" id="node21" href="classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="1105,685,1276,714"/><area shape="rect" id="node23" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="1092,738,1289,768"/><area shape="rect" id="node25" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="1412,1446,1556,1476"/><area shape="rect" id="node27" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="1080,893,1301,922"/><area shape="rect" id="node30" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="1084,946,1297,976"/><area shape="rect" id="node32" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="1109,1000,1272,1029"/><area shape="rect" id="node34" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="1097,1053,1284,1082"/><area shape="rect" id="node13" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="1397,1317,1571,1346"/><area shape="rect" id="node44" href="classDirection.html#ab654088e2992bda18393b0fe86842a18" title="Direction::getNewAvgDirectionOff" alt="" coords="777,378,988,408"/><area shape="rect" id="node72" href="classDirection.html#a0ea9b77e341f60da5bfb2ce99fab5bb3" title="Direction::getOldAvgDirectionOff" alt="" coords="780,325,985,354"/><area shape="rect" id="node46" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="1085,224,1296,253"/><area shape="rect" id="node48" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="1420,354,1548,384"/><area shape="rect" id="node50" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="1401,69,1567,98"/><area shape="rect" id="node52" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="1411,557,1557,586"/><area shape="rect" id="node56" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="1404,122,1564,152"/><area shape="rect" id="node58" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="1425,301,1543,330"/><area shape="rect" id="node60" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="1089,328,1292,357"/><area shape="rect" id="node54" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="1632,1630,1688,1660"/><area shape="rect" id="node78" href="classDirection.html#a9ba6b453c8089b8978809ed791bf4bc0" title="Estimate the moving averaged curvature (1/radius) of running curve." alt="" coords="780,1472,985,1501"/><area shape="rect" id="node80" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="1075,1472,1307,1501"/><area shape="rect" id="node83" href="classLineTraceDriver.html#a3e8bccca640ac65fcea9fb8127560027" title="LineTraceDriver::computeVelocityByCurvature" alt="" coords="1048,1578,1333,1608"/><area shape="rect" id="node85" href="classLineTraceDriver.html#a6640c0d53f7914a84fd6731ddfe507f6" title="LineTraceDriver::initialize" alt="" coords="1108,1525,1273,1554"/><area shape="rect" id="node105" href="classDirection.html#a415bd566b52d22cafec8afa3c78e7f36" title="移動平均左モータエンコーダ値の微分値の計算。" alt="" coords="443,1309,717,1338"/><area shape="rect" id="node110" href="classGps.html#a2cddda4a7acd596ef068d8b3290926db" title="Gps::calcCoordinates" alt="" coords="507,1522,653,1552"/><area shape="rect" id="node115" href="classDirection.html#a9b4beb83a88cb05154badd45f863ec4a" title="向きの微分値の計算。" alt="" coords="459,1416,701,1445"/><area shape="rect" id="node120" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="497,1112,663,1141"/><area shape="rect" id="node134" href="classDirection.html#a768c0686c5c01af47b38df378dc590eb" title="Direction::getNewDirection" alt="" coords="493,1362,667,1392"/><area shape="rect" id="node136" href="classDirection.html#a9c12eef09e17a323be9289d5c325e81f" title="Direction::getOldDirection" alt="" coords="495,1469,665,1498"/><area shape="rect" id="node112" href="sample_8cpp.html#ab622f1cc7f7d84bf5ccfb33ffbfe4693" title="TASK" alt="" coords="855,1576,911,1605"/><area shape="rect" id="node117" href="classDirection.html#aa1c649e537de1b8d087ff5d4c53eedc7" title="Estimate the curvature (1/radius) of running curve." alt="" coords="777,1629,988,1658"/><area shape="rect" id="node129" href="classDirection.html#a0ddf31eafb425c864aa4b6f4e898b142" title="Direction::getNewDirectionOff" alt="" coords="788,1314,977,1344"/><area shape="rect" id="node131" href="classDirection.html#a7ab2f182ceeddf64320f2b1d2c3757e8" title="Direction::getOldDirectionOff" alt="" coords="789,1368,976,1397"/><area shape="rect" id="node141" href="classDirection.html#ae6132bc04d19db5bec330d8b2785e4d5" title="左モータエンコーダ値の微分値の計算。" alt="" coords="441,1629,719,1658"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a7a7e3e443d03f4ab91214f834e22ac5b"></a><!-- doxytag: member="Direction::getLeftMotorCount" ref="a7a7e3e443d03f4ab91214f834e22ac5b" args="(int t=0)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getLeftMotorCount </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>t</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>左モータエンコーダ値の取得 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>t</em>&nbsp;</td><td>サンプル時間添字。 t = 0 で最新値を、負数で過去の値を取得(例: t = -1　で直前値)。 また内部でリングバッファを用いているため t = 1 で１周して最古値を取得可能。 </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>左モータエンコーダ値 </dd></dl>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00162">162</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_cgraph.png" border="0" usemap="#classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_cgraph_map" alt=""></div>
-<map name="classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_cgraph_map" id="classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="240,5,371,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_icgraph.png" border="0" usemap="#classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_icgraph_map" alt=""></div>
-<map name="classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_icgraph_map" id="classDirection_a7a7e3e443d03f4ab91214f834e22ac5b_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#ae6132bc04d19db5bec330d8b2785e4d5" title="左モータエンコーダ値の微分値の計算。" alt="" coords="241,5,519,35"/><area shape="rect" id="node11" href="classDirection.html#aee8b8b845ebcfd900662b1cd26d36e4c" title="リングバッファ履歴の更新" alt="" coords="303,59,457,88"/><area shape="rect" id="node5" href="classDirection.html#aa1c649e537de1b8d087ff5d4c53eedc7" title="Estimate the curvature (1/radius) of running curve." alt="" coords="568,5,779,35"/><area shape="rect" id="node7" href="classCurvaturePidDriver.html#a1cc42dada8f5879c82bc79061208354c" title="CurvaturePidDriver::computeVelocity" alt="" coords="827,5,1059,35"/><area shape="rect" id="node9" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="1108,5,1252,35"/><area shape="rect" id="node13" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="645,59,701,88"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aa6c77b37ed9388d4e9e894f2df6f1318"></a><!-- doxytag: member="Direction::getNewAvgDirection" ref="aa6c77b37ed9388d4e9e894f2df6f1318" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getNewAvgDirection </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00123">123</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aa6c77b37ed9388d4e9e894f2df6f1318_cgraph.png" border="0" usemap="#classDirection_aa6c77b37ed9388d4e9e894f2df6f1318_cgraph_map" alt=""></div>
-<map name="classDirection_aa6c77b37ed9388d4e9e894f2df6f1318_cgraph_map" id="classDirection_aa6c77b37ed9388d4e9e894f2df6f1318_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="251,5,421,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="469,5,600,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ab654088e2992bda18393b0fe86842a18"></a><!-- doxytag: member="Direction::getNewAvgDirectionOff" ref="ab654088e2992bda18393b0fe86842a18" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getNewAvgDirectionOff </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00135">135</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ab654088e2992bda18393b0fe86842a18_cgraph.png" border="0" usemap="#classDirection_ab654088e2992bda18393b0fe86842a18_cgraph_map" alt=""></div>
-<map name="classDirection_ab654088e2992bda18393b0fe86842a18_cgraph_map" id="classDirection_ab654088e2992bda18393b0fe86842a18_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="267,5,453,35"/><area shape="rect" id="node5" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="501,5,672,35"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="720,5,851,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_ab654088e2992bda18393b0fe86842a18_icgraph.png" border="0" usemap="#classDirection_ab654088e2992bda18393b0fe86842a18_icgraph_map" alt=""></div>
-<map name="classDirection_ab654088e2992bda18393b0fe86842a18_icgraph_map" id="classDirection_ab654088e2992bda18393b0fe86842a18_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="267,62,477,92"/><area shape="rect" id="node5" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="545,62,673,92"/><area shape="rect" id="node7" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="527,9,692,38"/><area shape="rect" id="node9" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="536,169,683,198"/><area shape="rect" id="node13" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="529,116,689,145"/><area shape="rect" id="node15" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="551,222,668,252"/><area shape="rect" id="node17" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="271,116,473,145"/><area shape="rect" id="node11" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="741,169,797,198"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a768c0686c5c01af47b38df378dc590eb"></a><!-- doxytag: member="Direction::getNewDirection" ref="a768c0686c5c01af47b38df378dc590eb" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getNewDirection </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00117">117</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a768c0686c5c01af47b38df378dc590eb_cgraph.png" border="0" usemap="#classDirection_a768c0686c5c01af47b38df378dc590eb_cgraph_map" alt=""></div>
-<map name="classDirection_a768c0686c5c01af47b38df378dc590eb_cgraph_map" id="classDirection_a768c0686c5c01af47b38df378dc590eb_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="231,5,380,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="429,5,560,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a0ddf31eafb425c864aa4b6f4e898b142"></a><!-- doxytag: member="Direction::getNewDirectionOff" ref="a0ddf31eafb425c864aa4b6f4e898b142" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getNewDirectionOff </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00129">129</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a0ddf31eafb425c864aa4b6f4e898b142_cgraph.png" border="0" usemap="#classDirection_a0ddf31eafb425c864aa4b6f4e898b142_cgraph_map" alt=""></div>
-<map name="classDirection_a0ddf31eafb425c864aa4b6f4e898b142_cgraph_map" id="classDirection_a0ddf31eafb425c864aa4b6f4e898b142_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="247,5,412,35"/><area shape="rect" id="node5" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="463,5,612,35"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="661,5,792,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a2b8c3770f9f15127b1fbcffbe7b3cf78"></a><!-- doxytag: member="Direction::getOffset" ref="a2b8c3770f9f15127b1fbcffbe7b3cf78" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getOffset </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00046">46</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a2b8c3770f9f15127b1fbcffbe7b3cf78_icgraph.png" border="0" usemap="#classDirection_a2b8c3770f9f15127b1fbcffbe7b3cf78_icgraph_map" alt=""></div>
-<map name="classDirection_a2b8c3770f9f15127b1fbcffbe7b3cf78_icgraph_map" id="classDirection_a2b8c3770f9f15127b1fbcffbe7b3cf78_icgraph">
-<area shape="rect" id="node3" href="classDirectionPidDriver.html#a8395f2fc6160438d1060f89b2c3715d3" title="DirectionPidDriver::computeVelocity" alt="" coords="187,296,416,325"/><area shape="rect" id="node5" href="classNewGoalStopSection.html#a24d4cc1ccc4f6f59bbd6cc8ac89f04c6" title="NewGoalStopSection::computeRebootVelocity" alt="" coords="464,5,755,35"/><area shape="rect" id="node7" href="classNewGoalStopSection.html#ab71c51b4d09b50c5cdc18937e8a3eef8" title="NewGoalStopSection::execute" alt="" coords="804,57,1001,87"/><area shape="rect" id="node9" href="classGoalStopSection.html#a23ab49fac5fd18c1420b757508c7ea01" title="GoalStopSection::computeRebootVelocity" alt="" coords="476,163,743,192"/><area shape="rect" id="node13" href="classNewGoalStopSection.html#aa1c1bf38762c4ab382ab58cab4168c1f" title="NewGoalStopSection::computeStopVelocity" alt="" coords="471,109,748,139"/><area shape="rect" id="node16" href="classGoalStopSection.html#a0d207bc606a2aceb9360a5e2f83cb3e8" title="GoalStopSection::computeStopVelocity" alt="" coords="484,216,735,245"/><area shape="rect" id="node19" href="classTwinloopSection.html#ab87de72c21ddfb983a9746c678a53a5e" title="TwinloopSection::execute" alt="" coords="524,269,695,299"/><area shape="rect" id="node21" href="classTreasureHuntSection.html#a66e98a4a730f6a3d3c009e6c86df172f" title="TreasureHuntSection::execute" alt="" coords="511,323,708,352"/><area shape="rect" id="node23" href="classTestSection.html#a5875de60a8039e8751b19c80df940bc7" title="TestSection::execute" alt="" coords="537,376,681,405"/><area shape="rect" id="node25" href="classNewTreasureHuntSection.html#aab147659ad3bf5f022f60c8117f9c056" title="NewTreasureHuntSection::execute" alt="" coords="499,429,720,459"/><area shape="rect" id="node28" href="classNewDashedLineSection.html#ab0c01c5d84e6e019b90114b32ff12e23" title="NewDashedLineSection::execute" alt="" coords="503,483,716,512"/><area shape="rect" id="node30" href="classDolphinSection.html#ad299b57cd493438875523051b403588b" title="DolphinSection::execute" alt="" coords="528,536,691,565"/><area shape="rect" id="node32" href="classDashedLineSection.html#a2b2bd1dcdd8a618c49d2eaeb3fe01304" title="DashedLineSection::execute" alt="" coords="516,589,703,619"/><area shape="rect" id="node11" href="classGoalStopSection.html#a5484242b79395ba6505fa9eefec73f66" title="GoalStopSection::execute" alt="" coords="816,189,989,219"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a8e4452b7437a0156cc5e3495aff4dc24"></a><!-- doxytag: member="Direction::getOldAvgDirection" ref="a8e4452b7437a0156cc5e3495aff4dc24" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getOldAvgDirection </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00126">126</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a8e4452b7437a0156cc5e3495aff4dc24_cgraph.png" border="0" usemap="#classDirection_a8e4452b7437a0156cc5e3495aff4dc24_cgraph_map" alt=""></div>
-<map name="classDirection_a8e4452b7437a0156cc5e3495aff4dc24_cgraph_map" id="classDirection_a8e4452b7437a0156cc5e3495aff4dc24_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="245,5,416,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="464,5,595,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a0ea9b77e341f60da5bfb2ce99fab5bb3"></a><!-- doxytag: member="Direction::getOldAvgDirectionOff" ref="a0ea9b77e341f60da5bfb2ce99fab5bb3" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getOldAvgDirectionOff </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00138">138</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_cgraph.png" border="0" usemap="#classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_cgraph_map" alt=""></div>
-<map name="classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_cgraph_map" id="classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a01403d54c789c5b079cfec101199dda7" title="オフセット値を考慮した移動平均向きの取得" alt="" coords="261,5,448,35"/><area shape="rect" id="node5" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="496,5,667,35"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="715,5,845,35"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_icgraph.png" border="0" usemap="#classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_icgraph_map" alt=""></div>
-<map name="classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_icgraph_map" id="classDirection_a0ea9b77e341f60da5bfb2ce99fab5bb3_icgraph">
-<area shape="rect" id="node3" href="classDirection.html#aff4fea8debc552a042eabbc5479d3e5c" title="Direction::calcDirectionOffset180" alt="" coords="261,85,472,115"/><area shape="rect" id="node17" href="classDirection.html#a863085b55412cc1cc27e955001e042a8" title="Direction::calcDirectionOffset90" alt="" coords="265,139,468,168"/><area shape="rect" id="node5" href="classOutCourse.html#a999cd663a2a6433f1db52c53ea4f6f12" title="OutCourse::detect" alt="" coords="540,59,668,88"/><area shape="rect" id="node7" href="classInTwinloopCourse.html#aedfa60de16c69e8a950a7667beed10b3" title="InTwinloopCourse::detect" alt="" coords="521,112,687,141"/><area shape="rect" id="node9" href="classInOutInCourse.html#acc39fdc464dbf8b2c2283b2145a5a6f4" title="InOutInCourse::detect" alt="" coords="531,165,677,195"/><area shape="rect" id="node13" href="classInDolphinCourse.html#ae6a1448c450fea96245f67079a53377d" title="InDolphinCourse::detect" alt="" coords="524,219,684,248"/><area shape="rect" id="node15" href="classInCourse.html#a709c12ebab990282da794ae84a42c8a7" title="InCourse::detect" alt="" coords="545,5,663,35"/><area shape="rect" id="node11" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="736,165,792,195"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a9c12eef09e17a323be9289d5c325e81f"></a><!-- doxytag: member="Direction::getOldDirection" ref="a9c12eef09e17a323be9289d5c325e81f" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getOldDirection </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00120">120</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a9c12eef09e17a323be9289d5c325e81f_cgraph.png" border="0" usemap="#classDirection_a9c12eef09e17a323be9289d5c325e81f_cgraph_map" alt=""></div>
-<map name="classDirection_a9c12eef09e17a323be9289d5c325e81f_cgraph_map" id="classDirection_a9c12eef09e17a323be9289d5c325e81f_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="225,5,375,35"/><area shape="rect" id="node5" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="424,5,555,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a7ab2f182ceeddf64320f2b1d2c3757e8"></a><!-- doxytag: member="Direction::getOldDirectionOff" ref="a7ab2f182ceeddf64320f2b1d2c3757e8" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 Direction::getOldDirectionOff </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00132">132</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_a7ab2f182ceeddf64320f2b1d2c3757e8_cgraph.png" border="0" usemap="#classDirection_a7ab2f182ceeddf64320f2b1d2c3757e8_cgraph_map" alt=""></div>
-<map name="classDirection_a7ab2f182ceeddf64320f2b1d2c3757e8_cgraph_map" id="classDirection_a7ab2f182ceeddf64320f2b1d2c3757e8_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#a30c805edf18486a75ba6919d6e4f8a01" title="オフセット値を考慮した向きの取得" alt="" coords="241,5,407,35"/><area shape="rect" id="node5" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="457,5,607,35"/><area shape="rect" id="node7" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="656,5,787,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aee8b8b845ebcfd900662b1cd26d36e4c"></a><!-- doxytag: member="Direction::renewHistory" ref="aee8b8b845ebcfd900662b1cd26d36e4c" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Direction::renewHistory </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>リングバッファ履歴の更新 </p>
-<dl><dt><b>引数:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>-</em>&nbsp;</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>戻り値:</b></dt><dd>- </dd></dl>
-
-<p><p>&lt; 最古値を一時的に保存</p>
-<p>&lt; 最古値を一時的に保存 </p>
-</p>
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00226">226</a> 行で定義されています。</p>
-
-<p><div class="dynheader">
-関数の呼び出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_cgraph.png" border="0" usemap="#classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_cgraph_map" alt=""></div>
-<map name="classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_cgraph_map" id="classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_cgraph">
-<area shape="rect" id="node3" href="classDirection.html#ab96a03b3be055655fd46a596243c0953" title="Estimate the absolute direction angle." alt="" coords="213,57,395,87"/><area shape="rect" id="node5" href="classSensorHistory.html#ae518c2ce6799848fb0dd46f1f820d62f" title="SensorHistory::getLeftMotorCountHistory" alt="" coords="451,5,709,35"/><area shape="rect" id="node9" href="classDirection.html#aeaf8e651c00fb2d06da3f09639510dec" title="Forward the newest pointer." alt="" coords="228,111,380,140"/><area shape="rect" id="node11" href="classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="219,164,389,193"/><area shape="rect" id="node15" href="classDirection.html#adc3753ddc9281032801fd69936dbdf01" title="向きの取得" alt="" coords="229,217,379,247"/><area shape="rect" id="node18" href="classDirection.html#a7a7e3e443d03f4ab91214f834e22ac5b" title="左モータエンコーダ値の取得" alt="" coords="211,271,397,300"/><area shape="rect" id="node7" href="classSensorHistory.html#af5d34b53c6f0d69187fe8be9b93a0a78" title="SensorHistory::getRightMotorCountHistory" alt="" coords="447,59,713,88"/><area shape="rect" id="node13" href="classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="515,217,645,247"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-呼出しグラフ:</div>
-<div class="dynsection">
-<div class="center"><img src="classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_icgraph.png" border="0" usemap="#classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_icgraph_map" alt=""></div>
-<map name="classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_icgraph_map" id="classDirection_aee8b8b845ebcfd900662b1cd26d36e4c_icgraph">
-<area shape="rect" id="node3" href="sample_8cpp.html#a301f57a91a9cca32ecc4bcaecc158941" title="TASK" alt="" coords="211,5,267,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<hr/><h2>変数</h2>
-<a class="anchor" id="a4df28e3e99ed99b0aefda01428010c18"></a><!-- doxytag: member="Direction::directionOffset" ref="a4df28e3e99ed99b0aefda01428010c18" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">F32 <a class="el" href="classDirection.html#a4df28e3e99ed99b0aefda01428010c18">Direction::directionOffset</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00028">28</a> 行で定義されています。</p>
-
-</div>
-</div>
-<a class="anchor" id="ad36661f57d9b987755485a5dffb85616"></a><!-- doxytag: member="Direction::index" ref="ad36661f57d9b987755485a5dffb85616" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">U16 <a class="el" href="classDirection.html#ad36661f57d9b987755485a5dffb85616">Direction::index</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00031">31</a> 行で定義されています。</p>
-
-</div>
-</div>
-<a class="anchor" id="aa764a5383f274a9fe35fcfddc1779300"></a><!-- doxytag: member="Direction::sensorHistory" ref="aa764a5383f274a9fe35fcfddc1779300" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classSensorHistory.html">SensorHistory</a>&amp; <a class="el" href="classDirection.html#aa764a5383f274a9fe35fcfddc1779300">Direction::sensorHistory</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00027">27</a> 行で定義されています。</p>
-
-</div>
-</div>
-<a class="anchor" id="a3d873799a10d35722421b798bbea6f72"></a><!-- doxytag: member="Direction::startDirection" ref="a3d873799a10d35722421b798bbea6f72" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const F32 <a class="el" href="classDirection.html#a3d873799a10d35722421b798bbea6f72">Direction::startDirection</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p> <a class="el" href="Direction_8hpp_source.html">Direction.hpp</a> の <a class="el" href="Direction_8hpp_source.html#l00029">29</a> 行で定義されています。</p>
-
-</div>
-</div>
-<hr/>このクラスの説明は次のファイルから生成されました:<ul>
-<li><a class="el" href="Direction_8hpp_source.html">Direction.hpp</a></li>
-</ul>
-</div>
-<!--- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>列挙型の値</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>マクロ定義</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-<hr size="1"/><address style="text-align: right;"><small>robo2009に対してSat Jul 31 12:08:17 2010に生成されました。&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
-</body>
-</html>

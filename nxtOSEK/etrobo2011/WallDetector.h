@@ -11,17 +11,17 @@
 #include "Detector.h"
 
 /**
- * 衝突検知
+ * 陦晉ｪ∵､懃衍
  */
 class WallDetector : public Detector
 {
 private:
-	float mThreshold;   //!< 閾値
+	float mThreshold;   //!< 髢ｾ蛟､
 public:
 	WallDetector(){ mThreshold = 60; }
 	~WallDetector(){}
     /**
-     * セッタ
+     * 繧ｻ繝�繧ｿ
      */
 	void setThreshold(float threshold) { mThreshold = threshold; }
 	bool detect();

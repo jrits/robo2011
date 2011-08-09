@@ -11,13 +11,13 @@
 #include "Driver.h"
 
 /**
-  ƒV[ƒ\[ƒhƒ‰ƒCƒo
+  ã‚·ãƒ¼ã‚½ãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ
 */
 class SeesawDriver : public Driver
 {
 public:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
 	enum eSubSection {
         INIT = -1,
@@ -27,10 +27,10 @@ public:
 		AFTERLINETRACE
     };
 private:
-    int mState;    //!< ó‘Ô
-    int mTimeCounter; //!< ƒ^ƒCƒ}ƒJƒEƒ“ƒ^
-	bool mInitState; //!< ‰Šúó‘Ô
-	float mStartAngleCounter; //!< ‰ŠúŠp“xƒJƒEƒ“ƒ^
+    int mState;    //!< çŠ¶æ…‹
+    int mTimeCounter; //!< ã‚¿ã‚¤ãƒã‚«ã‚¦ãƒ³ã‚¿
+	bool mInitState; //!< åˆæœŸçŠ¶æ…‹
+	float mStartAngleCounter; //!< åˆæœŸè§’åº¦ã‚«ã‚¦ãƒ³ã‚¿
 public:
 	SeesawDriver();
 	~SeesawDriver();

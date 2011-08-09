@@ -12,54 +12,54 @@
 #include <float.h>
 
 //#define PI 3.14159265358979
-#define X_LEFT  0    // ���{�R���R�[�X���x���W�ō��l
-#define X_RIGHT 5450 // ���{�R���R�[�X���x���W�ŉE�l
-#define Y_TOP   0    // ���{�R���R�[�X���y���W�ŏ�l
-#define Y_DOWN -3600 // ���{�R���R�[�X���y���W�ŉ��l
+#define X_LEFT  0    // ロボコンコース上のx座標最左値
+#define X_RIGHT 5450 // ロボコンコース上のx座標最右値
+#define Y_TOP   0    // ロボコンコース上のy座標最上値
+#define Y_DOWN -3600 // ロボコンコース上のy座標最下値
 // ex) SIGN(mTargetX - currentX) == PASSTO_LEFT
 // ex) SIGN(mTargetX - currentX) == PASSTO_RIGHT
-#define PASSTO_LEFT -1 // ���Ɍ������ĖڕW�n�_��ʂ�߂���
-#define PASSTO_RIGHT 1 // �E�Ɍ������ĖڕW�n�_��ʂ�߂���
-#define PASSTO_TOP   1 // ��Ɍ������ĖڕW�n�_��ʂ�߂���
-#define PASSTO_DOWN -1 // ���Ɍ������ĖڕW�n�_��ʂ�߂���
+#define PASSTO_LEFT -1 // 左に向かって目標地点を通り過ぎた
+#define PASSTO_RIGHT 1 // 右に向かって目標地点を通り過ぎた
+#define PASSTO_TOP   1 // 上に向かって目標地点を通り過ぎた
+#define PASSTO_DOWN -1 // 下に向かって目標地点を通り過ぎた
 
 using namespace ecrobot;
 
 /**
- * GPS(���Ȉʒu����)�N���X
+ * GPS(自己位置推定)クラス
  */
 class Gps
 {
 public:
     /**
-     * �R�[�X���ʎq
+     * コース識別子
      *
-     * �����␳�ΏۃR�[�X�̎��ʂɗ��p
+     * 自動補正対象コースの識別に利用
      */
     enum eCourse {
-        IN, //!< �C���R�[�X
-        OUT //!< �A�E�g�R�[�X
+        IN, //!< インコース
+        OUT //!< アウトコース
     };
 private:
-	float mWheelRadius; //!< �ԗ֔��a(mm)
-	float mWheelDistance; //!< �ԗ֊Ԋu(mm)
-	Motor &motorL; //!< �����[�^
-	Motor &motorR; //!< �E���[�^
-    Gps::eCourse mCourse; //!< �R�[�X���ʎq
-	float mXCoordinate; //!< X���W
-	float mYCoordinate; //!< Y���W
-	float mDirection; //!< ����
-	float mDistance; //!< ����
-	float mXOffset; //!< X���W�␳�l
-	float mYOffset; //!< Y���W�␳�l
-	float mDirectionOffset; //!< �����␳�l
-	float mDistanceOffset; //!< �����␳�l
+	float mWheelRadius; //!< 車輪半径(mm)
+	float mWheelDistance; //!< 車輪間隔(mm)
+	Motor &motorL; //!< 左モータ
+	Motor &motorR; //!< 右モータ
+    Gps::eCourse mCourse; //!< コース識別子
+	float mXCoordinate; //!< X座標
+	float mYCoordinate; //!< Y座標
+	float mDirection; //!< 向き
+	float mDistance; //!< 距離
+	float mXOffset; //!< X座標補正値
+	float mYOffset; //!< Y座標補正値
+	float mDirectionOffset; //!< 向き補正値
+	float mDistanceOffset; //!< 距離補正値
 	
-	//�ȉ��␳�֌W�ϐ�
-    float mXAverage; //!< X���W����
-    float mYAverage; //!< Y���W����
-    float mDirectionAverage; //!< ��������
-	int mTimeCounter; //!< ���ԃJ�E���^
+	//以下補正関係変数
+    float mXAverage; //!< X座標平均
+    float mYAverage; //!< Y座標平均
+    float mDirectionAverage; //!< 向き平均
+	int mTimeCounter; //!< 時間カウンタ
 public:
 	Gps(Motor &aMotorL, Motor &aMotorR, Gps::eCourse aCourse);
 	~Gps(){}
@@ -80,11 +80,11 @@ public:
 	bool calcCenterCoordinates(float angle, float radius, float *circleX, float *circleY);
 	void calcCoordinates(float angle, float distance, float encoderL, float encoderR);
 private:
-    // �����␳�֐�
+    // 自動補正関数
 	void adjustPositionOut(float avgX, float avgY, float avgD);
     void adjustPositionIn(float avgX, float avgY, float avgD);
 public:
-    // �N���X���\�b�h
+    // クラスメソッド
 	static float marge360(float margeTarget);
 	static float marge180(float margeTarget);
     static float radianToDegree(float radian);

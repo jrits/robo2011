@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$classDirection.html#a347f11d523d1a9662ac9e9e61f2452ef" title="移動平均向きの微分値の計算。" alt="" coords="280,5,517,35"/>
-<area shape="rect" id="node9" href="$classDirection.html#a415bd566b52d22cafec8afa3c78e7f36" title="移動平均左モータエンコーダ値の微分値の計算。" alt="" coords="261,59,536,88"/>
-<area shape="rect" id="node5" href="$classDirection.html#ad1e268f5d91e90b6e2151c8e4a7a2725" title="移動平均向きの取得" alt="" coords="603,5,773,35"/>
-<area shape="rect" id="node7" href="$classDirection.html#a6d387492ceac22d2c6389bf94af4422a" title="Convert the ring buffer index to the physical memory index." alt="" coords="840,32,971,61"/>
-<area shape="rect" id="node11" href="$classDirection.html#ae8c954f2b4908119a93a7482e6d13b38" title="移動平均左モータエンコーダ値の取得" alt="" coords="584,59,792,88"/>
-</map>

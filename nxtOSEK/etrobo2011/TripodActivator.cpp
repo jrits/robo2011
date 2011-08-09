@@ -6,92 +6,50 @@
 #include "factory.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] leftMotor ¶ƒ‚[ƒ^
- * @param[in] rightMotor ‰Eƒ‚[ƒ^
- * @param[in] gyroSensor ƒWƒƒƒCƒƒZƒ“ƒT
- * @param[in] nxt NXTƒIƒuƒWƒFƒNƒg
+ * @param[in] leftMotor å·¦ãƒ¢ãƒ¼ã‚¿
+ * @param[in] rightMotor å³ãƒ¢ãƒ¼ã‚¿
+ * @param[in] gyroSensor ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µ
+ * @param[in] nxt NXTã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 TripodActivator::TripodActivator(Motor &leftMotor, 
                                  Motor &rightMotor, 
                                  GyroSensor &gyroSensor, 
                                  Nxt &nxt) :
-  mLeftMotor(leftMotor), 
-  mRightMotor(rightMotor), 
-  mGyroSensor(gyroSensor), 
-  mNxt(nxt)
+    Activator(leftMotor, rightMotor, gyroSensor, nxt)
 {
-  mGyroOffset = USER_GYRO_OFFSET; //ƒIƒtƒZƒbƒg’l‚ğ‰Šú‰»
 }
 
 /**
- * ƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»
+ * èµ°è¡Œã€‚ãƒãƒ³ãƒ‰ãƒ«ã€ã‚¢ã‚¯ã‚»ãƒ«ã®æ“ä½œã€‚
  *
- * @param[in] gyroOffset ƒWƒƒƒCƒƒIƒtƒZƒbƒg
- */
-void TripodActivator::reset(int gyroOffset)
-{
-  mGyroOffset = gyroOffset;
-}
-/**
- * ƒnƒ“ƒhƒ‹AƒAƒNƒZƒ‹‚Ì‘€ìB
- *
- * ƒoƒ‰ƒ“ƒX§Œä‚Í§Œä‹@Ší(TripodActivator)‚ª©“®“I‚És‚Á‚Ä‚­‚ê‚éB
- *
- * @param[in] command ‘–sƒxƒNƒgƒ‹
+ * @param[in] command èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«(forward, turn)
  */
 void TripodActivator::run(VectorT<F32> command)
 {
-  float pwmL, pwmR;
+    float pwm_L, pwm_R;
 
-//   balance_control(
-//     (F32)command.mX, // ‘OŒãi–½—ß
-//     (F32)command.mY, // ù‰ñ–½—ß
-//     (F32)mGyroSensor.get(),
-//     (F32)mGyroOffset,
-//     (F32)mLeftMotor.getCount(),
-//     (F32)mRightMotor.getCount(),
-//     (F32)mNxt.getBattMv(),
-//     &pwmL,
-//     &pwmR);
+    // @todo: balance_control ã¨åŒã˜å…¥åŠ›å€¤ãªã‚‰åŒã˜ãã‚‰ã„ã®å‡ºåŠ›å€¤ã«ãªã‚‹ã‚ˆã†ã«ã—ãŸã„
+    pwm_L = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
+    pwm_R = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
 
-  // @todo: balance_control ‚Æ“¯‚¶“ü—Í’l‚È‚ç“¯‚¶‚®‚ç‚¢‚Ìo—Í’l‚É‚È‚é‚æ‚¤‚É‚µ‚½‚¢
-  pwmL = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
-  pwmR = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
+    if (! DESK_DEBUG) {
+        mLeftMotor.setPWM((S8)(MIN(MAX(pwm_L, -128), 127)));
+        mRightMotor.setPWM((S8)(MIN(MAX(pwm_R, -128), 127)));
+    }
 
-  if (! DESK_DEBUG) {
-    mLeftMotor.setPWM((S8)(MIN(MAX(pwmL, -128), 127)));
-    mRightMotor.setPWM((S8)(MIN(MAX(pwmR, -128), 127)));
-  }
-
-#if 1 // DEBUG
-  static int count = 0;
-  if (count++ > 5) {
-    Lcd lcd;
-    lcd.clear();
-    lcd.putf("sn", "TripodActivator");
-    lcd.putf("dn", (int)command.mX);
-    lcd.putf("dn", (int)command.mY);
-    lcd.putf("dn", (int)pwmL);
-    lcd.putf("dn", (int)pwmR);
-    lcd.disp();
-  }
+#if 0 // DEBUG
+    static int count = 0;
+    if (count++ > 5) {
+        Lcd lcd;
+        lcd.clear();
+        lcd.putf("sn", "TripodActivator");
+        lcd.putf("dn", (int)command.mX);
+        lcd.putf("dn", (int)command.mY);
+        lcd.putf("dn", (int)pwm_L);
+        lcd.putf("dn", (int)pwm_R);
+        lcd.disp();
+    }
 #endif
 }
-
-/**
- * ƒuƒŒ[ƒL‚Ì‘€ìB
- *
- * ƒoƒ‰ƒ“ƒX‚ğ§Œä‚Ís‚í‚È‚¢Bƒ‚[ƒ^‚ğ~‚ß‚é‚¾‚¯B
- *
- * @return -
- */
-void TripodActivator::stop()
-{
-  mLeftMotor.setPWM(0);
-  mRightMotor.setPWM(0);
-  mLeftMotor.setBrake(true);
-  mRightMotor.setBrake(true);
-}
-

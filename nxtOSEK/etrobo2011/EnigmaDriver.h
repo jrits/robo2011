@@ -8,13 +8,13 @@
 #include "Driver.h"
 
 /**
- * ƒGƒjƒOƒ}EƒfƒR[ƒfƒBƒ“ƒOƒhƒ‰ƒCƒo
+ * ã‚¨ãƒ‹ã‚°ãƒãƒ»ãƒ‡ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ‰ãƒ©ã‚¤ãƒ
  */
 class EnigmaDriver : public Driver
 {
 private:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
     enum eSubSection {
         INIT = -1,
@@ -27,12 +27,12 @@ private:
         LINERETURN,
         AFTERLINETRACE
     };
-    eSubSection mState;    //!< ó‘Ô
-    bool mInitState;       //!< ó‘Ô‰Šú‰»ƒtƒ‰ƒO
-    int  mTimeCounter;     //!< ƒ^ƒCƒ€ƒJƒEƒ“ƒ^
-    bool mIsArrived;       //!< isArrived•Û‘¶ƒoƒbƒtƒ@
-    bool mObstacleFlag[2]; //!< Õ—§ŒŸ’mƒtƒ‰ƒOB‚Q–{‚µ‚©‚İ‚È‚¢
-    float mOrigK_PHIDOT;   //!< •ÏX‘O‚ÌK_PHIDOT‚ğ•Û‘¶‚µ‚Ä‚¨‚­ƒoƒbƒtƒ@
+    eSubSection mState;    //!< çŠ¶æ…‹
+    bool mInitState;       //!< çŠ¶æ…‹åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+    int  mTimeCounter;     //!< ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
+    bool mIsArrived;       //!< isArrivedä¿å­˜ãƒãƒƒãƒ•ã‚¡
+    bool mObstacleFlag[2]; //!< è¡ç«‹æ¤œçŸ¥ãƒ•ãƒ©ã‚°ã€‚ï¼’æœ¬ã—ã‹ã¿ãªã„
+    float mOrigK_PHIDOT;   //!< å¤‰æ›´å‰ã®K_PHIDOTã‚’ä¿å­˜ã—ã¦ãŠããƒãƒƒãƒ•ã‚¡
 public:
 	EnigmaDriver();
 	~EnigmaDriver(){}

@@ -3,16 +3,20 @@
 //
 #include "TripodLineTrace.h"
 #include "factory.h"
+extern TripodActivator mTripodActivator;
+extern bool gDoForwardPid;
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  *
- * @param[in] black •
- * @param[in] white ”’
- * @param[in] threshold ”’•è‡’l
+ * @param[in] black é»’
+ * @param[in] white ç™½
+ * @param[in] threshold ç™½é»’é–¾å€¤
  */
-TripodLineTrace::TripodLineTrace(float black, float white, float threshold)
+TripodLineTrace::TripodLineTrace(float black, float white, float threshold) :
+    LineTrace(black, white, threshold)
 {
+<<<<<<< HEAD
   mBlack = black;
   mWhite = white;
   mLineThreshold = threshold;
@@ -21,155 +25,21 @@ TripodLineTrace::TripodLineTrace(float black, float white, float threshold)
   mUseOnoff = false;
   setForward(FORWARD);
   reset();
+=======
+>>>>>>> 65e92d601805257b1fa53b85325675cf5aeb0c84
 }
 
 /**
- * ó‘Ô‚ÌƒŠƒZƒbƒg
+ * ã‚¹ã‚­ãƒ«ã‚’ç™ºæ®ã—ã¦ãƒ­ãƒœãƒƒãƒˆã‚’å‹•ã‹ã™ã€‚
  *
- * ‰‘¬‚©‚çn‚ß‚é
+ * calcCommand ã‚’ç”¨ã„ã¦èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’æ±ºå®šã—ã€åˆ¶å¾¡æ©Ÿå™¨(TripodActivator)ã‚’æ“ä½œã™ã‚‹ã€‚
  */
-void TripodLineTrace::reset()
+void TripodLineTrace::execute()
 {
-  mTimeCounter = 0;
-}
-
-/**
- * ‰‘¬‚Ìİ’è
- *
- * @param[in] initForward ‰‘¬
- */
-void TripodLineTrace::setInitForward(int initForward)
-{
-  mInitForward = initForward;
-}
-
-/**
- * ‰‘¬Œp‘±ƒJƒEƒ“ƒ^ŠúŠÔ‚Ìİ’è
- *
- * @param[in] initDuration ‰‘¬Œp‘±ƒJƒEƒ“ƒ^ŠúŠÔ
- */
-void TripodLineTrace::setInitDuration(int initDuration)
-{
-  mInitDuration = initDuration;
-}
-
-/**
- * ON/OFF§Œä(true) or PID§Œä(false)ƒtƒ‰ƒO‚Ìİ’è
- *
- * @param[in] useOnoff ON/OFF§Œä(true) or PID§Œä(false)ƒtƒ‰ƒO
- */
-void TripodLineTrace::setUseOnoff(bool useOnoff)
-{
-  mUseOnoff = useOnoff;
-}
-
-/**
- * Œ»İ‚ÌŒõ’l‚©‚çAƒ‰ƒCƒ“ƒgƒŒ[ƒX‚ğ‚·‚é‚Ì‚É“KØ‚È‘–sƒxƒNƒgƒ‹‚ğŒvZ‚·‚éB
- *
- * @return ‘–sƒxƒNƒgƒ‹
- */
-VectorT<float> TripodLineTrace::calcCommand()
-{
-	gTripodLineTrace = true;  //‘–sƒXƒLƒ‹ƒtƒ‰ƒOBƒ‰ƒCƒ“ƒgƒŒ[ƒX‚Ì‚İtrue‚Æ‚È‚éB(Gps‚Ì•â³‚Ì‚½‚ß‚Ìƒtƒ‰ƒO)
-  // ‹N“®‹}ƒ_ƒbƒVƒ…‚·‚é‚½‚ßAÅ‰‚Ì‚İƒXƒs[ƒh‚ğ‚ä‚é‚ß‚é
-  float X;
-  if (mTimeCounter < mInitDuration) {
-    mTimeCounter++;
-    X = mInitForward;
-  }
-  else { // ’ÊíƒXƒs[ƒh
-    X = mForward;
-  }
-
-#if 0 // DEBUG
-  {
-    static int count = 0;
-    if (count++ % 25 == 0)
-    {
-      Lcd lcd;
-      lcd.clear();
-      lcd.putf("sn", "TripodLineTrace");
-      lcd.putf("dn", mState);
-      lcd.putf("dn", mTimeCounter);
-      lcd.putf("dn", (int)X);
-      lcd.disp();
+    VectorT<float> command = calcCommand();
+    if (gDoForwardPid) {
+        mTripodActivator.runWithPid(command); //ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰PIDè¶Šã—ã«é‹è»¢
+    } else {
+        mTripodActivator.run(command);//åˆ¶å¾¡æ©Ÿå™¨ã«ã‚»ãƒƒãƒˆ
     }
-  }
-#endif
-  float Y;
-  if (mUseOnoff) { 
-    Y = calcCommandTurnByOnOff();
-  }
-  else {
-    Y = calcCommandTurn();
-  }
-  return VectorT<F32>(X,Y);
-}
-
-/**
- * (ONOFF§Œä)Œ»İ‚ÌŒõ’l‚©‚çAƒ‰ƒCƒ“ƒgƒŒ[ƒX‚ğ‚·‚é‚Ì‚É“KØ‚Èƒ^[ƒ“’l‚ğŒvZ‚·‚éB
- *
- * @return ƒ^[ƒ“’l
- */
-float TripodLineTrace::calcCommandTurnByOnOff()
-{
-  float P = (mLightSensor.get() - mLineThreshold); // •Î·
-
-	//ONOFF§Œä
-  float Y;
-  if (P < 0) { // ”’
-    Y = -LIGHT_ONOFF_K;
-  }
-  else { // •
-    Y = LIGHT_ONOFF_K;
-  }
-	
-	//ƒ‰ƒCƒ“‚Ì‰E‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©¶‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©‚Åù‰ñ•ûŒü‚ªŒˆ‚Ü‚é
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-  return Y;
-}
-
-/**
- * (PID§Œä)Œ»İ‚ÌŒõ’l‚©‚çAƒ‰ƒCƒ“ƒgƒŒ[ƒX‚ğ‚·‚é‚Ì‚É“KØ‚Èƒ^[ƒ“’l‚ğŒvZ‚·‚éB
- *
- * @return ƒ^[ƒ“’l
- */
-float TripodLineTrace::calcCommandTurn()
-{
-	//³‹K‰»‚µ‚½ŒõƒZƒ“ƒT’l‚ğP‚ÉŠi”[‚·‚é
-	float P = this->lightValueNormalization();
-	//Pid§Œä
-  float Y = mLightPid.control(P);
-	
-	//ƒ‰ƒCƒ“‚Ì‰E‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©¶‘¤‚ğƒgƒŒ[ƒX‚·‚é‚©‚Åù‰ñ•ûŒü‚ªŒˆ‚Ü‚é
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-  return Y;
-}
-
-/**
- * ³‹K‰»‚µ‚½ŒõƒZƒ“ƒT‚Ì’l‚ğæ“¾‚·‚é
- *
- * @return ³‹K‰»‚µ‚½ŒõƒZƒ“ƒT‚Ì’l
- */
-float TripodLineTrace::lightValueNormalization()
-{
-  float L = 0;
-	L = mLightSensor.get();
-	
-  float P = (L - mLineThreshold); // •Î·
-  if(L < mLineThreshold){ // ”’
-    P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] ‚Ì’l‚É³‹K‰»
-  }
-  else{ // •
-    P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] ‚Ì’l‚É³‹K‰»
-  }
-	
-	if(P > 1) P = 1;
-	if(P < -1) P = -1;
-	
-  return P;
 }

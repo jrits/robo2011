@@ -10,7 +10,7 @@
 #include "Driver.h"
 
 /**
- * ’Êí‹æŠÔƒhƒ‰ƒCƒo
+ * é€šå¸¸åŒºé–“ãƒ‰ãƒ©ã‚¤ãƒ
  */
 class NormalDriver : public Driver
 {

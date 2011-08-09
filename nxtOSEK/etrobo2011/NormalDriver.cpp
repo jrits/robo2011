@@ -8,19 +8,19 @@
 #include "factory.h"
 
 /**
- * �R���X�g���N�^
+ * コンストラクタ
  */
 NormalDriver::NormalDriver()
 {
 }
 
 /**
- * �m�[�}�����s�A���S���Y��
+ * ノーマル走行アルゴリズム
  *
- * �����̃��C���g���[�X
+ * ただのライントレース
  *
- * @retval true �ŏI��ԁB����ȍ~�̏�ԑJ�ڂȂ��B
- * @retval false �܂���ڂ��������Ă��܂���B
+ * @retval true 最終状態。これ以降の状態遷移なし。
+ * @retval false まだ役目が完了していません。
  */
 bool NormalDriver::drive()
 {

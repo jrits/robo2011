@@ -4,42 +4,22 @@
 #ifndef TripodActivator_H_
 #define TripodActivator_H_
 
-#include "constants.h"
-#include "Motor.h"
-#include "GyroSensor.h"
-#include "Vector.h"
-#include "Nxt.h"
-
+#include "Activator.h"
 using namespace ecrobot;
 
-extern "C"
-{
-#include "balancer.h"
-};
-
 /**
- * §Œä‹@Ší(ƒnƒ“ƒhƒ‹AƒAƒNƒZƒ‹AƒuƒŒ[ƒL)
+ * ï¼“ç‚¹åˆ¶å¾¡æ©Ÿå™¨(ãƒãƒ³ãƒ‰ãƒ«ã€ã‚¢ã‚¯ã‚»ãƒ«ã€ãƒ–ãƒ¬ãƒ¼ã‚­)
  *
- * Skill ‚É‚æ‚Á‚Ä‘€ì‚³‚ê‚éB
+ * Skill ã«ã‚ˆã£ã¦æ“ä½œã•ã‚Œã‚‹ã€‚
  */
-class TripodActivator
+class TripodActivator : public Activator
 {
-private:
-  Motor &mLeftMotor; //!< ¶ƒ‚[ƒ^
-  Motor &mRightMotor; //!< ‰Eƒ‚[ƒ^
-  GyroSensor &mGyroSensor; //!< ƒWƒƒƒCƒƒZƒ“ƒT
-  Nxt &mNxt; //!< NXTƒIƒuƒWƒFƒNƒg
-  int mGyroOffset; //!< ƒWƒƒƒCƒƒZƒ“ƒTƒIƒtƒZƒbƒg’l
 public:
-  TripodActivator(Motor &leftMotor, 
-                  Motor &rightMotor, 
-                  GyroSensor &gyroSensor, 
-                  Nxt &nxt);
-  ~TripodActivator(){}
-  void reset(int gyroOffset);
-  void run(VectorT<F32> command);
-  void stop();
-private:
-  // Vector<S8> balanceControl(VectorT<F32> command); // balancer_control ‚ğ’¼‚ÉŒÄ‚Ô‚±‚Æ‚É
+	TripodActivator(Motor &leftMotor, 
+              Motor &rightMotor, 
+              GyroSensor &gyroSensor, 
+              Nxt &nxt);
+	~TripodActivator(){}
+    void run(VectorT<F32> command);
 };
 #endif

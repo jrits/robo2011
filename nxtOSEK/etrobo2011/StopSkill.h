@@ -9,15 +9,15 @@
 #include "struct.h"
 
 /**
- * ‹}’âŽ~ƒXƒLƒ‹B–Ú•W’n“_‚Å‘¬“x‚ð‹}‚É0‚É—Ž‚Æ‚·B
+ * æ€¥åœæ­¢ã‚¹ã‚­ãƒ«ã€‚ç›®æ¨™åœ°ç‚¹ã§é€Ÿåº¦ã‚’æ€¥ã«0ã«è½ã¨ã™ã€‚
  *
- * ƒXƒLƒ‹‚É‹}’âŽ~‹@\‚ð’Ç‰Á‚·‚é Decorator ƒNƒ‰ƒXB
+ * ã‚¹ã‚­ãƒ«ã«æ€¥åœæ­¢æ©Ÿæ§‹ã‚’è¿½åŠ ã™ã‚‹ Decorator ã‚¯ãƒ©ã‚¹ã€‚
  */
 class StopSkill : public Skill
 {
-    Skill *mSkill;         //!< ‹}’âŽ~‹@\‚ð’Ç‰Á‚·‚éƒXƒLƒ‹B
-    float mTargetDistance; //!< ’âŽ~–Ú•W‹——£(mm)
-    float mAllowableError; //!< ‹–—eƒGƒ‰[’l(mm)B‰½mmŽè‘O‚Å‘¬“x‚ð0‚É—Ž‚Æ‚·‚©B
+    Skill *mSkill;         //!< æ€¥åœæ­¢æ©Ÿæ§‹ã‚’è¿½åŠ ã™ã‚‹ã‚¹ã‚­ãƒ«ã€‚
+    float mTargetDistance; //!< åœæ­¢ç›®æ¨™è·é›¢(mm)
+    float mAllowableError; //!< è¨±å®¹ã‚¨ãƒ©ãƒ¼å€¤(mm)ã€‚ä½•mmæ‰‹å‰ã§é€Ÿåº¦ã‚’0ã«è½ã¨ã™ã‹ã€‚
 public:
 	StopSkill();
 	~StopSkill(){}

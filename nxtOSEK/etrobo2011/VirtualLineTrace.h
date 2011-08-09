@@ -9,16 +9,16 @@
 #include "struct.h"
 
 /**
- * ���z���C���g���[�X�X�L��
+ * 仮想ライントレーススキル
  */
 class VirtualLineTrace : public Skill
 {
 private:
-    ControlPoint *mControlPoints; //!< ����_�Z�b�g
-    int mNumOfControlPoints; //!< ����_�̐�
-    int mCurrentIndex; //!< ���ݐ���_�C���f�b�N�X
-	float mXoffset; //!< ���̂��߂̒����p�ϐ�
-	float mYoffset; //!< ���̂��߂̒����p�ϐ�
+    ControlPoint *mControlPoints; //!< 制御点セット
+    int mNumOfControlPoints; //!< 制御点の数
+    int mCurrentIndex; //!< 現在制御点インデックス
+	float mXoffset; //!< 大会のための調整用変数
+	float mYoffset; //!< 大会のための調整用変数
 public:
 	VirtualLineTrace();
 	~VirtualLineTrace(){}
