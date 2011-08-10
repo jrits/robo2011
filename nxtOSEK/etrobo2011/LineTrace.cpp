@@ -108,7 +108,7 @@ VectorT<float> LineTrace::calcCommand()
         Y = calcCommandTurn();
     }
     
-#if 0 // DEBUG
+#if 1 // DEBUG
     {
         static int count = 0;
         if (count++ % 25 == 0)
@@ -118,6 +118,8 @@ VectorT<float> LineTrace::calcCommand()
             lcd.putf("sn", "LineTrace");
             lcd.putf("dn", (int)X);
             lcd.putf("dn", (int)Y);
+            lcd.putf("dn", (int)mUseOnoff);
+            lcd.putf("dn", (int)gDoMaimai);
             lcd.disp();
         }
     }
@@ -133,7 +135,7 @@ VectorT<float> LineTrace::calcCommand()
 float LineTrace::lightValueNormalization()
 {
     float L = 0;
-	L = mLightSensor.get();
+    L = mLightSensor.get();
 	
     float P = (L - mLineThreshold); // 偏差
     if(L < mLineThreshold){ // 白
@@ -141,10 +143,11 @@ float LineTrace::lightValueNormalization()
     }
     else{ // 黒
         P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
+        P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
     }
 	
-	if(P > 1) P = 1;
-	if(P < -1) P = -1;
+    if(P > 1) P = 1;
+    if(P < -1) P = -1;
 	
     return P;
 }

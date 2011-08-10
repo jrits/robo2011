@@ -9,7 +9,7 @@ extern "C" {
 #include "Motor.h"
 #include "Nxt.h"
 #include "GyroSensor.h"
-#include "constants.cpp"
+#include "constants.h"
 #include "Vector.h"
 
 using namespace ecrobot;

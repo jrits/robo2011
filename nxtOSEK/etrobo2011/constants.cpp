@@ -21,13 +21,20 @@ int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
 int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
-// 瀬尾家
-int WHITE = 500; // 白色の光センサ値 //小さめにしてね
-int BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// 新横浜
+int WHITE = 515; // 白色の光センサ値 //小さめにしてね
+int BLACK = 715; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
 int TRIPOD_WHITE = 580; // 白色の光センサ値 //小さめにしてね
 int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
 int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
+// 瀬尾家
+// int WHITE = 500; // 白色の光センサ値 //小さめにしてね
+// int BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
+// int TRIPOD_WHITE = 580; // 白色の光センサ値 //小さめにしてね
+// int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #endif
 
 #ifdef KACHINEW
@@ -54,9 +61,9 @@ float WHEEL_DISTANCE = 162.0; // 車輪間隔(mm)
 int INIT_FORWARD = 50;    // 初期前進速度
 int INIT_SAMPLECOUNT = 200;  // 初期前進継続カウンタ期間
 int FORWARD = 100;        // 前進速度
-float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
+float LIGHT_PID_KP = 50; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
-float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
+float LIGHT_PID_KD = 180; // K_PHIDOT = 25.0F
 float LIGHT_ONOFF_K = 40; // K_PHIDOT = 25.0F
 // float LIGHT_PID_KP = 40; // K_PHIDOT = 25.0F*2.5F
 // float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F*2.5F

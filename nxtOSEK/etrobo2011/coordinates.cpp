@@ -13,8 +13,8 @@ InCourse mInCourse(InCourse::START);     // 開始位置は下参照
 //InCourse mInCourse(InCourse::MYSTERY);   // 開始位置は下参照
 //InCourse mInCourse(InCourse::GARAGEIN);  // 開始位置は下参照
 Course *mCourse(&mInCourse);
-//int TRACE_EDGE = LEFT;
-int TRACE_EDGE = RIGHT;
+int TRACE_EDGE = LEFT;
+//int TRACE_EDGE = RIGHT;
 #endif
 #ifdef OUTCOURSE
 Gps mGps(mLeftMotor, mRightMotor, Gps::OUT);
@@ -24,7 +24,8 @@ OutCourse mOutCourse(OutCourse::START);      // 開始位置は下参照
 //OutCourse mOutCourse(OutCourse::STAIRWAY);   // 開始位置は下参照
 //OutCourse mOutCourse(OutCourse::GARAGEIN);   // 開始位置は下参照
 Course *mCourse(&mOutCourse);
-int TRACE_EDGE = RIGHT;
+//int TRACE_EDGE = RIGHT;
+int TRACE_EDGE = LEFT;
 #endif
 
 // 座標

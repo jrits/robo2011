@@ -78,8 +78,8 @@ bool TestDriver::drive()
         mTripodActivator.runWithPid(command);
     }
     // テスト ライントレース.
-    if (0) {
-        mLineTrace.setForward(50);
+    if (1) {
+        mLineTrace.setForward(100);
         mLineTrace.execute();
     }
     // テスト ライントレース with フォワードPID
@@ -101,7 +101,7 @@ bool TestDriver::drive()
         mTripodLineTrace.execute();
     }
     // テスト ３点走行ライントレース with フォワードPID
-    if (1) {
+    if (0) {
         gDoForwardPid = true;
         tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
         mTripodLineTrace.setForward(50);
