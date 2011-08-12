@@ -26,4 +26,6 @@ kernel_id.h
 *.elf
 *.map
 
+# special
+TestDriver.cpp
 
