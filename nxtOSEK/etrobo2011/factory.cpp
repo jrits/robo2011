@@ -32,6 +32,8 @@ float mDirectionAverageBuffer[25];
 History mDirectionAverageHistory(mDirectionAverageBuffer, COUNTOF(mDirectionAverageBuffer));
 float mGyroBuffer[25];
 History mGyroHistory(mGyroBuffer, COUNTOF(mGyroBuffer));
+float mTurnBuffer[10];
+History mTurnHistory(mTurnBuffer, COUNTOF(mTurnBuffer));
 // その他
 Activator mActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 TripodActivator mTripodActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);

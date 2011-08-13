@@ -3,7 +3,7 @@
 //
 #include "LineTrace.h"
 #include "factory.h"
-extern bool  gDoMaimai;
+extern bool  gDoMaimai; //!< まいまい式を使うかどうか
 extern float gMaimaiValue;
 
 /**
@@ -15,12 +15,12 @@ extern float gMaimaiValue;
  */
 LineTrace::LineTrace(float black, float white, float threshold)
 {
-	mBlack = black;
-	mWhite = white;
-	mLineThreshold = threshold;
+    mBlack = black;
+    mWhite = white;
+    mLineThreshold = threshold;
     mInitForward = INIT_FORWARD;
     mInitDuration = INIT_SAMPLECOUNT;
-    mUseOnoff = false;
+    mDoOnOffTrace = false;
     setForward(FORWARD);
     reset();
 }
@@ -56,13 +56,23 @@ void LineTrace::setInitDuration(int initDuration)
 }
 
 /**
+ * ON/OFF制御(true) or PID制御(false)フラグの設定
+ *
+ * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
+ */
+void LineTrace::setDoOnOffTrace(bool doOnOffTrace)
+{
+    mDoOnOffTrace = doOnOffTrace;
+}
+
+/**
  * (PID制御)現在の光値から、ライントレースをするのに適切なターン値を計算する。
  *
  * @return ターン値
  */
 float LineTrace::calcCommandTurn()
 {
-	//正規化した光センサ値をPに格納する
+    //正規化した光センサ値をPに格納する
     float P;
     if (gDoMaimai) {
         P = this->maimaiValueNormalization(); // まいまい式
@@ -70,12 +80,12 @@ float LineTrace::calcCommandTurn()
         P = this->lightValueNormalization(); // 通常
     }
 
-	//Pid制御
+    //Pid制御
     float Y = mLightPid.control(P);
-	
-	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    //ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+    if(TRACE_EDGE == LEFT ) Y *= -1;
+    if(TRACE_EDGE == RIGHT) Y *=  1;
     
     return Y;
 }
@@ -88,7 +98,7 @@ float LineTrace::calcCommandTurn()
 VectorT<float> LineTrace::calcCommand()
 {
     //ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
-	gLineTrace = true;
+    gLineTrace = true;
 
     // 起動時急ダッシュするため、最初のみスピードをゆるめる
     float X;
@@ -100,15 +110,16 @@ VectorT<float> LineTrace::calcCommand()
         X = mForward;
     }
 
+    // ON/OFF制御をするかPID制御をするか
     float Y;
-    if (mUseOnoff) { 
-        Y = calcCommandTurnByOnOff();
+    if (mDoOnOffTrace) { 
+        Y = calcOnOffCommandTurn();
     }
     else {
         Y = calcCommandTurn();
     }
     
-#if 1 // DEBUG
+#if 0 // DEBUG
     {
         static int count = 0;
         if (count++ % 25 == 0)
@@ -118,7 +129,7 @@ VectorT<float> LineTrace::calcCommand()
             lcd.putf("sn", "LineTrace");
             lcd.putf("dn", (int)X);
             lcd.putf("dn", (int)Y);
-            lcd.putf("dn", (int)mUseOnoff);
+            lcd.putf("dn", (int)mDoOnOffTrace);
             lcd.putf("dn", (int)gDoMaimai);
             lcd.disp();
         }
@@ -136,7 +147,7 @@ float LineTrace::lightValueNormalization()
 {
     float L = 0;
     L = mLightSensor.get();
-	
+    
     float P = (L - mLineThreshold); // 偏差
     if(L < mLineThreshold){ // 白
         P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
@@ -145,10 +156,10 @@ float LineTrace::lightValueNormalization()
         P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
         P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
     }
-	
+    
     if(P > 1) P = 1;
     if(P < -1) P = -1;
-	
+    
     return P;
 }
 
@@ -160,8 +171,8 @@ float LineTrace::lightValueNormalization()
 float LineTrace::maimaiValueNormalization()
 {
     float L = 0;
-	L = gMaimaiValue;
-	
+    L = gMaimaiValue;
+    
     float P = (L - MAIMAI_LINE_THRESHOLD); // 偏差
     if(L < MAIMAI_LINE_THRESHOLD){ // 白
         P = P / (MAIMAI_LINE_THRESHOLD - MAIMAI_WHITE); // [-1.0, 1.0] の値に正規化
@@ -169,21 +180,11 @@ float LineTrace::maimaiValueNormalization()
     else{ // 黒
         P = P / (MAIMAI_BLACK - MAIMAI_LINE_THRESHOLD); // [-1.0, 1.0] の値に正規化
     }
-	
-	if(P > 1) P = 1;
-	if(P < -1) P = -1;
-	
+    
+    if(P > 1) P = 1;
+    if(P < -1) P = -1;
+    
     return P;
-}
-
-/**
- * ON/OFF制御(true) or PID制御(false)フラグの設定
- *
- * @param[in] useOnoff ON/OFF制御(true) or PID制御(false)フラグ
- */
-void LineTrace::setUseOnoff(bool useOnoff)
-{
-    mUseOnoff = useOnoff;
 }
 
 /**
@@ -191,11 +192,11 @@ void LineTrace::setUseOnoff(bool useOnoff)
  *
  * @return ターン値
  */
-float LineTrace::calcCommandTurnByOnOff()
+float LineTrace::calcOnOffCommandTurn()
 {
     float P = (mLightSensor.get() - mLineThreshold); // 偏差
 
-	//ONOFF制御
+    //ONOFF制御
     float Y;
     if (P < 0) { // 白
         Y = -LIGHT_ONOFF_K;
@@ -203,10 +204,10 @@ float LineTrace::calcCommandTurnByOnOff()
     else { // 黒
         Y = LIGHT_ONOFF_K;
     }
-	
-	//ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
-	if(TRACE_EDGE == LEFT ) Y *= -1;
-	if(TRACE_EDGE == RIGHT) Y *=  1;
+    
+    //ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+    if(TRACE_EDGE == LEFT ) Y *= -1;
+    if(TRACE_EDGE == RIGHT) Y *=  1;
     
     return Y;
 }

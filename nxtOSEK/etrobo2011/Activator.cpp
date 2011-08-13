@@ -4,6 +4,7 @@
 #include "Activator.h"
 #include "Pid.h"
 #include "factory.h"
+extern bool gDoProgressiveTurn;
 
 /**
  * コンストラクタ
@@ -22,7 +23,7 @@ Activator::Activator(Motor &leftMotor,
     mGyroSensor(gyroSensor), 
     mNxt(nxt)
 {
-	mGyroOffset = USER_GYRO_OFFSET; //オフセット値を初期化
+    mGyroOffset = USER_GYRO_OFFSET; //オフセット値を初期化
     mTargetSpeed = 0.0;
     mCurrentForward = 0.0;
 }
@@ -44,7 +45,13 @@ void Activator::reset(int gyroOffset)
  */
 void Activator::run(VectorT<F32> command)
 {
-	S8 pwm_L, pwm_R;
+    S8 pwm_L, pwm_R;
+
+    // 過去の蓄積ベースのレース
+    if (gDoProgressiveTurn) {
+        command.mY += mTurnHistory.calcAverage();
+        mTurnHistory.update(command.mY);
+    }
 
     // C++ バージョンだとなぜか mActivator.run() で動かないのでとりあえず。
     balance_control(
@@ -63,7 +70,7 @@ void Activator::run(VectorT<F32> command)
         nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100?100) */
     }
 
-	// balance_control(
+    // balance_control(
     //     (F32)command.mY, // 前後進命令
     //     (F32)command.mY, // 旋回命令
     //     (F32)mGyroSensor.get(),
@@ -73,7 +80,7 @@ void Activator::run(VectorT<F32> command)
     //     (F32)mNxt.getBattMv(),
     //     &pwm_L,
     //     &pwm_R);
-	
+    
     // if (! DESK_DEBUG) {
     //     mLeftMotor.setPWM(pwm_L);
     //     mRightMotor.setPWM(pwm_R);
@@ -102,10 +109,10 @@ void Activator::runWithPid(VectorT<F32> speed)
  */
 void Activator::stop()
 {
-	mLeftMotor.setPWM(0);
-	mRightMotor.setPWM(0);
-	mLeftMotor.setBrake(true);
-	mRightMotor.setBrake(true);
+    mLeftMotor.setPWM(0);
+    mRightMotor.setPWM(0);
+    mLeftMotor.setBrake(true);
+    mRightMotor.setBrake(true);
 }
 
 Pid mForwardPid(0.003, 0.0, 0.0); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
