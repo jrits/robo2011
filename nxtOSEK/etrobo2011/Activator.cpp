@@ -47,7 +47,12 @@ void Activator::run(VectorT<F32> command)
 {
     S8 pwm_L, pwm_R;
 
-    // 過去の蓄積ベースのレース
+    // フォワードPID
+    if (gDoForwardPid) {
+        command.mX = forwardPid(command.mX);
+    }
+
+    // 過去の蓄積ベースのturn値
     if (gDoProgressiveTurn) {
         command.mY += mTurnHistory.calcAverage();
         mTurnHistory.update(command.mY);
@@ -85,19 +90,6 @@ void Activator::run(VectorT<F32> command)
     //     mLeftMotor.setPWM(pwm_L);
     //     mRightMotor.setPWM(pwm_R);
     // }
-}
-
-/**
- * フォワードPID、ターンPID(@todo)を利用した走行
- *
- * @param[in] speed 目標走行スピード(encode/sec)
- */
-void Activator::runWithPid(VectorT<F32> speed)
-{
-    VectorT<F32> command;
-    command.mX = forwardPid(speed.mX);
-    command.mY = speed.mY; // turnPid(speed.mY); // @todo
-    run(command);
 }
 
 /**

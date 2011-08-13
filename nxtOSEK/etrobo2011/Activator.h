@@ -40,8 +40,6 @@ public:
     void reset(int gyroOffset);
     // 走行。ハンドル、アクセスの操作。
 	virtual void run(VectorT<F32> command);
-    // フォワードPID、ターンPID(@todo)を利用した走行
-	void runWithPid(VectorT<F32> speed);
     // 停止
 	void stop();
 protected:

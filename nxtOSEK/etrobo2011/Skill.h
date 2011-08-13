@@ -44,11 +44,7 @@ public:
     virtual void execute()
     {
         VectorT<float> command = calcCommand();
-        if (gDoForwardPid) {
-            mActivator.runWithPid(command); //フォワードPID越しに運転
-        } else {
-            mActivator.run(command);//制御機器にセット
-        }
+        mActivator.run(command);//制御機器にセット
     }
     /**
      * 走行ベクトルを計算
