@@ -4,6 +4,7 @@
 #include "Activator.h"
 #include "Pid.h"
 #include "factory.h"
+extern bool gDoForwardPid;
 extern bool gDoProgressiveTurn;
 
 /**
