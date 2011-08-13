@@ -7,7 +7,7 @@
 #include "TestDriver.h"
 #include "factory.h"
 #include "TestLine.h"
-extern bool gDoMaimai;
+extern bool gDoForwardPid;
 extern "C" extern void tail_control(signed int angle);
 
 /* sample_c3マクロ */
@@ -54,29 +54,33 @@ bool TestDriver::drive()
 #endif
     // デフォルト
     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-    gDoMaimai = false; /* まいまい式は使わない */
+    gDoForwardPid = false; 
     VectorT<float> command(50, 0);
 
-    // テスト ライントレース.
+    // テスト 通常走行
     if (0) {
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
+        mActivator.run(command);
     }
-    // テスト まいまい式ライントレース
+    // テスト フォーワードPID
     if (1) {
-        gDoMaimai = true;
+        gDoForwardPid = true;
+        mActivator.run(command);
+    }
+    // テスト ３点走行 with フォワードPID
+    if (0) {
+        gDoForwardPid = true;
+        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
+        mTripodActivator.run(command);
+    }
+    // テスト ライントレース with フォワードPID
+    if (0) {
+        gDoForwardPid = true;
         mLineTrace.setForward(50);
         mLineTrace.execute();
     }
-    // テスト ３点走行ライントレース
+    // テスト ３点走行ライントレース with フォワードPID
     if (0) {
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
-    }
-    // テスト まいまい式３点走行ライントレース
-    if (0) {
-        gDoMaimai = true;
+        gDoForwardPid = true;
         tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
         mTripodLineTrace.setForward(50);
         mTripodLineTrace.execute();
