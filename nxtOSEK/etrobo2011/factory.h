@@ -81,6 +81,7 @@ extern History mLeftMotorSpeedHistory;
 extern History mDirectionHistory;
 extern History mDirectionAverageHistory;
 extern History mGyroHistory;
+extern History mTurnHistory;
 // その他
 extern Activator mActivator;
 extern TripodActivator mTripodActivator;

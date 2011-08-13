@@ -65,7 +65,8 @@ bool TestDriver::drive()
     }
     // テスト フォーワードPID
     if (0) {
-        mActivator.runWithPid(command);
+        gDoForwardPid = true;
+        mActivator.run(command);
     }
     // テスト ３点走行
     if (0) {
@@ -74,8 +75,9 @@ bool TestDriver::drive()
     }
     // テスト ３点走行 with フォワードPID
     if (0) {
+        gDoForwardPid = true;
         tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodActivator.runWithPid(command);
+        mTripodActivator.run(command);
     }
     // テスト ライントレース.
     if (0) {
