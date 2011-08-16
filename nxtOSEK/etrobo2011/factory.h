@@ -105,6 +105,7 @@ extern EnigmaDriver mEnigmaDriver;
 extern MysteryDriver mMysteryDriver;
 extern InGarageDriver mInGarageDriver;
 extern TestDriver mTestDriver;
+extern TestDriver mSeesawTestDriver;
 // Course
 extern Course *mCourse;
 extern InCourse mInCourse;

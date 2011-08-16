@@ -38,7 +38,7 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 #define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
 /* sample_c3マクロ */
 #define TAIL_ANGLE_STAND_UP 95 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
+#define TAIL_ANGLE_DRIVE    70 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
 
@@ -181,10 +181,8 @@ TASK(TaskDrive)
   signed char turn;         /* 旋回命令 */
   signed char pwm_L, pwm_R; /* 左右モータPWM出力 */
   //一時しのぎ時間フラグ
-  bool sp = true;
-  int timeCounter = 0;
-  int directionFlag = 0;
   
+
 	while(1)
   {
     tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
@@ -199,43 +197,28 @@ TASK(TaskDrive)
   balance_init(); /* 倒立振子制御初期化 */
   nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
   nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
-  int timecounter = 0;
-    
+  static bool found_something = false;
   while(1)
   {
+    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+
       /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
-//  	bool balanceFlag = false;
+  	bool balanceFlag = true;
 // 	if(balanceFlag){
 //      balance_control(
-//          (float)forward,								 /* 前後進命令(+:前進, -:後進) */
+ //         (float)forward,								 /* 前後進命令(+:前進, -:後進) */
 //          (float)turn,								 /* 旋回命令(+:右旋回, -:左旋回) */
 //          (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
 //          (float)GYRO_OFFSET,							 /* ジャイロセンサオフセット値 */
-//         (float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
+//          (float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
 //          (float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
 //          (float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
 //          &pwm_L,										 /* 左モータPWM出力値 */
-//         &pwm_R);									 /* 右モータPWM出力値 */
+//          &pwm_R);									 /* 右モータPWM出力値 */
 //      nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
 //      nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
 //  	}
-    
-//	mAngleTrace.setTargetAngle(180.0);
-//	mAngleTrace.setForward(100);
-//	mAngleTrace.execute();
-//	mWallDetector.setThreshold(75);
-  	
-//  	if(mWallDetector.detect() && oneflag == false){
-//  	    {Speaker s; s.playTone(1976, 10, 100);}
-//  		hogeFlag = true;
-//  		hogeBefore = mRightMotorHistory.get(0);
-//  		oneflag = true;
-//  	}
-//  	if(hogeFlag == true &&  ((mRightMotorHistory.get(0) - hogeBefore) > 450) ){
-//  		mAngleTrace.setForward(10);
-//		tail_control(100);
-//  	}	
-  	
+   mSeesawTestDriver.drive();
    systick_wait_ms(4); /* 4msecウェイト */
   }
 }

@@ -3,8 +3,8 @@
 #include <math.h>
 
 //#define KACHIROBO
-//#define KACHIICHI//Žå‚É‚±‚ê
-#define KACHINEW//0810‚¾‚¯
+#define KACHIICHI
+//#define KACHINEW
 
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
@@ -48,10 +48,10 @@ int LINE_THRESHOLD = (WHITE + BLACK)/2; // ƒ‰ƒCƒ“’[‚ÌF‚ðŽ¦‚·è‡’lB”’‚ÆŠDF‚ÌŠÔ‚
 
 #ifdef KACHINEW
 char BT_NAME[16] = "KACHINEW";
-int USER_GYRO_OFFSET = 611; //611 ‚±‚Ì’l‚Í“K‹X’²®‚·‚é‚±‚Æ
+int USER_GYRO_OFFSET = 608; // ‚±‚Ì’l‚Í“K‹X’²®‚·‚é‚±‚Æ
 //3F‹Žº
-int WHITE = 515; // ”’F‚ÌŒõƒZƒ“ƒT’l
-int BLACK = 715; // •F‚ÌŒõƒZƒ“ƒT’l
+int WHITE = 540; // ”’F‚ÌŒõƒZƒ“ƒT’l
+int BLACK = 730; // •F‚ÌŒõƒZƒ“ƒT’l
 int LINE_THRESHOLD = 600; // ƒ‰ƒCƒ“’[‚ÌF‚ðŽ¦‚·è‡’lB”’‚ÆŠDF‚ÌŠÔ‚Ì’l
 #endif
 

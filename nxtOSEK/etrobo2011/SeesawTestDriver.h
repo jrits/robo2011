@@ -15,7 +15,7 @@
  * テストドライバ
  */
 class TestDriver : public Driver
-{ 
+{
 public:
 		enum eSubSection {
         INIT = -1,
