@@ -90,6 +90,7 @@ bool TestDriver::drive()
   	}else if(mState == LINERETURN){
   	}else if(mState == AFTERLINETRACE){
   	}
+    
     //// ライントレーステスト
     // mLineTrace.setForward(50);
     // mLineTrace.execute();

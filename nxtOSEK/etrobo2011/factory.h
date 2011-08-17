@@ -60,6 +60,7 @@ extern LightSensor mLightSensor;
 extern GyroSensor mGyroSensor;
 extern Motor mLeftMotor;
 extern Motor mRightMotor;
+extern Motor mTailMotor;
 extern Lcd mLcd;
 extern Clock mClock;
 extern Nxt mNxt;

@@ -38,7 +38,7 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 #define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
 /* sample_c3マクロ */
 #define TAIL_ANGLE_STAND_UP 95 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_DRIVE    70 /* バランス走行時の角度[度] */
+#define TAIL_ANGLE_DRIVE    2 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
 
@@ -185,7 +185,7 @@ TASK(TaskDrive)
 
 	while(1)
   {
-    tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
+//    tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
     if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1)
     {
       break; /* タッチセンサが押された */
@@ -200,7 +200,7 @@ TASK(TaskDrive)
   static bool found_something = false;
   while(1)
   {
-    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+//    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 
       /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
   	bool balanceFlag = true;
@@ -247,7 +247,6 @@ TASK(TaskHistory)
   // 4msec 毎にイベント通知する設定
   SetRelAlarm(AlarmHistory, 1, 4);
   WaitEvent(EventHistory);
-
   while (1) {
     mLightHistory.update(mLightSensor.get());
     mRightMotorHistory.update(mRightMotor.getCount());
