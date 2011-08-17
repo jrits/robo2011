@@ -9,7 +9,7 @@
 #include "factory.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 FailDetector::FailDetector()
 {
@@ -19,16 +19,16 @@ FailDetector::FailDetector()
 }
 
 /**
- * “]“|‚ğŒŸ’m‚·‚é
+ * è»¢å€’ã‚’æ¤œçŸ¥ã™ã‚‹
  *
- * @retval true ŒŸ’m‚µ‚½
- * @retval false ŒŸ’m‚µ‚È‚©‚Á‚½
+ * @retval true æ¤œçŸ¥ã—ãŸ
+ * @retval false æ¤œçŸ¥ã—ãªã‹ã£ãŸ
  */
 bool FailDetector::detect()
 {
 #if 0 // Lcd
-    //DESK_DEBUG = true; // ƒ‚[ƒ^‚ğ‰ñ‚³‚È‚¢ƒfƒoƒO
-    static int count = 0; // static‚ÍŒ´‘¥‹Ö~‚¾‚ª¡‚¾‚¯
+    //DESK_DEBUG = true; // ãƒ¢ãƒ¼ã‚¿ã‚’å›ã•ãªã„ãƒ‡ãƒã‚°
+    static int count = 0; // staticã¯åŸå‰‡ç¦æ­¢ã ãŒä»Šã ã‘
     if (count++ % FAILSAFE_SAMPLECOUNT == 0) {
         Lcd lcd;
         lcd.clear();
@@ -49,7 +49,7 @@ bool FailDetector::detect()
         int speedR = mRightMotor.getCount() - mPrevRightCount;
         mPrevLeftCount = mLeftMotor.getCount();
         mPrevRightCount = mRightMotor.getCount();
-        //¶‰Eƒ‚[ƒ^ƒGƒ“ƒR[ƒ_’l‚Ì”÷•ª’l‚ªA‚Æ‚à‚Éè‡’l‚ğ’´‚¦‚Ä‚¢‚½ê‡A‹ó“]‚Æ‚İ‚È‚µƒ‚[ƒ^‚ğ’â~‚³‚¹‚é
+        //å·¦å³ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤ã®å¾®åˆ†å€¤ãŒã€ã¨ã‚‚ã«é–¾å€¤ã‚’è¶…ãˆã¦ã„ãŸå ´åˆã€ç©ºè»¢ã¨ã¿ãªã—ãƒ¢ãƒ¼ã‚¿ã‚’åœæ­¢ã•ã›ã‚‹
         ret = (speedL < -FAILSAFE_THRESHOLD || speedL > +FAILSAFE_THRESHOLD)
             && (speedR < -FAILSAFE_THRESHOLD || speedR > +FAILSAFE_THRESHOLD);
     }

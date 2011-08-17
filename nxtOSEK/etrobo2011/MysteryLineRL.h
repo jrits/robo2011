@@ -3,9 +3,9 @@
 
 #include "struct.h"
 
-int NUM_MYSTERY_LINE_RL = 10;   //�v�f��
+int NUM_MYSTERY_LINE_RL = 10;   //要素数
 
-ControlPoint MYSTERY_LINE_RL[]={    //GpsVisualizer����̃f�[�^�i�E-������̃R�[�X��̃|�C���g�j
+ControlPoint MYSTERY_LINE_RL[]={    //GpsVisualizerからのデータ（右-左周りのコース上のポイント）
 	{3330, -3123, FP_NAN, 50, 60, FALSE}, 
 	{3666, -3024, FP_NAN, 50, 60, FALSE}, 
 	{3849, -2880, FP_NAN, 50, 60, FALSE}, 

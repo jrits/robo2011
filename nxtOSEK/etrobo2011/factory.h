@@ -1,7 +1,7 @@
 #ifndef __FACTORY_H_
 #define __FACTORY_H_
 
-// ECRobot C++ API‚ÌéŒ¾
+// ECRobot C++ APIã®å®£è¨€
 #include "TouchSensor.h"
 #include "LightSensor.h"
 #include "GyroSensor.h"
@@ -13,17 +13,17 @@
 #include "Bluetooth.h"
 #include "Daq.h"
 #include "Vector.h"
-// GPS/ƒqƒXƒgƒŠ‚Æ‚»‚ÌƒAƒ_ƒvƒ^ŒQ
+// GPS/ãƒ’ã‚¹ãƒˆãƒªã¨ãã®ã‚¢ãƒ€ãƒ—ã‚¿ç¾¤
 #include "Gps.h"
 #include "History.h"
-// ŒŸo
+// æ¤œå‡º
 #include "Detector.h"
 #include "DownSlopeDetector.h"
 #include "WallDetector.h"
 #include "LineDetector.h"
 #include "StraightDetector.h"
 #include "FailDetector.h"
-// ƒXƒLƒ‹
+// ã‚¹ã‚­ãƒ«
 #include "Skill.h"
 #include "LineTrace.h"
 #include "AngleTrace.h"
@@ -32,7 +32,7 @@
 #include "VirtualLineTrace.h"
 #include "SlowdownSkill.h"
 #include "StopSkill.h"
-// ƒhƒ‰ƒCƒo
+// ãƒ‰ãƒ©ã‚¤ãƒ
 #include "Driver.h"
 #include "NormalDriver.h"
 #include "SeesawDriver.h"
@@ -42,18 +42,18 @@
 #include "MysteryDriver.h"
 #include "InGarageDriver.h"
 #include "TestDriver.h"
-/* ETƒƒ{ƒRƒ“2011 ’Ç‹L*/
+/* ETãƒ­ãƒœã‚³ãƒ³2011 è¿½è¨˜*/
 #include "ETsumoDriver.h"
-/* ETƒƒ{ƒRƒ“2011 ’Ç‹L‚±‚±‚Ü‚Å */
-// ƒR[ƒX
+/* ETãƒ­ãƒœã‚³ãƒ³2011 è¿½è¨˜ã“ã“ã¾ã§ */
+// ã‚³ãƒ¼ã‚¹
 #include "Course.h"
 #include "InCourse.h"
 #include "OutCourse.h"
-// ‚»‚Ì‘¼
+// ãã®ä»–
 #include "Activator.h"
 #include "Pid.h"
 #include "struct.h"
-// ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
+// ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 extern TouchSensor mTouchSensor;
 extern SonarSensor mSonarSensor;
 extern LightSensor mLightSensor;
@@ -77,13 +77,13 @@ extern History mLeftMotorSpeedHistory;
 extern History mDirectionHistory;
 extern History mDirectionAverageHistory;
 extern History mGyroHistory;
-// ‚»‚Ì‘¼
+// ãã®ä»–
 extern Activator mActivator;
 extern Pid mLightPid;
 extern Pid mAnglePid;
 extern Pid mSlowdownPid;
 extern Pid mStopPid;
-// ŒŸo
+// æ¤œå‡º
 extern WallDetector mWallDetector;
 extern DownSlopeDetector mDownSlopeDetector;
 extern LineDetector mLineDetector;
@@ -106,7 +106,7 @@ extern EnigmaDriver mEnigmaDriver;
 extern MysteryDriver mMysteryDriver;
 extern InGarageDriver mInGarageDriver;
 extern TestDriver mTestDriver;
-extern ETsumoDriver mETsumoDriver;// ETƒƒ{ƒRƒ“2011 ’Ç‹L
+extern ETsumoDriver mETsumoDriver;// ETãƒ­ãƒœã‚³ãƒ³2011 è¿½è¨˜
 // Course
 extern Course *mCourse;
 extern InCourse mInCourse;

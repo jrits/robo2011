@@ -8,29 +8,29 @@
 #include "Skill.h"
 
 /**
- * �h���C�o�̒��ۃN���X�A���̃N���X�̃I�u�W�F�N�g�͐�������Ȃ�
+ * ドライバの抽象クラス、このクラスのオブジェクトは生成されない
  */
 class Driver
 {
 protected:
-    int mState; //!< ���ݏ��
-    Skill* mSkill; //!< ���݃h���C�o
+    int mState; //!< 現在状態
+    Skill* mSkill; //!< 現在ドライバ
 public:
     /**
-     * �R���X�g���N�^
+     * コンストラクタ
      */
 	Driver(){}
     /**
-     * �f�X�g���N�^
+     * デストラクタ
      */
 	virtual ~Driver(){}
     /**
-     * �^�]����B
+     * 運転する。
      * 
-     * ���݂̏󋵂ɂ��킹�ēK�؂ȃX�L����I�����A�X�L���𔭊����邱�ƂŃ��{�b�g���^�]����B
+     * 現在の状況にあわせて適切なスキルを選択し、スキルを発揮することでロボットを運転する。
      *
-     * @retval true �ŏI��ԁB����ȍ~�̏�ԑJ�ڂȂ��B
-     * @retval false �܂���ڂ��������Ă��܂���B
+     * @retval true 最終状態。これ以降の状態遷移なし。
+     * @retval false まだ役目が完了していません。
      *
      * Override Me!
      */

@@ -9,15 +9,15 @@
 #include "struct.h"
 
 /**
- * À•Ww’è’…’n
+ * åº§æ¨™æŒ‡å®šç€åœ°
  */
 class CoordinateStop : public Skill
 {
 private:
-    Point mTargetCoordinate; //!< –Ú•WÀ•W
-    float mSlowdownDistance; //!< –Ú•WÀ•W‚Ì‰½mmè‘O‚©‚ç’…’n“®ì‚ğn‚ß‚é‚©
+    Point mTargetCoordinate; //!< ç›®æ¨™åº§æ¨™
+    float mSlowdownDistance; //!< ç›®æ¨™åº§æ¨™ã®ä½•mmæ‰‹å‰ã‹ã‚‰ç€åœ°å‹•ä½œã‚’å§‹ã‚ã‚‹ã‹
 private:
-    float mTargetDistance;   //!< ’â~–Ú•W‹——£
+    float mTargetDistance;   //!< åœæ­¢ç›®æ¨™è·é›¢
 public:
 	CoordinateStop();
 	~CoordinateStop(){}

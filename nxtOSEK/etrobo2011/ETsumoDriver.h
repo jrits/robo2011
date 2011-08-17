@@ -17,13 +17,13 @@
 #include <float.h>
 
 /**
-  ET‘Š–oƒhƒ‰ƒCƒo
+  ETç›¸æ’²ãƒ‰ãƒ©ã‚¤ãƒ
 */
 class ETsumoDriver : public Driver
 {
 private:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
     enum eSubSection {
         INIT = -1,
@@ -41,9 +41,9 @@ private:
         KACHI_NANORI,
         AFTERLINETRACE
     };
-    eSubSection mState;    //!< ó‘Ô
+    eSubSection mState;    //!< çŠ¶æ…‹
      /**
-     * ƒ^[ƒQƒbƒg‚Æ‚ÌˆÊ’uŠÖŒW
+     * ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã®ä½ç½®é–¢ä¿‚
      */
     enum eScanState {
         UNKNOWN = -1,
@@ -55,12 +55,12 @@ private:
     };
     eScanState mScanState; 
     
-    bool mInitState;       //!< ó‘Ô‰Šú‰»ƒtƒ‰ƒO
-    int  mTimeCounter;     //!< ƒ^ƒCƒ€ƒJƒEƒ“ƒ^
-    bool mIsArrived;       //!< isArrived•Û‘¶ƒoƒbƒtƒ@
-    bool mOshidashiFlag;   //!< ‰Ÿ‚µo‚µ”»’èƒtƒ‰ƒO
-    float mOrigK_THETADOT; //!< •ÏX‘O‚ÌTHETADOT‚ğ•Û‘¶‚µ‚Ä‚¨‚­ƒoƒbƒtƒ@
-    float mOrigK_PHIDOT;   //!< •ÏX‘O‚ÌK_PHIDOT‚ğ•Û‘¶‚µ‚Ä‚¨‚­ƒoƒbƒtƒ@
+    bool mInitState;       //!< çŠ¶æ…‹åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+    int  mTimeCounter;     //!< ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
+    bool mIsArrived;       //!< isArrivedä¿å­˜ãƒãƒƒãƒ•ã‚¡
+    bool mOshidashiFlag;   //!< æŠ¼ã—å‡ºã—åˆ¤å®šãƒ•ãƒ©ã‚°
+    float mOrigK_THETADOT; //!< å¤‰æ›´å‰ã®THETADOTã‚’ä¿å­˜ã—ã¦ãŠããƒãƒƒãƒ•ã‚¡
+    float mOrigK_PHIDOT;   //!< å¤‰æ›´å‰ã®K_PHIDOTã‚’ä¿å­˜ã—ã¦ãŠããƒãƒƒãƒ•ã‚¡
     int  mSonarDetectCount;
     int  mPrevSonarDetectCount;
     int  mFailScanCounter;

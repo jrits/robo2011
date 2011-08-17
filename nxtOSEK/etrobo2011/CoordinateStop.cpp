@@ -2,7 +2,7 @@
 #include "factory.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CoordinateStop::CoordinateStop() : 
     Skill()
@@ -13,28 +13,28 @@ CoordinateStop::CoordinateStop() :
 }
 
 /**
- * –Ú•WˆÊ’u‚ğİ’è‚·‚éB
+ * ç›®æ¨™ä½ç½®ã‚’è¨­å®šã™ã‚‹ã€‚
  *
- * @param[in] targetCoordinate –Ú•WÀ•W
+ * @param[in] targetCoordinate ç›®æ¨™åº§æ¨™
  */
 void CoordinateStop::setTargetCoordinate(Point targetCoordinate)
 {
     mTargetCoordinate = targetCoordinate;
-    // Œ»İÀ•W
+    // ç¾åœ¨åº§æ¨™
     float currentX = mGps.getXCoordinate();
     float currentY = mGps.getYCoordinate();
-    // –Ú•WÀ•W‚ÆŒ»İÀ•W‚Æ‚Ì‹——£
+    // ç›®æ¨™åº§æ¨™ã¨ç¾åœ¨åº§æ¨™ã¨ã®è·é›¢
     float diffX = mTargetCoordinate.X - currentX;
     float diffY = mTargetCoordinate.Y - currentY;
     float diffDistance = sqrt(pow(diffX, 2) + pow(diffY, 2));
-    // –Ú•W‹——£‚ğZo
+    // ç›®æ¨™è·é›¢ã‚’ç®—å‡º
     mTargetDistance = mGps.getDistance() + diffDistance;
 };
 
 /**
- * –Ú•WÀ•W‚Ì‰½mmè‘O‚©‚ç’…’n“®ì‚ğn‚ß‚é‚©İ’è‚·‚é
+ * ç›®æ¨™åº§æ¨™ã®ä½•mmæ‰‹å‰ã‹ã‚‰ç€åœ°å‹•ä½œã‚’å§‹ã‚ã‚‹ã‹è¨­å®šã™ã‚‹
  *
- * @param[in] slowdownDistance –Ú•WÀ•W‚Ì‰½mmè‘O‚©‚ç’…’n“®ì‚ğn‚ß‚é‚©
+ * @param[in] slowdownDistance ç›®æ¨™åº§æ¨™ã®ä½•mmæ‰‹å‰ã‹ã‚‰ç€åœ°å‹•ä½œã‚’å§‹ã‚ã‚‹ã‹
  */
 void CoordinateStop::setSlowdownDistance(float slowdownDistance)
 {
@@ -42,11 +42,11 @@ void CoordinateStop::setSlowdownDistance(float slowdownDistance)
 }
 
 /**
- * –Ú•W‹——£‚ğ©‘O‚Åİ’è‚·‚éB
+ * ç›®æ¨™è·é›¢ã‚’è‡ªå‰ã§è¨­å®šã™ã‚‹ã€‚
  *
- * setTargetCoordinate() ‚ª–Ú•W‹——£‚ğŸè‚ÉŒvZ‚µ‚Ä‚­‚ê‚é‚ªA”÷’²®‚µ‚½‚¢ê‡‚Í‚±‚¿‚ç‚ğg‚¤B
+ * setTargetCoordinate() ãŒç›®æ¨™è·é›¢ã‚’å‹æ‰‹ã«è¨ˆç®—ã—ã¦ãã‚Œã‚‹ãŒã€å¾®èª¿æ•´ã—ãŸã„å ´åˆã¯ã“ã¡ã‚‰ã‚’ä½¿ã†ã€‚
  *
- * @param[in] targetDistance –Ú•W‹——£
+ * @param[in] targetDistance ç›®æ¨™è·é›¢
  */
 void CoordinateStop::setTargetDistance(float targetDistance)
 {
@@ -54,23 +54,23 @@ void CoordinateStop::setTargetDistance(float targetDistance)
 };
 
 /**
- * –Ú•W‹——£‚ÆŒ»İ‹——£‚©‚çAÀ•Ww’è’…’n‚ğs‚¤‚Ì‚É“KØ‚È‘–sƒxƒNƒgƒ‹‚ğŒvZ‚·‚é
+ * ç›®æ¨™è·é›¢ã¨ç¾åœ¨è·é›¢ã‹ã‚‰ã€åº§æ¨™æŒ‡å®šç€åœ°ã‚’è¡Œã†ã®ã«é©åˆ‡ãªèµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã™ã‚‹
  *
- * @return ‘–sƒxƒNƒgƒ‹
+ * @return èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«
  */
  
 /* 
 VectorT<float> CoordinateStop::calcCommand()
 {
-    // À•Ww’è‘–s‚Ì—˜—pBƒtƒHƒ[ƒh’l‚ğã‘‚«‚·‚éB
+    // åº§æ¨™æŒ‡å®šèµ°è¡Œã®åˆ©ç”¨ã€‚ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤ã‚’ä¸Šæ›¸ãã™ã‚‹ã€‚
     VectorT<float> command = mCoordinateTrace.calcCommand();
 
-    // Œ»İ‹——£
+    // ç¾åœ¨è·é›¢
     float distance = mGps.getDistance();
 
-    // ‹——£‚ª‹ß‚Ã‚¢‚½‚ç™X‚É‘¬“x‚ğ‰º‚°‚éB’Ê‚è‰ß‚¬‚½‚çƒoƒbƒN‚·‚éB
-    // @todo: ’Ê‚è‰ß‚¬‚È‚¢‚Ì‚ªˆê”Ô—Ç‚¢B
-    if (mTargetDistance - distance < mSlowdownDistance) { // ’…’n“®ìŠJn
+    // è·é›¢ãŒè¿‘ã¥ã„ãŸã‚‰å¾ã€…ã«é€Ÿåº¦ã‚’ä¸‹ã’ã‚‹ã€‚é€šã‚ŠéããŸã‚‰ãƒãƒƒã‚¯ã™ã‚‹ã€‚
+    // @todo: é€šã‚Šéããªã„ã®ãŒä¸€ç•ªè‰¯ã„ã€‚
+    if (mTargetDistance - distance < mSlowdownDistance) { // ç€åœ°å‹•ä½œé–‹å§‹
         float P = mTargetDistance - distance;
         float X = mStopPid.control(P);
         if(X > mForward) X = mForward;
@@ -89,7 +89,7 @@ VectorT<float> CoordinateStop::calcCommand()
         }
 #endif
     }
-    else { // ‚Ü‚¾‰“‚¢ê‡
+    else { // ã¾ã é ã„å ´åˆ
         command.mX = mForward;
     }
 
@@ -99,19 +99,19 @@ VectorT<float> CoordinateStop::calcCommand()
 */
 
 // SORA
-//calcCommand2 –Ú•WÀ•W•t‹ß‚Å‹}’â~ƒpƒ^[ƒ“
+//calcCommand2 ç›®æ¨™åº§æ¨™ä»˜è¿‘ã§æ€¥åœæ­¢ãƒ‘ã‚¿ãƒ¼ãƒ³
 
 VectorT<float> CoordinateStop::calcCommand()
 {
     
-    // À•Ww’è‘–s‚Ì—˜—pBƒtƒHƒ[ƒh’l‚ğã‘‚«‚·‚éB
+    // åº§æ¨™æŒ‡å®šèµ°è¡Œã®åˆ©ç”¨ã€‚ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤ã‚’ä¸Šæ›¸ãã™ã‚‹ã€‚
     VectorT<float> command = mCoordinateTrace.calcCommand();
 
-    // Œ»İ‹——£
+    // ç¾åœ¨è·é›¢
     float distance = mGps.getDistance();
 
-    // ‹——£‚ª‹ß‚Ã‚¢‚½‚ç‹}’â~BSlowdownDistance‚ğ‚Ğ‚Æ‚Ü‚¸”qØ‚µ‚Ä‚¢‚éB“K“–‚È•Ï”‚ğ€”õ‚µ‚Ä“K“–‚È’l‚É•ÏX‚·‚×‚«H
-    if ((mTargetDistance - distance) < mSlowdownDistance) { // ’…’n“®ìŠJn
+    // è·é›¢ãŒè¿‘ã¥ã„ãŸã‚‰æ€¥åœæ­¢ã€‚SlowdownDistanceã‚’ã²ã¨ã¾ãšæ‹å€Ÿã—ã¦ã„ã‚‹ã€‚é©å½“ãªå¤‰æ•°ã‚’æº–å‚™ã—ã¦é©å½“ãªå€¤ã«å¤‰æ›´ã™ã¹ãï¼Ÿ
+    if ((mTargetDistance - distance) < mSlowdownDistance) { // ç€åœ°å‹•ä½œé–‹å§‹
         
         command.mX = 0;
         //SORA test
@@ -129,13 +129,13 @@ VectorT<float> CoordinateStop::calcCommand()
         }
 #endif
     }
-    else { // ‚Ü‚¾‰“‚¢ê‡
+    else { // ã¾ã é ã„å ´åˆ
         //command.mX = mForward;
     }
     
 //SORA [log]    
 #if 0
-    // ƒƒO‘—M
+    // ãƒ­ã‚°é€ä¿¡
     LOGGER_SEND = 2;
 //	LOGGER_DATAS08[0] = (S8)(linePattern);
 	LOGGER_DATAS16[0] = (S16)(mTargetDistance - distance);
@@ -149,5 +149,5 @@ VectorT<float> CoordinateStop::calcCommand()
 	return command;
 }
 
-//  2010/11/25  ¸”sF‹}’â~‚Í“]‚Ô
+//  2010/11/25  å¤±æ•—ï¼šæ€¥åœæ­¢ã¯è»¢ã¶
 //SORA */

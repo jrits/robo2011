@@ -11,13 +11,13 @@
 #include "Driver.h"
 
 /**
- * ŠK’iƒhƒ‰ƒCƒo
+ * éšæ®µãƒ‰ãƒ©ã‚¤ãƒ
  */
 class StairwayDriver : public Driver
 {
 public:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
     enum eSubSection {
         INIT = -1,
@@ -28,12 +28,12 @@ public:
         AFTERLINETRACE
     };
 private:
-    int mState; //!< ŠK’ió‘Ô
-    bool mInitState; //!< ó‘Ô‰Šú‰»ƒtƒ‰ƒO
-    int mTimeCounter; //!< ƒ^ƒCƒ€ƒJƒEƒ“ƒ^
-    int mPrevMotor; //!< ‘O‚Ìƒ‚[ƒ^‚Ì‰ñ“]”
-    bool mDoDetectWall; //!< á•Ç‚ğ”­Œ©ƒtƒ‰ƒO
-    float mPrevDirection; //!< ‘O‚Ì•ûŒü
+    int mState; //!< éšæ®µçŠ¶æ…‹
+    bool mInitState; //!< çŠ¶æ…‹åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+    int mTimeCounter; //!< ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
+    int mPrevMotor; //!< å‰ã®ãƒ¢ãƒ¼ã‚¿ã®å›è»¢æ•°
+    bool mDoDetectWall; //!< éšœå£ã‚’ç™ºè¦‹ãƒ•ãƒ©ã‚°
+    float mPrevDirection; //!< å‰ã®æ–¹å‘
 public:
     StairwayDriver();
 	~StairwayDriver(){}

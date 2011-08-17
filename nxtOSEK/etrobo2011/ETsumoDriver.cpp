@@ -17,56 +17,56 @@
 
 #define SUMO_DEBUG 1
 
-extern bool gDoSonar; //!< ƒ\ƒi[ƒZƒ“ƒT”­“®ƒtƒ‰ƒO
-extern bool gSonarIsDetected; //!< Õ—§ŒŸ’m‚ÌŒ‹‰Ê
-extern int  gSonarTagetDistance;//!< ƒ\ƒi[ƒZƒ“ƒT‚Ì‹——£Œ‹‰Ê
+extern bool gDoSonar; //!< ã‚½ãƒŠãƒ¼ã‚»ãƒ³ã‚µç™ºå‹•ãƒ•ãƒ©ã‚°
+extern bool gSonarIsDetected; //!< è¡ç«‹æ¤œçŸ¥ã®çµæœ
+extern int  gSonarTagetDistance;//!< ã‚½ãƒŠãƒ¼ã‚»ãƒ³ã‚µã®è·é›¢çµæœ
 extern float gSonarTagetAngle;
 
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
-ETsumoDriver::ETsumoDriver()    //‰Šú’l‚Ìİ’è
+ETsumoDriver::ETsumoDriver()    //åˆæœŸå€¤ã®è¨­å®š
 {
     mTimeCounter = 0;
     mInitState = false;             
-    mState = ETsumoDriver::INIT;  //ƒXƒe[ƒg
+    mState = ETsumoDriver::INIT;  //ã‚¹ãƒ†ãƒ¼ãƒˆ
     //mSearchPoint = 1;
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 ETsumoDriver::~ETsumoDriver(){}
 
 /**
- * ‘–s‚·‚éBET‘Š–o‚ğU—ª‚·‚éB
+ * èµ°è¡Œã™ã‚‹ã€‚ETç›¸æ’²ã‚’æ”»ç•¥ã™ã‚‹ã€‚
  *
- * @retval true ÅIó‘ÔB‚±‚êˆÈ~‚Ìó‘Ô‘JˆÚ‚È‚µB
- * @retval false ‚Ü‚¾–ğ–Ú‚ªŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * @retval true æœ€çµ‚çŠ¶æ…‹ã€‚ã“ã‚Œä»¥é™ã®çŠ¶æ…‹é·ç§»ãªã—ã€‚
+ * @retval false ã¾ã å½¹ç›®ãŒå®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
  
 
 bool ETsumoDriver::drive()
 {
-#if 0 //’´M’nù‰ñ’²¸—p
+#if 0 //è¶…ä¿¡åœ°æ—‹å›èª¿æŸ»ç”¨
     gDoSonar = true;
     K_THETADOT = 6.5F;
     K_PHIDOT = 25.0F;
     if(mTimeCounter < 100000){
-        VectorT<float> command(50, 0);//‘æˆê—v‘fFis‘¬“xA‘æ“ñ—v‘fFù‰ñ‘¬“x
-        mActivator.run(command);//§Œä‹@Ší‚ÉƒZƒbƒg
+        VectorT<float> command(50, 0);//ç¬¬ä¸€è¦ç´ ï¼šé€²è¡Œé€Ÿåº¦ã€ç¬¬äºŒè¦ç´ ï¼šæ—‹å›é€Ÿåº¦
+        mActivator.run(command);//åˆ¶å¾¡æ©Ÿå™¨ã«ã‚»ãƒƒãƒˆ
     }
     else{
-        VectorT<float> command2(0, 100);//‘æˆê—v‘fFis‘¬“xA‘æ“ñ—v‘fFù‰ñ‘¬“x
-        mActivator.run(command2);//§Œä‹@Ší‚ÉƒZƒbƒg
+        VectorT<float> command2(0, 100);//ç¬¬ä¸€è¦ç´ ï¼šé€²è¡Œé€Ÿåº¦ã€ç¬¬äºŒè¦ç´ ï¼šæ—‹å›é€Ÿåº¦
+        mActivator.run(command2);//åˆ¶å¾¡æ©Ÿå™¨ã«ã‚»ãƒƒãƒˆ
     }
     mTimeCounter++;
     return 0;
 #endif
     
-#if 0 //’´M’nù‰ñ’²¸—p
-    if (mState == ETsumoDriver::INIT) { // ‰Šú‰»ó‘Ô
+#if 0 //è¶…ä¿¡åœ°æ—‹å›èª¿æŸ»ç”¨
+    if (mState == ETsumoDriver::INIT) { // åˆæœŸåŒ–çŠ¶æ…‹
         gDoSonar = true;
         if(gSonarIsDetected){
             mInitState = true;
@@ -102,12 +102,12 @@ bool ETsumoDriver::drive()
             }
             else{
                 if((mSearchPoint % 2) == 0 ){
-                    VectorT<float> command1(0, 100);//‘æˆê—v‘fFis‘¬“xA‘æ“ñ—v‘fFù‰ñ‘¬“x
-                    mActivator.run(command1);//§Œä‹@Ší‚ÉƒZƒbƒg
+                    VectorT<float> command1(0, 100);//ç¬¬ä¸€è¦ç´ ï¼šé€²è¡Œé€Ÿåº¦ã€ç¬¬äºŒè¦ç´ ï¼šæ—‹å›é€Ÿåº¦
+                    mActivator.run(command1);//åˆ¶å¾¡æ©Ÿå™¨ã«ã‚»ãƒƒãƒˆ
                 }
                 else{
-                    VectorT<float> command2(0, -100);//‘æˆê—v‘fFis‘¬“xA‘æ“ñ—v‘fFù‰ñ‘¬“x
-                    mActivator.run(command2);//§Œä‹@Ší‚ÉƒZƒbƒg
+                    VectorT<float> command2(0, -100);//ç¬¬ä¸€è¦ç´ ï¼šé€²è¡Œé€Ÿåº¦ã€ç¬¬äºŒè¦ç´ ï¼šæ—‹å›é€Ÿåº¦
+                    mActivator.run(command2);//åˆ¶å¾¡æ©Ÿå™¨ã«ã‚»ãƒƒãƒˆ
                 }
             }
             return 0;
@@ -117,9 +117,9 @@ bool ETsumoDriver::drive()
     }
 #endif
 
-    //‘–‰ï—pƒ‰ƒCƒ“ƒgƒŒ[ƒX
+    //è©¦èµ°ä¼šç”¨ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹
     /*
-    if (mState == ETsumoDriver::INIT) { // ‰Šú‰»ó‘Ô
+    if (mState == ETsumoDriver::INIT) { // åˆæœŸåŒ–çŠ¶æ…‹
         if (mInitState) {
             gDoSonar = false;
             K_THETADOT = 7.5F;
@@ -131,17 +131,17 @@ bool ETsumoDriver::drive()
     }
     */
     
-    if (mState == ETsumoDriver::INIT) { // ‰Šú‰»ó‘Ô
+    if (mState == ETsumoDriver::INIT) { // åˆæœŸåŒ–çŠ¶æ…‹
         gDoSonar = false;
         mTimeCounter = 0;
-        mOrigK_THETADOT =  K_THETADOT; // Œã‚Å–ß‚·‚½‚ß‚É•Û‘¶
-        mOrigK_PHIDOT = K_PHIDOT; // Œã‚Å–ß‚·‚½‚ß‚É•Û‘¶
+        mOrigK_THETADOT =  K_THETADOT; // å¾Œã§æˆ»ã™ãŸã‚ã«ä¿å­˜
+        mOrigK_PHIDOT = K_PHIDOT; // å¾Œã§æˆ»ã™ãŸã‚ã«ä¿å­˜
         K_THETADOT = 6.5F;
         K_PHIDOT = 20.0F;
         mScanState = UNKNOWN;
-        mLightSensor.setLamp(0);//‚µ‚Éƒ‰ƒCƒgƒZƒ“ƒTOFF
+        mLightSensor.setLamp(0);//è©¦ã—ã«ãƒ©ã‚¤ãƒˆã‚»ãƒ³ã‚µOFF
         
-        //ó‘Ô‘JˆÚ
+        //çŠ¶æ…‹é·ç§»
         mInitState = true;
         mState = ETsumoDriver::PREPARE_SPOTSEARCH;
     }
@@ -152,13 +152,13 @@ bool ETsumoDriver::drive()
             K_THETADOT = 6.5F;
             K_PHIDOT = 60.0F;
             mTimeCounter = 0;
-            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X, GPS_ETSUMO_SEARCH_Y));// —todo—vÄİ’è
+            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X, GPS_ETSUMO_SEARCH_Y));// ï¼ todoè¦å†è¨­å®š
             mCoordinateTrace.setForward(50.0);
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
             mIsArrived = false;
         }
-        // ˆÚ“®Š®—¹
+        // ç§»å‹•å®Œäº†
         if (mCoordinateTrace.isArrived()) {
             mInitState = true;
             //mState = ETsumoDriver::SWINGSEARCH;
@@ -175,20 +175,20 @@ bool ETsumoDriver::drive()
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(360.0);
-            mAngleTrace.setAllowableError(2.0); // 2“x
+            mAngleTrace.setAllowableError(2.0); // 2åº¦
             mInitState = false;
             mIsArrived = false;
             mSonarDetectCount = 0;
             mTargetTotalX = 0;
             mTargetTotalY = 0;
         }
-        // •ûŒü“]Š·Š®—¹
+        // æ–¹å‘è»¢æ›å®Œäº†
         if (! mIsArrived && mAngleTrace.isArrived()) {
             K_PHIDOT = K_PHIDOT_FOR_SEARCH;
             gDoSonar = true;
             mIsArrived = true;
         }
-        // •ûŒü“]Š·Š®—¹‚µ‚Ä‚©‚çƒXƒ|ƒbƒgƒT[ƒ`ŠJn
+        // æ–¹å‘è»¢æ›å®Œäº†ã—ã¦ã‹ã‚‰ã‚¹ãƒãƒƒãƒˆã‚µãƒ¼ãƒé–‹å§‹
         if(mIsArrived && (mTimeCounter % 20 == 0) && (mTimeCounter >= 100)){
             if(gSonarIsDetected){
                 mSonarDetectCount++;
@@ -196,19 +196,19 @@ bool ETsumoDriver::drive()
                 if(SUMO_DEBUG) {mSpeaker.playTone(1000, 1, 10);}
             }
             else if(mTimeCounter % 100 == 0){
-                float setangle = mGps.getDirection() - 100;//‚±‚Ì”’l‚Í\•ª‘å‚«‚¢‚½‚ßA’²®•s—v‚Ì‚Í‚¸
+                float setangle = mGps.getDirection() - 100;//ã“ã®æ•°å€¤ã¯ååˆ†å¤§ãã„ãŸã‚ã€èª¿æ•´ä¸è¦ã®ã¯ãš
                 mAngleTrace.setTargetAngle(setangle);
             }
         }
         
-        //ƒXƒ|ƒbƒgƒT[ƒ`”ÍˆÍ“à‚Å’T’m¬Œ÷I
+        //ã‚¹ãƒãƒƒãƒˆã‚µãƒ¼ãƒç¯„å›²å†…ã§æ¢çŸ¥æˆåŠŸï¼
         if(mSonarDetectCount >= 3){
             mInitState = true;
             mTargetX = mTargetTotalX / mSonarDetectCount;
             mTargetY = mTargetTotalY / mSonarDetectCount;
             mState = ETsumoDriver::DOHYO_IN;
         }
-        //ƒXƒ|ƒbƒgƒT[ƒ`”ÍˆÍ“à‚Éƒyƒbƒgƒ{ƒgƒ‹‚ª–³‚¢‚±‚Æ‚ğŠm”FAƒXƒCƒ“ƒOƒT[ƒ`‚ÖˆÚs
+        //ã‚¹ãƒãƒƒãƒˆã‚µãƒ¼ãƒç¯„å›²å†…ã«ãƒšãƒƒãƒˆãƒœãƒˆãƒ«ãŒç„¡ã„ã“ã¨ã‚’ç¢ºèªã€ã‚¹ã‚¤ãƒ³ã‚°ã‚µãƒ¼ãƒã¸ç§»è¡Œ
         else if((Gps::marge180(mGps.getDirection()) <= -90.0) && mIsArrived){
             mInitState = true;
             mState = ETsumoDriver::SPOTSEARCH_to_SWINGSEARCH;
@@ -221,13 +221,13 @@ bool ETsumoDriver::drive()
             gDoSonar = false;
             K_PHIDOT = 60.0F;
             mTimeCounter = 0;
-            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X + 200.0, GPS_ETSUMO_SEARCH_Y - 200.0));// —todo—vÄİ’è
+            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X + 200.0, GPS_ETSUMO_SEARCH_Y - 200.0));// ï¼ todoè¦å†è¨­å®š
             mCoordinateTrace.setForward(RIKISHI_FORWARD);
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
             mIsArrived = false;
         }
-        // ˆÚ“®Š®—¹
+        // ç§»å‹•å®Œäº†
         if (mCoordinateTrace.isArrived()) {
             mInitState = true;
             mState = ETsumoDriver::SWINGSEARCH;
@@ -244,20 +244,20 @@ bool ETsumoDriver::drive()
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(480);
             //mAngleTrace.setTargetAngle(415);
-            mAngleTrace.setAllowableError(2.0); // 2“x
+            mAngleTrace.setAllowableError(2.0); // 2åº¦
             mInitState = false;
             mIsArrived = false;
             mTargetTotalX = 0;
             mTargetTotalY = 0;
         }
-        // •ûŒü“]Š·Š®—¹
+        // æ–¹å‘è»¢æ›å®Œäº†
         if (! mIsArrived && mAngleTrace.isArrived()) {
             mIsArrived = true;
             mTimeCounter = 0;
             K_PHIDOT = K_PHIDOT_FOR_SEARCH;
-            gDoSonar = true; // ƒ\ƒi[‹N“®
+            gDoSonar = true; // ã‚½ãƒŠãƒ¼èµ·å‹•
         }
-        // •ûŒü“]Š·Š®—¹‚µ‚Ä‚©‚çƒXƒCƒ“ƒOƒT[ƒ`ŠJn
+        // æ–¹å‘è»¢æ›å®Œäº†ã—ã¦ã‹ã‚‰ã‚¹ã‚¤ãƒ³ã‚°ã‚µãƒ¼ãƒé–‹å§‹
         if(mIsArrived && (mTimeCounter % 20 == 0)){
             if(gSonarIsDetected){
                 mSonarDetectCount++;
@@ -270,7 +270,7 @@ bool ETsumoDriver::drive()
             }
         }
         
-        //ƒXƒCƒ“ƒOƒT[ƒ`”ÍˆÍ“à‚Å’T’m¬Œ÷I
+        //ã‚¹ã‚¤ãƒ³ã‚°ã‚µãƒ¼ãƒç¯„å›²å†…ã§æ¢çŸ¥æˆåŠŸï¼
         if(mSonarDetectCount >= 3){
             mInitState = true;
             mTargetX = mTargetTotalX / mSonarDetectCount;
@@ -284,7 +284,7 @@ bool ETsumoDriver::drive()
         if (mInitState) {
             mTimeCounter = 0;
             K_PHIDOT = 60.0F;
-            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ƒ^[ƒQƒbƒg‚ÌƒAƒ“ƒOƒ‹‚ğ-180`180‚Å•Ô‚·
+            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ³ã‚°ãƒ«ã‚’-180ã€œ180ã§è¿”ã™
             if((mTargetAngle > -45) && (mTargetAngle < 135)){
                 mCoordinateTrace.setTargetCoordinate(MakePoint(mTargetX - 300, mTargetY));
             }
@@ -297,7 +297,7 @@ bool ETsumoDriver::drive()
             mIsArrived = false;
             gDoSonar = false; 
         }
-        // ˆÚ“®Š®—¹
+        // ç§»å‹•å®Œäº†
         if (! mIsArrived && mCoordinateTrace.isArrived()) {
             mInitState = true;
             mState = ETsumoDriver::HAKKE_READY;
@@ -312,24 +312,24 @@ bool ETsumoDriver::drive()
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
             K_PHIDOT = K_PHIDOT_FOR_MOVE;
-            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ƒ^[ƒQƒbƒg‚ÌƒAƒ“ƒOƒ‹‚ğ-180`180‚Å•Ô‚·
+            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ³ã‚°ãƒ«ã‚’-180ã€œ180ã§è¿”ã™
             if((mTargetAngle > -45) && (mTargetAngle < 135)){
                 mAngleTrace.setTargetAngle(45);
             }
             else{
                 mAngleTrace.setTargetAngle(-45);
             }            
-            mAngleTrace.setAllowableError(2.0); // 2“x
+            mAngleTrace.setAllowableError(2.0); // 2åº¦
             mInitState = false;
             mIsArrived = false;
         }
-        // •ûŒü“]Š·Š®—¹
+        // æ–¹å‘è»¢æ›å®Œäº†
         if (! mIsArrived && mAngleTrace.isArrived()) {
             mIsArrived = true;
             mTimeCounter = 0;
             K_PHIDOT = K_PHIDOT_FOR_SEARCH;
         }
-        // •ûŒü“]Š·Š®—¹‚µ‚Ä‚©‚ç—‚¿’…‚­‚Ü‚Å‘Ò‹@
+        // æ–¹å‘è»¢æ›å®Œäº†ã—ã¦ã‹ã‚‰è½ã¡ç€ãã¾ã§å¾…æ©Ÿ
         if(mIsArrived && (mTimeCounter > 100)){
             mInitState = true;
             mState = ETsumoDriver::SCAN;
@@ -339,7 +339,7 @@ bool ETsumoDriver::drive()
     }
     if (mState == ETsumoDriver::SCAN) {
         if (mInitState) {
-            gDoSonar = true; // ƒ\ƒi[‹N“®
+            gDoSonar = true; // ã‚½ãƒŠãƒ¼èµ·å‹•
             K_PHIDOT = K_PHIDOT_FOR_SEARCH;
             mTimeCounter = 0;
             mSonarDetectCount = 0;
@@ -351,10 +351,10 @@ bool ETsumoDriver::drive()
             mIsArrived = false;
             mScanState = SWINGRIGHT;
         }
-        //Å‰‚Í‰E‰ñ‚è‚ÉƒXƒLƒƒƒ“Aƒ^[ƒQƒbƒgƒƒXƒgŒã‚É¶‰ñ‚è‚ÉƒXƒLƒƒƒ“
+        //æœ€åˆã¯å³å›ã‚Šã«ã‚¹ã‚­ãƒ£ãƒ³ã€ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ­ã‚¹ãƒˆå¾Œã«å·¦å›ã‚Šã«ã‚¹ã‚­ãƒ£ãƒ³
         if(mTimeCounter % 20 == 0){
             if(gSonarIsDetected){
-                mFailScanCounter = 0; //ŒŸ’m‚µ‚½‚çŒŸ’m¸”s‰ñ”‚ğƒŠƒZƒbƒg
+                mFailScanCounter = 0; //æ¤œçŸ¥ã—ãŸã‚‰æ¤œçŸ¥å¤±æ•—å›æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ
                 mSonarDetectCount++;
                 updateTargetCoordinates();
                 if(SUMO_DEBUG) {mSpeaker.playTone(1000, 1, 10);}
@@ -362,27 +362,27 @@ bool ETsumoDriver::drive()
             else{
                 mFailScanCounter++;
                 if(mFailScanCounter > 255){
-                    mFailScanCounter = 255;//”O‚Ì‚½‚ß
+                    mFailScanCounter = 255;//å¿µã®ãŸã‚
                 }
             }
-            //‰E‰ñ‚è‚ÉƒXƒLƒƒƒ“
+            //å³å›ã‚Šã«ã‚¹ã‚­ãƒ£ãƒ³
             if((mTimeCounter % 100 == 0) && (mScanState == SWINGRIGHT)){
                 float setangle = mGps.getDirection() - 100;
                 mAngleTrace.setTargetAngle(setangle);
             }
-            //¶‰ñ‚è‚ÉƒXƒLƒƒƒ“
+            //å·¦å›ã‚Šã«ã‚¹ã‚­ãƒ£ãƒ³
             else if((mTimeCounter % 100 == 0) && (mScanState == SWINGLEFT)){
                 float setangle = mGps.getDirection() + 100;
                 mAngleTrace.setTargetAngle(setangle);
             }
         }
-        //ƒ^[ƒQƒbƒgƒƒXƒgŒã‚Éó‘Ô‘JˆÚ
+        //ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ­ã‚¹ãƒˆå¾Œã«çŠ¶æ…‹é·ç§»
         if((mFailScanCounter >= 10) && (mSonarDetectCount >= 2)){
-            //‰E‰ñ‚è‚È‚ç¶‰ñ‚è‚Öó‘Ô‘JˆÚ
+            //å³å›ã‚Šãªã‚‰å·¦å›ã‚Šã¸çŠ¶æ…‹é·ç§»
             if(mScanState == SWINGRIGHT){
                 mFailScanCounter = 0;
-                mPrevSonarDetectCount = mSonarDetectCount; //‰E‰ñ‚è‚Ì‚ÌŒŸ’m‰ñ”‚ğ•Û‘¶
-                mSonarDetectCount = 0;                     //‰E‰ñ‚è‚Ì‚ÌŒŸ’m‰ñ”‚ğƒNƒŠƒA
+                mPrevSonarDetectCount = mSonarDetectCount; //å³å›ã‚Šã®æ™‚ã®æ¤œçŸ¥å›æ•°ã‚’ä¿å­˜
+                mSonarDetectCount = 0;                     //å³å›ã‚Šã®æ™‚ã®æ¤œçŸ¥å›æ•°ã‚’ã‚¯ãƒªã‚¢
                 mTimeCounter = 0;
                 mScanState = SWINGLEFT;
             }
@@ -405,42 +405,42 @@ bool ETsumoDriver::drive()
             K_PHIDOT = 30.0F;
             mTimeCounter = 0;
             mAngleTrace.setForward(0);
-            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ƒ^[ƒQƒbƒg‚ÌƒAƒ“ƒOƒ‹‚ğ-180`180‚Å•Ô‚·
-            mAngleTrace.setTargetAngle(mTargetAngle + 0);//¶‰E‹—Í‚Ìˆá‚¢?•â³ —todo‹@‘ÌˆË‘¶‚©—v’²¸
-            mAngleTrace.setAllowableError(1.0); // 1“x
+            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ³ã‚°ãƒ«ã‚’-180ã€œ180ã§è¿”ã™
+            mAngleTrace.setTargetAngle(mTargetAngle + 0);//å·¦å³è¦–åŠ›ã®é•ã„?è£œæ­£ ï¼ todoæ©Ÿä½“ä¾å­˜ã‹è¦èª¿æŸ»
+            mAngleTrace.setAllowableError(1.0); // 1åº¦
             mInitState = false;
             mIsArrived = false;
             mOshidashiFlag = false;
         }
         if (! mIsArrived) {
-            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//¸“xŒüã‚Ì‚½‚ßA“®“I‚Éƒ^[ƒQƒbƒgƒAƒ“ƒOƒ‹‚ğXV‚·‚é
-            mAngleTrace.setTargetAngle(mTargetAngle + 0);//¶‰E‹—Í‚Ìˆá‚¢?•â³ —todo‹@‘ÌˆË‘¶‚©—v’²¸
+            mTargetAngle = calcTargetAngle(mTargetX, mTargetY);//ç²¾åº¦å‘ä¸Šã®ãŸã‚ã€å‹•çš„ã«ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¢ãƒ³ã‚°ãƒ«ã‚’æ›´æ–°ã™ã‚‹
+            mAngleTrace.setTargetAngle(mTargetAngle + 0);//å·¦å³è¦–åŠ›ã®é•ã„?è£œæ­£ ï¼ todoæ©Ÿä½“ä¾å­˜ã‹è¦èª¿æŸ»
         }
             
-        // •ûŒü“]Š·Š®—¹
+        // æ–¹å‘è»¢æ›å®Œäº†
         if (! mIsArrived && mAngleTrace.isArrived()) {
             mIsArrived = true;
             mTimeCounter = 0;
         }
-        //‚ä‚Á‚­‚è‰Ÿ‚µo‚µAX’£‚èè
+        //ã‚†ã£ãã‚ŠæŠ¼ã—å‡ºã—ã€æ™‚ã€…å¼µã‚Šæ‰‹
         if(!mOshidashiFlag && mIsArrived && (mTimeCounter > 100)){
-            mAngleTrace.setForward(OSHIDASHI_FORWARD);//—todoƒxƒXƒg‚È’l‚ğ—vŒŸØ
+            mAngleTrace.setForward(OSHIDASHI_FORWARD);//ï¼ todoãƒ™ã‚¹ãƒˆãªå€¤ã‚’è¦æ¤œè¨¼
         }
-        //‰Ÿ‚µo‚µ”»’è
-        if((mGps.getXCoordinate() > (GPS_ETSUMO_SEARCH_X + 800)) || (mGps.getYCoordinate() < (GPS_ETSUMO_SEARCH_Y - 800))){//—todoƒxƒXƒg‚È’l‚ğ—vŒŸØ
-            mAngleTrace.setForward(-10);//”»’è‚ªo‚½‚ç‚ä‚Á‚­‚èŒã‘Ş
+        //æŠ¼ã—å‡ºã—åˆ¤å®š
+        if((mGps.getXCoordinate() > (GPS_ETSUMO_SEARCH_X + 800)) || (mGps.getYCoordinate() < (GPS_ETSUMO_SEARCH_Y - 800))){//ï¼ todoãƒ™ã‚¹ãƒˆãªå€¤ã‚’è¦æ¤œè¨¼
+            mAngleTrace.setForward(-10);//åˆ¤å®šãŒå‡ºãŸã‚‰ã‚†ã£ãã‚Šå¾Œé€€
             mTimeCounter = 0;
             mOshidashiFlag = true;
-            mLightSensor.setLamp(1);//ƒ‰ƒCƒgƒZƒ“ƒTON
+            mLightSensor.setLamp(1);//ãƒ©ã‚¤ãƒˆã‚»ãƒ³ã‚µON
         }
-        //‚»‚Á‚Æ4•b‚Ù‚ÇŒã‘ŞŒãó‘Ô‘JˆÚ
+        //ãã£ã¨4ç§’ã»ã©å¾Œé€€å¾ŒçŠ¶æ…‹é·ç§»
         if(mOshidashiFlag && (mTimeCounter > 1000)){    
             //mState = ETsumoDriver::KACHI_NANORI;
             //mInitState = true;
         }
         mAngleTrace.execute();
     }
-    /*ƒƒ‚ƒŠ‚ª‘«‚è‚È‚¢H‚½‚ßƒRƒƒ“ƒgƒAƒEƒg
+    /*ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šãªã„ï¼ŸãŸã‚ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
     if (mState == ETsumoDriver::KACHI_NANORI) {
         if (mInitState) {
             gDoSonar = false;
@@ -452,7 +452,7 @@ bool ETsumoDriver::drive()
             mInitState = false;
             mIsArrived = false;
         }
-        // ˆÚ“®Š®—¹
+        // ç§»å‹•å®Œäº†
         if (mCoordinateTrace.isArrived()) {
             mInitState = true;
             mState = ETsumoDriver::SPOTSEARCH_to_SWINGSEARCH;
@@ -464,7 +464,7 @@ bool ETsumoDriver::drive()
     return 0;
 }
 
-//”­Œ©‚µ‚½ƒyƒbƒgƒ{ƒgƒ‹‚Ì‚¨‚¨‚æ‚»‚ÌˆÊ’u‚ğŒvZ‚µAmTargetTotalXAmTargetTotalY‚É‰Á‚¦‚éŠÖ”
+//ç™ºè¦‹ã—ãŸãƒšãƒƒãƒˆãƒœãƒˆãƒ«ã®ãŠãŠã‚ˆãã®ä½ç½®ã‚’è¨ˆç®—ã—ã€mTargetTotalXã€mTargetTotalYã«åŠ ãˆã‚‹é–¢æ•°
 void ETsumoDriver::updateTargetCoordinates()
 {
     //
@@ -476,27 +476,27 @@ void ETsumoDriver::updateTargetCoordinates()
     mTargetTotalX += x;
     mTargetTotalY += y;
 
-    //ˆÈ‰º‚ÌŒvZ‚¾‚ÆA‚È‚º‚©ƒƒ{‚ª‚±‚¯‚é
+    //ä»¥ä¸‹ã®è¨ˆç®—ã ã¨ã€ãªãœã‹ãƒ­ãƒœãŒã“ã‘ã‚‹
     //mTargetX = mTargetX * (c -1.0) / c + x / c;
     //mTargetY = mTargetY * (c -1.0) / c + y / c;
     
     return;
 }
 
-//CoordinateTrace‚æ‚èØ—pAƒAƒ“ƒOƒ‹‚Ì‚İ‚ğŒvZ‚³‚¹‚é
-//ƒ^[ƒQƒbƒg‚ÌƒAƒ“ƒOƒ‹‚ğ-180`180‚Å•Ô‚·
+//CoordinateTraceã‚ˆã‚Šå€Ÿç”¨ã€ã‚¢ãƒ³ã‚°ãƒ«ã®ã¿ã‚’è¨ˆç®—ã•ã›ã‚‹
+//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ³ã‚°ãƒ«ã‚’-180ã€œ180ã§è¿”ã™
 float ETsumoDriver::calcTargetAngle(float targetX, float targetY)
 {
         
-    // Œ»İÀ•Wæ“¾
+    // ç¾åœ¨åº§æ¨™å–å¾—
     float currentX = mGps.getXCoordinate();
     float currentY = mGps.getYCoordinate();
 
-    // Œ»İÀ•W‚Æ–Ú•WÀ•W‚Æ‚Ì·
+    // ç¾åœ¨åº§æ¨™ã¨ç›®æ¨™åº§æ¨™ã¨ã®å·®
     float diffX = targetX - currentX;
     float diffY = targetY - currentY;
 
-    // –Ú•W‚Ö‚ÌŠp“x‚ğZo
+    // ç›®æ¨™ã¸ã®è§’åº¦ã‚’ç®—å‡º
     float targetDirection;
     if (diffX == 0.0 && diffY == 0.0) {
         targetDirection = mGps.getDirection();

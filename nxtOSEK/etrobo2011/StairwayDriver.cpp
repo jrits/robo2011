@@ -11,7 +11,7 @@
 #include "Speaker.h"
 
 /**
- * ÉRÉìÉXÉgÉâÉNÉ^
+ * „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
  */
 StairwayDriver::StairwayDriver()
 {
@@ -23,14 +23,14 @@ StairwayDriver::StairwayDriver()
 }
 
 /**
- * ëñçsÇ∑ÇÈÅBäKíiÇçUó™Ç∑ÇÈÅB
+ * Ëµ∞Ë°å„Åô„Çã„ÄÇÈöéÊÆµ„ÇíÊîªÁï•„Åô„Çã„ÄÇ
  *
- * @retval true ç≈èIèÛë‘ÅBÇ±ÇÍà»ç~ÇÃèÛë‘ëJà⁄Ç»ÇµÅB
- * @retval false Ç‹Çæññ⁄Ç™äÆóπÇµÇƒÇ¢Ç‹ÇπÇÒÅB
+ * @retval true ÊúÄÁµÇÁä∂ÊÖã„ÄÇ„Åì„Çå‰ª•Èôç„ÅÆÁä∂ÊÖãÈÅ∑Áßª„Å™„Åó„ÄÇ
+ * @retval false „Åæ„Å†ÂΩπÁõÆ„ÅåÂÆå‰∫Ü„Åó„Å¶„ÅÑ„Åæ„Åõ„Çì„ÄÇ
  */
 bool StairwayDriver::drive()
 {
-#if 0 // ÉçÉOëóêM
+#if 0 // „É≠„Ç∞ÈÄÅ‰ø°
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
 	LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());
@@ -39,7 +39,7 @@ bool StairwayDriver::drive()
 	LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
 #endif
 #if 0 // DEBUG
-    //DESK_DEBUG = true; // ÉÇÅ[É^ÇâÒÇ≥Ç»Ç¢ÉfÉoÉO
+    //DESK_DEBUG = true; // „É¢„Éº„Çø„ÇíÂõû„Åï„Å™„ÅÑ„Éá„Éê„Ç∞
     if (mTimeCounter % 25 == 0) {
         Lcd lcd;
         lcd.clear();
@@ -68,7 +68,7 @@ bool StairwayDriver::drive()
         }
         if (! mDoDetectWall) {
             mLineTrace.setForward(100);
-            K_THETADOT = 7.0F; // Find! äKíiëOã»ê¸ÇÇ´ÇÍÇ¢Ç…ÉâÉCÉìÉgÉåÅ[ÉXÇ≈Ç´ÇÈê‚ñ≠Ç»íl
+            K_THETADOT = 7.0F; // Find! ÈöéÊÆµÂâçÊõ≤Á∑ö„Çí„Åç„Çå„ÅÑ„Å´„É©„Ç§„É≥„Éà„É¨„Éº„Çπ„Åß„Åç„ÇãÁµ∂Â¶ô„Å™ÂÄ§
             if (mGps.getYCoordinate() > -2900) {
             	K_THETADOT = 11.0F;
             }
@@ -83,11 +83,11 @@ bool StairwayDriver::drive()
         if (mDoDetectWall) {
             mAngleTrace.setForward(100);
             mAngleTrace.setTargetAngle(mPrevDirection);
-            K_THETADOT = 11.0F; // Find! ÇPíiñ⁄ÇPâÒÇ≈ç⁄ÇÈê‚ñ≠Ç»íl
+            K_THETADOT = 11.0F; // Find! ÔºëÊÆµÁõÆÔºëÂõû„ÅßËºâ„ÇãÁµ∂Â¶ô„Å™ÂÄ§
             //if (mTimeCounter > 250 && mWallDetector.detect()) {
             if (mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
-                //mActivator.reset(USER_GYRO_OFFSET + 10); // ëÂÇ´Ç≠ÇµÇƒã}î≠êi
+                //mActivator.reset(USER_GYRO_OFFSET + 10); // Â§ß„Åç„Åè„Åó„Å¶ÊÄ•Áô∫ÈÄ≤
                 mState = StairwayDriver::ON1STSTAGE;
                 mInitState = true;
             }
@@ -95,7 +95,7 @@ bool StairwayDriver::drive()
         }
     }
     else if (mState == StairwayDriver::ON1STSTAGE) {
-        // íiç∑ÇPÇ…ç⁄Ç¡ÇΩíºå„
+        // ÊÆµÂ∑ÆÔºë„Å´Ëºâ„Å£„ÅüÁõ¥Âæå
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
             mTimeCounter = 0;
@@ -103,8 +103,8 @@ bool StairwayDriver::drive()
             mInitState = false;
         }
         if (! mDoDetectWall) {
-            mActivator.reset(USER_GYRO_OFFSET - 15); // è¨Ç≥Ç≠ÇµÇƒã}ÉuÉåÅ[ÉL
-            K_THETADOT = 6.0F; // Find! ÇQíiñ⁄ÇPâÒÇ≈ç⁄ÇÈê‚ñ≠Ç»íl
+            mActivator.reset(USER_GYRO_OFFSET - 15); // Â∞è„Åï„Åè„Åó„Å¶ÊÄ•„Éñ„É¨„Éº„Ç≠
+            K_THETADOT = 6.0F; // Find! ÔºíÊÆµÁõÆÔºëÂõû„ÅßËºâ„ÇãÁµ∂Â¶ô„Å™ÂÄ§
             if (mTimeCounter > 25 && mLeftMotorHistory.calcDifference() < 0) {
                 mActivator.reset(USER_GYRO_OFFSET);
                 mTimeCounter = 0;
@@ -116,21 +116,21 @@ bool StairwayDriver::drive()
             if (mLeftMotor.getCount() - mPrevMotor > 270 && 
                 mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
-                //mActivator.reset(USER_GYRO_OFFSET + 20); // ëÂÇ´Ç≠ÇµÇƒã}î≠êi
-                //mActivator.reset(USER_GYRO_OFFSET); // Ç∑Ç≈Ç…ê®Ç¢Ç™Ç¬Ç¢ÇƒÇ¢ÇÈ
+                //mActivator.reset(USER_GYRO_OFFSET + 20); // Â§ß„Åç„Åè„Åó„Å¶ÊÄ•Áô∫ÈÄ≤
+                //mActivator.reset(USER_GYRO_OFFSET); // „Åô„Åß„Å´Âã¢„ÅÑ„Åå„Å§„ÅÑ„Å¶„ÅÑ„Çã
                 mState = StairwayDriver::ON2NDSTAGE;
                 mInitState = true;
             }
             mAngleTrace.execute();
         }
-        if (mLeftMotor.getCount() < mPrevMotor) { // ñﬂÇ¡ÇøÇ·Ç¡ÇΩ
+        if (mLeftMotor.getCount() < mPrevMotor) { // Êàª„Å£„Å°„ÇÉ„Å£„Åü
             mState = StairwayDriver::BEFORELINETRACE;
             mInitState = true;
             mDoDetectWall = true;
         }
     }
     else if (mState == StairwayDriver::ON2NDSTAGE) {
-        // íiç∑ÇQÇ…ç⁄Ç¡ÇΩíºå„
+        // ÊÆµÂ∑ÆÔºí„Å´Ëºâ„Å£„ÅüÁõ¥Âæå
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
             mTimeCounter = 0;
@@ -138,19 +138,19 @@ bool StairwayDriver::drive()
             mInitState = false;
         }
         if (! mDoDetectWall) {
-            mActivator.reset(USER_GYRO_OFFSET - 15); // è¨Ç≥Ç≠ÇµÇƒã}ÉuÉåÅ[ÉL
+            mActivator.reset(USER_GYRO_OFFSET - 15); // Â∞è„Åï„Åè„Åó„Å¶ÊÄ•„Éñ„É¨„Éº„Ç≠
             if (mTimeCounter > 25 && mLeftMotorHistory.calcDifference() < 0) {
-                //mActivator.reset(USER_GYRO_OFFSET); // Ç±ÇÍÇ≈ëOåXÇ…Ç»Ç¡ÇƒÇµÇ‹Ç§
-                mActivator.reset(USER_GYRO_OFFSET - 5); // Ç±ÇÍÇ≈Ç‡è≠ÇµêiÇﬁ
-                mAngleTrace.setForward(0); // USER_GYRO_OFFSET - 5 Ç≈ 0 Ç≈Ç‡è≠ÇµêiÇﬁ
-                mLineTrace.setForward(0); // USER_GYRO_OFFSET - 5 Ç≈ 0 Ç≈Ç‡è≠ÇµêiÇﬁ
+                //mActivator.reset(USER_GYRO_OFFSET); // „Åì„Çå„ÅßÂâçÂÇæ„Å´„Å™„Å£„Å¶„Åó„Åæ„ÅÜ
+                mActivator.reset(USER_GYRO_OFFSET - 5); // „Åì„Çå„Åß„ÇÇÂ∞ë„ÅóÈÄ≤„ÇÄ
+                mAngleTrace.setForward(0); // USER_GYRO_OFFSET - 5 „Åß 0 „Åß„ÇÇÂ∞ë„ÅóÈÄ≤„ÇÄ
+                mLineTrace.setForward(0); // USER_GYRO_OFFSET - 5 „Åß 0 „Åß„ÇÇÂ∞ë„ÅóÈÄ≤„ÇÄ
                 K_THETADOT = 5.0F;
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
             mAngleTrace.execute();
         }
-        // ÉhÉXÉìåüím
+        // „Éâ„Çπ„É≥Ê§úÁü•
         if (mDoDetectWall) {
             mAngleTrace.execute();
             if (mLeftMotor.getCount() - mPrevMotor > 360 && 
@@ -160,16 +160,16 @@ bool StairwayDriver::drive()
                 mInitState = true;
             }
         }
-        if (mLeftMotor.getCount() < mPrevMotor) { // ñﬂÇ¡ÇøÇ·Ç¡ÇΩ
+        if (mLeftMotor.getCount() < mPrevMotor) { // Êàª„Å£„Å°„ÇÉ„Å£„Åü
             mState = StairwayDriver::BEFORELINETRACE;
             mInitState = true;
             mDoDetectWall = true;
         }
     }
     else if (mState == StairwayDriver::DROPDOWN) {
-        // ÉhÉXÉìíºå„
+        // „Éâ„Çπ„É≥Áõ¥Âæå
         if (mInitState) {
-            //mActivator.reset(USER_GYRO_OFFSET - 50); // è¨Ç≥Ç≠ÇµÇƒã}ÉuÉåÅ[ÉL
+            //mActivator.reset(USER_GYRO_OFFSET - 50); // Â∞è„Åï„Åè„Åó„Å¶ÊÄ•„Éñ„É¨„Éº„Ç≠
             mInitState = false;
             mTimeCounter = 0;
             mDoDetectWall = false;
@@ -184,9 +184,9 @@ bool StairwayDriver::drive()
                 mDoDetectWall = true;
             }
         }
-        // ÉâÉCÉìåüím
+        // „É©„Ç§„É≥Ê§úÁü•
         if (mDoDetectWall) {
-            //VectorT<float> command(30, 0); // 0 Ç≈ç∂Ç…ã»Ç™ÇÈ
+            //VectorT<float> command(30, 0); // 0 „ÅßÂ∑¶„Å´Êõ≤„Åå„Çã
             //mActivator.run(command);
             mAngleTrace.setTargetAngle(mPrevDirection + 10);
             K_THETADOT = 9.5F;
@@ -215,5 +215,5 @@ bool StairwayDriver::drive()
         }
     }
     mTimeCounter++;
-	return mState == StairwayDriver::AFTERLINETRACE; // èIóπÇµÇ‹ÇµÇΩ
+	return mState == StairwayDriver::AFTERLINETRACE; // ÁµÇ‰∫Ü„Åó„Åæ„Åó„Åü
 }

@@ -6,14 +6,14 @@
 #include "factory.h"
 #include "constants.h"
 
-//ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‚Ìƒ‹[ƒg(4ƒpƒ^[ƒ“)
+//ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«ã®ãƒ«ãƒ¼ãƒˆ(4ãƒ‘ã‚¿ãƒ¼ãƒ³)
 //#include "MysteryLineLL.h"
 //#include "MysteryLineLR.h"
 //#include "MysteryLineRL.h"
 //#include "MysteryLineRR.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 MysteryDriver::MysteryDriver()
 {
@@ -22,12 +22,12 @@ MysteryDriver::MysteryDriver()
 }
 
 /**
- * ƒ~ƒXƒeƒŠ[ƒT[ƒNƒ‹‹æŠÔ‚ğU—ª‚·‚é
+ * ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã‚µãƒ¼ã‚¯ãƒ«åŒºé–“ã‚’æ”»ç•¥ã™ã‚‹
  *
- * ƒT[ƒNƒ‹‘O’¼üƒ‰ƒCƒ“ƒgƒŒ[ƒX‚©‚çAƒ‰ƒCƒ“•œ‹AŒãƒ‰ƒCƒ“ƒgƒŒ[ƒX‚Ü‚Å‚ğ’S“–‚·‚éB
+ * ã‚µãƒ¼ã‚¯ãƒ«å‰ç›´ç·šãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‹ã‚‰ã€ãƒ©ã‚¤ãƒ³å¾©å¸°å¾Œãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã¾ã§ã‚’æ‹…å½“ã™ã‚‹ã€‚
  *
- * @retval true ÅIó‘ÔB‚±‚êˆÈ~‚Ìó‘Ô‘JˆÚ‚È‚µB
- * @retval false ‚Ü‚¾–ğ–Ú‚ªŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * @retval true æœ€çµ‚çŠ¶æ…‹ã€‚ã“ã‚Œä»¥é™ã®çŠ¶æ…‹é·ç§»ãªã—ã€‚
+ * @retval false ã¾ã å½¹ç›®ãŒå®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
 bool MysteryDriver::drive()
 {

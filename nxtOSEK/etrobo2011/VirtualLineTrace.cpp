@@ -3,40 +3,40 @@
 #include <math.h>
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 VirtualLineTrace::VirtualLineTrace() :
     Skill()
 {
-    mCurrentIndex = 0; // Œ»İ§Œä“_ƒCƒ“ƒfƒbƒNƒX
-    mControlPoints = (ControlPoint*)null; //§Œä“_ƒŠƒXƒg(‚È‚µ)
-    mNumOfControlPoints = 0; //§Œä“_‚ÌŒÂ”(0)
+    mCurrentIndex = 0; // ç¾åœ¨åˆ¶å¾¡ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    mControlPoints = (ControlPoint*)null; //åˆ¶å¾¡ç‚¹ãƒªã‚¹ãƒˆ(ãªã—)
+    mNumOfControlPoints = 0; //åˆ¶å¾¡ç‚¹ã®å€‹æ•°(0)
 
-    mCoordinateTrace.setForward(100); // ƒfƒtƒHƒ‹ƒgƒtƒHƒ[ƒh’l
-    mCoordinateTrace.setAllowableError(10.0); // ƒfƒtƒHƒ‹ƒg‹–—eŒë·(mm)
-    mAngleTrace.setAllowableError(2.0); // ƒfƒtƒHƒ‹ƒg‹–—eŒë·(degree)
+    mCoordinateTrace.setForward(100); // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤
+    mCoordinateTrace.setAllowableError(10.0); // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨±å®¹èª¤å·®(mm)
+    mAngleTrace.setAllowableError(2.0); // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨±å®¹èª¤å·®(degree)
 	
-	mXoffset = -170; // mXoffset = 0; // @todo: ‘å‰ï‚Ì‚½‚ß‚Éâ–­‚È’²®‚ª•K—v
+	mXoffset = -170; // mXoffset = 0; // @todo: å¤§ä¼šã®ãŸã‚ã«çµ¶å¦™ãªèª¿æ•´ãŒå¿…è¦
 	mYoffset = 0;
 }
 
 /**
- * ó‘Ô‚ÌƒŠƒZƒbƒg
+ * çŠ¶æ…‹ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * Œ»İ§Œä“_ƒCƒ“ƒfƒbƒNƒX‚ğƒŠƒZƒbƒg‚·‚é
+ * ç¾åœ¨åˆ¶å¾¡ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @return -
  */
 void VirtualLineTrace::reset()
 {
-    mCurrentIndex = 0; // Œ»İ§Œä“_ƒCƒ“ƒfƒbƒNƒX
+    mCurrentIndex = 0; // ç¾åœ¨åˆ¶å¾¡ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }
 
 /**
- * §Œä“_ƒZƒbƒg‚ğİ’è‚·‚éB
+ * åˆ¶å¾¡ç‚¹ã‚»ãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚
  *
- * @param[in] controlPoints §Œä“_ƒZƒbƒg
- * @param[in] numOfControlPoints §Œä“_‚Ì”
+ * @param[in] controlPoints åˆ¶å¾¡ç‚¹ã‚»ãƒƒãƒˆ
+ * @param[in] numOfControlPoints åˆ¶å¾¡ç‚¹ã®æ•°
  */
 void VirtualLineTrace::setControlPoints(ControlPoint *controlPoints, int numOfControlPoints)
 {
@@ -45,55 +45,55 @@ void VirtualLineTrace::setControlPoints(ControlPoint *controlPoints, int numOfCo
 };
 
 /**
- * ‰¼‘zƒ‰ƒCƒ“ƒgƒŒ[ƒX‚ğs‚¤‚Ì‚É“KØ‚È‘–sƒxƒNƒgƒ‹‚ğŒvZ‚·‚é
+ * ä»®æƒ³ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‚’è¡Œã†ã®ã«é©åˆ‡ãªèµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—ã™ã‚‹
  *
- * @return ‘–sƒxƒNƒgƒ‹
+ * @return èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«
  */
 VectorT<float> VirtualLineTrace::calcCommand()
 {
 	gLineTrace = false;
     VectorT<float> command;
 
-    // ƒCƒ“ƒfƒbƒNƒX‚ªÅ‘å’l‚ğ’´‚¦‚Ä—‚¿‚½‚è‚µ‚È‚¢‚æ‚¤‚É•ÛŒ¯
+    // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒæœ€å¤§å€¤ã‚’è¶…ãˆã¦è½ã¡ãŸã‚Šã—ãªã„ã‚ˆã†ã«ä¿é™º
     mCurrentIndex = MIN(mCurrentIndex, mNumOfControlPoints - 1);
 
-    // •Ï”–¼‚ª’·‚¢‚Ì‚Åˆê’U•Ê–¼‚É•Û‘¶
+    // å¤‰æ•°åãŒé•·ã„ã®ã§ä¸€æ—¦åˆ¥åã«ä¿å­˜
     Point targetCoordinate = {mControlPoints[mCurrentIndex].X, mControlPoints[mCurrentIndex].Y};
     float direction = mControlPoints[mCurrentIndex].direction;
     float forward = mControlPoints[mCurrentIndex].forward;
     float allowableError = mControlPoints[mCurrentIndex].allowableError;
     //bool  slowdown = mControlPoints[mCurrentIndex].slowdown;
-	bool slowdown = false; // ‘å‰ï’¼‘O’²®Bslowdown ƒtƒ‰ƒO‚ğƒ‰ƒCƒ“•œ‹A‹–‰Âƒtƒ‰ƒO‚Æ‚µ‚Äg‚¤‚Ì‚ÅƒLƒƒƒ“ƒZƒ‹B
+	bool slowdown = false; // å¤§ä¼šç›´å‰èª¿æ•´ã€‚slowdown ãƒ•ãƒ©ã‚°ã‚’ãƒ©ã‚¤ãƒ³å¾©å¸°è¨±å¯ãƒ•ãƒ©ã‚°ã¨ã—ã¦ä½¿ã†ã®ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€‚
 
     if (! isnan(targetCoordinate.X) && ! isnan(targetCoordinate.Y)) { 
-        // À•Ww’è‘–s
+        // åº§æ¨™æŒ‡å®šèµ°è¡Œ
     	Point targetCoordinateOff = MakePoint(mControlPoints[mCurrentIndex].X + mXoffset, mControlPoints[mCurrentIndex].Y + mYoffset);
         mCoordinateTrace.setTargetCoordinate(targetCoordinateOff);
         if (! isnan(forward)) mCoordinateTrace.setForward(forward);
         if (! isnan(allowableError)) mCoordinateTrace.setAllowableError(allowableError);
-        // ’ÊíÀ•Ww’è‘–s
+        // é€šå¸¸åº§æ¨™æŒ‡å®šèµ°è¡Œ
         if (! slowdown) { 
             command = mCoordinateTrace.calcCommand();
         }
-        // ƒXƒ[ƒ_ƒEƒ“À•Ww’è‘–s
+        // ã‚¹ãƒ­ãƒ¼ãƒ€ã‚¦ãƒ³åº§æ¨™æŒ‡å®šèµ°è¡Œ
         else { 
             mSlowdownSkill.setSkill(&mCoordinateTrace);
             mSlowdownSkill.setTargetDistance(mGps.calcDistanceTo(targetCoordinateOff));
             command = mSlowdownSkill.calcCommand();
         }
-        // Ÿ‚Ì“_‚Ö
+        // æ¬¡ã®ç‚¹ã¸
         if (mCoordinateTrace.isArrived()) mCurrentIndex++;
     }
     else if (! isnan(direction)) {
-        // •ûŒü“]Š·
+        // æ–¹å‘è»¢æ›
         mAngleTrace.setTargetAngle(direction);
         command = mAngleTrace.calcCommand();
-        command.mX = 0.0; // •ûŒü“]Š·‚È‚Ì‚ÅƒtƒHƒ[ƒh’l0
+        command.mX = 0.0; // æ–¹å‘è»¢æ›ãªã®ã§ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤0
         if (! isnan(allowableError)) mAngleTrace.setAllowableError(allowableError);
-        // Ÿ‚Ì“_‚Ö
+        // æ¬¡ã®ç‚¹ã¸
         if (mAngleTrace.isArrived()) mCurrentIndex++;
     }
-    else { // ‚¨‚©‚µ‚Èê‡‚Í‚Æ‚è‚ ‚¦‚¸ƒ‰ƒCƒ“ƒgƒŒ[ƒX‚³‚¹‚Ä‚¨‚­HH
+    else { // ãŠã‹ã—ãªå ´åˆã¯ã¨ã‚Šã‚ãˆãšãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã•ã›ã¦ãŠãï¼Ÿï¼Ÿ
         command = mLineTrace.calcCommand();
     }
 
@@ -117,13 +117,13 @@ VectorT<float> VirtualLineTrace::calcCommand()
 };
 
 /**
- * ÅI§Œä“_ó‘Ô‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+ * æœ€çµ‚åˆ¶å¾¡ç‚¹çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
  *
- * @retval true ÅI§Œä“_ó‘Ô‚Å‚ ‚é
- * @retval false ‚Ü‚¾‚Ü‚¾
+ * @retval true æœ€çµ‚åˆ¶å¾¡ç‚¹çŠ¶æ…‹ã§ã‚ã‚‹
+ * @retval false ã¾ã ã¾ã 
  */
 bool VirtualLineTrace::isLast()
 {
     //return (mCurrentIndex >= mNumOfControlPoints - 1);
-	return (mCurrentIndex >= mNumOfControlPoints - 1) || mControlPoints[mCurrentIndex].slowdown; // ‘å‰ï’¼‘O’²®Bslowdown ƒtƒ‰ƒO‚ğƒ‰ƒCƒ“•œ‹A‹–‰Âƒtƒ‰ƒO‚Æ‚µ‚Äg‚¤B
+	return (mCurrentIndex >= mNumOfControlPoints - 1) || mControlPoints[mCurrentIndex].slowdown; // å¤§ä¼šç›´å‰èª¿æ•´ã€‚slowdown ãƒ•ãƒ©ã‚°ã‚’ãƒ©ã‚¤ãƒ³å¾©å¸°è¨±å¯ãƒ•ãƒ©ã‚°ã¨ã—ã¦ä½¿ã†ã€‚
 }

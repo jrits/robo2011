@@ -9,30 +9,30 @@
 #include "factory.h"
 #include "constants.h"
 
-#define RETURNTIMING 375 //’l‚ğ•Ô‚·ƒ^ƒCƒ~ƒ“ƒO
-#define LIGHTBUF 10 //ŒõƒZƒ“ƒTƒqƒXƒgƒŠ‚Ìƒoƒbƒtƒ@ƒTƒCƒY
+#define RETURNTIMING 375 //å€¤ã‚’è¿”ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define LIGHTBUF 10 //å…‰ã‚»ãƒ³ã‚µãƒ’ã‚¹ãƒˆãƒªã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define LATEST 0
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
-SeesawDriver::SeesawDriver()    //‰Šú’l‚Ìİ’è
+SeesawDriver::SeesawDriver()    //åˆæœŸå€¤ã®è¨­å®š
 {
 	mTimeCounter = 0;
 	mInitState = false;             
-	mState = StairwayDriver::INIT;  //ƒXƒe[ƒg
+	mState = StairwayDriver::INIT;  //ã‚¹ãƒ†ãƒ¼ãƒˆ
 }
 
 /**
- * ƒfƒXƒgƒ‰ƒNƒ^
+ * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 SeesawDriver::~SeesawDriver(){}
 
 /**
- * ‘–s‚·‚éBƒV[ƒ\[‚ğU—ª‚·‚éB
+ * èµ°è¡Œã™ã‚‹ã€‚ã‚·ãƒ¼ã‚½ãƒ¼ã‚’æ”»ç•¥ã™ã‚‹ã€‚
  *
- * @retval true ÅIó‘ÔB‚±‚êˆÈ~‚Ìó‘Ô‘JˆÚ‚È‚µB
- * @retval false ‚Ü‚¾–ğ–Ú‚ªŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * @retval true æœ€çµ‚çŠ¶æ…‹ã€‚ã“ã‚Œä»¥é™ã®çŠ¶æ…‹é·ç§»ãªã—ã€‚
+ * @retval false ã¾ã å½¹ç›®ãŒå®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
  
 
@@ -51,7 +51,7 @@ bool SeesawDriver::drive()
 	float xCo = mGps.getXCoordinate();
 //	float yCo = mGps.getYCoordinate();
 
-//	’i·U—ª
+//	æ®µå·®æ”»ç•¥
 	if (mState == SeesawDriver::INIT) {
         mState = SeesawDriver::BEFORELINETRACE;
         mInitState = true;
@@ -116,7 +116,7 @@ bool SeesawDriver::drive()
         mLineTrace.execute();
     	mTimeCounter++;
     }
-	return mState == SeesawDriver::AFTERLINETRACE; // I—¹‚µ‚Ü‚µ‚½
+	return mState == SeesawDriver::AFTERLINETRACE; // çµ‚äº†ã—ã¾ã—ãŸ
 }
 
 

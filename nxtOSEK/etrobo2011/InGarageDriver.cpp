@@ -7,7 +7,7 @@
 #include "constants.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 InGarageDriver::InGarageDriver()
 {
@@ -15,16 +15,16 @@ InGarageDriver::InGarageDriver()
 }
 
 /**
- * ƒCƒ“ƒR[ƒXƒKƒŒ[ƒWEƒCƒ“‹æŠÔ‚ğU—ª‚·‚é
+ * ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³åŒºé–“ã‚’æ”»ç•¥ã™ã‚‹
  *
- * â“¹’¼üƒ‰ƒCƒ“ƒgƒŒ[ƒX‚©‚çAƒKƒŒ[ƒWEƒCƒ“‚Ü‚Å‚ğ’S“–‚·‚éB
+ * å‚é“ç›´ç·šãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ã‹ã‚‰ã€ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³ã¾ã§ã‚’æ‹…å½“ã™ã‚‹ã€‚
  *
- * @retval true ÅIó‘ÔB‚±‚êˆÈ~‚Ìó‘Ô‘JˆÚ‚È‚µB
- * @retval false ‚Ü‚¾–ğ–Ú‚ªŠ®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * @retval true æœ€çµ‚çŠ¶æ…‹ã€‚ã“ã‚Œä»¥é™ã®çŠ¶æ…‹é·ç§»ãªã—ã€‚
+ * @retval false ã¾ã å½¹ç›®ãŒå®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
 bool InGarageDriver::drive()
 {
-#if 0 // ƒƒO‘—M(0F‰ğœA1FÀ{)
+#if 0 // ãƒ­ã‚°é€ä¿¡(0ï¼šè§£é™¤ã€1ï¼šå®Ÿæ–½)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
 	LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());
@@ -32,9 +32,9 @@ bool InGarageDriver::drive()
 	LOGGER_DATAS32[2] = (S32)(mGps.getDirection());
 	LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
 #endif
-#if 0 // ƒfƒoƒbƒO(0F‰ğœA1FÀ{)
-    //DESK_DEBUG = true; // ƒ‚[ƒ^‚ğ‰ñ‚³‚È‚¢ƒfƒoƒbƒO
-    static int count = 0; // static‚ÍŠî–{‹Ö~‚¾‚ªAƒfƒoƒbƒO‚È‚Ì‚Åg—p
+#if 0 // ãƒ‡ãƒãƒƒã‚°(0ï¼šè§£é™¤ã€1ï¼šå®Ÿæ–½)
+    //DESK_DEBUG = true; // ãƒ¢ãƒ¼ã‚¿ã‚’å›ã•ãªã„ãƒ‡ãƒãƒƒã‚°
+    static int count = 0; // staticã¯åŸºæœ¬ç¦æ­¢ã ãŒã€ãƒ‡ãƒãƒƒã‚°ãªã®ã§ä½¿ç”¨
     if (count++ % 25 == 0) {
         Lcd lcd;
         lcd.clear();
@@ -47,24 +47,24 @@ bool InGarageDriver::drive()
         lcd.disp();
     }
 #endif
-    if (mState == InGarageDriver::INIT) { // ‰Šú‰»ó‘Ô
+    if (mState == InGarageDriver::INIT) { // åˆæœŸåŒ–çŠ¶æ…‹
         mTimeCounter = 0;
         mState = InGarageDriver::BEFORELINETRACE;
      }
 
-	// yƒCƒ“ƒR[ƒXEƒKƒŒ[ƒWƒCƒ“‚Ì‚½‚ß‚Éz
-	// ƒCƒ“ƒR[ƒXâè‘O‚Ìo‚Á’£‚è‚©‚ç‘–s‚µA’¼ü‚ğŒŸ’m‚µ‚½’iŠK‚Å‹——£‚ğ‘ª‚éB
-	// ƒCƒ“ƒR[ƒXEƒKƒŒ[ƒW‚Ì³–Ê‚Ü‚ÅˆÚ“®‚³‚¹‚ÄAŠp“xƒgƒŒ[ƒX‚Å¶90“x‰ñ“]EFORWARD‚Í0B
-	// ‚»‚ÌŒãAŠp“xƒgƒŒ[ƒX‚ÅƒKƒŒ[ƒW‚ÉIN
+	// ã€ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ãƒ»ã‚¬ãƒ¬ãƒ¼ã‚¸ã‚¤ãƒ³ã®ãŸã‚ã«ã€‘
+	// ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹å‚æ‰‹å‰ã®å‡ºã£å¼µã‚Šã‹ã‚‰èµ°è¡Œã—ã€ç›´ç·šã‚’æ¤œçŸ¥ã—ãŸæ®µéšã§è·é›¢ã‚’æ¸¬ã‚‹ã€‚
+	// ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ãƒ»ã‚¬ãƒ¬ãƒ¼ã‚¸ã®æ­£é¢ã¾ã§ç§»å‹•ã•ã›ã¦ã€è§’åº¦ãƒˆãƒ¬ãƒ¼ã‚¹ã§å·¦90åº¦å›è»¢ãƒ»FORWARDã¯0ã€‚
+	// ãã®å¾Œã€è§’åº¦ãƒˆãƒ¬ãƒ¼ã‚¹ã§ã‚¬ãƒ¬ãƒ¼ã‚¸ã«IN
 	
 	
-    // ‚Ü‚¸èŠÔ’¼üƒ‰ƒCƒ“ƒgƒŒ[ƒX(ƒCƒ“ƒR[ƒXâè‘OƒJ[ƒu‚Ìˆê”Ôo‚Á’£‚Á‚Ä‚¢‚éŠ‚©‚ç)
+    // ã¾ãšæ‰‹é–“ç›´ç·šãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹(ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹å‚æ‰‹å‰ã‚«ãƒ¼ãƒ–ã®ä¸€ç•ªå‡ºã£å¼µã£ã¦ã„ã‚‹æ‰€ã‹ã‚‰)
     if (mState == InGarageDriver::BEFORELINETRACE) {
         mLineTrace.execute();	
     	if (mStraightDetector.detect() == true) {
 			mState = InGarageDriver::STRAIGHTLINETRACE;
 	    	mSlowdownSkill.setSkill(&mLineTrace);
-    	    // ’¼üŒŸ’m‚µ‚Ä‚©‚ç‘–‚é‹——£B‚±‚±‚ğè“–‚½‚èŸ‘æH
+    	    // ç›´ç·šæ¤œçŸ¥ã—ã¦ã‹ã‚‰èµ°ã‚‹è·é›¢ã€‚ã“ã“ã‚’æ‰‹å½“ãŸã‚Šæ¬¡ç¬¬ï¼Ÿ
     		mSlowdownSkill.setTargetDistance(3450 - 135);
     		mSlowdownSkill.setMinimumForward(0);
 		}
@@ -82,7 +82,7 @@ bool InGarageDriver::drive()
 		if (mAngleTrace.isArrived()) {
 			mState = InGarageDriver::ENTERGARAGE;
 			mAngleTrace.setTargetAngle(270 - 2);
-		    // FORWARD’lB‚±‚±‚ğå‚É’²®‚·‚é
+		    // FORWARDå€¤ã€‚ã“ã“ã‚’ä¸»ã«èª¿æ•´ã™ã‚‹
 			mAngleTrace.setForward(20);
 			mSlowdownSkill.setSkill(&mAngleTrace);
 			mSlowdownSkill.setTargetDistance(100 - 50);
@@ -93,5 +93,5 @@ bool InGarageDriver::drive()
 		mSlowdownSkill.execute();
 	}
     mTimeCounter++;
-    return false; // I—¹‚µ‚È‚¢(ÅŒã‚È‚Ì‚Å‚È‚ñ‚Å‚à—Ç‚¢)
+    return false; // çµ‚äº†ã—ãªã„(æœ€å¾Œãªã®ã§ãªã‚“ã§ã‚‚è‰¯ã„)
 }

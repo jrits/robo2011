@@ -8,13 +8,13 @@
 #include "Driver.h"
 
 /**
- * ƒGƒjƒOƒ}EƒfƒR[ƒfƒBƒ“ƒOƒhƒ‰ƒCƒo
+ * ã‚¨ãƒ‹ã‚°ãƒãƒ»ãƒ‡ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ‰ãƒ©ã‚¤ãƒ
  */
 class EnigmaDriver : public Driver
 {
 private:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
     enum eSubSection {
         INIT = -1,
@@ -27,7 +27,7 @@ private:
         LINERETURN,
         AFTERLINETRACE
     };
-    eSubSection mState;    //!< ó‘Ô
+    eSubSection mState;    //!< çŠ¶æ…‹
 
 public:
 	EnigmaDriver();
