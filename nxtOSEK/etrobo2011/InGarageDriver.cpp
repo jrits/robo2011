@@ -32,7 +32,7 @@ bool InGarageDriver::drive()
 	LOGGER_DATAS32[2] = (S32)(mGps.getDirection());
 	LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
 #endif
-#if 1 // デバッグ(0：解除、1：実施)
+#if 0 // デバッグ(0：解除、1：実施)
     //DESK_DEBUG = true; // モータを回さないデバッグ
     static int count = 0; // staticは基本禁止だが、デバッグなので使用
     if (count++ % 25 == 0) {

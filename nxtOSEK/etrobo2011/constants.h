@@ -83,7 +83,7 @@ extern bool DESK_DEBUG;
 //LineTraceフラグ
 extern bool gLineTrace;
 
-//#include "Speaker.h"
+#include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}
 
 #endif // __CONSTANTS_H__

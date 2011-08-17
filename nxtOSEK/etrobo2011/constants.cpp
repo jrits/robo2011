@@ -37,6 +37,7 @@ int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 // int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #endif
 
+
 #ifdef KACHINEW
 char BT_NAME[16] = "KACHINEW";
 int USER_GYRO_OFFSET = 608; // この値は適宜調整すること
@@ -114,4 +115,3 @@ bool DESK_DEBUG = false; // モータを回さない
 
 //LineTraceフラグ
 bool gLineTrace = false;
-

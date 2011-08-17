@@ -42,10 +42,11 @@
 #include "SeesawDriver.h"
 #include "StairwayDriver.h"
 #include "OutGarageDriver.h"
-#include "EnigmaDriver.h"
-#include "MysteryDriver.h"
 #include "InGarageDriver.h"
 #include "TestDriver.h"
+/* ETロボコン2011 追記*/
+#include "ETsumoDriver.h"
+/* ETロボコン2011 追記ここまで */
 // コース
 #include "Course.h"
 #include "InCourse.h"
@@ -70,6 +71,7 @@ extern Clock mClock;
 extern Nxt mNxt;
 extern Bluetooth mBluetooth;
 extern Daq mDaq;
+extern Speaker mSpeaker;
 // GPS
 extern Gps mGps;
 // History
@@ -111,10 +113,9 @@ extern NormalDriver mNormalDriver;
 extern SeesawDriver mSeesawDriver;
 extern StairwayDriver mStairwayDriver;
 extern OutGarageDriver mOutGarageDriver;
-extern EnigmaDriver mEnigmaDriver;
-extern MysteryDriver mMysteryDriver;
 extern InGarageDriver mInGarageDriver;
 extern TestDriver mTestDriver;
+extern ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
 // Course
 extern Course *mCourse;
 extern InCourse mInCourse;

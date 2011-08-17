@@ -19,9 +19,10 @@ int TRACE_EDGE = LEFT;
 #ifdef OUTCOURSE
 Gps mGps(mLeftMotor, mRightMotor, Gps::OUT);
 //OutCourse mOutCourse(OutCousrse::TESTDRIVE); // テストドライバ起動
-OutCourse mOutCourse(OutCourse::START);      // 開始位置は下参照
+//OutCourse mOutCourse(OutCourse::START);      // 開始位置は下参照
 //OutCourse mOutCourse(OutCourse::SEESAW);     // 開始位置は下参照
 //OutCourse mOutCourse(OutCourse::STAIRWAY);   // 開始位置は下参照
+OutCourse mOutCourse(OutCourse::ETSUMO);       // 開始位置は下参照 ETロボコン2011 追記
 //OutCourse mOutCourse(OutCourse::GARAGEIN);   // 開始位置は下参照
 Course *mCourse(&mOutCourse);
 //int TRACE_EDGE = RIGHT;
@@ -87,6 +88,17 @@ float GPS_SEESAW_START_DIRECTION = 360.0;
 float GPS_STAIRWAY_START_X = 4500.0;
 float GPS_STAIRWAY_START_Y = -3400.0;
 float GPS_STAIRWAY_START_DIRECTION = 360.0;
+
+/* ETロボコン2011 追記*/
+// ET相撲開始座標
+float GPS_ETSUMO_START_X = 4500.0; // ＠todo要再設定
+float GPS_ETSUMO_START_Y = -3400.0; // ＠todo要再設定
+float GPS_ETSUMO_START_DIRECTION = 360.0; // ＠todo要再設定
+//ET相撲サーチ開始座標
+float GPS_ETSUMO_SEARCH_X = 4500.0; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_Y = -3400.0 + 800.0; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_DIRECTION = 360.0; // ＠todo要再設定
+/* ETロボコン2011 追記ここまで */
 
 // アウトコースガレージ・イン開始座標
 // 階段後直線、緑の端

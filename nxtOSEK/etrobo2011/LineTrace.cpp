@@ -97,9 +97,8 @@ float LineTrace::calcCommandTurn()
  */
 VectorT<float> LineTrace::calcCommand()
 {
-    //ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
-    gLineTrace = true;
-
+    gLineTrace = true;  //走行スキルフラグ。ライントレース時のみtrueとなる。(Gpsの補正のためのフラグ)
+    
     // 起動時急ダッシュするため、最初のみスピードをゆるめる
     float X;
     if (mTimeCounter < mInitDuration) {
@@ -170,8 +169,7 @@ float LineTrace::lightValueNormalization()
  */
 float LineTrace::maimaiValueNormalization()
 {
-    float L = 0;
-    L = gMaimaiValue;
+    float L = gMaimaiValue;
     
     float P = (L - MAIMAI_LINE_THRESHOLD); // 偏差
     if(L < MAIMAI_LINE_THRESHOLD){ // 白

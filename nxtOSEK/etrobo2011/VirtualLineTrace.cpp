@@ -97,7 +97,7 @@ VectorT<float> VirtualLineTrace::calcCommand()
         command = mLineTrace.calcCommand();
     }
 
-#if 1 // DEBUG
+#if 0 // DEBUG
     static int count = 0;
     if (count++ % 25 == 0) {
         Lcd lcd;

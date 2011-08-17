@@ -732,9 +732,9 @@ double Gps::atan2(double y, double x)
         else radian = -M_PI/2.0;
     }
     else {
-        radian = atan(y / x);
-        if (x < 0 && y < 0) radian = (-M_PI/2.0) - radian;
-        if (x < 0 && y >= 0) radian = M_PI + radian;
+        radian = atan(y / x);//第一象限、第四象限はこのままでOK
+        if (x < 0 && y < 0)  radian = radian - M_PI;//第三象限の場合、atanでは第一象限の値が返ってくるためradianを修正
+        if (x < 0 && y >= 0) radian = radian + M_PI;//第二象限の場合、atanでは第四象限の値が返ってくるためradianを修正
     }
     return radian;
 }

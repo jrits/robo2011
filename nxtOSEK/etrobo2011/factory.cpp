@@ -4,9 +4,9 @@
 
 // デバイスオブジェクトの生成
 GyroSensor mGyroSensor(PORT_1);
-TouchSensor mTouchSensor(PORT_4);
 SonarSensor mSonarSensor(PORT_2);
 LightSensor mLightSensor(PORT_3);
+TouchSensor mTouchSensor(PORT_4);
 Motor mTailMotor(PORT_A);
 Motor mRightMotor(PORT_B);
 Motor mLeftMotor(PORT_C);
@@ -15,6 +15,7 @@ Clock mClock;
 Nxt mNxt;
 Bluetooth mBluetooth;
 Daq mDaq(mBluetooth);
+Speaker mSpeaker;
 // History
 float mLightBuffer[25]; // % 25
 History mLightHistory(mLightBuffer, COUNTOF(mLightBuffer));
@@ -64,10 +65,10 @@ NormalDriver mNormalDriver;
 SeesawDriver mSeesawDriver;
 StairwayDriver mStairwayDriver;
 OutGarageDriver mOutGarageDriver;
-EnigmaDriver mEnigmaDriver;
-MysteryDriver mMysteryDriver;
 InGarageDriver mInGarageDriver;
 TestDriver mTestDriver;
+ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
 
 // Posture
 Posture mPosture(mLeftMotor,mRightMotor,mTailMotor);
+
