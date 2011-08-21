@@ -37,7 +37,7 @@ LookUpGateDriver::drive(){
       // 3ì_åXóßëñçsÅB
       mTripodLineTrace.setForward(10);
       mTripodLineTrace.execute();
-      tail_control(90);
+      tail_control(60);
       if(passedGate()){
         mLcd.clear();
         mLcd.putf("sn","UNDER_GATE");
