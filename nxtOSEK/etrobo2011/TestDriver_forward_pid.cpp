@@ -83,7 +83,7 @@ bool TestDriver::drive()
     if (1) {
         gDoForwardPid = true;
         gDoMaimai = true;
-        mLineTrace.setForward(100);
+        mLineTrace.setForward(120);
         mLineTrace.execute();
     }
     // テスト ３点走行ライントレース with フォワードPID
