@@ -25,7 +25,7 @@ LookUpGateDriver::drive(){
       }
       break;
     case IN_FRONT_OF_GATE:
-      // À‚èž‚ÞB
+      // åº§ã‚Šè¾¼ã‚€ã€‚
       if(sitDown()){
         mLcd.clear();
         mLcd.putf("sn","IN_FRONT_OF_GATE");
@@ -34,7 +34,7 @@ LookUpGateDriver::drive(){
       }
       break;
     case UNDER_GATE:
-      // 3“_ŒX—§‘–sB
+      // 3ç‚¹å‚¾ç«‹èµ°è¡Œã€‚
       mTripodLineTrace.setForward(10);
       mTripodLineTrace.execute();
       tail_control(60);
@@ -46,7 +46,7 @@ LookUpGateDriver::drive(){
       }
       break;
     case BEHIND_GATE:
-      /*—§‚¿ã‚ª‚éB*/
+      /*ç«‹ã¡ä¸ŠãŒã‚‹ã€‚*/
       if(standUp()){
         mLcd.clear();
         mLcd.putf("sn","BEHIND_GATE");
@@ -58,7 +58,7 @@ LookUpGateDriver::drive(){
       mLineTrace.execute();
       break;
     default:
-      // assert‚·‚é‚×‚«B
+      // assertã™ã‚‹ã¹ãã€‚
       break;
   }
 
@@ -69,8 +69,8 @@ bool
 LookUpGateDriver::foundGate() const{
   static int count = 0;
   
-  // ‚Æ‚è‚ ‚¦‚¸A1•bŒo‰ß‚µ‚½‚çƒQ[ƒg‚ðŒ©‚Â‚¯‚½‚±‚Æ‚É‚·‚éB
-  // TODO ƒQ[ƒg‚ÌŒŸ’m•û–@‚ðŽÀ‘•‚·‚é•K—v‚ ‚èB
+  // ã¨ã‚Šã‚ãˆãšã€1ç§’çµŒéŽã—ãŸã‚‰ã‚²ãƒ¼ãƒˆã‚’è¦‹ã¤ã‘ãŸã“ã¨ã«ã™ã‚‹ã€‚
+  // TODO ã‚²ãƒ¼ãƒˆã®æ¤œçŸ¥æ–¹æ³•ã‚’å®Ÿè£…ã™ã‚‹å¿…è¦ã‚ã‚Šã€‚
   count++;
   return count >= 250;
 }
@@ -78,8 +78,8 @@ LookUpGateDriver::foundGate() const{
 bool
 LookUpGateDriver::passedGate() const{
   static int count = 0;
-  // ‚Æ‚è‚ ‚¦‚¸A1•bŒo‰ß‚µ‚½‚çƒQ[ƒg‚ð’Ê‰ß‚µ‚½‚±‚Æ‚É‚·‚éB
-  // TODO ƒQ[ƒg’Ê‰ß‚ÌŒŸ’m•û–@‚ðŽÀ‘•‚·‚é•K—v‚ ‚èB
+  // ã¨ã‚Šã‚ãˆãšã€1ç§’çµŒéŽã—ãŸã‚‰ã‚²ãƒ¼ãƒˆã‚’é€šéŽã—ãŸã“ã¨ã«ã™ã‚‹ã€‚
+  // TODO ã‚²ãƒ¼ãƒˆé€šéŽã®æ¤œçŸ¥æ–¹æ³•ã‚’å®Ÿè£…ã™ã‚‹å¿…è¦ã‚ã‚Šã€‚
   count++;
   return count >= 250;
 }
@@ -91,8 +91,8 @@ LookUpGateDriver::sitDown() {
   mSitDownSkill.execute();
   count++;
 
-  // ‚Æ‚è‚ ‚¦‚¸A2•bŒo‰ß‚µ‚½‚çÀ‚Á‚Ä‚¢‚é‚±‚Æ‚É‚·‚éB
-  // TODO À‚Á‚Ä‚¢‚é‚©A”Û‚©‚ÌŒŸo•û–@‚ðô—û‚·‚é•K—v‚ ‚èB
+  // ã¨ã‚Šã‚ãˆãšã€2ç§’çµŒéŽã—ãŸã‚‰åº§ã£ã¦ã„ã‚‹ã“ã¨ã«ã™ã‚‹ã€‚
+  // TODO åº§ã£ã¦ã„ã‚‹ã‹ã€å¦ã‹ã®æ¤œå‡ºæ–¹æ³•ã‚’æ´—ç·´ã™ã‚‹å¿…è¦ã‚ã‚Šã€‚
   return count >= 1000;
 }
 
@@ -102,8 +102,8 @@ LookUpGateDriver::standUp() {
   mStandUpSkill.execute();
   count++;
   
-  // ‚Æ‚è‚ ‚¦‚¸A2•bŒo‰ß‚µ‚½‚ç—§‚Á‚Ä‚¢‚é‚±‚Æ‚É‚·‚éB
-  // TODO —§‚¿ã‚Á‚½‚©A”Û‚©‚ÌŒŸo•û–@‚ðô—û‚·‚é•K—v‚ ‚èB
+  // ã¨ã‚Šã‚ãˆãšã€2ç§’çµŒéŽã—ãŸã‚‰ç«‹ã£ã¦ã„ã‚‹ã“ã¨ã«ã™ã‚‹ã€‚
+  // TODO ç«‹ã¡ä¸Šã£ãŸã‹ã€å¦ã‹ã®æ¤œå‡ºæ–¹æ³•ã‚’æ´—ç·´ã™ã‚‹å¿…è¦ã‚ã‚Šã€‚
   return count >= 500;
 }
 
@@ -115,10 +115,10 @@ LookUpGateDriver::isDone() const{
 void
 LookUpGateDriver::tail_control(signed int angle) const {
   static const float P_GAIN = 2.5F;
-  static const float PWM_ABS_MAX = 60; /* Š®‘S’âŽ~—pƒ‚[ƒ^§ŒäPWMâ‘ÎÅ‘å’l */        
-  float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* ”ä—á§Œä */
+  static const float PWM_ABS_MAX = 60; /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡PWMçµ¶å¯¾æœ€å¤§å€¤ */        
+  float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* æ¯”ä¾‹åˆ¶å¾¡ */
 
-  /* PWMo—Í–O˜aˆ— */
+  /* PWMå‡ºåŠ›é£½å’Œå‡¦ç† */
   if (pwm > PWM_ABS_MAX)
   {
     pwm = PWM_ABS_MAX;

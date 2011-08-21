@@ -1,23 +1,23 @@
 # BUILD_MODE
 BUILD_MODE = ROM_ONLY
 
-# nxtOSEKƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ
+# nxtOSEKãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 NXTOSEK_ROOT = ../../nxtOSEK
 
-# ƒ^[ƒQƒbƒgŽÀsŒ`Ž®ƒtƒ@ƒCƒ‹–¼
+# ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå®Ÿè¡Œå½¢å¼ãƒ•ã‚¡ã‚¤ãƒ«å
 TARGET = main_cpp
 
-# ƒCƒ“ƒNƒ‹[ƒhƒpƒX
+# ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ‘ã‚¹
 USER_INC_PATH= $(NXTOSEK_ROOT)/ecrobot/nxtway_gs_balancer
 
-# ƒ‰ƒCƒuƒ‰ƒŠ
+# ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 USER_LIB = nxtway_gs_balancer
 
-# Cƒ\[ƒXƒtƒ@ƒCƒ‹
+# Cã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 TARGET_SOURCES = \
 	balancer_param.c
 
-# C++(.cpp)ƒ\[ƒXƒtƒ@ƒCƒ‹
+# C++(.cpp)ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 TARGET_CPP_SOURCES = \
 	constants.cpp \
 	coordinates.cpp \
@@ -55,11 +55,11 @@ TARGET_CPP_SOURCES = \
         SitDownSkill.cpp \
         LookUpGateDriver.cpp
 
-# TOPPERS/ATK(OSEK)Ý’èƒtƒ@ƒCƒ‹
+# TOPPERS/ATK(OSEK)è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
 TOPPERS_OSEK_OIL_SOURCE = main.oil
 
-# ‰º‹L‚Ìƒ}ƒNƒ‚Í•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢
+# ä¸‹è¨˜ã®ãƒžã‚¯ãƒ­ã¯å¤‰æ›´ã—ãªã„ã§ãã ã•ã„
 O_PATH ?= build
 
-# C++(.cpp)ƒrƒ‹ƒh—pmakefile
+# C++(.cpp)ãƒ“ãƒ«ãƒ‰ç”¨makefile
 include $(NXTOSEK_ROOT)/ecrobot/ecrobot++.mak

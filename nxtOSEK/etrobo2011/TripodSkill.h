@@ -9,49 +9,49 @@
 extern TripodActivator mTripodActivator;
 
 /**
- * ƒXƒLƒ‹’ŠÛƒNƒ‰ƒX
+ * ã‚¹ã‚­ãƒ«æŠ½è±¡ã‚¯ãƒ©ã‚¹
  *
- * ‚±‚ÌƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚Í¶¬‚³‚ê‚È‚¢
+ * ã“ã®ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ç”Ÿæˆã•ã‚Œãªã„
  */
 class TripodSkill
 {
  protected:
-  float mForward; //!< ƒtƒHƒ[ƒh’l
+  float mForward; //!< ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤
  public:
   /**
-   * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+   * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
    */
   TripodSkill(){}
   /**
-   * ƒfƒXƒgƒ‰ƒNƒ^
+   * ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
    */
   virtual ~TripodSkill(){}
   /**
-   * ƒtƒHƒ[ƒh’l‚ðƒZƒbƒg‚·‚é
+   * ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
    *
-   * @param[in] forward ƒtƒHƒ[ƒh’l
+   * @param[in] forward ãƒ•ã‚©ãƒ¯ãƒ¼ãƒ‰å€¤
    */
   void setForward(float forward)
   {
     mForward = forward;
   }
   /**
-   * ƒXƒLƒ‹‚ð”­Šö‚µ‚Äƒƒ{ƒbƒg‚ð“®‚©‚·B
+   * ã‚¹ã‚­ãƒ«ã‚’ç™ºæ®ã—ã¦ãƒ­ãƒœãƒƒãƒˆã‚’å‹•ã‹ã™ã€‚
    *
-   * calcCommand ‚ð—p‚¢‚Ä‘–sƒxƒNƒgƒ‹‚ðŒˆ’è‚µA§Œä‹@Ší(TripodActivator)‚ð‘€ì‚·‚éB
+   * calcCommand ã‚’ç”¨ã„ã¦èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’æ±ºå®šã—ã€åˆ¶å¾¡æ©Ÿå™¨(TripodActivator)ã‚’æ“ä½œã™ã‚‹ã€‚
    */
   void execute()
   {
     VectorT<float> command = calcCommand();
-    mTripodActivator.run(command);//§Œä‹@Ší‚ÉƒZƒbƒg
+    mTripodActivator.run(command);//åˆ¶å¾¡æ©Ÿå™¨ã«ã‚»ãƒƒãƒˆ
   }
   /**
-   * ‘–sƒxƒNƒgƒ‹‚ðŒvŽZ
+   * èµ°è¡Œãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
    *
    * Override Me!!
    */
   virtual VectorT<float> calcCommand() { return VectorT<float>(0,0); }
-  // ƒˆ‰¼‘zŠÖ”‚É‚·‚é‚ÆƒvƒƒOƒ‰ƒ€—e—Ê‚ª”ì‘å‰»‚·‚éB‚Æ‚è‚ ‚¦‚¸ƒˆ‰¼‘zŠÖ”‚ð”ð‚¯‚éB
+  // ç´”ç²‹ä»®æƒ³é–¢æ•°ã«ã™ã‚‹ã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ å®¹é‡ãŒè‚¥å¤§åŒ–ã™ã‚‹ã€‚ã¨ã‚Šã‚ãˆãšç´”ç²‹ä»®æƒ³é–¢æ•°ã‚’é¿ã‘ã‚‹ã€‚
 };
 
 #endif
