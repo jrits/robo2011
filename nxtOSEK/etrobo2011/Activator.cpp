@@ -108,7 +108,7 @@ void Activator::stop()
     mRightMotor.setBrake(true);
 }
 
-Pid mForwardPid(0.003, 0.0, 0.0); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
+Pid mForwardPid(0.003, 0.0, 0.1); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
 #define FORWARD2ENCODE(F) (F * 3.6) // 大体 forward 100 で 360(1回転)/sec@平地っぽい
 #define ENCODE2FORWARD(E) (E / 3.6) // 大体 forward 100 で 360(1回転)/sec@平地っぽい
 

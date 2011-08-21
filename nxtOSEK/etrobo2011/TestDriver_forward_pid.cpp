@@ -8,6 +8,7 @@
 #include "factory.h"
 #include "TestLine.h"
 extern bool gDoForwardPid;
+extern bool gDoMaimai;
 extern "C" extern void tail_control(signed int angle);
 
 /* sample_c3マクロ */
@@ -62,7 +63,7 @@ bool TestDriver::drive()
         mActivator.run(command);
     }
     // テスト フォーワードPID
-    if (1) {
+    if (0) {
         gDoForwardPid = true;
         mActivator.run(command);
     }
@@ -76,6 +77,13 @@ bool TestDriver::drive()
     if (0) {
         gDoForwardPid = true;
         mLineTrace.setForward(50);
+        mLineTrace.execute();
+    }
+    // テスト ライントレース with フォワードPID with まいまい
+    if (1) {
+        gDoForwardPid = true;
+        gDoMaimai = true;
+        mLineTrace.setForward(150);
         mLineTrace.execute();
     }
     // テスト ３点走行ライントレース with フォワードPID

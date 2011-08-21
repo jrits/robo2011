@@ -217,6 +217,7 @@ TASK(TaskDrive)
 
 		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
 		{
+            gTouchStarter = true;
 			break; /* タッチセンサが押された */
 		}
 		systick_wait_ms(10); /* 10msecウェイト */
@@ -238,8 +239,8 @@ TASK(TaskDrive)
 	bool doDrive = true;
 	while(1)
 	{
-        	tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-		if (mFailDetector.detect()) doDrive = false;
+		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+		//if (mFailDetector.detect()) doDrive = false;
 		//if (doDrive) mCourse->drive();
 		if (doDrive) mTestDriver.drive();
 		else mActivator.stop();
