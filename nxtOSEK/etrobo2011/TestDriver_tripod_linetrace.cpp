@@ -12,7 +12,7 @@ extern "C" extern void tail_control(signed int angle);
 
 /* sample_c3マクロ */
 #define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_TRIPOD_DRIVE 95 /* ３点走行時の角度[度] */
+#define TAIL_ANGLE_TRIPOD_DRIVE 76 /* ３点走行時の角度[度] */
 #define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 
 /**
@@ -61,7 +61,7 @@ bool TestDriver::drive()
         mActivator.run(command);
     }
     // テスト ３点走行
-    if (1) {
+    if (0) {
         tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
         mTripodActivator.run(command);
     }
@@ -72,7 +72,7 @@ bool TestDriver::drive()
         mTripodActivator.run(command);
     }
     // テスト ３点走行ライントレース
-    if (0) {
+    if (1) {
         tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
         mTripodLineTrace.setForward(50);
         mTripodLineTrace.execute();

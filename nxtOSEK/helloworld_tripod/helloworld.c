@@ -16,7 +16,7 @@ TASK(OSEK_Task_Background)
   ecrobot_set_light_sensor_active(NXT_PORT_S3);
 	while(1)
 	{
-    tail_control(95);
+    tail_control(76);
     ecrobot_status_monitor("OSEK HelloWorld!");
     systick_wait_ms(10); /* 10msec wait */
 	}
