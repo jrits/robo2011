@@ -217,7 +217,7 @@ TASK(TaskDrive)
 
 		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
 		{
-            gTouchStarter = true;
+			gTouchStarter = true;
 			break; /* タッチセンサが押された */
 		}
 		systick_wait_ms(10); /* 10msecウェイト */
@@ -243,13 +243,11 @@ TASK(TaskDrive)
 		//if (mFailDetector.detect()) doDrive = false;
 		//if (doDrive) mCourse->drive();
 		if (doDrive) mTestDriver.drive();
-		//if (doDrive) mLookUpGateDriver.drive();
 		else mActivator.stop();
 
 		// イベント通知を待つ
 		ClearEvent(EventDrive);
 		WaitEvent(EventDrive);
-		systick_wait_ms(4); /* 4msecウェイト */
 	}
 	TerminateTask();
 }
