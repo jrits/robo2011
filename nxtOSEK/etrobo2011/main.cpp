@@ -210,7 +210,8 @@ TASK(TaskDrive)
 
 	while(1)
 	{
-        mTestDriver.drive();
+        mLookUpGateDriver.drive();
+//        mTestDriver.drive();
 
 		systick_wait_ms(4); /* 4msecウェイト */
 	}

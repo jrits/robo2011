@@ -21,13 +21,20 @@ int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
 int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
-// 瀬尾家
-int WHITE = 500; // 白色の光センサ値 //小さめにしてね
-int BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// 試走会
+int WHITE = 516; // 白色の光センサ値 //小さめにしてね
+int BLACK = 672; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
-int TRIPOD_WHITE = 580; // 白色の光センサ値 //小さめにしてね
-int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+int TRIPOD_WHITE = 595; // 白色の光センサ値 //小さめにしてね
+int TRIPOD_BLACK = 662; // 黒色の光センサ値 //大きめにしてね
 int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
+// 瀬尾家
+// int WHITE = 500; // 白色の光センサ値 //小さめにしてね
+// int BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
+// int TRIPOD_WHITE = 580; // 白色の光センサ値 //小さめにしてね
+// int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #endif
 
 #ifdef KACHINEW
