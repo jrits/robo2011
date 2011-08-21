@@ -217,6 +217,7 @@ TASK(TaskDrive)
 
 		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
 		{
+            gTouchStarter = true;
 			break; /* タッチセンサが押された */
 		}
 		systick_wait_ms(10); /* 10msecウェイト */
