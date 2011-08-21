@@ -68,6 +68,7 @@ OutGarageDriver mOutGarageDriver;
 InGarageDriver mInGarageDriver;
 TestDriver mTestDriver;
 ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
+LookUpGateDriver mLookUpGateDriver;
 
 // Posture
 Posture mPosture(mLeftMotor,mRightMotor,mTailMotor);

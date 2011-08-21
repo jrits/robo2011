@@ -44,6 +44,7 @@
 #include "OutGarageDriver.h"
 #include "InGarageDriver.h"
 #include "TestDriver.h"
+#include "LookUpGateDriver.h"
 /* ETロボコン2011 追記*/
 #include "ETsumoDriver.h"
 /* ETロボコン2011 追記ここまで */
@@ -66,6 +67,7 @@ extern LightSensor mLightSensor;
 extern GyroSensor mGyroSensor;
 extern Motor mLeftMotor;
 extern Motor mRightMotor;
+extern Motor mTailMotor;
 extern Lcd mLcd;
 extern Clock mClock;
 extern Nxt mNxt;
@@ -116,6 +118,7 @@ extern OutGarageDriver mOutGarageDriver;
 extern InGarageDriver mInGarageDriver;
 extern TestDriver mTestDriver;
 extern ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
+extern LookUpGateDriver mLookUpGateDriver;
 // Course
 extern Course *mCourse;
 extern InCourse mInCourse;

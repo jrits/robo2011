@@ -3,35 +3,35 @@
 #include "kernel_id.h"
 #include "ecrobot_interface.h"
 
-/* ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ */
+/* é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
 static void tail_control(signed int angle);
-#define P_GAIN             2.5F /* Š®‘S’âŽ~—pƒ‚[ƒ^§Œä”ä—áŒW” */
-#define PWM_ABS_MAX          60 /* Š®‘S’âŽ~—pƒ‚[ƒ^§ŒäPWMâ‘ÎÅ‘å’l */
+#define P_GAIN             2.5F /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡æ¯”ä¾‹ä¿‚æ•° */
+#define PWM_ABS_MAX          60 /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡PWMçµ¶å¯¾æœ€å¤§å€¤ */
 
 /* nxtOSEK hook to be invoked from an ISR in category 2 */
 void user_1ms_isr_type2(void){ /* do nothing */ }
 
 TASK(OSEK_Task_Background)
 {
-  ecrobot_set_light_sensor_active(NXT_PORT_S3);
+	ecrobot_set_light_sensor_active(NXT_PORT_S3);
 	while(1)
 	{
-    tail_control(76);
-    ecrobot_status_monitor("OSEK HelloWorld!");
-    systick_wait_ms(10); /* 10msec wait */
+		tail_control(76);
+		ecrobot_status_monitor("OSEK HelloWorld!");
+		systick_wait_ms(10); /* 10msec wait */
 	}
 }
 
 //*****************************************************************************
-// ŠÖ”–¼ : tail_control
-// ˆø”  : angle (ƒ‚[ƒ^–Ú•WŠp“x[“x])
-// •Ô‚è’l : –³‚µ
-// ŠT—v : ‘–s‘ÌŠ®‘S’âŽ~—pƒ‚[ƒ^‚ÌŠp“x§Œä
+// é–¢æ•°å : tail_control
+// å¼•æ•°  : angle (ãƒ¢ãƒ¼ã‚¿ç›®æ¨™è§’åº¦[åº¦])
+// è¿”ã‚Šå€¤ : ç„¡ã—
+// æ¦‚è¦ : èµ°è¡Œä½“å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿ã®è§’åº¦åˆ¶å¾¡
 //*****************************************************************************
 static void tail_control(signed int angle)
 {
-  float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* ”ä—á§Œä */
-  /* PWMo—Í–O˜aˆ— */
+  float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* æ¯”ä¾‹åˆ¶å¾¡ */
+  /* PWMå‡ºåŠ›é£½å’Œå‡¦ç† */
   if (pwm > PWM_ABS_MAX)
   {
     pwm = PWM_ABS_MAX;

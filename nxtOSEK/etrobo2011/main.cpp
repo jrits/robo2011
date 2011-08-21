@@ -242,12 +242,14 @@ TASK(TaskDrive)
 		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 		//if (mFailDetector.detect()) doDrive = false;
 		//if (doDrive) mCourse->drive();
-		if (doDrive) mTestDriver.drive();
+		//if (doDrive) mTestDriver.drive();
+		if (doDrive) mLookUpGateDriver.drive();
 		else mActivator.stop();
 
 		// イベント通知を待つ
 		ClearEvent(EventDrive);
 		WaitEvent(EventDrive);
+		systick_wait_ms(4); /* 4msecウェイト */
 	}
 	TerminateTask();
 }
@@ -266,18 +268,18 @@ TASK(TaskMaimai)
 
 	while(1)
 	{
-        if (! gDoMaimai) {
+          if (! gDoMaimai) {
             ecrobot_set_light_sensor_active(NXT_PORT_S3);
             ClearEvent(EventMaimai);
             WaitEvent(EventMaimai);
             continue;
-        }
+          }
 
-		// MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
-		light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
-
-		// MAIMAI(改): まいまい式差分計算
-		gMaimaiValue = calc_maimai(light_value[0], light_value[1]);
+          // MAIMAI(改): 光センサの値(0:消灯時または1:点灯時)を取得。
+          light_value[is_light_on] = ecrobot_get_light_sensor(NXT_PORT_S3);
+        
+          // MAIMAI(改): まいまい式差分計算
+          gMaimaiValue = calc_maimai(light_value[0], light_value[1]);
 
 #if 0 // DEBUG
         {
@@ -291,15 +293,14 @@ TASK(TaskMaimai)
             lcd.disp();
         }
 #endif
-
-		// MAIMAI(改): 光センサ明滅
-		if (is_light_on) {
-			ecrobot_set_light_sensor_inactive(NXT_PORT_S3);
-			is_light_on = 0;
-		} else {
-			ecrobot_set_light_sensor_active(NXT_PORT_S3);
-			is_light_on = 1;
-		}
+        // MAIMAI(改): 光センサ明滅
+        if (is_light_on) {
+          ecrobot_set_light_sensor_inactive(NXT_PORT_S3);
+          is_light_on = 0;
+        } else {
+          ecrobot_set_light_sensor_active(NXT_PORT_S3);
+          is_light_on = 1;
+        }
 
         ClearEvent(EventMaimai);
         WaitEvent(EventMaimai);
