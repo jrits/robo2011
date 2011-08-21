@@ -1,6 +1,7 @@
 #include "LookUpGateDriver.h"
 
 #include "factory.h"
+extern bool gDoMaimai;
 
 LookUpGateDriver::LookUpGateDriver()
     : mCurrentSubSection(INIT) {
@@ -12,6 +13,7 @@ LookUpGateDriver::~LookUpGateDriver(){
 
 bool
 LookUpGateDriver::drive(){
+  gDoMaimai - true;
   switch(mCurrentSubSection){
     case INIT:
       mLineTrace.setForward(20);
