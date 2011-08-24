@@ -8,6 +8,8 @@
 #include "SeesawDriver.h"
 #include "factory.h"
 #include "constants.h"
+#include "Speaker.h"
+
 
 #define RETURNTIMING 375 //値を返すタイミング
 #define LIGHTBUF 10 //光センサヒストリのバッファサイズ
@@ -19,7 +21,9 @@
 SeesawDriver::SeesawDriver()    //初期値の設定
 {
 	mTimeCounter = 0;
-	mInitState = false;             
+	beforeRMS = 0;
+	backCounter = 0;
+	mInitState = false;
 	mState = StairwayDriver::INIT;  //ステート
 }
 
@@ -53,44 +57,69 @@ bool SeesawDriver::drive()
 
 //	段差攻略
 	if (mState == SeesawDriver::INIT) {
-        mState = SeesawDriver::BEFORELINETRACE;
-        mInitState = true;
-		mWallDetector.setThreshold(80);
-    }
-	if(mState == SeesawDriver::BEFORELINETRACE){
-    	if(mInitState){
-			K_THETADOT = 10.5F;
-			mAngleTrace.setTargetAngle(354.0);
-			mAngleTrace.setForward(100);
-			mLineTrace.setForward(100);
-    		mInitState = false;
-    	}
-		if(1200 < xCo && xCo < 1500)
-		{
+		if(backCounter <= 500){
+			mAngleTrace.setTargetAngle(180);
+			mAngleTrace.setForward(0);
 			mAngleTrace.execute();
-		}else if(xCo <= 1200){
-			mLineTrace.execute();
+			backCounter++;
+		}else{
+			mWallDetector.setThreshold(110);
+//			nxt_motor_set_count(NXT_PORT_A, 0);
+			mState = SeesawDriver::BEFOREANGLETRACE;
+			backCounter = 0;
 		}
-		else if(xCo >= 1500){
-	    	if(mWallDetector.detect()){
-				mStartAngleCounter = mLeftMotorHistory.get();
-    			mState = SeesawDriver::ONTHESEESAW;
-    			mInitState = true;
-	    	}
-			mLineTrace.execute();
-		}
-	}else if(mState == SeesawDriver::ONTHESEESAW){
-		if(mInitState){
-			K_THETADOT = 5.0F;
-			mAngleTrace.setTargetAngle(350.0);
-			mAngleTrace.setForward(25);
-			mInitState = false;
-		}
-		if (fabs(mLeftMotorHistory.calcDifference()) < 5 && (mLeftMotorHistory.get() - mStartAngleCounter) > 360) {
-            mState = SeesawDriver::LINERETURN;
-            mInitState = true;
-		}
+    }
+	if(mState == SeesawDriver::BEFOREANGLETRACE){
+		K_THETADOT = 9.5F;
+		mAngleTrace.setTargetAngle(180);
+		mAngleTrace.setForward(100);
 		mAngleTrace.execute();
+		if(mWallDetector.detect()){
+  			{ Speaker s; s.playTone(261, 20, 100); }
+			mState = SeesawDriver::DETECTINGRUN;
+			beforeRMS = mRightMotorHistory.get(0);
+			backCounter = 0;
+//			beforeRMS = mRightMotorHistory.get(0);
+		}
+	}else if(mState == SeesawDriver::DETECTINGRUN){
+		K_THETADOT = 8.5F;
+		mAngleTrace.setTargetAngle(180);
+		mAngleTrace.setForward(30);
+		mAngleTrace.execute();
+//		if(mTailMotor.getCount() <= 70){
+		if(mRightMotorHistory.get(0) - beforeRMS >= 410){
+  			{ Speaker s; s.playTone(261, 40, 100); }
+			mState = SeesawDriver::BACKRUN;
+			backCounter = 0;
+		}
+	}else if(mState == SeesawDriver::BACKRUN){
+		if(backCounter <= 500){
+		K_THETADOT = 5.5F;
+		mAngleTrace.setTargetAngle(180);
+		mAngleTrace.setForward(-45);
+		mAngleTrace.execute();
+		}else{
+		mAngleTrace.setTargetAngle(180);
+		mAngleTrace.setForward(-20);
+		mAngleTrace.execute();
+		}
+		backCounter++;
+		if(mRightMotorHistory.get(0) - beforeRMS <= 360){
+  			{ Speaker s; s.playTone(261, 60, 100); }
+			mState = SeesawDriver::HEREWEGO;
+			backCounter = 0;
+		}
+	}else if(mState == SeesawDriver::HEREWEGO){
+		if(backCounter <= 500){
+		mAngleTrace.setTargetAngle(180);
+		mAngleTrace.setForward(0);
+		mAngleTrace.execute();
+		}else{
+		mAngleTrace.setTargetAngle(180);
+		mAngleTrace.setForward(70);
+		mAngleTrace.execute();
+		}
+		backCounter++;
 	}else if (mState == SeesawDriver::LINERETURN) {
         if (mInitState) {
             mInitState = false;

@@ -184,7 +184,7 @@ TASK(TaskDrive)
 
 	while(1)
   {
-    tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
+//    tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
     if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1)
     {
       break; /* タッチセンサが押された */
@@ -199,7 +199,7 @@ TASK(TaskDrive)
   static bool found_something = false;
   while(1)
   {
-    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+//    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 
       /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
   	bool balanceFlag = true;
@@ -217,6 +217,7 @@ TASK(TaskDrive)
 //      nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
 //      nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
 //  	}
+  	/*
   		mStandupDriver.setTargetTailAngle(114);
 		if(mStandupDriver.drive() == true){
   			mAngleTrace.setForward(30);
@@ -224,6 +225,8 @@ TASK(TaskDrive)
 			mAngleTrace.execute();
 		}
   	counter++;
+  	*/
+  	mSeesawDriver.drive();
 //   mSeesawTestDriver.drive();
    systick_wait_ms(4); /* 4msecウェイト */
   }
