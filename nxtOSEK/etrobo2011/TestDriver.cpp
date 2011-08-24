@@ -14,12 +14,10 @@
  */
 TestDriver::TestDriver()
 {
-//    mState = BEFOREANGLETRACE; // 初期化状態
     mState = -1; // 初期化状態
 	SSC = 0;//State Switch Counter
 	beforeRMH = 0.0; //状態変化時のモータ回転角度（積算値）
 	mPwm_L = mPwm_R = 0; /* 左右モータPWM出力 */
-
 }
 
 int counter = 0;
@@ -27,7 +25,6 @@ int ketsu = 0;
 
 bool TestDriver::drive()
 {
-// SORA
 #if 0 // ログ送信
     LOGGER_SEND = 2;
 	LOGGER_DATAS08[0] = (S8)(mLineDetector.detect());
@@ -38,6 +35,7 @@ bool TestDriver::drive()
 	LOGGER_DATAS32[0] = (S32)(mLightHistory.calcDifference());
 #endif
 
+	/*
 	mWallDetector.setThreshold(100);
     if(mState == -1){
         nxt_motor_set_count(NXT_PORT_A, 0);
@@ -61,7 +59,7 @@ bool TestDriver::drive()
   		mAngleTrace.execute();
   		}
   	}
-
+*/
 /*
     if(mState == BEFOREANGLETRACE){
   		K_THETADOT = 9.5;
@@ -132,7 +130,7 @@ bool TestDriver::drive()
   	}
     
 */
-    
+/*    
     //// ライントレーステスト
     // mLineTrace.setForward(50);
     // mLineTrace.execute();
@@ -148,6 +146,7 @@ bool TestDriver::drive()
     //     mState = 0;
     // }
     // mAngleTrace.execute();
+*/
 /*
 	  	if(balanceFlag){
   		K_THETADOT = 8.5;
@@ -188,19 +187,3 @@ bool TestDriver::drive()
 
     return true;
 }
-/*
-void TestDriver::mTail_control(signed int angle)
-{
-  float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; 
-  if (pwm > PWM_ABS_MAX)
-  {
-    pwm = PWM_ABS_MAX;
-  }
-  else if (pwm < -PWM_ABS_MAX)
-  {
-    pwm = -PWM_ABS_MAX;
-  }
-
-  nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
-}
-*/

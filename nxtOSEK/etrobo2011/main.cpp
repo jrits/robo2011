@@ -37,7 +37,7 @@ static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 /* sample_c2マクロ */
 #define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
 /* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 95 /* 完全停止時の角度[度] */
+#define TAIL_ANGLE_STAND_UP 75 /* 完全停止時の角度[度] */
 #define TAIL_ANGLE_DRIVE    2 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
@@ -103,7 +103,7 @@ bool gDoSonar = false; //!< ソナーセンサ発動フラグ
 int gSonarDistance = 255; //!< ソナーセンサの結果
 bool gSonarIsDetected = false; //!< 衝立検知の結果
 bool gTouchStarter = false; //!< タッチセンサ押下フラグ
-
+int counter = 0;
 
 /*
  * Sonarタスク
@@ -180,12 +180,11 @@ TASK(TaskDrive)
   signed char forward;      /* 前後進命令 */
   signed char turn;         /* 旋回命令 */
   signed char pwm_L, pwm_R; /* 左右モータPWM出力 */
-  //一時しのぎ時間フラグ
   
 
 	while(1)
   {
-//    tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
+    tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
     if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1)
     {
       break; /* タッチセンサが押された */
@@ -200,7 +199,7 @@ TASK(TaskDrive)
   static bool found_something = false;
   while(1)
   {
-//    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
 
       /* 倒立振子制御(forward = 0, turn = 0で静止バランス) */
   	bool balanceFlag = true;
@@ -218,7 +217,14 @@ TASK(TaskDrive)
 //      nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100～100) */
 //      nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100～100) */
 //  	}
-   mSeesawTestDriver.drive();
+  		mStandupDriver.setTargetTailAngle(114);
+		if(mStandupDriver.drive() == true){
+  			mAngleTrace.setForward(30);
+			mAngleTrace.setTargetAngle(180);
+			mAngleTrace.execute();
+		}
+  	counter++;
+//   mSeesawTestDriver.drive();
    systick_wait_ms(4); /* 4msecウェイト */
   }
 }

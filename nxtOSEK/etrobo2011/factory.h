@@ -32,6 +32,8 @@
 #include "VirtualLineTrace.h"
 #include "SlowdownSkill.h"
 #include "StopSkill.h"
+#include "StandupDriver.h"
+
 // ƒhƒ‰ƒCƒo
 #include "Driver.h"
 #include "NormalDriver.h"
@@ -97,6 +99,8 @@ extern VirtualLineTrace mVirtualLineTrace;
 extern SlowdownSkill mSlowdownSkill;
 extern StopSkill mStopSkill;
 extern CoordinateStop mCoordinateStop;
+extern StandupDriver mStandupDriver;
+
 // Driver
 extern NormalDriver mNormalDriver;
 extern SeesawDriver mSeesawDriver;
@@ -107,6 +111,7 @@ extern MysteryDriver mMysteryDriver;
 extern InGarageDriver mInGarageDriver;
 extern TestDriver mTestDriver;
 extern TestDriver mSeesawTestDriver;
+
 // Course
 extern Course *mCourse;
 extern InCourse mInCourse;

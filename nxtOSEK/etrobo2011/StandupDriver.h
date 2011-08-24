@@ -1,10 +1,10 @@
 ///////////////////////////////////////////////////////////
-//  TestDriver.h
-//  Definition of the Class TestDriver
+//  StandupDriver.h
+//  Definition of the Class StandupDriver
 //  Created on:      10-9-2010 19:43:43
 ///////////////////////////////////////////////////////////
-#ifndef TESTDRIVER_H_
-#define TESTDRIVER_H_
+#ifndef StandupDriver_H_
+#define StandupDriver_H_
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
 
@@ -12,25 +12,24 @@
 #include "Driver.h"
 
 /**
- * テストドライバ
+ * スタンドアップドライバ
  */
-class TestDriver : public Driver
+class StandupDriver : public Skill
 { 
 public:
 		enum eSubSection {
         INIT = -1,
         TAILPUSH,
-        STOPTAILPUSH
+        STOPTAILPUSH,
+		FINISH
     };
-	TestDriver();
-	~TestDriver(){}
+	StandupDriver();
+	~StandupDriver(){}
     bool drive();
-//	void mTail_control(signed int angle);
-	int mState;
-	int SSC;//State Switch Counter
-	float beforeRMH; //状態変化時のモータ回転角度（積算値）
-	signed char mPwm_L;
-	signed char mPwm_R;
+	int mState;//状態遷移変数
+	int mCounter;//停止用カウンター
+	float mTargetTailAngle;
+	void setTargetTailAngle(float targetTailAngle);//尻尾の目標角度
 };
 
 #endif

@@ -52,6 +52,7 @@ VirtualLineTrace mVirtualLineTrace;
 SlowdownSkill mSlowdownSkill;
 StopSkill mStopSkill;
 CoordinateStop mCoordinateStop; // @obsolete
+
 // Driver
 NormalDriver mNormalDriver;
 SeesawDriver mSeesawDriver;
@@ -62,6 +63,7 @@ MysteryDriver mMysteryDriver;
 InGarageDriver mInGarageDriver;
 TestDriver mTestDriver;
 TestDriver mSeesawTestDriver;
+StandupDriver mStandupDriver;
 
 // Posture
 Posture mPosture(mLeftMotor,mRightMotor,mTailMotor);
