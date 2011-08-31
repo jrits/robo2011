@@ -9,16 +9,16 @@
 #include "struct.h"
 
 /**
- * Œ¸‘¬ƒXƒLƒ‹
+ * æ¸›é€Ÿã‚¹ã‚­ãƒ«
  *
- * ƒXƒLƒ‹‚ÉŒ¸‘¬‹@\‚ð’Ç‰Á‚·‚é Decorator ƒNƒ‰ƒXB
+ * ã‚¹ã‚­ãƒ«ã«æ¸›é€Ÿæ©Ÿæ§‹ã‚’è¿½åŠ ã™ã‚‹ Decorator ã‚¯ãƒ©ã‚¹ã€‚
  */
 class SlowdownSkill : public Skill
 {
-    Skill *mSkill;         //!< Œ¸‘¬‹@\‚ð’Ç‰Á‚·‚éƒXƒLƒ‹B
-    float mMinimumForward; //!< Œ¸‘¬Å’á‘¬“x(ƒfƒtƒHƒ‹ƒg10)
-    float mTargetDistance; //!< ’âŽ~–Ú•W‹——£(mm)
-    float mAllowableError; //!< ‹–—eƒGƒ‰[’l(mm)
+    Skill *mSkill;         //!< æ¸›é€Ÿæ©Ÿæ§‹ã‚’è¿½åŠ ã™ã‚‹ã‚¹ã‚­ãƒ«ã€‚
+    float mMinimumForward; //!< æ¸›é€Ÿæœ€ä½Žé€Ÿåº¦(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ10)
+    float mTargetDistance; //!< åœæ­¢ç›®æ¨™è·é›¢(mm)
+    float mAllowableError; //!< è¨±å®¹ã‚¨ãƒ©ãƒ¼å€¤(mm)
 public:
 	SlowdownSkill();
 	~SlowdownSkill(){}

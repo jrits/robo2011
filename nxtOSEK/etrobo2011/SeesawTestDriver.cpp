@@ -10,14 +10,14 @@
 #include "Speaker.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 TestDriver::TestDriver()
 {
-    mState = BEFOREANGLETRACE; // ‰Šú‰»ó‘Ô
+    mState = BEFOREANGLETRACE; // åˆæœŸåŒ–çŠ¶æ…‹
 	SSC = 0;//State Switch Counter
-	beforeRMH = 0.0; //ó‘Ô•Ï‰»‚Ìƒ‚[ƒ^‰ñ“]Šp“xiÏZ’lj
-	mPwm_L = mPwm_R = 0; /* ¶‰Eƒ‚[ƒ^PWMo—Í */
+	beforeRMH = 0.0; //çŠ¶æ…‹å¤‰åŒ–æ™‚ã®ãƒ¢ãƒ¼ã‚¿å›è»¢è§’åº¦ï¼ˆç©ç®—å€¤ï¼‰
+	mPwm_L = mPwm_R = 0; /* å·¦å³ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ› */
 
 }
 
@@ -25,7 +25,7 @@ TestDriver::TestDriver()
 bool TestDriver::drive()
 {
 // SORA    
-#if 0 // ƒƒO‘—M
+#if 0 // ãƒ­ã‚°é€ä¿¡
     LOGGER_SEND = 2;
 	LOGGER_DATAS08[0] = (S8)(mLineDetector.detect());
 	LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
@@ -91,16 +91,16 @@ bool TestDriver::drive()
   	}else if(mState == AFTERLINETRACE){
   	}
     
-    //// ƒ‰ƒCƒ“ƒgƒŒ[ƒXƒeƒXƒg
+    //// ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ†ã‚¹ãƒˆ
     // mLineTrace.setForward(50);
     // mLineTrace.execute();
-    // mStraightDetector.detect(); // ’¼üŒŸ’mƒeƒXƒg
+    // mStraightDetector.detect(); // ç›´ç·šæ¤œçŸ¥ãƒ†ã‚¹ãƒˆ
 
-    //// Œü‚«ƒgƒŒ[ƒXƒeƒXƒg
+    //// å‘ããƒˆãƒ¬ãƒ¼ã‚¹ãƒ†ã‚¹ãƒˆ
     // if (mState == -1) {
-    //     // ŠJnŒü‚«
+    //     // é–‹å§‹å‘ã
     //     mGps.adjustDirection(180);
-    //     // –Ú•WŒü‚«
+    //     // ç›®æ¨™å‘ã
     //     mAngleTrace.setTargetAngle(180);
     //     mAngleTrace.setForward(50);
     //     mState = 0;

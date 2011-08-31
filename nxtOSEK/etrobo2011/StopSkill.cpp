@@ -2,31 +2,31 @@
 #include "factory.h"
 
 /**
- * ѓRѓ“ѓXѓgѓ‰ѓNѓ^
+ * г‚ігѓіг‚№гѓ€гѓ©г‚Їг‚ї
  */
 StopSkill::StopSkill() :
     Skill()
 {
     mTargetDistance = 0.0; // mm
     mAllowableError = 0.0;
-    mSkill = &mLineTrace; // ‚Ж‚и‚ ‚¦‚ё
+    mSkill = &mLineTrace; // гЃЁг‚ЉгЃ‚гЃ€гЃљ
 }
 
 /**
- * ‹}’вЋ~‹@Ќ\‚р’З‰Б‚·‚йѓXѓLѓ‹‚рђЭ’и‚·‚й
+ * жЂҐеЃњж­ўж©џж§‹г‚’иїЅеЉ гЃ™г‚‹г‚№г‚­гѓ«г‚’иЁ­е®љгЃ™г‚‹
  *
- * @param[in] skill ‹}’вЋ~‹@Ќ\‚р’З‰Б‚і‚к‚йѓXѓLѓ‹
+ * @param[in] skill жЂҐеЃњж­ўж©џж§‹г‚’иїЅеЉ гЃ•г‚Њг‚‹г‚№г‚­гѓ«
  */
 void StopSkill::setSkill(Skill *skill)
 {
-    if (skill == 0) skill = &mLineTrace; // ‚Ж‚и‚ ‚¦‚ё
+    if (skill == 0) skill = &mLineTrace; // гЃЁг‚ЉгЃ‚гЃ€гЃљ
     mSkill = skill;
 }
 
 /**
- * ’вЋ~–Ъ•W‹——Ј‚рђЭ’и‚·‚йЃB
+ * еЃњж­ўз›®жЁ™и·ќй›ўг‚’иЁ­е®љгЃ™г‚‹гЂ‚
  *
- * @param[in] targetDistance ’вЋ~–Ъ•W‹——Ј(Њ»ЌЭ‚М€К’u‚©‚з‚М‘Љ‘О‹——Ј)
+ * @param[in] targetDistance еЃњж­ўз›®жЁ™и·ќй›ў(зЏѕењЁгЃ®дЅЌзЅ®гЃ‹г‚‰гЃ®з›ёеЇѕи·ќй›ў)
  */
 void StopSkill::setTargetDistance(float targetDistance)
 {
@@ -34,9 +34,9 @@ void StopSkill::setTargetDistance(float targetDistance)
 };
 
 /**
- * ‹–—eѓGѓ‰Ѓ[’l‚рђЭ’и‚·‚йЃB
+ * иЁ±е®№г‚Ёгѓ©гѓјеЂ¤г‚’иЁ­е®љгЃ™г‚‹гЂ‚
  *
- * @param[in] allowableError ‹–—eѓGѓ‰Ѓ[’l
+ * @param[in] allowableError иЁ±е®№г‚Ёгѓ©гѓјеЂ¤
  */
 void StopSkill::setAllowableError(float allowableError)
 {
@@ -44,21 +44,21 @@ void StopSkill::setAllowableError(float allowableError)
 };
 
 /**
- * –Ъ•W‹——Ј‚ЖЊ»ЌЭ‹——Ј‚©‚зЃA‹}’вЋ~“®Ќм‚рЌs‚¤‚М‚Й“KђШ‚И‘–ЌsѓxѓNѓgѓ‹‚рЊvЋZ‚·‚й
+ * з›®жЁ™и·ќй›ўгЃЁзЏѕењЁи·ќй›ўгЃ‹г‚‰гЂЃжЂҐеЃњж­ўе‹•дЅњг‚’иЎЊгЃ†гЃ®гЃ«йЃ©е€‡гЃЄиµ°иЎЊгѓ™г‚Їгѓ€гѓ«г‚’иЁ€з®—гЃ™г‚‹
  *
- * @return ‘–ЌsѓxѓNѓgѓ‹
+ * @return иµ°иЎЊгѓ™г‚Їгѓ€гѓ«
  */
 VectorT<float> StopSkill::calcCommand()
 {
-    // ѓXѓLѓ‹‚М——pЃBѓtѓHѓЏЃ[ѓh’l‚р(•K—v‚Є‚ ‚к‚О)ЏгЏ‘‚«‚·‚йЃB
+    // г‚№г‚­гѓ«гЃ®е€©з”ЁгЂ‚гѓ•г‚©гѓЇгѓјгѓ‰еЂ¤г‚’(еї…и¦ЃгЃЊгЃ‚г‚ЊгЃ°)дёЉж›ёгЃЌгЃ™г‚‹гЂ‚
     VectorT<float> command = mSkill->calcCommand();
 
-    // ѓtѓHѓЏЃ[ѓh’l‚Мђ§ЊдЃB–Ъ•W’n“_‚Й‚Ѕ‚З‚и’…‚ў‚Ѕ‚зѓtѓHѓЏЃ[ѓh’l0
+    // гѓ•г‚©гѓЇгѓјгѓ‰еЂ¤гЃ®е€¶еѕЎгЂ‚з›®жЁ™ењ°з‚№гЃ«гЃџгЃ©г‚ЉзќЂгЃ„гЃџг‚‰гѓ•г‚©гѓЇгѓјгѓ‰еЂ¤0
     if (isArrived()) command.mX = 0;
 
 #if 0
-    //DESK_DEBUG = true; // ѓ‚Ѓ[ѓ^‚р‰с‚і‚И‚ўѓfѓoѓO
-    static int count = 0; // ЌЎ‚ѕ‚Ї static
+    //DESK_DEBUG = true; // гѓўгѓјг‚їг‚’е›ћгЃ•гЃЄгЃ„гѓ‡гѓђг‚°
+    static int count = 0; // д»ЉгЃ гЃ‘ static
     float diff = mTargetDistance -  mGps.getDistance();
     if (count++ % 25 == 0) {
         Lcd lcd;
@@ -77,16 +77,16 @@ VectorT<float> StopSkill::calcCommand()
 }
 
 /**
- * –Ъ•W‹——Ј‚Й“ћ’…‚µ‚Ѕ‚©
+ * з›®жЁ™и·ќй›ўгЃ«е€°зќЂгЃ—гЃџгЃ‹
  *
- * @retval true “ћ’…‚µ‚Ѕ
- * @retval false ‚Ь‚ѕ
+ * @retval true е€°зќЂгЃ—гЃџ
+ * @retval false гЃѕгЃ 
  */
 bool StopSkill::isArrived()
 {
-    // –Ъ•W‹——Ј‚ЖЊ»ЌЭ‹——Ј‚Ж‚МЌ·
+    // з›®жЁ™и·ќй›ўгЃЁзЏѕењЁи·ќй›ўгЃЁгЃ®е·®
     float diff = mTargetDistance -  mGps.getDistance();
 
-    // ‹–—e”Н€Н“а‚©‚р‚ри‡’l‚Й‚Д”»’и
+    // иЁ±е®№зЇ„е›Іе†…гЃ‹г‚’г‚’й–ѕеЂ¤гЃ«гЃ¦е€¤е®љ
     return (diff < mAllowableError);
 }

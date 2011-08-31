@@ -9,10 +9,10 @@
 #include "factory.h"
 
 /**
- * Õ“ËŒŸ’m‚·‚é
+ * è¡çªæ¤œçŸ¥ã™ã‚‹
  *
- * @retval true ŒŸ’m‚µ‚½
- * @retval false ŒŸ’m‚µ‚È‚©‚Á‚½
+ * @retval true æ¤œçŸ¥ã—ãŸ
+ * @retval false æ¤œçŸ¥ã—ãªã‹ã£ãŸ
  */
 bool WallDetector::detect(){
 //	float accR = mRightMotorSpeedHistory.calcDifference();

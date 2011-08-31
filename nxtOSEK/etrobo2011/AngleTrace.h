@@ -8,13 +8,13 @@
 #include "Skill.h"
 
 /**
- * Šp“xƒgƒŒ[ƒXƒXƒLƒ‹
+ * è§’åº¦ãƒˆãƒ¬ãƒ¼ã‚¹ã‚¹ã‚­ãƒ«
  */
 class AngleTrace : public Skill
 {
 private:
-	float mTargetAngle; //!< –Ú•WŠp“x
-    float mAllowableError; //!< ‹–—eŒë·Šp“xB•ûŒü“]Š·‚Ég‚¤B [0, 180]
+	float mTargetAngle; //!< ç›®æ¨™è§’åº¦
+    float mAllowableError; //!< è¨±å®¹èª¤å·®è§’åº¦ã€‚æ–¹å‘è»¢æ›ã«ä½¿ã†ã€‚ [0, 180]
 public:
 	AngleTrace();
 	~AngleTrace(){}

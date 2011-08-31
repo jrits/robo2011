@@ -9,13 +9,13 @@
 #include "struct.h"
 
 /**
- * À•Ww’è‘–sƒXƒLƒ‹
+ * åº§æ¨™æŒ‡å®šèµ°è¡Œã‚¹ã‚­ãƒ«
  */
 class CoordinateTrace : public Skill
 {
 private:
-	Point mTargetCoordinate; //!< –Ú•WÀ•W
-    float mAllowableError;   //!< ‹–—eƒGƒ‰[’l(mm)
+	Point mTargetCoordinate; //!< ç›®æ¨™åº§æ¨™
+    float mAllowableError;   //!< è¨±å®¹ã‚¨ãƒ©ãƒ¼å€¤(mm)
 public:
 	CoordinateTrace();
 	~CoordinateTrace(){}

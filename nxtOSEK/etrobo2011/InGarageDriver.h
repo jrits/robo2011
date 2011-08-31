@@ -8,13 +8,13 @@
 #include "Driver.h"
 
 /**
- * ƒCƒ“ƒR[ƒXƒKƒŒ[ƒWEƒCƒ“ƒhƒ‰ƒCƒo
+ * ã‚¤ãƒ³ã‚³ãƒ¼ã‚¹ã‚¬ãƒ¬ãƒ¼ã‚¸ãƒ»ã‚¤ãƒ³ãƒ‰ãƒ©ã‚¤ãƒ
  */
 class InGarageDriver : public Driver
 {
 private:
     /**
-     * ƒTƒu‹æŠÔ
+     * ã‚µãƒ–åŒºé–“
      */
     enum eSubSection {
         INIT = -1,
@@ -23,8 +23,8 @@ private:
     	PREPAREENTERGARAGE,
     	ENTERGARAGE,
     };
-    eSubSection mState; //!< ó‘Ô
-    int mTimeCounter;   //!< ƒ^ƒCƒ€ƒJƒEƒ“ƒ^
+    eSubSection mState; //!< çŠ¶æ…‹
+    int mTimeCounter;   //!< ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
 public:
 	InGarageDriver();
 	~InGarageDriver(){}

@@ -18,18 +18,18 @@ extern "C"
 };
 
 /**
- * §Œä‹@Ší(ƒnƒ“ƒhƒ‹AƒAƒNƒZƒ‹AƒuƒŒ[ƒL)
+ * åˆ¶å¾¡æ©Ÿå™¨(ãƒãƒ³ãƒ‰ãƒ«ã€ã‚¢ã‚¯ã‚»ãƒ«ã€ãƒ–ãƒ¬ãƒ¼ã‚­)
  *
- * Skill ‚É‚æ‚Á‚Ä‘€ì‚³‚ê‚éB
+ * Skill ã«ã‚ˆã£ã¦æ“ä½œã•ã‚Œã‚‹ã€‚
  */
 class Activator
 {
 private:
-	Motor &mLeftMotor; //!< ¶ƒ‚[ƒ^
-	Motor &mRightMotor; //!< ‰Eƒ‚[ƒ^
-	GyroSensor &mGyroSensor; //!< ƒWƒƒƒCƒƒZƒ“ƒT
-	Nxt &mNxt; //!< NXTƒIƒuƒWƒFƒNƒg
-    int mGyroOffset; //!< ƒWƒƒƒCƒƒZƒ“ƒTƒIƒtƒZƒbƒg’l
+	Motor &mLeftMotor; //!< å·¦ãƒ¢ãƒ¼ã‚¿
+	Motor &mRightMotor; //!< å³ãƒ¢ãƒ¼ã‚¿
+	GyroSensor &mGyroSensor; //!< ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µ
+	Nxt &mNxt; //!< NXTã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    int mGyroOffset; //!< ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 public:
 	Activator(Motor &leftMotor, 
               Motor &rightMotor, 
@@ -41,6 +41,6 @@ public:
 	void stop();
 	void slow();
 private:
-    // Vector<S8> balanceControl(VectorT<F32> command); // balancer_control ‚ğ’¼‚ÉŒÄ‚Ô‚±‚Æ‚É
+    // Vector<S8> balanceControl(VectorT<F32> command); // balancer_control ã‚’ç›´ã«å‘¼ã¶ã“ã¨ã«
 };
 #endif

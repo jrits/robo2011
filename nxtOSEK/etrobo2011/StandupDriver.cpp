@@ -9,12 +9,12 @@
 #include "Speaker.h"
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 StandupDriver::StandupDriver()
 {
-    mState = INIT; // ‰Šú‰»ó‘Ô
-	mTargetTailAngle = 0;//‰ŠúŠp“x
+    mState = INIT; // åˆæœŸåŒ–çŠ¶æ…‹
+	mTargetTailAngle = 0;//åˆæœŸè§’åº¦
 	mCounter = 0;
 }
 
@@ -22,22 +22,22 @@ bool StandupDriver::drive()
 {
 	mWallDetector.setThreshold(100);
     if(mState == INIT){
-        nxt_motor_set_count(NXT_PORT_A, mTailMotor.getCount()); //Œ»İ‚ÌK”ö‚ÌŠp“x‚ğˆê“x‚¾‚¯æ“¾A•Û
+        nxt_motor_set_count(NXT_PORT_A, mTailMotor.getCount()); //ç¾åœ¨ã®å°»å°¾ã®è§’åº¦ã‚’ä¸€åº¦ã ã‘å–å¾—ã€ä¿æŒ
         mState = TAILPUSH;
     }
     if(mState == TAILPUSH){
-        if(mTailMotor.getCount() <= mTargetTailAngle){ //K”ö‚ğ–Ú•WŠp“x‚Ü‚Å“®‚©‚·
+        if(mTailMotor.getCount() <= mTargetTailAngle){ //å°»å°¾ã‚’ç›®æ¨™è§’åº¦ã¾ã§å‹•ã‹ã™
             nxt_motor_set_speed(NXT_PORT_A, 60, 1);
         }else{
-            nxt_motor_set_speed(NXT_PORT_A, 0, 1);//ˆê“xK”ö‚ğ~‚ß‚é
+            nxt_motor_set_speed(NXT_PORT_A, 0, 1);//ä¸€åº¦å°»å°¾ã‚’æ­¢ã‚ã‚‹
             mState = STOPTAILPUSH;
         }
    	}else if(mState == STOPTAILPUSH){
-        if(mTailMotor.getCount() >= 2){//K”ö‚ğ‰Šúó‘Ô‚É–ß‚·
+        if(mTailMotor.getCount() >= 2){//å°»å°¾ã‚’åˆæœŸçŠ¶æ…‹ã«æˆ»ã™
             nxt_motor_set_speed(NXT_PORT_A, -100, 1);
         }
-		if(mCounter <= 500){//2•bŠÔˆÀ’è‚³‚¹‚é
-		    //ƒAƒ“ƒOƒ‹ƒgƒŒ[ƒX‚ğg‚Á‚Ä‚»‚Ìê‚É—§‚Â
+		if(mCounter <= 500){//2ç§’é–“å®‰å®šã•ã›ã‚‹
+		    //ã‚¢ãƒ³ã‚°ãƒ«ãƒˆãƒ¬ãƒ¼ã‚¹ã‚’ä½¿ã£ã¦ãã®å ´ã«ç«‹ã¤
 			mAngleTrace.setForward(0);
 			mAngleTrace.setTargetAngle(180);
 			mAngleTrace.execute();
@@ -50,9 +50,9 @@ bool StandupDriver::drive()
 }
 
 /**
- * K”ö‚Ì–Ú•WŠp“x‚ğw’è‚·‚é
+ * å°»å°¾ã®ç›®æ¨™è§’åº¦ã‚’æŒ‡å®šã™ã‚‹
  *
- * @return ‚È‚µ
+ * @return ãªã—
  */
 void StandupDriver::setTargetTailAngle(float targetTailAngle)
 {

@@ -12,14 +12,14 @@
 #include "History.h"
 
 /**
- * 転倒検知
+ * 霆｢蛟呈､懃衍
  */
 class FailDetector : public Detector
 {
 private:
-    int mTimeCounter; //!< タイムカウンタ
-    int mPrevLeftCount; //!< 前回の左モータエンコーダ値
-    int mPrevRightCount; //!< 前回の右モータエンコーダ値
+    int mTimeCounter; //!< 繧ｿ繧､繝繧ｫ繧ｦ繝ｳ繧ｿ
+    int mPrevLeftCount; //!< 蜑榊屓縺ｮ蟾ｦ繝｢繝ｼ繧ｿ繧ｨ繝ｳ繧ｳ繝ｼ繝蛟､
+    int mPrevRightCount; //!< 蜑榊屓縺ｮ蜿ｳ繝｢繝ｼ繧ｿ繧ｨ繝ｳ繧ｳ繝ｼ繝蛟､
     // int mSampleCount; // FAILSAFE_SAMPLECOUNT
     // int mThreshold; //!< FAILSAFE_THRESHOLD
 public:

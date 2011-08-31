@@ -5,14 +5,14 @@
 ///////////////////////////////////////////////////////////
 #ifndef StandupDriver_H_
 #define StandupDriver_H_
-#define P_GAIN             2.5F /* Š®‘S’â~—pƒ‚[ƒ^§Œä”ä—áŒW” */
-#define PWM_ABS_MAX          60 /* Š®‘S’â~—pƒ‚[ƒ^§ŒäPWMâ‘ÎÅ‘å’l */
+#define P_GAIN             2.5F /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡æ¯”ä¾‹ä¿‚æ•° */
+#define PWM_ABS_MAX          60 /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡PWMçµ¶å¯¾æœ€å¤§å€¤ */
 
 
 #include "Driver.h"
 
 /**
- * ƒXƒ^ƒ“ƒhƒAƒbƒvƒhƒ‰ƒCƒo
+ * ã‚¹ã‚¿ãƒ³ãƒ‰ã‚¢ãƒƒãƒ—ãƒ‰ãƒ©ã‚¤ãƒ
  */
 class StandupDriver : public Skill
 { 
@@ -26,10 +26,10 @@ public:
 	StandupDriver();
 	~StandupDriver(){}
     bool drive();
-	int mState;//ó‘Ô‘JˆÚ•Ï”
-	int mCounter;//’â~—pƒJƒEƒ“ƒ^[
+	int mState;//çŠ¶æ…‹é·ç§»å¤‰æ•°
+	int mCounter;//åœæ­¢ç”¨ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	float mTargetTailAngle;
-	void setTargetTailAngle(float targetTailAngle);//K”ö‚Ì–Ú•WŠp“x
+	void setTargetTailAngle(float targetTailAngle);//å°»å°¾ã®ç›®æ¨™è§’åº¦
 };
 
 #endif

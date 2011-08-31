@@ -3,9 +3,9 @@
 
 #include "struct.h"
 
-int NUM_MYSTERY_LINE_LL = 12;   //—v‘f”
+int NUM_MYSTERY_LINE_LL = 12;   //è¦ç´ æ•°
 
-ControlPoint MYSTERY_LINE_LL[]={    //GpsVisualizer‚©‚ç‚Ìƒf[ƒ^i¶-¶Žü‚è‚ÌƒR[ƒXã‚Ìƒ|ƒCƒ“ƒgj
+ControlPoint MYSTERY_LINE_LL[]={    //GpsVisualizerã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ï¼ˆå·¦-å·¦å‘¨ã‚Šã®ã‚³ãƒ¼ã‚¹ä¸Šã®ãƒã‚¤ãƒ³ãƒˆï¼‰
 	{3330, -3114, FP_NAN, 50, 60, FALSE}, 
 	{3450, -3057, FP_NAN, 50, 60, FALSE}, 
 	{3504, -2952, FP_NAN, 50, 60, FALSE}, 

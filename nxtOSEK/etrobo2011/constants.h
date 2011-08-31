@@ -52,11 +52,11 @@ extern float STOP_PID_KP;
 extern float STOP_PID_KI;
 extern float STOP_PID_KD;
 
-//“]“|ŒŸo
+//è»¢å€’æ¤œå‡º
 extern int FAILSAFE_SAMPLECOUNT;
 extern int FAILSAFE_THRESHOLD;
 
-//ŒŸ’mŒn
+//æ¤œçŸ¥ç³»
 extern float WALL_THRESHOLD;
 extern float DOWNSLOPE_THRESHOLD;
 
@@ -64,7 +64,7 @@ extern float DOWNSLOPE_THRESHOLD;
 extern float K_THETADOT;
 extern float K_PHIDOT;
 
-//BluetoothƒƒO‘—M
+//Bluetoothãƒ­ã‚°é€ä¿¡
 extern int LOGGER_SEND;
 extern S8  LOGGER_DATAS08[2];
 extern U16 LOGGER_DATAU16;
@@ -74,10 +74,10 @@ extern S32 LOGGER_DATAS32[4];
 //Activator
 extern bool DESK_DEBUG;
 
-//LineTraceƒtƒ‰ƒO
+//LineTraceãƒ•ãƒ©ã‚°
 extern bool gLineTrace;
 
-//ƒuƒŒ[ƒL‘–s(ÀŒ±’†)
+//ãƒ–ãƒ¬ãƒ¼ã‚­èµ°è¡Œ(å®Ÿé¨“ä¸­)
 extern int PWMR;
 extern int PWML;
 

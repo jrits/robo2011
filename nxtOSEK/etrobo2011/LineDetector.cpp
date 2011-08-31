@@ -6,37 +6,37 @@
 #include "constants.h"
 #include "factory.h"
 
-#define LINEDETECT_THRESHOLD 20 // ‚²ŒŸ’m‚µ‚È‚¢’ö“x‚É¬‚³‚¯‚ê‚Î—Ç‚¢
+#define LINEDETECT_THRESHOLD 20 // ã”æ¤œçŸ¥ã—ãªã„ç¨‹åº¦ã«å°ã•ã‘ã‚Œã°è‰¯ã„
 
 /**
- * ƒ‰ƒCƒ“‚ğŒŸ’m‚·‚é
+ * ãƒ©ã‚¤ãƒ³ã‚’æ¤œçŸ¥ã™ã‚‹
  *
- * @return ƒ‰ƒCƒ“ŒŸ’m‚ÌŒ‹‰Ê
+ * @return ãƒ©ã‚¤ãƒ³æ¤œçŸ¥ã®çµæœ
  */
 LineDetector::ePattern LineDetector::detect()
 {
     LineDetector::ePattern linePattern;
 
-    // Œõ•Ï‰»—Ê
+    // å…‰å¤‰åŒ–é‡
     float lightDiff = mLightHistory.calcDifference();
-    //lightDiff *= (100/FORWARD); // ‘¬“x‚ğl—¶‚É“ü‚ê‚é
+    //lightDiff *= (100/FORWARD); // é€Ÿåº¦ã‚’è€ƒæ…®ã«å…¥ã‚Œã‚‹
 
-    if (lightDiff >= LINEDETECT_THRESHOLD) { // ”’=>•ƒpƒ^[ƒ“
+    if (lightDiff >= LINEDETECT_THRESHOLD) { // ç™½=>é»’ãƒ‘ã‚¿ãƒ¼ãƒ³
         linePattern =  WHITE_TO_BLACK;
     }
-    else if (lightDiff <= (-1)*LINEDETECT_THRESHOLD) { // •Ë”’ƒpƒ^[ƒ“
+    else if (lightDiff <= (-1)*LINEDETECT_THRESHOLD) { // é»’â‡’ç™½ãƒ‘ã‚¿ãƒ¼ãƒ³
         linePattern = BLACK_TO_WHITE;
     }
-    // ‚±‚ê‚¾‚¯‚¾‚ÆŠDFŒŸ’m‚ª“ï‚µ‚¢B‚±‚Æ‚ª‚ ‚éB
-    else if (mLightHistory.get(LATEST) > LINE_THRESHOLD) { // •Ë•
+    // ã“ã‚Œã ã‘ã ã¨ç°è‰²æ¤œçŸ¥ãŒé›£ã—ã„ã€‚ã“ã¨ãŒã‚ã‚‹ã€‚
+    else if (mLightHistory.get(LATEST) > LINE_THRESHOLD) { // é»’â‡’é»’
         linePattern = ON_BLACK;
     }
-    else { // ”’Ë”’
+    else { // ç™½â‡’ç™½
         linePattern = ON_WHITE;
     }
 
 #if 0
-    // ƒƒO‘—M
+    // ãƒ­ã‚°é€ä¿¡
     LOGGER_SEND = 2;
 	LOGGER_DATAS08[0] = (S8)(linePattern);
 	LOGGER_DATAS16[0] = (S16)(mLightHistory.get(LATEST));

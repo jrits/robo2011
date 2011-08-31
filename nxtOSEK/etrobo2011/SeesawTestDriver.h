@@ -5,14 +5,14 @@
 ///////////////////////////////////////////////////////////
 #ifndef TESTDRIVER_H_
 #define TESTDRIVER_H_
-#define P_GAIN             2.5F /* Š®‘S’â~—pƒ‚[ƒ^§Œä”ä—áŒW” */
-#define PWM_ABS_MAX          60 /* Š®‘S’â~—pƒ‚[ƒ^§ŒäPWMâ‘ÎÅ‘å’l */
+#define P_GAIN             2.5F /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡æ¯”ä¾‹ä¿‚æ•° */
+#define PWM_ABS_MAX          60 /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡PWMçµ¶å¯¾æœ€å¤§å€¤ */
 
 
 #include "Driver.h"
 
 /**
- * ƒeƒXƒgƒhƒ‰ƒCƒo
+ * ãƒ†ã‚¹ãƒˆãƒ‰ãƒ©ã‚¤ãƒ
  */
 class TestDriver : public Driver
 {
@@ -33,7 +33,7 @@ public:
 //	void mTail_control(signed int angle);
 	int mState;
 	int SSC;//State Switch Counter
-	float beforeRMH; //ó‘Ô•Ï‰»‚Ìƒ‚[ƒ^‰ñ“]Šp“xiÏZ’lj
+	float beforeRMH; //çŠ¶æ…‹å¤‰åŒ–æ™‚ã®ãƒ¢ãƒ¼ã‚¿å›è»¢è§’åº¦ï¼ˆç©ç®—å€¤ï¼‰
 	signed char mPwm_L;
 	signed char mPwm_R;
 };

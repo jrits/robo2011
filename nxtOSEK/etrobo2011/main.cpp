@@ -1,7 +1,7 @@
 //
-// ƒtƒ@ƒCƒ‹–¼ : main.cpp
+// ãƒ•ã‚¡ã‚¤ãƒ«å : main.cpp
 //
-//	ŠT—v       : 2—Ö“|—§Uqƒ‰ƒCƒ“ƒgƒŒ[ƒXƒƒ{ƒbƒg‚ÌTOPPERS/ATK(OSEK)—pƒƒCƒ“ƒvƒƒOƒ‰ƒ€
+//	æ¦‚è¦       : 2è¼ªå€’ç«‹æŒ¯å­ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ­ãƒœãƒƒãƒˆã®TOPPERS/ATK(OSEK)ç”¨ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 //
 
 #include "constants.h"
@@ -11,7 +11,7 @@ using namespace ecrobot;
 extern "C"
 {
 #if 0
-} // ƒGƒfƒBƒ^‚Ì©“®ƒCƒ“ƒfƒ“ƒg‹@”\‚ğ‚²‚Ü‚©‚·ƒnƒbƒN
+} // ã‚¨ãƒ‡ã‚£ã‚¿ã®è‡ªå‹•ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ©Ÿèƒ½ã‚’ã”ã¾ã‹ã™ãƒãƒƒã‚¯
 #endif
 
 #include "kernel.h"
@@ -20,29 +20,29 @@ extern "C"
 #include "Speaker.h"
 
 /**
- * Bluetooth Ú‘±
+ * Bluetooth æ¥ç¶š
  *
- * ‚±‚ÌŠÖ”‚Åw’è‚µ‚½BluetoothƒfƒoƒCƒX–¼‚ªÚ‘±æƒƒ{ƒbƒg‚ÌƒfƒoƒCƒX–¼‚Éİ’è‚³‚ê‚Ü‚·B
+ * ã“ã®é–¢æ•°ã§æŒ‡å®šã—ãŸBluetoothãƒ‡ãƒã‚¤ã‚¹åãŒæ¥ç¶šå…ˆãƒ­ãƒœãƒƒãƒˆã®ãƒ‡ãƒã‚¤ã‚¹åã«è¨­å®šã•ã‚Œã¾ã™ã€‚
  *
- * @param[in] lcd LcdƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
- * @param[in] bt_name BluetoothƒfƒoƒCƒX–¼
+ * @param[in] lcd Lcdã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param[in] bt_name Bluetoothãƒ‡ãƒã‚¤ã‚¹å
  */
 static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 
-/* ‰º‹L‚Ìƒ}ƒNƒ‚ÍŒÂ‘Ì/ŠÂ‹«‚É‡‚í‚¹‚Ä•ÏX‚·‚é•K—v‚ª‚ ‚è‚Ü‚· */
-/* sample_c1ƒ}ƒNƒ */
-#define GYRO_OFFSET  582 /* ƒWƒƒƒCƒƒZƒ“ƒTƒIƒtƒZƒbƒg’l(Šp‘¬“x0[deg/sec]) */
-#define LIGHT_WHITE	 540 /* ”’F‚ÌŒõƒZƒ“ƒT’l */
-#define LIGHT_BLACK	 745 /* •F‚ÌŒõƒZƒ“ƒT’l */
-/* sample_c2ƒ}ƒNƒ */
-#define SONAR_ALERT_DISTANCE 30 /* ’´‰¹”gƒZƒ“ƒT‚É‚æ‚éáŠQ•¨ŒŸ’m‹——£[cm] */
-/* sample_c3ƒ}ƒNƒ */
-#define TAIL_ANGLE_STAND_UP 75 /* Š®‘S’â~‚ÌŠp“x[“x] */
-#define TAIL_ANGLE_DRIVE    2 /* ƒoƒ‰ƒ“ƒX‘–s‚ÌŠp“x[“x] */
-#define P_GAIN             2.5F /* Š®‘S’â~—pƒ‚[ƒ^§Œä”ä—áŒW” */
-#define PWM_ABS_MAX          60 /* Š®‘S’â~—pƒ‚[ƒ^§ŒäPWMâ‘ÎÅ‘å’l */
+/* ä¸‹è¨˜ã®ãƒã‚¯ãƒ­ã¯å€‹ä½“/ç’°å¢ƒã«åˆã‚ã›ã¦å¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ */
+/* sample_c1ãƒã‚¯ãƒ­ */
+#define GYRO_OFFSET  582 /* ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤(è§’é€Ÿåº¦0[deg/sec]æ™‚) */
+#define LIGHT_WHITE	 540 /* ç™½è‰²ã®å…‰ã‚»ãƒ³ã‚µå€¤ */
+#define LIGHT_BLACK	 745 /* é»’è‰²ã®å…‰ã‚»ãƒ³ã‚µå€¤ */
+/* sample_c2ãƒã‚¯ãƒ­ */
+#define SONAR_ALERT_DISTANCE 30 /* è¶…éŸ³æ³¢ã‚»ãƒ³ã‚µã«ã‚ˆã‚‹éšœå®³ç‰©æ¤œçŸ¥è·é›¢[cm] */
+/* sample_c3ãƒã‚¯ãƒ­ */
+#define TAIL_ANGLE_STAND_UP 75 /* å®Œå…¨åœæ­¢æ™‚ã®è§’åº¦[åº¦] */
+#define TAIL_ANGLE_DRIVE    2 /* ãƒãƒ©ãƒ³ã‚¹èµ°è¡Œæ™‚ã®è§’åº¦[åº¦] */
+#define P_GAIN             2.5F /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡æ¯”ä¾‹ä¿‚æ•° */
+#define PWM_ABS_MAX          60 /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿åˆ¶å¾¡PWMçµ¶å¯¾æœ€å¤§å€¤ */
 
-/* ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ */
+/* é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ */
 static int sonar_alert(void);
 static void tail_control(signed int angle);
 static int sonar_alert(void);
@@ -68,49 +68,49 @@ DeclareAlarm(AlarmLogger);
 
 
 //=============================================================================
-// ŠÖ”–¼	: user_1ms_isr_type2
-// ˆø”		: ‚È‚µ
-// –ß‚è’l	: ‚È‚µ
-// ŠT—v		: 1msecüŠúŠ„‚è‚İƒtƒbƒNŠÖ”(OSEK ISR type2ƒJƒeƒSƒŠ)
+// é–¢æ•°å	: user_1ms_isr_type2
+// å¼•æ•°		: ãªã—
+// æˆ»ã‚Šå€¤	: ãªã—
+// æ¦‚è¦		: 1msecå‘¨æœŸå‰²ã‚Šè¾¼ã¿ãƒ•ãƒƒã‚¯é–¢æ•°(OSEK ISR type2ã‚«ãƒ†ã‚´ãƒª)
 //
 void user_1ms_isr_type2(void)
 {
   (void)SignalCounter(SysTimerCnt); // Increment System Timer Count
-  SleeperMonitor(); // ClockƒNƒ‰ƒX‚Ü‚½‚ÍI2CƒfƒoƒCƒXƒNƒ‰ƒXg—p‚É•K—v
-  // ENTER ƒ{ƒ^ƒ“‚Å bluetooth Ú‘±‚ğƒLƒƒƒ“ƒZƒ‹
+  SleeperMonitor(); // Clockã‚¯ãƒ©ã‚¹ã¾ãŸã¯I2Cãƒ‡ãƒã‚¤ã‚¹ã‚¯ãƒ©ã‚¹ä½¿ç”¨æ™‚ã«å¿…è¦
+  // ENTER ãƒœã‚¿ãƒ³ã§ bluetooth æ¥ç¶šã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
   if (mNxt.getButtons() == Nxt::ENTR_ON && !mBluetooth.isConnected()) {
     mBluetooth.cancelWaitForConnection();
   }
 }
 
-// ECRobot C API ƒfƒoƒCƒX‚Ì‰Šú‰»
+// ECRobot C API ãƒ‡ãƒã‚¤ã‚¹ã®åˆæœŸåŒ–
 void ecrobot_device_initialize(void)
 {
-  ecrobot_set_light_sensor_active(NXT_PORT_S3); /* ŒõƒZƒ“ƒTÔFLED‚ğON */
-  ecrobot_init_sonar_sensor(NXT_PORT_S2); /* ’´‰¹”gƒZƒ“ƒT(I2C’ÊM)‚ğ‰Šú‰» */
-  // nxt_motor_set_count(NXT_PORT_A, 0); /* Š®‘S’â~—pƒ‚[ƒ^ƒGƒ“ƒR[ƒ_ƒŠƒZƒbƒg */
+  ecrobot_set_light_sensor_active(NXT_PORT_S3); /* å…‰ã‚»ãƒ³ã‚µèµ¤è‰²LEDã‚’ON */
+  ecrobot_init_sonar_sensor(NXT_PORT_S2); /* è¶…éŸ³æ³¢ã‚»ãƒ³ã‚µ(I2Cé€šä¿¡)ã‚’åˆæœŸåŒ– */
+  // nxt_motor_set_count(NXT_PORT_A, 0); /* å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒªã‚»ãƒƒãƒˆ */
 }
 
-// ECRobot C API ƒfƒoƒCƒX‚ÌI—¹
+// ECRobot C API ãƒ‡ãƒã‚¤ã‚¹ã®çµ‚äº†
 void ecrobot_device_terminate(void)
 {
-  ecrobot_set_light_sensor_inactive(NXT_PORT_S3); /* ŒõƒZƒ“ƒTÔFLED‚ğOFF */
-  ecrobot_term_sonar_sensor(NXT_PORT_S2); /* ’´‰¹”gƒZƒ“ƒT(I2C’ÊM)‚ğI—¹ */
+  ecrobot_set_light_sensor_inactive(NXT_PORT_S3); /* å…‰ã‚»ãƒ³ã‚µèµ¤è‰²LEDã‚’OFF */
+  ecrobot_term_sonar_sensor(NXT_PORT_S2); /* è¶…éŸ³æ³¢ã‚»ãƒ³ã‚µ(I2Cé€šä¿¡)ã‚’çµ‚äº† */
 }
 
-// ƒ^ƒXƒNŠÔ‹¤—Lƒƒ‚ƒŠ
-bool gDoSonar = false; //!< ƒ\ƒi[ƒZƒ“ƒT”­“®ƒtƒ‰ƒO
-int gSonarDistance = 255; //!< ƒ\ƒi[ƒZƒ“ƒT‚ÌŒ‹‰Ê
-bool gSonarIsDetected = false; //!< Õ—§ŒŸ’m‚ÌŒ‹‰Ê
-bool gTouchStarter = false; //!< ƒ^ƒbƒ`ƒZƒ“ƒT‰Ÿ‰ºƒtƒ‰ƒO
+// ã‚¿ã‚¹ã‚¯é–“å…±æœ‰ãƒ¡ãƒ¢ãƒª
+bool gDoSonar = false; //!< ã‚½ãƒŠãƒ¼ã‚»ãƒ³ã‚µç™ºå‹•ãƒ•ãƒ©ã‚°
+int gSonarDistance = 255; //!< ã‚½ãƒŠãƒ¼ã‚»ãƒ³ã‚µã®çµæœ
+bool gSonarIsDetected = false; //!< è¡ç«‹æ¤œçŸ¥ã®çµæœ
+bool gTouchStarter = false; //!< ã‚¿ãƒƒãƒã‚»ãƒ³ã‚µæŠ¼ä¸‹ãƒ•ãƒ©ã‚°
 int counter = 0;
 
 /*
- * Sonarƒ^ƒXƒN
+ * Sonarã‚¿ã‚¹ã‚¯
  */
 TASK(TaskSonar)
 {
-  //     // 48msec –ˆ‚ÉƒCƒxƒ“ƒg’Ê’m‚·‚éİ’è
+  //     // 48msec æ¯ã«ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã™ã‚‹è¨­å®š
   //     SetRelAlarm(AlarmSonar, 1, 48); 
   //     WaitEvent(EventSonar);
 
@@ -145,23 +145,23 @@ TASK(TaskSonar)
   //             lcd.disp();
   //         }
   // #endif
-  //         // ƒCƒxƒ“ƒg’Ê’m‚ğ‘Ò‚Â
+  //         // ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã‚’å¾…ã¤
   //         ClearEvent(EventSonar);
   //         WaitEvent(EventSonar);
   //    }
 }
 
 /**
- * ‘–sƒ^ƒXƒN
+ * èµ°è¡Œã‚¿ã‚¹ã‚¯
  */
 TASK(TaskDrive)
 {
-  //     // 4msec –ˆ‚ÉƒCƒxƒ“ƒg’Ê’m‚·‚éİ’è
+  //     // 4msec æ¯ã«ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã™ã‚‹è¨­å®š
   //     SetRelAlarm(AlarmDrive, 1, 4); 
   //     WaitEvent(EventDrive);
   // //     K_THETADOT = 10.5F;
 
-  //     //connect_bt(mLcd, BT_NAME); // bluetoothÚ‘±
+  //     //connect_bt(mLcd, BT_NAME); // bluetoothæ¥ç¶š
   //     mActivator.reset(USER_GYRO_OFFSET);
 
   //     while(!(gTouchStarter = mTouchSensor.isPressed()));
@@ -171,51 +171,51 @@ TASK(TaskDrive)
   //         if (doDrive) mCourse->drive();
   //     	else mActivator.stop();
 
-  //         // ƒCƒxƒ“ƒg’Ê’m‚ğ‘Ò‚Â
+  //         // ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã‚’å¾…ã¤
   //         ClearEvent(EventDrive);
   //         WaitEvent(EventDrive);
         
   //     }
   //     TerminateTask();
-  signed char forward;      /* ‘OŒãi–½—ß */
-  signed char turn;         /* ù‰ñ–½—ß */
-  signed char pwm_L, pwm_R; /* ¶‰Eƒ‚[ƒ^PWMo—Í */
+  signed char forward;      /* å‰å¾Œé€²å‘½ä»¤ */
+  signed char turn;         /* æ—‹å›å‘½ä»¤ */
+  signed char pwm_L, pwm_R; /* å·¦å³ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ› */
   
 
 	while(1)
   {
-//    tail_control(TAIL_ANGLE_STAND_UP); /* Š®‘S’â~—pŠp“x‚É§Œä */
+//    tail_control(TAIL_ANGLE_STAND_UP); /* å®Œå…¨åœæ­¢ç”¨è§’åº¦ã«åˆ¶å¾¡ */
     if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1)
     {
-      break; /* ƒ^ƒbƒ`ƒZƒ“ƒT‚ª‰Ÿ‚³‚ê‚½ */
+      break; /* ã‚¿ãƒƒãƒã‚»ãƒ³ã‚µãŒæŠ¼ã•ã‚ŒãŸ */
     }
 
-    systick_wait_ms(10); /* 10msecƒEƒFƒCƒg */
+    systick_wait_ms(10); /* 10msecã‚¦ã‚§ã‚¤ãƒˆ */
   }
 
-  balance_init(); /* “|—§Uq§Œä‰Šú‰» */
-  nxt_motor_set_count(NXT_PORT_C, 0); /* ¶ƒ‚[ƒ^ƒGƒ“ƒR[ƒ_ƒŠƒZƒbƒg */
-  nxt_motor_set_count(NXT_PORT_B, 0); /* ‰Eƒ‚[ƒ^ƒGƒ“ƒR[ƒ_ƒŠƒZƒbƒg */
+  balance_init(); /* å€’ç«‹æŒ¯å­åˆ¶å¾¡åˆæœŸåŒ– */
+  nxt_motor_set_count(NXT_PORT_C, 0); /* å·¦ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒªã‚»ãƒƒãƒˆ */
+  nxt_motor_set_count(NXT_PORT_B, 0); /* å³ãƒ¢ãƒ¼ã‚¿ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ãƒªã‚»ãƒƒãƒˆ */
   static bool found_something = false;
   while(1)
   {
-//    tail_control(TAIL_ANGLE_DRIVE); /* ƒoƒ‰ƒ“ƒX‘–s—pŠp“x‚É§Œä */
+//    tail_control(TAIL_ANGLE_DRIVE); /* ãƒãƒ©ãƒ³ã‚¹èµ°è¡Œç”¨è§’åº¦ã«åˆ¶å¾¡ */
 
-      /* “|—§Uq§Œä(forward = 0, turn = 0‚ÅÃ~ƒoƒ‰ƒ“ƒX) */
+      /* å€’ç«‹æŒ¯å­åˆ¶å¾¡(forward = 0, turn = 0ã§é™æ­¢ãƒãƒ©ãƒ³ã‚¹) */
   	bool balanceFlag = true;
 // 	if(balanceFlag){
 //      balance_control(
- //         (float)forward,								 /* ‘OŒãi–½—ß(+:‘Oi, -:Œãi) */
-//          (float)turn,								 /* ù‰ñ–½—ß(+:‰Eù‰ñ, -:¶ù‰ñ) */
-//          (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ƒWƒƒƒCƒƒZƒ“ƒT’l */
-//          (float)GYRO_OFFSET,							 /* ƒWƒƒƒCƒƒZƒ“ƒTƒIƒtƒZƒbƒg’l */
-//          (float)nxt_motor_get_count(NXT_PORT_C),		 /* ¶ƒ‚[ƒ^‰ñ“]Šp“x[deg] */
-//          (float)nxt_motor_get_count(NXT_PORT_B),		 /* ‰Eƒ‚[ƒ^‰ñ“]Šp“x[deg] */
-//          (float)ecrobot_get_battery_voltage(),		 /* ƒoƒbƒeƒŠ“dˆ³[mV] */
-//          &pwm_L,										 /* ¶ƒ‚[ƒ^PWMo—Í’l */
-//          &pwm_R);									 /* ‰Eƒ‚[ƒ^PWMo—Í’l */
-//      nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* ¶ƒ‚[ƒ^PWMo—ÍƒZƒbƒg(-100`100) */
-//      nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* ‰Eƒ‚[ƒ^PWMo—ÍƒZƒbƒg(-100`100) */
+ //         (float)forward,								 /* å‰å¾Œé€²å‘½ä»¤(+:å‰é€², -:å¾Œé€²) */
+//          (float)turn,								 /* æ—‹å›å‘½ä»¤(+:å³æ—‹å›, -:å·¦æ—‹å›) */
+//          (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µå€¤ */
+//          (float)GYRO_OFFSET,							 /* ã‚¸ãƒ£ã‚¤ãƒ­ã‚»ãƒ³ã‚µã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ */
+//          (float)nxt_motor_get_count(NXT_PORT_C),		 /* å·¦ãƒ¢ãƒ¼ã‚¿å›è»¢è§’åº¦[deg] */
+//          (float)nxt_motor_get_count(NXT_PORT_B),		 /* å³ãƒ¢ãƒ¼ã‚¿å›è»¢è§’åº¦[deg] */
+//          (float)ecrobot_get_battery_voltage(),		 /* ãƒãƒƒãƒ†ãƒªé›»åœ§[mV] */
+//          &pwm_L,										 /* å·¦ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›å€¤ */
+//          &pwm_R);									 /* å³ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›å€¤ */
+//      nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* å·¦ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›ã‚»ãƒƒãƒˆ(-100ã€œ100) */
+//      nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* å³ãƒ¢ãƒ¼ã‚¿PWMå‡ºåŠ›ã‚»ãƒƒãƒˆ(-100ã€œ100) */
 //  	}
   	/*
   		mStandupDriver.setTargetTailAngle(114);
@@ -228,32 +228,32 @@ TASK(TaskDrive)
   	*/
   	mSeesawDriver.drive();
 //   mSeesawTestDriver.drive();
-   systick_wait_ms(4); /* 4msecƒEƒFƒCƒg */
+   systick_wait_ms(4); /* 4msecã‚¦ã‚§ã‚¤ãƒˆ */
   }
 }
 /*
- * GPSXVƒ^ƒXƒN
+ * GPSæ›´æ–°ã‚¿ã‚¹ã‚¯
  */
 TASK(TaskGps)
 {
-  // 4msec –ˆ‚ÉƒCƒxƒ“ƒg’Ê’m‚·‚éİ’è
+  // 4msec æ¯ã«ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã™ã‚‹è¨­å®š
   SetRelAlarm(AlarmGps, 1, 4); 
   WaitEvent(EventGps);
 
   while (1) {
     mGps.update();
-    // ƒCƒxƒ“ƒg’Ê’m‚ğ‘Ò‚Â
+    // ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã‚’å¾…ã¤
     ClearEvent(EventGps);
     WaitEvent(EventGps);
   }
 }
 
 /*
- * HistoryXVƒ^ƒXƒN
+ * Historyæ›´æ–°ã‚¿ã‚¹ã‚¯
  */
 TASK(TaskHistory)
 {
-  // 4msec –ˆ‚ÉƒCƒxƒ“ƒg’Ê’m‚·‚éİ’è
+  // 4msec æ¯ã«ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã™ã‚‹è¨­å®š
   SetRelAlarm(AlarmHistory, 1, 4);
   WaitEvent(EventHistory);
   while (1) {
@@ -265,18 +265,18 @@ TASK(TaskHistory)
     mDirectionHistory.update(mGps.getDirection());
     mDirectionAverageHistory.update(mDirectionHistory.calcAverage());
     mGyroHistory.update(mGyroSensor.get());
-    // ƒCƒxƒ“ƒg’Ê’m‚ğ‘Ò‚Â
+    // ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã‚’å¾…ã¤
     ClearEvent(EventHistory);
     WaitEvent(EventHistory);
   }
 }
 
 /*
- * Logger(bluetooth)ƒ^ƒXƒN
+ * Logger(bluetooth)ã‚¿ã‚¹ã‚¯
  */
 TASK(TaskLogger)
 {
-  // 100msec –ˆ‚ÉƒCƒxƒ“ƒg’Ê’m‚·‚éİ’è
+  // 100msec æ¯ã«ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã™ã‚‹è¨­å®š
   SetRelAlarm(AlarmLogger, 1, 100); 
   WaitEvent(EventLogger);
 
@@ -289,19 +289,19 @@ TASK(TaskLogger)
       mDaq.send(LOGGER_DATAS08, LOGGER_DATAU16, LOGGER_DATAS16, LOGGER_DATAS32);
     }
 
-    // ƒCƒxƒ“ƒg’Ê’m‚ğ‘Ò‚Â
+    // ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã‚’å¾…ã¤
     ClearEvent(EventLogger);
     WaitEvent(EventLogger);
   }
 }
 
 /**
- * Bluetooth Ú‘±
+ * Bluetooth æ¥ç¶š
  *
- * ‚±‚ÌŠÖ”‚Åw’è‚µ‚½BluetoothƒfƒoƒCƒX–¼‚ªÚ‘±æƒƒ{ƒbƒg‚ÌƒfƒoƒCƒX–¼‚Éİ’è‚³‚ê‚Ü‚·B
+ * ã“ã®é–¢æ•°ã§æŒ‡å®šã—ãŸBluetoothãƒ‡ãƒã‚¤ã‚¹åãŒæ¥ç¶šå…ˆãƒ­ãƒœãƒƒãƒˆã®ãƒ‡ãƒã‚¤ã‚¹åã«è¨­å®šã•ã‚Œã¾ã™ã€‚
  *
- * @param[in] lcd LcdƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg
- * @param[in] bt_name BluetoothƒfƒoƒCƒX–¼
+ * @param[in] lcd Lcdã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param[in] bt_name Bluetoothãƒ‡ãƒã‚¤ã‚¹å
  */
 static void connect_bt(Lcd &lcd, char bt_name[16])
 {
@@ -340,10 +340,10 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
 }
 
 //*****************************************************************************
-// ŠÖ”–¼ : sonar_alert
-// ˆø” : –³‚µ
-// •Ô‚è’l : 1(áŠQ•¨‚ ‚è)/0(áŠQ•¨–³‚µ)
-// ŠT—v : ’´‰¹”gƒZƒ“ƒT‚É‚æ‚éáŠQ•¨ŒŸ’m
+// é–¢æ•°å : sonar_alert
+// å¼•æ•° : ç„¡ã—
+// è¿”ã‚Šå€¤ : 1(éšœå®³ç‰©ã‚ã‚Š)/0(éšœå®³ç‰©ç„¡ã—)
+// æ¦‚è¦ : è¶…éŸ³æ³¢ã‚»ãƒ³ã‚µã«ã‚ˆã‚‹éšœå®³ç‰©æ¤œçŸ¥
 //*****************************************************************************
 static int sonar_alert(void)
 {
@@ -352,20 +352,20 @@ static int sonar_alert(void)
 
   signed int distance;
 
-  if (++counter == 40/4) /* –ñ40msecüŠú–ˆ‚ÉáŠQ•¨ŒŸ’m  */
+  if (++counter == 40/4) /* ç´„40msecå‘¨æœŸæ¯ã«éšœå®³ç‰©æ¤œçŸ¥  */
   {
     /*
-     * ’´‰¹”gƒZƒ“ƒT‚É‚æ‚é‹——£‘ª’èüŠú‚ÍA’´‰¹”g‚ÌŒ¸Š“Á«‚ÉˆË‘¶‚µ‚Ü‚·B
-     * NXT‚Ìê‡‚ÍA40msecüŠú’ö“x‚ªŒoŒ±ã‚ÌÅ’Z‘ª’èüŠú‚Å‚·B
+     * è¶…éŸ³æ³¢ã‚»ãƒ³ã‚µã«ã‚ˆã‚‹è·é›¢æ¸¬å®šå‘¨æœŸã¯ã€è¶…éŸ³æ³¢ã®æ¸›è¡°ç‰¹æ€§ã«ä¾å­˜ã—ã¾ã™ã€‚
+     * NXTã®å ´åˆã¯ã€40msecå‘¨æœŸç¨‹åº¦ãŒçµŒé¨“ä¸Šã®æœ€çŸ­æ¸¬å®šå‘¨æœŸã§ã™ã€‚
      */
     distance = ecrobot_get_sonar_sensor(NXT_PORT_S2);
     if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
     {
-      alert = 1; /* áŠQ•¨‚ğŒŸ’m */
+      alert = 1; /* éšœå®³ç‰©ã‚’æ¤œçŸ¥ */
     }
     else
     {
-      alert = 0; /* áŠQ•¨–³‚µ */
+      alert = 0; /* éšœå®³ç‰©ç„¡ã— */
     }
     counter = 0;
   }
@@ -374,15 +374,15 @@ static int sonar_alert(void)
 }
 
 //*****************************************************************************
-// ŠÖ”–¼ : tail_control
-// ˆø”  : angle (ƒ‚[ƒ^–Ú•WŠp“x[“x])
-// •Ô‚è’l : –³‚µ
-// ŠT—v : ‘–s‘ÌŠ®‘S’â~—pƒ‚[ƒ^‚ÌŠp“x§Œä
+// é–¢æ•°å : tail_control
+// å¼•æ•°  : angle (ãƒ¢ãƒ¼ã‚¿ç›®æ¨™è§’åº¦[åº¦])
+// è¿”ã‚Šå€¤ : ç„¡ã—
+// æ¦‚è¦ : èµ°è¡Œä½“å®Œå…¨åœæ­¢ç”¨ãƒ¢ãƒ¼ã‚¿ã®è§’åº¦åˆ¶å¾¡
 //*****************************************************************************
 static void tail_control(signed int angle)
 {
-  float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* ”ä—á§Œä */
-  /* PWMo—Í–O˜aˆ— */
+  float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* æ¯”ä¾‹åˆ¶å¾¡ */
+  /* PWMå‡ºåŠ›é£½å’Œå‡¦ç† */
   if (pwm > PWM_ABS_MAX)
   {
     pwm = PWM_ABS_MAX;
