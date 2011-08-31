@@ -35,6 +35,7 @@
 #include "StopSkill.h"
 #include "StandUpSkill.h"
 #include "SitDownSkill.h"
+#include "StandupDriver.h"
 
 // ドライバ
 #include "Driver.h"
@@ -110,6 +111,8 @@ extern StopSkill mStopSkill;
 extern StandUpSkill mStandUpSkill;
 extern SitDownSkill mSitDownSkill;
 extern CoordinateStop mCoordinateStop;
+extern StandupDriver mStandupDriver;
+
 // Driver
 extern NormalDriver mNormalDriver;
 extern SeesawDriver mSeesawDriver;
@@ -119,6 +122,8 @@ extern InGarageDriver mInGarageDriver;
 extern TestDriver mTestDriver;
 extern ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
 extern LookUpGateDriver mLookUpGateDriver;
+extern TestDriver mSeesawTestDriver;
+
 // Course
 extern Course *mCourse;
 extern InCourse mInCourse;

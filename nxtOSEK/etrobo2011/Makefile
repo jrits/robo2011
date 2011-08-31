@@ -53,7 +53,8 @@ TARGET_CPP_SOURCES = \
         Posture.cpp \
 	StandUpSkill.cpp \
         SitDownSkill.cpp \
-        LookUpGateDriver.cpp
+        LookUpGateDriver.cpp \
+        StandupDriver.cpp
 
 # TOPPERS/ATK(OSEK)設定ファイル
 TOPPERS_OSEK_OIL_SOURCE = main.oil

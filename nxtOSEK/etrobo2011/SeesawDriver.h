@@ -19,22 +19,25 @@ public:
     /**
      * サブ区間
      */
-	enum eSubSection {
+    enum eSubSection {
         INIT = -1,
-        BEFORELINETRACE,
-        ONTHESEESAW,
+        BEFOREANGLETRACE,
+        DETECTINGRUN,
+        BACKRUN,
+        HEREWEGO,
         LINERETURN,
-		AFTERLINETRACE
+        AFTERLINETRACE
     };
 private:
     int mState;    //!< 状態
     int mTimeCounter; //!< タイマカウンタ
-	bool mInitState; //!< 初期状態
-	float mStartAngleCounter; //!< 初期角度カウンタ
+    bool mInitState; //!< 初期状態
+    float mStartAngleCounter; //!< 初期角度カウンタ
+    float beforeRMS;
+    int backCounter;
 public:
-	SeesawDriver();
-	~SeesawDriver();
+    SeesawDriver();
+    ~SeesawDriver();
     bool drive();
-
 };
 #endif // !SEESAWDRIVER_H

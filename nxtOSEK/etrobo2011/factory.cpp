@@ -70,6 +70,8 @@ TestDriver mTestDriver;
 ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
 LookUpGateDriver mLookUpGateDriver;
 
+TestDriver mSeesawTestDriver;
+StandupDriver mStandupDriver;
+
 // Posture
 Posture mPosture(mLeftMotor,mRightMotor,mTailMotor);
-
