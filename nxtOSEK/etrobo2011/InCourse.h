@@ -23,9 +23,9 @@ public:
         GARAGEIN   //!< ガレージ・イン区間
     };
 public:
- 	InCourse(InCourse::eSection aSection = InCourse::START);
-	~InCourse(){}
+    InCourse(InCourse::eSection aSection = InCourse::START);
+    ~InCourse(){}
     void drive();
 };
-	
+    
 #endif /*INCOURSE_H_*/

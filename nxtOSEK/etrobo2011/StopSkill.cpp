@@ -73,7 +73,7 @@ VectorT<float> StopSkill::calcCommand()
     }
 #endif
 
-	return command;
+    return command;
 }
 
 /**

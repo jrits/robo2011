@@ -19,11 +19,11 @@ public:
     /**
      * コンストラクタ
      */
-	Driver(){}
+    Driver(){}
     /**
      * デストラクタ
      */
-	virtual ~Driver(){}
+    virtual ~Driver(){}
     /**
      * 運転する。
      * 
@@ -34,6 +34,6 @@ public:
      *
      * Override Me!
      */
-	virtual bool drive() { return true; }
+    virtual bool drive() { return true; }
 };
 #endif

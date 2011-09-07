@@ -17,19 +17,19 @@
 class StandupDriver : public Skill
 { 
 public:
-		enum eSubSection {
+        enum eSubSection {
         INIT = -1,
         TAILPUSH,
         STOPTAILPUSH,
-		FINISH
+        FINISH
     };
-	StandupDriver();
-	~StandupDriver(){}
+    StandupDriver();
+    ~StandupDriver(){}
     bool drive();
-	int mState;//状態遷移変数
-	int mCounter;//停止用カウンター
-	float mTargetTailAngle;
-	void setTargetTailAngle(float targetTailAngle);//尻尾の目標角度
+    int mState;//状態遷移変数
+    int mCounter;//停止用カウンター
+    float mTargetTailAngle;
+    void setTargetTailAngle(float targetTailAngle);//尻尾の目標角度
 };
 
 #endif

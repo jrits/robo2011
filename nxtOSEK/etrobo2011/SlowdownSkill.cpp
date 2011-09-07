@@ -87,7 +87,7 @@ VectorT<float> SlowdownSkill::calcCommand()
     }
 #endif
 
-	return command;
+    return command;
 }
 
 /**

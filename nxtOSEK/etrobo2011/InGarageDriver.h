@@ -19,15 +19,15 @@ private:
     enum eSubSection {
         INIT = -1,
         BEFORELINETRACE,
-    	STRAIGHTLINETRACE,
-    	PREPAREENTERGARAGE,
-    	ENTERGARAGE,
+        STRAIGHTLINETRACE,
+        PREPAREENTERGARAGE,
+        ENTERGARAGE,
     };
     eSubSection mState; //!< 状態
     int mTimeCounter;   //!< タイムカウンタ
 public:
-	InGarageDriver();
-	~InGarageDriver(){}
+    InGarageDriver();
+    ~InGarageDriver(){}
     bool drive();
 };
 

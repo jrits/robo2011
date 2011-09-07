@@ -33,10 +33,10 @@ bool StairwayDriver::drive()
 #if 0 // ログ送信
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
-	LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());
-	LOGGER_DATAS32[1] = (S32)(mGps.getYCoordinate());
-	LOGGER_DATAS32[2] = (S32)(mGps.getDirection());
-	LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
+    LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());
+    LOGGER_DATAS32[1] = (S32)(mGps.getYCoordinate());
+    LOGGER_DATAS32[2] = (S32)(mGps.getDirection());
+    LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
 #endif
 #if 0 // DEBUG
     //DESK_DEBUG = true; // モータを回さないデバグ
@@ -58,7 +58,7 @@ bool StairwayDriver::drive()
     if (mState == StairwayDriver::INIT) {
         mState = StairwayDriver::BEFORELINETRACE;
         mInitState = true;
-    	mWallDetector.setThreshold(40);
+        mWallDetector.setThreshold(40);
     }
     if (mState == StairwayDriver::BEFORELINETRACE) {
         if (mInitState) {
@@ -70,13 +70,13 @@ bool StairwayDriver::drive()
             mLineTrace.setForward(100);
             K_THETADOT = 7.0F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
             if (mGps.getYCoordinate() > -2900) {
-            	K_THETADOT = 11.0F;
+                K_THETADOT = 11.0F;
             }
             if (mGps.getYCoordinate() > -2800) {
                 mPrevDirection = mGps.getDirection();
                 mLineTrace.setForward(100);
                 mDoDetectWall = true;
-            	mTimeCounter = 0;
+                mTimeCounter = 0;
             }
             mLineTrace.execute();
         }
@@ -215,5 +215,5 @@ bool StairwayDriver::drive()
         }
     }
     mTimeCounter++;
-	return mState == StairwayDriver::AFTERLINETRACE; // 終了しました
+    return mState == StairwayDriver::AFTERLINETRACE; // 終了しました
 }

@@ -13,8 +13,8 @@
 class StraightDetector : public Detector
 {
 public:
-	StraightDetector(){}
-	~StraightDetector(){}
+    StraightDetector(){}
+    ~StraightDetector(){}
     bool detect();
 };
 

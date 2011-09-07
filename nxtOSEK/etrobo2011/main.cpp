@@ -203,24 +203,24 @@ TASK(TaskSonar)
  */
 TASK(TaskDrive)
 {
-	// 4msec 毎にイベント通知する設定
-	SetRelAlarm(AlarmDrive, 1, 4); 
-	WaitEvent(EventDrive);
-	// K_THETADOT = 10.5F;
+    // 4msec 毎にイベント通知する設定
+    SetRelAlarm(AlarmDrive, 1, 4); 
+    WaitEvent(EventDrive);
+    // K_THETADOT = 10.5F;
 
-	//connect_bt(mLcd, BT_NAME); // bluetooth接続
-	mActivator.reset(USER_GYRO_OFFSET);
+    //connect_bt(mLcd, BT_NAME); // bluetooth接続
+    mActivator.reset(USER_GYRO_OFFSET);
 
-	while(1)
-	{
-		tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
+    while(1)
+    {
+        tail_control(TAIL_ANGLE_STAND_UP); /* 完全停止用角度に制御 */
 
-		if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
-		{
-			gTouchStarter = true;
-			break; /* タッチセンサが押された */
-		}
-		systick_wait_ms(10); /* 10msecウェイト */
+        if (ecrobot_get_touch_sensor(NXT_PORT_S4) == 1 || remote_start() == 1)
+        {
+            gTouchStarter = true;
+            break; /* タッチセンサが押された */
+        }
+        systick_wait_ms(10); /* 10msecウェイト */
 #if 1 // キャリブレーション用ディスプレ表示(0：解除、1：実施)
         //gDoSonar = true;//うまくいかないのでコメントアウト
         mLcd.clear();
@@ -230,26 +230,26 @@ TASK(TaskDrive)
         //mLcd.putf("sd" ,  "Sonar = ",  gSonarTagetDistance, 5);//うまくいかないのでコメントアウト
         mLcd.disp();
 #endif
-	}
+    }
 
-	balance_init();						/* 倒立振子制御初期化 */
-	nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
-	nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
+    balance_init();                     /* 倒立振子制御初期化 */
+    nxt_motor_set_count(NXT_PORT_C, 0); /* 左モータエンコーダリセット */
+    nxt_motor_set_count(NXT_PORT_B, 0); /* 右モータエンコーダリセット */
 
-	bool doDrive = true;
-	while(1)
-	{
-		tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-		//if (mFailDetector.detect()) doDrive = false;
-		//if (doDrive) mCourse->drive();
-		if (doDrive) mTestDriver.drive();
-		else mActivator.stop();
+    bool doDrive = true;
+    while(1)
+    {
+        tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
+        //if (mFailDetector.detect()) doDrive = false;
+        //if (doDrive) mCourse->drive();
+        if (doDrive) mTestDriver.drive();
+        else mActivator.stop();
 
-		// イベント通知を待つ
-		ClearEvent(EventDrive);
-		WaitEvent(EventDrive);
-	}
-	TerminateTask();
+        // イベント通知を待つ
+        ClearEvent(EventDrive);
+        WaitEvent(EventDrive);
+    }
+    TerminateTask();
 }
 
 /*
@@ -262,10 +262,10 @@ TASK(TaskMaimai)
     WaitEvent(EventMaimai);
 
     bool  is_light_on = 1;          /* 光センサの点灯/消灯状態   */
-    U16   light_value[2] = {0, 0};	/* 0:消灯時、1:点灯時の光センサー値	*/
+    U16   light_value[2] = {0, 0};  /* 0:消灯時、1:点灯時の光センサー値 */
 
-	while(1)
-	{
+    while(1)
+    {
           if (! gDoMaimai) {
             ecrobot_set_light_sensor_active(NXT_PORT_S3);
             ClearEvent(EventMaimai);
@@ -407,30 +407,30 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
 //*****************************************************************************
 static int sonar_alert(void)
 {
-	static unsigned int counter = 0;
-	static int alert = 0;
+    static unsigned int counter = 0;
+    static int alert = 0;
 
-	signed int distance;
+    signed int distance;
 
-	if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
-	{
-		/*
-		 * 超音波センサによる距離測定周期は、超音波の減衰特性に依存します。
-		 * NXTの場合は、40msec周期程度が経験上の最短測定周期です。
-		 */
-		distance = ecrobot_get_sonar_sensor(NXT_PORT_S2);
-		if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
-		{
-			alert = 1; /* 障害物を検知 */
-		}
-		else
-		{
-			alert = 0; /* 障害物無し */
-		}
-		counter = 0;
-	}
+    if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
+    {
+        /*
+         * 超音波センサによる距離測定周期は、超音波の減衰特性に依存します。
+         * NXTの場合は、40msec周期程度が経験上の最短測定周期です。
+         */
+        distance = ecrobot_get_sonar_sensor(NXT_PORT_S2);
+        if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
+        {
+            alert = 1; /* 障害物を検知 */
+        }
+        else
+        {
+            alert = 0; /* 障害物無し */
+        }
+        counter = 0;
+    }
 
-	return alert;
+    return alert;
 }
 
 //*****************************************************************************
@@ -441,18 +441,18 @@ static int sonar_alert(void)
 //*****************************************************************************
 extern void tail_control(signed int angle)
 {
-	float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
-	/* PWM出力飽和処理 */
-	if (pwm > PWM_ABS_MAX)
-	{
-		pwm = PWM_ABS_MAX;
-	}
-	else if (pwm < -PWM_ABS_MAX)
-	{
-		pwm = -PWM_ABS_MAX;
-	}
+    float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
+    /* PWM出力飽和処理 */
+    if (pwm > PWM_ABS_MAX)
+    {
+        pwm = PWM_ABS_MAX;
+    }
+    else if (pwm < -PWM_ABS_MAX)
+    {
+        pwm = -PWM_ABS_MAX;
+    }
 
-	nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
+    nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);
 }
 
 //*****************************************************************************
@@ -463,23 +463,23 @@ extern void tail_control(signed int angle)
 //*****************************************************************************
 static float calc_maimai(U16 light_off_value, U16 light_on_value)
 {
-	float luminance;  /* コース明度 */
-	U16 light_diff;	  /* 点灯時と消灯時の変化量	*/
-	float k;		  /* 光センサー非線形補正値	*/
-	
-	/* 光センサーの変化量を計算 */
-	if (light_off_value - light_on_value > 0) {
-		light_diff = light_off_value - light_on_value;
-	} else {
-		light_diff = 0U;
-	}
-	
-	/* 光センサー非線形補正係数を計算 （実験データより） */
-	k = (1.0382E-3 * light_off_value - 6.3295E-1) * light_off_value + 1.1024E+2;
-	
-	/* コース明度を計算 */
-	luminance = (float) light_diff / k;
-	return luminance;
+    float luminance;  /* コース明度 */
+    U16 light_diff;   /* 点灯時と消灯時の変化量 */
+    float k;          /* 光センサー非線形補正値 */
+    
+    /* 光センサーの変化量を計算 */
+    if (light_off_value - light_on_value > 0) {
+        light_diff = light_off_value - light_on_value;
+    } else {
+        light_diff = 0U;
+    }
+    
+    /* 光センサー非線形補正係数を計算 （実験データより） */
+    k = (1.0382E-3 * light_off_value - 6.3295E-1) * light_off_value + 1.1024E+2;
+    
+    /* コース明度を計算 */
+    luminance = (float) light_diff / k;
+    return luminance;
 }
 
 //*****************************************************************************

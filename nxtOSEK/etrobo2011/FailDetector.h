@@ -23,8 +23,8 @@ private:
     // int mSampleCount; // FAILSAFE_SAMPLECOUNT
     // int mThreshold; //!< FAILSAFE_THRESHOLD
 public:
-	FailDetector();
-	~FailDetector(){}
-	bool detect();
+    FailDetector();
+    ~FailDetector(){}
+    bool detect();
 };
 #endif // !defined FailDetector_H
