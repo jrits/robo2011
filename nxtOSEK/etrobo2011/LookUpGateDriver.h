@@ -17,8 +17,6 @@ class LookUpGateDriver : public Driver {
   bool standUp();
   bool isDone() const;
 
-  void tail_control(signed int angle) const;
-  
   enum eSubSection {
     INIT = 0,
     IN_FRONT_OF_GATE,

@@ -3,6 +3,10 @@
 #include "factory.h"
 extern bool gDoMaimai;
 
+extern "C"{
+extern void tail_control(signed int);
+}
+
 LookUpGateDriver::LookUpGateDriver()
     : mCurrentSubSection(INIT) {
 
@@ -112,23 +116,4 @@ LookUpGateDriver::standUp() {
 bool
 LookUpGateDriver::isDone() const{
   return mCurrentSubSection == DONE;
-}
-
-void
-LookUpGateDriver::tail_control(signed int angle) const {
-  static const float P_GAIN = 2.5F;
-  static const float PWM_ABS_MAX = 60; /* 完全停止用モータ制御PWM絶対最大値 */        
-  float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* 比例制御 */
-
-  /* PWM出力飽和処理 */
-  if (pwm > PWM_ABS_MAX)
-  {
-    pwm = PWM_ABS_MAX;
-  }
-  else if (pwm < -PWM_ABS_MAX)
-  {
-    pwm = -PWM_ABS_MAX;
-  }
-  mTailMotor.setPWM((S8)pwm);
-  mTailMotor.setBrake(true);
 }
