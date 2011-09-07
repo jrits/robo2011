@@ -13,7 +13,7 @@ LookUpGateDriver::~LookUpGateDriver(){
 
 bool
 LookUpGateDriver::drive(){
-  gDoMaimai - true;
+  gDoMaimai = true;
   switch(mCurrentSubSection){
     case INIT:
       mLineTrace.setForward(20);
