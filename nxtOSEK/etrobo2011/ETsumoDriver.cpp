@@ -17,6 +17,11 @@
 
 #define SUMO_DEBUG 1
 
+//ET相撲サーチ開始座標
+float GPS_ETSUMO_SEARCH_X = 4500.0; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_Y = -3400.0 + 800.0; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_DIRECTION = 360.0; // ＠todo要再設定
+
 extern bool gDoSonar; //!< ソナーセンサ発動フラグ
 extern bool gSonarIsDetected; //!< 衝立検知の結果
 extern int  gSonarTagetDistance;//!< ソナーセンサの距離結果
