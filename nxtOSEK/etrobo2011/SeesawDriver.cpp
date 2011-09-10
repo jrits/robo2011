@@ -9,6 +9,8 @@
 #include "factory.h"
 #include "constants.h"
 #include "Speaker.h"
+#include "Gps.h"
+
 
 #define RETURNTIMING 375 //値を返すタイミング
 #define LIGHTBUF 10 //光センサヒストリのバッファサイズ
@@ -57,7 +59,7 @@ bool SeesawDriver::drive()
 //  段差攻略
     if (mState == SeesawDriver::INIT) {
         if(backCounter <= 500){
-            mAngleTrace.setTargetAngle(180);
+            mAngleTrace.setTargetAngle(360);
             mAngleTrace.setForward(0);
             mAngleTrace.execute();
             backCounter++;
@@ -70,7 +72,7 @@ bool SeesawDriver::drive()
     }
     if(mState == SeesawDriver::BEFOREANGLETRACE){
         K_THETADOT = 9.5F;
-        mAngleTrace.setTargetAngle(180);
+        mAngleTrace.setTargetAngle(360);
         mAngleTrace.setForward(100);
         mAngleTrace.execute();
         if(mWallDetector.detect()){
@@ -78,11 +80,13 @@ bool SeesawDriver::drive()
             mState = SeesawDriver::DETECTINGRUN;
             beforeRMS = mRightMotorHistory.get(0);
             backCounter = 0;
+            mGps.adjustXCoordinate(3350.0);//ぶつかったら座標補正
+            mGps.adjustYCoordinate(-903.0);//ぶつかったら座標補正
 //          beforeRMS = mRightMotorHistory.get(0);
         }
     }else if(mState == SeesawDriver::DETECTINGRUN){
         K_THETADOT = 8.5F;
-        mAngleTrace.setTargetAngle(180);
+        mAngleTrace.setTargetAngle(360);
         mAngleTrace.setForward(30);
         mAngleTrace.execute();
 //      if(mTailMotor.getCount() <= 70){
@@ -94,11 +98,11 @@ bool SeesawDriver::drive()
     }else if(mState == SeesawDriver::BACKRUN){
         if(backCounter <= 500){
         K_THETADOT = 5.5F;
-        mAngleTrace.setTargetAngle(180);
+        mAngleTrace.setTargetAngle(360);
         mAngleTrace.setForward(-45);
         mAngleTrace.execute();
         }else{
-        mAngleTrace.setTargetAngle(180);
+        mAngleTrace.setTargetAngle(360);
         mAngleTrace.setForward(-20);
         mAngleTrace.execute();
         }
@@ -110,13 +114,19 @@ bool SeesawDriver::drive()
         }
     }else if(mState == SeesawDriver::HEREWEGO){
         if(backCounter <= 500){
-        mAngleTrace.setTargetAngle(180);
+        mAngleTrace.setTargetAngle(360);
         mAngleTrace.setForward(0);
         mAngleTrace.execute();
         }else{
-        mAngleTrace.setTargetAngle(180);
+        mAngleTrace.setTargetAngle(365);//@todo 要調整 シーソ左側へ降りるように微調整
         mAngleTrace.setForward(70);
         mAngleTrace.execute();
+        }
+    	//シーソー終了場所から300mm先で状態遷移
+    	if( 3636.0 + 300.0 < mGps.getXCoordinate()){//@todo 要調整
+            { Speaker s; s.playTone(261, 60, 100); }
+            mState = SeesawDriver::LINERETURN;
+            backCounter = 0;
         }
         backCounter++;
     }else if (mState == SeesawDriver::LINERETURN) {
@@ -128,7 +138,7 @@ bool SeesawDriver::drive()
             mState = SeesawDriver::AFTERLINETRACE;
             mInitState = true;
         }
-        VectorT<F32> command(15, -5);
+        VectorT<F32> command(15, 5);//@todo 要調整（2010コードより推測）
         mActivator.run(command);
     }else if (mState == SeesawDriver::AFTERLINETRACE) {
         if (mInitState) {
