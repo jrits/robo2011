@@ -17,22 +17,22 @@ extern bool gDoForwardPid;
 class Skill
 {
 protected:
-	float mForward; //!< フォワード値
+    float mForward; //!< フォワード値
 public:
     /**
      * コンストラクタ
      */
-	Skill(){}
+    Skill(){}
     /**
      * デストラクタ
      */
-	virtual ~Skill(){}
+    virtual ~Skill(){}
     /**
      * フォワード値をセットする
      *
      * @param[in] forward フォワード値
      */
-	void setForward(float forward)
+    void setForward(float forward)
     {
         mForward = forward;
     }
@@ -51,7 +51,7 @@ public:
      *
      * Override Me!!
      */
-	virtual VectorT<float> calcCommand() { return VectorT<float>(0,0); }
+    virtual VectorT<float> calcCommand() { return VectorT<float>(0,0); }
     // 純粋仮想関数にするとプログラム容量が肥大化する。とりあえず純粋仮想関数を避ける。
 };
 

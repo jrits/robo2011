@@ -17,8 +17,8 @@
 class DownSlopeDetector : public Detector
 {
 public:
-	DownSlopeDetector(){}
-	~DownSlopeDetector(){}
-	bool detect();
+    DownSlopeDetector(){}
+    ~DownSlopeDetector(){}
+    bool detect();
 };
 #endif // !defined DOWNSLOPEDETECTOR_H

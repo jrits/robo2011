@@ -30,7 +30,7 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
         break;
     case OutCourse::ETSUMO:
         /* ETロボコン2011 追記*/
-    	// ET相撲からテスト
+        // ET相撲からテスト
         // ET相撲スタート地点
         mGps.adjustXCoordinate(GPS_ETSUMO_START_X);
         mGps.adjustYCoordinate(GPS_ETSUMO_START_Y);
@@ -51,7 +51,6 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
         mGps.adjustYCoordinate(GPS_COURSE_START_Y);
         mGps.adjustDirection(GPS_COURSE_START_DIRECTION);
         break;
-    	
     }
 }
 
@@ -63,20 +62,20 @@ void OutCourse::drive()
 #if 0 // ログ送信(0：解除、1：実施)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
-	LOGGER_DATAS08[1] = (S8)(mLineDetector.detect()); // 一瞬だけなのでログに残らない可能性あり
-	LOGGER_DATAU16    = (U16)(mWallDetector.detect());
-	LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
-	LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
-	LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-	LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
-	LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
-	LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
-	LOGGER_DATAS32[2] = (S32)(mLightSensor.get());
-	LOGGER_DATAS32[3] = (S32)(mGyroSensor.get());
+    LOGGER_DATAS08[1] = (S8)(mLineDetector.detect()); // 一瞬だけなのでログに残らない可能性あり
+    LOGGER_DATAU16    = (U16)(mWallDetector.detect());
+    LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+    LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+    LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+    LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
+    LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+    LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+    LOGGER_DATAS32[2] = (S32)(mLightSensor.get());
+    LOGGER_DATAS32[3] = (S32)(mGyroSensor.get());
 #endif
 #if 0 // デバッグ(0：解除、1：実施)
     {
-    	//DESK_DEBUG = true;
+        //DESK_DEBUG = true;
         static int count = 0;
         if (count++ % 25 == 0) {
             Lcd lcd;

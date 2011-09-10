@@ -13,15 +13,15 @@
 class AngleTrace : public Skill
 {
 private:
-	float mTargetAngle; //!< 目標角度
+    float mTargetAngle; //!< 目標角度
     float mAllowableError; //!< 許容誤差角度。方向転換に使う。 [0, 180]
 public:
-	AngleTrace();
-	~AngleTrace(){}
-	void setTargetAngle(float targetAangle);
+    AngleTrace();
+    ~AngleTrace(){}
+    void setTargetAngle(float targetAangle);
     void setAllowableError(float allowableError);
 public:
-	VectorT<float> calcCommand();
+    VectorT<float> calcCommand();
     bool isArrived();
 };
 #endif

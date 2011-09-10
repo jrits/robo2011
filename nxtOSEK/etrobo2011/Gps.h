@@ -41,60 +41,60 @@ public:
         OUT //!< アウトコース
     };
 private:
-	float mWheelRadius; //!< 車輪半径(mm)
-	float mWheelDistance; //!< 車輪間隔(mm)
-	Motor &motorL; //!< 左モータ
-	Motor &motorR; //!< 右モータ
+    float mWheelRadius; //!< 車輪半径(mm)
+    float mWheelDistance; //!< 車輪間隔(mm)
+    Motor &motorL; //!< 左モータ
+    Motor &motorR; //!< 右モータ
     Gps::eCourse mCourse; //!< コース識別子
-	float mXCoordinate; //!< X座標
-	float mYCoordinate; //!< Y座標
-	float mDirection; //!< 向き
-	float mDistance; //!< 距離
-	float mXOffset; //!< X座標補正値
-	float mYOffset; //!< Y座標補正値
-	float mDirectionOffset; //!< 向き補正値
-	float mDistanceOffset; //!< 距離補正値
-	
-	//以下補正関係変数
+    float mXCoordinate; //!< X座標
+    float mYCoordinate; //!< Y座標
+    float mDirection; //!< 向き
+    float mDistance; //!< 距離
+    float mXOffset; //!< X座標補正値
+    float mYOffset; //!< Y座標補正値
+    float mDirectionOffset; //!< 向き補正値
+    float mDistanceOffset; //!< 距離補正値
+    
+    //以下補正関係変数
     float mXAverage; //!< X座標平均
     float mYAverage; //!< Y座標平均
     float mDirectionAverage; //!< 向き平均
-	int mTimeCounter; //!< 時間カウンタ
+    int mTimeCounter; //!< 時間カウンタ
 public:
-	Gps(Motor &aMotorL, Motor &aMotorR, Gps::eCourse aCourse);
-	~Gps(){}
-	void update();
-	float getXCoordinate();
-	float getYCoordinate();
-	float getDirection();
-	float getDistance();
-	void adjustXCoordinate(float trueValue);
-	void adjustYCoordinate(float trueValue);
-	void adjustDirection(float trueValue);
-	void adjustDistance(float trueValue);
+    Gps(Motor &aMotorL, Motor &aMotorR, Gps::eCourse aCourse);
+    ~Gps(){}
+    void update();
+    float getXCoordinate();
+    float getYCoordinate();
+    float getDirection();
+    float getDistance();
+    void adjustXCoordinate(float trueValue);
+    void adjustYCoordinate(float trueValue);
+    void adjustDirection(float trueValue);
+    void adjustDistance(float trueValue);
 public:
-	float calcAngle(float el, float er);
-	float calcRadius(float encoderLeft, float angle);
-	void calcDirection(float angle);
-	void calcDistance();
-	bool calcCenterCoordinates(float angle, float radius, float *circleX, float *circleY);
-	void calcCoordinates(float angle, float distance, float encoderL, float encoderR);
+    float calcAngle(float el, float er);
+    float calcRadius(float encoderLeft, float angle);
+    void calcDirection(float angle);
+    void calcDistance();
+    bool calcCenterCoordinates(float angle, float radius, float *circleX, float *circleY);
+    void calcCoordinates(float angle, float distance, float encoderL, float encoderR);
 private:
     // 自動補正関数
-	void adjustPositionOut(float avgX, float avgY, float avgD);
+    void adjustPositionOut(float avgX, float avgY, float avgD);
     void adjustPositionIn(float avgX, float avgY, float avgD);
 public:
     // クラスメソッド
-	static float marge360(float margeTarget);
-	static float marge180(float margeTarget);
+    static float marge360(float margeTarget);
+    static float marge180(float margeTarget);
     static float radianToDegree(float radian);
-	static float degreeToRadian(float degree);
+    static float degreeToRadian(float degree);
     static double atan2(double y, double x);
     float calcDistanceTo(Point targetCoordinate);
 public:
     // obsolete 
-	void setYCoordinate(float yCo);
-	void setXCoordinate(float xCo);
+    void setYCoordinate(float yCo);
+    void setXCoordinate(float xCo);
     void setDirection(float direction);
     void setDistance(float distance);
 };

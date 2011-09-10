@@ -19,17 +19,17 @@ public:
     /**
      * コンストラクタ
      */
-	Course(){}
+    Course(){}
     /**
      * デストラクタ
      */
-	virtual ~Course(){}
+    virtual ~Course(){}
     /**
      * 現在の状況に適切なドライバを選択し、ドライバに運転させる
      *
      * Override Me!
      */
-	virtual void drive(){}
+    virtual void drive(){}
 };
-	
+
 #endif /*COURSE_H_*/

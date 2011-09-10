@@ -25,8 +25,8 @@ public:
         ON_BLACK,       //!< 黒=>黒
     };
 public:
-	LineDetector(){}
-	~LineDetector(){}
+    LineDetector(){}
+    ~LineDetector(){}
     LineDetector::ePattern detect();
 };
 

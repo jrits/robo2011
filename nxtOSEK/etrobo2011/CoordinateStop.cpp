@@ -38,7 +38,7 @@ void CoordinateStop::setTargetCoordinate(Point targetCoordinate)
  */
 void CoordinateStop::setSlowdownDistance(float slowdownDistance)
 {
-	mSlowdownDistance = slowdownDistance;
+    mSlowdownDistance = slowdownDistance;
 }
 
 /**
@@ -93,7 +93,7 @@ VectorT<float> CoordinateStop::calcCommand()
         command.mX = mForward;
     }
 
-	return command;
+    return command;
 }
 
 */
@@ -103,7 +103,6 @@ VectorT<float> CoordinateStop::calcCommand()
 
 VectorT<float> CoordinateStop::calcCommand()
 {
-    
     // 座標指定走行の利用。フォワード値を上書きする。
     VectorT<float> command = mCoordinateTrace.calcCommand();
 
@@ -112,7 +111,7 @@ VectorT<float> CoordinateStop::calcCommand()
 
     // 距離が近づいたら急停止。SlowdownDistanceをひとまず拝借している。適当な変数を準備して適当な値に変更すべき？
     if ((mTargetDistance - distance) < mSlowdownDistance) { // 着地動作開始
-        
+
         command.mX = 0;
         //SORA test
         command.mY = 0;
@@ -124,7 +123,7 @@ VectorT<float> CoordinateStop::calcCommand()
             lcd.putf("sn", "CoordinateStop");
             lcd.putf("dn", (int)mTargetDistance);
             lcd.putf("dn", (int)distance);
-            lcd.putf("dn", (int)command.mX);         
+            lcd.putf("dn", (int)command.mX);
             lcd.disp();
         }
 #endif
@@ -132,21 +131,19 @@ VectorT<float> CoordinateStop::calcCommand()
     else { // まだ遠い場合
         //command.mX = mForward;
     }
-    
-//SORA [log]    
+
+//SORA [log]
 #if 0
     // ログ送信
     LOGGER_SEND = 2;
-//	LOGGER_DATAS08[0] = (S8)(linePattern);
-	LOGGER_DATAS16[0] = (S16)(mTargetDistance - distance);
-	LOGGER_DATAS16[1] = (S16)(command.mX);
-//	LOGGER_DATAS16[2] = (S16)(mTargetDistance - distance);
-//	LOGGER_DATAS16[3] = (S16)(lightDiff);
+//  LOGGER_DATAS08[0] = (S8)(linePattern);
+    LOGGER_DATAS16[0] = (S16)(mTargetDistance - distance);
+    LOGGER_DATAS16[1] = (S16)(command.mX);
+//  LOGGER_DATAS16[2] = (S16)(mTargetDistance - distance);
+//  LOGGER_DATAS16[3] = (S16)(lightDiff);
 #endif
-    
-    
-        
-	return command;
+
+    return command;
 }
 
 //  2010/11/25  失敗：急停止は転ぶ

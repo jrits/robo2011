@@ -28,5 +28,4 @@ public:
     ~OutCourse(){}
     void drive();
 };
-	
 #endif /*OUTCOURSE_H_*/

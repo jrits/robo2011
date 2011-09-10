@@ -22,7 +22,7 @@ bool StraightDetector::detect()
     // ログ送信
     LOGGER_SEND = 1;
     LOGGER_DATAS08[0] = (S8)(isStraight);
-	LOGGER_DATAS32[0] = (S32)(diffDirection);
+    LOGGER_DATAS32[0] = (S32)(diffDirection);
 #endif
     
     return isStraight;

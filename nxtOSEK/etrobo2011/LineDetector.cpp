@@ -38,11 +38,11 @@ LineDetector::ePattern LineDetector::detect()
 #if 0
     // ログ送信
     LOGGER_SEND = 2;
-	LOGGER_DATAS08[0] = (S8)(linePattern);
-	LOGGER_DATAS16[0] = (S16)(mLightHistory.get(LATEST));
-	LOGGER_DATAS16[1] = (S16)(mLightHistory.get(OLDEST));
-	LOGGER_DATAS16[2] = (S16)(mLightHistory.calcDifference());
-	LOGGER_DATAS16[3] = (S16)(lightDiff);
+    LOGGER_DATAS08[0] = (S8)(linePattern);
+    LOGGER_DATAS16[0] = (S16)(mLightHistory.get(LATEST));
+    LOGGER_DATAS16[1] = (S16)(mLightHistory.get(OLDEST));
+    LOGGER_DATAS16[2] = (S16)(mLightHistory.calcDifference());
+    LOGGER_DATAS16[3] = (S16)(lightDiff);
 #endif
 
     return linePattern;

@@ -36,7 +36,7 @@ private:
     float mPrevDirection; //!< 前の方向
 public:
     StairwayDriver();
-	~StairwayDriver(){}
+    ~StairwayDriver(){}
     bool drive();
 };
 #endif // STAIRWAYDRIVER_H

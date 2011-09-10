@@ -54,16 +54,16 @@ void InCourse::drive()
 #if 0 // ログ送信(0：解除、1：実施)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
-	LOGGER_DATAS08[1] = (S8)(mEnigmaDriver.detect()); // 一瞬だけなのでログに残らない可能性あり
-	LOGGER_DATAU16    = (U16)(mStraightDetector.detect());
-	LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
-	LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
-	LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-	LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
-	LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
-	LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
-	LOGGER_DATAS32[2] = (S32)(mLightSensor.get());
-	LOGGER_DATAS32[3] = (S32)(gSonarDistance);
+    LOGGER_DATAS08[1] = (S8)(mEnigmaDriver.detect()); // 一瞬だけなのでログに残らない可能性あり
+    LOGGER_DATAU16    = (U16)(mStraightDetector.detect());
+    LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+    LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+    LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+    LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
+    LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+    LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+    LOGGER_DATAS32[2] = (S32)(mLightSensor.get());
+    LOGGER_DATAS32[3] = (S32)(gSonarDistance);
 #endif
     
 #if 0 // デバッグ(0：解除、1：実施)

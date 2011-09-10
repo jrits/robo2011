@@ -20,16 +20,16 @@ class SlowdownSkill : public Skill
     float mTargetDistance; //!< 停止目標距離(mm)
     float mAllowableError; //!< 許容エラー値(mm)
 public:
-	SlowdownSkill();
-	~SlowdownSkill(){}
+    SlowdownSkill();
+    ~SlowdownSkill(){}
 public:
     void setSkill(Skill *skill);
     void setTargetDistance(float targetDistance);
     void setMinimumForward(float minimumForward);
-	void setAllowableError(float allowableError);
+    void setAllowableError(float allowableError);
     bool isArrived();
     bool isPassed();
 public:
-	VectorT<float> calcCommand();
+    VectorT<float> calcCommand();
 };
 #endif

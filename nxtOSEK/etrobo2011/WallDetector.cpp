@@ -15,10 +15,10 @@
  * @retval false 検知しなかった
  */
 bool WallDetector::detect(){
-//	float accR = mRightMotorSpeedHistory.calcDifference();
-//	float accL = mLeftMotorSpeedHistory.calcDifference();
-	float gyro = mGyroHistory.calcDifference();
-	
+//  float accR = mRightMotorSpeedHistory.calcDifference();
+//  float accL = mLeftMotorSpeedHistory.calcDifference();
+    float gyro = mGyroHistory.calcDifference();
+    
 #if 0
     {
         Lcd lcd;
@@ -32,6 +32,6 @@ bool WallDetector::detect(){
     }
 #endif
     //return (gyro > 60);
-	return (gyro > mThreshold);
+    return (gyro > mThreshold);
 //    return (accR < WALL_THRESHOLD || accL < WALL_THRESHOLD);
 }
