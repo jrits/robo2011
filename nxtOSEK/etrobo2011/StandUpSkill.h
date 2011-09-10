@@ -1,16 +1,13 @@
 #ifndef STANDUPSKILL_H
 #define STANDUPSKILL_H
 
-#include "balancer.h"
-#include "Activator.h"
-#include "TripodActivator.h"
+// #include "Activator.h"
+// #include "TripodActivator.h"
 #include "Motor.h"
 
-extern "C"
-{
-extern void tail_control(signed int);
-}
 using namespace ecrobot;
+class Activator;
+class TripodActivator;
 
 class StandUpSkill {
  public:
@@ -26,36 +23,14 @@ class StandUpSkill {
         mTailMotor(tailMotor),
         mIsStandUp(false),
         mStableCount(0),
-        mOnlyFirst(true)
-  {
-  }
+        mOnlyFirst(true),
+        mLastDiff(0.0F),
+        mIterm(0.0F)
+  {}
   
   ~StandUpSkill(){}
 
-  void execute(){
-    static const VectorT<F32> command(1.0F,1.0F);
-    if(!mIsStandUp){
-      //立ち上がるまでしっぽの角度を上げ続ける。
-      mIsStandUp = isStandUp();
-      tail_control(108);
-      mTripodActivator.run(command);
-    } else if(isStable()){
-      if(mOnlyFirst){
-        balance_init();
-        mLeftMotor.reset();
-        mRightMotor.reset();
-        mOnlyFirst = false;
-      }
-      tail_control(3);
-      mActivator.run(command);
-    }
-    else {
-      tail_control(105);
-      mLeftMotor.setPWM(0);
-      mRightMotor.setPWM(0);
-      mStableCount++;
-    } 
-  }
+  void execute();
  private:
   bool isStandUp(){
     // モータの角度が一定に達したら立ち上がったと判定する。
@@ -65,6 +40,8 @@ class StandUpSkill {
   bool isStable(){
     return mStableCount > 1000;
   }
+
+  void tail_control_with_PID(signed int target_angle);
   
   Activator& mActivator;
   TripodActivator& mTripodActivator;
@@ -74,6 +51,11 @@ class StandUpSkill {
   bool mIsStandUp;
   int mStableCount;
   bool mOnlyFirst;
+
+  // 微分動作を計算するための、前回の誤差を保持する。
+  float mLastDiff;
+  // 積分動作を保持するためのフィールド。
+  float mIterm;
 };
 
 #endif
