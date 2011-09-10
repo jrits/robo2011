@@ -1,8 +1,8 @@
 #include "factory.h"
 #include "coordinates.h"
 
-//#define INCOURSE
-#define OUTCOURSE
+#define INCOURSE
+//#define OUTCOURSE
 
 // コース
 #ifdef INCOURSE

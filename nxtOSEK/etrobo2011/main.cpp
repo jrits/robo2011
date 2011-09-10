@@ -181,8 +181,8 @@ TASK(TaskSonar)
         LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
         LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
         LOGGER_DATAS16[3] = (S16)(distance);
-        LOGGER_DATAS32[0] = (S32)(distance);
-        LOGGER_DATAS32[1] = (S32)(distance);
+        LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+        LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
         LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
         LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
         
@@ -208,7 +208,7 @@ TASK(TaskDrive)
     WaitEvent(EventDrive);
     // K_THETADOT = 10.5F;
 
-    //connect_bt(mLcd, BT_NAME); // bluetooth接続
+    connect_bt(mLcd, BT_NAME); // bluetooth接続
     mActivator.reset(USER_GYRO_OFFSET);
 
     while(1)
@@ -241,8 +241,9 @@ TASK(TaskDrive)
     {
         tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
         //if (mFailDetector.detect()) doDrive = false;
-        //if (doDrive) mCourse->drive();
-        if (doDrive) mTestDriver.drive();
+        mLineTrace.setForward(50);//テストコース用調整：コミット時要削除
+    	if (doDrive) mCourse->drive();
+        //if (doDrive) mTestDriver.drive();
         else mActivator.stop();
 
         // イベント通知を待つ
@@ -267,7 +268,7 @@ TASK(TaskMaimai)
     while(1)
     {
           if (! gDoMaimai) {
-            ecrobot_set_light_sensor_active(NXT_PORT_S3);
+            //ecrobot_set_light_sensor_active(NXT_PORT_S3);
             ClearEvent(EventMaimai);
             WaitEvent(EventMaimai);
             continue;

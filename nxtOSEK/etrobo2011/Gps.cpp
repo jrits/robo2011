@@ -8,8 +8,12 @@
 #include "Daq.h"
 #include "Gps.h"
 #include "Lcd.h"
+#include "factory.h"
+#include "constants.h"
+#include "Speaker.h"
 extern Bluetooth bt;
 extern Daq mDaq;
+
 //--------------------
 //Historyクラス完成後は、各メソッド内で宣言
 float prevXCoordinate = 0.0;
@@ -491,12 +495,73 @@ bool Gps::calcCenterCoordinates(float angle, float radius, float *circleX, float
  */
 void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 {
+	/* 2011年版"簡易"自動補正 */
+	/* エンコーダ値メインの決め打ち補正 */
+	float motorCount = (motorR.getCount() + motorL.getCount()) / 2;//スタート時からの車輪の回転角度の左右平均（例：両輪が一回転する → motorCount ≒ 360）
+	float distance = (mWheelRadius * 2) * M_PI * (motorCount / 360);//スタート時からのおおよその距離（直径 * 円周率 * 回転数）単位はmm
+	
+	/* スタート直後の補正*/
+	if(((0.0 < distance) && (distance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
+	{
+		adjustDirection(180);
+		//adjustXCoordinate();
+		adjustYCoordinate(-252.0);
+		mSpeaker.playTone(1000, 1, 100);
+	}
+	
+	/* 最初のカーブ後の補正*/
+	if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	{
+		adjustDirection(270);
+		adjustXCoordinate(262.0);
+		//adjustYCoordinate();
+		mSpeaker.playTone(1000, 1, 100);
+	}
+	
+	/* ルックアップゲート前の補正*/
+	/*ルックアップゲート内でやるのでとりあえずコメントアウト
+	//if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	if(((405.0 < avgD)) && (avgD < 495.0) && ((2500.0 < avgX)) && (avgX < 2850.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	{
+		adjustDirection(450);
+		adjustXCoordinate(2676.0);
+		//adjustYCoordinate();
+		mSpeaker.playTone(1000, 1, 100);
+	}
+	*/
+#if 1 // ログ送信(0：解除、1：実施)
+        LOGGER_SEND = 2;
+        //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
+        //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+        LOGGER_DATAU16    = (U16)(distance);
+        LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+        LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+        LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+        LOGGER_DATAS16[3] = (S16)(distance);
+        LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+        LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+        //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
+        //LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
+        
+        mLcd.clear();
+        //mLcd.putf("nsnn", "Get Ready?");
+        //mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
+        //mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
+        //mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
+        mLcd.disp();
+#endif
+	
+	/* 2011年版"簡易"自動補正ここまで */
+	
+	/* 以下2010年版自動補正 */
+
     /**
      * 直線上を走行中かつGPSの座標から、走行位置、向きを補正
      * GPSVisualizerの座標を利用してマッピングを行う
      * 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。
      * 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難->区間を座標で指定するため、判定がシビアになる
      */
+	/*
     int direction = (int)marge360(avgD);
     int mDirectionDiv = direction%90;
     int posFlag = (int)(((direction + DIRECTION_THRESHOLD))/90);
@@ -513,7 +578,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     {
         return;
     }
-    /* 区間の縦幅+-コース幅、区間の横幅->直線区間距離 */
+    // 区間の縦幅+-コース幅、区間の横幅->直線区間距離 
     switch(posFlag){
         case 0:
             if( (((avgY >= Y_CASE_0_4 -COURSE_WIDTH) && (avgY <= Y_CASE_0_4 + COURSE_WIDTH)))  && (((avgX>=X_CASE_0_4_START) && (avgX <= X_CASE_0_4_END )) && ((getXCoordinate()>=X_CASE_0_4_START) && (getXCoordinate() <= X_CASE_0_4_END))))
@@ -560,6 +625,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
         default:
             break;
     }
+	*/
 }
 
 /**
@@ -572,12 +638,72 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
  */
 void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 {
+	/* 2011年版"簡易"自動補正 */
+	/* エンコーダ値メインの決め打ち補正 */
+	float motorCount = (motorR.getCount() + motorL.getCount()) / 2;//スタート時からの車輪の回転角度の左右平均（例：両輪が一回転する → motorCount ≒ 360）
+	float distance = (mWheelRadius * 2) * M_PI * (motorCount / 360);//スタート時からのおおよその距離（直径 * 円周率 * 回転数）単位はmm
+	
+	/* スタート直後の補正*/
+	if(((0.0 < distance) && (distance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
+	{
+		adjustDirection(180);
+		//adjustXCoordinate();
+		adjustYCoordinate(-504.0);
+		mSpeaker.playTone(1000, 1, 100);
+	}
+	
+	/* 最初のカーブ後の補正*/
+	if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	{
+		adjustDirection(270);
+		adjustXCoordinate(513.0);
+		//adjustYCoordinate();
+		mSpeaker.playTone(1000, 1, 100);
+	}
+	
+	/* シーソー前の補正*/
+	//if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	if(((405.0 < avgD)) && (avgD < 495.0) && ((2500.0 < avgX)) && (avgX < 2850.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	{
+		adjustDirection(450);
+		adjustXCoordinate(2676.0);
+		//adjustYCoordinate();
+		mSpeaker.playTone(1000, 1, 100);
+	}
+	
+#if 1 // ログ送信(0：解除、1：実施)
+        LOGGER_SEND = 2;
+        //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
+        //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+        LOGGER_DATAU16    = (U16)(distance);
+        LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+        LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+        LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+        LOGGER_DATAS16[3] = (S16)(distance);
+        LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+        LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+        //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
+        //LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
+        
+        mLcd.clear();
+        //mLcd.putf("nsnn", "Get Ready?");
+        //mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
+        //mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
+        //mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
+        mLcd.disp();
+#endif
+	
+	
+	/* 2011年版"簡易"自動補正ここまで */
+	
+	/* 以下2010年版自動補正 */
     /**
      * 直線上を走行中かつGPSの座標から、走行位置、向きを補正
      * GPSVisualizerの座標を利用してマッピングを行う
      * 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。
      * 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難->区間を座標で指定するため、判定がシビアになる
      */
+	/*
     int direction = (int)marge360(avgD);
     int mDirectionDiv = direction%90;
     int posFlag = (int)(((direction + DIRECTION_THRESHOLD))/90);
@@ -594,7 +720,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     {
         return;
     }
-    /* 区間の縦幅+-コース幅、区間の横幅->直線区間距離 */
+    // 区間の縦幅+-コース幅、区間の横幅->直線区間距離
     switch(posFlag){
         case 0:
             if( (((avgY >= Y_IN_4 -COURSE_WIDTH) && (avgY <= Y_IN_4 + COURSE_WIDTH)))  && (((avgX>= X_IN_4_START ) && (avgX <= X_IN_4_END )) && ((getXCoordinate()>=X_IN_4_START) && (getXCoordinate() <= X_IN_4_END))))
@@ -633,6 +759,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
         default:
             break;
     }
+	*/
 }
 
 //================== クラスメソッド ===================
