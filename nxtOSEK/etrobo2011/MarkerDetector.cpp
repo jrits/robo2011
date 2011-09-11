@@ -15,7 +15,7 @@
  * @retval true 灰色マーカー区間
  * @retval false そうじゃない
  */
-bool MarkerDetector::isInMarker()
+bool MarkerDetector::detect()
 {
     double L = mLightSensor.get();
     // 灰色のサンプルをカウントする。黒を１度でも見つけたら0にリセットする。
@@ -32,8 +32,8 @@ bool MarkerDetector::isInMarker()
     }
     // mNsample 期間中、黒が現れなければマーカと判断する。
     if (mGrayCount >= mNsample) {
-        //Speaker speaker;
-        //speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
+//        Speaker speaker;
+//        speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
         return true;
     }
     return false;

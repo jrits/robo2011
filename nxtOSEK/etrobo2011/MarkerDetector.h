@@ -23,7 +23,7 @@ public:
           mGrayCount(0) {}
     virtual ~MarkerDetector(){}
 public:
-    virtual bool isInMarker();
+    virtual bool detect();
 };
 
 #endif

@@ -14,6 +14,7 @@ do
 done
 
 rm -f TestDriver.cpp
+rm -f build/TestDriver.o
 if [ -f TestDriver_${BRANCH}.cpp ]; then
   echo "ln -s TestDriver_${BRANCH}.cpp TestDriver.cpp"
   ln -s TestDriver_${BRANCH}.cpp TestDriver.cpp

@@ -101,6 +101,7 @@ extern DownSlopeDetector mDownSlopeDetector;
 extern LineDetector mLineDetector;
 extern StraightDetector mStraightDetector;
 extern FailDetector mFailDetector;
+extern MarkerDetector mMarkerDetector;
 // Skill
 extern LineTrace mLineTrace;
 extern TripodLineTrace mTripodLineTrace;
