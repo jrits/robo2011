@@ -19,6 +19,9 @@ protected:
     float mBlack;         //!< 黒
     float mWhite;         //!< 白
     float mLineThreshold; //!< 白黒閾値
+    float mMaimaiBlack;         //!< 黒(MAIMAI)
+    float mMaimaiWhite;         //!< 白(MAIMAI)
+    float mMaimaiLineThreshold; //!< 白黒閾値(MAIMAI)
     int mInitForward;     //!< 初期フォワード値
     int mInitDuration;    //!< 初期フォワード値継続カウンタ期間
     int mTimeCounter;     //!< 時間カウンタ
@@ -28,7 +31,8 @@ protected:
     float mTemp_K_THETADOT;
     float mTemp_K_PHIDOT;
 public:
-    LineTrace(float black, float white, float threshold);
+    LineTrace(float black, float white, float threshold, 
+        float maimaiBlack, float maimaiWhite, float maimaiThreshold);
     ~LineTrace(){}
     void reset();
     void setInitForward(int initForward);

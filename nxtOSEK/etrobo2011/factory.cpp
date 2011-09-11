@@ -50,8 +50,10 @@ StraightDetector mStraightDetector;
 FailDetector mFailDetector;
 MarkerDetector mMarkerDetector;
 // Skill
-LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD);
-TripodLineTrace mTripodLineTrace(TRIPOD_BLACK, TRIPOD_WHITE, TRIPOD_LINE_THRESHOLD);
+LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD,
+    MAIMAI_BLACK, MAIMAI_WHITE, MAIMAI_LINE_THRESHOLD);
+TripodLineTrace mTripodLineTrace(TRIPOD_BLACK, TRIPOD_WHITE, TRIPOD_LINE_THRESHOLD,
+    MAIMAI_TRIPOD_BLACK, MAIMAI_TRIPOD_WHITE, MAIMAI_TRIPOD_LINE_THRESHOLD);
 AngleTrace mAngleTrace;
 CoordinateTrace mCoordinateTrace;
 VirtualLineTrace mVirtualLineTrace;

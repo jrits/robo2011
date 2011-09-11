@@ -13,11 +13,15 @@ extern float gMaimaiValue;
  * @param[in] white 白
  * @param[in] threshold 白黒閾値
  */
-LineTrace::LineTrace(float black, float white, float threshold)
+LineTrace::LineTrace(float black, float white, float threshold,
+    float maimaiBlack, float maimaiWhite, float maimaiThreshold)
 {
     mBlack = black;
     mWhite = white;
     mLineThreshold = threshold;
+    mMaimaiBlack = maimaiBlack;
+    mMaimaiWhite = maimaiWhite;
+    mMaimaiLineThreshold = maimaiThreshold;
     mInitForward = INIT_FORWARD;
     mInitDuration = INIT_SAMPLECOUNT;
     mDoOnOffTrace = false;
@@ -72,7 +76,7 @@ void LineTrace::setDoOnOffTrace(bool doOnOffTrace)
         K_PHIDOT   = LIGHT_ONOFF_K_PHIDOT;
     } else {
         K_THETADOT = mTemp_K_THETADOT;
-        K_PHIDOT =  mTemp_K_PHIDOT;
+        K_PHIDOT   = mTemp_K_PHIDOT;
     }
 }
 
@@ -182,12 +186,13 @@ float LineTrace::maimaiValueNormalization()
 {
     float L = gMaimaiValue;
     
-    float P = (L - MAIMAI_LINE_THRESHOLD); // 偏差
-    if(L < MAIMAI_LINE_THRESHOLD){ // 白
-        P = P / (MAIMAI_LINE_THRESHOLD - MAIMAI_WHITE); // [-1.0, 1.0] の値に正規化
+    float P = (L - mMaimaiLineThreshold); // 偏差
+    if(L < mMaimaiLineThreshold){ // 白
+        P = P / (mMaimaiLineThreshold - mMaimaiWhite); // [-1.0, 1.0] の値に正規化
     }
     else{ // 黒
-        P = P / (MAIMAI_BLACK - MAIMAI_LINE_THRESHOLD); // [-1.0, 1.0] の値に正規化
+        P = P / (mMaimaiBlack - mMaimaiLineThreshold); // [-1.0, 1.0] の値に正規化
+        P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
     }
     
     if(P > 1) P = 1;

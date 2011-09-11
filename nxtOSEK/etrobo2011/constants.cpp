@@ -83,6 +83,9 @@ int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の
 float MAIMAI_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //小さめにしてね
 float MAIMAI_BLACK = 0.3F; // 黒色のMAMAIセンサ値 //大きめにしてね
 float MAIMAI_LINE_THRESHOLD = 0.7F; // ライン端の色を示す閾値。白と灰色の間の値
+float MAIMAI_TRIPOD_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //小さめにしてね
+float MAIMAI_TRIPOD_BLACK = 0.3F; // 黒色のMAMAIセンサ値 //大きめにしてね
+float MAIMAI_TRIPOD_LINE_THRESHOLD = 0.7F; // ライン端の色を示す閾値。白と灰色の間の値
 
 // GPS
 // float WHEEL_RADIUS = 38.5; // 車輪半径(mm)

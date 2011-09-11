@@ -13,8 +13,9 @@ extern bool gDoForwardPid;
  * @param[in] white 白
  * @param[in] threshold 白黒閾値
  */
-TripodLineTrace::TripodLineTrace(float black, float white, float threshold) :
-    LineTrace(black, white, threshold)
+TripodLineTrace::TripodLineTrace(float black, float white, float threshold,
+    float maimaiBlack, float maimaiWhite, float maimaiThreshold) :
+    LineTrace(black, white, threshold, maimaiBlack, maimaiWhite, maimaiThreshold)
 {
 }
 
