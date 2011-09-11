@@ -48,8 +48,7 @@ bool TestDriver::drive()
         lcd.putf("dn", (S32)(mGps.getDistance()));
         lcd.putf("dn", (S32)(mLeftMotor.getCount()));
         lcd.putf("dn", (S32)(mRightMotor.getCount()));
-        //lcd.putf("dn", (S32)(mLineDetector.detect()));
-        //lcd.putf("dn", (S32)(mLightHistory.calcDifference()));
+        lcd.putf("dn", (S32)(mLightSensor.get()));
         lcd.disp();
     }
 #endif
@@ -61,16 +60,24 @@ bool TestDriver::drive()
     // テスト マーカー検知(1)
     // 条件: ON/OFFライントレース with フォワードPID without まいまい
     if (1) {
-        K_PHIDOT = 25.0F*2.5F;
-        K_THETADOT = 7.5F;
-        gDoForwardPid = false;
-        gDoMaimai = false;
-        mLineTrace.setForward(50);
-        mLineTrace.setDoOnOffTrace(true);
-        mLineTrace.execute();
-        if (mMarkerDetector.detect()) { // マーカー検知
-            //Speaker speaker;
-            //speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
+        // スタートが難しかったのでしばし(2s)PIDライントレース
+        if (count < 500) {
+            gDoMaimai = false;
+            mLineTrace.setForward(50);
+            mLineTrace.execute();
+        // ここからON/OFFライントレース
+        } else {
+            K_PHIDOT = 25.0F*2.5F;
+            K_THETADOT = 7.5F;
+            gDoForwardPid = false;
+            gDoMaimai = false;
+            mLineTrace.setForward(50);
+            mLineTrace.setDoOnOffTrace(true);
+            mLineTrace.execute();
+            if (mMarkerDetector.detect()) { // マーカー検知
+                Speaker speaker;
+                speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
+            }
         }
     }
     // テスト マーカー検知(2) まだ作っていない。

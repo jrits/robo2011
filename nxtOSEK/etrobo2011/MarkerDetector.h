@@ -10,7 +10,7 @@
 using namespace ecrobot;
 
 extern LightSensor mLightSensor;
-const int MARKER_NSAMPLE = 500;
+const int MARKER_NSAMPLE = 250;
 
 class MarkerDetector
 {

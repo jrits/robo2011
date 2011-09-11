@@ -26,14 +26,14 @@ bool MarkerDetector::detect()
     }
     // 黒
     else { 
-        //Speaker speaker;
-        //speaker.playTone(50, 1, 100); // Hz:33-1976 , 10ms, volume:0-100
+        Speaker speaker;
+        speaker.playTone(50, 1, 100); // Hz:33-1976 , 10ms, volume:0-100
         mGrayCount = 0;
     }
     // mNsample 期間中、黒が現れなければマーカと判断する。
     if (mGrayCount >= mNsample) {
-//        Speaker speaker;
-//        speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
+        Speaker speaker;
+        speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
         return true;
     }
     return false;
