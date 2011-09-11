@@ -31,6 +31,7 @@ extern int FORWARD;
 extern int WHITE;
 extern int BLACK;
 extern int LINE_THRESHOLD;
+extern int MARKER_THRESHOLD;
 extern int TRIPOD_WHITE;
 extern int TRIPOD_BLACK;
 extern int TRIPOD_LINE_THRESHOLD;

@@ -23,6 +23,7 @@
 #include "LineDetector.h"
 #include "StraightDetector.h"
 #include "FailDetector.h"
+#include "MarkerDetector.h"
 // スキル
 #include "Skill.h"
 #include "LineTrace.h"
