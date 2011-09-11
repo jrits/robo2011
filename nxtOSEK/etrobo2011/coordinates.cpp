@@ -7,9 +7,8 @@
 // コース
 #ifdef INCOURSE
 Gps mGps(mLeftMotor, mRightMotor, Gps::IN);
-
-//InCourse mInCourse(InCourse::TESTDRIVE); // テストドライバ起動
-InCourse mInCourse(InCourse::START);     // 開始位置は下参照
+InCourse mInCourse(InCourse::TESTDRIVE); // テストドライバ起動
+//InCourse mInCourse(InCourse::START);     // 開始位置は下参照
 //InCourse mInCourse(InCourse::SEESAW);     // 開始位置は下参照
 //InCourse mInCourse(InCourse::STAIRWAY);   // 開始位置は下参照
 //InCourse mInCourse(InCourse::GARAGEIN);  // 開始位置は下参照
@@ -19,9 +18,8 @@ int TRACE_EDGE = LEFT;
 #endif
 #ifdef OUTCOURSE
 Gps mGps(mLeftMotor, mRightMotor, Gps::OUT);
-
-//OutCourse mOutCourse(OutCousrse::TESTDRIVE); // テストドライバ起動
-OutCourse mOutCourse(OutCourse::START);      // 開始位置は下参照
+OutCourse mOutCourse(OutCousrse::TESTDRIVE); // テストドライバ起動
+//OutCourse mOutCourse(OutCourse::START);      // 開始位置は下参照
 //OutCourse mOutCourse(OutCourse::LOOKUP);     // 開始位置は下参照
 //OutCourse mOutCourse(OutCourse::ETSUMO);       // 開始位置は下参照
 //OutCourse mOutCourse(OutCourse::GARAGEIN);   // 開始位置は下参照

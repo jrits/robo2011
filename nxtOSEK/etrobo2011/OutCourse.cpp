@@ -12,6 +12,7 @@
 OutCourse::OutCourse(OutCourse::eSection aSection)
     : Course()
 {
+    mNameId = 1;
     mState = aSection;
     switch (mState) {
     case OutCourse::LOOKUP:

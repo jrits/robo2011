@@ -55,76 +55,127 @@ bool StairwayDriver::drive()
     }
 #endif
 
+    // 初期化関数を作るのが面倒くさいのでとりあえずここで
     if (mState == StairwayDriver::INIT) {
         mState = StairwayDriver::BEFORELINETRACE;
         mInitState = true;
         mWallDetector.setThreshold(40);
     }
+    // 階段前のライントレース。段差にぶつかるまで。
     if (mState == StairwayDriver::BEFORELINETRACE) {
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
             mDoDetectWall = false;
             mInitState = false;
         }
+        // とりあえず段差検知なしでライントレース（開始直後に車体がぶれて段差検知がtrueを返すことがあるため)
         if (! mDoDetectWall) {
-            mLineTrace.setForward(100);
-            K_THETADOT = 7.0F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
-            if (mGps.getXCoordinate() < 4200.0) {//@todo 要調整2011
-                K_THETADOT = 11.0F;
-            }
-            if (mGps.getXCoordinate() < 4100.0) {//@todo 要調整2011
-                mPrevDirection = mGps.getDirection();
-                mLineTrace.setForward(100);
-                mDoDetectWall = true;
-                mTimeCounter = 0;
-            }
+            mLineTrace.setForward(30);
+            K_THETADOT = 7.5F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
             mLineTrace.execute();
+            if (mGps.getXCoordinate() < 4100.0) { // 階段側マーカ始点
+                mDoDetectWall = true;
+            }
         }
+        // 段差検知しながらライントレース
         if (mDoDetectWall) {
-            mAngleTrace.setForward(100);
-            mAngleTrace.setTargetAngle(mPrevDirection);
-            K_THETADOT = 11.0F; // Find! １段目１回で載る絶妙な値
-            //if (mTimeCounter > 250 && mWallDetector.detect()) {
+            mLineTrace.execute();
             if (mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
-                //mActivator.reset(USER_GYRO_OFFSET + 10); // 大きくして急発進
-                mState = StairwayDriver::ON1STSTAGE;
+                mState = StairwayDriver::ON0THSTAGE_BACK;
                 mInitState = true;
-            	
-            	mGps.adjustXCoordinate(3975.0);//ぶつかったら座標補正 2011
-        		mGps.adjustYCoordinate(-1500.0);//ぶつかったら座標補正 2011
+                mPrevDirection = mGps.getDirection(); // 角度記憶
+                // ぶつかったら座標補正2011
+                mGps.adjustXCoordinate(3975.0);  // 階段始点
+                mGps.adjustYCoordinate(-1500.0); // 階段始点
             }
-            mAngleTrace.execute();    
         }
     }
+    // ０段目(階段前)。一旦バックして助走距離をとる
+    if (mState == StairwayDriver::ON0THSTAGE_BACK) {
+        if (mInitState) {
+            mPrevMotor = mLeftMotor.getCount();
+            mInitState = false;
+            mDoDetectWall = false;
+        }
+        // 一旦バック(フラグ名が適切ではないが気にしないでください)
+        if (! mDoDetectWall) {
+            mAngleTrace.setForward(-50);
+            mAngleTrace.setTargetAngle(mPrevDirection);
+            K_THETADOT = 7.5F;
+            mAngleTrace.execute();
+            if (mGps.getXCoordinate() > 4050.0) { // 階段側マーカ始点
+                mTimeCounter = 0;
+                mDoDetectWall = true;
+            }
+        }
+        // 一旦ストップ(フラグ名が適切ではないが気にしないでください)
+        if (mDoDetectWall) {
+            mAngleTrace.setForward(0);
+            mAngleTrace.setTargetAngle(mPrevDirection);
+            K_THETADOT = 7.5F;
+            mAngleTrace.execute();
+            if (mTimeCounter > 100) { // 100カウント間ストップ
+                mState = StairwayDriver::ON0THSTAGE_GO;
+                mInitState = true;
+            }
+        }
+    }
+    // ０段目(階段前)。助走距離をとったのでいざ突入
+    if (mState == StairwayDriver::ON0THSTAGE_GO) {
+        if (mInitState) {
+            mPrevMotor = mLeftMotor.getCount();
+            mDoDetectWall = false;
+            mInitState = false;
+        }
+        // 突入しようと思った直後に段差検知がtrueになってしまうことがあるのでちょっと進んでおく
+        if (! mDoDetectWall) {
+            mAngleTrace.setForward(100);
+            mAngleTrace.setTargetAngle(mPrevDirection);
+            K_THETADOT = 7.5F; // Find! １段目１回で載る絶妙な値
+            mAngleTrace.execute();
+            if (mGps.getXCoordinate() < 4050.0) { // 階段側マーカ始点
+                mDoDetectWall = true;
+            }
+        }
+        // いざ突入
+        if (mDoDetectWall) {
+            mAngleTrace.execute();
+            if (mWallDetector.detect()) {
+                { Speaker s; s.playTone(1976, 10, 100); }
+                mState = StairwayDriver::ON1STSTAGE;
+                mInitState = true;
+            }
+        }
+    }
+    // 段差１に載った直後
     else if (mState == StairwayDriver::ON1STSTAGE) {
-        // 段差１に載った直後
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
             mTimeCounter = 0;
             mDoDetectWall = false;
             mInitState = false;
         }
+        // 小さくして急ブレーキ
         if (! mDoDetectWall) {
-            mActivator.reset(USER_GYRO_OFFSET - 30); // 小さくして急ブレーキ
-            K_THETADOT = 6.0F; // Find! ２段目１回で載る絶妙な値
-            if (mTimeCounter > 100 && mLeftMotorHistory.calcDifference() < 0) {
-                mActivator.reset(USER_GYRO_OFFSET);
+            //mActivator.reset(USER_GYRO_OFFSET - 30); // 小さくして急ブレーキ
+            mAngleTrace.execute();
+            if (mTimeCounter > 100) { // 100カウント間急ブレーキ
+                //mActivator.reset(USER_GYRO_OFFSET + 20); // 大きくして急発進
+                //mActivator.reset(USER_GYRO_OFFSET); // リセット
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
-            mAngleTrace.execute();
         }
+        // 大きくして急発進
         if (mDoDetectWall) {
-            if (mLeftMotor.getCount() - mPrevMotor > 270 && 
-                mWallDetector.detect()) {
+            mAngleTrace.execute();
+            // 前進しているのを確認しつつ段差検知
+            if (mLeftMotor.getCount() - mPrevMotor > 270 && mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
-                //mActivator.reset(USER_GYRO_OFFSET + 20); // 大きくして急発進
-                //mActivator.reset(USER_GYRO_OFFSET); // すでに勢いがついている
                 mState = StairwayDriver::ON2NDSTAGE;
                 mInitState = true;
             }
-            mAngleTrace.execute();
         }
         if (mLeftMotor.getCount() < mPrevMotor) { // 戻っちゃった
             mState = StairwayDriver::BEFORELINETRACE;
@@ -132,33 +183,28 @@ bool StairwayDriver::drive()
             mDoDetectWall = true;
         }
     }
+    // 段差２に載った直後
     else if (mState == StairwayDriver::ON2NDSTAGE) {
-        // 段差２に載った直後
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
             mTimeCounter = 0;
             mDoDetectWall = false;
             mInitState = false;
         }
+        // 小さくして急ブレーキ
         if (! mDoDetectWall) {
-            mActivator.reset(USER_GYRO_OFFSET - 15); // 小さくして急ブレーキ
-            if (mTimeCounter > 25 && mLeftMotorHistory.calcDifference() < 0) {
-                //mActivator.reset(USER_GYRO_OFFSET); // これで前傾になってしまう
-                mActivator.reset(USER_GYRO_OFFSET - 5); // これでも少し進む
-                mAngleTrace.setForward(0); // USER_GYRO_OFFSET - 5 で 0 でも少し進む
-                mLineTrace.setForward(0); // USER_GYRO_OFFSET - 5 で 0 でも少し進む
-                K_THETADOT = 5.0F;
+            //mActivator.reset(USER_GYRO_OFFSET - 15); // 小さくして急ブレーキ
+            mAngleTrace.execute();
+            if (mTimeCounter > 100) { // 100カウント間急ブレーキ
+                //mActivator.reset(USER_GYRO_OFFSET); // リセット
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
-            mAngleTrace.execute();
         }
         // ドスン検知
         if (mDoDetectWall) {
             mAngleTrace.execute();
-            if ((((mLeftMotor.getCount() - mPrevMotor) > 360) && mWallDetector.detect())
-            	|| (mGps.getXCoordinate() < 3492.0 - 300.0)) //@todo 要調整 座標条件追加 2011
-        	{
+            if (mGps.getXCoordinate() < 3350) { // 今回は座標でやる
                 { Speaker s; s.playTone(1976, 10, 100); }
                 mState = StairwayDriver::DROPDOWN;
                 mInitState = true;
@@ -170,30 +216,26 @@ bool StairwayDriver::drive()
             mDoDetectWall = true;
         }
     }
+    // おりました
     else if (mState == StairwayDriver::DROPDOWN) {
-        // ドスン直後
         if (mInitState) {
-            //mActivator.reset(USER_GYRO_OFFSET - 50); // 小さくして急ブレーキ
             mInitState = false;
             mTimeCounter = 0;
             mDoDetectWall = false;
             mInitState = false;
         }
+        // しばしまっすぐ進む
         if (! mDoDetectWall) {
             mAngleTrace.execute();
             if (mTimeCounter > 250) {
-                //&& mLeftMotorHistory.calcDifference() < 0) {
-                //mActivator.reset(USER_GYRO_OFFSET);
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
         }
-        // ライン検知
+        // ライン検知(ちょっと右に向かってまっすぐ)
         if (mDoDetectWall) {
-            //VectorT<float> command(30, 0); // 0 で左に曲がる
-            //mActivator.run(command);
-            mAngleTrace.setTargetAngle(mPrevDirection - 10);//@todo 要調整 2011
-            K_THETADOT = 9.5F;
+            mAngleTrace.setTargetAngle(mPrevDirection + 10);
+            K_THETADOT = 7.5F;
             mAngleTrace.setForward(30);
             mAngleTrace.execute();
             if (mLineDetector.detect()) {
@@ -203,9 +245,10 @@ bool StairwayDriver::drive()
             }
         }
     }
+    // ライン合流後
     else if (mState == StairwayDriver::AFTERLINETRACE) {
         if (mInitState) {
-            K_THETADOT = 9.5F;
+            K_THETADOT = 7.5F;
             mLineTrace.setForward(30);
             mTimeCounter = 0;
             mInitState = false;
