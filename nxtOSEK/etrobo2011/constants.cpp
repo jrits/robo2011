@@ -9,14 +9,25 @@
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
 int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
-//竹田家 W:550 G:617 B:720
-int WHITE = 550; // 白色の光センサ値 //小さめにしてね
-int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
+// オージス総研
+int WHITE = 539; // 白色の光センサ値 //小さめにしてね
+int GRAY  = 610; // 灰色の光センサ値
+int BLACK = 760; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
-int MARKER_THRESHOLD = ((WHITE + BLACK)/2.0 + BLACK)/2.0; // 灰色と黒の間
-int TRIPOD_WHITE = 607; // 白色の光センサ値 //小さめにしてね
-int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+int MARKER_THRESHOLD = (GRAY + BLACK)/2.0; // 灰色と黒の間
+int TRIPOD_WHITE = 560; // 白色の光センサ値 //小さめにしてね
+int TRIPOD_GRAY  = 620; // 灰色の光センサ値
+int TRIPOD_BLACK = 650; // 黒色の光センサ値 //大きめにしてね
 int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
+int TRIPOD_MARKER_THRESHOLD = (TRIPOD_GRAY + TRIPOD_BLACK)/2.0;
+// //竹田家 W:550 G:617 B:720
+// int WHITE = 550; // 白色の光センサ値 //小さめにしてね
+// int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
+// int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
+// int MARKER_THRESHOLD = ((WHITE + BLACK)/2.0 + BLACK)/2.0; // 灰色と黒の間
+// int TRIPOD_WHITE = 607; // 白色の光センサ値 //小さめにしてね
+// int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 #endif
 
 #ifdef KACHIICHI
