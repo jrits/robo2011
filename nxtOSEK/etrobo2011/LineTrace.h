@@ -25,6 +25,8 @@ protected:
     //Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD);
     //float LIGHT_ONOFF_K;
     bool mDoOnOffTrace;   //!< あえてON/OFF制御ライントレースをする
+    float mTemp_K_THETADOT;
+    float mTemp_K_PHIDOT;
 public:
     LineTrace(float black, float white, float threshold);
     ~LineTrace(){}

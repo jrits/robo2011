@@ -21,6 +21,8 @@ LineTrace::LineTrace(float black, float white, float threshold)
     mInitForward = INIT_FORWARD;
     mInitDuration = INIT_SAMPLECOUNT;
     mDoOnOffTrace = false;
+    mTemp_K_THETADOT = K_THETADOT;
+    mTemp_K_PHIDOT = K_PHIDOT;
     setForward(FORWARD);
     reset();
 }
@@ -64,11 +66,13 @@ void LineTrace::setDoOnOffTrace(bool doOnOffTrace)
 {
     mDoOnOffTrace = doOnOffTrace;
     if (doOnOffTrace) {
+        mTemp_K_THETADOT = K_THETADOT;
+        mTemp_K_PHIDOT   = K_PHIDOT;
         K_THETADOT = LIGHT_ONOFF_K_THETADOT;
         K_PHIDOT   = LIGHT_ONOFF_K_PHIDOT;
     } else {
-        K_THETADOT = LIGHT_PID_K_THETADOT;
-        K_PHIDOT = LIGHT_PID_K_PHIDOT;
+        K_THETADOT = mTemp_K_THETADOT;
+        K_PHIDOT =  mTemp_K_PHIDOT;
     }
 }
 
