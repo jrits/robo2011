@@ -78,10 +78,11 @@ int FORWARD = 100;        // 前進速度
 float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
 float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
+float LIGHT_PID_K_PHIDOT = K_PHIDOT;
+float LIGHT_PID_K_THETADOT = K_THETADOT;
 float LIGHT_ONOFF_K = 100; // K_PHIDOT = 25.0F*2.5F
-// float LIGHT_PID_KP = 40; // K_PHIDOT = 25.0F*2.5F
-// float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F*2.5F
-// float LIGHT_PID_KD = 120; // K_PHIDOT = 25.0F*2.5F
+float LIGHT_ONOFF_K_PHIDOT = 25.0F*2.5F;
+float LIGHT_ONOFF_K_THETADOT = 7.5F;
 
 //AngleTrace
 int TARGETANGLE = 180;//(360*2);  //目標角度

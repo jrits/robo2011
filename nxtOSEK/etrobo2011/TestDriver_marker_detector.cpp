@@ -55,6 +55,7 @@ bool TestDriver::drive()
     // デフォルト
     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
     gDoForwardPid = false;
+    gDoMaimai = false;
     VectorT<float> command(50, 0);
 
     // テスト マーカー検知(1)
@@ -62,17 +63,12 @@ bool TestDriver::drive()
     if (1) {
         // スタートが難しかったのでしばし(2s)PIDライントレース
         if (count < 500) {
-            gDoMaimai = false;
             mLineTrace.setForward(50);
             mLineTrace.execute();
         // ここからON/OFFライントレース
         } else {
-            K_PHIDOT = 25.0F*2.5F;
-            K_THETADOT = 7.5F;
-            gDoForwardPid = false;
-            gDoMaimai = false;
-            mLineTrace.setForward(50);
             mLineTrace.setDoOnOffTrace(true);
+            mLineTrace.setForward(50);
             mLineTrace.execute();
             if (mMarkerDetector.detect()) { // マーカー検知
                 Speaker speaker;
