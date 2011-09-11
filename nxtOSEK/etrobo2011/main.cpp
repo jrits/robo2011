@@ -241,7 +241,8 @@ TASK(TaskDrive)
     {
         tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
         //if (mFailDetector.detect()) doDrive = false;
-        mLineTrace.setForward(50);//テストコース用調整：コミット時要削除
+        mLineTrace.setForward(70);//テストコース用調整：コミット時要削除
+    	gDoForwardPid = true; //テストコース用調整：コミット時要削除
     	if (doDrive) mCourse->drive();
         //if (doDrive) mTestDriver.drive();
         else mActivator.stop();
@@ -268,7 +269,7 @@ TASK(TaskMaimai)
     while(1)
     {
           if (! gDoMaimai) {
-            //ecrobot_set_light_sensor_active(NXT_PORT_S3);
+            ecrobot_set_light_sensor_active(NXT_PORT_S3);
             ClearEvent(EventMaimai);
             WaitEvent(EventMaimai);
             continue;

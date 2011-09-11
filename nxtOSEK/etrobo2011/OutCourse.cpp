@@ -84,16 +84,16 @@ void OutCourse::drive()
         if (mNormalDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_LOOKUP_START, MakePoint(X, Y))) { // 区間をシーソー区間に更新
+            if (inRegion(GPS_LOOKUP_START, MakePoint(X, Y)) || (19000.0 < mGps.getDistance())) { // 区間をルックアップ区間に更新
                 mState = OutCourse::LOOKUP;
             }
         }
     }
-    else if (mState == OutCourse::LOOKUP) { // シーソー区間
-        if (mSeesawDriver.drive()) {
+    else if (mState == OutCourse::LOOKUP) { // ルックアップ区間
+        if (mLookUpGateDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_ETSUMO_START, MakePoint(X, Y))) { // 区間を階段区間に更新
+        	if ((inRegion(GPS_ETSUMO_START, MakePoint(X, Y)))) { // 区間をET相撲区間に更新
                 mState = OutCourse::ETSUMO;
             }
         }

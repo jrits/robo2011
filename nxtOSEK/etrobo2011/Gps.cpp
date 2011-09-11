@@ -496,12 +496,10 @@ bool Gps::calcCenterCoordinates(float angle, float radius, float *circleX, float
 void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 {
 	/* 2011年版"簡易"自動補正 */
-	/* エンコーダ値メインの決め打ち補正 */
-	float motorCount = (motorR.getCount() + motorL.getCount()) / 2;//スタート時からの車輪の回転角度の左右平均（例：両輪が一回転する → motorCount ≒ 360）
-	float distance = (mWheelRadius * 2) * M_PI * (motorCount / 360);//スタート時からのおおよその距離（直径 * 円周率 * 回転数）単位はmm
+	/* 距離メインの決め打ち補正 */
 	
 	/* スタート直後の補正*/
-	if(((0.0 < distance) && (distance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
+	if(((0.0 < mDistance) && (mDistance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
 	{
 		adjustDirection(180);
 		//adjustXCoordinate();
@@ -510,7 +508,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 	}
 	
 	/* 最初のカーブ後の補正*/
-	if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	if(((4500.0 < mDistance) && (mDistance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
 	{
 		adjustDirection(270);
 		adjustXCoordinate(262.0);
@@ -533,11 +531,11 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
         LOGGER_SEND = 2;
         //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
         //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-        LOGGER_DATAU16    = (U16)(distance);
+        LOGGER_DATAU16    = (U16)(mDistance);
         LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
         LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
         LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-        LOGGER_DATAS16[3] = (S16)(distance);
+        LOGGER_DATAS16[3] = (S16)(mDistance);
         LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
         LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
         //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
@@ -639,12 +637,9 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 {
 	/* 2011年版"簡易"自動補正 */
-	/* エンコーダ値メインの決め打ち補正 */
-	float motorCount = (motorR.getCount() + motorL.getCount()) / 2;//スタート時からの車輪の回転角度の左右平均（例：両輪が一回転する → motorCount ≒ 360）
-	float distance = (mWheelRadius * 2) * M_PI * (motorCount / 360);//スタート時からのおおよその距離（直径 * 円周率 * 回転数）単位はmm
-	
+	/* 距離メインの決め打ち補正 */
 	/* スタート直後の補正*/
-	if(((0.0 < distance) && (distance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
+	if(((50.0 < mDistance) && (mDistance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0) && (-1000.0 < avgY))
 	{
 		adjustDirection(180);
 		//adjustXCoordinate();
@@ -653,7 +648,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 	}
 	
 	/* 最初のカーブ後の補正*/
-	if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+	if(((4500.0 < mDistance) && (mDistance < 6000.0)) && (225.0 < avgD) && (avgD < 315.0) && (-2000.0 < avgY) && (avgY < -1500.0))
 	{
 		adjustDirection(270);
 		adjustXCoordinate(513.0);
@@ -675,11 +670,11 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
         LOGGER_SEND = 2;
         //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
         //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-        LOGGER_DATAU16    = (U16)(distance);
+        LOGGER_DATAU16    = (U16)(mDistance);
         LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
         LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
         LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-        LOGGER_DATAS16[3] = (S16)(distance);
+        LOGGER_DATAS16[3] = (S16)(mDistance);
         LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
         LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
         //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);

@@ -1,8 +1,8 @@
 #include "factory.h"
 #include "coordinates.h"
 
-#define INCOURSE
-//#define OUTCOURSE
+//#define INCOURSE
+#define OUTCOURSE
 
 // コース
 #ifdef INCOURSE
@@ -10,8 +10,8 @@ Gps mGps(mLeftMotor, mRightMotor, Gps::IN);
 
 //InCourse mInCourse(InCourse::TESTDRIVE); // テストドライバ起動
 InCourse mInCourse(InCourse::START);     // 開始位置は下参照
-//OutCourse mOutCourse(OutCourse::SEESAW);     // 開始位置は下参照
-//OutCourse mOutCourse(OutCourse::STAIRWAY);   // 開始位置は下参照
+//InCourse mInCourse(InCourse::SEESAW);     // 開始位置は下参照
+//InCourse mInCourse(InCourse::STAIRWAY);   // 開始位置は下参照
 //InCourse mInCourse(InCourse::GARAGEIN);  // 開始位置は下参照
 Course *mCourse(&mInCourse);
 int TRACE_EDGE = LEFT;
@@ -47,7 +47,7 @@ float GPS_SEESAW_START_DIRECTION = 360.0;
 // 灰色マーカ開始場所
 float GPS_STAIRWAY_START_X = 4277.0;
 float GPS_STAIRWAY_START_Y = -1500.0;
-float GPS_STAIRWAY_START_DIRECTION = 360.0;
+float GPS_STAIRWAY_START_DIRECTION = 180.0;
 
 // インコースガレージ・イン開始座標
 // 灰色マーカ開始場所
