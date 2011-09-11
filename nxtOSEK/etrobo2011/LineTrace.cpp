@@ -161,7 +161,7 @@ float LineTrace::lightValueNormalization()
 {
     float L = 0;
     L = mLightSensor.get();
-    
+
     float P = (L - mLineThreshold); // 偏差
     if(L < mLineThreshold){ // 白
         P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
@@ -170,10 +170,10 @@ float LineTrace::lightValueNormalization()
         P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
         P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
     }
-    
+
     if(P > 1) P = 1;
     if(P < -1) P = -1;
-    
+
     return P;
 }
 
@@ -185,19 +185,19 @@ float LineTrace::lightValueNormalization()
 float LineTrace::maimaiValueNormalization()
 {
     float L = gMaimaiValue;
-    
+
     float P = (L - mMaimaiLineThreshold); // 偏差
-    if(L < mMaimaiLineThreshold){ // 白
+    if(L > mMaimaiLineThreshold){ // 白
         P = P / (mMaimaiLineThreshold - mMaimaiWhite); // [-1.0, 1.0] の値に正規化
     }
     else{ // 黒
         P = P / (mMaimaiBlack - mMaimaiLineThreshold); // [-1.0, 1.0] の値に正規化
         P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
     }
-    
+
     if(P > 1) P = 1;
     if(P < -1) P = -1;
-    
+
     return P;
 }
 
