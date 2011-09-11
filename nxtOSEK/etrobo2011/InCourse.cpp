@@ -15,23 +15,21 @@ InCourse::InCourse(InCourse::eSection aSection)
 {
     mState = aSection;
     switch (mState) {
-    case InCourse::ENIGMA:
-        // エニグマからテスト
-        // インコースガレージ・イン手前線
-        mGps.adjustXCoordinate(GPS_ENIGMA_START_X);
-        mGps.adjustYCoordinate(GPS_ENIGMA_START_Y);
-        mGps.adjustDirection(GPS_ENIGMA_START_DIRECTION);
+    	
+    case InCourse::SEESAW:
+        // シーソーからテスト
+        mGps.adjustXCoordinate(GPS_SEESAW_START_X);
+        mGps.adjustYCoordinate(GPS_SEESAW_START_Y);
+        mGps.adjustDirection(GPS_SEESAW_START_DIRECTION);
         break;
-    case InCourse::MYSTERY:
-        // ミステリーサークルからテスト
-        // インコース、アウトコースシーソー後マーカー終わり地点
-        mGps.adjustXCoordinate(GPS_MYSTERY_START_X);
-        mGps.adjustYCoordinate(GPS_MYSTERY_START_Y);
-        mGps.adjustDirection(GPS_MYSTERY_START_DIRECTION);
+    case InCourse::STAIRWAY:
+        // STAIRWAYからテスト
+        mGps.adjustXCoordinate(GPS_STAIRWAY_START_X);
+        mGps.adjustYCoordinate(GPS_STAIRWAY_START_Y);
+        mGps.adjustDirection(GPS_STAIRWAY_START_DIRECTION);
         break;
     case InCourse::GARAGEIN:
         // ガレージインからテスト
-        // インコース坂手前カーブの一番出っ張っているところ
         mGps.adjustXCoordinate(GPS_GARAGEIN_START_X);
         mGps.adjustYCoordinate(GPS_GARAGEIN_START_Y);
         mGps.adjustDirection(GPS_GARAGEIN_START_DIRECTION);
@@ -83,34 +81,29 @@ void InCourse::drive()
         if (mNormalDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            //if (inRegion(GPS_ENIGMA_START, MakePoint(X, Y))) {
-            //    mState = InCourse::ENIGMA;
-            //}
-            if (inRegion(GPS_GARAGEIN_START, MakePoint(X, Y))) {
+            if (inRegion(GPS_SEESAW_START, MakePoint(X, Y))) {
+                mState = InCourse::SEESAW;
+            }
+        }
+    }
+    else if (mState == InCourse::SEESAW) { // シーソー区間
+        if (mSeesawDriver.drive()) {
+            float X = mGps.getXCoordinate();
+            float Y = mGps.getYCoordinate();
+            if (inRegion(GPS_STAIRWAY_START, MakePoint(X, Y))) { // 区間を階段区間に更新
+                mState = InCourse::STAIRWAY;
+            }
+        }
+    }
+    else if (mState == InCourse::STAIRWAY) { // 階段区間
+        if (mStairwayDriver.drive()) {
+            float X = mGps.getXCoordinate();
+            float Y = mGps.getYCoordinate();
+            if (inRegion(GPS_GARAGEIN_START, MakePoint(X, Y))) { // 区間をガレージ区間に更新
                 mState = InCourse::GARAGEIN;
             }
         }
     }
-/*
-    else if (mState == InCourse::ENIGMA) { // エニグマ区間
-        if (mEnigmaDriver.drive()) {
-            float X = mGps.getXCoordinate();
-            float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_MYSTERY_START, MakePoint(X, Y))) {
-                mState = InCourse::MYSTERY;
-            }
-        }
-    }
-    else if (mState == InCourse::MYSTERY) { // ミステリーサークル区間
-        if (mMysteryDriver.drive()) {
-            float X = mGps.getXCoordinate();
-            float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_GARAGEIN_START, MakePoint(X, Y))) {
-                mState = InCourse::GARAGEIN;
-            }
-        }
-    }
-*/
     else if (mState == InCourse::GARAGEIN) { // ガレージ・イン区間
         mInGarageDriver.drive();
     }

@@ -2,6 +2,8 @@
 
 #include "factory.h"
 extern bool gDoMaimai;
+extern bool gDoSonar; //!< ソナーセンサ発動フラグ
+extern bool gSonarIsDetected; //!< 衝立検知の結果
 
 extern "C"{
 extern void tail_control(signed int);
@@ -17,13 +19,14 @@ LookUpGateDriver::~LookUpGateDriver(){
 
 bool
 LookUpGateDriver::drive(){
-  gDoMaimai = true;
   switch(mCurrentSubSection){
     case INIT:
       mLineTrace.setForward(20);
       mLineTrace.execute();
 
       if(foundGate()){
+      	gDoSonar = true;
+      	gDoMaimai = true;
         mLcd.clear();
         mLcd.putf("sn","INIT");
         mLcd.disp();
@@ -73,21 +76,32 @@ LookUpGateDriver::drive(){
 
 bool
 LookUpGateDriver::foundGate() const{
-  static int count = 0;
-  
-  // とりあえず、1秒経過したらゲートを見つけたことにする。
-  // TODO ゲートの検知方法を実装する必要あり。
-  count++;
-  return count >= 250;
+
+	static int count = 0;
+
+	// とりあえず、1秒経過したらゲートを見つけたことにする。
+	// TODO ゲートの検知方法を実装する必要あり。
+	count++;
+	return count >= 250;
+
 }
 
 bool
 LookUpGateDriver::passedGate() const{
+	if(gSonarIsDetected){
+		mSpeaker.playTone(1000, 1, 100);
+		return 1;
+	}
+	else{
+		return 0;
+	}
+		/*
   static int count = 0;
   // とりあえず、1秒経過したらゲートを通過したことにする。
   // TODO ゲート通過の検知方法を実装する必要あり。
   count++;
   return count >= 250;
+		*/
 }
 
 bool
