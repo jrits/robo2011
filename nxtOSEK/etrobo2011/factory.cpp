@@ -48,6 +48,7 @@ DownSlopeDetector mDownSlopeDetector;
 LineDetector mLineDetector;
 StraightDetector mStraightDetector;
 FailDetector mFailDetector;
+MarkerDetector mMarkerDetector;
 // Skill
 LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD);
 TripodLineTrace mTripodLineTrace(TRIPOD_BLACK, TRIPOD_WHITE, TRIPOD_LINE_THRESHOLD);

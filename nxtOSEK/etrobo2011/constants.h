@@ -29,11 +29,15 @@ extern int INIT_FORWARD;
 extern int INIT_SAMPLECOUNT;
 extern int FORWARD;
 extern int WHITE;
+extern int GRAY;
 extern int BLACK;
 extern int LINE_THRESHOLD;
+extern int MARKER_THRESHOLD;
 extern int TRIPOD_WHITE;
+extern int TRIPOD_GRAY;
 extern int TRIPOD_BLACK;
 extern int TRIPOD_LINE_THRESHOLD;
+extern int TRIPOD_MARKER_THRESHOLD;
 extern float MAIMAI_WHITE;
 extern float MAIMAI_BLACK;
 extern float MAIMAI_LINE_THRESHOLD;
@@ -41,7 +45,11 @@ extern int TRACE_EDGE;
 extern float LIGHT_PID_KP;
 extern float LIGHT_PID_KI;
 extern float LIGHT_PID_KD;
+extern float LIGHT_PID_K_THETADOT;
+extern float LIGHT_PID_K_PHIDOT;
 extern float LIGHT_ONOFF_K;
+extern float LIGHT_ONOFF_K_THETADOT;
+extern float LIGHT_ONOFF_K_PHIDOT;
 
 //AngleTrace
 extern float ANGLE_PID_KP;

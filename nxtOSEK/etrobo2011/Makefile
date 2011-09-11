@@ -54,7 +54,8 @@ TARGET_CPP_SOURCES = \
 	StandUpSkill.cpp \
         SitDownSkill.cpp \
         LookUpGateDriver.cpp \
-        StandupDriver.cpp
+        StandupDriver.cpp \
+        MarkerDetector.cpp
 
 # TOPPERS/ATK(OSEK)設定ファイル
 TOPPERS_OSEK_OIL_SOURCE = main.oil

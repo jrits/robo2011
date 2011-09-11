@@ -23,6 +23,7 @@
 #include "LineDetector.h"
 #include "StraightDetector.h"
 #include "FailDetector.h"
+#include "MarkerDetector.h"
 // スキル
 #include "Skill.h"
 #include "LineTrace.h"
@@ -100,6 +101,7 @@ extern DownSlopeDetector mDownSlopeDetector;
 extern LineDetector mLineDetector;
 extern StraightDetector mStraightDetector;
 extern FailDetector mFailDetector;
+extern MarkerDetector mMarkerDetector;
 // Skill
 extern LineTrace mLineTrace;
 extern TripodLineTrace mTripodLineTrace;

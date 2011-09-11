@@ -63,6 +63,13 @@ void LineTrace::setInitDuration(int initDuration)
 void LineTrace::setDoOnOffTrace(bool doOnOffTrace)
 {
     mDoOnOffTrace = doOnOffTrace;
+    if (doOnOffTrace) {
+        K_THETADOT = LIGHT_ONOFF_K_THETADOT;
+        K_PHIDOT   = LIGHT_ONOFF_K_PHIDOT;
+    } else {
+        K_THETADOT = LIGHT_PID_K_THETADOT;
+        K_PHIDOT = LIGHT_PID_K_PHIDOT;
+    }
 }
 
 /**
