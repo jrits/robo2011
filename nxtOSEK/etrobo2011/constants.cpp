@@ -10,9 +10,9 @@
 char BT_NAME[16] = "KACHIROBO";
 int USER_GYRO_OFFSET = 600; // この値は適宜調整すること
 // オージス総研
-int WHITE = 539; // 白色の光センサ値 //小さめにしてね
+int WHITE = 530; // 白色の光センサ値 //小さめにしてね
 int GRAY  = 610; // 灰色の光センサ値
-int BLACK = 760; // 黒色の光センサ値 //大きめにしてね
+int BLACK = 670; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
 int MARKER_THRESHOLD = (GRAY + BLACK)/2.0; // 灰色と黒の間
 int TRIPOD_WHITE = 560; // 白色の光センサ値 //小さめにしてね
