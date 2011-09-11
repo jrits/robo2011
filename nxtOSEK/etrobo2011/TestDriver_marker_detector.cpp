@@ -55,25 +55,30 @@ bool TestDriver::drive()
     // デフォルト
     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
     gDoForwardPid = false;
-    gDoMaimai = false;
     VectorT<float> command(50, 0);
 
-    // テスト マーカー検知
-    // 条件: ON/OFFライントレース with フォワードPID without まいまい
+    // テスト 非マイマイ式ON/OFFライントレースマーカー検知
+    if (0) {
+        gDoMaimai = false;
+    }
+    // テスト マイマイ式ON/OFFライントレースマーカー検知
     if (1) {
-        // スタートが難しかったのでしばし(2s)PIDライントレース
-        if (count < 500) {
-            mLineTrace.setForward(50);
-            mLineTrace.execute();
-        // ここからON/OFFライントレース
-        } else {
-            mLineTrace.setDoOnOffTrace(true);
-            mLineTrace.setForward(50);
-            mLineTrace.execute();
-            if (mMarkerDetector.detect()) { // マーカー検知
-                Speaker speaker;
-                speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
-            }
+        gDoMaimai = true;
+    }
+    // スタートが難しかったのでしばし(2s)PIDライントレース
+    if (count < 500) {
+        mLineTrace.setForward(50);
+        mLineTrace.execute();
+    }
+    // ここからON/OFFライントレース
+    else {
+        mLineTrace.setDoOnOffTrace(true);
+        mLineTrace.setForward(50);
+        mLineTrace.execute();
+        // マーカー検知
+        if (mMarkerDetector.detect()) {
+            Speaker speaker;
+            speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
         }
     }
 

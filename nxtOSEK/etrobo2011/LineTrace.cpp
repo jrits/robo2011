@@ -88,20 +88,15 @@ void LineTrace::setDoOnOffTrace(bool doOnOffTrace)
 float LineTrace::calcCommandTurn()
 {
     //正規化した光センサ値をPに格納する
-    float P;
-    if (gDoMaimai) {
-        P = this->maimaiValueNormalization(); // まいまい式
-    } else {
-        P = this->lightValueNormalization(); // 通常
-    }
+    float P = this->lightValueNormalization();
 
     //Pid制御
     float Y = mLightPid.control(P);
-    
+
     //ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
     if(TRACE_EDGE == LEFT ) Y *= -1;
     if(TRACE_EDGE == RIGHT) Y *=  1;
-    
+
     return Y;
 }
 
@@ -159,46 +154,43 @@ VectorT<float> LineTrace::calcCommand()
  */
 float LineTrace::lightValueNormalization()
 {
-    float L = 0;
-    L = mLightSensor.get();
+    // まいまい式
+    if (gDoMaimai) {
+        float L = gMaimaiValue;
 
-    float P = (L - mLineThreshold); // 偏差
-    if(L < mLineThreshold){ // 白
-        P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
+        float P = (L - mMaimaiLineThreshold); // 偏差
+        if(L > mMaimaiLineThreshold){ // 白
+            P = P / (mMaimaiLineThreshold - mMaimaiWhite); // [-1.0, 1.0] の値に正規化
+        }
+        else{ // 黒
+            P = P / (mMaimaiBlack - mMaimaiLineThreshold); // [-1.0, 1.0] の値に正規化
+            P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
+        }
+
+        if(P > 1) P = 1;
+        if(P < -1) P = -1;
+
+        return P;
     }
-    else{ // 黒
-        P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
-        P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
+    // 非まいまい式
+    else {
+        float L = 0;
+        L = mLightSensor.get();
+
+        float P = (L - mLineThreshold); // 偏差
+        if(L < mLineThreshold){ // 白
+            P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
+        }
+        else{ // 黒
+            P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
+            P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
+        }
+
+        if(P > 1) P = 1;
+        if(P < -1) P = -1;
+
+        return P;
     }
-
-    if(P > 1) P = 1;
-    if(P < -1) P = -1;
-
-    return P;
-}
-
-/**
- * 正規化した光センサの値を取得する(MAIMAI)
- *
- * @return 正規化した光センサの値(MAIMAI)
- */
-float LineTrace::maimaiValueNormalization()
-{
-    float L = gMaimaiValue;
-
-    float P = (L - mMaimaiLineThreshold); // 偏差
-    if(L > mMaimaiLineThreshold){ // 白
-        P = P / (mMaimaiLineThreshold - mMaimaiWhite); // [-1.0, 1.0] の値に正規化
-    }
-    else{ // 黒
-        P = P / (mMaimaiBlack - mMaimaiLineThreshold); // [-1.0, 1.0] の値に正規化
-        P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
-    }
-
-    if(P > 1) P = 1;
-    if(P < -1) P = -1;
-
-    return P;
 }
 
 /**
@@ -208,20 +200,42 @@ float LineTrace::maimaiValueNormalization()
  */
 float LineTrace::calcOnOffCommandTurn()
 {
-    float P = (mLightSensor.get() - mLineThreshold); // 偏差
+    // まいまい式ON/OFFライントレース
+    if (gDoMaimai) {
+        float P = (gMaimaiValue - mMaimaiLineThreshold); // 偏差
 
-    //ONOFF制御
-    float Y;
-    if (P < 0) { // 白
-        Y = -LIGHT_ONOFF_TURN;
+        //ONOFF制御
+        float Y;
+        if (P > 0) { // 白
+            Y = -LIGHT_ONOFF_TURN;
+        }
+        else { // 黒
+            Y = LIGHT_ONOFF_TURN;
+        }
+
+        //ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+        if(TRACE_EDGE == LEFT ) Y *= -1;
+        if(TRACE_EDGE == RIGHT) Y *=  1;
+
+        return Y;
     }
-    else { // 黒
-        Y = LIGHT_ONOFF_TURN;
+    // 非まいまい式ON/OFFライントレース
+    else {
+        float P = (mLightSensor.get() - mLineThreshold); // 偏差
+
+        //ONOFF制御
+        float Y;
+        if (P < 0) { // 白
+            Y = -LIGHT_ONOFF_TURN;
+        }
+        else { // 黒
+            Y = LIGHT_ONOFF_TURN;
+        }
+
+        //ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
+        if(TRACE_EDGE == LEFT ) Y *= -1;
+        if(TRACE_EDGE == RIGHT) Y *=  1;
+
+        return Y;
     }
-    
-    //ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
-    if(TRACE_EDGE == LEFT ) Y *= -1;
-    if(TRACE_EDGE == RIGHT) Y *=  1;
-    
-    return Y;
 }

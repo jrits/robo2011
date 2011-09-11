@@ -43,7 +43,6 @@ public:
     VectorT<float> calcCommand();
     float calcCommandTurn();
     float lightValueNormalization();
-    float maimaiValueNormalization();
     float calcOnOffCommandTurn();
 };
 #endif
