@@ -80,9 +80,12 @@ int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の
 #endif
 
 // まいまい式
-float MAIMAI_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //小さめにしてね
-float MAIMAI_BLACK = 0.3F; // 黒色のMAMAIセンサ値 //大きめにしてね
+float MAIMAI_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //大きめにしてね
+float MAIMAI_BLACK = 0.4F; // 黒色のMAIMAIセンサ値 sza //小さめにしてね
 float MAIMAI_LINE_THRESHOLD = 0.7F; // ライン端の色を示す閾値。白と灰色の間の値
+float MAIMAI_TRIPOD_WHITE = 0.75F; // 白色のMAIMAIセンサ値 //大きめにしてね
+float MAIMAI_TRIPOD_BLACK = 0.30F; // 黒色のMAIMAIセンサ値 //小さめにしてね
+float MAIMAI_TRIPOD_LINE_THRESHOLD = 0.525F; // ライン端の色を示す閾値。白と灰色の間の値
 
 // GPS
 // float WHEEL_RADIUS = 38.5; // 車輪半径(mm)
@@ -97,8 +100,6 @@ int FORWARD = 100;        // 前進速度
 float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
 float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
-float LIGHT_PID_K_PHIDOT = K_PHIDOT; // 25.0F
-float LIGHT_PID_K_THETADOT = K_THETADOT; // 10.5F
 float LIGHT_ONOFF_TURN = 100; // ONOFF制御の旋回量
 float LIGHT_ONOFF_K_PHIDOT = 25.0F*2.5F;
 float LIGHT_ONOFF_K_THETADOT = 7.5F;

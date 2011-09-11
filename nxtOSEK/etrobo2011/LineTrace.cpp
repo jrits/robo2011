@@ -13,14 +13,20 @@ extern float gMaimaiValue;
  * @param[in] white 白
  * @param[in] threshold 白黒閾値
  */
-LineTrace::LineTrace(float black, float white, float threshold)
+LineTrace::LineTrace(float black, float white, float threshold,
+    float maimaiBlack, float maimaiWhite, float maimaiThreshold)
 {
     mBlack = black;
     mWhite = white;
     mLineThreshold = threshold;
+    mMaimaiBlack = maimaiBlack;
+    mMaimaiWhite = maimaiWhite;
+    mMaimaiLineThreshold = maimaiThreshold;
     mInitForward = INIT_FORWARD;
     mInitDuration = INIT_SAMPLECOUNT;
     mDoOnOffTrace = false;
+    mTemp_K_THETADOT = K_THETADOT;
+    mTemp_K_PHIDOT = K_PHIDOT;
     setForward(FORWARD);
     reset();
 }
@@ -64,11 +70,13 @@ void LineTrace::setDoOnOffTrace(bool doOnOffTrace)
 {
     mDoOnOffTrace = doOnOffTrace;
     if (doOnOffTrace) {
+        mTemp_K_THETADOT = K_THETADOT;
+        mTemp_K_PHIDOT   = K_PHIDOT;
         K_THETADOT = LIGHT_ONOFF_K_THETADOT;
         K_PHIDOT   = LIGHT_ONOFF_K_PHIDOT;
     } else {
-        K_THETADOT = LIGHT_PID_K_THETADOT;
-        K_PHIDOT = LIGHT_PID_K_PHIDOT;
+        K_THETADOT = mTemp_K_THETADOT;
+        K_PHIDOT   = mTemp_K_PHIDOT;
     }
 }
 
@@ -153,7 +161,7 @@ float LineTrace::lightValueNormalization()
 {
     float L = 0;
     L = mLightSensor.get();
-    
+
     float P = (L - mLineThreshold); // 偏差
     if(L < mLineThreshold){ // 白
         P = P / (mLineThreshold - mWhite); // [-1.0, 1.0] の値に正規化
@@ -162,10 +170,10 @@ float LineTrace::lightValueNormalization()
         P = P / (mBlack - mLineThreshold); // [-1.0, 1.0] の値に正規化
         P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
     }
-    
+
     if(P > 1) P = 1;
     if(P < -1) P = -1;
-    
+
     return P;
 }
 
@@ -177,18 +185,19 @@ float LineTrace::lightValueNormalization()
 float LineTrace::maimaiValueNormalization()
 {
     float L = gMaimaiValue;
-    
-    float P = (L - MAIMAI_LINE_THRESHOLD); // 偏差
-    if(L < MAIMAI_LINE_THRESHOLD){ // 白
-        P = P / (MAIMAI_LINE_THRESHOLD - MAIMAI_WHITE); // [-1.0, 1.0] の値に正規化
+
+    float P = (L - mMaimaiLineThreshold); // 偏差
+    if(L > mMaimaiLineThreshold){ // 白
+        P = P / (mMaimaiLineThreshold - mMaimaiWhite); // [-1.0, 1.0] の値に正規化
     }
     else{ // 黒
-        P = P / (MAIMAI_BLACK - MAIMAI_LINE_THRESHOLD); // [-1.0, 1.0] の値に正規化
+        P = P / (mMaimaiBlack - mMaimaiLineThreshold); // [-1.0, 1.0] の値に正規化
+        P *= 2; // 黒線は細くハミ出やすいので強めてハミ出ないようにする。
     }
-    
+
     if(P > 1) P = 1;
     if(P < -1) P = -1;
-    
+
     return P;
 }
 
