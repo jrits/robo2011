@@ -52,7 +52,7 @@ void TripodActivator::run(VectorT<F32> command)
         mRightMotor.setPWM((S8)(MIN(MAX(pwm_R, -128), 127)));
     }
 
-#if 0 // DEBUG
+#if 1 // DEBUG
     static int count = 0;
     if (count++ > 5) {
         Lcd lcd;

@@ -71,7 +71,7 @@ bool StairwayDriver::drive()
         // とりあえず段差検知なしでライントレース（開始直後に車体がぶれて段差検知がtrueを返すことがあるため)
         if (! mDoDetectWall) {
             mLineTrace.setForward(30);
-            K_THETADOT = 7.0F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
+            K_THETADOT = 7.5F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
             mLineTrace.execute();
             if (mGps.getXCoordinate() < 4100.0) { // 階段側マーカ始点
                 mDoDetectWall = true;
@@ -91,23 +91,37 @@ bool StairwayDriver::drive()
             }
         }
     }
-    // ０段目(階段前)。一旦バックして助走をつける
+    // ０段目(階段前)。一旦バックして助走距離をとる
     if (mState == StairwayDriver::ON0THSTAGE_BACK) {
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
             mInitState = false;
+            mDoDetectWall = false;
         }
-        // 一旦バック
-        mAngleTrace.setForward(-100);
-        mAngleTrace.setTargetAngle(mPrevDirection);
-        K_THETADOT = 7.0F;
-        mAngleTrace.execute();
-        if (mGps.getXCoordinate() > 4050.0) { // 階段側マーカ始点
-            mState = StairwayDriver::ON0THSTAGE_GO;
-            mInitState = true;
+        // 一旦バック(フラグ名が適切ではないが気にしないでください)
+        if (! mDoDetectWall) {
+            mAngleTrace.setForward(-50);
+            mAngleTrace.setTargetAngle(mPrevDirection);
+            K_THETADOT = 7.5F;
+            mAngleTrace.execute();
+            if (mGps.getXCoordinate() > 4050.0) { // 階段側マーカ始点
+                mTimeCounter = 0;
+                mDoDetectWall = true;
+            }
+        }
+        // 一旦ストップ(フラグ名が適切ではないが気にしないでください)
+        if (mDoDetectWall) {
+            mAngleTrace.setForward(0);
+            mAngleTrace.setTargetAngle(mPrevDirection);
+            K_THETADOT = 7.5F;
+            mAngleTrace.execute();
+            if (mTimeCounter > 100) { // 100カウント間ストップ
+                mState = StairwayDriver::ON0THSTAGE_GO;
+                mInitState = true;
+            }
         }
     }
-    // ０段目(階段前)。助走をつけたのでいざ突入
+    // ０段目(階段前)。助走距離をとったのでいざ突入
     if (mState == StairwayDriver::ON0THSTAGE_GO) {
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
@@ -118,7 +132,7 @@ bool StairwayDriver::drive()
         if (! mDoDetectWall) {
             mAngleTrace.setForward(100);
             mAngleTrace.setTargetAngle(mPrevDirection);
-            K_THETADOT = 7.0F; // Find! １段目１回で載る絶妙な値
+            K_THETADOT = 7.5F; // Find! １段目１回で載る絶妙な値
             mAngleTrace.execute();
             if (mGps.getXCoordinate() < 4050.0) { // 階段側マーカ始点
                 mDoDetectWall = true;
@@ -221,7 +235,7 @@ bool StairwayDriver::drive()
         // ライン検知(ちょっと右に向かってまっすぐ)
         if (mDoDetectWall) {
             mAngleTrace.setTargetAngle(mPrevDirection + 10);
-            K_THETADOT = 9.5F;
+            K_THETADOT = 7.5F;
             mAngleTrace.setForward(30);
             mAngleTrace.execute();
             if (mLineDetector.detect()) {
@@ -234,7 +248,7 @@ bool StairwayDriver::drive()
     // ライン合流後
     else if (mState == StairwayDriver::AFTERLINETRACE) {
         if (mInitState) {
-            K_THETADOT = 9.5F;
+            K_THETADOT = 7.5F;
             mLineTrace.setForward(30);
             mTimeCounter = 0;
             mInitState = false;
