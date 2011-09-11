@@ -13,6 +13,7 @@ extern int gSonarDistance;
 InCourse::InCourse(InCourse::eSection aSection)
     : Course()
 {
+    mNameId = 0;
     mState = aSection;
     switch (mState) {
     

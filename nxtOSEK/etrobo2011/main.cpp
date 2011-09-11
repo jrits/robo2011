@@ -225,6 +225,8 @@ TASK(TaskDrive)
         //gDoSonar = true;//うまくいかないのでコメントアウト
         mLcd.clear();
         mLcd.putf("nsnn", "Get Ready?");
+        mLcd.putf("ssn",  "Course  = ", (mCourse->getNameId() == 0 ? "In" : "Out"));
+        mLcd.putf("sdn",  "Section = ", mCourse->getState());
         mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
         mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
         //mLcd.putf("sd" ,  "Sonar = ",  gSonarTagetDistance, 5);//うまくいかないのでコメントアウト

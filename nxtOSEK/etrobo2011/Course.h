@@ -13,6 +13,7 @@
 class Course
 {
 protected:
+    int mNameId; //!< インコースかアウトコースか
     int mState; //!< 現在状態
     Driver *mDriver; //!< 現在ドライバ
 public:
@@ -30,6 +31,8 @@ public:
      * Override Me!
      */
     virtual void drive(){}
+    int getNameId() { return mNameId; }
+    int getState() { return mState; }
 };
 
 #endif /*COURSE_H_*/
