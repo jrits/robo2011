@@ -15,7 +15,7 @@ InCourse::InCourse(InCourse::eSection aSection)
 {
     mState = aSection;
     switch (mState) {
-    	
+    
     case InCourse::SEESAW:
         // シーソーからテスト
         mGps.adjustXCoordinate(GPS_SEESAW_START_X);

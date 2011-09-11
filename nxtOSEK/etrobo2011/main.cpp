@@ -240,11 +240,8 @@ TASK(TaskDrive)
     while(1)
     {
         tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-        //if (mFailDetector.detect()) doDrive = false;
-        mLineTrace.setForward(70);//テストコース用調整：コミット時要削除
-    	gDoForwardPid = true; //テストコース用調整：コミット時要削除
-    	if (doDrive) mCourse->drive();
-        //if (doDrive) mTestDriver.drive();
+        if (mFailDetector.detect()) doDrive = false;
+        if (doDrive) mCourse->drive();
         else mActivator.stop();
 
         // イベント通知を待つ

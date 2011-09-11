@@ -30,7 +30,7 @@ StairwayDriver::StairwayDriver()
  */
 bool StairwayDriver::drive()
 {
-#if 1 // ログ送信
+#if 0 // ログ送信
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
     LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());

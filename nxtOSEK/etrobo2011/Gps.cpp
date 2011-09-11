@@ -441,7 +441,8 @@ void Gps::adjustDistance(float trueValue)
             trueValue = FLT_MAX*(-1);
         }
     }
-    mDistance = trueValue;
+    //mDistance = trueValue;
+    mDistanceOffset = trueValue;//エンコーダベースのため修正した
     // @todo: 各種計算式をオフセット対応に修正
     //mDistanceOffset = trueValue - mDistance;
 }
@@ -495,43 +496,43 @@ bool Gps::calcCenterCoordinates(float angle, float radius, float *circleX, float
  */
 void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 {
-	/* 2011年版"簡易"自動補正 */
-	/* 距離メインの決め打ち補正 */
-	
-	/* スタート直後の補正*/
-	if(((0.0 < mDistance) && (mDistance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
-	{
-		adjustDirection(180);
-		//adjustXCoordinate();
-		adjustYCoordinate(-252.0);
-		mSpeaker.playTone(1000, 1, 100);
-	}
-	
-	/* 最初のカーブ後の補正*/
-	if(((4500.0 < mDistance) && (mDistance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
-	{
-		adjustDirection(270);
-		adjustXCoordinate(262.0);
-		//adjustYCoordinate();
-		mSpeaker.playTone(1000, 1, 100);
-	}
-	
-	/* ルックアップゲート前の補正*/
-	/*ルックアップゲート内でやるのでとりあえずコメントアウト
-	//if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
-	if(((405.0 < avgD)) && (avgD < 495.0) && ((2500.0 < avgX)) && (avgX < 2850.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
-	{
-		adjustDirection(450);
-		adjustXCoordinate(2676.0);
-		//adjustYCoordinate();
-		mSpeaker.playTone(1000, 1, 100);
-	}
-	*/
-#if 1 // ログ送信(0：解除、1：実施)
+    /* 2011年版"簡易"自動補正 */
+    /* 距離メインの決め打ち補正 */
+    
+    /* スタート直後の補正*/
+    if(((500.0 < getDistance()) && (getDistance() < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
+    {
+        adjustDirection(180);
+        //adjustXCoordinate();
+        adjustYCoordinate(-252.0);
+        mSpeaker.playTone(1000, 1, 100);
+    }
+    
+    /* 最初のカーブ後の補正*/
+    if(((4500.0 < getDistance()) && (getDistance() < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+    {
+        adjustDirection(270);
+        adjustXCoordinate(262.0);
+        //adjustYCoordinate();
+        mSpeaker.playTone(1000, 1, 100);
+    }
+    
+    /* ルックアップゲート前の補正*/
+    /*ルックアップゲート内でやるのでとりあえずコメントアウト
+    //if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+    if(((405.0 < avgD)) && (avgD < 495.0) && ((2500.0 < avgX)) && (avgX < 2850.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+    {
+        adjustDirection(450);
+        adjustXCoordinate(2676.0);
+        //adjustYCoordinate();
+        mSpeaker.playTone(1000, 1, 100);
+    }
+    */
+#if 0 // ログ送信(0：解除、1：実施)
         LOGGER_SEND = 2;
         //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
         //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-        LOGGER_DATAU16    = (U16)(mDistance);
+        LOGGER_DATAU16    = (U16)(getDistance());
         LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
         LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
         LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
@@ -548,10 +549,10 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
         //mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
         mLcd.disp();
 #endif
-	
-	/* 2011年版"簡易"自動補正ここまで */
-	
-	/* 以下2010年版自動補正 */
+    
+    /* 2011年版"簡易"自動補正ここまで */
+    
+    /* 以下2010年版自動補正 */
 
     /**
      * 直線上を走行中かつGPSの座標から、走行位置、向きを補正
@@ -559,7 +560,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
      * 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。
      * 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難->区間を座標で指定するため、判定がシビアになる
      */
-	/*
+    /*
     int direction = (int)marge360(avgD);
     int mDirectionDiv = direction%90;
     int posFlag = (int)(((direction + DIRECTION_THRESHOLD))/90);
@@ -623,7 +624,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
         default:
             break;
     }
-	*/
+    */
 }
 
 /**
@@ -636,41 +637,41 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
  */
 void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 {
-	/* 2011年版"簡易"自動補正 */
-	/* 距離メインの決め打ち補正 */
-	/* スタート直後の補正*/
-	if(((50.0 < mDistance) && (mDistance < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0) && (-1000.0 < avgY))
-	{
-		adjustDirection(180);
-		//adjustXCoordinate();
-		adjustYCoordinate(-504.0);
-		mSpeaker.playTone(1000, 1, 100);
-	}
-	
-	/* 最初のカーブ後の補正*/
-	if(((4500.0 < mDistance) && (mDistance < 6000.0)) && (225.0 < avgD) && (avgD < 315.0) && (-2000.0 < avgY) && (avgY < -1500.0))
-	{
-		adjustDirection(270);
-		adjustXCoordinate(513.0);
-		//adjustYCoordinate();
-		mSpeaker.playTone(1000, 1, 100);
-	}
-	
-	/* シーソー前の補正*/
-	//if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
-	if(((405.0 < avgD)) && (avgD < 495.0) && ((2500.0 < avgX)) && (avgX < 2850.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
-	{
-		adjustDirection(450);
-		adjustXCoordinate(2676.0);
-		//adjustYCoordinate();
-		mSpeaker.playTone(1000, 1, 100);
-	}
-	
-#if 1 // ログ送信(0：解除、1：実施)
+    /* 2011年版"簡易"自動補正 */
+    /* 距離メインの決め打ち補正 */
+    /* スタート直後の補正*/
+    if((500.0 < getDistance()) && (getDistance() < 1000.0) && ((135.0 < avgD)) && (avgD < 225.0) && (-1000.0 < avgY))
+    {
+        adjustDirection(180);
+        //adjustXCoordinate();
+        adjustYCoordinate(-504.0);
+        mSpeaker.playTone(1000, 1, 100);
+    }
+    
+    /* 最初のカーブ後の補正*/
+    if((4500.0 < getDistance()) && (getDistance() < 6000.0) && (225.0 < avgD) && (avgD < 315.0) && (-2000.0 < avgY) && (avgY < -1500.0))
+    {
+        adjustDirection(270);
+        adjustXCoordinate(513.0);
+        //adjustYCoordinate();
+        mSpeaker.playTone(1000, 1, 100);
+    }
+    
+    /* シーソー前の補正*/
+    //if((22000.0 < getDistance()) && (getDistance() < 23500.0) && (405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))//距離は微妙なのでコメントアウト
+    if((405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))
+    {
+        adjustDirection(450);
+        adjustXCoordinate(2676.0);
+        //adjustYCoordinate();
+        mSpeaker.playTone(1000, 1, 100);
+    }
+    
+#if 0 // ログ送信(0：解除、1：実施)
         LOGGER_SEND = 2;
         //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
         //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-        LOGGER_DATAU16    = (U16)(mDistance);
+        LOGGER_DATAU16    = (U16)(getDistance());
         LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
         LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
         LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
@@ -687,18 +688,18 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
         //mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
         mLcd.disp();
 #endif
-	
-	
-	/* 2011年版"簡易"自動補正ここまで */
-	
-	/* 以下2010年版自動補正 */
+    
+    
+    /* 2011年版"簡易"自動補正ここまで */
+    
+    /* 以下2010年版自動補正 */
     /**
      * 直線上を走行中かつGPSの座標から、走行位置、向きを補正
      * GPSVisualizerの座標を利用してマッピングを行う
      * 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。
      * 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難->区間を座標で指定するため、判定がシビアになる
      */
-	/*
+    /*
     int direction = (int)marge360(avgD);
     int mDirectionDiv = direction%90;
     int posFlag = (int)(((direction + DIRECTION_THRESHOLD))/90);
@@ -754,7 +755,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
         default:
             break;
     }
-	*/
+    */
 }
 
 //================== クラスメソッド ===================

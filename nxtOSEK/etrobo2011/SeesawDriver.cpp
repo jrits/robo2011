@@ -47,27 +47,29 @@ bool SeesawDriver::drive()
 #if 0
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
-//  LOGGER_DATAS16[0] = (S16)();
-//  LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
-//  LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-//  LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
+    LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+    LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+    LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+    LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
     LOGGER_DATAS32[0] = (S32)(mGyroHistory.calcDifference());
 #endif
-    float xCo = mGps.getXCoordinate();
-//  float yCo = mGps.getYCoordinate();
-
-//  段差攻略
     if (mState == SeesawDriver::INIT) {
-        if(backCounter <= 500){
-            mAngleTrace.setTargetAngle(360);
-            mAngleTrace.setForward(0);
-            mAngleTrace.execute();
-            backCounter++;
-        }else{
+        if((3000.0 < mGps.getXCoordinate()) && ( mGps.getXCoordinate() < 3000.0 + 500.0) 
+            && (-900.0 - 250.0 < mGps.getYCoordinate()) &&  (mGps.getYCoordinate() < -900.0 + 250.0)
+            && (360 - 5 < mGps.getDirection())&& (360 + 5 < mGps.getDirection())
+        )
+        {
             mWallDetector.setThreshold(110);
-//          nxt_motor_set_count(NXT_PORT_A, 0);
             mState = SeesawDriver::BEFOREANGLETRACE;
             backCounter = 0;
+        }else{
+            if(500 < backCounter){
+                mLineTrace.setForward(100);
+            }else{
+                mLineTrace.setForward(50);
+            }
+            mLineTrace.execute();
+            backCounter++;
         }
     }
     if(mState == SeesawDriver::BEFOREANGLETRACE){
@@ -90,7 +92,7 @@ bool SeesawDriver::drive()
         mAngleTrace.setForward(30);
         mAngleTrace.execute();
 //      if(mTailMotor.getCount() <= 70){
-        if(mRightMotorHistory.get(0) - beforeRMS >= 410){
+        if(mRightMotorHistory.get(0) - beforeRMS >= 405){
             { Speaker s; s.playTone(261, 40, 100); }
             mState = SeesawDriver::BACKRUN;
             backCounter = 0;
@@ -99,7 +101,7 @@ bool SeesawDriver::drive()
         if(backCounter <= 500){
         K_THETADOT = 5.5F;
         mAngleTrace.setTargetAngle(360);
-        mAngleTrace.setForward(-45);
+        mAngleTrace.setForward(-50);
         mAngleTrace.execute();
         }else{
         mAngleTrace.setTargetAngle(360);
@@ -122,8 +124,8 @@ bool SeesawDriver::drive()
         mAngleTrace.setForward(70);
         mAngleTrace.execute();
         }
-    	//シーソー終了場所から300mm先で状態遷移
-    	if( 3636.0 + 300.0 < mGps.getXCoordinate()){//@todo 要調整
+        //シーソー終了場所から300mm先で状態遷移
+        if( 3636.0 + 300.0 < mGps.getXCoordinate()){//@todo 要調整
             { Speaker s; s.playTone(261, 60, 100); }
             mState = SeesawDriver::LINERETURN;
             backCounter = 0;

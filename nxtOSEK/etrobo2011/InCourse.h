@@ -18,7 +18,7 @@ public:
     enum eSection {
         TESTDRIVE, //!< テストドライバ起動
         START,     //!< スタート区間
-    	SEESAW,    //!< シーソー区間
+        SEESAW,    //!< シーソー区間
         STAIRWAY,  //!< 階段区間
         GARAGEIN   //!< ガレージ・イン区間
     };
