@@ -8,7 +8,7 @@
 
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
-int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
+int USER_GYRO_OFFSET = 600; // この値は適宜調整すること
 // オージス総研
 int WHITE = 539; // 白色の光センサ値 //小さめにしてね
 int GRAY  = 610; // 灰色の光センサ値
