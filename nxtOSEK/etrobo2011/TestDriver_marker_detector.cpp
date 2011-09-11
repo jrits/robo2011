@@ -55,20 +55,22 @@ bool TestDriver::drive()
 #endif
     // デフォルト
     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-    gDoForwardPid = false; 
+    gDoForwardPid = false;
     VectorT<float> command(50, 0);
 
     // テスト マーカー検知(1)
     // 条件: ON/OFFライントレース with フォワードPID without まいまい
     if (1) {
-        gDoForwardPid = true;
+        K_PHIDOT = 25.0F*2.5F;
+        K_THETADOT = 7.5F;
+        gDoForwardPid = false;
         gDoMaimai = false;
         mLineTrace.setForward(50);
         mLineTrace.setDoOnOffTrace(true);
         mLineTrace.execute();
         if (mMarkerDetector.detect()) { // マーカー検知
-            Speaker speaker;
-            speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
+            //Speaker speaker;
+            //speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
         }
     }
     // テスト マーカー検知(2) まだ作っていない。

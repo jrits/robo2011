@@ -78,7 +78,7 @@ int FORWARD = 100;        // 前進速度
 float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
 float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
-float LIGHT_ONOFF_K = 40; // K_PHIDOT = 25.0F
+float LIGHT_ONOFF_K = 50; // K_PHIDOT = 25.0F*2.5F
 // float LIGHT_PID_KP = 40; // K_PHIDOT = 25.0F*2.5F
 // float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F*2.5F
 // float LIGHT_PID_KD = 120; // K_PHIDOT = 25.0F*2.5F
