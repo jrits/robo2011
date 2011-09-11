@@ -58,7 +58,7 @@ bool TestDriver::drive()
     gDoMaimai = false;
     VectorT<float> command(50, 0);
 
-    // テスト マーカー検知(1)
+    // テスト マーカー検知
     // 条件: ON/OFFライントレース with フォワードPID without まいまい
     if (1) {
         // スタートが難しかったのでしばし(2s)PIDライントレース
@@ -75,15 +75,6 @@ bool TestDriver::drive()
                 speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
             }
         }
-    }
-    // テスト マーカー検知(2) まだ作っていない。
-    // 条件: PIDライントレース with フォワードPID with まいまい
-    if (0) {
-        gDoForwardPid = true;
-        gDoMaimai = true;
-        mLineTrace.setForward(50);
-        mLineTrace.setDoOnOffTrace(true);
-        mLineTrace.execute();
     }
 
     return true;

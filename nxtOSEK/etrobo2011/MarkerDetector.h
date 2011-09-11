@@ -7,12 +7,13 @@
 
 #include "LightSensor.h"
 #include "constants.h"
+#include "Detector.h"
 using namespace ecrobot;
 
 extern LightSensor mLightSensor;
 const int MARKER_NSAMPLE = 250;
 
-class MarkerDetector
+class MarkerDetector : public Detector
 {
 private:
     unsigned int mNsample; //!< この期間中、黒が現れなければマーカと判断する。
@@ -21,9 +22,9 @@ public:
     MarkerDetector(int nsample = MARKER_NSAMPLE)
         : mNsample(nsample),
           mGrayCount(0) {}
-    virtual ~MarkerDetector(){}
+    ~MarkerDetector(){}
 public:
-    virtual bool detect();
+    bool detect();
 };
 
 #endif

@@ -47,7 +47,7 @@ extern float LIGHT_PID_KI;
 extern float LIGHT_PID_KD;
 extern float LIGHT_PID_K_THETADOT;
 extern float LIGHT_PID_K_PHIDOT;
-extern float LIGHT_ONOFF_K;
+extern float LIGHT_ONOFF_TURN;
 extern float LIGHT_ONOFF_K_THETADOT;
 extern float LIGHT_ONOFF_K_PHIDOT;
 

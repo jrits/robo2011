@@ -204,10 +204,10 @@ float LineTrace::calcOnOffCommandTurn()
     //ONOFF制御
     float Y;
     if (P < 0) { // 白
-        Y = -LIGHT_ONOFF_K;
+        Y = -LIGHT_ONOFF_TURN;
     }
     else { // 黒
-        Y = LIGHT_ONOFF_K;
+        Y = LIGHT_ONOFF_TURN;
     }
     
     //ラインの右側をトレースするか左側をトレースするかで旋回方向が決まる
