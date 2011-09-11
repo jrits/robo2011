@@ -208,7 +208,7 @@ TASK(TaskDrive)
     WaitEvent(EventDrive);
     // K_THETADOT = 10.5F;
 
-    connect_bt(mLcd, BT_NAME); // bluetooth接続
+    //connect_bt(mLcd, BT_NAME); // bluetooth接続
     mActivator.reset(USER_GYRO_OFFSET);
 
     while(1)
