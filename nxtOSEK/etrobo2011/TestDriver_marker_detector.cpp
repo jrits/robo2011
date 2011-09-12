@@ -28,7 +28,7 @@ bool TestDriver::drive()
     LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
     LOGGER_DATAS32[0] = (S32)(mLightHistory.calcDifference());
 #endif
-#if 1 // DEBUG
+#if 0 // DEBUG
     //DESK_DEBUG = true; // モータを回さないデバグ
     static int count = 0; // staticは原則禁止だが今だけ
     if (count++ % 25 == 0) {
@@ -48,30 +48,50 @@ bool TestDriver::drive()
     // デフォルト
     tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
     gDoForwardPid = false;
-    VectorT<float> command(50, 0);
+    LineTrace *lineTrace;
 
     // テスト 非マイマイ式ON/OFFライントレースマーカー検知
     if (0) {
         gDoMaimai = false;
+        lineTrace = &mLineTrace;
     }
     // テスト マイマイ式ON/OFFライントレースマーカー検知
+    if (0) {
+        gDoMaimai = true;
+        lineTrace = &mLineTrace;
+    }
+    // テスト 非マイマイ式ON/OFF３点傾立ライントレースマーカー検知
+    if (0) {
+        gDoMaimai = false;
+        tail_control(TAIL_ANGLE_TRIPOD_DRIVE);
+        lineTrace = &mTripodLineTrace;
+    }
+    // テスト マイマイ式ON/OFF３点傾立ライントレースマーカー検知
     if (1) {
         gDoMaimai = true;
+        tail_control(TAIL_ANGLE_TRIPOD_DRIVE);
+        lineTrace = &mTripodLineTrace;
     }
-    // スタートが難しかったのでしばし(2s)PIDライントレース
-    if (count < 500) {
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-    }
-    // ここからON/OFFライントレース
-    else {
-        mLineTrace.setDoOnOffTrace(true);
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-        // マーカー検知
-        if (mMarkerDetector.detect()) {
-            Speaker speaker;
-            speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
+
+    // 以下、共通ロジック
+    {
+        static int timeCounter = 0;
+        timeCounter++;
+        // スタートが難しかったのでしばし(2s)PIDライントレース
+        if (timeCounter < 500) {
+            lineTrace->setForward(50);
+            lineTrace->execute();
+        }
+        // ここからON/OFFライントレース
+        else {
+            lineTrace->setDoOnOffTrace(true);
+            lineTrace->setForward(50);
+            lineTrace->execute();
+            // マーカー検知
+            if (mMarkerDetector.detect()) {
+                Speaker speaker;
+                speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
+            }
         }
     }
 
