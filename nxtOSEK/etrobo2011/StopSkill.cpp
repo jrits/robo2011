@@ -53,8 +53,17 @@ VectorT<float> StopSkill::calcCommand()
     // スキルの利用。フォワード値を(必要があれば)上書きする。
     VectorT<float> command = mSkill->calcCommand();
 
-    // フォワード値の制御。目標地点にたどり着いたらフォワード値0
-    if (isArrived()) command.mX = 0;
+    // フォワード値のPID制御(徐々に減速)
+    float P = mTargetDistance -  mGps.getDistance();
+    float X = mSlowdownPid.control(P);
+    if (X > command.mX) X = command.mX;
+    command.mX = X;
+
+    // フォワード値の制御。目標地点にたどり着いたらフォワード値0。ターン値も0
+    if (isArrived()) {
+        command.mX = 0;
+        command.mY = 0;
+    }
 
 #if 0
     //DESK_DEBUG = true; // モータを回さないデバグ

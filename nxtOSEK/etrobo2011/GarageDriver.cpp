@@ -12,15 +12,12 @@
 GarageDriver::GarageDriver()
 {
     mState = GarageDriver::INIT;
-    //K_THETADOTをゆるくする（坂道で転倒したため）
-    //K_THETADOT = 7.0F;
-    mGrayThroughFlag = false;
 }
 
 /**
- * アウトコースガレージ・イン区間を攻略する
+ * ガレージ・イン区間を攻略する
  *
- * 坂道直線ライントレースから、ガレージ・インまでを担当する。
+ * ガレージ・イン前直線(坂道直線との交点)から、ガレージ・インまでを担当する。
  *
  * @retval true 最終状態。これ以降の状態遷移なし。
  * @retval false まだ役目が完了していません。
@@ -51,175 +48,43 @@ bool GarageDriver::drive()
         lcd.disp();
     }
 #endif
-    if (mState == GarageDriver::INIT) { // 初期化状態
+    // 初期化関数を作るのが面倒くさいのでここで
+    if (mState == GarageDriver::INIT) {
         mTimeCounter = 0;
-        K_THETADOT = 7.0F;
-        mState = GarageDriver::BEFORELINETRACE;
-        mLineTrace.setForward(100);
-        mAngleTrace.setForward(100);
-        mGrayThroughFlag = false;
-     }
-    // ライントレース(階段後直線、緑の端から)
-    if (mState == GarageDriver::BEFORELINETRACE) {
-        if(! mGrayThroughFlag && mGps.getXCoordinate() < 4323) { // 角度トレース準備
-            mGrayThroughFlag = true;
-            mAngleTrace.setTargetAngle(mGps.getDirection());
-        }
-        if (mGrayThroughFlag && mGps.getXCoordinate() < 4014) { // 角度トレース解除
-            mGrayThroughFlag = false;
-        }
-        if (mGrayThroughFlag) { // 角度トレース実施
-            mAngleTrace.execute();
-        }
-        else {  // ライントレース実施
-            mLineTrace.execute();
-        }
-        // 直線検知がどこで発動するかわからないのがまずい？？？
-        // 試しに時間で判断。(11/30)
-        if (mTimeCounter > 250 && mStraightDetector.detect() == true) {
-            mState = GarageDriver::STRAIGHTLINETRACE;
-            mSlowdownSkill.setSkill(&mLineTrace);
-            // 【ライントレース（坂道手前〜ゴール地点）の走行距離：ここを変える！！】
-            mSlowdownSkill.setTargetDistance(4300);
-            mSlowdownSkill.setMinimumForward(100);
-        }
-        // if (mGps.getXCoordinate() < ?????) {
-        //     mState = GarageDriver::GARAGEIN;
-        //     mTimeCounter = 0;
-        // }
+        K_THETADOT = 7.5F;
+        mLineTrace.setForward(50);
+        mState = GarageDriver::READYGO;
     }
-    
-// 座標指定走行用ソース↓
-/*
-    else if(mState == GarageDriver::STRAIGHTLINETRACE) {
-        mSlowdownSkill.execute();
-        if (mSlowdownSkill.isArrived()) {
+    // ガレージだけテストをする場合、スタートが難しかったのでしばしPIDライントレース
+    if (mState == GarageDriver::READYGO) {
+        mLineTrace.setForward(50);
+        mLineTrace.execute();
+        // 2s たった
+        if (mTimeCounter > 500) {
+            mState = GarageDriver::MARKER;
+        }
+    }
+    // ONOFFライントレースをしながらマーカを見つける。
+    // @todo: ここでSitDown してからの mTripodLineTrace にしたい？
+    if (mState == GarageDriver::MARKER) {
+        mLineTrace.setDoOnOffTrace(true);
+        mLineTrace.setForward(50);
+        mLineTrace.execute();
+        // マーカー検知
+        if (mMarkerDetector.detect()) {
+            mState = GarageDriver::ENTER;
+        }
+    }
+    // マーカを見つけてから数cm進んで停止
+    if (mState == GarageDriver::ENTER) {
+        mLineTrace.setDoOnOffTrace(false);
+        mLineTrace.setForward(30);
+        mStopSkill.setSkill(&mLineTrace);
+        mStopSkill.setTargetDistance(100); // mm
+        mStopSkill.execute();
+    }
 
-            mState = GarageDriver::ENTERGARAGE;
-            //目標座標の設定
-            //K_THETAをもっときつく
-            //K_THETADOT = 5.0F;
-            mCoordinateTrace.setTargetCoordinate(MakePoint((GPS_GARAGE_X + 50), (GPS_GARAGE_Y + 50) ));
-            mCoordinateTrace.setForward(100);
-            mCoordinateTrace.setAllowableError(50); //5cm    
-        }
-    }
-*/
-// 座標指定走行用ソース↑ 
-
-    
-// 角度トレース版ソース↓   
-    // ライントレース後の向き回転
-    else if (mState == GarageDriver::STRAIGHTLINETRACE) {
-        if(! mGrayThroughFlag && 4014 < mGps.getXCoordinate() && mGps.getXCoordinate() < 4323) { // 角度トレース準備
-            mGrayThroughFlag = true;
-            mAngleTrace.setTargetAngle(mGps.getDirection());
-        }
-        if (mGrayThroughFlag && mGps.getXCoordinate() < 4014) { // 角度トレース解除
-            mGrayThroughFlag = false;
-        }
-        if (mGrayThroughFlag) { // 角度トレース実施
-            mAngleTrace.execute();
-        }
-        else { // スローダウンスキル実施
-            mSlowdownSkill.execute();
-        }
-        
-        if (mSlowdownSkill.isArrived()) {
-            mState = GarageDriver::PREPAREENTERGARAGE;
-            //mAngleTrace.setTargetAngle(90);
-            //mAngleTrace.setForward(0);
-            //SORA【ガレージに向かう角度：ここを変える・・・必要はあったりなかったり】
-            mAngleTrace.setTargetAngle(175 - 7);
-            mAngleTrace.setForward(100);
-            mSlowdownSkill.setSkill(&mAngleTrace);
-            //SORA【ガレージに向かうときの距離：ここを変える！！】
-            mSlowdownSkill.setTargetDistance(1200 + 200);
-            mSlowdownSkill.setMinimumForward(0);
-
-        }
-    }
-    
-    //向きが移転後、車庫と同じY座標へ前進
-    else if (mState == GarageDriver::PREPAREENTERGARAGE) {   //ガレージイン準備
-        //mAngleTrace.execute();
-        //if (mAngleTrace.isArrived()) {
-        //  mState = GarageDriver::STRAIGHTANGLETRACE;
-        //  mAngleTrace.setForward(50);
-        //  mSlowdownSkill.setSkill(&mAngleTrace);
-        //  mSlowdownSkill.setTargetDistance(5);
-        //  mSlowdownSkill.setMinimumForward(0);
-        //}
-            
-        mSlowdownSkill.execute();
-            if(mSlowdownSkill.isArrived()) {
-                mState = GarageDriver::FIN_GARAGEIN;
-                mAngleTrace.setTargetAngle(180);
-                mAngleTrace.setForward(0);        
-            }
-                
-    }
-/* pass
-    // 向きを車庫に向ける
-    else if (mState == GarageDriver::STRAIGHTANGLETRACE) {
-        mSlowdownSkill.execute();
-        if (mSlowdownSkill.isArrived()) {
-            mState = GarageDriver::GOGARAGE;
-            mAngleTrace.setTargetAngle(180);
-            mAngleTrace.setForward(0);
-        }
-    }
-    // 車庫入れ動作
-    else if (mState == GarageDriver::GOGARAGE) {
-        mAngleTrace.execute();
-        if (mAngleTrace.isArrived()) {
-            mState = GarageDriver::ENTERGARAGE;
-            mAngleTrace.setForward(50);
-            mSlowdownSkill.setSkill(&mAngleTrace);
-            mSlowdownSkill.setTargetDistance(500);
-            mSlowdownSkill.setMinimumForward(0);
-        }
-    }
-    
-pass */
-    // 車庫入れ完了
-    else if (mState == GarageDriver::FIN_GARAGEIN) {
-        mAngleTrace.execute();
-    
-    }
     mTimeCounter++;
     return false; // 終了しない(最後なのでなんでも良い)
 }
-    
-    
-// 角度トレース版実装終了↑    
-
-    
-// 座標指定走行↓ 
-/*    
-
-    //車庫入れ完了
-    else if (mState == GarageDriver::ENTERGARAGE) {
-        mCoordinateTrace.execute();
-        if(mCoordinateTrace.isArrived()) {
-            mState = GarageDriver::FIN_GARAGEIN;
-            
-            mAngleTrace.setForward(0);
-            mAngleTrace.setTargetAngle(180);
-        }
-    }
-    
-    else if (mState == GarageDriver::FIN_GARAGEIN) {
-        mAngleTrace.execute();
-    
-    }
-    //else if (mState == GarageDriver::GARAGEIN) { 
-    //}
-    
-    mTimeCounter++;
-    return false; // 終了しない(最後なのでなんでも良い)
-}
-
-// 座標指定走行 ↑
-*/
 
