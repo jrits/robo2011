@@ -50,7 +50,6 @@ TARGET_CPP_SOURCES = \
 	CoordinateStop.cpp \
 	SlowdownSkill.cpp \
 	StopSkill.cpp \
-        Posture.cpp \
 	StandUpSkill.cpp \
         SitDownSkill.cpp \
         LookUpGateDriver.cpp \

@@ -59,8 +59,6 @@
 #include "TripodActivator.h"
 #include "Pid.h"
 #include "struct.h"
-// Posture
-#include "Posture.h"
 
 // デバイスオブジェクト
 extern TouchSensor mTouchSensor;
@@ -131,6 +129,4 @@ extern Course *mCourse;
 extern InCourse mInCourse;
 extern OutCourse mOutCourse;
 
-// Posture
-extern Posture mPosture;
 #endif
