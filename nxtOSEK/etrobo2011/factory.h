@@ -43,13 +43,10 @@
 #include "NormalDriver.h"
 #include "SeesawDriver.h"
 #include "StairwayDriver.h"
-#include "OutGarageDriver.h"
-#include "InGarageDriver.h"
+#include "GarageDriver.h"
 #include "TestDriver.h"
 #include "LookUpGateDriver.h"
-/* ETロボコン2011 追記*/
 #include "ETsumoDriver.h"
-/* ETロボコン2011 追記ここまで */
 // コース
 #include "Course.h"
 #include "InCourse.h"
@@ -117,10 +114,9 @@ extern StandupDriver mStandupDriver;
 extern NormalDriver mNormalDriver;
 extern SeesawDriver mSeesawDriver;
 extern StairwayDriver mStairwayDriver;
-extern OutGarageDriver mOutGarageDriver;
-extern InGarageDriver mInGarageDriver;
+extern GarageDriver mGarageDriver;
 extern TestDriver mTestDriver;
-extern ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
+extern ETsumoDriver mETsumoDriver;
 extern LookUpGateDriver mLookUpGateDriver;
 extern TestDriver mSeesawTestDriver;
 

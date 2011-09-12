@@ -1,16 +1,16 @@
 //
-// InGarageDriver.h
+// GarageDriver.h
 //
 
-#ifndef InGarageDriver_H_
-#define InGarageDriver_H_
+#ifndef GarageDriver_H_
+#define GarageDriver_H_
 
 #include "Driver.h"
 
 /**
- * インコースガレージ・インドライバ
+ * アウトコースガレージ・インドライバ
  */
-class InGarageDriver : public Driver
+class GarageDriver : public Driver
 {
 private:
     /**
@@ -21,13 +21,17 @@ private:
         BEFORELINETRACE,
         STRAIGHTLINETRACE,
         PREPAREENTERGARAGE,
+        STRAIGHTANGLETRACE,
+        GOGARAGE,
         ENTERGARAGE,
+        FIN_GARAGEIN,
     };
     eSubSection mState; //!< 状態
     int mTimeCounter;   //!< タイムカウンタ
+    bool mGrayThroughFlag; //!< 大会調整。灰色区間ジャンプ
 public:
-    InGarageDriver();
-    ~InGarageDriver(){}
+    GarageDriver();
+    ~GarageDriver(){}
     bool drive();
 };
 

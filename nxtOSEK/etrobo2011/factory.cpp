@@ -67,10 +67,9 @@ SitDownSkill mSitDownSkill;
 NormalDriver mNormalDriver;
 SeesawDriver mSeesawDriver;
 StairwayDriver mStairwayDriver;
-OutGarageDriver mOutGarageDriver;
-InGarageDriver mInGarageDriver;
+GarageDriver mGarageDriver;
 TestDriver mTestDriver;
-ETsumoDriver mETsumoDriver;// ETロボコン2011 追記
+ETsumoDriver mETsumoDriver;
 LookUpGateDriver mLookUpGateDriver;
 
 TestDriver mSeesawTestDriver;

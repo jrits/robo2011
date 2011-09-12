@@ -32,8 +32,7 @@ TARGET_CPP_SOURCES = \
 	SeesawDriver.cpp \
 	StairwayDriver.cpp \
 	ETsumoDriver.cpp \
-	OutGarageDriver.cpp \
-	InGarageDriver.cpp \
+	GarageDriver.cpp \
 	InCourse.cpp \
 	OutCourse.cpp \
 	History.cpp \
