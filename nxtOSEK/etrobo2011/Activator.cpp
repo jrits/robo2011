@@ -64,7 +64,7 @@ void Activator::run(VectorT<F32> command)
         (float)command.mX,							 /* 前後進命令(+:前進, -:後進) */
         (float)command.mY,							 /* 旋回命令(+:右旋回, -:左旋回) */
         (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
-        (float)USER_GYRO_OFFSET,                     /* ジャイロセンサオフセット値 */
+        (float)mGyroOffset,                          /* ジャイロセンサオフセット値 */
         (float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
         (float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
         (float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
