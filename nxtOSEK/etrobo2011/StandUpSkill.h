@@ -6,10 +6,6 @@
 #include "TripodActivator.h"
 #include "Motor.h"
 
-extern "C"
-{
-extern void tail_control(signed int);
-}
 using namespace ecrobot;
 
 class StandUpSkill {

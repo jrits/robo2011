@@ -19,16 +19,6 @@ extern "C"
 #include "kernel_id.h"
 #include "ecrobot_interface.h"
 
-/* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
-#define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
-#define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
-/* sample_c4マクロ */
-//#define DEVICE_NAME       "ET0"  /* Bluetooth通信用デバイス名 */
-//#define PASS_KEY          "1234" /* Bluetooth通信用パスキー */
-#define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
-
 /**
  * Bluetooth 接続
  *
@@ -39,31 +29,13 @@ extern "C"
  */
 static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 
-/* 下記のマクロは個体/環境に合わせて変更する必要があります */
-/* sample_c1マクロ */
-#define GYRO_OFFSET  611 /* ジャイロセンサオフセット値(角速度0[deg/sec]時) */
-#define LIGHT_WHITE	 500 /* 白色の光センサ値 */
-#define LIGHT_BLACK	 700 /* 黒色の光センサ値 */
-/* sample_c2マクロ */
-#define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
-/* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_TRIPOD_DRIVE 95 /* ３点走行時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
-#define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
-#define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
-/* sample_c4マクロ */
-#define DEVICE_NAME       "ET0"  /* Bluetooth通信用デバイス名 */
+/* Bluetooth スタート */
 #define PASS_KEY          "1234" /* Bluetooth通信用パスキー */
 #define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
 char rx_buf[BT_MAX_RX_BUF_SIZE]; /* Bluetooth通信用データ受信バッファ */
-/* MAIMAI(改) */
-#define MAIMAI_PERIOD        10         /* まいまい式ライントレースの実行周期。8msでもイケる？*/
-
-/* 関数プロトタイプ宣言 */
-static int sonar_alert(void);
-extern void tail_control(signed int angle);
 static int remote_start(void);
+
+/* まいまい式差分計算 */
 static float calc_maimai(U16 light_off_value, U16 light_on_value);
 
 // タスク間共有メモリ
@@ -137,12 +109,12 @@ void ecrobot_device_terminate(void)
 /* ETロボコン2011 追記*/
 // 外部タスクによりgDoSonarがtrueに設定された際、以下の3つの共有メモリの値を更新する
 //
-// bool  gSonarIsDetected        ターゲット検知フラグ、見つけたらtrueが入る ※5cm〜60cmのみを検知するよう設定している
+// bool  gSonarIsDetected        ターゲット検知フラグ、見つけたらtrueが入る ※5cm～60cmのみを検知するよう設定している
 // float gSonarTagetDistance    検知したターゲットとロボの距離（単位はGPSにあわせてミリメートルとした）
-// float gSonarTagetAngle        検知したターゲットのロボから見た角度（-180〜180度）
+// float gSonarTagetAngle        検知したターゲットのロボから見た角度（-180～180度）
 //
 // 課題＠todo
-// サンプリング周期(80msec毎)及び、検知エリア(5cm〜60cm)の妥当性の検証
+// サンプリング周期(80msec毎)及び、検知エリア(5cm縲鰀60cm)の妥当性の検証
 //  →☆注意☆ 停止状態の検証は意味がない。超信地旋回中の検証が必要
 //   →ロボがブレながら旋回している際、どの程度ターゲットを検知してくれるか？これがET相撲の肝（ブレずに旋回出来ればなおよい）
 TASK(TaskSonar)
@@ -259,7 +231,7 @@ TASK(TaskDrive)
 TASK(TaskMaimai)
 {
     // MAIMAI_PERIOD msec 毎にイベント通知する
-    SetRelAlarm(AlarmMaimai, 1, MAIMAI_PERIOD); 
+    SetRelAlarm(AlarmMaimai, 1, MAIMAI_PERIOD);
     WaitEvent(EventMaimai);
 
     bool  is_light_on = 1;          /* 光センサの点灯/消灯状態   */
@@ -399,41 +371,6 @@ static void connect_bt(Lcd &lcd, char bt_name[16])
   lcd.disp();
 }
 
-
-//*****************************************************************************
-// 関数名 : sonar_alert
-// 引数 : 無し
-// 返り値 : 1(障害物あり)/0(障害物無し)
-// 概要 : 超音波センサによる障害物検知
-//*****************************************************************************
-static int sonar_alert(void)
-{
-    static unsigned int counter = 0;
-    static int alert = 0;
-
-    signed int distance;
-
-    if (++counter == 40/4) /* 約40msec周期毎に障害物検知  */
-    {
-        /*
-         * 超音波センサによる距離測定周期は、超音波の減衰特性に依存します。
-         * NXTの場合は、40msec周期程度が経験上の最短測定周期です。
-         */
-        distance = ecrobot_get_sonar_sensor(NXT_PORT_S2);
-        if ((distance <= SONAR_ALERT_DISTANCE) && (distance >= 0))
-        {
-            alert = 1; /* 障害物を検知 */
-        }
-        else
-        {
-            alert = 0; /* 障害物無し */
-        }
-        counter = 0;
-    }
-
-    return alert;
-}
-
 //*****************************************************************************
 // 関数名 : tail_control
 // 引数  : angle (モータ目標角度[度])
@@ -442,15 +379,15 @@ static int sonar_alert(void)
 //*****************************************************************************
 extern void tail_control(signed int angle)
 {
-    float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*P_GAIN; /* 比例制御 */
+    float pwm = (float)(angle - nxt_motor_get_count(NXT_PORT_A))*TAIL_P_GAIN; /* 比例制御 */
     /* PWM出力飽和処理 */
-    if (pwm > PWM_ABS_MAX)
+    if (pwm > TAIL_PWM_ABS_MAX)
     {
-        pwm = PWM_ABS_MAX;
+        pwm = TAIL_PWM_ABS_MAX;
     }
-    else if (pwm < -PWM_ABS_MAX)
+    else if (pwm < -TAIL_PWM_ABS_MAX)
     {
-        pwm = -PWM_ABS_MAX;
+        pwm = -TAIL_PWM_ABS_MAX;
     }
 
     nxt_motor_set_speed(NXT_PORT_A, (signed char)pwm, 1);

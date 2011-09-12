@@ -36,6 +36,15 @@ extern int MARKER_THRESHOLD;
 extern int TRIPOD_WHITE;
 extern int TRIPOD_BLACK;
 extern int TRIPOD_LINE_THRESHOLD;
+extern int TRACE_EDGE;
+extern float LIGHT_PID_KP;
+extern float LIGHT_PID_KI;
+extern float LIGHT_PID_KD;
+extern float LIGHT_ONOFF_TURN;
+extern float LIGHT_ONOFF_K_THETADOT;
+extern float LIGHT_ONOFF_K_PHIDOT;
+
+//�܂��܂���
 extern float MAIMAI_WHITE;
 extern float MAIMAI_BLACK;
 extern float MAIMAI_LINE_THRESHOLD;
@@ -44,13 +53,7 @@ extern float MAIMAI_MARKER_THRESHOLD;
 extern float MAIMAI_TRIPOD_WHITE;
 extern float MAIMAI_TRIPOD_BLACK;
 extern float MAIMAI_TRIPOD_LINE_THRESHOLD;
-extern int TRACE_EDGE;
-extern float LIGHT_PID_KP;
-extern float LIGHT_PID_KI;
-extern float LIGHT_PID_KD;
-extern float LIGHT_ONOFF_TURN;
-extern float LIGHT_ONOFF_K_THETADOT;
-extern float LIGHT_ONOFF_K_PHIDOT;
+extern int   MAIMAI_PERIOD;
 
 //AngleTrace
 extern float ANGLE_PID_KP;
@@ -66,6 +69,14 @@ extern float SLOWDOWN_PID_KD;
 extern float STOP_PID_KP;
 extern float STOP_PID_KI;
 extern float STOP_PID_KD;
+
+//tail_control
+extern int   TAIL_ANGLE_STAND_UP;
+extern int   TAIL_ANGLE_DRIVE;
+extern int   TAIL_ANGLE_TRIPOD_DRIVE;
+extern float TAIL_P_GAIN;
+extern int   TAIL_PWM_ABS_MAX;
+extern "C" extern void tail_control(signed int angle);
 
 //転倒検出
 extern int FAILSAFE_SAMPLECOUNT;
@@ -89,8 +100,11 @@ extern S32 LOGGER_DATAS32[4];
 //Activator
 extern bool DESK_DEBUG;
 
-//LineTraceフラグ
+//フラグ(あとでちゃんと設計しなおす)
 extern bool gLineTrace;
+extern bool gDoForwardPid;
+extern bool gDoMaimai;
+extern float gMaimaiValue;
 
 #include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}
