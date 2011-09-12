@@ -84,6 +84,7 @@ float MAIMAI_MARKER_THRESHOLD = (MAIMAI_GRAY + MAIMAI_BLACK)/2.0; // 灰と黒�
 float MAIMAI_TRIPOD_WHITE = 0.75F; // 白色のMAIMAIセンサ値 //大きめにしてね
 float MAIMAI_TRIPOD_BLACK = 0.30F; // 黒色のMAIMAIセンサ値 //小さめにしてね
 float MAIMAI_TRIPOD_LINE_THRESHOLD = 0.525F; // ライン端の色を示す閾値。白と灰色の間の値
+int   MAIMAI_PERIOD = 10; /* まいまい式の実行周期(ms)。8msでもイケる？*/
 
 // GPS
 // float WHEEL_RADIUS = 38.5; // 車輪半径(mm)
@@ -125,9 +126,11 @@ float STOP_PID_KD = 0.001;
 //float STOP_PID_KD = 0.015;
 
 //tail_control
-int TAIL_ANGLE_STAND_UP = 108; /* 完全停止時の角度[度] */
-int TAIL_ANGLE_DRIVE = 3; /* バランス走行時の角度[度] */
-int TAIL_ANGLE_TRIPOD_DRIVE = 70; /* ３点走行時の角度[度] */
+int   TAIL_ANGLE_STAND_UP = 108; /* 完全停止時の角度[度] */
+int   TAIL_ANGLE_DRIVE = 3; /* バランス走行時の角度[度] */
+int   TAIL_ANGLE_TRIPOD_DRIVE = 70; /* ３点走行時の角度[度] */
+float TAIL_P_GAIN = 2.5F; /* 完全停止用モータ制御比例係数 */
+int   TAIL_PWM_ABS_MAX = 60; /* 完全停止用モータ制御PWM絶対最大値 */
 
 //転倒検出
 int FAILSAFE_SAMPLECOUNT = 200; // 転倒検出のサンプル数とする(*4ms)

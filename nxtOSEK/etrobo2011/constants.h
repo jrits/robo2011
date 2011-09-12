@@ -36,6 +36,15 @@ extern int MARKER_THRESHOLD;
 extern int TRIPOD_WHITE;
 extern int TRIPOD_BLACK;
 extern int TRIPOD_LINE_THRESHOLD;
+extern int TRACE_EDGE;
+extern float LIGHT_PID_KP;
+extern float LIGHT_PID_KI;
+extern float LIGHT_PID_KD;
+extern float LIGHT_ONOFF_TURN;
+extern float LIGHT_ONOFF_K_THETADOT;
+extern float LIGHT_ONOFF_K_PHIDOT;
+
+//‚Ü‚¢‚Ü‚¢Ž®
 extern float MAIMAI_WHITE;
 extern float MAIMAI_BLACK;
 extern float MAIMAI_LINE_THRESHOLD;
@@ -44,13 +53,7 @@ extern float MAIMAI_MARKER_THRESHOLD;
 extern float MAIMAI_TRIPOD_WHITE;
 extern float MAIMAI_TRIPOD_BLACK;
 extern float MAIMAI_TRIPOD_LINE_THRESHOLD;
-extern int TRACE_EDGE;
-extern float LIGHT_PID_KP;
-extern float LIGHT_PID_KI;
-extern float LIGHT_PID_KD;
-extern float LIGHT_ONOFF_TURN;
-extern float LIGHT_ONOFF_K_THETADOT;
-extern float LIGHT_ONOFF_K_PHIDOT;
+extern int   MAIMAI_PERIOD;
 
 //AngleTrace
 extern float ANGLE_PID_KP;
@@ -68,9 +71,12 @@ extern float STOP_PID_KI;
 extern float STOP_PID_KD;
 
 //tail_control
-extern int TAIL_ANGLE_STAND_UP;
-extern int TAIL_ANGLE_DRIVE;
-extern int TAIL_ANGLE_TRIPOD_DRIVE;
+extern int   TAIL_ANGLE_STAND_UP;
+extern int   TAIL_ANGLE_DRIVE;
+extern int   TAIL_ANGLE_TRIPOD_DRIVE;
+extern float TAIL_P_GAIN;
+extern int   TAIL_PWM_ABS_MAX;
+extern "C" extern void tail_control(signed int angle);
 
 //è»¢å€’æ¤œå‡º
 extern int FAILSAFE_SAMPLECOUNT;
