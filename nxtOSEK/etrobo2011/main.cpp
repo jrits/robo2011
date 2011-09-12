@@ -19,16 +19,6 @@ extern "C"
 #include "kernel_id.h"
 #include "ecrobot_interface.h"
 
-/* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
-#define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
-#define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
-/* sample_c4マクロ */
-//#define DEVICE_NAME       "ET0"  /* Bluetooth通信用デバイス名 */
-//#define PASS_KEY          "1234" /* Bluetooth通信用パスキー */
-#define CMD_START         '1'    /* リモートスタートコマンド(変更禁止) */
-
 /**
  * Bluetooth 接続
  *
@@ -40,16 +30,9 @@ extern "C"
 static void connect_bt(Lcd &lcd, char BT_NAME[16]);
 
 /* 下記のマクロは個体/環境に合わせて変更する必要があります */
-/* sample_c1マクロ */
-#define GYRO_OFFSET  611 /* ジャイロセンサオフセット値(角速度0[deg/sec]時) */
-#define LIGHT_WHITE	 500 /* 白色の光センサ値 */
-#define LIGHT_BLACK	 700 /* 黒色の光センサ値 */
 /* sample_c2マクロ */
 #define SONAR_ALERT_DISTANCE 30 /* 超音波センサによる障害物検知距離[cm] */
 /* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_TRIPOD_DRIVE 95 /* ３点走行時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
 /* sample_c4マクロ */

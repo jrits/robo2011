@@ -7,14 +7,7 @@
 #include "TestDriver.h"
 #include "factory.h"
 #include "TestLine.h"
-extern bool gDoMaimai;
-extern float gMaimaiValue;
 extern "C" extern void tail_control(signed int angle);
-
-/* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_TRIPOD_DRIVE 70 /* ３点走行時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 
 /**
  * コンストラクタ

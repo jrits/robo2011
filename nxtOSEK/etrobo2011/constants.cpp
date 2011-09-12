@@ -124,6 +124,11 @@ float STOP_PID_KD = 0.001;
 //float STOP_PID_KI = 0.001;
 //float STOP_PID_KD = 0.015;
 
+//tail_control
+int TAIL_ANGLE_STAND_UP = 108; /* 完全停止時の角度[度] */
+int TAIL_ANGLE_DRIVE = 3; /* バランス走行時の角度[度] */
+int TAIL_ANGLE_TRIPOD_DRIVE = 70; /* ３点走行時の角度[度] */
+
 //転倒検出
 int FAILSAFE_SAMPLECOUNT = 200; // 転倒検出のサンプル数とする(*4ms)
 int FAILSAFE_THRESHOLD = 600; //FAILSAFE_SAMPLECOUNT当たり両輪がこれ以上回転したら転倒とみなす

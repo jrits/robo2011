@@ -67,6 +67,11 @@ extern float STOP_PID_KP;
 extern float STOP_PID_KI;
 extern float STOP_PID_KD;
 
+//tail_control
+extern int TAIL_ANGLE_STAND_UP;
+extern int TAIL_ANGLE_DRIVE;
+extern int TAIL_ANGLE_TRIPOD_DRIVE;
+
 //転倒検出
 extern int FAILSAFE_SAMPLECOUNT;
 extern int FAILSAFE_THRESHOLD;
@@ -89,8 +94,11 @@ extern S32 LOGGER_DATAS32[4];
 //Activator
 extern bool DESK_DEBUG;
 
-//LineTraceフラグ
+//フラグ(あとでちゃんと設計しなおす)
 extern bool gLineTrace;
+extern bool gDoForwardPid;
+extern bool gDoMaimai;
+extern float gMaimaiValue;
 
 #include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}
