@@ -19,18 +19,17 @@ StopSkill::StopSkill() :
  */
 void StopSkill::setSkill(Skill *skill)
 {
-    if (skill == 0) skill = &mLineTrace; // とりあえず
     mSkill = skill;
 }
 
 /**
  * 停止目標距離を設定する。
  *
- * @param[in] targetDistance 停止目標距離(現在の位置からの相対距離)
+ * @param[in] targetDistance 停止目標距離(絶対走行距離)
  */
 void StopSkill::setTargetDistance(float targetDistance)
 {
-    mTargetDistance = mGps.getDistance() + targetDistance;
+    mTargetDistance = targetDistance;
 };
 
 /**
@@ -83,6 +82,25 @@ VectorT<float> StopSkill::calcCommand()
 #endif
 
     return command;
+}
+
+/**
+ * スキルを発揮してロボットを動かす。
+ *
+ * calcCommand を用いて走行ベクトルを決定し、制御機器を操作する。
+ */
+void StopSkill::execute()
+{
+    VectorT<float> command = calcCommand();
+    // ３点傾立走行中なら mTripodActivator。そうじゃないなら mActivator
+    // @todo: ちゃんと設計したい
+    bool doTripod = mTailMotor.getCount() > 30;
+    if (doTripod) {
+        mTripodActivator.run(command);
+    }
+    else {
+        mActivator.run(command);
+    }
 }
 
 /**

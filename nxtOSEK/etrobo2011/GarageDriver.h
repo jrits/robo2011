@@ -19,12 +19,13 @@ private:
     enum eSubSection {
         INIT = -1,
         READYGO,
+        SITDOWN,
         MARKER,
-        ENTER,
-        STOP
+        STOP,
     };
     eSubSection mState; //!< 状態
     int mTimeCounter;   //!< タイムカウンタ
+    float mPrevDistance; //!< 直前走行距離
 public:
     GarageDriver();
     ~GarageDriver(){}

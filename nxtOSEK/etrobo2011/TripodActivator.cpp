@@ -52,6 +52,9 @@ void TripodActivator::run(VectorT<F32> command)
         mRightMotor.setPWM((S8)(MIN(MAX(pwm_R, -128), 127)));
     }
 
+    // tail_control
+    tail_control(TAIL_ANGLE_TRIPOD_DRIVE);
+
 #if 0 // DEBUG
     static int count = 0;
     if (count++ > 5) {

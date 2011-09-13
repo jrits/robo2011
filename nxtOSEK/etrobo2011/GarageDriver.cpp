@@ -50,37 +50,46 @@ bool GarageDriver::drive()
 #endif
     // 初期化関数を作るのが面倒くさいのでここで
     if (mState == GarageDriver::INIT) {
+        gDoMaimai = true; // まいまい式
         mTimeCounter = 0;
         K_THETADOT = 7.5F;
         mLineTrace.setForward(50);
         mState = GarageDriver::READYGO;
     }
-    // ガレージだけテストをする場合、スタートが難しかったのでしばしPIDライントレース
+    // いきなり問答無用で座るよりも、ちゃんとテストで確認できたスピードにしてから座る。
     if (mState == GarageDriver::READYGO) {
         mLineTrace.setForward(50);
         mLineTrace.execute();
         // 2s たった
         if (mTimeCounter > 500) {
+            mState = GarageDriver::SITDOWN;
+        }
+    }
+    // 座る
+    if (mState == GarageDriver::SITDOWN) {
+        mSitDownSkill.execute();
+        // 座った
+        if (mSitDownSkill.isSeated()) {
             mState = GarageDriver::MARKER;
         }
     }
     // ONOFFライントレースをしながらマーカを見つける。
-    // @todo: ここでSitDown してからの mTripodLineTrace にしたい？
     if (mState == GarageDriver::MARKER) {
-        mLineTrace.setDoOnOffTrace(true);
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
+        mTripodLineTrace.setDoOnOffTrace(true);
+        mTripodLineTrace.setForward(50);
+        mTripodLineTrace.execute();
         // マーカー検知
         if (mMarkerDetector.detect()) {
-            mState = GarageDriver::ENTER;
+            mState = GarageDriver::STOP;
+            mPrevDistance = mGps.getDistance();
         }
     }
     // マーカを見つけてから数cm進んで停止
-    if (mState == GarageDriver::ENTER) {
-        mLineTrace.setDoOnOffTrace(false);
-        mLineTrace.setForward(30);
-        mStopSkill.setSkill(&mLineTrace);
-        mStopSkill.setTargetDistance(100); // mm
+    if (mState == GarageDriver::STOP) {
+        mTripodLineTrace.setDoOnOffTrace(false);
+        mTripodLineTrace.setForward(30);
+        mStopSkill.setSkill(&mTripodLineTrace);
+        mStopSkill.setTargetDistance(mPrevDistance + 100); // mm
         mStopSkill.execute();
     }
 
