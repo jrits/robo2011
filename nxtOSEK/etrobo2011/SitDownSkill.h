@@ -13,7 +13,7 @@ class SitDownSkill {
 
   void setAngle(signed int angle);
 
- private:
+ public:
   signed int mSitDownAngle;
   void tail_control(signed int angle) const;
 

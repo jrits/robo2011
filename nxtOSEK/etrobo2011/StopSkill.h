@@ -27,6 +27,7 @@ public:
     void setAllowableError(float allowableError);
     bool isArrived();
 public:
+    void execute();
     VectorT<float> calcCommand();
 };
 #endif

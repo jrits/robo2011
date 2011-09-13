@@ -106,7 +106,7 @@ void InCourse::drive()
         }
     }
     else if (mState == InCourse::GARAGEIN) { // ガレージ・イン区間
-        mInGarageDriver.drive();
+        mGarageDriver.drive();
     }
     // テストドライバ起動
     else { 

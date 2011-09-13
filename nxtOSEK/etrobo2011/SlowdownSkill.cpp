@@ -20,18 +20,17 @@ SlowdownSkill::SlowdownSkill() :
  */
 void SlowdownSkill::setSkill(Skill *skill)
 {
-    if (skill == 0) skill = &mLineTrace; // とりあえず
     mSkill = skill;
 }
 
 /**
  * 停止目標距離を設定する。
  *
- * @param[in] targetDistance 停止目標距離(現在の位置からの相対距離)
+ * @param[in] targetDistance 停止目標距離(絶対走行距離)
  */
 void SlowdownSkill::setTargetDistance(float targetDistance)
 {
-    mTargetDistance = mGps.getDistance() + targetDistance;
+    mTargetDistance = targetDistance;
 };
 
 /**
