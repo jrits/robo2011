@@ -23,6 +23,7 @@ public:
     Pid(float kp, float ki, float kd);
     virtual ~Pid();
 public:
+    void reset(float kp, float ki, float kd);
     float control(float P);
 };
 
