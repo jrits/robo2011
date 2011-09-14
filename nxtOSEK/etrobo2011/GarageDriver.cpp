@@ -56,28 +56,20 @@ bool GarageDriver::drive()
         mLineTrace.setForward(50);
         mState = GarageDriver::READYGO;
     }
-    // いきなり問答無用で座るよりも、ちゃんとテストで確認できたスピードにしてから座る。
+    // いきなり問答無用でONOFFするよりも、ちゃんとテストで確認できたスピードにしてからやる。
     if (mState == GarageDriver::READYGO) {
         mLineTrace.setForward(50);
         mLineTrace.execute();
-        // 2s たった
-        if (mTimeCounter > 500) {
-            mState = GarageDriver::SITDOWN;
-        }
-    }
-    // 座る
-    if (mState == GarageDriver::SITDOWN) {
-        mSitDownSkill.execute();
-        // 座った
-        if (mSitDownSkill.isSeated()) {
+        // 1s たった
+        if (mTimeCounter > 250) {
             mState = GarageDriver::MARKER;
         }
     }
     // ONOFFライントレースをしながらマーカを見つける。
     if (mState == GarageDriver::MARKER) {
-        mTripodLineTrace.setDoOnOffTrace(true);
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
+        mLineTrace.setDoOnOffTrace(true);
+        mLineTrace.setForward(50);
+        mLineTrace.execute();
         // マーカー検知
         if (mMarkerDetector.detect()) {
             mState = GarageDriver::STOP;
@@ -86,11 +78,21 @@ bool GarageDriver::drive()
     }
     // マーカを見つけてから数cm進んで停止
     if (mState == GarageDriver::STOP) {
-        mTripodLineTrace.setDoOnOffTrace(false);
-        mTripodLineTrace.setForward(30);
-        mStopSkill.setSkill(&mTripodLineTrace);
-        mStopSkill.setTargetDistance(mPrevDistance + 100); // mm
+        //mLineTrace.setDoOnOffTrace(true);
+        //mLineTrace.setForward(50);
+        //mStopSkill.setSkill(&mLineTrace);
+        mAngleTrace.setForward(50);
+        mAngleTrace.setTargetAngle(450);
+        mStopSkill.setSkill(&mAngleTrace);
+        mStopSkill.setTargetDistance(mPrevDistance + 130); // mm
         mStopSkill.execute();
+        if (mStopSkill.isArrived()) {
+            mState = GarageDriver::SITDOWN;
+        }
+    }
+    // 座る
+    if (mState == GarageDriver::SITDOWN) {
+        mSitDownSkill.execute();
     }
 
     mTimeCounter++;
