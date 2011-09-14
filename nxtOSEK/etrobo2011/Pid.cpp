@@ -28,6 +28,14 @@ Pid::~Pid()
 }
 
 /**
+ * セッター
+ */
+void Pid::reset(float kp, float ki, float kd)
+{
+    mKp = kp; mKi = ki; mKd = kd;
+}
+
+/**
  * PID制御による操作量の計算
  *
  * @param[in] P 比例成分

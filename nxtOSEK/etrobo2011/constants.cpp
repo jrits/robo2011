@@ -87,13 +87,19 @@ int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の
 
 // まいまい式
 float MAIMAI_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //大きめにしてね
-float MAIMAI_BLACK = 0.4F; // 黒色のMAIMAIセンサ値 sza //小さめにしてね
-float MAIMAI_LINE_THRESHOLD = 0.7F; // ライン端の色を示す閾値。白と灰の間の値
+float MAIMAI_BLACK = 0.4F; // 黒色のMAIMAIセンサ値 //小さめにしてね
+float MAIMAI_LINE_THRESHOLD = MAIMAI_WHITE - (MAIMAI_WHITE - MAIMAI_BLACK)/4.0; // ライン端の色を示す閾値。白と灰の間の値
 float MAIMAI_GRAY  = (MAIMAI_WHITE + MAIMAI_BLACK)/2.0; // 灰色の光センサ値
 float MAIMAI_MARKER_THRESHOLD = (MAIMAI_GRAY + MAIMAI_BLACK)/2.0; // 灰と黒の間の値
+#if 0 // 瀬尾家
 float MAIMAI_TRIPOD_WHITE = 0.75F; // 白色のMAIMAIセンサ値 //大きめにしてね
 float MAIMAI_TRIPOD_BLACK = 0.30F; // 黒色のMAIMAIセンサ値 //小さめにしてね
-float MAIMAI_TRIPOD_LINE_THRESHOLD = 0.525F; // ライン端の色を示す閾値。白と灰色の間の値
+#endif
+#if 1 // 新横浜
+float MAIMAI_TRIPOD_WHITE = 0.5F; // 白色のMAIMAIセンサ値 //大きめにしてね
+float MAIMAI_TRIPOD_BLACK = 0.2F; // 黒色のMAIMAIセンサ値 //小さめにしてね
+#endif
+float MAIMAI_TRIPOD_LINE_THRESHOLD = MAIMAI_TRIPOD_WHITE - (MAIMAI_TRIPOD_WHITE - MAIMAI_TRIPOD_BLACK)/4.0; // ライン端の色を示す閾値。白と灰色の間の値
 float MAIMAI_TRIPOD_GRAY  = (MAIMAI_TRIPOD_WHITE + MAIMAI_TRIPOD_BLACK)/2.0; // 灰色の光センサ値
 float MAIMAI_TRIPOD_MARKER_THRESHOLD = (MAIMAI_TRIPOD_GRAY + MAIMAI_TRIPOD_BLACK)/2.0; // 灰と黒の間の値
 int   MAIMAI_PERIOD = 10; /* まいまい式の実行周期(ms)。8msでもイケる？*/
@@ -111,7 +117,7 @@ int FORWARD = 100;        // 前進速度
 float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
 float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
-float LIGHT_ONOFF_TURN = 100; // ONOFF制御の旋回量
+float LIGHT_ONOFF_TURN = 50; // ONOFF制御の旋回量
 float LIGHT_ONOFF_K_PHIDOT = 25.0F*2.5F;
 float LIGHT_ONOFF_K_THETADOT = 7.5F;
 

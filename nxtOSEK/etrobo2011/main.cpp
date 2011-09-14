@@ -109,9 +109,9 @@ void ecrobot_device_terminate(void)
 /* ETロボコン2011 追記*/
 // 外部タスクによりgDoSonarがtrueに設定された際、以下の3つの共有メモリの値を更新する
 //
-// bool  gSonarIsDetected        ターゲット検知フラグ、見つけたらtrueが入る ※5cm～60cmのみを検知するよう設定している
+// bool  gSonarIsDetected        ターゲット検知フラグ、見つけたらtrueが入る ※5cm-60cmのみを検知するよう設定している
 // float gSonarTagetDistance    検知したターゲットとロボの距離（単位はGPSにあわせてミリメートルとした）
-// float gSonarTagetAngle        検知したターゲットのロボから見た角度（-180～180度）
+// float gSonarTagetAngle        検知したターゲットのロボから見た角度（-180-180度）
 //
 // 課題＠todo
 // サンプリング周期(80msec毎)及び、検知エリア(5cm縲鰀60cm)の妥当性の検証
@@ -159,9 +159,6 @@ TASK(TaskSonar)
         LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
         
         mLcd.clear();
-        //mLcd.putf("nsnn", "Get Ready?");
-        //mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
-        //mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
         mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
         mLcd.disp();
 #endif
@@ -182,6 +179,7 @@ TASK(TaskDrive)
 
     //connect_bt(mLcd, BT_NAME); // bluetooth接続
     mActivator.reset(USER_GYRO_OFFSET);
+    gDoMaimai = true;
 
     while(1)
     {
@@ -201,6 +199,7 @@ TASK(TaskDrive)
         mLcd.putf("sdn",  "Section = ", mCourse->getState());
         mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
         mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
+        mLcd.putf("sdn",  "Maimai= ", (int)(gMaimaiValue * 100), 5);
         //mLcd.putf("sd" ,  "Sonar = ",  gSonarTagetDistance, 5);//うまくいかないのでコメントアウト
         mLcd.disp();
 #endif
