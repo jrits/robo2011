@@ -2,16 +2,16 @@
 #include "macro.h"
 #include <math.h>
 
-//#define KACHIROBO
-#define KACHIICHI
+#define KACHIROBO
+//#define KACHIICHI
 //#define KACHINEW
 
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
-int USER_GYRO_OFFSET = 600; // この値は適宜調整すること
+int USER_GYRO_OFFSET = 583; // この値は適宜調整すること
 // オージス総研
-int WHITE = 530; // 白色の光センサ値 //小さめにしてね
-int BLACK = 670; // 黒色の光センサ値 //大きめにしてね
+int WHITE = 502; // 白色の光センサ値 //小さめにしてね
+int BLACK = 700; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
 int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
 int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より

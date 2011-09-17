@@ -21,7 +21,9 @@ public:
      */
     enum eSubSection {
         INIT = -1,
-        BEFOREANGLETRACE,
+        BEFORELINETRACE,
+        ON0THSTAGE_BACK,
+        ON0THSTAGE_GO,
         DETECTINGRUN,
         BACKRUN,
         HEREWEGO,
@@ -35,6 +37,10 @@ private:
     float mStartAngleCounter; //!< 初期角度カウンタ
     float beforeRMS;
     int backCounter;
+    float mPrevDirection; //!< 前の方向
+    int mPrevMotor; //!< 前のモータの回転数
+    bool mDoDetectWall; //!< 障壁を発見フラグ
+
 public:
     SeesawDriver();
     ~SeesawDriver();
