@@ -26,7 +26,7 @@ public:
         ON0THSTAGE_GO,
         DETECTINGRUN,
         BACKRUN,
-        HEREWEGO,
+        FORWARDRUN,
         LINERETURN,
         AFTERLINETRACE
     };
@@ -35,8 +35,6 @@ private:
     int mTimeCounter; //!< タイマカウンタ
     bool mInitState; //!< 初期状態
     float mStartAngleCounter; //!< 初期角度カウンタ
-    float beforeRMS;
-    int backCounter;
     float mPrevDirection; //!< 前の方向
     int mPrevMotor; //!< 前のモータの回転数
     bool mDoDetectWall; //!< 障壁を発見フラグ
