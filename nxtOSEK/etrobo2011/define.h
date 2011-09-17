@@ -14,3 +14,4 @@
 // #define OUTCOURSE OutCourse::LOOKUP
 // #define OUTCOURSE OutCourse::ETSUMO
 // #define OUTCOURSE OutCourse::GARAGEIN
+
