@@ -10,6 +10,7 @@ public:
     bool drive();
     
 private:
+    int mTimeCounter;
     bool isDoFindGate();
     bool isGatePassed();
     bool isGateFound();
