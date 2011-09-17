@@ -1,10 +1,7 @@
+#include "define.h"
 #include "constants.h"
 #include "macro.h"
 #include <math.h>
-
-//#define KACHIROBO
-#define KACHIICHI
-//#define KACHINEW
 
 #ifdef KACHIROBO
 char BT_NAME[16] = "KACHIROBO";
