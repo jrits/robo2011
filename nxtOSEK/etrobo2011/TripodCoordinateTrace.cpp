@@ -7,22 +7,22 @@ extern TripodActivator mTripodActivator;
 extern bool gDoForwardPid;
 
 /**
- * �R���X�g���N�^
+ * コンストラクタ
  */
 TripodCoordinateTrace::TripodCoordinateTrace()
 {
-	//mTargetCoordinate = MakePoint(0, 0);
+    //mTargetCoordinate = MakePoint(0, 0);
     //setForward(100);
     //mAllowableError = 100.0; // mm
 }
 
 /**
- * �X�L���𔭊����ă��{�b�g�𓮂����B
+ * スキルを発揮してロボットを動かす。
  *
- * calcCommand ��p���đ��s�x�N�g�������肵�A����@��(TripodActivator)�𑀍삷��B
+ * calcCommand を用いて走行ベクトルを決定し、制御機器(TripodActivator)を操作する。
  */
 void TripodCoordinateTrace::execute()
 {
     VectorT<float> command = calcCommand();
-    mTripodActivator.run(command);//����@��ɃZ�b�g
+    mTripodActivator.run(command);//制御機器にセット
 }

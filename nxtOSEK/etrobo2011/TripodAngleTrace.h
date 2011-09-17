@@ -8,7 +8,7 @@
 #include "AngleTrace.h"
 
 /**
- * ライントレーススキル
+ * 繝ｩ繧､繝ｳ繝医Ξ繝ｼ繧ｹ繧ｹ繧ｭ繝ｫ
  */
 class TripodAngleTrace : public AngleTrace
 {
