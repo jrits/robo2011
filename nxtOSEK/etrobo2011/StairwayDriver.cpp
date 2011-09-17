@@ -205,7 +205,7 @@ bool StairwayDriver::drive()
         // 大きくして急発進 
         if (mDoDetectWall) {
             mActivator.reset(USER_GYRO_OFFSET + 0); // リセット
-            mAngleTrace.setForward(30);
+            mAngleTrace.setForward(10);
             mAngleTrace.execute();
             // ドスン検知
             if (mGps.getXCoordinate() < 3350) { // 今回は座標でやる
@@ -227,19 +227,19 @@ bool StairwayDriver::drive()
             mTimeCounter = 0;
             mDoDetectWall = false;
         }
-        // しばしまっすぐ進む
+        // しばしとどまる
         if (! mDoDetectWall) {
             mActivator.reset(USER_GYRO_OFFSET + 0); // リセット
             mAngleTrace.setForward(0);
             mAngleTrace.execute();
-            if (mTimeCounter > 250) {
+            if (mTimeCounter > 500) {
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
         }
-        // ライン検知(ちょっと右に向かってまっすぐ)
+        // ライン検知(ちょっと左に向かってまっすぐ)
         if (mDoDetectWall) {
-            mAngleTrace.setTargetAngle(mPrevDirection + 10);
+            mAngleTrace.setTargetAngle(mPrevDirection + 15);
             K_THETADOT = 7.5F;
             mAngleTrace.setForward(15);
             mAngleTrace.execute();
@@ -254,16 +254,17 @@ bool StairwayDriver::drive()
     else if (mState == StairwayDriver::AFTERLINETRACE) {
         if (mInitState) {
             K_THETADOT = 7.5F;
-            mLineTrace.setForward(30);
+            mLightPid.reset(80, 0, 160);
+            mLineTrace.setForward(0);
             mTimeCounter = 0;
             mInitState = false;
         }
         mLineTrace.execute();
         if (mTimeCounter > 250) {
-            mLineTrace.setForward(60);
+            mLineTrace.setForward(30);
         }
-        if (mTimeCounter > 500) {
-            mLineTrace.setForward(100);
+        if (mTimeCounter > 750) {
+            mLineTrace.setForward(75);
         }
     }
     mTimeCounter++;
