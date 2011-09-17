@@ -27,12 +27,9 @@
 // スキル
 #include "Skill.h"
 #include "LineTrace.h"
-#include "TripodLineTrace.h"
 #include "AngleTrace.h"
-#include "TripodAngleTrace.h"
 #include "CoordinateStop.h"
 #include "CoordinateTrace.h"
-#include "TripodCoordinateTrace.h"
 #include "VirtualLineTrace.h"
 #include "SlowdownSkill.h"
 #include "StopSkill.h"
@@ -101,11 +98,8 @@ extern FailDetector mFailDetector;
 extern MarkerDetector mMarkerDetector;
 // Skill
 extern LineTrace mLineTrace;
-extern TripodLineTrace mTripodLineTrace;
 extern AngleTrace mAngleTrace;
-extern TripodAngleTrace mTripodAngleTrace;
 extern CoordinateTrace mCoordinateTrace;
-extern TripodCoordinateTrace mTripodCoordinateTrace;
 extern VirtualLineTrace mVirtualLineTrace;
 extern SlowdownSkill mSlowdownSkill;
 extern StopSkill mStopSkill;

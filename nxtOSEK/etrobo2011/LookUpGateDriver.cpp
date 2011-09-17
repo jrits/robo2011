@@ -44,8 +44,9 @@ LookUpGateDriver::drive(){
       break;
     case UNDER_GATE:
       // 3点傾立走行。
-      mTripodLineTrace.setForward(10);
-      mTripodLineTrace.execute();
+      gDoTripod = true;//SitDownSkillでtureにしているが念のため明示的に記載する
+      mLineTrace.setForward(10);
+      mLineTrace.execute();
       tail_control(60);
       if(passedGate()){
         mLcd.clear();
@@ -57,6 +58,7 @@ LookUpGateDriver::drive(){
     case BEHIND_GATE:
       /*立ち上がる。*/
       if(standUp()){
+        gDoTripod = false;//standUpでtureにする予定だが、念のため明示的に記載する
         mLcd.clear();
         mLcd.putf("sn","BEHIND_GATE");
         mLcd.disp();

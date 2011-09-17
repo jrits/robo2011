@@ -50,6 +50,7 @@ bool gDoForwardPid = false; //!< フォワードPID発動フラグ(暫定)
 bool gDoProgressiveTurn = false; //!< 過去のturn値をベースにしたトレース(暫定)
 int  gSonarTagetDistance = 0; // ETsumo
 float gSonarTagetAngle = 0; // ETsumo
+bool gDoTripod false;
 
 //=============================================================================
 // TOPPERS/ATK declarations
@@ -134,7 +135,7 @@ TASK(TaskSonar)
         
         if(gDoSonar){
             distance = mSonarSensor.getDistance();
-            if((5 < distance) && (distance < 60)){
+            if((0 < distance) && (distance < 60)){
                 gSonarIsDetected = true;
                 gSonarTagetDistance = distance * 10;//ソナーのdistanceはcm単位なので、GPSにあわせて修正
                 gSonarTagetAngle = Gps::marge180(mGps.getDirection());
@@ -222,7 +223,6 @@ TASK(TaskDrive)
     bool doDrive = true;
     while(1)
     {
-        tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
         if (mFailDetector.detect()) doDrive = false;
         if (doDrive) mCourse->drive();
         else mActivator.stop();

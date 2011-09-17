@@ -54,18 +54,4 @@ void TripodActivator::run(VectorT<F32> command)
 
     // tail_control
     tail_control(TAIL_ANGLE_TRIPOD_DRIVE);
-
-#if 0 // DEBUG
-    static int count = 0;
-    if (count++ > 5) {
-        Lcd lcd;
-        lcd.clear();
-        lcd.putf("sn", "TripodActivator");
-        lcd.putf("dn", (int)command.mX);
-        lcd.putf("dn", (int)command.mY);
-        lcd.putf("dn", (int)pwm_L);
-        lcd.putf("dn", (int)pwm_R);
-        lcd.disp();
-    }
-#endif
 }

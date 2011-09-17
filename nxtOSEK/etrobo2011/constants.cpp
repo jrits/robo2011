@@ -35,16 +35,16 @@ int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // �
 
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
-int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
+int USER_GYRO_OFFSET = 600; // この値は適宜調整すること
 
 #if 1 //オージス
-int WHITE = 513; // 白色の光センサ値 //小さめにしてね
-int BLACK = 665; // 黒色の光センサ値 //大きめにしてね
+int WHITE = 600; // 白色の光センサ値 //小さめにしてね
+int BLACK = 740; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
 int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
 int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-int TRIPOD_WHITE = 562; // 白色の光センサ値 //小さめにしてね
-int TRIPOD_BLACK = 672; // 黒色の光センサ値 //大きめにしてね
+int TRIPOD_WHITE = 626; // 白色の光センサ値 //小さめにしてね
+int TRIPOD_BLACK = 678; // 黒色の光センサ値 //大きめにしてね
 int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
 int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より#endif //オージス

@@ -15,13 +15,10 @@
  */
 bool MarkerDetector::detect()
 {
-    // ３点傾立走行中？ @todo: gDoTripod なんかがないのでとりあえず。ちゃんとしたい。
-    bool doTripod = mTailMotor.getCount() > 30;
-
     // マーカー検出閾値
     float markerThresh = gDoMaimai ?
-        (doTripod ? MAIMAI_TRIPOD_MARKER_THRESHOLD : MAIMAI_MARKER_THRESHOLD) :
-        (doTripod ? TRIPOD_MARKER_THRESHOLD : MARKER_THRESHOLD);
+        (gDoTripod ? MAIMAI_TRIPOD_MARKER_THRESHOLD : MAIMAI_MARKER_THRESHOLD) :
+        (gDoTripod ? TRIPOD_MARKER_THRESHOLD : MARKER_THRESHOLD);
 
     // 黒線の上かどうか // まいまいの場合は黒いほうが値が小さいが、光センサの場合は黒いほうが大きい
     float L = (gDoMaimai ? gMaimaiValue : mLightSensor.get());

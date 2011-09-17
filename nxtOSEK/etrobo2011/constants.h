@@ -44,7 +44,7 @@ extern float LIGHT_ONOFF_TURN;
 extern float LIGHT_ONOFF_K_THETADOT;
 extern float LIGHT_ONOFF_K_PHIDOT;
 
-//�܂��܂���
+//まいまい式
 extern float MAIMAI_WHITE;
 extern float MAIMAI_BLACK;
 extern float MAIMAI_LINE_THRESHOLD;
@@ -78,11 +78,11 @@ extern float TAIL_P_GAIN;
 extern int   TAIL_PWM_ABS_MAX;
 extern "C" extern void tail_control(signed int angle);
 
-//転倒検出
+//霆｢蛟呈､懷��
 extern int FAILSAFE_SAMPLECOUNT;
 extern int FAILSAFE_THRESHOLD;
 
-//検知系
+//讀懃衍邉ｻ
 extern float WALL_THRESHOLD;
 extern float DOWNSLOPE_THRESHOLD;
 
@@ -90,7 +90,7 @@ extern float DOWNSLOPE_THRESHOLD;
 extern float K_THETADOT;
 extern float K_PHIDOT;
 
-//Bluetoothログ送信
+//Bluetooth繝ｭ繧ｰ騾∽ｿ｡
 extern int LOGGER_SEND;
 extern S8  LOGGER_DATAS08[2];
 extern U16 LOGGER_DATAU16;
@@ -100,12 +100,12 @@ extern S32 LOGGER_DATAS32[4];
 //Activator
 extern bool DESK_DEBUG;
 
-//フラグ(あとでちゃんと設計しなおす)
+//繝輔Λ繧ｰ(縺ゅ→縺ｧ縺｡繧��ｓ縺ｨ險ｭ險医＠縺ｪ縺翫☆)
 extern bool gLineTrace;
 extern bool gDoForwardPid;
 extern bool gDoMaimai;
 extern float gMaimaiValue;
-
+extern bool gDoTripod;
 #include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}
 

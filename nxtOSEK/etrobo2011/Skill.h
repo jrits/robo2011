@@ -6,7 +6,9 @@
 
 #include "constants.h"
 #include "Activator.h"
+#include "TripodActivator.h"
 extern Activator mActivator;
+extern TripodActivator mTripodActivator;
 extern bool gDoForwardPid;
 
 /**
@@ -44,7 +46,12 @@ public:
     virtual void execute()
     {
         VectorT<float> command = calcCommand();
-        mActivator.run(command);//制御機器にセット
+        if(gDoTripod)
+        {
+            mTripodActivator.run(command);
+        }else{
+            mActivator.run(command);//制御機器にセット
+        }
     }
     /**
      * 走行ベクトルを計算

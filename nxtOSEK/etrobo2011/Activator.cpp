@@ -7,6 +7,10 @@
 extern bool gDoForwardPid;
 extern bool gDoProgressiveTurn;
 
+extern "C"{
+extern void tail_control(signed int);
+}
+
 /**
  * コンストラクタ
  *
@@ -74,6 +78,7 @@ void Activator::run(VectorT<F32> command)
     if (! DESK_DEBUG) {
         nxt_motor_set_speed(NXT_PORT_C, pwm_L, 1); /* 左モータPWM出力セット(-100?100) */
         nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100?100) */
+        tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
     }
 
     // balance_control(

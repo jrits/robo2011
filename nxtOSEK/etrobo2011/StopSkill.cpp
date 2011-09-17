@@ -94,8 +94,7 @@ void StopSkill::execute()
     VectorT<float> command = calcCommand();
     // ３点傾立走行中なら mTripodActivator。そうじゃないなら mActivator
     // @todo: ちゃんと設計したい
-    bool doTripod = mTailMotor.getCount() > 30;
-    if (doTripod) {
+    if (gDoTripod) {
         mTripodActivator.run(command);
     }
     else {

@@ -84,6 +84,7 @@ SitDownSkill::execute(){
     case DONE:
       pwmL = 0;
       pwmR = 0;
+      gDoTripod = true;
       break;
     default:
       break;
