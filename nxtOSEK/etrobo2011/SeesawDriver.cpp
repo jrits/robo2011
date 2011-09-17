@@ -60,23 +60,22 @@ bool SeesawDriver::drive()
         mState = SeesawDriver::BEFORELINETRACE;
         mTimeCounter = 0;
         mDoDetectWall = false;
-        mWallDetector.setThreshold(90);
+        mWallDetector.setThreshold(110);
     }
-    // 階段前のライントレース。段差にぶつかるまで。
+    // シーソーのライントレース。段差にぶつかるまで。
     if (mState == SeesawDriver::BEFORELINETRACE) {
         // 段差検知なしでライントレース
         if (! mDoDetectWall) {
             mLineTrace.setForward(50);
             mLineTrace.execute();
-            if((-1100.0 < mGps.getYCoordinate()) &&  (mGps.getYCoordinate() < -800.0)
-               && (355 < mGps.getDirection())&& (mGps.getDirection() < 365)) {
+            if(mGps.getXCoordinate() > 2900 && mGps.getYCoordinate() > -1100) {
                 { Speaker s; s.playTone(480, 20, 100); }
                 mDoDetectWall = true;
             }
         }
         // 段差検知しながらライントレース
         if (mDoDetectWall) {
-            mLineTrace.setForward(50);
+            mLineTrace.setForward(80);
             mLineTrace.execute();
             if (mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
@@ -96,15 +95,15 @@ bool SeesawDriver::drive()
             mPrevMotor = mLeftMotor.getCount();
             mDoDetectWall = false;
             mInitState = false;
+            { Speaker s; s.playTone(1976, 10, 100); }
         }
         // 一旦バック(フラグ名が適切ではないが気にしないでください)
         if (! mDoDetectWall) {
-            { Speaker s; s.playTone(1976, 10, 100); }
             mAngleTrace.setForward(-50);
             mAngleTrace.setTargetAngle(mPrevDirection);
             K_THETADOT = 7.5F;
             mAngleTrace.execute();
-            if (mGps.getXCoordinate() < 3060) { // 階段側マーカ始点
+            if (mGps.getXCoordinate() < 3150) { // シーソー側マーカ始点
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
@@ -141,7 +140,7 @@ bool SeesawDriver::drive()
         }
         // いざ突入
         if (mDoDetectWall) {
-            mActivator.reset(USER_GYRO_OFFSET + 10);
+            mActivator.reset(USER_GYRO_OFFSET + 5);
             mAngleTrace.execute();
             if (mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
