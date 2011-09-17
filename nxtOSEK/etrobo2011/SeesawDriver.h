@@ -24,9 +24,9 @@ public:
         BEFORELINETRACE,
         ON0THSTAGE_BACK,
         ON0THSTAGE_GO,
-        DETECTINGRUN,
+        FIRSTRUN,
         BACKRUN,
-        FORWARDRUN,
+        SECONDRUN,
         LINERETURN,
         AFTERLINETRACE
     };

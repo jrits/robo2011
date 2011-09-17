@@ -68,89 +68,106 @@ bool SeesawDriver::drive()
         if (! mDoDetectWall) {
             mLineTrace.setForward(50);
             mLineTrace.execute();
-            if(mGps.getXCoordinate() > 2900 && mGps.getYCoordinate() > -1100) {
+            if(mGps.getXCoordinate() > 3000 && mGps.getYCoordinate() > -1100) {
                 { Speaker s; s.playTone(480, 20, 100); }
                 mDoDetectWall = true;
             }
         }
-        // 段差検知しながらライントレース
+        // 段差検知しながらアングルトレース
         if (mDoDetectWall) {
-            mLineTrace.setForward(80);
-            mLineTrace.execute();
+            mAngleTrace.setTargetAngle(360); // Find!
+            mAngleTrace.setForward(80);
+            mActivator.reset(USER_GYRO_OFFSET + 5); // ちょっと急発進
+            mAngleTrace.execute();
             if (mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
-                mState = SeesawDriver::ON0THSTAGE_BACK;
                 mInitState = true;
                 mPrevDirection = mGps.getDirection(); // 角度記憶
+                mState = SeesawDriver::FIRSTRUN;
                 // ぶつかったら座標補正2011
                 mGps.adjustXCoordinate(3350.0);//ぶつかったら座標補正
                 mGps.adjustYCoordinate(-903.0);//ぶつかったら座標補正
-                mGps.adjustDirection(360);
             }
         }
     }
-    // ０段目(階段前)。一旦バックして助走距離をとる
-    if (mState == SeesawDriver::ON0THSTAGE_BACK) {
-        if (mInitState) {
-            mPrevMotor = mLeftMotor.getCount();
-            mDoDetectWall = false;
-            mInitState = false;
-            { Speaker s; s.playTone(1976, 10, 100); }
-        }
-        // 一旦バック(フラグ名が適切ではないが気にしないでください)
-        if (! mDoDetectWall) {
-            mAngleTrace.setForward(-50);
-            mAngleTrace.setTargetAngle(mPrevDirection);
-            K_THETADOT = 7.5F;
-            mAngleTrace.execute();
-            if (mGps.getXCoordinate() < 3150) { // シーソー側マーカ始点
-                mTimeCounter = 0;
-                mDoDetectWall = true;
-            }
-        }
-        // 一旦ストップ(フラグ名が適切ではないが気にしないでください)
-        if (mDoDetectWall) {
-            mAngleTrace.setForward(0);
-            mAngleTrace.setTargetAngle(mPrevDirection);
-            K_THETADOT = 7.5F;
-            mAngleTrace.execute();
-            if (mTimeCounter > 100) { // 100カウント間ストップ
-                mState = SeesawDriver::ON0THSTAGE_GO;
-                mInitState = true;
-            }
-            mTimeCounter++;
-        }
-    }
-    // ０段目(階段前)。助走距離をとったのでいざ突入
-    if (mState == SeesawDriver::ON0THSTAGE_GO) {
-        if (mInitState) {
-            mPrevMotor = mLeftMotor.getCount();
-            mDoDetectWall = false;
-            mInitState = false;
-        }
-        // 突入しようと思った直後に段差検知がtrueになってしまうことがあるのでちょっと進んでおく
-        if (! mDoDetectWall) {
-            mAngleTrace.setForward(100);
-            mAngleTrace.setTargetAngle(mPrevDirection);
-            K_THETADOT = 7.5F; // Find! １段目１回で載る絶妙な値
-            mAngleTrace.execute();
-            if (mGps.getXCoordinate() < 3150.0) { // 階段側マーカ始点
-                mDoDetectWall = true;
-            }
-        }
-        // いざ突入
-        if (mDoDetectWall) {
-            mActivator.reset(USER_GYRO_OFFSET + 5);
-            mAngleTrace.execute();
-            if (mWallDetector.detect()) {
-                { Speaker s; s.playTone(1976, 10, 100); }
-                mState = SeesawDriver::DETECTINGRUN;
-                mInitState = true;
-            }
-        }
-    }
+//         // 段差検知しながらライントレース
+//         if (mDoDetectWall) {
+//             mLineTrace.setForward(80);
+//             mLineTrace.execute();
+//             if (mWallDetector.detect()) {
+//                 { Speaker s; s.playTone(1976, 10, 100); }
+//                 mState = SeesawDriver::ON0THSTAGE_BACK;
+//                 mInitState = true;
+//                 mPrevDirection = mGps.getDirection(); // 角度記憶
+//                 // ぶつかったら座標補正2011
+//                 mGps.adjustXCoordinate(3350.0);//ぶつかったら座標補正
+//                 mGps.adjustYCoordinate(-903.0);//ぶつかったら座標補正
+//                 //mGps.adjustDirection(360);
+//             }
+//         }
+//     }
+//     // ０段目(階段前)。一旦バックして助走距離をとる
+//     if (mState == SeesawDriver::ON0THSTAGE_BACK) {
+//         if (mInitState) {
+//             mPrevMotor = mLeftMotor.getCount();
+//             mDoDetectWall = false;
+//             mInitState = false;
+//             { Speaker s; s.playTone(1976, 10, 100); }
+//         }
+//         // 一旦バック(フラグ名が適切ではないが気にしないでください)
+//         if (! mDoDetectWall) {
+//             mAngleTrace.setForward(-50);
+//             mAngleTrace.setTargetAngle(mPrevDirection);
+//             K_THETADOT = 7.5F;
+//             mAngleTrace.execute();
+//             if (mGps.getXCoordinate() < 3150) { // シーソー側マーカ始点
+//                 mTimeCounter = 0;
+//                 mDoDetectWall = true;
+//             }
+//         }
+//         // 一旦ストップ(フラグ名が適切ではないが気にしないでください)
+//         if (mDoDetectWall) {
+//             mAngleTrace.setForward(0);
+//             mAngleTrace.setTargetAngle(mPrevDirection);
+//             K_THETADOT = 7.5F;
+//             mAngleTrace.execute();
+//             if (mTimeCounter > 100) { // 100カウント間ストップ
+//                 mState = SeesawDriver::ON0THSTAGE_GO;
+//                 mInitState = true;
+//             }
+//             mTimeCounter++;
+//         }
+//     }
+//     // ０段目(階段前)。助走距離をとったのでいざ突入
+//     if (mState == SeesawDriver::ON0THSTAGE_GO) {
+//         if (mInitState) {
+//             mPrevMotor = mLeftMotor.getCount();
+//             mDoDetectWall = false;
+//             mInitState = false;
+//         }
+//         // 突入しようと思った直後に段差検知がtrueになってしまうことがあるのでちょっと進んでおく
+//         if (! mDoDetectWall) {
+//             mAngleTrace.setForward(100);
+//             mAngleTrace.setTargetAngle(mPrevDirection);
+//             K_THETADOT = 7.5F; // Find! １段目１回で載る絶妙な値
+//             mAngleTrace.execute();
+//             if (mGps.getXCoordinate() < 3150.0) { // 階段側マーカ始点
+//                 mDoDetectWall = true;
+//             }
+//         }
+//         // いざ突入
+//         if (mDoDetectWall) {
+//             mActivator.reset(USER_GYRO_OFFSET + 5);
+//             mAngleTrace.execute();
+//             if (mWallDetector.detect()) {
+//                 { Speaker s; s.playTone(1976, 10, 100); }
+//                 mState = SeesawDriver::FIRSTRUN;
+//                 mInitState = true;
+//             }
+//         }
+//     }
     // シーソーに載ってからバタンとなるまで
-    else if(mState == SeesawDriver::DETECTINGRUN){
+    else if(mState == SeesawDriver::FIRSTRUN){
         if (mInitState) {
             mPrevMotor = mRightMotor.getCount();
             mInitState = false;
@@ -191,18 +208,18 @@ bool SeesawDriver::drive()
         // ある程度後ろにバックしました
         if(mRightMotor.getCount() - mPrevMotor <= 270){
             { Speaker s; s.playTone(261, 60, 100); }
-            mState = SeesawDriver::FORWARDRUN;
+            mState = SeesawDriver::SECONDRUN;
             mTimeCounter = 0;
         }
         //シーソーを超えてしまったらシングルで諦めてライン復帰
         if(mGps.getXCoordinate() >= 3350.0 + 450){
             { Speaker s; s.playTone(261, 40, 100); }
-            mState = LINERETURN;
+            mState = SeesawDriver::LINERETURN;
             mTimeCounter = 0;
         }
     }
     // ダブルクラッチの前進
-    else if(mState == SeesawDriver::FORWARDRUN){
+    else if(mState == SeesawDriver::SECONDRUN){
         // ちょっととまってろ
         if(mTimeCounter <= 750){
             K_THETADOT = 7.5F;
@@ -242,7 +259,7 @@ bool SeesawDriver::drive()
         }
         // ライン検知(ちょっと右に向かってまっすぐ)
         if (mDoDetectWall) {
-            mAngleTrace.setTargetAngle(mPrevDirection + 10);
+            mAngleTrace.setTargetAngle(mPrevDirection - 10); // 突入角度よりちょっと右
             K_THETADOT = 7.5F;
             mAngleTrace.setForward(30);
             mAngleTrace.execute();
@@ -252,19 +269,21 @@ bool SeesawDriver::drive()
                 mInitState = true;
             }
         }
-    }else if (mState == SeesawDriver::AFTERLINETRACE) {
+    }
+    // ライン復帰後ライントレース
+    else if (mState == SeesawDriver::AFTERLINETRACE) {
         if (mInitState) {
             K_THETADOT = 7.5F;
-            mLineTrace.setForward(30);
+            mLineTrace.setForward(0);
             mTimeCounter = 0;
             mInitState = false;
         }
         mLineTrace.execute();
         if (mTimeCounter > 250) {
-            mLineTrace.setForward(60);
+            mLineTrace.setForward(30);
         }
-        if (mTimeCounter > 500) {
-            mLineTrace.setForward(100);
+        if (mTimeCounter > 750) {
+            mLineTrace.setForward(60);
         }
     }
     mTimeCounter++;
