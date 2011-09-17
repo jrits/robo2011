@@ -28,4 +28,5 @@ kernel_id.h
 
 # special
 TestDriver.cpp
+define.h
 
