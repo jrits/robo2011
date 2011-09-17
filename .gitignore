@@ -25,6 +25,7 @@ kernel_cfg.c
 kernel_id.h
 *.elf
 *.map
+tool_gcc.mak
 
 # special
 TestDriver.cpp

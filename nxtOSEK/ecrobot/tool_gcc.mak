@@ -6,12 +6,12 @@
 
 # specify GNU-ARM root directory
 ifndef GNUARM_ROOT
-GNUARM_ROOT = /cygdrive/C/cygwin/GNUARM
+GNUARM_ROOT = /cygdrive/E/cygwin/GNUARM
 endif
 
 # specify NeXTTool root directory
 ifndef NEXTTOOL_ROOT
-NEXTTOOL_ROOT = /cygdrive/C/cygwin/nexttool
+NEXTTOOL_ROOT = /cygdrive/E/cygwin/nexttool
 endif
 
 

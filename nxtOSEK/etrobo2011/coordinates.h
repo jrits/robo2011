@@ -19,6 +19,9 @@ extern float GPS_LOOKUP_START_X;
 extern float GPS_LOOKUP_START_Y;
 extern float GPS_LOOKUP_START_DIRECTION;
 
+extern float GPS_LOOKUP_GATE_X;
+extern float GPS_LOOKUP_GATE_Y;
+
 extern float GPS_ETSUMO_START_X;
 extern float GPS_ETSUMO_START_Y; 
 extern float GPS_ETSUMO_START_DIRECTION; 
