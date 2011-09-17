@@ -4,6 +4,7 @@
 //	概要		: 2輪倒立振子ライントレースロボットのTOPPERS/ATK(OSEK)用メインプログラム
 //
 
+#include "define.h"
 #include "constants.h"
 #include "factory.h"
 #include "Vector.h"
@@ -194,12 +195,21 @@ TASK(TaskDrive)
 #if 1 // キャリブレーション用ディスプレ表示(0：解除、1：実施)
         //gDoSonar = true;//うまくいかないのでコメントアウト
         mLcd.clear();
-        mLcd.putf("nsnn", "Get Ready?");
+        mLcd.putf("snn", "Get Ready?");
+#ifdef KACHIROBO
+        mLcd.putf("sn",  "Robot   = ROBO");
+#endif
+#ifdef KACHIICHI
+        mLcd.putf("sn",  "Robot   = ICHI");
+#endif
+#ifdef KACHINEW
+        mLcd.putf("sn",  "Robot   = NEW");
+#endif
         mLcd.putf("ssn",  "Course  = ", (mCourse->getNameId() == 0 ? "In" : "Out"));
-        mLcd.putf("sdn",  "Section = ", mCourse->getState());
-        mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
-        mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
-        mLcd.putf("sdn",  "Maimai= ", (int)(gMaimaiValue * 100), 5);
+        mLcd.putf("sdn",  "Section = ", (int)mCourse->getState(), 5);
+        mLcd.putf("sdn",  "Light   = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
+        mLcd.putf("sdn",  "Gyro    = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
+        mLcd.putf("sdn",  "Maimai  = ", (int)(gMaimaiValue * 100), 5);
         //mLcd.putf("sd" ,  "Sonar = ",  gSonarTagetDistance, 5);//うまくいかないのでコメントアウト
         mLcd.disp();
 #endif
