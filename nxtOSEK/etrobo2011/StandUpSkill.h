@@ -52,7 +52,7 @@ class StandUpSkill {
       mStableCount++;
     } 
   }
- private:
+public:
   bool isStandUp(){
     // モータの角度が一定に達したら立ち上がったと判定する。
     return mTailMotor.getCount() > 100;

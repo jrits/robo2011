@@ -1,93 +1,93 @@
 #include "LookUpGateDriver.h"
-
 #include "factory.h"
-extern bool gDoMaimai;
-extern bool gDoSonar; //!< ソナーセンサ発動フラグ
+extern bool gDoSonar;
 extern bool gSonarIsDetected; //!< 衝立検知の結果
 
-extern "C"{
-extern void tail_control(signed int);
-}
-
 LookUpGateDriver::LookUpGateDriver()
-    : mCurrentSubSection(INIT) {
-
+    : mCurrentSubSection(INIT)
+{
 }
 
-LookUpGateDriver::~LookUpGateDriver(){
+LookUpGateDriver::~LookUpGateDriver()
+{
 }
 
-bool
-LookUpGateDriver::drive(){
-  switch(mCurrentSubSection){
-    case INIT:
-      mLineTrace.setForward(20);
-      mLineTrace.execute();
-
-      if(foundGate()){
-      	gDoSonar = true;
-      	gDoMaimai = true;
-        mLcd.clear();
-        mLcd.putf("sn","INIT");
-        mLcd.disp();
-        mCurrentSubSection = IN_FRONT_OF_GATE;
-      }
-      break;
+bool LookUpGateDriver::drive()
+{
+    // 初期化関数を作るのがめんどうなのでとりあえずここで
+    if (mCurrentSubSection == INIT) {
+        gDoSonar = false;
+        gDoMaimai = true;
+        gDoForwardPid = false;
+        mCurrentSubSection = BEFORELINETRACE;
+    }
+    switch(mCurrentSubSection){
+    case BEFORELINETRACE:
+        // ベーシックコースから引き続きライントレース
+        mLineTrace.setForward(100);
+        mLineTrace.execute();
+        if(isDoFindGate()){
+            gDoSonar = true;
+            gDoMaimai = true;
+            { Speaker s; s.playTone(1976, 10, 100); }
+            mCurrentSubSection = IN_FRONT_OF_GATE;
+            K_THETADOT = 7.5F;
+        }
+        break;
     case IN_FRONT_OF_GATE:
-      // 座り込む。
-      if(sitDown()){
-        mLcd.clear();
-        mLcd.putf("sn","IN_FRONT_OF_GATE");
-        mLcd.disp();
-        mCurrentSubSection = UNDER_GATE;
-      }
-      break;
+        // 座り込む。
+        mSitDownSkill.setAngle(70);
+        mSitDownSkill.execute();
+        if (isSitDowned()) {
+            { Speaker s; s.playTone(1976, 10, 100); }
+            mCurrentSubSection = UNDER_GATE;
+        }
+        break;
     case UNDER_GATE:
-      // 3点傾立走行。
-      mTripodLineTrace.setForward(10);
-      mTripodLineTrace.execute();
-      tail_control(60);
-      if(passedGate()){
-        mLcd.clear();
-        mLcd.putf("sn","UNDER_GATE");
-        mLcd.disp();
-        mCurrentSubSection = BEHIND_GATE;
-      }
-      break;
+        // 3点傾立走行。
+        mTripodAngleTrace.setForward(50);
+        mTripodAngleTrace.setTargetAngle(360);
+        mTripodAngleTrace.execute();
+        if(isGatePassed()){
+            { Speaker s; s.playTone(1976, 10, 100); }
+            mCurrentSubSection = BEHIND_GATE;
+        }
+        break;
     case BEHIND_GATE:
-      /*立ち上がる。*/
-      if(standUp()){
-        mLcd.clear();
-        mLcd.putf("sn","BEHIND_GATE");
-        mLcd.disp();
-        mCurrentSubSection = DONE;
-      }
-      break;
+        mStandUpSkill.execute();
+        /*立ち上がる。*/
+        if(isStandUped()){
+            { Speaker s; s.playTone(1976, 10, 100); }
+            mCurrentSubSection = DONE;
+        }
+        break;
     case DONE:
-      mLineTrace.execute();
-      break;
+        mAngleTrace.setForward(50);
+        mAngleTrace.setTargetAngle(360);
+        mAngleTrace.execute();
+        break;
     default:
-      // assertするべき。
-      break;
-  }
-
-  return isDone();
+        // assertかなにかするべき
+        break;
+    }
+    
+    return isDone();
 }
 
-bool
-LookUpGateDriver::foundGate() const{
-
-	static int count = 0;
-
-	// とりあえず、1秒経過したらゲートを見つけたことにする。
-	// TODO ゲートの検知方法を実装する必要あり。
-	count++;
-	return count >= 250;
-
+bool LookUpGateDriver::isDoFindGate()
+{
+    // 灰色マーカを超えた辺り
+    return mGps.getXCoordinate() > 3240.0;
 }
 
-bool
-LookUpGateDriver::passedGate() const{
+bool LookUpGateDriver::isGatePassed()
+{
+    // チェックポイント超えた辺り
+    return mGps.getXCoordinate() > 3600.0;
+}
+
+bool LookUpGateDriver::isGateFound()
+{
 	if(gSonarIsDetected){
 		mSpeaker.playTone(1000, 1, 100);
 		return 1;
@@ -95,39 +95,27 @@ LookUpGateDriver::passedGate() const{
 	else{
 		return 0;
 	}
-		/*
-  static int count = 0;
-  // とりあえず、1秒経過したらゲートを通過したことにする。
-  // TODO ゲート通過の検知方法を実装する必要あり。
-  count++;
-  return count >= 250;
-		*/
 }
 
-bool
-LookUpGateDriver::sitDown() {
-  static int count = 0;
-  mSitDownSkill.setAngle(80);
-  mSitDownSkill.execute();
-  count++;
+bool LookUpGateDriver::isSitDowned()
+{
+    static int count = 0;
+    count++;
 
-  // とりあえず、2秒経過したら座っていることにする。
-  // TODO 座っているか、否かの検出方法を洗練する必要あり。
-  return count >= 1000;
+    // 時間でもチェックして落ち着かせる
+    return mSitDownSkill.isSeated() && count >= 500;
 }
 
-bool
-LookUpGateDriver::standUp() {
-  static int count = 0;
-  mStandUpSkill.execute();
-  count++;
-  
-  // とりあえず、2秒経過したら立っていることにする。
-  // TODO 立ち上ったか、否かの検出方法を洗練する必要あり。
-  return count >= 500;
+bool LookUpGateDriver::isStandUped()
+{
+    static int count = 0;
+    count++;
+
+    // 時間でもチェックして落ち着かせる
+    return mStandUpSkill.isStandUp() && count >= 500;
 }
 
-bool
-LookUpGateDriver::isDone() const{
-  return mCurrentSubSection == DONE;
+bool LookUpGateDriver::isDone()
+{
+    return mCurrentSubSection == DONE;
 }

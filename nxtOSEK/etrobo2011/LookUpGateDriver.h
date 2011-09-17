@@ -4,28 +4,29 @@
 #include "Driver.h"
 
 class LookUpGateDriver : public Driver {
- public:
-  LookUpGateDriver();
-  ~LookUpGateDriver();
-  bool drive();
+public:
+    LookUpGateDriver();
+    ~LookUpGateDriver();
+    bool drive();
+    
+private:
+    bool isDoFindGate();
+    bool isGatePassed();
+    bool isGateFound();
+    bool isSitDowned();
+    bool isStandUped();
+    bool isDone();
 
- private:
+    enum eSubSection {
+        INIT = -1,
+        BEFORELINETRACE,
+        IN_FRONT_OF_GATE,
+        UNDER_GATE,
+        BEHIND_GATE,
+        DONE
+    };
 
-  bool foundGate() const;
-  bool passedGate() const;
-  bool sitDown();
-  bool standUp();
-  bool isDone() const;
-
-  enum eSubSection {
-    INIT = 0,
-    IN_FRONT_OF_GATE,
-    UNDER_GATE,
-    BEHIND_GATE,
-    DONE
-  };
-
-  eSubSection mCurrentSubSection;
+    eSubSection mCurrentSubSection;
 };
 
 #endif
