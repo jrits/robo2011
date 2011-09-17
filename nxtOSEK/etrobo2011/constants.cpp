@@ -117,7 +117,7 @@ int FORWARD = 100;        // 前進速度
 float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
 float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
-float LIGHT_ONOFF_TURN = 50; // ONOFF制御の旋回量
+float LIGHT_ONOFF_TURN = 80; // ONOFF制御の旋回量
 float LIGHT_ONOFF_K_PHIDOT = 25.0F*2.5F;
 float LIGHT_ONOFF_K_THETADOT = 7.5F;
 

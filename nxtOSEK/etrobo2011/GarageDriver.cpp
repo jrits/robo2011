@@ -51,6 +51,7 @@ bool GarageDriver::drive()
     // 初期化関数を作るのが面倒くさいのでここで
     if (mState == GarageDriver::INIT) {
         gDoMaimai = true; // まいまい式
+        gDoForwardPid = false;
         mTimeCounter = 0;
         K_THETADOT = 7.5F;
         mLineTrace.setForward(50);
