@@ -1,28 +1,18 @@
 #include "factory.h"
+#include "define.h"
 #include "coordinates.h"
 
-#define INCOURSE
-//#define OUTCOURSE
-
-// コース
+// コース＆ドライバ
 #ifdef INCOURSE
 Gps mGps(mLeftMotor, mRightMotor, Gps::IN);
-InCourse mInCourse(InCourse::TESTDRIVE); // テストドライバ起動
-//InCourse mInCourse(InCourse::START);     // 開始位置は下参照
-//InCourse mInCourse(InCourse::SEESAW);     // 開始位置は下参照
-//InCourse mInCourse(InCourse::STAIRWAY);   // 開始位置は下参照
-//InCourse mInCourse(InCourse::GARAGEIN);  // 開始位置は下参照
+InCourse mInCourse(INCOURSE);
 Course *mCourse(&mInCourse);
 int TRACE_EDGE = LEFT;
 //int TRACE_EDGE = RIGHT;
 #endif
 #ifdef OUTCOURSE
 Gps mGps(mLeftMotor, mRightMotor, Gps::OUT);
-OutCourse mOutCourse(OutCousrse::TESTDRIVE); // テストドライバ起動
-//OutCourse mOutCourse(OutCourse::START);      // 開始位置は下参照
-//OutCourse mOutCourse(OutCourse::LOOKUP);     // 開始位置は下参照
-//OutCourse mOutCourse(OutCourse::ETSUMO);       // 開始位置は下参照
-//OutCourse mOutCourse(OutCourse::GARAGEIN);   // 開始位置は下参照
+OutCourse mOutCourse(OUTCOURSE);
 Course *mCourse(&mOutCourse);
 //int TRACE_EDGE = RIGHT;
 int TRACE_EDGE = LEFT;
