@@ -12,27 +12,37 @@
  * ラインを検知する
  *
  * @return ライン検知の結果
+ * @todo 三点傾立への対応はまだ
  */
 LineDetector::ePattern LineDetector::detect()
 {
     LineDetector::ePattern linePattern;
+    if (gDoMaimai) {
+        if (gMaimaiValue < MAIMAI_LINE_THRESHOLD) {
+            linePattern = ON_BLACK;
+        }
+        else {
+            linePattern = ON_WHITE;
+        }
+    }
+    else {
+        // 光変化量
+        float lightDiff = mLightHistory.calcDifference();
+        //lightDiff *= (100/FORWARD); // 速度を考慮に入れる
 
-    // 光変化量
-    float lightDiff = mLightHistory.calcDifference();
-    //lightDiff *= (100/FORWARD); // 速度を考慮に入れる
-
-    if (lightDiff >= LINEDETECT_THRESHOLD) { // 白=>黒パターン
-        linePattern =  WHITE_TO_BLACK;
-    }
-    else if (lightDiff <= (-1)*LINEDETECT_THRESHOLD) { // 黒⇒白パターン
-        linePattern = BLACK_TO_WHITE;
-    }
-    // これだけだと灰色検知が難しい。ことがある。
-    else if (mLightHistory.get(LATEST) > LINE_THRESHOLD) { // 黒⇒黒
-        linePattern = ON_BLACK;
-    }
-    else { // 白⇒白
-        linePattern = ON_WHITE;
+        if (lightDiff >= LINEDETECT_THRESHOLD) { // 白=>黒パターン
+            linePattern =  WHITE_TO_BLACK;
+        }
+        else if (lightDiff <= (-1)*LINEDETECT_THRESHOLD) { // 黒⇒白パターン
+            linePattern = BLACK_TO_WHITE;
+        }
+        // これだけだと灰色検知が難しい。ことがある。
+        else if (mLightHistory.get(LATEST) > LINE_THRESHOLD) { // 黒⇒黒
+            linePattern = ON_BLACK;
+        }
+        else { // 白⇒白
+            linePattern = ON_WHITE;
+        }
     }
 
 #if 0
