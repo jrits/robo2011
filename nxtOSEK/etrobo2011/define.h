@@ -1,9 +1,9 @@
-// ƒƒ{ƒbƒg
+// ãƒ­ãƒœãƒƒãƒˆ
 //#define KACHIROBO
 #define KACHIICHI
 //#define KACHINEW
 
-// ƒhƒ‰ƒCƒo
+// ãƒ‰ãƒ©ã‚¤ãƒ
 #define INCOURSE InCourse::TESTDRIVE
 // #define INCOURSE InCourse::START
 // #define INCOURSE InCourse::SEESAW
