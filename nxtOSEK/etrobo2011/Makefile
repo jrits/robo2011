@@ -43,6 +43,8 @@ TARGET_CPP_SOURCES = \
 	FailDetector.cpp \
 	LineTrace.cpp \
 	TripodLineTrace.cpp \
+	TripodAngleTrace.cpp \
+	TripodCoordinateTrace.cpp \
 	AngleTrace.cpp \
 	CoordinateTrace.cpp \
 	VirtualLineTrace.cpp \
