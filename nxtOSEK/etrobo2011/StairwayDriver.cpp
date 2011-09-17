@@ -171,11 +171,6 @@ bool StairwayDriver::drive()
                 mInitState = true;
             }
         }
-        if (mLeftMotor.getCount() < mPrevMotor) { // 戻っちゃった
-            mState = StairwayDriver::BEFORELINETRACE;
-            mInitState = true;
-            mDoDetectWall = true;
-        }
     }
     // 段差２に載った直後
     else if (mState == StairwayDriver::ON2NDSTAGE) {
