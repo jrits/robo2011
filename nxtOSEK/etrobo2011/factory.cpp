@@ -55,7 +55,9 @@ LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD,
 TripodLineTrace mTripodLineTrace(TRIPOD_BLACK, TRIPOD_WHITE, TRIPOD_LINE_THRESHOLD,
     MAIMAI_TRIPOD_BLACK, MAIMAI_TRIPOD_WHITE, MAIMAI_TRIPOD_LINE_THRESHOLD);
 AngleTrace mAngleTrace;
+TripodAngleTrace mTripodAngleTrace;
 CoordinateTrace mCoordinateTrace;
+TripodCoordinateTrace mTripodCoordinateTrace;
 VirtualLineTrace mVirtualLineTrace;
 SlowdownSkill mSlowdownSkill;
 StopSkill mStopSkill;
