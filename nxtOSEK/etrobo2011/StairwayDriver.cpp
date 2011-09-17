@@ -19,7 +19,6 @@ StairwayDriver::StairwayDriver()
     mTimeCounter = 0;
     mInitState = true;
     mDoDetectWall = false;
-
 }
 
 /**
@@ -68,17 +67,10 @@ bool StairwayDriver::drive()
     if (mState == StairwayDriver::BEFORELINETRACE) {
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
-            mDoDetectWall = false;
+            mDoDetectWall = true;
             mInitState = false;
-        }
-        // とりあえず段差検知なしでライントレース（開始直後に車体がぶれて段差検知がtrueを返すことがあるため)
-        if (! mDoDetectWall) {
             mLineTrace.setForward(30);
             K_THETADOT = 7.5F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
-            mLineTrace.execute();
-            if (mGps.getXCoordinate() < 4100.0) { // 階段側マーカ始点
-	        mDoDetectWall = true;
-            }
         }
         // 段差検知しながらライントレース
         if (mDoDetectWall) {
@@ -178,11 +170,6 @@ bool StairwayDriver::drive()
                 mState = StairwayDriver::ON2NDSTAGE;
                 mInitState = true;
             }
-        }
-        if (mLeftMotor.getCount() < mPrevMotor) { // 戻っちゃった
-            mState = StairwayDriver::BEFORELINETRACE;
-            mInitState = true;
-            mDoDetectWall = true;
         }
     }
     // 段差２に載った直後

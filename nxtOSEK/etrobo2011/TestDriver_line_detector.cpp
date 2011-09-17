@@ -10,16 +10,16 @@
 extern "C" extern void tail_control(signed int angle);
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 TestDriver::TestDriver()
 {
-    mState = -1; // ‰Šú‰»ó‘Ô
+    mState = -1; // åˆæœŸåŒ–çŠ¶æ…‹
 }
 
 bool TestDriver::drive()
 {
-#if 0 // ƒƒO‘—M
+#if 0 // ãƒ­ã‚°é€ä¿¡
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mLineDetector.detect());
     LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
@@ -29,8 +29,8 @@ bool TestDriver::drive()
     LOGGER_DATAS32[0] = (S32)(mLightHistory.calcDifference());
 #endif
 #if 0 // DEBUG
-    //DESK_DEBUG = true; // ƒ‚[ƒ^‚ğ‰ñ‚³‚È‚¢ƒfƒoƒO
-    static int count = 0; // static‚ÍŒ´‘¥‹Ö~‚¾‚ª¡‚¾‚¯
+    //DESK_DEBUG = true; // ãƒ¢ãƒ¼ã‚¿ã‚’å›ã•ãªã„ãƒ‡ãƒã‚°
+    static int count = 0; // staticã¯åŸå‰‡ç¦æ­¢ã ãŒä»Šã ã‘
     if (count++ % 25 == 0) {
         Lcd lcd;
         lcd.clear();
@@ -45,25 +45,25 @@ bool TestDriver::drive()
         lcd.disp();
     }
 #endif
-    // ƒfƒtƒHƒ‹ƒg
-    tail_control(TAIL_ANGLE_DRIVE); /* ƒoƒ‰ƒ“ƒX‘–s—pŠp“x‚É§Œä */
+    // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
+    tail_control(TAIL_ANGLE_DRIVE); /* ãƒãƒ©ãƒ³ã‚¹èµ°è¡Œç”¨è§’åº¦ã«åˆ¶å¾¡ */
     gDoForwardPid = false;
 
-    // ƒeƒXƒg ”ñƒ}ƒCƒ}ƒC®ƒ‰ƒCƒ“ƒgƒŒ[ƒXƒ}[ƒJ[ŒŸ’m
+    // ãƒ†ã‚¹ãƒˆ éãƒã‚¤ãƒã‚¤å¼ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ãƒãƒ¼ã‚«ãƒ¼æ¤œçŸ¥
     if (0) {
         gDoMaimai = false;
     }
-    // ƒeƒXƒg ƒ}ƒCƒ}ƒC®ƒ‰ƒCƒ“ƒgƒŒ[ƒXƒ}[ƒJ[ŒŸ’m
+    // ãƒ†ã‚¹ãƒˆ ãƒã‚¤ãƒã‚¤å¼ãƒ©ã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ã‚¹ãƒãƒ¼ã‚«ãƒ¼æ¤œçŸ¥
     if (1) {
         gDoMaimai = true;
     }
 
-    // ˆÈ‰ºA‹¤’ÊƒƒWƒbƒN
+    // ä»¥ä¸‹ã€å…±é€šãƒ­ã‚¸ãƒƒã‚¯
     {
         mAngleTrace.setForward(30);
         mAngleTrace.setTargetAngle(180);
         mAngleTrace.execute();
-        // ƒ‰ƒCƒ“ŒŸ’m
+        // ãƒ©ã‚¤ãƒ³æ¤œçŸ¥
         if (mLineDetector.detect()) {
             Speaker speaker;
             speaker.playTone(1976, 10, 100); // Hz:33-1976 , 10ms, volume:0-100
