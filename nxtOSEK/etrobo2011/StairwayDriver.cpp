@@ -57,9 +57,12 @@ bool StairwayDriver::drive()
 
     // 初期化関数を作るのが面倒くさいのでとりあえずここで
     if (mState == StairwayDriver::INIT) {
+        gDoMaimai = true;
+        gDoForwardPid = false;
+        mLightPid.reset(50, 0, 100);
         mState = StairwayDriver::BEFORELINETRACE;
         mInitState = true;
-        mWallDetector.setThreshold(40);
+        mWallDetector.setThreshold(110); 
     }
     // 階段前のライントレース。段差にぶつかるまで。
     if (mState == StairwayDriver::BEFORELINETRACE) {
@@ -74,7 +77,7 @@ bool StairwayDriver::drive()
             K_THETADOT = 7.5F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
             mLineTrace.execute();
             if (mGps.getXCoordinate() < 4100.0) { // 階段側マーカ始点
-                mDoDetectWall = true;
+	        mDoDetectWall = true;
             }
         }
         // 段差検知しながらライントレース
@@ -158,17 +161,16 @@ bool StairwayDriver::drive()
         }
         // 小さくして急ブレーキ
         if (! mDoDetectWall) {
-            //mActivator.reset(USER_GYRO_OFFSET - 30); // 小さくして急ブレーキ
+            mActivator.reset(USER_GYRO_OFFSET - 30); // 小さくして急ブレーキ
             mAngleTrace.execute();
             if (mTimeCounter > 100) { // 100カウント間急ブレーキ
-                //mActivator.reset(USER_GYRO_OFFSET + 20); // 大きくして急発進
-                //mActivator.reset(USER_GYRO_OFFSET); // リセット
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
         }
         // 大きくして急発進
         if (mDoDetectWall) {
+	    mActivator.reset(USER_GYRO_OFFSET + 0); 
             mAngleTrace.execute();
             // 前進しているのを確認しつつ段差検知
             if (mLeftMotor.getCount() - mPrevMotor > 270 && mWallDetector.detect()) {
@@ -193,17 +195,19 @@ bool StairwayDriver::drive()
         }
         // 小さくして急ブレーキ
         if (! mDoDetectWall) {
-            //mActivator.reset(USER_GYRO_OFFSET - 15); // 小さくして急ブレーキ
+            mActivator.reset(USER_GYRO_OFFSET - 30); // 小さくして急ブレーキ
             mAngleTrace.execute();
             if (mTimeCounter > 100) { // 100カウント間急ブレーキ
-                //mActivator.reset(USER_GYRO_OFFSET); // リセット
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
         }
-        // ドスン検知
+        // 大きくして急発進 
         if (mDoDetectWall) {
+            mActivator.reset(USER_GYRO_OFFSET + 0); // リセット
+            mAngleTrace.setForward(10);
             mAngleTrace.execute();
+            // ドスン検知
             if (mGps.getXCoordinate() < 3350) { // 今回は座標でやる
                 { Speaker s; s.playTone(1976, 10, 100); }
                 mState = StairwayDriver::DROPDOWN;
@@ -222,21 +226,22 @@ bool StairwayDriver::drive()
             mInitState = false;
             mTimeCounter = 0;
             mDoDetectWall = false;
-            mInitState = false;
         }
-        // しばしまっすぐ進む
+        // しばしとどまる
         if (! mDoDetectWall) {
+            mActivator.reset(USER_GYRO_OFFSET + 0); // リセット
+            mAngleTrace.setForward(0);
             mAngleTrace.execute();
-            if (mTimeCounter > 250) {
+            if (mTimeCounter > 500) {
                 mTimeCounter = 0;
                 mDoDetectWall = true;
             }
         }
-        // ライン検知(ちょっと右に向かってまっすぐ)
+        // ライン検知(ちょっと左に向かってまっすぐ)
         if (mDoDetectWall) {
-            mAngleTrace.setTargetAngle(mPrevDirection + 10);
+            mAngleTrace.setTargetAngle(mPrevDirection + 15);
             K_THETADOT = 7.5F;
-            mAngleTrace.setForward(30);
+            mAngleTrace.setForward(15);
             mAngleTrace.execute();
             if (mLineDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
@@ -249,16 +254,17 @@ bool StairwayDriver::drive()
     else if (mState == StairwayDriver::AFTERLINETRACE) {
         if (mInitState) {
             K_THETADOT = 7.5F;
-            mLineTrace.setForward(30);
+            mLightPid.reset(80, 0, 160);
+            mLineTrace.setForward(0);
             mTimeCounter = 0;
             mInitState = false;
         }
         mLineTrace.execute();
         if (mTimeCounter > 250) {
-            mLineTrace.setForward(60);
+            mLineTrace.setForward(30);
         }
-        if (mTimeCounter > 500) {
-            mLineTrace.setForward(100);
+        if (mTimeCounter > 750) {
+            mLineTrace.setForward(75);
         }
     }
     mTimeCounter++;
