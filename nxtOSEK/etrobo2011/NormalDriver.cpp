@@ -7,6 +7,9 @@
 #include "NormalDriver.h"
 #include "factory.h"
 
+
+extern bool	gDoForwardPid = true;
+extern bool	gDoMaimai = true; //!< まいまい式発動フラグ
 /**
  * コンストラクタ
  */
@@ -24,6 +27,14 @@ NormalDriver::NormalDriver()
  */
 bool NormalDriver::drive()
 {
+    gDoForwardPid = true;
+    gDoMaimai = true; //!< まいまい式発動フラグ
+	
+    if(6000.0 < mGps.getDistance()){
+        mLineTrace.setForward(100);
+    }else{
+    	mLineTrace.setForward(150);
+    }
     mLineTrace.execute();
     return true;
 }

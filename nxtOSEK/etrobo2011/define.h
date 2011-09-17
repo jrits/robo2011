@@ -4,8 +4,8 @@
 //#define KACHINEW
 
 // ドライバ
-#define INCOURSE InCourse::TESTDRIVE
-// #define INCOURSE InCourse::START
+//#define INCOURSE InCourse::TESTDRIVE
+ #define INCOURSE InCourse::START
 // #define INCOURSE InCourse::SEESAW
 // #define INCOURSE InCourse::STAIRWAY
 // #define INCOURSE InCourse::GARAGEIN
