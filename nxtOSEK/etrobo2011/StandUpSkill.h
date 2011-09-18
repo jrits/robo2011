@@ -15,34 +15,36 @@ class StandUpSkill {
                TripodActivator& tripodActivator,
                Motor& leftMotor,
                Motor& rightMotor,
-               Motor& tailMotor)
-      : mActivator(activator),
-        mTripodActivator(tripodActivator),
-        mLeftMotor(leftMotor),
-        mRightMotor(rightMotor),
-        mTailMotor(tailMotor),
-        mIsStandUp(false),
-        mStableCount(0),
-        mOnlyFirst(true),
-        mLastDiff(0.0F),
-        mIterm(0.0F)
-  {}
+               Motor& tailMotor);
   
   ~StandUpSkill(){}
 
   void execute();
+  //! Returns true when this skill finished.
+  bool isDone() const;
+
  private:
-  bool isStandUp() const;
-
   bool isStable() const;
-
-  void tail_control_with_PID(signed int target_angle);
+  bool isStandUp() const;
   
+  void tail_control_with_PID(signed int target_angle);
+  //! 
+  enum SubState{
+    INIT = 0,
+    TO_FIRST_ANGLE,
+    TO_SECOND_ANGLE,
+    TO_STABLE,
+    STANDING_UP,
+    DONE
+  };
+
   Activator& mActivator;
   TripodActivator& mTripodActivator;
   Motor& mLeftMotor;
   Motor& mRightMotor;
   Motor& mTailMotor;
+
+  SubState mSubState;
   bool mIsStandUp;
   int mStableCount;
   bool mOnlyFirst;
