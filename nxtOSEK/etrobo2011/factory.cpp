@@ -39,6 +39,7 @@ History mTurnHistory(mTurnBuffer, COUNTOF(mTurnBuffer));
 Activator mActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 TripodActivator mTripodActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD); // LineTrace用
+Pid mForwardPid(0.003, 0.0, 0.1); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
 Pid mAnglePid(ANGLE_PID_KP, ANGLE_PID_KI, ANGLE_PID_KD); // AngleTrace用
 Pid mSlowdownPid(SLOWDOWN_PID_KP, SLOWDOWN_PID_KI, SLOWDOWN_PID_KD); // SlowdownSkill用
 Pid mStopPid(STOP_PID_KP, STOP_PID_KI, STOP_PID_KD); // CoordinateStop用 @obsolete
