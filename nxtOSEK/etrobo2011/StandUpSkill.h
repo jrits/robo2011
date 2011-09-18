@@ -20,8 +20,15 @@ class StandUpSkill {
   ~StandUpSkill(){}
 
   void execute();
+<<<<<<< HEAD
   //! Returns true when this skill finished.
   bool isDone() const;
+=======
+
+  bool isStandUp() const;
+  
+ private:
+>>>>>>> 59d7e0916b7eabad8ed7120a64969e6a549c2699
 
  private:
   bool isStable() const;
