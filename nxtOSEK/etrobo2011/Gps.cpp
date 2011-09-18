@@ -658,6 +658,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     //if((22000.0 < getDistance()) && (getDistance() < 23500.0) && (405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))//距離は微妙なのでコメントアウト
     if((405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))
     {
+        //adjustDirection(getDistance() + (450 - avgD));
         adjustDirection(450);
         adjustXCoordinate(2676.0);
         //adjustYCoordinate();

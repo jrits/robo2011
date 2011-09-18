@@ -35,7 +35,7 @@ bool StairwayDriver::drive()
     LOGGER_DATAS32[0] = (S32)(mGps.getXCoordinate());
     LOGGER_DATAS32[1] = (S32)(mGps.getYCoordinate());
     LOGGER_DATAS32[2] = (S32)(mGps.getDirection());
-    LOGGER_DATAS32[3] = (S32)(mGps.getDistance());
+    LOGGER_DATAS32[3] = (S32)(mGyroHistory.calcDifference());
 #endif
 #if 0 // DEBUG
     //DESK_DEBUG = true; // モータを回さないデバグ
@@ -67,10 +67,17 @@ bool StairwayDriver::drive()
     if (mState == StairwayDriver::BEFORELINETRACE) {
         if (mInitState) {
             mPrevMotor = mLeftMotor.getCount();
-            mDoDetectWall = true;
+            mDoDetectWall = false;
             mInitState = false;
             mLineTrace.setForward(30);
             K_THETADOT = 7.5F; // Find! 階段前曲線をきれいにライントレースできる絶妙な値
+        }
+        // とりあえず段差検知なしでライントレース（開始直後に車体がぶれて段差検知がtrueを返すことがあるため)
+        if (! mDoDetectWall) {
+            mLineTrace.execute();
+            if (mGps.getXCoordinate() < 4100.0) { // 階段側マーカ始点
+                 mDoDetectWall = true;
+            }
         }
         // 段差検知しながらライントレース
         if (mDoDetectWall) {
@@ -104,7 +111,7 @@ bool StairwayDriver::drive()
                 mDoDetectWall = true;
             }
         }
-        // 一旦ストップ(フラグ名が適切ではないが気にしないでください)
+        // 一旦ストップ(フラグ名が適切ではないが気にしないでください)	
         if (mDoDetectWall) {
             mAngleTrace.setForward(0);
             mAngleTrace.setTargetAngle(mPrevDirection);
@@ -192,10 +199,10 @@ bool StairwayDriver::drive()
         // 大きくして急発進 
         if (mDoDetectWall) {
             mActivator.reset(USER_GYRO_OFFSET + 0); // リセット
-            mAngleTrace.setForward(10);
+            mAngleTrace.setForward(5);
             mAngleTrace.execute();
             // ドスン検知
-            if (mGps.getXCoordinate() < 3350) { // 今回は座標でやる
+            if (mGps.getXCoordinate() < 3450) { // 今回は座標でやる
                 { Speaker s; s.playTone(1976, 10, 100); }
                 mState = StairwayDriver::DROPDOWN;
                 mInitState = true;
