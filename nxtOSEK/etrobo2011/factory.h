@@ -89,6 +89,7 @@ extern History mTurnHistory;
 extern Activator mActivator;
 extern TripodActivator mTripodActivator;
 extern Pid mLightPid;
+extern Pid mForwardPid;
 extern Pid mAnglePid;
 extern Pid mSlowdownPid;
 extern Pid mStopPid;

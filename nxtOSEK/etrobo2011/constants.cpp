@@ -75,25 +75,36 @@ int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // �
 
 #ifdef KACHINEW
 char BT_NAME[16] = "KACHINEW";
-int USER_GYRO_OFFSET = 583; // この値は適宜調整すること
-//3F居室
-int WHITE = 540; // 白色の光センサ値
-int BLACK = 730; // 黒色の光センサ値
-int LINE_THRESHOLD = 600; // ライン端の色を示す閾値。白と灰色の間の値
+int USER_GYRO_OFFSET = 582; // この値は適宜調整すること
+// オージス総研
+int WHITE = 530; // 白色の光センサ値 //小さめにしてね
+int BLACK = 670; // 黒色の光センサ値 //大きめにしてね
+int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
 int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
 int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-int TRIPOD_WHITE = 562; // 白色の光センサ値 //小さめにしてね
-int TRIPOD_BLACK = 672; // 黒色の光センサ値 //大きめにしてね
+int TRIPOD_WHITE = 560; // 白色の光センサ値 //小さめにしてね
+int TRIPOD_BLACK = 650; // 黒色の光センサ値 //大きめにしてね
 int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
 int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
+// //竹田家 W:550 G:617 B:720
+// int WHITE = 550; // 白色の光センサ値 //小さめにしてね
+// int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
+// int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
+// int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
+// int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
+// int TRIPOD_WHITE = 607; // 白色の光センサ値 //小さめにしてね
+// int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+// int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
+// int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
+// int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
 #endif
 
 // まいまい式
-//新横浜
+// 新横浜
 //float MAIMAI_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //大きめにしてね
 //float MAIMAI_BLACK = 0.4F; // 黒色のMAIMAIセンサ値 //小さめにしてね
-//オージス
+// ogis
 float MAIMAI_WHITE = 0.8F; // 白色のMAIMAIセンサ値 //大きめにしてね
 float MAIMAI_BLACK = 0.2F; // 黒色のMAIMAIセンサ値 //小さめにしてね
 float MAIMAI_LINE_THRESHOLD = MAIMAI_WHITE - (MAIMAI_WHITE - MAIMAI_BLACK)/4.0; // ライン端の色を示す閾値。白と灰の間の値
@@ -122,9 +133,9 @@ float WHEEL_DISTANCE = 162.0; // 車輪間隔(mm)
 int INIT_FORWARD = 50;    // 初期前進速度
 int INIT_SAMPLECOUNT = 200;  // 初期前進継続カウンタ期間
 int FORWARD = 100;        // 前進速度
-float LIGHT_PID_KP = 150; // K_PHIDOT = 25.0F
+float LIGHT_PID_KP = 60; // K_PHIDOT = 25.0F
 float LIGHT_PID_KI = 0;   // K_PHIDOT = 25.0F
-float LIGHT_PID_KD = 300; // K_PHIDOT = 25.0F
+float LIGHT_PID_KD = 180; // K_PHIDOT = 25.0F
 float LIGHT_ONOFF_TURN = 80; // ONOFF制御の旋回量
 float LIGHT_ONOFF_K_PHIDOT = 25.0F*2.5F;
 float LIGHT_ONOFF_K_THETADOT = 7.5F;
