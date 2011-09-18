@@ -630,6 +630,21 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
  */
 void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 {
+#if 1 // ログ送信(0：解除、1：実施)
+    LOGGER_SEND = 2;
+    //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
+    //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+    LOGGER_DATAU16    = (U16)(getDistance());
+    LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+    LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+    LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+    LOGGER_DATAS16[3] = (S16)(mDistance);
+    LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+    LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+    //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
+    //LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
+#endif
+    
     /* 2011年版"簡易"自動補正 */
     /* 距離メインの決め打ち補正 */
     /* スタート直後の補正*/
@@ -660,29 +675,6 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
         //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
     }
-    
-#if 0 // ログ送信(0：解除、1：実施)
-        LOGGER_SEND = 2;
-        //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
-        //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-        LOGGER_DATAU16    = (U16)(getDistance());
-        LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
-        LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
-        LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-        LOGGER_DATAS16[3] = (S16)(mDistance);
-        LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
-        LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
-        //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
-        //LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
-        
-        mLcd.clear();
-        //mLcd.putf("nsnn", "Get Ready?");
-        //mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
-        //mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
-        //mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
-        mLcd.disp();
-#endif
-    
     
     /* 2011年版"簡易"自動補正ここまで */
     

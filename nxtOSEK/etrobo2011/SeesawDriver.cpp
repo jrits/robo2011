@@ -14,7 +14,7 @@
 #define RETURNTIMING 375 //値を返すタイミング
 #define LIGHTBUF 10 //光センサヒストリのバッファサイズ
 #define LATEST 0
-#define TARGET_ANGLE 356
+#define TARGET_ANGLE 358
 
 /**
  * コンストラクタ
@@ -41,7 +41,7 @@ SeesawDriver::~SeesawDriver(){}
  */
 bool SeesawDriver::drive()
 {
-#if 1
+#if 0
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
     LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
@@ -57,7 +57,7 @@ bool SeesawDriver::drive()
         mLightPid.reset(60,0,180);
         K_THETADOT = 7.5F;
         mState = SeesawDriver::BEFORELINETRACE;
-//        mState = SeesawDriver::LINERETURN; /// ラインリターンだけしたい時
+        //mState = SeesawDriver::LINERETURN; /// ラインリターンだけしたい時
         mTimeCounter = 0;
         mDoDetectWall = false;
         mWallDetector.setThreshold(110);
@@ -252,10 +252,12 @@ bool SeesawDriver::drive()
             mTimeCounter = 0;
             mDoDetectWall = false;
             mInitState = false;
-            mIncrementAngle = 10.0;
+            mIncrementAngle = 0.0;
         }
         // しばしまっすぐ進む
         if (! mDoDetectWall) {
+            mAngleTrace.setTargetAngle(TARGET_ANGLE);
+            mAngleTrace.setForward(50);
             mAngleTrace.execute();
             if (mTimeCounter > 500) {
                 mTimeCounter = 0;
@@ -265,9 +267,10 @@ bool SeesawDriver::drive()
         // ライン検知(ちょっと右に向かってまっすぐ)
         if (mDoDetectWall) {
             K_THETADOT = 7.5F;
-            mIncrementAngle = MAX(mIncrementAngle + 0.1, 45.0);
-            mAngleTrace.setTargetAngle(TARGET_ANGLE - mIncrementAngle); // 突入角度よりちょっと右
-            mAngleTrace.setForward(30);
+            //mIncrementAngle = MAX(mIncrementAngle + 0.0001, 40.0); // フックかからん！
+            //mAngleTrace.setTargetAngle(TARGET_ANGLE - mIncrementAngle); // 突入角度よりちょっと右
+            mAngleTrace.setTargetAngle(TARGET_ANGLE - 30);
+            mAngleTrace.setForward(15);
             mAngleTrace.execute();
             //VectorT<float> command(15, -5);
             //mActivator.run(command);
@@ -282,7 +285,7 @@ bool SeesawDriver::drive()
     else if (mState == SeesawDriver::AFTERLINETRACE) {
         if (mInitState) {
             K_THETADOT = 7.5F;
-            mLineTrace.setForward(30);
+            mLineTrace.setForward(15);
             mTimeCounter = 0;
             mInitState = false;
         }
