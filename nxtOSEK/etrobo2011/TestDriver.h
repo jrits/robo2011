@@ -32,6 +32,7 @@ public:
 //    void mTail_control(signed int angle);
     int mState;
     int SSC;//State Switch Counter
+    int count;
     float beforeRMH; //状態変化時のモータ回転角度（積算値）
     signed char mPwm_L;
     signed char mPwm_R;
