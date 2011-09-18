@@ -76,6 +76,9 @@ void Activator::run(VectorT<F32> command)
         nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100?100) */
     }
 
+    // tail_control
+    tail_control(TAIL_ANGLE_DRIVE);
+
     // balance_control(
     //     (F32)command.mY, // 前後進命令
     //     (F32)command.mY, // 旋回命令

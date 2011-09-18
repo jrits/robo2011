@@ -44,7 +44,8 @@ bool LookUpGateDriver::drive()
         gDoSonar = false;
         gDoMaimai = true;
         gDoForwardPid = false;
-        mCurrentSubSection = BEFORELINETRACE;
+        //mCurrentSubSection = BEFORELINETRACE;
+        mCurrentSubSection = IN_FRONT_OF_GATE;
     }
     switch(mCurrentSubSection){
     case BEFORELINETRACE:
@@ -75,16 +76,18 @@ bool LookUpGateDriver::drive()
         mTripodAngleTrace.execute();
         if (isGateFound()) {
             // 座標補正(ET相撲からのオーダー)
-            // mGps.adjustXCoordinate();
-            // mGps.adjustYCoordinate();
+            mGps.adjustXCoordinate(3432.0);
+            mGps.adjustYCoordinate(-3348.0);
         }
         if(isGatePassed()){
             { Speaker s; s.playTone(1976, 10, 100); }
             mCurrentSubSection = BEHIND_GATE;
+            gDoSonar = false;
         }
         break;
     case BEHIND_GATE:
         mStandUpSkill.execute();
+        //mStandupDriver.drive();
         /*立ち上がる。*/
         if(isStandUped()){
             { Speaker s; s.playTone(1976, 10, 100); }
@@ -144,6 +147,7 @@ bool LookUpGateDriver::isStandUped()
 
     // 時間でもチェックして落ち着かせる
     return mStandUpSkill.isStandUp() && count >= 500;
+    //return mStandupDriver.isArrived() && count >= 500;
 }
 
 bool LookUpGateDriver::isDone()
