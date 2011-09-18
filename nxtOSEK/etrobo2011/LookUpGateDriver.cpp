@@ -28,6 +28,8 @@ LookUpGateDriver::drive(){
 
       if(foundGate()){
       	gDoSonar = true;
+        gDoMaimai = false; //!< まいまい式発動フラグ
+        gDoForwardPid = false;
       	//gDoMaimai = true;
         mLcd.clear();
         mLcd.putf("sn","INIT");

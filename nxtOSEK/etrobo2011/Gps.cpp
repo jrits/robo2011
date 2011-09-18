@@ -518,7 +518,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     }
     
     /* ルックアップゲート前の補正*/
-    if((13500.0 < getDistance()) && (getDistance() < 15000.0) && (315.0 < avgD) && (avgD < 405.0) && ((2800.0 < avgX)) && (avgX < 3800.0))
+    if((13300.0 < getDistance()) && (getDistance() < 15000.0) && (315.0 < avgD) && (avgD < 405.0) && ((2800.0 < avgX)) && (avgX < 3800.0))
     {
         adjustDirection(360);
         adjustYCoordinate(-3350.0);

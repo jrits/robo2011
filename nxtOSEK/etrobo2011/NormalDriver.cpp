@@ -33,9 +33,9 @@ bool NormalDriver::drive()
 	if (mCourse->getNameId() == 0) {
 	// スタートから坂道頂上まで
     if(0 < mGps.getDistance() && mGps.getDistance() < 2300.0) {
-        mLightPid.reset(30,0,90);
+        mLightPid.reset(70,0,210);
         mForwardPid.reset(0.003, 0, 0.01);
-        mLineTrace.setForward(150);
+        mLineTrace.setForward(100);
     }
 	
 	// 坂道頂上直前から坂道頂上直後まで
@@ -90,9 +90,9 @@ bool NormalDriver::drive()
 	} else {
 	// スタートから坂道頂上まで
     if(0 < mGps.getDistance() && mGps.getDistance() < 1500.0) {
-        mLightPid.reset(30,0,90);
+        mLightPid.reset(70,0,210);
         mForwardPid.reset(0.003, 0, 0.01);
-        mLineTrace.setForward(150);
+        mLineTrace.setForward(100);
     }
 	
 	// 坂道頂上直前から坂道頂上直後まで
@@ -129,10 +129,10 @@ bool NormalDriver::drive()
         }
         mLightPid.reset(70,0,210);
     	mForwardPid.reset(0.003, 0, 0.01);
-    	mLineTrace.setForward(120);
+    	mLineTrace.setForward(100);
     }	
 	// 第2コーナーの入り口から最後まで
-    else if(5700.0 < mGps.getDistance()) {
+    else if(5700.0 < mGps.getDistance() && mGps.getDistance() < 13000.0) {
         {
         	static int count = 0;
         	if (count == 0) { Speaker s; s.playTone(1976, 10, 100); count+=1; }
@@ -141,6 +141,18 @@ bool NormalDriver::drive()
     	mForwardPid.reset(0.003, 0, 0.01);
     	mLineTrace.setForward(100);
     }
+	// スタートから13m地点。ルックアップゲート攻略準備
+	else if(13000.0 < mGps.getDistance()) {
+        {
+        	static int count = 0;
+        	if (count == 0) { Speaker s; s.playTone(1976, 10, 100); count+=1; }
+        }
+        mLightPid.reset(80,0,240); // あまりにも急に変えるとバタンと倒れるっぽい。理由は不明
+    	mForwardPid.reset(0.003, 0, 0.01);
+    	mLineTrace.setForward(30);
+    }
+
+	    
 	}
     mLineTrace.execute();
     return true;
