@@ -180,7 +180,6 @@ TASK(TaskDrive)
 
     connect_bt(mLcd, BT_NAME); // bluetooth接続
     mActivator.reset(USER_GYRO_OFFSET);
-    gDoMaimai = true;
 
     while(1)
     {

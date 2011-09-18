@@ -55,7 +55,7 @@ bool SeesawDriver::drive()
     // 初期化関数を作るのが面倒なのでとりあえずここで
     if (mState == SeesawDriver::INIT) {
         gDoMaimai = true;
-        mLightPid.reset(70,0,210);
+        mLightPid.reset(60,0,180);
         K_THETADOT = 7.5F;
         mState = SeesawDriver::BEFORELINETRACE;
         mTimeCounter = 0;
@@ -66,7 +66,7 @@ bool SeesawDriver::drive()
     if (mState == SeesawDriver::BEFORELINETRACE) {
         // 段差検知なしでライントレース
         if (! mDoDetectWall) {
-            mLineTrace.setForward(50);
+            mLineTrace.setForward(70);
             mLineTrace.execute();
             if(mGps.getXCoordinate() > 3000 && mGps.getYCoordinate() > -1100) {
                 { Speaker s; s.playTone(480, 20, 100); }
@@ -75,8 +75,10 @@ bool SeesawDriver::drive()
         }
         // 段差検知しながらアングルトレース
         if (mDoDetectWall) {
+	        { Speaker s; s.playTone(1976, 10, 100); }
+            K_THETADOT = 8.5F;
             mAngleTrace.setTargetAngle(360); // Find!
-            mAngleTrace.setForward(80);
+            mAngleTrace.setForward(100);
             mActivator.reset(USER_GYRO_OFFSET + 5); // ちょっと急発進
             mAngleTrace.execute();
             if (mWallDetector.detect()) {
