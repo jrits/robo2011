@@ -192,10 +192,10 @@ bool StairwayDriver::drive()
         // 大きくして急発進 
         if (mDoDetectWall) {
             mActivator.reset(USER_GYRO_OFFSET + 0); // リセット
-            mAngleTrace.setForward(10);
+            mAngleTrace.setForward(5);
             mAngleTrace.execute();
             // ドスン検知
-            if (mGps.getXCoordinate() < 3350) { // 今回は座標でやる
+            if (mGps.getXCoordinate() < 3450) { // 今回は座標でやる
                 { Speaker s; s.playTone(1976, 10, 100); }
                 mState = StairwayDriver::DROPDOWN;
                 mInitState = true;
