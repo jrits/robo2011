@@ -44,8 +44,10 @@ void TripodActivator::run(VectorT<F32> command)
     }
 
     // @todo: balance_control と同じ入力値なら同じぐらいの出力値になるようにしたい
-    pwm_L = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
-    pwm_R = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
+    //pwm_L = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
+    //pwm_R = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
+    pwm_L = command.mX + command.mY * 0.5;
+    pwm_R = command.mX - command.mY * 0.5;
 
     if (! DESK_DEBUG) {
         mLeftMotor.setPWM((S8)(MIN(MAX(pwm_L, -128), 127)));

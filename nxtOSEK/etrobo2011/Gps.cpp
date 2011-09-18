@@ -509,7 +509,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     }
     
     /* 最初のカーブ後の補正*/
-    if(((4500.0 < getDistance()) && (getDistance() < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+    if(((4500.0 < getDistance()) && (getDistance() < 6000.0)) && (225.0 < avgD) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
     {
         adjustDirection(270);
         adjustXCoordinate(262.0);
@@ -518,16 +518,13 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     }
     
     /* ルックアップゲート前の補正*/
-    /*ルックアップゲート内でやるのでとりあえずコメントアウト
-    //if(((4500.0 < distance) && (distance < 6000.0)) && ((225.0 < avgD)) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
-    if(((405.0 < avgD)) && (avgD < 495.0) && ((2500.0 < avgX)) && (avgX < 2850.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
+    if((13500.0 < getDistance()) && (getDistance() < 15000.0) && (315.0 < avgD) && (avgD < 405.0) && ((2800.0 < avgX)) && (avgX < 3800.0))
     {
-        adjustDirection(450);
-        adjustXCoordinate(2676.0);
+        adjustDirection(360);
+        adjustYCoordinate(-3350.0);
         //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
     }
-    */
 #if 0 // ログ送信(0：解除、1：実施)
         LOGGER_SEND = 2;
         //LOGGER_DATAS08[0] = (S8)(gDoSonar); 

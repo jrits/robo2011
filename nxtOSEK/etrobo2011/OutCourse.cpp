@@ -85,18 +85,25 @@ void OutCourse::drive()
         if (mNormalDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_LOOKUP_START, MakePoint(X, Y)) || (19000.0 < mGps.getDistance())) { // 区間をルックアップ区間に更新
+            //if (inRegion(GPS_LOOKUP_START, MakePoint(X, Y)) || (13500.0 < mGps.getDistance())) { // 区間をルックアップ区間に更新
+            //if (12500.0 < mGps.getDistance()) { // ルックアップ区間前減速
+            //    mLineTrace.setForward(30);//ノーマルドライバ内でやる
+            //}
+            if (13500.0 < mGps.getDistance()) { // 区間をルックアップ区間に更新
                 mState = OutCourse::LOOKUP;
             }
         }
     }
     else if (mState == OutCourse::LOOKUP) { // ルックアップ区間
         if (mLookUpGateDriver.drive()) {
+            mState = OutCourse::ETSUMO;
+            /*とりあえず終了したら遷移することにする
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
         	if ((inRegion(GPS_ETSUMO_START, MakePoint(X, Y)))) { // 区間をET相撲区間に更新
                 mState = OutCourse::ETSUMO;
             }
+            */
         }
     }
     else if (mState == OutCourse::ETSUMO) { // ET相撲区間

@@ -21,6 +21,7 @@ class LookUpGateDriver : public Driver {
     INIT = 0,
     IN_FRONT_OF_GATE,
     UNDER_GATE,
+    UNDER_GATE_2,
     BEHIND_GATE,
     DONE
   };
