@@ -222,7 +222,6 @@ TASK(TaskDrive)
     bool doDrive = true;
     while(1)
     {
-        tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
         if (mFailDetector.detect()) doDrive = false;
         if (doDrive) mCourse->drive();
         else mActivator.stop();
