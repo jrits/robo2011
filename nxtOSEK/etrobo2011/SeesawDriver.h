@@ -35,9 +35,9 @@ private:
     int mTimeCounter; //!< タイマカウンタ
     bool mInitState; //!< 初期状態
     float mStartAngleCounter; //!< 初期角度カウンタ
-    float mPrevDirection; //!< 前の方向
     int mPrevMotor; //!< 前のモータの回転数
     bool mDoDetectWall; //!< 障壁を発見フラグ
+    float mIncrementAngle; //!<フックしてライン復帰
 
 public:
     SeesawDriver();

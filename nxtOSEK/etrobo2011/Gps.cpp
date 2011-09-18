@@ -528,7 +528,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
         mSpeaker.playTone(1000, 1, 100);
     }
     */
-#if 0 // ログ送信(0：解除、1：実施)
+#if 1 // ログ送信(0：解除、1：実施)
         LOGGER_SEND = 2;
         //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
         //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
@@ -541,13 +541,6 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
         LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
         //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
         //LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
-        
-        mLcd.clear();
-        //mLcd.putf("nsnn", "Get Ready?");
-        //mLcd.putf("sdn",  "Light = ", (int)mLightSensor.get(), 5);//LightSensorの値をint型5桁で表示
-        //mLcd.putf("sdn",  "Gyro  = ", (int)mGyroSensor.get() , 5);//GyroSensorの値をint型5桁で表示
-        //mLcd.putf("sd" ,  "Sonar = ",  distance, 5);//うまくいかないのでコメントアウト
-        mLcd.disp();
 #endif
     
     /* 2011年版"簡易"自動補正ここまで */
@@ -661,8 +654,8 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     //if((22000.0 < getDistance()) && (getDistance() < 23500.0) && (405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))//距離は微妙なのでコメントアウト
     if((405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))
     {
-        //adjustDirection(getDistance() + (450 - avgD));
-        adjustDirection(450);
+        adjustDirection(getDirection() + (450 - avgD));
+        //adjustDirection(450);
         adjustXCoordinate(2676.0);
         //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
