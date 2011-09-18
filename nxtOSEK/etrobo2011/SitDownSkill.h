@@ -13,12 +13,13 @@ class SitDownSkill {
 
   void setAngle(signed int angle);
 
+  bool isSeated() const;
+
  private:
   signed int mSitDownAngle;
   void tail_control(signed int angle) const;
 
   bool isStable() const;
-  bool isSeated() const;
   bool isInclined() const;
 
   enum eState{

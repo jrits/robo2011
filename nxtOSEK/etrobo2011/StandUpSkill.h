@@ -31,8 +31,10 @@ class StandUpSkill {
   ~StandUpSkill(){}
 
   void execute();
- private:
+
   bool isStandUp() const;
+  
+ private:
 
   bool isStable() const;
 
