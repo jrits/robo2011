@@ -2,8 +2,8 @@
 #include "macro.h"
 #include <math.h>
 
-#define KACHIROBO
-//#define KACHIICHI
+//#define KACHIROBO
+#define KACHIICHI
 //#define KACHINEW
 
 #ifdef KACHIROBO

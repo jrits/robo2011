@@ -1,6 +1,6 @@
 // ロボット
-#define KACHIROBO
-//#define KACHIICHI
+//#define KACHIROBO
+#define KACHIICHI
 //#define KACHINEW
 
 // ドライバ
