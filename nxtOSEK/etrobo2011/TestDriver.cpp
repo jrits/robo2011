@@ -7,14 +7,6 @@
 #include "TestDriver.h"
 #include "factory.h"
 #include "TestLine.h"
-extern bool gDoMaimai;
-extern bool gDoForwardPid;
-extern "C" extern void tail_control(signed int angle);
-
-/* sample_c3マクロ */
-#define TAIL_ANGLE_STAND_UP 108 /* 完全停止時の角度[度] */
-#define TAIL_ANGLE_TRIPOD_DRIVE 95 /* ３点走行時の角度[度] */
-#define TAIL_ANGLE_DRIVE      3 /* バランス走行時の角度[度] */
 
 /**
  * コンストラクタ
@@ -53,68 +45,99 @@ bool TestDriver::drive()
         lcd.disp();
     }
 #endif
-    // デフォルト
-    tail_control(TAIL_ANGLE_DRIVE); /* バランス走行用角度に制御 */
-    gDoMaimai = false; /* まいまい式は使わない */
-    gDoForwardPid = false; 
-    VectorT<float> command(50, 0);
+    //// ライントレーステスト
+    // mLineTrace.setForward(50);
+    // mLineTrace.execute();
+    // mStraightDetector.detect(); // 直線検知テスト
 
-    // テスト 通常走行
-    if (0) {
-        mActivator.run(command);
-    }
-    // テスト フォーワードPID
-    if (0) {
-        mActivator.runWithPid(command);
-    }
-    // テスト ３点走行
-    if (0) {
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodActivator.run(command);
-    }
-    // テスト ３点走行 with フォワードPID
-    if (0) {
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodActivator.runWithPid(command);
-    }
-    // テスト ライントレース.
-    if (0) {
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-    }
-    // テスト ライントレース with フォワードPID
-    if (0) {
-        gDoForwardPid = true;
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-    }
-    // テスト まいまい式ライントレース
-    if (0) {
-        gDoMaimai = true;
-        mLineTrace.setForward(50);
-        mLineTrace.execute();
-    }
-    // テスト ３点走行ライントレース
-    if (0) {
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
-    }
-    // テスト ３点走行ライントレース with フォワードPID
-    if (1) {
-        gDoForwardPid = true;
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
-    }
-    // テスト まいまい式３点走行ライントレース
-    if (0) {
-        gDoMaimai = true;
-        tail_control(TAIL_ANGLE_TRIPOD_DRIVE); /* ３点走行用角度に制御 */
-        mTripodLineTrace.setForward(50);
-        mTripodLineTrace.execute();
-    }
+    //// 向きトレーステスト
+    // if (mState == -1) {
+    //     // 開始向き
+    //     mGps.adjustDirection(180);
+    //     // 目標向き
+    //     mAngleTrace.setTargetAngle(180);
+    //     mAngleTrace.setForward(50);
+    //     mState = 0;
+    // }
+    // mAngleTrace.execute();
 
-    // mSitDownSkill.execute();
+    //// 座標トレーステスト
+    // if (mState == -1) {
+    //     // 開始座標
+    //     mGps.adjustXCoordinate(GPS_COURSE_START_X);
+    //     mGps.adjustYCoordinate(GPS_COURSE_START_Y);
+    //     mGps.adjustDirection(GPS_COURSE_START_DIRECTION);
+    //     // 目標座標
+    //     mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_GARAGE_X, GPS_GARAGE_Y));
+    //     mCoordinateTrace.setForward(50);
+    //     mState = 0;
+    // }
+    // mCoordinateTrace.execute();
+
+    //// 仮想ライントレーステスト
+    if (mState == -1) { // 初期化状態
+         mVirtualLineTrace.setControlPoints(TEST_LINE, NUM_TEST_LINE);
+         mVirtualLineTrace.reset();
+         mState = 0;
+     }
+     mVirtualLineTrace.execute();
+
+    //// 座標指定着地テスト
+/*
+    if (mState == -1) { // 初期化状態
+        // 開始座標
+        mGps.adjustXCoordinate(GPS_COURSE_START_X);
+        mGps.adjustYCoordinate(GPS_COURSE_START_Y);
+        mGps.adjustDirection(GPS_COURSE_START_DIRECTION);
+        // 目標座標
+        mCoordinateStop.setTargetCoordinate(MakePoint(GPS_GARAGE_X, GPS_GARAGE_Y));
+//        mCoordinateStop.setTargetCoordinate(MakePoint(GPS_COURSE_START_X, GPS_COURSE_START_Y));
+        mCoordinateStop.setForward(100);
+//        mCoordinateStop.setSlowdownDistance(500);
+        //SORA test
+        //急停止を行う距離。目標座標に250[mm]以内に立ち入ると急停止を行う。
+        mCoordinateStop.setSlowdownDistance(210);
+        //SORA test
+        mState = 0;
+    }
+    mCoordinateStop.execute();
+    */
+    //// SlowdownSkill(mAngleTrace)テスト。mSlowdownPid調整用
+    // if (mState == -1) { // 初期化状態
+    //     // 開始座標
+    //     mGps.adjustXCoordinate(0.0);
+    //     mGps.adjustYCoordinate(0.0);
+    //     mGps.adjustDirection(0.0);
+    //     // 目標向き
+    //     mAngleTrace.setTargetAngle(0.0);
+    //     mAngleTrace.setForward(50.0);
+    //     // 停止目標距離
+    //     mSlowdownSkill.setSkill(&mAngleTrace); // 向きトレースをデコレート
+    //     mSlowdownSkill.setTargetDistance(600.0); // 60cm
+    //     //mSlowdownSkill.setMinimumForward(0); // 停止
+    //     //mSlowdownSkill.setMinimumForward(-1); // バック許可
+    //     mSlowdownSkill.setMinimumForward(-30); // 行ったりきたり許可
+    //     mState = 0;
+    // }
+    // mSlowdownSkill.execute(); // SlowdownSkillを実行
+
+    //// StopSkill(mAngleTrace)テスト。
+    // if (mState == -1) { // 初期化状態
+    //     // 開始座標
+    //     K_THETADOT = 7.5F;
+    //     mGps.adjustXCoordinate(0.0);
+    //     mGps.adjustYCoordinate(0.0);
+    //     mGps.adjustDirection(0.0);
+    //     // 目標向き
+    //     mAngleTrace.setTargetAngle(0.0);
+    //     mAngleTrace.setForward(100.0);
+    //     // 停止目標距離
+    //     mStopSkill.setSkill(&mAngleTrace); // 向きトレースをデコレート
+    //     mStopSkill.setTargetDistance(600.0); // 60cm
+    //  	mStopSkill.setAllowableError(100.0); // 50cm地点でフォワード値0
+    //     mState = 0;
+    // }
+    // mStopSkill.execute(); // StopSkillを実行
+
     return true;
 }

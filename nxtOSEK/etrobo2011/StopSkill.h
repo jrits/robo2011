@@ -19,14 +19,15 @@ class StopSkill : public Skill
     float mTargetDistance; //!< 停止目標距離(mm)
     float mAllowableError; //!< 許容エラー値(mm)。何mm手前で速度を0に落とすか。
 public:
-	StopSkill();
-	~StopSkill(){}
+    StopSkill();
+    ~StopSkill(){}
 public:
     void setSkill(Skill *skill);
     void setTargetDistance(float targetDistance);
-	void setAllowableError(float allowableError);
+    void setAllowableError(float allowableError);
     bool isArrived();
 public:
-	VectorT<float> calcCommand();
+    void execute();
+    VectorT<float> calcCommand();
 };
 #endif

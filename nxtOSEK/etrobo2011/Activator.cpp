@@ -4,6 +4,8 @@
 #include "Activator.h"
 #include "Pid.h"
 #include "factory.h"
+extern bool gDoForwardPid;
+extern bool gDoProgressiveTurn;
 
 /**
  * コンストラクタ
@@ -22,7 +24,7 @@ Activator::Activator(Motor &leftMotor,
     mGyroSensor(gyroSensor), 
     mNxt(nxt)
 {
-	mGyroOffset = USER_GYRO_OFFSET; //オフセット値を初期化
+    mGyroOffset = USER_GYRO_OFFSET; //オフセット値を初期化
     mTargetSpeed = 0.0;
     mCurrentForward = 0.0;
 }
@@ -44,14 +46,25 @@ void Activator::reset(int gyroOffset)
  */
 void Activator::run(VectorT<F32> command)
 {
-	S8 pwm_L, pwm_R;
+    S8 pwm_L, pwm_R;
+
+    // フォワードPID
+    if (gDoForwardPid) {
+        command.mX = forwardPid(command.mX);
+    }
+
+    // 過去の蓄積ベースのturn値
+    if (gDoProgressiveTurn) {
+        command.mY += mTurnHistory.calcAverage();
+        mTurnHistory.update(command.mY);
+    }
 
     // C++ バージョンだとなぜか mActivator.run() で動かないのでとりあえず。
     balance_control(
         (float)command.mX,							 /* 前後進命令(+:前進, -:後進) */
         (float)command.mY,							 /* 旋回命令(+:右旋回, -:左旋回) */
         (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
-        (float)USER_GYRO_OFFSET,                     /* ジャイロセンサオフセット値 */
+        (float)mGyroOffset,                          /* ジャイロセンサオフセット値 */
         (float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
         (float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
         (float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
@@ -63,7 +76,7 @@ void Activator::run(VectorT<F32> command)
         nxt_motor_set_speed(NXT_PORT_B, pwm_R, 1); /* 右モータPWM出力セット(-100?100) */
     }
 
-	// balance_control(
+    // balance_control(
     //     (F32)command.mY, // 前後進命令
     //     (F32)command.mY, // 旋回命令
     //     (F32)mGyroSensor.get(),
@@ -73,24 +86,11 @@ void Activator::run(VectorT<F32> command)
     //     (F32)mNxt.getBattMv(),
     //     &pwm_L,
     //     &pwm_R);
-	
+    
     // if (! DESK_DEBUG) {
     //     mLeftMotor.setPWM(pwm_L);
     //     mRightMotor.setPWM(pwm_R);
     // }
-}
-
-/**
- * フォワードPID、ターンPID(@todo)を利用した走行
- *
- * @param[in] speed 目標走行スピード(encode/sec)
- */
-void Activator::runWithPid(VectorT<F32> speed)
-{
-    VectorT<F32> command;
-    command.mX = forwardPid(speed.mX);
-    command.mY = speed.mY; // turnPid(speed.mY); // @todo
-    run(command);
 }
 
 /**
@@ -102,13 +102,13 @@ void Activator::runWithPid(VectorT<F32> speed)
  */
 void Activator::stop()
 {
-	mLeftMotor.setPWM(0);
-	mRightMotor.setPWM(0);
-	mLeftMotor.setBrake(true);
-	mRightMotor.setBrake(true);
+    mLeftMotor.setPWM(0);
+    mRightMotor.setPWM(0);
+    mLeftMotor.setBrake(true);
+    mRightMotor.setBrake(true);
 }
 
-Pid mForwardPid(0.003, 0.0, 0.0); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
+Pid mForwardPid(0.003, 0.0, 0.1); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
 #define FORWARD2ENCODE(F) (F * 3.6) // 大体 forward 100 で 360(1回転)/sec@平地っぽい
 #define ENCODE2FORWARD(E) (E / 3.6) // 大体 forward 100 で 360(1回転)/sec@平地っぽい
 

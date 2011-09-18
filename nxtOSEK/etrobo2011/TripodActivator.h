@@ -15,11 +15,11 @@ using namespace ecrobot;
 class TripodActivator : public Activator
 {
 public:
-	TripodActivator(Motor &leftMotor, 
+    TripodActivator(Motor &leftMotor, 
               Motor &rightMotor, 
               GyroSensor &gyroSensor, 
               Nxt &nxt);
-	~TripodActivator(){}
+    ~TripodActivator(){}
     void run(VectorT<F32> command);
 };
 #endif

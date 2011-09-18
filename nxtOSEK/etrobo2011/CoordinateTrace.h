@@ -14,15 +14,15 @@
 class CoordinateTrace : public Skill
 {
 private:
-	Point mTargetCoordinate; //!< 目標座標
+    Point mTargetCoordinate; //!< 目標座標
     float mAllowableError;   //!< 許容エラー値(mm)
 public:
-	CoordinateTrace();
-	~CoordinateTrace(){}
-	void setTargetCoordinate(Point targetCoordinate);
-	void setAllowableError(float allowableError);
+    CoordinateTrace();
+    ~CoordinateTrace(){}
+    void setTargetCoordinate(Point targetCoordinate);
+    void setAllowableError(float allowableError);
 public:
-	VectorT<float> calcCommand();
+    VectorT<float> calcCommand();
 public:
     bool isArrived();
 };

@@ -14,7 +14,7 @@ using namespace ecrobot;
 
 extern "C"
 {
-	#include "balancer.h"
+    #include "balancer.h"
 };
 
 /**
@@ -25,25 +25,23 @@ extern "C"
 class Activator
 {
 protected:
-	Motor &mLeftMotor; //!< 左モータ
-	Motor &mRightMotor; //!< 右モータ
-	GyroSensor &mGyroSensor; //!< ジャイロセンサ
-	Nxt &mNxt; //!< NXTオブジェクト
+    Motor &mLeftMotor; //!< 左モータ
+    Motor &mRightMotor; //!< 右モータ
+    GyroSensor &mGyroSensor; //!< ジャイロセンサ
+    Nxt &mNxt; //!< NXTオブジェクト
     int mGyroOffset; //!< ジャイロセンサオフセット値
 public:
-	Activator(Motor &leftMotor, 
+    Activator(Motor &leftMotor, 
               Motor &rightMotor, 
               GyroSensor &gyroSensor, 
               Nxt &nxt);
-	virtual ~Activator(){}
+    virtual ~Activator(){}
     // パラメターの初期化
     void reset(int gyroOffset);
     // 走行。ハンドル、アクセスの操作。
-	virtual void run(VectorT<F32> command);
-    // フォワードPID、ターンPID(@todo)を利用した走行
-	void runWithPid(VectorT<F32> speed);
+    virtual void run(VectorT<F32> command);
     // 停止
-	void stop();
+    void stop();
 protected:
     float mTargetSpeed;
     float mCurrentForward;

@@ -15,8 +15,8 @@
 class NormalDriver : public Driver
 {
 public:
-	NormalDriver();
-	~NormalDriver(){}
+    NormalDriver();
+    ~NormalDriver(){}
     bool drive();
 };
 

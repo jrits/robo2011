@@ -15,9 +15,9 @@ VirtualLineTrace::VirtualLineTrace() :
     mCoordinateTrace.setForward(100); // デフォルトフォワード値
     mCoordinateTrace.setAllowableError(10.0); // デフォルト許容誤差(mm)
     mAngleTrace.setAllowableError(2.0); // デフォルト許容誤差(degree)
-	
-	mXoffset = -170; // mXoffset = 0; // @todo: 大会のために絶妙な調整が必要
-	mYoffset = 0;
+
+    mXoffset = -170; // mXoffset = 0; // @todo: 大会のために絶妙な調整が必要
+    mYoffset = 0;
 }
 
 /**
@@ -51,7 +51,7 @@ void VirtualLineTrace::setControlPoints(ControlPoint *controlPoints, int numOfCo
  */
 VectorT<float> VirtualLineTrace::calcCommand()
 {
-	gLineTrace = false;
+    gLineTrace = false;
     VectorT<float> command;
 
     // インデックスが最大値を超えて落ちたりしないように保険
@@ -63,11 +63,11 @@ VectorT<float> VirtualLineTrace::calcCommand()
     float forward = mControlPoints[mCurrentIndex].forward;
     float allowableError = mControlPoints[mCurrentIndex].allowableError;
     //bool  slowdown = mControlPoints[mCurrentIndex].slowdown;
-	bool slowdown = false; // 大会直前調整。slowdown フラグをライン復帰許可フラグとして使うのでキャンセル。
+    bool slowdown = false; // 大会直前調整。slowdown フラグをライン復帰許可フラグとして使うのでキャンセル。
 
     if (! isnan(targetCoordinate.X) && ! isnan(targetCoordinate.Y)) { 
         // 座標指定走行
-    	Point targetCoordinateOff = MakePoint(mControlPoints[mCurrentIndex].X + mXoffset, mControlPoints[mCurrentIndex].Y + mYoffset);
+        Point targetCoordinateOff = MakePoint(mControlPoints[mCurrentIndex].X + mXoffset, mControlPoints[mCurrentIndex].Y + mYoffset);
         mCoordinateTrace.setTargetCoordinate(targetCoordinateOff);
         if (! isnan(forward)) mCoordinateTrace.setForward(forward);
         if (! isnan(allowableError)) mCoordinateTrace.setAllowableError(allowableError);
@@ -97,7 +97,7 @@ VectorT<float> VirtualLineTrace::calcCommand()
         command = mLineTrace.calcCommand();
     }
 
-#if 1 // DEBUG
+#if 0 // DEBUG
     static int count = 0;
     if (count++ % 25 == 0) {
         Lcd lcd;
@@ -125,5 +125,5 @@ VectorT<float> VirtualLineTrace::calcCommand()
 bool VirtualLineTrace::isLast()
 {
     //return (mCurrentIndex >= mNumOfControlPoints - 1);
-	return (mCurrentIndex >= mNumOfControlPoints - 1) || mControlPoints[mCurrentIndex].slowdown; // 大会直前調整。slowdown フラグをライン復帰許可フラグとして使う。
+    return (mCurrentIndex >= mNumOfControlPoints - 1) || mControlPoints[mCurrentIndex].slowdown; // 大会直前調整。slowdown フラグをライン復帰許可フラグとして使う。
 }

@@ -13,11 +13,11 @@
 Pid::Pid(float kp, float ki, float kd) : 
     mKp(kp), mKi(ki), mKd(kd)
 {
-	index = 0;
-	for(int i = 0; i < MAX_BUF_SIZE; i++)
-	{
-		buf[i] = 0;
-	}
+    index = 0;
+    for(int i = 0; i < MAX_BUF_SIZE; i++)
+    {
+        buf[i] = 0;
+    }
 }
 
 /**
@@ -25,6 +25,14 @@ Pid::Pid(float kp, float ki, float kd) :
  */
 Pid::~Pid()
 {
+}
+
+/**
+ * セッター
+ */
+void Pid::reset(float kp, float ki, float kd)
+{
+    mKp = kp; mKi = ki; mKd = kd;
 }
 
 /**
@@ -38,20 +46,20 @@ float Pid::control(float P)
     // Nothing but buffering (Ring bufffer)
     float pP = buf[index]; //oldest value
     buf[index] = P;  // newest value
-	index = (index + 1) % MAX_BUF_SIZE;
+    index = (index + 1) % MAX_BUF_SIZE;
     
     // Integral
-	// I += P;
+    // I += P;
     float I = 0;
-	for(int i = 0; i < MAX_BUF_SIZE; i++)
-	{
+    for(int i = 0; i < MAX_BUF_SIZE; i++)
+    {
         I += buf[i];
     }
 
     //Derivative
-	float D = P - pP;
+    float D = P - pP;
 
-	float Y = (mKp * P) + (mKi * I) + (mKd * D);
-	
+    float Y = (mKp * P) + (mKi * I) + (mKd * D);
+    
     return Y;
 }

@@ -13,7 +13,8 @@
 class TripodLineTrace : public LineTrace
 {
 public:
-    TripodLineTrace(float black, float white, float threshold);
+    TripodLineTrace(float black, float white, float threshold,
+        float maimaiBlack, float maimaiWhite, float maimaiThreshold);
     ~TripodLineTrace(){}
     void execute();
 };

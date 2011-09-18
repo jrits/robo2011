@@ -22,6 +22,8 @@ public:
     enum eSubSection {
         INIT = -1,
         BEFORELINETRACE,
+        ON0THSTAGE_BACK,
+        ON0THSTAGE_GO,
         ON1STSTAGE,
         ON2NDSTAGE,
         DROPDOWN,
@@ -36,7 +38,7 @@ private:
     float mPrevDirection; //!< 前の方向
 public:
     StairwayDriver();
-	~StairwayDriver(){}
+    ~StairwayDriver(){}
     bool drive();
 };
 #endif // STAIRWAYDRIVER_H

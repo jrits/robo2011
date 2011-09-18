@@ -14,16 +14,17 @@
 class Pid
 {
 private:
-	float mKp; //!< 比例係数
-	float mKi; //!< 積分係数
-	float mKd; //!< 微分係数
-	int index; //!< リングバッファの現在インデックス
-	float buf[MAX_BUF_SIZE]; //!< リングバッファのバッファ
+    float mKp; //!< 比例係数
+    float mKi; //!< 積分係数
+    float mKd; //!< 微分係数
+    int index; //!< リングバッファの現在インデックス
+    float buf[MAX_BUF_SIZE]; //!< リングバッファのバッファ
 public:
-	Pid(float kp, float ki, float kd);
-	virtual ~Pid();
+    Pid(float kp, float ki, float kd);
+    virtual ~Pid();
 public:
-	float control(float P);
+    void reset(float kp, float ki, float kd);
+    float control(float P);
 };
 
 #endif
