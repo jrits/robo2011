@@ -64,15 +64,23 @@ bool NormalDriver::drive()
     }
 	
 	// 第1コーナーの出口から第2コーナーの入り口まで
-    else if(4900.0 < mGps.getDistance() && mGps.getDistance() < 6000.0) {
+    else if(4900.0 < mGps.getDistance() && mGps.getDistance() < 6500.0) {
+        {
+        	static int count = 0;
+        	if (count == 0) { Speaker s; s.playTone(1976, 10, 100); count+=1; }
+        }
         mLightPid.reset(70,0,210);
     	mForwardPid.reset(0.003, 0, 0.01);
     	mLineTrace.setForward(120);
     }	
 	
 	// 第2コーナーの入り口から最後まで
-    else if(6000.0 < mGps.getDistance()) {
-        mLightPid.reset(100,0,300);
+    else if(6500.0 < mGps.getDistance()) {
+        {
+        	static int count = 0;
+        	if (count == 0) { Speaker s; s.playTone(1976, 10, 100); count+=1; }
+        }
+        mLightPid.reset(80,0,240); // あまりにも急に変えるとバタンと倒れるっぽい。理由は不明
     	mForwardPid.reset(0.003, 0, 0.01);
     	mLineTrace.setForward(100);
     }
@@ -112,14 +120,22 @@ bool NormalDriver::drive()
     }
 	
 	// 第1コーナーの出口から第2コーナーの入り口まで
-    else if(4100.0 < mGps.getDistance() && mGps.getDistance() < 5200.0) {
+    else if(4100.0 < mGps.getDistance() && mGps.getDistance() < 5700.0) {
+        {
+        	static int count = 0;
+        	if (count == 0) { Speaker s; s.playTone(1976, 10, 100); count+=1; }
+        }
         mLightPid.reset(70,0,210);
     	mForwardPid.reset(0.003, 0, 0.01);
     	mLineTrace.setForward(120);
     }	
 	// 第2コーナーの入り口から最後まで
-    else if(5200.0 < mGps.getDistance()) {
-        mLightPid.reset(100,0,300);
+    else if(5700.0 < mGps.getDistance()) {
+        {
+        	static int count = 0;
+        	if (count == 0) { Speaker s; s.playTone(1976, 10, 100); count+=1; }
+        }
+        mLightPid.reset(80,0,240); // あまりにも急に変えるとバタンと倒れるっぽい。理由は不明
     	mForwardPid.reset(0.003, 0, 0.01);
     	mLineTrace.setForward(100);
     }
