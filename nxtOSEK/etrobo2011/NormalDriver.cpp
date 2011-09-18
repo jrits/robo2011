@@ -29,7 +29,8 @@ bool NormalDriver::drive()
     gDoForwardPid = true;
     gDoMaimai = true; //!< まいまい式発動フラグ
 	
-#ifdef INCOURSE
+	//////////////////////// INCOURSE /////////////////////////////
+	if (mCourse->getNameId() == 0) {
 	// スタートから坂道頂上まで
     if(0 < mGps.getDistance() && mGps.getDistance() < 2300.0) {
         mLightPid.reset(30,0,90);
@@ -85,7 +86,8 @@ bool NormalDriver::drive()
     	mLineTrace.setForward(100);
     }
 
-#else
+	/////////////////////// OUTCOURSE //////////////////////
+	} else {
 	// スタートから坂道頂上まで
     if(0 < mGps.getDistance() && mGps.getDistance() < 1500.0) {
         mLightPid.reset(30,0,90);
@@ -139,8 +141,7 @@ bool NormalDriver::drive()
     	mForwardPid.reset(0.003, 0, 0.01);
     	mLineTrace.setForward(100);
     }
-
-#endif	
+	}
     mLineTrace.execute();
     return true;
 }
