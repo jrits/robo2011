@@ -36,9 +36,20 @@ void TripodActivator::run(VectorT<F32> command)
         command.mX = forwardPid(command.mX);
     }
 
+    S8 tmp_L, tmp_R;
+    // C++ バージョンだとなぜか mActivator.run() で動かないのでとりあえず。
+    balance_control(
+        (float)command.mX,							 /* 前後進命令(+:前進, -:後進) */
+        (float)command.mY,							 /* 旋回命令(+:右旋回, -:左旋回) */
+        (float)ecrobot_get_gyro_sensor(NXT_PORT_S1), /* ジャイロセンサ値 */
+        (float)mGyroOffset,                          /* ジャイロセンサオフセット値 */
+        (float)nxt_motor_get_count(NXT_PORT_C),		 /* 左モータ回転角度[deg] */
+        (float)nxt_motor_get_count(NXT_PORT_B),		 /* 右モータ回転角度[deg] */
+        (float)ecrobot_get_battery_voltage(),		 /* バッテリ電圧[mV] */
+        &tmp_L,										 /* 左モータPWM出力値 */
+        &tmp_R);									 /* 右モータPWM出力値 */
+
     // @todo: balance_control と同じ入力値なら同じぐらいの出力値になるようにしたい
-    //pwm_L = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
-    //pwm_R = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
     pwm_L = command.mX + command.mY * 0.5;
     pwm_R = command.mX - command.mY * 0.5;
 
