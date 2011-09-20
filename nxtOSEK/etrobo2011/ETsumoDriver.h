@@ -29,7 +29,8 @@ private:
         INIT = -1,
         TEST,
         BEFORELINETRACE,
-        PREPARE_SPOTSEARCH,
+        PREPARE_SPOTSEARCH_1,
+        PREPARE_SPOTSEARCH_2,
         SPOTSEARCH,
         SPOTSEARCH_to_SWINGSEARCH,
         SWINGSEARCH,
@@ -39,6 +40,7 @@ private:
         HAKKE_READY,
         NOKOTTA_GO,
         KACHI_NANORI,
+        LINERETURN,
         AFTERLINETRACE
     };
     eSubSection mState;    //!< 状態
@@ -69,6 +71,7 @@ private:
     float mTargetTotalX;
     float mTargetTotalY;
     float mTargetAngle;
+    float mIncrementAngle;
     Point mPoint;
     int mSearchPoint;
     //float mMyAngle;

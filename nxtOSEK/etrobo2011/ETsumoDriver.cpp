@@ -9,6 +9,7 @@
 #include "factory.h"
 #include "constants.h"
 #include "Speaker.h"
+#include "LineDetector.h"
 
 #define K_PHIDOT_FOR_MOVE 25.0F
 #define K_PHIDOT_FOR_SEARCH 15.0F
@@ -18,9 +19,11 @@
 #define SUMO_DEBUG 1
 
 //ET相撲サーチ開始座標
-float GPS_ETSUMO_SEARCH_X = 4500.0; // ＠todo要再設定
-float GPS_ETSUMO_SEARCH_Y = -3400.0 + 800.0; // ＠todo要再設定
-float GPS_ETSUMO_SEARCH_DIRECTION = 360.0; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_1_X =  4074; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_1_Y = -3258; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_2_X =  4503; // ＠todo要再設定
+float GPS_ETSUMO_SEARCH_2_Y = -2658; // ＠todo要再設定
+//float GPS_ETSUMO_SEARCH_DIRECTION = 360.0; // ＠todo要再設定
 
 float GPS_ETSUMO_SEARCH_X_SWEEP_1 = 5000.0; // ＠todo要再設定
 float GPS_ETSUMO_SEARCH_Y_SWEEP_1 = -2500.0; // ＠todo要再設定
@@ -39,8 +42,9 @@ extern float gSonarTagetAngle;
 ETsumoDriver::ETsumoDriver()    //初期値の設定
 {
     mTimeCounter = 0;
-    mInitState = false;             
+    mInitState = true;
     mState = ETsumoDriver::INIT;  //ステート
+    //mState = ETsumoDriver::KACHI_NANORI;  //ライン復帰テスト用
     mSearchPoint = 1;
 }
 
@@ -176,26 +180,27 @@ bool ETsumoDriver::drive()
     
     if (mState == ETsumoDriver::INIT) { // 初期化状態
         gDoSonar = false;
+        gDoMaimai = false; //!< まいまい式発動フラグ
+        gDoForwardPid = false; //!< フォワードPID発動フラグ(暫定)
         mTimeCounter = 0;
         mOrigK_THETADOT =  K_THETADOT; // 後で戻すために保存
         mOrigK_PHIDOT = K_PHIDOT; // 後で戻すために保存
         K_THETADOT = 6.5F;
         K_PHIDOT = 20.0F;
         mScanState = UNKNOWN;
-        mLightSensor.setLamp(0);//試しにライトセンサOFF
         
         //状態遷移
         mInitState = true;
-        mState = ETsumoDriver::PREPARE_SPOTSEARCH;
+        mState = ETsumoDriver::PREPARE_SPOTSEARCH_1;
     }
 
-    if (mState == ETsumoDriver::PREPARE_SPOTSEARCH) {
+    if (mState == ETsumoDriver::PREPARE_SPOTSEARCH_1) {
         if (mInitState) {
             gDoSonar = false;
             K_THETADOT = 6.5F;
             K_PHIDOT = 60.0F;
             mTimeCounter = 0;
-            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X, GPS_ETSUMO_SEARCH_Y));// ＠todo要再設定
+            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_1_X, GPS_ETSUMO_SEARCH_1_Y));// ＠todo要再設定
             mCoordinateTrace.setForward(50.0);
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
@@ -204,12 +209,29 @@ bool ETsumoDriver::drive()
         // 移動完了
         if (mCoordinateTrace.isArrived()) {
             mInitState = true;
-            //mState = ETsumoDriver::SWINGSEARCH;
+            mState = ETsumoDriver::PREPARE_SPOTSEARCH_2;
+        }
+        mCoordinateTrace.execute();
+    }
+    if (mState == ETsumoDriver::PREPARE_SPOTSEARCH_2) {
+        if (mInitState) {
+            gDoSonar = false;
+            K_THETADOT = 6.5F;
+            K_PHIDOT = 60.0F;
+            mTimeCounter = 0;
+            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_2_X, GPS_ETSUMO_SEARCH_2_Y));// ＠todo要再設定
+            mCoordinateTrace.setForward(50.0);
+            mCoordinateTrace.setAllowableError(30);
+            mInitState = false;
+            mIsArrived = false;
+        }
+        // 移動完了
+        if (mCoordinateTrace.isArrived()) {
+            mInitState = true;
             mState = ETsumoDriver::SPOTSEARCH;
         }
         mCoordinateTrace.execute();
     }
-    
     
     if (mState == ETsumoDriver::SPOTSEARCH) {
         if (mInitState) {
@@ -264,7 +286,7 @@ bool ETsumoDriver::drive()
             gDoSonar = false;
             K_PHIDOT = 60.0F;
             mTimeCounter = 0;
-            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_X + 200.0, GPS_ETSUMO_SEARCH_Y - 200.0));// ＠todo要再設定
+            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_2_X + 200.0, GPS_ETSUMO_SEARCH_2_Y - 200.0));// ＠todo要再設定
             mCoordinateTrace.setForward(RIKISHI_FORWARD);
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
@@ -470,40 +492,106 @@ bool ETsumoDriver::drive()
             mAngleTrace.setForward(OSHIDASHI_FORWARD);//＠todoベストな値を要検証
         }
         //押し出し判定
-        if((mGps.getXCoordinate() > (GPS_ETSUMO_SEARCH_X + 800)) || (mGps.getYCoordinate() < (GPS_ETSUMO_SEARCH_Y - 800))){//＠todoベストな値を要検証
+        if((mGps.getXCoordinate() > 5214) || (mGps.getYCoordinate() < -3354)){//＠todoベストな値を要検証
             mAngleTrace.setForward(-30);//判定が出たらゆっくり後退
             mTimeCounter = 0;
             mOshidashiFlag = true;
             mLightSensor.setLamp(1);//ライトセンサON
         }
-        //そっと4秒ほど後退後状態遷移
+        //そっと2秒ほど後退後状態遷移
         if(mOshidashiFlag && (mTimeCounter > 500)){    
-            //mState = ETsumoDriver::KACHI_NANORI;
-            //mInitState = true;
+            mState = ETsumoDriver::KACHI_NANORI;
+            mTimeCounter = 0;
+            mInitState = true;
         }
         mAngleTrace.execute();
     }
-    /*メモリが足りない？ためコメントアウト
     if (mState == ETsumoDriver::KACHI_NANORI) {
         if (mInitState) {
             gDoSonar = false;
+            K_THETADOT = 6.5F;
             K_PHIDOT = 60.0F;
             mTimeCounter = 0;
-            mCoordinateTrace.setTargetCoordinate(MakePoint(0, 0));
-            mCoordinateTrace.setForward(30);
+            mCoordinateTrace.setTargetCoordinate(MakePoint(4887, -2316));//ET相撲上方の灰色マーカ右端
+            mCoordinateTrace.setForward(60);
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
             mIsArrived = false;
+            gDoMaimai = true;
+            
+            
+            //mGps.adjustXCoordinate(4887); //ライン復帰テスト用
+            //mGps.adjustYCoordinate(-2316 - 300); //ライン復帰テスト用
         }
-        // 移動完了
-        if (mCoordinateTrace.isArrived()) {
+        // ライン検知
+        //if(mLineDetector.detect()) {
+        if(mCoordinateTrace.isArrived()){
+            mTimeCounter = 0;
             mInitState = true;
-            mState = ETsumoDriver::SPOTSEARCH_to_SWINGSEARCH;
+            mState = ETsumoDriver::LINERETURN;
+            if(SUMO_DEBUG) {mSpeaker.playTone(500, 1, 50);}
         }
         mCoordinateTrace.execute();
     }
-    */
+    if (mState == ETsumoDriver::LINERETURN) {
+        if (mInitState) {
+            gDoSonar = false;
+            K_THETADOT = 6.5F;
+            K_PHIDOT = 60.0F;
+            mTimeCounter = 0;
+            mCoordinateTrace.setTargetCoordinate(MakePoint(5376, -1716));
+            mCoordinateTrace.setForward(50);
+            mCoordinateTrace.setAllowableError(30);
+            mInitState = false;
+            mIsArrived = false;
+            mIncrementAngle = 0;
+        }
+        // ライン検知
+        if(mLineDetector.detect() && (mGps.getYCoordinate() > -2316 + 150)) {
+            mTimeCounter = 0;
+            mInitState = true;
+            mState = ETsumoDriver::AFTERLINETRACE;
+        }
+        if(mTimeCounter > 500){
+            mCoordinateTrace.setForward(20);
+        }
+        mCoordinateTrace.execute();
+    }
+    if (mState == ETsumoDriver::AFTERLINETRACE) {
+        if (mInitState) {
+            gDoSonar = false;
+            K_THETADOT = 6.5F;
+            K_PHIDOT = 60.0F;
+            mTimeCounter = 0;
+            mLineTrace.setForward(10);
+            mInitState = false;
+        }
+        if(mTimeCounter >= 1000) {
+            K_THETADOT = 10.5F;
+            K_PHIDOT = 25.0F;
+            //mTimeCounter = 0;
+            mLineTrace.setForward(30);
+            //mState = ETsumoDriver::SPOTSEARCH_to_SWINGSEARCH;
+        }
+        mLineTrace.execute();
+    }
     mTimeCounter++;
+        
+ #if 1 // ログ送信(0：解除、1：実施)
+        LOGGER_SEND = 2;
+        LOGGER_DATAS08[0] = (S8)(gDoSonar); 
+        LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+        LOGGER_DATAU16    = (U16)(gMaimaiValue * 100);
+        LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+        LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+        LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+        LOGGER_DATAS16[3] = (S16)(gMaimaiValue * 100);
+        LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+        LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+        LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
+        LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
+#endif
+        
     return 0;
 }
 
