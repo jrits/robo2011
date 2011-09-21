@@ -3,10 +3,10 @@
 #include "kernel_id.h"
 #include "ecrobot_interface.h"
 
-/* 関数プロトタイプ宣言 */
-static void tail_control(signed int angle);
+/* 尻尾コントロール */
 #define P_GAIN             2.5F /* 完全停止用モータ制御比例係数 */
 #define PWM_ABS_MAX          60 /* 完全停止用モータ制御PWM絶対最大値 */
+static void tail_control(signed int angle);
 
 /* nxtOSEK hook to be invoked from an ISR in category 2 */
 void user_1ms_isr_type2(void){ /* do nothing */ }
