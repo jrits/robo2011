@@ -5,7 +5,6 @@
 #include "constants.h"
 #include "factory.h"
 extern bool gDoForwardPid;
-extern bool gDoProgressiveTurn;
 
 /**
  * コンストラクタ
@@ -35,12 +34,6 @@ void TripodActivator::run(VectorT<F32> command)
     // フォワードPID
     if (gDoForwardPid) {
         command.mX = forwardPid(command.mX);
-    }
-
-    // 過去の蓄積ベースのturn値
-    if (gDoProgressiveTurn) {
-        command.mY += mTurnHistory.calcAverage();
-        mTurnHistory.update(command.mY);
     }
 
     // @todo: balance_control と同じ入力値なら同じぐらいの出力値になるようにしたい

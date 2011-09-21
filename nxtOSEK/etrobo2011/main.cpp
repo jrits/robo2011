@@ -47,7 +47,6 @@ bool gTouchStarter = false; //!< タッチセンサ押下フラグ
 bool gDoMaimai = false; //!< まいまい式発動フラグ
 float gMaimaiValue = 0.0;  //!< まいまい式の結果
 bool gDoForwardPid = false; //!< フォワードPID発動フラグ(暫定)
-bool gDoProgressiveTurn = false; //!< 過去のturn値をベースにしたトレース(暫定)
 int  gSonarTagetDistance = 0; // ETsumo
 float gSonarTagetAngle = 0; // ETsumo
 
