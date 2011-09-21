@@ -508,7 +508,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
     LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
     LOGGER_DATAS32[2] = (S32)(mTailMotor.getCount());
-    LOGGER_DATAS32[3] = (gDoSonar ? (S32)(gSonarTagetAngle): 0);
+    LOGGER_DATAS32[3] = (gDoSonar ? (S32)(gSonarTagetDistance): 0);
 #endif
 
     /* 2011年版"簡易"自動補正 */
@@ -560,7 +560,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
     LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
     LOGGER_DATAS32[2] = (S32)(mTailMotor.getCount());
-    LOGGER_DATAS32[3] = (gDoSonar ? (S32)(gSonarTagetAngle): 0);
+    LOGGER_DATAS32[3] = (gDoSonar ? (S32)(gSonarTagetDistance): 0);
 #endif
     
     /* 2011年版"簡易"自動補正 */
