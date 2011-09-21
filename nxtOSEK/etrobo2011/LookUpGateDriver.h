@@ -11,7 +11,7 @@ public:
     
 private:
     int mTimeCounter;
-    bool isDoFindGate();
+    bool doFindGate();
     bool isGatePassed();
     bool isGateLost();
     bool isSitDowned();

@@ -54,7 +54,6 @@ TARGET_CPP_SOURCES = \
 	StandUpSkill.cpp \
         SitDownSkill.cpp \
         LookUpGateDriver.cpp \
-        StandupDriver.cpp \
         MarkerDetector.cpp
 
 # TOPPERS/ATK(OSEK)設定ファイル

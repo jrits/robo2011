@@ -74,6 +74,3 @@ TestDriver mTestDriver;
 ETsumoDriver mETsumoDriver;
 LookUpGateDriver mLookUpGateDriver;
 
-TestDriver mSeesawTestDriver;
-StandupDriver mStandupDriver;
-

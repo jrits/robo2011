@@ -2,6 +2,7 @@
 #include "factory.h"
 extern bool gDoSonar;
 extern bool gSonarIsDetected; //!< 衝立検知の結果
+extern int gSonarTagetDistance;
 
 LookUpGateDriver::LookUpGateDriver()
     : mCurrentSubSection(INIT)
@@ -153,21 +154,12 @@ bool LookUpGateDriver::isGateLost()
 
 bool LookUpGateDriver::isSitDowned()
 {
-    static int count = 0;
-    count++;
-
-    // 時間でもチェックして落ち着かせる
-    return mSitDownSkill.isSeated() && count >= 500;
+    return mSitDownSkill.isSeated();
 }
 
 bool LookUpGateDriver::isStandUped()
 {
-    static int count = 0;
-    count++;
-
-    // 時間でもチェックして落ち着かせる
-    return mStandUpSkill.isStandUp() && count >= 500;
-    //return mStandupDriver.isArrived() && count >= 500;
+    return mStandUpSkill.isDone();
 }
 
 bool LookUpGateDriver::isDone()
