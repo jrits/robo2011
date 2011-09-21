@@ -13,7 +13,7 @@ private:
     int mTimeCounter;
     bool isDoFindGate();
     bool isGatePassed();
-    bool isGateFound();
+    bool isGateLost();
     bool isSitDowned();
     bool isStandUped();
     bool isDone();

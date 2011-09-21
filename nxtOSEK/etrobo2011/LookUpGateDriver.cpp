@@ -52,10 +52,10 @@ bool LookUpGateDriver::drive()
         // ベーシックコースから引き続きライントレース
         mLineTrace.setForward(100);
         mLineTrace.execute();
-        if(isDoFindGate()){
+        if(doFindGate()){
+            { Speaker s; s.playTone(1976, 10, 100); }
             gDoSonar = true;
             gDoMaimai = true;
-            { Speaker s; s.playTone(1976, 10, 100); }
             mCurrentSubSection = IN_FRONT_OF_GATE;
             K_THETADOT = 7.5F;
         }
@@ -74,9 +74,10 @@ bool LookUpGateDriver::drive()
         mTripodAngleTrace.setForward(50);
         mTripodAngleTrace.setTargetAngle(360);
         mTripodAngleTrace.execute();
-        if (isGateFound()) {
+        if (isGateLost()) {
             // 座標補正(ET相撲からのオーダー)
-            mGps.adjustXCoordinate(3432.0);
+            mSpeaker.playTone(1000, 1, 100);
+            mGps.adjustXCoordinate(3700.0);
             mGps.adjustYCoordinate(-3348.0);
         }
         if(isGatePassed()){
@@ -108,7 +109,7 @@ bool LookUpGateDriver::drive()
     return isDone();
 }
 
-bool LookUpGateDriver::isDoFindGate()
+bool LookUpGateDriver::doFindGate()
 {
     // ベーシックステージチェックポイント超えてすぐ
     return mGps.getXCoordinate() > 3000.0;
@@ -120,15 +121,34 @@ bool LookUpGateDriver::isGatePassed()
     return mGps.getXCoordinate() > 3600.0;
 }
 
-bool LookUpGateDriver::isGateFound()
+bool LookUpGateDriver::isGateLost()
 {
-	if(gSonarIsDetected){
-		mSpeaker.playTone(1000, 1, 100);
-		return 1;
-	}
-	else{
-		return 0;
-	}
+    static bool isGateFoundEver = false;
+    static int numGateLost = 0;
+    static bool isGateLost = false;
+
+    if (isGateLost) return false; // １度しか true は返さない
+
+    bool isGateFound = (gSonarIsDetected && gSonarTagetDistance < 100.0);
+    if (! isGateFoundEver) {
+        if (isGateFound) {
+            isGateFoundEver = true;
+        }
+    }
+    else {
+        if (isGateFound) {
+            numGateLost = 0;
+        }
+        else {
+            numGateLost++;
+        }
+    }
+    // 10回以上見失ったらゲートを越えたと確定
+    if (numGateLost > 10) {
+        isGateLost = true;
+        return true;
+    }
+    return false;
 }
 
 bool LookUpGateDriver::isSitDowned()

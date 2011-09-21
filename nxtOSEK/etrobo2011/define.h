@@ -1,10 +1,10 @@
 // ロボット
-//#define KACHIROBO
-#define KACHIICHI
+#define KACHIROBO
+//#define KACHIICHI
 //#define KACHINEW
 
 // ドライバ
-// #define INCOURSE InCourse::TESTDRIVE
+//#define INCOURSE InCourse::TESTDRIVE
 // #define INCOURSE InCourse::START
 // #define INCOURSE InCourse::SEESAW
 // #define INCOURSE InCourse::STAIRWAY

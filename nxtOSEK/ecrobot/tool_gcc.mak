@@ -11,7 +11,7 @@ endif
 
 # specify NeXTTool root directory
 ifndef NEXTTOOL_ROOT
-NEXTTOOL_ROOT = /cygdrive/C/cygwin/nexttool
+NEXTTOOL_ROOT = /cygdrive/E/cygwin/nexttool
 endif
 
 

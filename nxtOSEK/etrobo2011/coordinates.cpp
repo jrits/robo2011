@@ -65,6 +65,10 @@ float GPS_LOOKUP_START_X = 2934.0;
 float GPS_LOOKUP_START_Y = -3350.0;
 float GPS_LOOKUP_START_DIRECTION = 360.0;
 
+// ルックアップゲートの真下。
+float GPS_LOOKUP_GATE_X = 3612.0;
+float GPS_LOOKUP_GATE_Y = -3354.0;
+
 // ET相撲開始座標
 // ルックアップゲート通過後、左カーブ開始場所
 float GPS_ETSUMO_START_X = 3918.0; 
