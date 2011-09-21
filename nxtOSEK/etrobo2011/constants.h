@@ -105,6 +105,7 @@ extern bool gLineTrace;
 extern bool gDoForwardPid;
 extern bool gDoMaimai;
 extern float gMaimaiValue;
+extern bool gDoSonar;
 
 #include "Speaker.h"
 //#define beep(r) { Speaker s; s.playTone(r,r,80);}

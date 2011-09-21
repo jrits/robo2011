@@ -43,6 +43,9 @@ StandUpSkill::execute(){
     // Activator使用禁止。
     switch(mSubState) {
     case INIT:
+      gDoSonar = false;
+      gDoMaimai = false; //!< まいまい式発動フラグ
+      gDoForwardPid = false; //!< フォワードPID発動フラグ(暫定)
       mLeftMotor.setPWM(0);
       mRightMotor.setPWM(0);
       mTailMotor.setBrake(false);
@@ -104,7 +107,7 @@ StandUpSkill::execute(){
       }
       break;
     case TO_STABLE:
-      mSpeaker.playTone(800, 10, 5);
+      //mSpeaker.playTone(800, 10, 5);
       ++mStableCount;
       if(mStableCount > 500) {
 	mSubState = STANDING_UP;
@@ -112,7 +115,7 @@ StandUpSkill::execute(){
       }
       break;
     case STANDING_UP:
-      mSpeaker.playTone(700, 10, 5);
+      //mSpeaker.playTone(700, 10, 5);
       tail_control_with_PID(0);      
       balance_control((float)command.mX,/* 前後進命令(+:前進, -:後進) */
 		      (float)command.mY,/* 旋回命令(+:右旋回, -:左旋回) */

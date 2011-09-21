@@ -13,7 +13,7 @@ extern "C"{
   extern void tail_control(signed int);
 }
 
-#define GPS_LOOKUP_GATE_X 3528
+#define GPS_LOOKUP_GATE_X 3540 + 10.0 //ゲートが見えなくなる座標 
 #define GPS_LOOKUP_GATE_Y -3351
 
 namespace{
@@ -23,7 +23,7 @@ namespace{
 };
 LookUpGateDriver::LookUpGateDriver()
   : mCurrentSubSection(INIT),
-    mOverrunDistance(100),
+    mOverrunDistance(200),
     mAdjustCoordinatesFlag(false)
 {
 }
@@ -53,7 +53,7 @@ LookUpGateDriver::drive(){
     if(sitDown()){
       gDoProgressiveTurn = false;
       gDoMaimai = false;
-      gLineTrace = false;//自動補正しないため（ライントレースでなければ、自動補正しない）
+      gLineTrace = false;//GPS自動補正しないため（ライントレースでなければ、自動補正しない）
       //tail_control(TAIL_ANGLE_FOR_TRIPOD_LINETRACE);
       mTripodAngleTrace.setTargetAngle(360);
       mTripodAngleTrace.setForward(SPEED_UNDER_LOOKUP_GATE);
@@ -77,7 +77,7 @@ LookUpGateDriver::drive(){
       mTailMotor.setBrake(true);
       mCurrentSubSection = BEHIND_GATE;
     }else{
-        mTripodAngleTrace.setForward(SPEED_UNDER_LOOKUP_GATE);
+        mTripodAngleTrace.setForward(SPEED_UNDER_LOOKUP_GATE / 2);//通過したらスタンドアップのため減速
         mTripodAngleTrace.execute();
     }
     break;
@@ -91,7 +91,7 @@ LookUpGateDriver::drive(){
   case DONE:
     //    mLineTrace.execute();
     mActivator.run(command);
-    mSpeaker.playTone(400, 1, 50);
+    //mSpeaker.playTone(400, 1, 50);
 
     break;
   default:
@@ -115,9 +115,8 @@ LookUpGateDriver::isUnderGate() const {
 
 bool
 LookUpGateDriver::passedGate() {
-  // 障害物が10cm(100mm)以内で検知されたらゲート通過と判定する。
   // この処理は１回しか実行されない。
-  if (!gSonarIsDetected && (gSonarTagetDistance < 100.0) && !mAdjustCoordinatesFlag) {
+  if (!gSonarIsDetected && !mAdjustCoordinatesFlag) {
     mGps.adjustXCoordinate(GPS_LOOKUP_GATE_X);
     mGps.adjustYCoordinate(GPS_LOOKUP_GATE_Y);
     mDistanceAtGate = mGps.getDistance();
@@ -125,7 +124,9 @@ LookUpGateDriver::passedGate() {
   }
 
   // ゲートを通過してからmOverrunDistanceだけオーバーランする。
-    if(mAdjustCoordinatesFlag) return (mGps.getDistance() - mDistanceAtGate) > mOverrunDistance;
+    if(mAdjustCoordinatesFlag){
+        return (mGps.getDistance() - mDistanceAtGate) > mOverrunDistance;
+    }
     return 0;
 }
 
