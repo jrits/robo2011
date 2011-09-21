@@ -513,12 +513,10 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 
     /* 2011年版"簡易"自動補正 */
     /* 距離メインの決め打ち補正 */
-    
     /* スタート直後の補正*/
     if(((500.0 < getDistance()) && (getDistance() < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
     {
         adjustDirection(180);
-        //adjustXCoordinate();
         adjustYCoordinate(-252.0);
         mSpeaker.playTone(1000, 1, 100);
     }
@@ -528,7 +526,6 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     {
         adjustDirection(270);
         adjustXCoordinate(262.0);
-        //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
     }
     
@@ -537,7 +534,6 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     {
         adjustDirection(360);
         adjustYCoordinate(-3350.0);
-        //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
     }
 }
@@ -573,7 +569,6 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     if((500.0 < getDistance()) && (getDistance() < 1000.0) && ((135.0 < avgD)) && (avgD < 225.0) && (-1000.0 < avgY))
     {
         adjustDirection(180);
-        //adjustXCoordinate();
         adjustYCoordinate(-504.0);
         mSpeaker.playTone(1000, 1, 100);
     }
@@ -583,18 +578,22 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     {
         adjustDirection(270);
         adjustXCoordinate(513.0);
-        //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
     }
     
     /* シーソー前の補正*/
-    //if((22000.0 < getDistance()) && (getDistance() < 23500.0) && (405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))//距離は微妙なのでコメントアウト
     if((405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))
     {
         adjustDirection(getDirection() + (450 - avgD));
-        //adjustDirection(450);
         adjustXCoordinate(2676.0);
-        //adjustYCoordinate();
+        mSpeaker.playTone(1000, 1, 100);
+    }
+
+    /* ガレージ前の補正*/
+    if((315.0 < avgD) && (avgD < 405.0) && (3800.0 < avgX) && (avgX < 4300.0) && (-2250.0 < avgY) && (avgY < -1900.0))
+    {
+        adjustDirection(getDirection() + (360 - avgD));
+        adjustYCoordinate(-2085.0);
         mSpeaker.playTone(1000, 1, 100);
     }
 }
