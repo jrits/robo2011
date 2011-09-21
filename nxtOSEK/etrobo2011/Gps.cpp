@@ -516,24 +516,24 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
     /* スタート直後の補正*/
     if(((500.0 < getDistance()) && (getDistance() < 1000.0)) && ((135.0 < avgD)) && (avgD < 225.0))
     {
-        adjustDirection(180);
-        adjustYCoordinate(-252.0);
+        adjustDirection(getDirection() + (180 - avgD));
+        adjustYCoordinate(getYCoordinate() + (-252.0 - avgY));
         mSpeaker.playTone(1000, 1, 100);
     }
     
     /* 最初のカーブ後の補正*/
     if(((4500.0 < getDistance()) && (getDistance() < 6000.0)) && (225.0 < avgD) && (avgD < 315.0) && ((-2000.0 < avgY)) && (avgY < -1500.0))
     {
-        adjustDirection(270);
-        adjustXCoordinate(262.0);
+        adjustDirection(getDirection() + (270 - avgD));
+        adjustXCoordinate(getXCoordinate() + (262.0 - avgX));
         mSpeaker.playTone(1000, 1, 100);
     }
     
     /* ルックアップゲート前の補正*/
     if((13300.0 < getDistance()) && (getDistance() < 15000.0) && (315.0 < avgD) && (avgD < 405.0) && ((2800.0 < avgX)) && (avgX < 3800.0))
     {
-        adjustDirection(360);
-        adjustYCoordinate(-3350.0);
+        adjustDirection(getDirection() + (360 - avgD));
+        adjustYCoordinate(getYCoordinate() + (-3350.0 - avgY));
         mSpeaker.playTone(1000, 1, 100);
     }
 }
@@ -568,16 +568,16 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     /* スタート直後の補正*/
     if((500.0 < getDistance()) && (getDistance() < 1000.0) && ((135.0 < avgD)) && (avgD < 225.0) && (-1000.0 < avgY))
     {
-        adjustDirection(180);
-        adjustYCoordinate(-504.0);
+        adjustDirection(getDirection() + (180 - avgD));
+        adjustYCoordinate(getYCoordinate() + (-504.0 - avgY));
         mSpeaker.playTone(1000, 1, 100);
     }
     
     /* 最初のカーブ後の補正*/
     if((4500.0 < getDistance()) && (getDistance() < 6000.0) && (225.0 < avgD) && (avgD < 315.0) && (-2000.0 < avgY) && (avgY < -1500.0))
     {
-        adjustDirection(270);
-        adjustXCoordinate(513.0);
+        adjustDirection(getDirection() + (270 - avgD));
+        adjustXCoordinate(getXCoordinate() + (513.0 - avgX));
         mSpeaker.playTone(1000, 1, 100);
     }
     
@@ -585,7 +585,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     if((405.0 < avgD) && (avgD < 495.0) && (2500.0 < avgX) && (avgX < 2850.0) && (-2000.0 < avgY) && (avgY < -1500.0))
     {
         adjustDirection(getDirection() + (450 - avgD));
-        adjustXCoordinate(2676.0);
+        adjustXCoordinate(getXCoordinate() + (2676.0 - avgX));
         mSpeaker.playTone(1000, 1, 100);
     }
 
@@ -593,7 +593,7 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
     if((315.0 < avgD) && (avgD < 405.0) && (3800.0 < avgX) && (avgX < 4300.0) && (-2250.0 < avgY) && (avgY < -1900.0))
     {
         adjustDirection(getDirection() + (360 - avgD));
-        adjustYCoordinate(-2085.0);
+        adjustYCoordinate(getYCoordinate() + (-2085.0 - avgY));
         mSpeaker.playTone(1000, 1, 100);
     }
 }
