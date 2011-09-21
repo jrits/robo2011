@@ -17,18 +17,18 @@ public:
     /**
      * コンストラクタ
      */
-	Detector(){}
+    Detector(){}
     /**
      * デストラクタ
      */
-	~Detector(){}
+    ~Detector(){}
     /**
      * 検出する
      *
      * @retval true 検出
      * @retval false 未検出
      */
-	bool detect();
+    bool detect();
 };
 
 #endif // !defined(EA_3E87576D_66A3_4a67_87CD_9668CD4E1E41__INCLUDED_)

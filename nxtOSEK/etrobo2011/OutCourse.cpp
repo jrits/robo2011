@@ -12,21 +12,21 @@
 OutCourse::OutCourse(OutCourse::eSection aSection)
     : Course()
 {
+    mNameId = 1;
     mState = aSection;
     switch (mState) {
-    case OutCourse::SEESAW:
-        // シーソーからテスト
-        // インコースガレージ・イン手前線
-        mGps.adjustXCoordinate(GPS_SEESAW_START_X);
-        mGps.adjustYCoordinate(GPS_SEESAW_START_Y);
-        mGps.adjustDirection(GPS_SEESAW_START_DIRECTION);
+    case OutCourse::LOOKUP:
+        // LOOKUPからテスト
+        mGps.adjustXCoordinate(GPS_LOOKUP_START_X);
+        mGps.adjustYCoordinate(GPS_LOOKUP_START_Y);
+        mGps.adjustDirection(GPS_LOOKUP_START_DIRECTION);
         break;
-    case OutCourse::STAIRWAY:
-        // ミステリーサークルからテスト
-        // インコース、アウトコースシーソー後マーカー終わり地点
-        mGps.adjustXCoordinate(GPS_STAIRWAY_START_X);
-        mGps.adjustYCoordinate(GPS_STAIRWAY_START_Y);
-        mGps.adjustDirection(GPS_STAIRWAY_START_DIRECTION);
+    case OutCourse::ETSUMO:
+        // ET相撲からテスト
+        // ET相撲スタート地点
+        mGps.adjustXCoordinate(GPS_ETSUMO_START_X);
+        mGps.adjustYCoordinate(GPS_ETSUMO_START_Y);
+        mGps.adjustDirection(GPS_ETSUMO_START_DIRECTION);
         break;
     case OutCourse::GARAGEIN:
         // ガレージインからテスト
@@ -50,23 +50,23 @@ OutCourse::OutCourse(OutCourse::eSection aSection)
  */
 void OutCourse::drive()
 {
-#if 1 // ログ送信(0：解除、1：実施)
+#if 0 // ログ送信(0：解除、1：実施)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
-	LOGGER_DATAS08[1] = (S8)(mLineDetector.detect()); // 一瞬だけなのでログに残らない可能性あり
-	LOGGER_DATAU16    = (U16)(mWallDetector.detect());
-	LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
-	LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
-	LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-	LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
-	LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
-	LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
-	LOGGER_DATAS32[2] = (S32)(mLightSensor.get());
-	LOGGER_DATAS32[3] = (S32)(mGyroSensor.get());
+    LOGGER_DATAS08[1] = (S8)(mLineDetector.detect()); // 一瞬だけなのでログに残らない可能性あり
+    LOGGER_DATAU16    = (U16)(mWallDetector.detect());
+    LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+    LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+    LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+    LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
+    LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+    LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+    LOGGER_DATAS32[2] = (S32)(mLightSensor.get());
+    LOGGER_DATAS32[3] = (S32)(mGyroSensor.get());
 #endif
 #if 0 // デバッグ(0：解除、1：実施)
     {
-    	//DESK_DEBUG = true;
+        //DESK_DEBUG = true;
         static int count = 0;
         if (count++ % 25 == 0) {
             Lcd lcd;
@@ -85,22 +85,29 @@ void OutCourse::drive()
         if (mNormalDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_SEESAW_START, MakePoint(X, Y))) { // 区間をシーソー区間に更新
-                mState = OutCourse::SEESAW;
+            //if (inRegion(GPS_LOOKUP_START, MakePoint(X, Y)) || (13500.0 < mGps.getDistance())) { // 区間をルックアップ区間に更新
+            //if (12500.0 < mGps.getDistance()) { // ルックアップ区間前減速
+            //    mLineTrace.setForward(30);//ノーマルドライバ内でやる
+            //}
+            if (13500.0 < mGps.getDistance()) { // 区間をルックアップ区間に更新
+                mState = OutCourse::LOOKUP;
             }
         }
     }
-    else if (mState == OutCourse::SEESAW) { // シーソー区間
-        if (mSeesawDriver.drive()) {
+    else if (mState == OutCourse::LOOKUP) { // ルックアップ区間
+        if (mLookUpGateDriver.drive()) {
+            mState = OutCourse::ETSUMO;
+            /*とりあえず終了したら遷移することにする
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
-            if (inRegion(GPS_STAIRWAY_START, MakePoint(X, Y))) { // 区間を階段区間に更新
-                mState = OutCourse::STAIRWAY;
+        	if ((inRegion(GPS_ETSUMO_START, MakePoint(X, Y)))) { // 区間をET相撲区間に更新
+                mState = OutCourse::ETSUMO;
             }
+            */
         }
     }
-    else if (mState == OutCourse::STAIRWAY) { // 階段区間
-        if (mStairwayDriver.drive()) {
+    else if (mState == OutCourse::ETSUMO) { // ET相撲区間
+        if (mETsumoDriver.drive()) {
             float X = mGps.getXCoordinate();
             float Y = mGps.getYCoordinate();
             if (inRegion(GPS_GARAGEIN_START, MakePoint(X, Y))) { // 区間をガレージ区間に更新
@@ -109,7 +116,7 @@ void OutCourse::drive()
         }
     }
     else if (mState == OutCourse::GARAGEIN) { // ガレージ・イン区間
-        mOutGarageDriver.drive();
+        mGarageDriver.drive();
     }
     // テストドライバ起動
     else {

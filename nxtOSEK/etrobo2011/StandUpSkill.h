@@ -33,7 +33,7 @@ class StandUpSkill {
     if(!mIsStandUp){
       //立ち上がるまでしっぽの角度を上げ続ける。
       mIsStandUp = isStandUp();
-      taiL_control(108);
+      tail_control(108);
       mTripodActivator.run(command);
     } else if(isStable()){
       if(mOnlyFirst){
@@ -42,35 +42,17 @@ class StandUpSkill {
         mRightMotor.reset();
         mOnlyFirst = false;
       }
-      taiL_control(3);
+      tail_control(3);
       mActivator.run(command);
     }
     else {
-      taiL_control(105);
+      tail_control(105);
       mLeftMotor.setPWM(0);
       mRightMotor.setPWM(0);
       mStableCount++;
     } 
   }
  private:
-  void taiL_control(signed int angle) const{
-    static const float P_GAIN = 2.5F;
-    static const float PWM_ABS_MAX = 60; /* 完全停止用モータ制御PWM絶対最大値 */        
-    float pwm = (float)(angle - mTailMotor.getCount())*P_GAIN; /* 比例制御 */
-
-    /* PWM出力飽和処理 */
-    if (pwm > PWM_ABS_MAX)
-    {
-      pwm = PWM_ABS_MAX;
-    }
-    else if (pwm < -PWM_ABS_MAX)
-    {
-      pwm = -PWM_ABS_MAX;
-    }
-    mTailMotor.setPWM((S8)pwm);
-    mTailMotor.setBrake(true);
-  }
-
   bool isStandUp(){
     // モータの角度が一定に達したら立ち上がったと判定する。
     return mTailMotor.getCount() > 100;

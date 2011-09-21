@@ -13,8 +13,9 @@ extern bool gDoForwardPid;
  * @param[in] white 白
  * @param[in] threshold 白黒閾値
  */
-TripodLineTrace::TripodLineTrace(float black, float white, float threshold) :
-    LineTrace(black, white, threshold)
+TripodLineTrace::TripodLineTrace(float black, float white, float threshold,
+    float maimaiBlack, float maimaiWhite, float maimaiThreshold) :
+    LineTrace(black, white, threshold, maimaiBlack, maimaiWhite, maimaiThreshold)
 {
 }
 
@@ -26,9 +27,5 @@ TripodLineTrace::TripodLineTrace(float black, float white, float threshold) :
 void TripodLineTrace::execute()
 {
     VectorT<float> command = calcCommand();
-    if (gDoForwardPid) {
-        mTripodActivator.runWithPid(command); //フォワードPID越しに運転
-    } else {
-        mTripodActivator.run(command);//制御機器にセット
-    }
+    mTripodActivator.run(command);//制御機器にセット
 }

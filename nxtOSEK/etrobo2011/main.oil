@@ -50,7 +50,7 @@ CPU ATMEL_AT91SAM7S256
     PRIORITY = 1; /* 最低優先度 */
     ACTIVATION = 1;
     SCHEDULE = FULL;
-    STACKSIZE = 512; /* bytes */
+    STACKSIZE = 768; /* bytes */
     EVENT = EventSleepI2C;
     EVENT = EventSleep;
     EVENT = EventDrive;
@@ -82,7 +82,7 @@ CPU ATMEL_AT91SAM7S256
     PRIORITY = 2;
     ACTIVATION = 1;
     SCHEDULE = FULL;
-    STACKSIZE = 512; /* bytes */
+    STACKSIZE = 768; /* bytes */
     EVENT = EventMaimai;
   };
 
@@ -112,7 +112,7 @@ CPU ATMEL_AT91SAM7S256
     PRIORITY = 2;
     ACTIVATION = 1;
     SCHEDULE = FULL;
-    STACKSIZE = 512; /* bytes */
+    STACKSIZE = 768; /* bytes */
     EVENT = EventGps;
   };
 
@@ -142,7 +142,7 @@ CPU ATMEL_AT91SAM7S256
     PRIORITY = 1; /* 最低優先度 */
     ACTIVATION = 1;
     SCHEDULE = FULL;
-    STACKSIZE = 512; /* bytes */
+    STACKSIZE = 768; /* bytes */
     EVENT = EventSleepI2C;
     EVENT = EventSleep;
     EVENT = EventSonar;
@@ -174,7 +174,7 @@ CPU ATMEL_AT91SAM7S256
     PRIORITY = 1; /* 最低優先度 */
     ACTIVATION = 1;
     SCHEDULE = FULL;
-    STACKSIZE = 512; /* bytes */
+    STACKSIZE = 768; /* bytes */
     EVENT = EventLogger;
   };
  

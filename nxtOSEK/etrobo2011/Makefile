@@ -1,23 +1,23 @@
 # BUILD_MODE
 BUILD_MODE = ROM_ONLY
 
-# nxtOSEKƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ
+# nxtOSEKãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 NXTOSEK_ROOT = ../../nxtOSEK
 
-# ƒ^[ƒQƒbƒgÀsŒ`®ƒtƒ@ƒCƒ‹–¼
+# ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå®Ÿè¡Œå½¢å¼ãƒ•ã‚¡ã‚¤ãƒ«å
 TARGET = main_cpp
 
-# ƒCƒ“ƒNƒ‹[ƒhƒpƒX
+# ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ‘ã‚¹
 USER_INC_PATH= $(NXTOSEK_ROOT)/ecrobot/nxtway_gs_balancer
 
-# ƒ‰ƒCƒuƒ‰ƒŠ
+# ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 USER_LIB = nxtway_gs_balancer
 
-# Cƒ\[ƒXƒtƒ@ƒCƒ‹
+# Cã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 TARGET_SOURCES = \
 	balancer_param.c
 
-# C++(.cpp)ƒ\[ƒXƒtƒ@ƒCƒ‹
+# C++(.cpp)ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 TARGET_CPP_SOURCES = \
 	constants.cpp \
 	coordinates.cpp \
@@ -31,10 +31,8 @@ TARGET_CPP_SOURCES = \
 	TestDriver.cpp \
 	SeesawDriver.cpp \
 	StairwayDriver.cpp \
-	OutGarageDriver.cpp \
-	EnigmaDriver.cpp \
-	MysteryDriver.cpp \
-	InGarageDriver.cpp \
+	ETsumoDriver.cpp \
+	GarageDriver.cpp \
 	InCourse.cpp \
 	OutCourse.cpp \
 	History.cpp \
@@ -45,21 +43,25 @@ TARGET_CPP_SOURCES = \
 	FailDetector.cpp \
 	LineTrace.cpp \
 	TripodLineTrace.cpp \
+	TripodAngleTrace.cpp \
+	TripodCoordinateTrace.cpp \
 	AngleTrace.cpp \
 	CoordinateTrace.cpp \
 	VirtualLineTrace.cpp \
 	CoordinateStop.cpp \
 	SlowdownSkill.cpp \
 	StopSkill.cpp \
-        Posture.cpp \
 	StandUpSkill.cpp \
-        SitDownSkill.cpp
+        SitDownSkill.cpp \
+        LookUpGateDriver.cpp \
+        StandupDriver.cpp \
+        MarkerDetector.cpp
 
-# TOPPERS/ATK(OSEK)İ’èƒtƒ@ƒCƒ‹
+# TOPPERS/ATK(OSEK)è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
 TOPPERS_OSEK_OIL_SOURCE = main.oil
 
-# ‰º‹L‚Ìƒ}ƒNƒ‚Í•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢
+# ä¸‹è¨˜ã®ãƒã‚¯ãƒ­ã¯å¤‰æ›´ã—ãªã„ã§ãã ã•ã„
 O_PATH ?= build
 
-# C++(.cpp)ƒrƒ‹ƒh—pmakefile
+# C++(.cpp)ãƒ“ãƒ«ãƒ‰ç”¨makefile
 include $(NXTOSEK_ROOT)/ecrobot/ecrobot++.mak

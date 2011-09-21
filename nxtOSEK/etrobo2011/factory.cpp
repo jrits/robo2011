@@ -4,9 +4,9 @@
 
 // デバイスオブジェクトの生成
 GyroSensor mGyroSensor(PORT_1);
-TouchSensor mTouchSensor(PORT_4);
 SonarSensor mSonarSensor(PORT_2);
 LightSensor mLightSensor(PORT_3);
+TouchSensor mTouchSensor(PORT_4);
 Motor mTailMotor(PORT_A);
 Motor mRightMotor(PORT_B);
 Motor mLeftMotor(PORT_C);
@@ -15,6 +15,7 @@ Clock mClock;
 Nxt mNxt;
 Bluetooth mBluetooth;
 Daq mDaq(mBluetooth);
+Speaker mSpeaker;
 // History
 float mLightBuffer[25]; // % 25
 History mLightHistory(mLightBuffer, COUNTOF(mLightBuffer));
@@ -32,10 +33,13 @@ float mDirectionAverageBuffer[25];
 History mDirectionAverageHistory(mDirectionAverageBuffer, COUNTOF(mDirectionAverageBuffer));
 float mGyroBuffer[25];
 History mGyroHistory(mGyroBuffer, COUNTOF(mGyroBuffer));
+float mTurnBuffer[10];
+History mTurnHistory(mTurnBuffer, COUNTOF(mTurnBuffer));
 // その他
 Activator mActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 TripodActivator mTripodActivator(mLeftMotor, mRightMotor, mGyroSensor, mNxt);
 Pid mLightPid(LIGHT_PID_KP, LIGHT_PID_KI, LIGHT_PID_KD); // LineTrace用
+Pid mForwardPid(0.003, 0.0, 0.1); // 調節方法: 実際に走らせて調節。PIDシミュレータ欲しい
 Pid mAnglePid(ANGLE_PID_KP, ANGLE_PID_KI, ANGLE_PID_KD); // AngleTrace用
 Pid mSlowdownPid(SLOWDOWN_PID_KP, SLOWDOWN_PID_KI, SLOWDOWN_PID_KD); // SlowdownSkill用
 Pid mStopPid(STOP_PID_KP, STOP_PID_KI, STOP_PID_KD); // CoordinateStop用 @obsolete
@@ -45,11 +49,16 @@ DownSlopeDetector mDownSlopeDetector;
 LineDetector mLineDetector;
 StraightDetector mStraightDetector;
 FailDetector mFailDetector;
+MarkerDetector mMarkerDetector;
 // Skill
-LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD);
-TripodLineTrace mTripodLineTrace(TRIPOD_BLACK, TRIPOD_WHITE, TRIPOD_LINE_THRESHOLD);
+LineTrace mLineTrace(BLACK, WHITE, LINE_THRESHOLD,
+    MAIMAI_BLACK, MAIMAI_WHITE, MAIMAI_LINE_THRESHOLD);
+TripodLineTrace mTripodLineTrace(TRIPOD_BLACK, TRIPOD_WHITE, TRIPOD_LINE_THRESHOLD,
+    MAIMAI_TRIPOD_BLACK, MAIMAI_TRIPOD_WHITE, MAIMAI_TRIPOD_LINE_THRESHOLD);
 AngleTrace mAngleTrace;
+TripodAngleTrace mTripodAngleTrace;
 CoordinateTrace mCoordinateTrace;
+TripodCoordinateTrace mTripodCoordinateTrace;
 VirtualLineTrace mVirtualLineTrace;
 SlowdownSkill mSlowdownSkill;
 StopSkill mStopSkill;
@@ -61,11 +70,11 @@ SitDownSkill mSitDownSkill;
 NormalDriver mNormalDriver;
 SeesawDriver mSeesawDriver;
 StairwayDriver mStairwayDriver;
-OutGarageDriver mOutGarageDriver;
-EnigmaDriver mEnigmaDriver;
-MysteryDriver mMysteryDriver;
-InGarageDriver mInGarageDriver;
+GarageDriver mGarageDriver;
 TestDriver mTestDriver;
+ETsumoDriver mETsumoDriver;
+LookUpGateDriver mLookUpGateDriver;
 
-// Posture
-Posture mPosture(mLeftMotor,mRightMotor,mTailMotor);
+TestDriver mSeesawTestDriver;
+StandupDriver mStandupDriver;
+

@@ -4,6 +4,8 @@
 #include "TripodActivator.h"
 #include "constants.h"
 #include "factory.h"
+extern bool gDoForwardPid;
+extern bool gDoProgressiveTurn;
 
 /**
  * コンストラクタ
@@ -30,14 +32,30 @@ void TripodActivator::run(VectorT<F32> command)
 {
     float pwm_L, pwm_R;
 
+    // フォワードPID
+    if (gDoForwardPid) {
+        command.mX = forwardPid(command.mX);
+    }
+
+    // 過去の蓄積ベースのturn値
+    if (gDoProgressiveTurn) {
+        command.mY += mTurnHistory.calcAverage();
+        mTurnHistory.update(command.mY);
+    }
+
     // @todo: balance_control と同じ入力値なら同じぐらいの出力値になるようにしたい
-    pwm_L = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
-    pwm_R = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
+    //pwm_L = command.mX + (command.mY > 0 ? command.mY : 0) * 0.5;
+    //pwm_R = command.mX + (-command.mY > 0 ? -command.mY : 0) * 0.5;
+    pwm_L = command.mX + command.mY * 0.5;
+    pwm_R = command.mX - command.mY * 0.5;
 
     if (! DESK_DEBUG) {
         mLeftMotor.setPWM((S8)(MIN(MAX(pwm_L, -128), 127)));
         mRightMotor.setPWM((S8)(MIN(MAX(pwm_R, -128), 127)));
     }
+
+    // tail_control
+    tail_control(TAIL_ANGLE_TRIPOD_DRIVE);
 
 #if 0 // DEBUG
     static int count = 0;

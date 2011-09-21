@@ -16,14 +16,14 @@
 class WallDetector : public Detector
 {
 private:
-	float mThreshold;   //!< 閾値
+    float mThreshold;   //!< 閾値
 public:
-	WallDetector(){ mThreshold = 60; }
-	~WallDetector(){}
+    WallDetector(){ mThreshold = 60; }
+    ~WallDetector(){}
     /**
      * セッタ
      */
-	void setThreshold(float threshold) { mThreshold = threshold; }
-	bool detect();
+    void setThreshold(float threshold) { mThreshold = threshold; }
+    bool detect();
 };
 #endif // !defined WALLDETECTOR_H

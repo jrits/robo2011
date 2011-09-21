@@ -19,13 +19,13 @@ private:
 private:
     float mTargetDistance;   //!< 停止目標距離
 public:
-	CoordinateStop();
-	~CoordinateStop(){}
+    CoordinateStop();
+    ~CoordinateStop(){}
     void setTargetCoordinate(Point targetCoordinate);
-	void setSlowdownDistance(float slowdownDistance);
+    void setSlowdownDistance(float slowdownDistance);
 public:
     void setTargetDistance(float targetDistance);
 protected:
-	VectorT<float> calcCommand();
+    VectorT<float> calcCommand();
 };
 #endif

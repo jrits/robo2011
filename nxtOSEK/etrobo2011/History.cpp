@@ -50,7 +50,7 @@ float History::calcAverage()
     float sum = 0.0;
     float ave = 0.0;
     for (int i = 0; i < mSize ; i++) {
-    	sum += mBuffer[i];
+        sum += mBuffer[i];
     }
     ave = sum / (float)mSize;
     return ave;

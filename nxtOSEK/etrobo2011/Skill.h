@@ -17,22 +17,22 @@ extern bool gDoForwardPid;
 class Skill
 {
 protected:
-	float mForward; //!< フォワード値
+    float mForward; //!< フォワード値
 public:
     /**
      * コンストラクタ
      */
-	Skill(){}
+    Skill(){}
     /**
      * デストラクタ
      */
-	virtual ~Skill(){}
+    virtual ~Skill(){}
     /**
      * フォワード値をセットする
      *
      * @param[in] forward フォワード値
      */
-	void setForward(float forward)
+    void setForward(float forward)
     {
         mForward = forward;
     }
@@ -44,18 +44,14 @@ public:
     virtual void execute()
     {
         VectorT<float> command = calcCommand();
-        if (gDoForwardPid) {
-            mActivator.runWithPid(command); //フォワードPID越しに運転
-        } else {
-            mActivator.run(command);//制御機器にセット
-        }
+        mActivator.run(command);//制御機器にセット
     }
     /**
      * 走行ベクトルを計算
      *
      * Override Me!!
      */
-	virtual VectorT<float> calcCommand() { return VectorT<float>(0,0); }
+    virtual VectorT<float> calcCommand() { return VectorT<float>(0,0); }
     // 純粋仮想関数にするとプログラム容量が肥大化する。とりあえず純粋仮想関数を避ける。
 };
 

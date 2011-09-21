@@ -16,7 +16,7 @@
  */
 bool DownSlopeDetector::detect()
 {
-	float accR = mRightMotorSpeedHistory.calcDifference();
-	float accL = mLeftMotorSpeedHistory.calcDifference();
-	return (accR > DOWNSLOPE_THRESHOLD) && (accL > DOWNSLOPE_THRESHOLD);
+    float accR = mRightMotorSpeedHistory.calcDifference();
+    float accL = mLeftMotorSpeedHistory.calcDifference();
+    return (accR > DOWNSLOPE_THRESHOLD) && (accL > DOWNSLOPE_THRESHOLD);
 }

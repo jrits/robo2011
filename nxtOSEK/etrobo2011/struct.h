@@ -7,8 +7,8 @@
  * 点
  */
 typedef struct _TAGPOINT{
-	float X; //!< X座標 単位mm 原点はコース左端 右に行くにつれて+
-	float Y; //!< Y座標 単位mm 原点はコース上端 下に行くにつれて-
+    float X; //!< X座標 単位mm 原点はコース左端 右に行くにつれて+
+    float Y; //!< Y座標 単位mm 原点はコース上端 下に行くにつれて-
 } Point;
 
 /**
