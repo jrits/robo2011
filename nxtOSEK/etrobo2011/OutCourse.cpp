@@ -83,8 +83,8 @@ void OutCourse::drive()
 #endif
     if (mState == OutCourse::START) { // スタート後通常区間
         if (mNormalDriver.drive()) {
-            float X = mGps.getXCoordinate();
-            float Y = mGps.getYCoordinate();
+            //float X = mGps.getXCoordinate();
+            //float Y = mGps.getYCoordinate();
             //if (inRegion(GPS_LOOKUP_START, MakePoint(X, Y)) || (13500.0 < mGps.getDistance())) { // 区間をルックアップ区間に更新
             //if (12500.0 < mGps.getDistance()) { // ルックアップ区間前減速
             //    mLineTrace.setForward(30);//ノーマルドライバ内でやる
