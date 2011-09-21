@@ -496,6 +496,21 @@ bool Gps::calcCenterCoordinates(float angle, float radius, float *circleX, float
  */
 void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 {
+#if 0 // ログ送信(0：解除、1：実施)
+    LOGGER_SEND = 2;
+    LOGGER_DATAS08[0] = (S8)(gDoSonar << 2 | gDoForwardPid << 1 | gDoMaimai); 
+    LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+    LOGGER_DATAU16    = (gDoMaimai ? (U16)(gMaimaiValue * 100) : (U16)(mLightSensor.get()));
+    LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+    LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+    LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+    LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
+    LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+    LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+    LOGGER_DATAS32[2] = (S32)(mTailMotor.getCount());
+    LOGGER_DATAS32[3] = (gDoSonar ? (S32)(gSonarTagetAngle): 0);
+#endif
+
     /* 2011年版"簡易"自動補正 */
     /* 距離メインの決め打ち補正 */
     
@@ -525,96 +540,6 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
         //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
     }
-#if 0 // ログ送信(0：解除、1：実施)
-        LOGGER_SEND = 2;
-        //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
-        //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-        LOGGER_DATAU16    = (U16)(getDistance());
-        LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
-        LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
-        LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-        LOGGER_DATAS16[3] = (S16)(mDistance);
-        LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
-        LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
-        //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
-        //LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
-#endif
-    
-    /* 2011年版"簡易"自動補正ここまで */
-    
-    /* 以下2010年版自動補正 */
-
-    /**
-     * 直線上を走行中かつGPSの座標から、走行位置、向きを補正
-     * GPSVisualizerの座標を利用してマッピングを行う
-     * 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。
-     * 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難->区間を座標で指定するため、判定がシビアになる
-     */
-    /*
-    int direction = (int)marge360(avgD);
-    int mDirectionDiv = direction%90;
-    int posFlag = (int)(((direction + DIRECTION_THRESHOLD))/90);
-    
-    if(mDirectionDiv <= DIRECTION_THRESHOLD)
-    {
-        //
-    }
-    else if( mDirectionDiv >= 90 - DIRECTION_THRESHOLD)
-    {
-        mDirectionDiv = 90 - mDirectionDiv;
-    }
-    else
-    {
-        return;
-    }
-    // 区間の縦幅+-コース幅、区間の横幅->直線区間距離 
-    switch(posFlag){
-        case 0:
-            if( (((avgY >= Y_CASE_0_4 -COURSE_WIDTH) && (avgY <= Y_CASE_0_4 + COURSE_WIDTH)))  && (((avgX>=X_CASE_0_4_START) && (avgX <= X_CASE_0_4_END )) && ((getXCoordinate()>=X_CASE_0_4_START) && (getXCoordinate() <= X_CASE_0_4_END))))
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(Y_CASE_0_4);
-                adjustXCoordinate(getXCoordinate());
-            }
-            break;
-        case 1:
-            if( avgX >= X_CASE_1_5 - COURSE_WIDTH && avgX <= X_CASE_1_5 + COURSE_WIDTH  && avgY <= Y_CASE_1_5_START && avgY >= Y_CASE_1_5_END
-            && getYCoordinate() >= Y_CASE_1_5_END && getYCoordinate() <= Y_CASE_1_5_START)
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(getYCoordinate());
-                adjustXCoordinate(X_CASE_1_5);
-            }
-            break;
-        case 2:
-            if( avgY >= Y_CASE_2_6 -COURSE_WIDTH && avgY <= Y_CASE_2_6 + COURSE_WIDTH  && avgX>=X_CASE_2_6_START && avgX <= X_CASE_2_6_END && getXCoordinate()>=X_CASE_2_6_START && getXCoordinate() <= X_CASE_2_6_END)
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(Y_CASE_2_6);
-                adjustXCoordinate(getXCoordinate());
-            }
-
-            break;
-        case 3:
-            if( avgX >= X_CASE_3_7 -COURSE_WIDTH && avgX <= X_CASE_3_7 + COURSE_WIDTH  && avgY>=Y_CASE_3_7_END && avgY <= Y_CASE_3_7_START && getYCoordinate() <= Y_CASE_3_7_START && getYCoordinate() >= Y_CASE_3_7_END)
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(getYCoordinate());
-                adjustXCoordinate(X_CASE_3_7);
-            }
-            break;
-        case 4:
-            if( (((avgY >= Y_CASE_0_4 -COURSE_WIDTH) && (avgY <= Y_CASE_0_4 + COURSE_WIDTH)))  && (((avgX>=X_CASE_0_4_START) && (avgX <= X_CASE_0_4_END )) && ((getXCoordinate()>=X_CASE_0_4_START) && (getXCoordinate() <= X_CASE_0_4_END))))
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(Y_CASE_0_4);
-                adjustXCoordinate(getXCoordinate());
-            }
-            break;
-        default:
-            break;
-    }
-    */
 }
 
 /**
@@ -629,17 +554,17 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 {
 #if 0 // ログ送信(0：解除、1：実施)
     LOGGER_SEND = 2;
-    //LOGGER_DATAS08[0] = (S8)(gDoSonar); 
-    //LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
-    LOGGER_DATAU16    = (U16)(getDistance());
+    LOGGER_DATAS08[0] = (S8)(gDoSonar << 2 | gDoForwardPid << 1 | gDoMaimai); 
+    LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+    LOGGER_DATAU16    = (gDoMaimai ? (U16)(gMaimaiValue * 100) : (U16)(mLightSensor.get()));
     LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
     LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
     LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
-    LOGGER_DATAS16[3] = (S16)(mDistance);
+    LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
     LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
     LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
-    //LOGGER_DATAS32[2] = (S32)(gSonarTagetDistance);
-    //LOGGER_DATAS32[3] = (S32)(gSonarTagetAngle);
+    LOGGER_DATAS32[2] = (S32)(mTailMotor.getCount());
+    LOGGER_DATAS32[3] = (gDoSonar ? (S32)(gSonarTagetAngle): 0);
 #endif
     
     /* 2011年版"簡易"自動補正 */
@@ -672,73 +597,6 @@ void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
         //adjustYCoordinate();
         mSpeaker.playTone(1000, 1, 100);
     }
-    
-    /* 2011年版"簡易"自動補正ここまで */
-    
-    /* 以下2010年版自動補正 */
-    /**
-     * 直線上を走行中かつGPSの座標から、走行位置、向きを補正
-     * GPSVisualizerの座標を利用してマッピングを行う
-     * 座標指定走行完成後、座標補正を行えた後に、switch文の中身追加。
-     * 現時点では、向き、直線から、どんな場所でも向きを補正するのは困難->区間を座標で指定するため、判定がシビアになる
-     */
-    /*
-    int direction = (int)marge360(avgD);
-    int mDirectionDiv = direction%90;
-    int posFlag = (int)(((direction + DIRECTION_THRESHOLD))/90);
-    
-    if(mDirectionDiv <= DIRECTION_THRESHOLD)
-    {
-        //
-    }
-    else if( mDirectionDiv >= 90 - DIRECTION_THRESHOLD)
-    {
-        mDirectionDiv = 90 - mDirectionDiv;
-    }
-    else
-    {
-        return;
-    }
-    // 区間の縦幅+-コース幅、区間の横幅->直線区間距離
-    switch(posFlag){
-        case 0:
-            if( (((avgY >= Y_IN_4 -COURSE_WIDTH) && (avgY <= Y_IN_4 + COURSE_WIDTH)))  && (((avgX>= X_IN_4_START ) && (avgX <= X_IN_4_END )) && ((getXCoordinate()>=X_IN_4_START) && (getXCoordinate() <= X_IN_4_END))))
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(Y_IN_4);
-                adjustXCoordinate(getXCoordinate());
-            }
-            break;
-        case 1:
-            break;
-        case 2:
-            if( avgY >= Y_IN_2_6 -COURSE_WIDTH && avgY <= Y_IN_2_6 + COURSE_WIDTH  && avgX>=X_IN_2_6_START && avgX <= X_IN_2_6_END && getXCoordinate()>=X_IN_2_6_START && getXCoordinate() <= X_IN_2_6_END)
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(Y_IN_2_6);
-                adjustXCoordinate(getXCoordinate());
-            }
-            break;
-        case 3:
-            if( avgX >= X_IN_3 -COURSE_WIDTH && avgX <= X_IN_3 + COURSE_WIDTH  && avgY>=Y_IN_3_END && avgY <= Y_IN_3_START && getYCoordinate() <= Y_IN_3_START && getYCoordinate() >= Y_IN_3_END)
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(getYCoordinate());
-                adjustXCoordinate(X_IN_3);
-            }
-            break;
-        case 4:
-            if( (((avgY >= Y_IN_4 -COURSE_WIDTH) && (avgY <= Y_IN_4 + COURSE_WIDTH)))  && (((avgX>= X_IN_4_START ) && (avgX <= X_IN_4_END )) && ((getXCoordinate()>=X_IN_4_START) && (getXCoordinate() <= X_IN_4_END))))
-            {
-                adjustDirection(90 * posFlag);
-                adjustYCoordinate(Y_IN_4);
-                adjustXCoordinate(getXCoordinate());
-            }
-            break;
-        default:
-            break;
-    }
-    */
 }
 
 //================== クラスメソッド ===================
