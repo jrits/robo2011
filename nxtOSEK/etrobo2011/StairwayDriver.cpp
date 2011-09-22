@@ -56,7 +56,7 @@ bool StairwayDriver::drive()
 
     // 初期化関数を作るのが面倒くさいのでとりあえずここで
     if (mState == StairwayDriver::INIT) {
-        gDoMaimai = true;
+        gDoMaimai = false;
         gDoForwardPid = false;
         mLightPid.reset(50, 0, 100);
         mState = StairwayDriver::BEFORELINETRACE;

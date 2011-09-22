@@ -22,7 +22,7 @@ bool
 LookUpGateDriver::drive(){
   switch(mCurrentSubSection){
     case INIT:
-      //gDoMaimai = true;
+      //gDoMaimai = false;
       mLineTrace.setForward(20);
       mLineTrace.execute();
 
@@ -30,7 +30,7 @@ LookUpGateDriver::drive(){
       	gDoSonar = true;
         gDoMaimai = false; //!< まいまい式発動フラグ
         gDoForwardPid = false;
-      	//gDoMaimai = true;
+      	//gDoMaimai = false;
         mLcd.clear();
         mLcd.putf("sn","INIT");
         mLcd.disp();

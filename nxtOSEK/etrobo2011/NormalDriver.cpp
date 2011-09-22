@@ -27,7 +27,7 @@ NormalDriver::NormalDriver()
 bool NormalDriver::drive()
 {
     gDoForwardPid = true;
-    gDoMaimai = true; //!< まいまい式発動フラグ
+    gDoMaimai = false; //!< まいまい式発動フラグ
 	
 	//////////////////////// INCOURSE /////////////////////////////
 	if (mCourse->getNameId() == 0) {

@@ -53,7 +53,7 @@ bool SeesawDriver::drive()
 
     // 初期化関数を作るのが面倒なのでとりあえずここで
     if (mState == SeesawDriver::INIT) {
-        gDoMaimai = true;
+        gDoMaimai = false;
         gDoForwardPid = false;
         mLightPid.reset(60,0,180);
         K_THETADOT = 7.5F;
