@@ -15,3 +15,5 @@
 // #define OUTCOURSE OutCourse::ETSUMO
 // #define OUTCOURSE OutCourse::GARAGEIN
 
+// しばし間借り
+#define INCOURSE_STRAIGHT_GARAGEIN 1 // インコース専用直線検知ver(実験中)

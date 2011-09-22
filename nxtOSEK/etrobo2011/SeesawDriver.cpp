@@ -50,10 +50,11 @@ bool SeesawDriver::drive()
     LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
 //    LOGGER_DATAS32[0] = (S32)(mGyroHistory.calcDifference());
 #endif
-    
+
     // 初期化関数を作るのが面倒なのでとりあえずここで
     if (mState == SeesawDriver::INIT) {
-        gDoMaimai = false;
+        gDoMaimai = true;
+        gDoForwardPid = false;
         mLightPid.reset(60,0,180);
         K_THETADOT = 7.5F;
         mState = SeesawDriver::BEFORELINETRACE;
@@ -75,7 +76,7 @@ bool SeesawDriver::drive()
         }
         // 段差検知しながらアングルトレース
         if (mDoDetectWall) {
-	        { Speaker s; s.playTone(1976, 10, 100); }
+            { Speaker s; s.playTone(1976, 10, 100); }
             K_THETADOT = 8.5F;
             mAngleTrace.setTargetAngle(TARGET_ANGLE);
             mAngleTrace.setForward(100);

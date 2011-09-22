@@ -5,7 +5,6 @@
 #include "Pid.h"
 #include "factory.h"
 extern bool gDoForwardPid;
-extern bool gDoProgressiveTurn;
 
 /**
  * コンストラクタ
@@ -51,12 +50,6 @@ void Activator::run(VectorT<F32> command)
     // フォワードPID
     if (gDoForwardPid) {
         command.mX = forwardPid(command.mX);
-    }
-
-    // 過去の蓄積ベースのturn値
-    if (gDoProgressiveTurn) {
-        command.mY += mTurnHistory.calcAverage();
-        mTurnHistory.update(command.mY);
     }
 
     // C++ バージョンだとなぜか mActivator.run() で動かないのでとりあえず。

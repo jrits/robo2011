@@ -5,6 +5,8 @@
 #include "GarageDriver.h"
 #include "factory.h"
 #include "constants.h"
+#include "define.h"
+#include "coordinates.h"
 
 /**
  * コンストラクタ
@@ -48,6 +50,7 @@ bool GarageDriver::drive()
         lcd.disp();
     }
 #endif
+
     // 初期化関数を作るのが面倒くさいのでここで
     if (mState == GarageDriver::INIT) {
         gDoMaimai = true; // まいまい式
@@ -66,6 +69,29 @@ bool GarageDriver::drive()
             mState = GarageDriver::MARKER;
         }
     }
+// インコース専用直線検知ver(実験中)
+#if defined(INCOURSE) && INCOURSE_STRAIGHT_GARAGEIN
+    // 直線検知してからの距離で座るべき場所を見つける. 
+    if (mState == GarageDriver::MARKER) {
+        mLineTrace.setDoOnOffTrace(false);
+        mLineTrace.setForward(50);
+        mLineTrace.execute();
+        // 直線検知
+        if (mStraightDetector.detect() && mGps.getDirection() > 405) {
+            mState = GarageDriver::STOP;
+            mPrevDistance = mGps.getDistance();
+        }
+    }
+    // 直線を見つけてから数cm進んで停止
+    if (mState == GarageDriver::STOP) {
+        mStopSkill.setSkill(&mLineTrace);
+        mStopSkill.setTargetDistance(mPrevDistance + 930); // mm 直線検知
+        mStopSkill.execute();
+        if (mStopSkill.isArrived()) {
+            mState = GarageDriver::SITDOWN;
+        }
+    }
+#else
     // ONOFFライントレースをしながらマーカを見つける。
     if (mState == GarageDriver::MARKER) {
         mLineTrace.setDoOnOffTrace(true);
@@ -85,12 +111,13 @@ bool GarageDriver::drive()
         mAngleTrace.setForward(50);
         mAngleTrace.setTargetAngle(450);
         mStopSkill.setSkill(&mAngleTrace);
-        mStopSkill.setTargetDistance(mPrevDistance + 130); // mm
+        mStopSkill.setTargetDistance(mPrevDistance + 130); // mm ONOFF
         mStopSkill.execute();
         if (mStopSkill.isArrived()) {
             mState = GarageDriver::SITDOWN;
         }
     }
+#endif
     // 座る
     if (mState == GarageDriver::SITDOWN) {
         mSitDownSkill.execute();
