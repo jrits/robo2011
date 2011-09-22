@@ -41,7 +41,7 @@ SeesawDriver::~SeesawDriver(){}
  */
 bool SeesawDriver::drive()
 {
-#if 1
+#if 0
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(mState);
 //    LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
@@ -55,29 +55,28 @@ bool SeesawDriver::drive()
     if (mState == SeesawDriver::INIT) {
         //mState = SeesawDriver::LINERETURN; /// ラインリターンだけしたい時
 		//テスト用スタート処理
-		if(mTimeCounter < 1250){
-         mAngleTrace.setTargetAngle(TARGET_ANGLE);
-         mAngleTrace.setForward(0);
-         mAngleTrace.execute();
-		 mTimeCounter++;
-		}
-		else{
-        gDoMaimai = false;
-        mState = SeesawDriver::BEFORELINETRACE;
-        mLightPid.reset(60,0,180);
-        K_THETADOT = 7.5F;
-		mTimeCounter = 0;
-		}
-		//テスト用スタート処理ここまで
-//        mDoDetectWall = false;
-        mDoDetectWall = true;//ライントレースしない
-        mWallDetector.setThreshold(110);
+//		if(mTimeCounter < 1250){
+//         mAngleTrace.setTargetAngle(TARGET_ANGLE);
+//         mAngleTrace.setForward(0);
+//         mAngleTrace.execute();
+//             mTimeCounter++;
+//        }
+//        else{
+            gDoMaimai = false;
+            mState = SeesawDriver::BEFORELINETRACE;
+            mLightPid.reset(60,0,180);
+            K_THETADOT = 7.5F;
+            mTimeCounter = 0;
+//        }
+//テスト用スタート処理ここまで
+        mDoDetectWall = false;//ライントレースしない
+        mWallDetector.setThreshold(80);
     }
     // シーソーのライントレース。段差にぶつかるまで。
     else if (mState == SeesawDriver::BEFORELINETRACE) {
         // 段差検知なしでライントレース
         if (! mDoDetectWall) {
-            mLineTrace.setForward(70);
+            mLineTrace.setForward(60);
             mLineTrace.execute();
             if(mGps.getXCoordinate() > 3000 && mGps.getYCoordinate() > -1100) {
                 { Speaker s; s.playTone(480, 20, 100); }
@@ -86,11 +85,11 @@ bool SeesawDriver::drive()
         }
         // 段差検知しながらアングルトレース
         if (mDoDetectWall) {
-            { Speaker s; s.playTone(1976, 10, 100); }
-            K_THETADOT = 8.5F;
+            { Speaker s; s.playTone(215, 10, 100); }
+            K_THETADOT = 6.5F;
             mAngleTrace.setTargetAngle(TARGET_ANGLE);
             mAngleTrace.setForward(100);
-            mActivator.reset(USER_GYRO_OFFSET + 4); // ちょっと急発進
+            mActivator.reset(USER_GYRO_OFFSET + 10); // ちょっと急発進
             mAngleTrace.execute();
             if (mWallDetector.detect()) {
                 { Speaker s; s.playTone(1976, 10, 100); }
@@ -186,14 +185,14 @@ bool SeesawDriver::drive()
         }
         K_THETADOT = 8.5F;
         mAngleTrace.setTargetAngle(TARGET_ANGLE);
-        mAngleTrace.setForward(18);
+        mAngleTrace.setForward(40);
         mAngleTrace.execute();
         // しばし急ブレーキ
         if(mTimeCounter < 100){
            mActivator.reset(USER_GYRO_OFFSET);
         }
         // バタンとなりました
-        if(((mRightMotor.getCount() + mLeftMotor.getCount())/2.0) - mPrevMotor >= 470) { // BACKRUN
+        if(((mRightMotor.getCount() + mLeftMotor.getCount())/2.0) - mPrevMotor >= 405) { // BACKRUN
 //        if(mGps.getXCoordinate() > 3800) { // LINERETURN
             { Speaker s; s.playTone(261, 40, 100); }
 //            mState = SeesawDriver::LINERETURN;
@@ -205,14 +204,14 @@ bool SeesawDriver::drive()
     // ダブルクラッチのバック
     else if(mState == SeesawDriver::BACKRUN){
         // バック
-    	if(mTimeCounter <= 250){
-    		mActivator.reset(USER_GYRO_OFFSET - 50);
+    	if(mTimeCounter <= 100){
+    		mActivator.reset(USER_GYRO_OFFSET - 30);
     	}
-        if(((mRightMotor.getCount() + mLeftMotor.getCount())/2.0) - mPrevMotor > 360){
+        if(((mRightMotor.getCount() + mLeftMotor.getCount())/2.0) - mPrevMotor > 360 && mTimeCounter > 250){
             K_THETADOT = 4.5F;
-            mActivator.reset(USER_GYRO_OFFSET - 7);
+            mActivator.reset(USER_GYRO_OFFSET);
             mAngleTrace.setTargetAngle(TARGET_ANGLE);
-            mAngleTrace.setForward(-30);
+            mAngleTrace.setForward(-50);
             mAngleTrace.execute();
         }
         // ちょっととまってろ
