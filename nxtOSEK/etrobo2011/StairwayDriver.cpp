@@ -10,6 +10,8 @@
 #include "constants.h"
 #include "Speaker.h"
 
+#define DIRECTION_OFFSET -2
+
 /**
  * コンストラクタ
  */
@@ -133,7 +135,7 @@ bool StairwayDriver::drive()
         // 突入しようと思った直後に段差検知がtrueになってしまうことがあるのでちょっと進んでおく
         if (! mDoDetectWall) {
             mAngleTrace.setForward(100);
-            mAngleTrace.setTargetAngle(mPrevDirection);
+            mAngleTrace.setTargetAngle(mPrevDirection + DIRECTION_OFFSET);
             K_THETADOT = 7.5F; // Find! １段目１回で載る絶妙な値
             mAngleTrace.execute();
             if (mGps.getXCoordinate() < 4050.0) { // 階段側マーカ始点

@@ -57,12 +57,12 @@ bool GarageDriver::drive()
         gDoForwardPid = false;
         mTimeCounter = 0;
         K_THETADOT = 7.5F;
-        mLineTrace.setForward(50);
+        mLineTrace.setForward(30);
         mState = GarageDriver::READYGO;
     }
     // いきなり問答無用でONOFFするよりも、ちゃんとテストで確認できたスピードにしてからやる。
     if (mState == GarageDriver::READYGO) {
-        mLineTrace.setForward(50);
+        mLineTrace.setForward(30);
         mLineTrace.execute();
         // 1s たった
         if (mTimeCounter > 250) {
@@ -74,7 +74,7 @@ bool GarageDriver::drive()
     // 直線検知してからの距離で座るべき場所を見つける. 
     if (mState == GarageDriver::MARKER) {
         mLineTrace.setDoOnOffTrace(false);
-        mLineTrace.setForward(50);
+        mLineTrace.setForward(30);
         mLineTrace.execute();
         // 直線検知
         if (mStraightDetector.detect() && mGps.getDirection() > 405) {
@@ -85,7 +85,7 @@ bool GarageDriver::drive()
     // 直線を見つけてから数cm進んで停止
     if (mState == GarageDriver::STOP) {
         mStopSkill.setSkill(&mLineTrace);
-        mStopSkill.setTargetDistance(mPrevDistance + 930); // mm 直線検知
+        mStopSkill.setTargetDistance(mPrevDistance + 990); // mm 直線検知
         mStopSkill.execute();
         if (mStopSkill.isArrived()) {
             mState = GarageDriver::SITDOWN;
@@ -95,7 +95,7 @@ bool GarageDriver::drive()
     // ONOFFライントレースをしながらマーカを見つける。
     if (mState == GarageDriver::MARKER) {
         mLineTrace.setDoOnOffTrace(true);
-        mLineTrace.setForward(50);
+        mLineTrace.setForward(30);
         mLineTrace.execute();
         // マーカー検知
         if (mMarkerDetector.detect()) {
@@ -106,9 +106,9 @@ bool GarageDriver::drive()
     // マーカを見つけてから数cm進んで停止
     if (mState == GarageDriver::STOP) {
         //mLineTrace.setDoOnOffTrace(true);
-        //mLineTrace.setForward(50);
+        //mLineTrace.setForward(30);
         //mStopSkill.setSkill(&mLineTrace);
-        mAngleTrace.setForward(50);
+        mAngleTrace.setForward(30);
         mAngleTrace.setTargetAngle(450);
         mStopSkill.setSkill(&mAngleTrace);
         mStopSkill.setTargetDistance(mPrevDistance + 130); // mm ONOFF
@@ -120,6 +120,7 @@ bool GarageDriver::drive()
 #endif
     // 座る
     if (mState == GarageDriver::SITDOWN) {
+        mSitDownSkill.setAngle(80);
         mSitDownSkill.execute();
     }
 

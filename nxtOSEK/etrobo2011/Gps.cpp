@@ -13,6 +13,8 @@
 #include "Speaker.h"
 extern Bluetooth bt;
 extern Daq mDaq;
+extern bool gSonarIsDetected;
+extern int gSonarTagetDistance;
 
 //--------------------
 //Historyクラス完成後は、各メソッド内で宣言
