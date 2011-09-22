@@ -6,7 +6,6 @@
 extern bool gDoMaimai;
 extern bool gDoSonar; //!< ソナーセンサ発動フラグ
 extern bool gSonarIsDetected; //!< 衝立検知の結果
-extern bool gDoProgressiveTurn;
 extern int gSonarTagetDistance;
 
 extern "C"{
@@ -51,7 +50,6 @@ LookUpGateDriver::drive(){
   case IN_FRONT_OF_GATE:
     // 座り込む。
     if(sitDown()){
-      gDoProgressiveTurn = false;
       gDoMaimai = false;
       gLineTrace = false;//GPS自動補正しないため（ライントレースでなければ、自動補正しない）
       //tail_control(TAIL_ANGLE_FOR_TRIPOD_LINETRACE);
@@ -68,7 +66,6 @@ LookUpGateDriver::drive(){
     break;
   case UNDER_GATE:// ゲートの真下。
     // 3点傾立走行。
-    gDoProgressiveTurn = false;
     gDoMaimai = false;
     if(passedGate()){
       mTripodAngleTrace.setForward(0);

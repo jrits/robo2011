@@ -34,7 +34,7 @@ int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // �
 char BT_NAME[16] = "KACHIICHI";
 int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
 
-#if 1 //オージス
+#if 0 //オージス
 int WHITE = 513; // 白色の光センサ値 //小さめにしてね
 int BLACK = 665; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
@@ -47,9 +47,9 @@ int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
 int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より#endif //オージス
 #endif
 
-#if 0 //高橋家
-int WHITE = 540; // 白色の光センサ値 //小さめにしてね
-int BLACK = 710; // 黒色の光センサ値 //大きめにしてね
+#if 1 //高橋家
+int WHITE = 525; // 白色の光センサ値 //小さめにしてね
+int BLACK = 689; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
 int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
 int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
@@ -77,8 +77,8 @@ int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // �
 char BT_NAME[16] = "KACHINEW";
 int USER_GYRO_OFFSET = 582; // この値は適宜調整すること
 // オージス総研
-int WHITE = 530; // 白色の光センサ値 //小さめにしてね
-int BLACK = 670; // 黒色の光センサ値 //大きめにしてね
+int WHITE = 525; // 白色の光センサ値 //小さめにしてね
+int BLACK = 689; // 黒色の光センサ値 //大きめにしてね
 int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
 int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
 int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
@@ -105,8 +105,8 @@ int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // �
 //float MAIMAI_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //大きめにしてね
 //float MAIMAI_BLACK = 0.4F; // 黒色のMAIMAIセンサ値 //小さめにしてね
 // ogis
-float MAIMAI_WHITE = 0.8F; // 白色のMAIMAIセンサ値 //大きめにしてね
-float MAIMAI_BLACK = 0.2F; // 黒色のMAIMAIセンサ値 //小さめにしてね
+float MAIMAI_WHITE = 0.83F; // 白色のMAIMAIセンサ値 //大きめにしてね
+float MAIMAI_BLACK = 0.31F; // 黒色のMAIMAIセンサ値 //小さめにしてね
 float MAIMAI_LINE_THRESHOLD = MAIMAI_WHITE - (MAIMAI_WHITE - MAIMAI_BLACK)/4.0; // ライン端の色を示す閾値。白と灰の間の値
 float MAIMAI_GRAY  = (MAIMAI_WHITE + MAIMAI_BLACK)/2.0; // 灰色の光センサ値
 float MAIMAI_MARKER_THRESHOLD = (MAIMAI_GRAY + MAIMAI_BLACK)/2.0; // 灰と黒の間の値
