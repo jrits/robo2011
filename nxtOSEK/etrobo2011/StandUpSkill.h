@@ -1,12 +1,13 @@
 #ifndef STANDUPSKILL_H
 #define STANDUPSKILL_H
 
-#include "balancer.h"
-#include "Activator.h"
-#include "TripodActivator.h"
+// #include "Activator.h"
+// #include "TripodActivator.h"
 #include "Motor.h"
 
 using namespace ecrobot;
+class Activator;
+class TripodActivator;
 
 class StandUpSkill {
  public:
@@ -14,62 +15,44 @@ class StandUpSkill {
                TripodActivator& tripodActivator,
                Motor& leftMotor,
                Motor& rightMotor,
-               Motor& tailMotor)
-      : mActivator(activator),
-        mTripodActivator(tripodActivator),
-        mLeftMotor(leftMotor),
-        mRightMotor(rightMotor),
-        mTailMotor(tailMotor),
-        mIsStandUp(false),
-        mStableCount(0),
-        mOnlyFirst(true)
-  {
-  }
+               Motor& tailMotor);
   
   ~StandUpSkill(){}
 
-  void execute(){
-    static const VectorT<F32> command(1.0F,1.0F);
-    if(!mIsStandUp){
-      //立ち上がるまでしっぽの角度を上げ続ける。
-      mIsStandUp = isStandUp();
-      tail_control(108);
-      mTripodActivator.run(command);
-    } else if(isStable()){
-      if(mOnlyFirst){
-        balance_init();
-        mLeftMotor.reset();
-        mRightMotor.reset();
-        mOnlyFirst = false;
-      }
-      tail_control(3);
-      mActivator.run(command);
-    }
-    else {
-      tail_control(105);
-      mLeftMotor.setPWM(0);
-      mRightMotor.setPWM(0);
-      mStableCount++;
-    } 
-  }
- private:
-  bool isStandUp(){
-    // モータの角度が一定に達したら立ち上がったと判定する。
-    return mTailMotor.getCount() > 100;
-  }
+  void execute();
+  //! Returns true when this skill finished.
+  bool isDone() const;
 
-  bool isStable(){
-    return mStableCount > 1000;
-  }
+ private:
+  bool isStable() const;
+  bool isStandUp() const;
   
+  void tail_control_with_PID(signed int target_angle);
+  //! 
+  enum SubState{
+    INIT = 0,
+    TO_FIRST_ANGLE,
+    TO_SECOND_ANGLE,
+    TO_STABLE,
+    STANDING_UP,
+    DONE
+  };
+
   Activator& mActivator;
   TripodActivator& mTripodActivator;
   Motor& mLeftMotor;
   Motor& mRightMotor;
   Motor& mTailMotor;
+
+  SubState mSubState;
   bool mIsStandUp;
   int mStableCount;
   bool mOnlyFirst;
+
+  // 微分動作を計算するための、前回の誤差を保持する。
+  float mLastDiff;
+  // 積分動作を保持するためのフィールド。
+  float mIterm;
 };
 
 #endif
