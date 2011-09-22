@@ -3,49 +3,9 @@
 #include "macro.h"
 #include <math.h>
 
-#ifdef KACHIROBO
-char BT_NAME[16] = "KACHIROBO";
-int USER_GYRO_OFFSET = 600; // この値は適宜調整すること
-// オージス総研
-int WHITE = 530; // 白色の光センサ値 //小さめにしてね
-int BLACK = 670; // 黒色の光センサ値 //大きめにしてね
-int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
-int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
-int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-int TRIPOD_WHITE = 560; // 白色の光センサ値 //小さめにしてね
-int TRIPOD_BLACK = 650; // 黒色の光センサ値 //大きめにしてね
-int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
-int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
-int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
-// //竹田家 W:550 G:617 B:720
-// int WHITE = 550; // 白色の光センサ値 //小さめにしてね
-// int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
-// int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
-// int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
-// int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-// int TRIPOD_WHITE = 607; // 白色の光センサ値 //小さめにしてね
-// int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
-// int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
-// int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
-// int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
-#endif
-
 #ifdef KACHIICHI
 char BT_NAME[16] = "KACHIICHI";
 int USER_GYRO_OFFSET = 611; // この値は適宜調整すること
-
-#if 0 //オージス
-int WHITE = 513; // 白色の光センサ値 //小さめにしてね
-int BLACK = 665; // 黒色の光センサ値 //大きめにしてね
-int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4;
-int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
-int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-int TRIPOD_WHITE = 562; // 白色の光センサ値 //小さめにしてね
-int TRIPOD_BLACK = 672; // 黒色の光センサ値 //大きめにしてね
-int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
-int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
-int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より#endif //オージス
-#endif
 
 #if 1 //高橋家
 int WHITE = 525; // 白色の光センサ値 //小さめにしてね
@@ -59,65 +19,16 @@ int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
 int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
 int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
 #endif //高橋家
-
-// 瀬尾家
-// int WHITE = 500; // 白色の光センサ値 //小さめにしてね
-// int BLACK = 710; // 黒色の光センサ値 //大きめにしてね
-// int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
-// int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
-// int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-// int TRIPOD_WHITE = 580; // 白色の光センサ値 //小さめにしてね
-// int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
-// int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
-// int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
-// int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
-#endif
-
-#ifdef KACHINEW
-char BT_NAME[16] = "KACHINEW";
-int USER_GYRO_OFFSET = 582; // この値は適宜調整すること
-// オージス総研
-int WHITE = 525; // 白色の光センサ値 //小さめにしてね
-int BLACK = 689; // 黒色の光センサ値 //大きめにしてね
-int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
-int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
-int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-int TRIPOD_WHITE = 560; // 白色の光センサ値 //小さめにしてね
-int TRIPOD_BLACK = 650; // 黒色の光センサ値 //大きめにしてね
-int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
-int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
-int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
-// //竹田家 W:550 G:617 B:720
-// int WHITE = 550; // 白色の光センサ値 //小さめにしてね
-// int BLACK = 720; // 黒色の光センサ値 //大きめにしてね
-// int LINE_THRESHOLD = WHITE + (BLACK - WHITE)/4; // 白と黒の間からちょっと白より
-// int GRAY  = (WHITE + BLACK)/2; // 灰色の光センサ値
-// int MARKER_THRESHOLD = GRAY + (BLACK - GRAY)/4; // 灰と黒の間からちょっと灰より
-// int TRIPOD_WHITE = 607; // 白色の光センサ値 //小さめにしてね
-// int TRIPOD_BLACK = 710; // 黒色の光センサ値 //大きめにしてね
-// int TRIPOD_LINE_THRESHOLD = TRIPOD_WHITE + (TRIPOD_BLACK - TRIPOD_WHITE)/4;
-// int TRIPOD_GRAY  = (TRIPOD_WHITE + TRIPOD_BLACK)/2; // 灰色の光センサ値
-// int TRIPOD_MARKER_THRESHOLD = TRIPOD_GRAY + (TRIPOD_BLACK - TRIPOD_GRAY)/4; // 灰と黒の間からちょっと灰より
 #endif
 
 // まいまい式
-// 新横浜
-//float MAIMAI_WHITE = 1.0F; // 白色のMAIMAIセンサ値 //大きめにしてね
-//float MAIMAI_BLACK = 0.4F; // 黒色のMAIMAIセンサ値 //小さめにしてね
-// ogis
 float MAIMAI_WHITE = 0.83F; // 白色のMAIMAIセンサ値 //大きめにしてね
 float MAIMAI_BLACK = 0.31F; // 黒色のMAIMAIセンサ値 //小さめにしてね
 float MAIMAI_LINE_THRESHOLD = MAIMAI_WHITE - (MAIMAI_WHITE - MAIMAI_BLACK)/4.0; // ライン端の色を示す閾値。白と灰の間の値
 float MAIMAI_GRAY  = (MAIMAI_WHITE + MAIMAI_BLACK)/2.0; // 灰色の光センサ値
 float MAIMAI_MARKER_THRESHOLD = (MAIMAI_GRAY + MAIMAI_BLACK)/2.0; // 灰と黒の間の値
-#if 0 // 瀬尾家
-float MAIMAI_TRIPOD_WHITE = 0.75F; // 白色のMAIMAIセンサ値 //大きめにしてね
-float MAIMAI_TRIPOD_BLACK = 0.30F; // 黒色のMAIMAIセンサ値 //小さめにしてね
-#endif
-#if 1 // 新横浜
 float MAIMAI_TRIPOD_WHITE = 0.5F; // 白色のMAIMAIセンサ値 //大きめにしてね
 float MAIMAI_TRIPOD_BLACK = 0.2F; // 黒色のMAIMAIセンサ値 //小さめにしてね
-#endif
 float MAIMAI_TRIPOD_LINE_THRESHOLD = MAIMAI_TRIPOD_WHITE - (MAIMAI_TRIPOD_WHITE - MAIMAI_TRIPOD_BLACK)/4.0; // ライン端の色を示す閾値。白と灰色の間の値
 float MAIMAI_TRIPOD_GRAY  = (MAIMAI_TRIPOD_WHITE + MAIMAI_TRIPOD_BLACK)/2.0; // 灰色の光センサ値
 float MAIMAI_TRIPOD_MARKER_THRESHOLD = (MAIMAI_TRIPOD_GRAY + MAIMAI_TRIPOD_BLACK)/2.0; // 灰と黒の間の値

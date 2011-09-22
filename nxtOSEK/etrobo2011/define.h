@@ -10,7 +10,7 @@
 // #define INCOURSE InCourse::STAIRWAY
 // #define INCOURSE InCourse::GARAGEIN
 // #define OUTCOURSE OutCourse::TESTDRIVE
- #define OUTCOURSE OutCourse::START
+#define OUTCOURSE OutCourse::START
 // #define OUTCOURSE OutCourse::LOOKUP
 // #define OUTCOURSE OutCourse::ETSUMO
 // #define OUTCOURSE OutCourse::GARAGEIN
