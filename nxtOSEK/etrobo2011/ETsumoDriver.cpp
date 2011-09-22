@@ -517,7 +517,7 @@ bool ETsumoDriver::drive()
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
             mIsArrived = false;
-            gDoMaimai = true;
+            gDoMaimai = false;
             
             
             //mGps.adjustXCoordinate(4887); //ライン復帰テスト用
