@@ -221,6 +221,21 @@ TASK(TaskDrive)
     bool doDrive = true;
     while(1)
     {
+#if 1 // ログ送信(0：解除、1：実施)
+        LOGGER_SEND = 2;
+        LOGGER_DATAS08[0] = (S8)(gDoSonar << 2 | gDoForwardPid << 1 | gDoMaimai); 
+        LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
+        LOGGER_DATAU16    = (gDoMaimai ? (U16)(gMaimaiValue * 100) : (U16)(mLightSensor.get()));
+        LOGGER_DATAS16[0] = (S16)(mGps.getXCoordinate());
+        LOGGER_DATAS16[1] = (S16)(mGps.getYCoordinate());
+        LOGGER_DATAS16[2] = (S16)(mGps.getDirection());
+        LOGGER_DATAS16[3] = (S16)(mGps.getDistance());
+        LOGGER_DATAS32[0] = (S32)(mLeftMotor.getCount());
+        LOGGER_DATAS32[1] = (S32)(mRightMotor.getCount());
+        LOGGER_DATAS32[2] = (S32)(mTailMotor.getCount());
+        LOGGER_DATAS32[3] = (gDoSonar ? (S32)(gSonarTagetDistance): 0);
+#endif
+
         //if (mFailDetector.detect()) doDrive = false;
         if (doDrive) mCourse->drive();
         else mActivator.stop();

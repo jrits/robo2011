@@ -498,7 +498,7 @@ bool Gps::calcCenterCoordinates(float angle, float radius, float *circleX, float
  */
 void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
 {
-#if 1 // ログ送信(0：解除、1：実施)
+#if 0 // ログ送信(0：解除、1：実施)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(gDoSonar << 2 | gDoForwardPid << 1 | gDoMaimai); 
     LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
@@ -550,7 +550,7 @@ void Gps::adjustPositionOut(float avgX,float avgY,float avgD)
  */
 void Gps::adjustPositionIn(float avgX, float avgY, float avgD)
 {
-#if 1 // ログ送信(0：解除、1：実施)
+#if 0 // ログ送信(0：解除、1：実施)
     LOGGER_SEND = 2;
     LOGGER_DATAS08[0] = (S8)(gDoSonar << 2 | gDoForwardPid << 1 | gDoMaimai); 
     LOGGER_DATAS08[1] = (S8)(gSonarIsDetected); 
