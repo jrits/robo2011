@@ -44,6 +44,7 @@ LookUpGateDriver::drive(){
     if(foundGate()){
       // 最初にゲートを見つけたときに音を出す。    
       gDoMaimai = false;
+      gLineTrace = false;//GPS自動補正しないため（ライントレースでなければ、自動補正しない）
       mCurrentSubSection = IN_FRONT_OF_GATE;
     }
     break;
@@ -51,7 +52,6 @@ LookUpGateDriver::drive(){
     // 座り込む。
     if(sitDown()){
       gDoMaimai = false;
-      gLineTrace = false;//GPS自動補正しないため（ライントレースでなければ、自動補正しない）
       //tail_control(TAIL_ANGLE_FOR_TRIPOD_LINETRACE);
       mTripodAngleTrace.setTargetAngle(360);
       mTripodAngleTrace.setForward(SPEED_UNDER_LOOKUP_GATE);
