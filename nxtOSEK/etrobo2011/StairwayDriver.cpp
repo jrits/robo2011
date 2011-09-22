@@ -171,7 +171,7 @@ bool StairwayDriver::drive()
         }
         // 大きくして急発進
         if (mDoDetectWall) {
-	    mActivator.reset(USER_GYRO_OFFSET + 0); 
+	    mActivator.reset(USER_GYRO_OFFSET + 5); 
             mAngleTrace.execute();
             // 前進しているのを確認しつつ段差検知
             if (mLeftMotor.getCount() - mPrevMotor > 270 && mWallDetector.detect()) {
