@@ -512,8 +512,9 @@ bool ETsumoDriver::drive()
             K_THETADOT = 6.5F;
             K_PHIDOT = 60.0F;
             mTimeCounter = 0;
-            mCoordinateTrace.setTargetCoordinate(MakePoint(4887, -2316));//ET相撲上方の灰色マーカ右端
-            mCoordinateTrace.setForward(60);
+            //mCoordinateTrace.setTargetCoordinate(MakePoint(4887, -2316));//ET相撲上方の灰色マーカ右端
+            mCoordinateTrace.setTargetCoordinate(MakePoint(GPS_ETSUMO_SEARCH_2_X + 200.0, GPS_ETSUMO_SEARCH_2_Y - 200.0));//土俵中心をひたすら目指す、勝利のダンス！
+            mCoordinateTrace.setForward(10);
             mCoordinateTrace.setAllowableError(30);
             mInitState = false;
             mIsArrived = false;
@@ -528,7 +529,7 @@ bool ETsumoDriver::drive()
         if(mCoordinateTrace.isArrived()){
             mTimeCounter = 0;
             mInitState = true;
-            mState = ETsumoDriver::LINERETURN;
+            //mState = ETsumoDriver::LINERETURN;//遷移コメントアウト、土俵中心をひたすら目指す、勝利のダンス！
             if(SUMO_DEBUG) {mSpeaker.playTone(500, 1, 50);}
         }
         mCoordinateTrace.execute();
