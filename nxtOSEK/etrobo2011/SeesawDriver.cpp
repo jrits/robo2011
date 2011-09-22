@@ -14,7 +14,7 @@
 #define RETURNTIMING 375 //値を返すタイミング
 #define LIGHTBUF 10 //光センサヒストリのバッファサイズ
 #define LATEST 0
-#define TARGET_ANGLE 358
+#define TARGET_ANGLE 362
 
 /**
  * コンストラクタ
