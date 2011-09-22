@@ -13,6 +13,7 @@ int gDoMaimai = 0;              /* まいまい式を利用 */
 float gMaimaiValue;             /* まいまい式の結果 */
 #define MAIMAI_PERIOD 10        /* まいまいタスクの周期 */
 static float calc_maimai(U16 light_off_value, U16 light_on_value);
+static void maimai_status_monitor(const CHAR *target_name);
 
 //=============================================================================
 // TOPPERS/ATK declarations
@@ -31,7 +32,7 @@ TASK(OSEK_Task_Background)
     while(1)
     {
         tail_control(70);
-        ecrobot_status_monitor("OSEK HelloWorld!");
+        maimai_status_monitor("Maimai HelloWorld!");
         systick_wait_ms(10); /* 10msec wait */
     }
 }
@@ -136,4 +137,34 @@ static float calc_maimai(U16 light_off_value, U16 light_on_value)
     /* コース明度を計算 */
     luminance = (float) light_diff / k;
     return luminance;
+}
+
+//*****************************************************************************
+// 関数名 :maimai_status_monitor
+// 引数  : 表示名
+// 返り値 : 無し
+// 概要 : ジャイロセンサとまいまい光センサの値を表示する
+// 補足 : ../ecrobot/c/ecrobot_interface.c の ecrobot_status_monitor を改変
+//*****************************************************************************
+void maimai_status_monitor(const CHAR *target_name)
+{
+    display_clear(0);
+
+    display_goto_xy(0, 0);
+    display_string(target_name);
+
+    display_goto_xy(0, 1);
+    display_string("GYRO:");
+    display_unsigned(ecrobot_get_gyro_sensor(NXT_PORT_S1), 0);
+
+    display_goto_xy(0, 2);
+    display_string("MAIMAI:");
+    if (gDoMaimai) {
+        display_int((int)(gMaimaiValue * 100), 0);
+    }
+    else {
+        display_unsigned(ecrobot_get_light_sensor(NXT_PORT_S3), 0);
+    }
+
+    display_update();
 }
